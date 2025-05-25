@@ -16,6 +16,5 @@
     "useTsLinkResolution": true
   },
   "excludeExternals": true,
-  "externalPattern": ["**/node_modules/**", "**/dist/**"],
-  "tsdoc": "tsdoc.json"
+  "externalPattern": ["**/node_modules/**", "**/dist/**"]
 }
