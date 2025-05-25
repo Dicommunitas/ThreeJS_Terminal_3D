@@ -1,8 +1,21 @@
 
 /**
- * Componente de painel para controles de câmera, especificamente para focar em sistemas.
- * Renderiza botões para cada sistema disponível, permitindo ao usuário focar a câmera
- * e selecionar todos os equipamentos pertencentes àquele sistema.
+ * @fileOverview Componente de painel para controles de câmera, especificamente para focar em sistemas.
+ *
+ * Principal Responsabilidade:
+ * Renderizar botões para cada sistema disponível, permitindo ao usuário focar a câmera
+ * e selecionar todos os equipamentos pertencentes àquele sistema ao clicar em um botão.
+ *
+ * ```mermaid
+ * classDiagram
+ *   CameraControlsPanelProps {
+ *     +systems: string[]
+ *     +onSetView(systemName: string): void
+ *   }
+ *   CameraControlsPanel --|> React.FC
+ *   CameraControlsPanel ..> Button : uses
+ *   CameraControlsPanel ..> Card : uses
+ * ```
  */
 "use client";
 
@@ -57,5 +70,7 @@ export function CameraControlsPanel({ systems, onSetView }: CameraControlsPanelP
     </Card>
   );
 }
+
+    
 
     

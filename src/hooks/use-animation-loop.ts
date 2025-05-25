@@ -1,12 +1,29 @@
 
 /**
- * Custom hook para gerenciar o loop de animação de uma cena Three.js.
+ * @fileOverview Custom hook para gerenciar o loop de animação de uma cena Three.js.
  *
- * Responsabilidades:
- * - Encapsular a lógica de `requestAnimationFrame` para renderizar a cena continuamente.
- * - Atualizar controles de órbita (se habilitados e presentes).
- * - Renderizar o composer principal (para pós-processamento) e o renderizador de rótulos 2D (se presentes).
- * - Iniciar o loop apenas quando a cena estiver pronta e os refs necessários estiverem disponíveis.
+ * Principal Responsabilidade:
+ * Encapsular a lógica de `requestAnimationFrame` para renderizar a cena Three.js continuamente.
+ * Isso inclui atualizar controles de órbita, renderizar o `EffectComposer` (para pós-processamento)
+ * e o `CSS2DRenderer` (para rótulos HTML), garantindo que a animação só comece quando a cena
+ * e todos os seus componentes necessários estiverem prontos.
+ *
+ * ```mermaid
+ * classDiagram
+ *   UseAnimationLoopProps {
+ *     +isSceneReady: boolean
+ *     +sceneRef: RefObject_Scene_
+ *     +cameraRef: RefObject_PerspectiveCamera_
+ *     +controlsRef: RefObject_OrbitControls_
+ *     +composerRef: RefObject_EffectComposer_
+ *     +labelRendererRef: RefObject_CSS2DRenderer_
+ *   }
+ *   RefObject_Scene_ { +current: Scene | null }
+ *   RefObject_PerspectiveCamera_ { +current: PerspectiveCamera | null }
+ *   RefObject_OrbitControls_ { +current: OrbitControls | null }
+ *   RefObject_EffectComposer_ { +current: EffectComposer | null }
+ *   RefObject_CSS2DRenderer_ { +current: CSS2DRenderer | null }
+ * ```
  */
 import type * as THREE from 'three';
 import { useEffect, type RefObject } from 'react';
@@ -84,5 +101,7 @@ export function useAnimationLoop({
     };
   }, [isSceneReady, sceneRef, cameraRef, controlsRef, composerRef, labelRendererRef]);
 }
+
+    
 
     

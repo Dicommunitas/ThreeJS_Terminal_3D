@@ -1,26 +1,17 @@
 
 /**
- * Gerencia interações do mouse (clique e movimento) dentro da cena Three.js
- * para seleção e hover de equipamentos. Utiliza raycasting para identificar
- * os objetos 3D intersectados pelo ponteiro do mouse.
+ * @fileOverview Gerencia interações do mouse (clique e movimento) dentro da cena Three.js.
  *
- * Responsabilidades:
- * - Processar eventos de clique do mouse (`processSceneClick`):
- *   - Calcula as coordenadas normalizadas do mouse.
- *   - Realiza raycasting a partir da câmera através do ponteiro do mouse.
- *   - Identifica o primeiro objeto `Equipment` intersectado que seja visível.
- *   - Invoca um callback (`onSelectEquipmentCallback`) com a tag do equipamento selecionado
- *     (ou null se nenhum foi clicado) e um booleano indicando se um modificador
- *     de seleção múltipla (Ctrl/Cmd) foi pressionado.
+ * Principal Responsabilidade:
+ * Utilizar raycasting para detectar quais objetos 3D (equipamentos) são intersectados
+ * pelo ponteiro do mouse. Com base nessa detecção, invoca callbacks para tratar
+ * a seleção de equipamentos (em eventos de clique) e o realce de equipamentos
+ * (em eventos de movimento do mouse, para efeito de hover).
+ * Isso desacopla a lógica de detecção de interação da renderização principal da cena.
  *
- * - Processar eventos de movimento do mouse (`processSceneMouseMove`):
- *   - Similar ao clique, calcula coordenadas e realiza raycasting.
- *   - Identifica o primeiro objeto `Equipment` intersectado que seja visível.
- *   - Invoca um callback (`setHoveredEquipmentTagCallback`) com a tag do equipamento
- *     sob o cursor (ou null se nenhum).
- *
- * Este módulo ajuda a desacoplar a lógica de detecção de interação do mouse
- * do componente principal da cena (`ThreeScene.tsx`).
+ * Exporta:
+ * - `processSceneClick`: Processa cliques do mouse para seleção.
+ * - `processSceneMouseMove`: Processa movimentos do mouse para hover.
  */
 import * as THREE from 'three';
 
@@ -124,3 +115,5 @@ export function processSceneMouseMove(
     setHoveredEquipmentTagCallback(foundHoverTag);
   }
 }
+
+    

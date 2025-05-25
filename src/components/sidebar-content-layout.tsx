@@ -1,8 +1,10 @@
 
 /**
- * Componente para renderizar o conteúdo principal da sidebar.
- * Este componente é responsável por exibir os diversos painéis de controle e filtros
- * dentro da área de conteúdo da sidebar.
+ * @fileOverview Componente para renderizar o conteúdo principal da sidebar.
+ *
+ * Principal Responsabilidade:
+ * Exibir os diversos painéis de controle e filtros dentro da área de conteúdo da sidebar.
+ * Utiliza uma ScrollArea para permitir a rolagem do conteúdo.
  *
  * Inclui:
  * - Controles de câmera ("Focus on System").
@@ -10,6 +12,36 @@
  * - Seletor de modo de colorização.
  * - Gerenciador de camadas de visibilidade.
  * - Link para a documentação externa do projeto.
+ *
+ * ```mermaid
+ * classDiagram
+ *   SidebarContentLayoutProps {
+ *     +searchTerm: string
+ *     +setSearchTerm(value: string): void
+ *     +selectedSistema: string
+ *     +setSelectedSistema(value: string): void
+ *     +availableSistemas: string[]
+ *     +selectedArea: string
+ *     +setSelectedArea(value: string): void
+ *     +availableAreas: string[]
+ *     +colorMode: ColorMode
+ *     +onColorModeChange(mode: ColorMode): void
+ *     +layers: Layer[]
+ *     +onToggleLayer(layerId: string): void
+ *     +cameraViewSystems: string[]
+ *     +onFocusAndSelectSystem(systemName: string): void
+ *   }
+ *   SidebarContentLayoutProps ..> ColorMode
+ *   SidebarContentLayoutProps ..> Layer
+ *   SidebarContentLayout --|> React.FC
+ *   SidebarContentLayout ..> CameraControlsPanel : uses
+ *   SidebarContentLayout ..> ColorModeSelector : uses
+ *   SidebarContentLayout ..> LayerManager : uses
+ *   SidebarContentLayout ..> Input : uses
+ *   SidebarContentLayout ..> Select : uses
+ *   SidebarContentLayout ..> Button : uses
+ *   SidebarContentLayout ..> ScrollArea : uses
+ * ```
  */
 "use client";
 
@@ -183,3 +215,5 @@ export function SidebarContentLayout({
     </ScrollArea>
   );
 }
+
+    

@@ -1,19 +1,18 @@
 
 /**
- * Utilitários para configurar elementos básicos e gerenciar meshes de equipamentos em uma cena Three.js.
- * Este módulo encapsula a lógica de baixo nível para a criação e atualização de componentes
- * fundamentais da cena 3D.
+ * @fileOverview Utilitários para configurar elementos básicos e gerenciar meshes de equipamentos em uma cena Three.js.
  *
- * Responsabilidades:
- * - Configurar a iluminação da cena (`setupLighting`): Adiciona luz ambiente, hemisférica e direcional.
- * - Configurar o plano de chão/terreno (`setupGroundPlane`): Cria e adiciona um plano base à cena.
- * - Configurar o pipeline de renderização (`setupRenderPipeline`): Inicializa o `WebGLRenderer`,
- *   `CSS2DRenderer` (para rótulos), `EffectComposer` e `OutlinePass` (para efeitos de contorno).
- * - Atualizar dinamicamente os meshes dos equipamentos na cena (`updateEquipmentMeshesInScene`):
- *   Sincroniza os objetos 3D dos equipamentos com os dados da aplicação, considerando a visibilidade
- *   das camadas e o modo de colorização. Isso inclui adicionar novos meshes, remover antigos e
- *   recriar meshes existentes quando necessário (e.g., mudança de cor).
- *   Também gerencia a visibilidade do plano de chão com base na camada "Terrain".
+ * Principal Responsabilidade:
+ * Encapsular a lógica de baixo nível para a criação, configuração e atualização de
+ * componentes fundamentais da cena 3D, como iluminação, plano de chão, renderizadores
+ * (WebGL e CSS2D), pipeline de pós-processamento (EffectComposer, OutlinePass), e a
+ * sincronização dinâmica dos meshes de equipamentos com os dados da aplicação.
+ *
+ * Exporta:
+ * - `setupLighting`: Configura a iluminação da cena.
+ * - `setupGroundPlane`: Configura o plano de chão.
+ * - `setupRenderPipeline`: Inicializa os renderizadores e o pipeline de pós-processamento.
+ * - `updateEquipmentMeshesInScene`: Atualiza dinamicamente os meshes dos equipamentos.
  */
 import * as THREE from 'three';
 import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js'; 
@@ -282,3 +281,5 @@ export function updateEquipmentMeshesInScene({
     groundMeshRef.current.visible = groundShouldBeVisible;
   }
 }
+
+    

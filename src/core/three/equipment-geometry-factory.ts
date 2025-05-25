@@ -1,13 +1,13 @@
 
 /**
- * Fábrica para criar geometrias de equipamentos para a cena Three.js.
+ * @fileOverview Fábrica para criar geometrias de equipamentos para a cena Three.js.
  *
- * Responsabilidade Principal:
- * - Encapsular a lógica de criação de diferentes tipos de `THREE.BufferGeometry`
- *   com base no tipo de equipamento (`item.type`) e suas dimensões (`item.size`, `item.radius`, `item.height`).
- * - Promover o Single Responsibility Principle, isolando a lógica de criação
- *   de geometrias do componente `ThreeScene` ou outras partes do sistema.
- * - Fornecer uma geometria padrão caso um tipo de equipamento desconhecido seja fornecido.
+ * Principal Responsabilidade:
+ * Encapsular a lógica de criação de diferentes tipos de `THREE.BufferGeometry`
+ * com base no tipo de equipamento (`item.type`) e suas dimensões (`item.size`, `item.radius`, `item.height`).
+ * Isso promove o Single Responsibility Principle, isolando a lógica de criação
+ * de geometrias do componente `ThreeScene` ou outras partes do sistema.
+ * Fornece uma geometria padrão (BoxGeometry) caso um tipo de equipamento desconhecido seja fornecido.
  *
  * Exporta:
  * - `createGeometryForItem`: Função para criar a geometria apropriada para um equipamento.
@@ -71,5 +71,7 @@ export function createGeometryForItem(item: Equipment): THREE.BufferGeometry {
   }
   return geometry;
 }
+
+    
 
     

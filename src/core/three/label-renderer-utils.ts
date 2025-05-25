@@ -1,22 +1,17 @@
 
 /**
- * Utilitários para gerenciar a exibição de rótulos HTML (pins de anotação)
- * sobrepostos à cena Three.js utilizando `CSS2DRenderer` e `CSS2DObject`.
+ * @fileOverview Utilitários para gerenciar a exibição de rótulos HTML (pins de anotação)
+ * sobrepostos à cena Three.js.
  *
- * Responsabilidades:
- * - `updateLabelRendererSize`: Fornece uma função para atualizar o tamanho do `CSS2DRenderer`,
- *   essencial quando o contêiner da cena é redimensionado.
- * - `updateAnnotationPins`: Gerencia a criação, atualização e remoção dos pins de anotação (`CSS2DObject`)
- *   na cena. Esta função:
- *   - Limpa os pins existentes.
- *   - Verifica se a camada de anotações está visível.
- *   - Para cada anotação, encontra o equipamento correspondente.
- *   - Cria um elemento HTML (um ícone SVG) para o pin.
- *   - Posiciona o pin acima do equipamento associado.
- *   - Adiciona o pin à cena e ao `labelRenderer`.
+ * Principal Responsabilidade:
+ * Gerenciar a criação, atualização, posicionamento e remoção dos pins de anotação (`CSS2DObject`)
+ * na cena, utilizando `CSS2DRenderer`. Isso inclui lidar com a visibilidade dos pins
+ * com base na camada de anotações e fornecer uma função para atualizar o tamanho do
+ * `CSS2DRenderer` em caso de redimensionamento da viewport.
  *
- * Nota: A configuração inicial do `CSS2DRenderer` e sua anexação ao DOM são tratadas
- *       em `setupRenderPipeline` no arquivo `scene-elements-setup.ts`.
+ * Exporta:
+ * - `updateLabelRendererSize`: Atualiza o tamanho do CSS2DRenderer.
+ * - `updateAnnotationPins`: Gerencia os pins de anotação na cena.
  */
 import * as THREE from 'three';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
@@ -131,3 +126,5 @@ export function updateAnnotationPins({
     });
   }
 }
+
+    

@@ -1,8 +1,27 @@
 
 /**
- * Custom hook para gerenciar o efeito de contorno (OutlinePass) na cena 3D.
- * Este hook é responsável por observar mudanças nos equipamentos selecionados e em hover,
- * e atualizar o OutlinePass para destacar os objetos apropriados.
+ * @fileOverview Custom hook para gerenciar o efeito de contorno (OutlinePass) na cena 3D.
+ *
+ * Principal Responsabilidade:
+ * Observar mudanças nos equipamentos selecionados (`selectedEquipmentTags`) e no equipamento
+ * em hover (`hoveredEquipmentTag`), e atualizar o `OutlinePass` para destacar visualmente
+ * os objetos 3D correspondentes na cena. Utiliza `updateOutlineEffect` de
+ * `postprocessing-utils.ts` para aplicar os estilos de contorno corretos.
+ * O efeito só é aplicado quando a cena (`isSceneReady`) e os refs necessários estão prontos.
+ *
+ * ```mermaid
+ * classDiagram
+ *   UseSceneOutlineProps {
+ *     +outlinePassRef: RefObject_OutlinePass_
+ *     +equipmentMeshesRef: RefObject_Object3D_Array_
+ *     +selectedEquipmentTags: string[] | undefined
+ *     +hoveredEquipmentTag: string | null | undefined
+ *     +isSceneReady: boolean
+ *   }
+ *   RefObject_OutlinePass_ { +current: OutlinePass | null }
+ *   RefObject_Object3D_Array_ { +current: THREE.Object3D[] | null }
+ *   useSceneOutline ..> postprocessing_utils : uses updateOutlineEffect
+ * ```
  */
 "use client";
 
@@ -42,11 +61,7 @@ export function useSceneOutline({
   isSceneReady,
 }: UseSceneOutlineProps): void {
   useEffect(() => {
-    // console.log('[useSceneOutline] useEffect triggered. isSceneReady:', isSceneReady);
-    // console.log('[useSceneOutline] Props: selectedTags=', selectedEquipmentTags, ', hoveredTag=', hoveredEquipmentTag);
-
     if (!isSceneReady || !outlinePassRef.current || !equipmentMeshesRef.current) {
-      // console.log('[useSceneOutline] SKIPPING: Core refs not ready or scene not ready yet.');
       if(outlinePassRef.current) {
         // Ensure outline is off if we skip
         updateOutlineEffect(outlinePassRef.current, [], [], null);
@@ -58,9 +73,6 @@ export function useSceneOutline({
     const effectiveSelectedTags = selectedEquipmentTags ?? [];
     const effectiveHoveredTag = hoveredEquipmentTag === undefined ? null : hoveredEquipmentTag;
 
-    // console.log(`[useSceneOutline] Effective Values: selected=${JSON.stringify(effectiveSelectedTags)}, hovered=${effectiveHoveredTag}`);
-    // console.log(`[useSceneOutline] Meshes available: ${equipmentMeshesRef.current.map(m => m.userData.tag).join(', ')}`);
-
     updateOutlineEffect(
       outlinePassRef.current,
       equipmentMeshesRef.current,
@@ -71,8 +83,8 @@ export function useSceneOutline({
     isSceneReady,
     selectedEquipmentTags,
     hoveredEquipmentTag,
-    equipmentMeshesRef, // Depende da ref em si, não do seu .current para a dependência do hook
-    outlinePassRef,   // Similarmente
+    equipmentMeshesRef,
+    outlinePassRef,
   ]);
 }
 

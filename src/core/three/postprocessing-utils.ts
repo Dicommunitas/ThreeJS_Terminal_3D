@@ -1,8 +1,17 @@
 
 /**
- * Utilitários para configurar e gerenciar o pipeline de pós-processamento
- * para a cena Three.js, especificamente o EffectComposer e o OutlinePass.
- * Responsável pelo setup inicial e pela atualização dinâmica do efeito de contorno.
+ * @fileOverview Utilitários para configurar e gerenciar o pipeline de pós-processamento
+ * para a cena Three.js.
+ *
+ * Principal Responsabilidade:
+ * Lidar com a configuração inicial do `EffectComposer` e `OutlinePass`, e fornecer
+ * funções para atualizar dinamicamente o efeito de contorno (quais objetos destacar
+ * e com qual estilo) e para redimensionar os passes de pós-processamento.
+ *
+ * Exporta:
+ * - `setupPostProcessing`: Configura o pipeline inicial de pós-processamento.
+ * - `updatePostProcessingSize`: Atualiza o tamanho do composer e do outline pass.
+ * - `updateOutlineEffect`: Atualiza quais objetos são contornados e com qual estilo.
  */
 import * as THREE from 'three';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
@@ -189,3 +198,5 @@ export function updateOutlineEffect(
   // console.log(`[updateOutlineEffect] OutlinePass strength: ${outlinePass.edgeStrength}`);
 }
 
+
+    

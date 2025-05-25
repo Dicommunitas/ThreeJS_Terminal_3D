@@ -1,7 +1,48 @@
 
 /**
- * Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
- * Este componente atua como o orquestrador central para a visualização 3D.
+ * @fileOverview Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
+ *
+ * Principal Responsabilidade:
+ * Orquestrar a configuração da cena 3D, renderização de equipamentos e anotações,
+ * interações do usuário (mouse, câmera), efeitos visuais de pós-processamento,
+ * e o loop de animação contínuo. É o coração da visualização 3D.
+ *
+ * ```mermaid
+ * classDiagram
+ *   ThreeSceneProps {
+ *     +equipment: Equipment[]
+ *     +layers: Layer[]
+ *     +annotations: Annotation[]
+ *     +selectedEquipmentTags: string[] | undefined
+ *     +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
+ *     +hoveredEquipmentTag: string | null | undefined
+ *     +setHoveredEquipmentTag(tag: string | null): void
+ *     +cameraState: CameraState | undefined
+ *     +onCameraChange(cameraState: CameraState): void
+ *     +initialCameraPosition: Point3D
+ *     +initialCameraLookAt: Point3D
+ *     +colorMode: ColorMode
+ *     +targetSystemToFrame: string | null
+ *     +onSystemFramed(): void
+ *   }
+ *   Point3D {
+ *     +x: number
+ *     +y: number
+ *     +z: number
+ *   }
+ *   ThreeSceneProps ..> Equipment
+ *   ThreeSceneProps ..> Layer
+ *   ThreeSceneProps ..> Annotation
+ *   ThreeSceneProps ..> CameraState
+ *   ThreeSceneProps ..> ColorMode
+ *   ThreeSceneProps ..> Point3D
+ *   ThreeScene ..> scene_elements_setup : uses
+ *   ThreeScene ..> label_renderer_utils : uses
+ *   ThreeScene ..> camera_utils : uses
+ *   ThreeScene ..> mouse_interaction_manager : uses
+ *   ThreeScene ..> useAnimationLoop : uses
+ *   ThreeScene ..> useSceneOutline : uses
+ * ```
  *
  * Responsabilidades Detalhadas:
  * - **Configuração Inicial da Cena:**
@@ -572,3 +613,5 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 };
 
 export default ThreeScene;
+
+    

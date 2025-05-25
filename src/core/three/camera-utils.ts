@@ -1,9 +1,10 @@
 
 /**
- * Utilitários para cálculos e manipulações relacionados à câmera em cenas Three.js.
+ * @fileOverview Utilitários para cálculos e manipulações relacionados à câmera em cenas Three.js.
  *
- * Responsabilidade Principal:
- * - Calcular a posição e o ponto de observação ideais da câmera para enquadrar um conjunto de objetos 3D.
+ * Principal Responsabilidade:
+ * Calcular a posição e o ponto de observação ideais da câmera para enquadrar um conjunto
+ * de objetos 3D (meshes) de forma clara e centralizada na viewport.
  *
  * Exporta:
  * - `calculateViewForMeshes`: Função para calcular a visão da câmera para um conjunto de meshes.
@@ -75,5 +76,7 @@ export function calculateViewForMeshes(
     lookAt: center,
   };
 }
+
+    
 
     

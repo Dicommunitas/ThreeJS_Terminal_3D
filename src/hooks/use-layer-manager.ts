@@ -1,19 +1,23 @@
 
 /**
- * Custom hook para gerenciar o estado das camadas (layers) de visibilidade na cena 3D
+ * @fileOverview Custom hook para gerenciar o estado das camadas (layers) de visibilidade na cena 3D
  * e a lógica para alternar sua visibilidade.
  *
- * Responsabilidades:
- * - Manter o estado da lista de camadas (`layers`):
- *   - Cada camada tem um `id`, `name` (para exibição), `equipmentType` (o tipo de
- *     equipamento ou elemento que controla, e.g., 'Building', 'Tank', 'Annotations', 'Terrain')
- *     e `isVisible` (booleano).
- *   - Inicializa com `initialLayers` de `src/core/data/initial-data.ts`.
- * - Fornecer uma função (`handleToggleLayer`) para alternar o estado `isVisible` de uma
- *   camada específica, identificada por seu `layerId`.
- * - Integrar a ação de alternância de visibilidade com o sistema de histórico de comandos
- *   (`useCommandHistory`) através da prop `executeCommand`. Isso permite que as
- *   mudanças de visibilidade das camadas sejam desfeitas e refeitas.
+ * Principal Responsabilidade:
+ * Manter o estado da lista de camadas (com seu ID, nome, tipo de equipamento que controla e visibilidade)
+ * e fornecer uma função para alternar a visibilidade de uma camada específica.
+ * Esta ação de alternância é integrada com o sistema de histórico de comandos (`useCommandHistory`)
+ * para permitir undo/redo.
+ *
+ * ```mermaid
+ * classDiagram
+ *   UseLayerManagerReturn {
+ *     +layers: Layer[]
+ *     +handleToggleLayer(layerId: string): void
+ *   }
+ *   UseLayerManagerReturn ..> Layer
+ *   useLayerManager ..> Command : uses (via executeCommand)
+ * ```
  */
 "use client";
 
@@ -98,3 +102,5 @@ export function useLayerManager({ executeCommand }: UseLayerManagerProps): UseLa
 
   return { layers, handleToggleLayer };
 }
+
+    

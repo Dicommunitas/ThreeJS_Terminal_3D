@@ -1,21 +1,25 @@
 
 /**
- * Custom hook para gerenciar o estado e a lógica de seleção e hover de equipamentos na cena 3D.
+ * @fileOverview Custom hook para gerenciar o estado e a lógica de seleção e hover de equipamentos na cena 3D.
  *
- * Responsabilidades:
- * - Manter o estado dos equipamentos atualmente selecionados (`selectedEquipmentTags`):
- *   Um array de strings contendo as tags dos equipamentos selecionados.
- * - Manter o estado do equipamento atualmente sob o cursor do mouse (`hoveredEquipmentTag`):
- *   A tag do equipamento em hover, ou null se nenhum.
- * - Fornecer funções para manipular seleção e hover:
- *   - `handleEquipmentClick`: Processa um clique na cena. Pode selecionar um equipamento,
- *     adicionar/remover da seleção múltipla (com Ctrl/Cmd), ou limpar a seleção.
- *     Integra-se com `useCommandHistory` para registrar a ação de seleção.
- *   - `handleSetHoveredEquipmentTag`: Define diretamente qual equipamento está em hover.
- *   - `selectTagsBatch`: Permite a seleção programática de um conjunto de equipamentos,
- *     útil para funcionalidades como "focar e selecionar sistema". Também se integra
- *     com `useCommandHistory`.
- * - Utilizar o hook `useToast` para fornecer feedback ao usuário sobre as operações de seleção.
+ * Principal Responsabilidade:
+ * Manter o estado dos equipamentos selecionados e em hover, e fornecer funções para
+ * manipular essas seleções (clique único, clique múltiplo, seleção em lote).
+ * Integra-se com `useCommandHistory` para registrar ações de seleção e `useToast` para feedback.
+ *
+ * ```mermaid
+ * classDiagram
+ *   UseEquipmentSelectionManagerReturn {
+ *     +selectedEquipmentTags: string[]
+ *     +hoveredEquipmentTag: string | null
+ *     +handleEquipmentClick(tag: string | null, isMultiSelectModifierPressed: boolean): void
+ *     +handleSetHoveredEquipmentTag(tag: string | null): void
+ *     +selectTagsBatch(tagsToSelect: string[], operationDescription?: string): void
+ *   }
+ *   useEquipmentSelectionManager ..> Equipment : uses (via equipmentData for names)
+ *   useEquipmentSelectionManager ..> Command : uses (via executeCommand)
+ *   useEquipmentSelectionManager ..> useToast : uses
+ * ```
  */
 "use client";
 
@@ -208,3 +212,5 @@ export function useEquipmentSelectionManager({
     selectTagsBatch,
   };
 }
+
+    

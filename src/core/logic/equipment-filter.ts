@@ -1,15 +1,14 @@
 
 /**
- * Utilitário para filtrar a lista de equipamentos com base em múltiplos critérios.
+ * @fileOverview Utilitário para filtrar a lista de equipamentos com base em múltiplos critérios.
  *
- * Responsabilidades:
- * - Definir a interface `EquipmentFilterCriteria` para os critérios de filtro.
- * - Exportar a função `getFilteredEquipment` que aplica os filtros de Sistema, Área, e
- *   um termo de busca textual (verificando nome, tipo e tag do equipamento) de forma combinada.
+ * Principal Responsabilidade:
+ * Aplicar filtros de Sistema, Área e um termo de busca textual (nome, tipo, tag)
+ * a uma lista de equipamentos, retornando a lista filtrada.
  *
  * Exporta:
  * - `EquipmentFilterCriteria`: Interface para os critérios de filtro.
- * - `getFilteredEquipment`: Função para filtrar equipamentos.
+ * - `getFilteredEquipment`: Função principal para filtrar equipamentos.
  */
 import type { Equipment } from '@/lib/types';
 
@@ -70,5 +69,7 @@ export function getFilteredEquipment(
   }
   return itemsToFilter;
 }
+
+    
 
     

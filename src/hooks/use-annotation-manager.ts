@@ -1,24 +1,31 @@
 
 /**
- * Custom hook para gerenciar o estado e a lógica das anotações textuais dos equipamentos.
- * Cada equipamento pode ter no máximo uma anotação.
+ * @fileOverview Custom hook para gerenciar o estado e a lógica das anotações textuais dos equipamentos.
  *
- * Responsabilidades:
- * - Manter a lista de todas as anotações (`annotations` state).
- * - Controlar a visibilidade do diálogo de adição/edição de anotação (`isAnnotationDialogOpen` state).
- * - Rastrear qual equipamento está sendo alvo da anotação (`annotationTargetEquipment` state).
- * - Manter os dados da anotação que está sendo editada (`editingAnnotation` state).
- * - Fornecer funções para:
- *   - `handleOpenAnnotationDialog`: Abrir o diálogo para um equipamento específico, pré-populando com
- *     a anotação existente, se houver.
- *   - `handleSaveAnnotation`: Salvar (criar ou atualizar) uma anotação. Registra a data/hora da
- *     criação/modificação e exibe um toast de feedback.
- *   - `handleDeleteAnnotation`: Excluir a anotação de um equipamento e exibir feedback.
- *   - `getAnnotationForEquipment`: Recuperar a anotação de um equipamento específico pela sua tag.
- * - Utilizar o hook `useToast` para fornecer feedback ao usuário sobre as operações.
+ * Principal Responsabilidade:
+ * Encapsular o estado das anotações (lista de anotações, estado do diálogo de edição)
+ * e fornecer uma API (funções) para criar, ler, atualizar e excluir anotações
+ * associadas a equipamentos específicos. Cada equipamento pode ter no máximo uma anotação.
+ * Utiliza `useToast` para feedback ao usuário.
  *
- * Nota: Este hook não gerencia o histórico de comandos (undo/redo) para operações de anotação.
- *       A integração com undo/redo para anotações precisaria ser adicionada se desejado.
+ * ```mermaid
+ * classDiagram
+ *   UseAnnotationManagerReturn {
+ *     +annotations: Annotation[]
+ *     +isAnnotationDialogOpen: boolean
+ *     +annotationTargetEquipment: Equipment | null
+ *     +editingAnnotation: Annotation | null
+ *     +handleOpenAnnotationDialog(equipment: Equipment | null): void
+ *     +handleSaveAnnotation(text: string): void
+ *     +handleDeleteAnnotation(equipmentTag: string): void
+ *     +getAnnotationForEquipment(equipmentTag: string | null): Annotation | null
+ *     +setAnnotations(annotations: Annotation[]): void
+ *     +setIsAnnotationDialogOpen(isOpen: boolean): void
+ *   }
+ *   UseAnnotationManagerReturn ..> Annotation
+ *   UseAnnotationManagerReturn ..> Equipment
+ *   useAnnotationManager ..> useToast : uses
+ * ```
  */
 "use client";
 
@@ -193,3 +200,5 @@ export function useAnnotationManager({ initialAnnotations = [], equipmentData }:
     getAnnotationForEquipment,
   };
 }
+
+    

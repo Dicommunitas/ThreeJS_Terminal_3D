@@ -1,4 +1,55 @@
 
+/**
+ * @fileOverview Hook customizado para a configuração inicial de uma cena Three.js.
+ *
+ * Principal Responsabilidade:
+ * Encapsular a criação e inicialização dos principais componentes de uma cena Three.js,
+ * incluindo a cena em si, câmera, renderizadores (WebGL e CSS2D para labels),
+ * controles de órbita, pipeline de pós-processamento (EffectComposer, OutlinePass),
+ * iluminação básica e um plano de chão. Gerencia também o estado de "prontidão" da cena
+ * e o tratamento de redimensionamento da janela/contêiner.
+ *
+ * ```mermaid
+ * classDiagram
+ *   UseSceneSetupProps {
+ *     +mountRef: RefObject_HTMLDivElement_
+ *     +initialCameraPosition: Point3D
+ *     +initialCameraLookAt: Point3D
+ *     +onCameraChange(cameraState: CameraState): void
+ *   }
+ *   UseSceneSetupReturn {
+ *     +sceneRef: RefObject_Scene_
+ *     +cameraRef: RefObject_PerspectiveCamera_
+ *     +rendererRef: RefObject_WebGLRenderer_
+ *     +labelRendererRef: RefObject_CSS2DRenderer_
+ *     +controlsRef: RefObject_OrbitControls_
+ *     +composerRef: RefObject_EffectComposer_
+ *     +outlinePassRef: RefObject_OutlinePass_
+ *     +groundMeshRef: RefObject_Mesh_
+ *     +isSceneReady: boolean
+ *   }
+ *   Point3D {
+ *     +x: number
+ *     +y: number
+ *     +z: number
+ *   }
+ *   RefObject_HTMLDivElement_ { +current: HTMLDivElement | null }
+ *   RefObject_Scene_ { +current: Scene | null }
+ *   RefObject_PerspectiveCamera_ { +current: PerspectiveCamera | null }
+ *   RefObject_WebGLRenderer_ { +current: WebGLRenderer | null }
+ *   RefObject_CSS2DRenderer_ { +current: CSS2DRenderer | null }
+ *   RefObject_OrbitControls_ { +current: OrbitControls | null }
+ *   RefObject_EffectComposer_ { +current: EffectComposer | null }
+ *   RefObject_OutlinePass_ { +current: OutlinePass | null }
+ *   RefObject_Mesh_ { +current: Mesh | null }
+ *
+ *   UseSceneSetupProps ..> Point3D
+ *   UseSceneSetupProps ..> CameraState
+ *   UseSceneSetupReturn ..> Point3D
+ *   UseSceneSetupReturn ..> CameraState
+ *   useSceneSetup ..> scene_elements_setup : uses setupRenderPipeline, setupLighting, setupGroundPlane
+ * ```
+ */
 import { useRef, useEffect, useState, useCallback } from 'react';
 import * as THREE from 'three';
 import type { OrbitControls as OrbitControlsType } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -244,9 +295,4 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
     labelRendererRef,
     controlsRef,
     composerRef,
-    outlinePassRef,
-    groundMeshRef,
-    isSceneReady,
-  };
-};
-
+    outlinePassRef

@@ -1,23 +1,32 @@
 
 /**
- * Custom hook para gerenciar o estado e as interações da câmera 3D.
+ * @fileOverview Custom hook para gerenciar o estado e as interações da câmera 3D.
  *
- * Responsabilidades:
- * - Manter o estado atual da câmera (`currentCameraState`): Armazena a posição (`position`)
- *   e o ponto de observação (`lookAt`) atuais da câmera na cena 3D.
- * - Controlar o alvo de enquadramento (`targetSystemToFrame`): Mantém o nome do sistema de equipamentos
- *   que a câmera deve tentar enquadrar. Quando não nulo, o componente `ThreeScene`
- *   usará este valor para calcular e aplicar uma nova visão.
- * - Fornecer Posição e LookAt Iniciais Padrão: Exporta `defaultInitialCameraPosition` e
- *   `defaultInitialCameraLookAt` para uso na configuração inicial da câmera.
- * - Funções de Manipulação:
- *   - `handleSetCameraViewForSystem`: Define o `targetSystemToFrame`, disparando o processo de
- *     enquadramento de um sistema.
- *   - `handleCameraChangeFromScene`: Recebe um novo estado da câmera (geralmente de interações
- *     do usuário com `OrbitControls`) e o registra como um comando no histórico (`executeCommand`),
- *     permitindo operações de undo/redo para movimentos da câmera.
- *   - `onSystemFramed`: Callback chamado pelo `ThreeScene` após o enquadramento de um sistema
- *     ser concluído, resetando `targetSystemToFrame` para `null`.
+ * Principal Responsabilidade:
+ * Manter o estado da câmera (posição e ponto de observação), controlar o enquadramento
+ * de sistemas de equipamentos e integrar movimentos de câmera com o sistema de histórico
+ * de comandos para permitir undo/redo.
+ *
+ * ```mermaid
+ * classDiagram
+ *   UseCameraManagerReturn {
+ *     +currentCameraState: CameraState | undefined
+ *     +targetSystemToFrame: string | null
+ *     +handleSetCameraViewForSystem(systemName: string): void
+ *     +handleCameraChangeFromScene(newSceneCameraState: CameraState): void
+ *     +onSystemFramed(): void
+ *     +defaultInitialCameraPosition: Point3D
+ *     +defaultInitialCameraLookAt: Point3D
+ *   }
+ *   Point3D {
+ *     +x: number
+ *     +y: number
+ *     +z: number
+ *   }
+ *   UseCameraManagerReturn ..> CameraState
+ *   UseCameraManagerReturn ..> Point3D
+ *   useCameraManager ..> Command : uses (via executeCommand)
+ * ```
  */
 "use client";
 
@@ -140,3 +149,5 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
     defaultInitialCameraLookAt,
   };
 }
+
+    

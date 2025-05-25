@@ -1,12 +1,55 @@
 
 /**
- * Componente responsável por renderizar a área principal da cena 3D.
- * Atua como um contêiner para os elementos visuais centrais da aplicação:
+ * @fileOverview Componente responsável por renderizar a área principal da cena 3D.
+ *
+ * Principal Responsabilidade:
+ * Atuar como um contêiner de layout para os elementos visuais centrais da aplicação:
  * - O componente `ThreeScene` (a própria cena 3D).
  * - O `InfoPanel` (painel de detalhes do equipamento selecionado).
- *
  * Este componente não possui lógica complexa própria, mas sim delega a renderização
  * e o comportamento para seus filhos, passando as props necessárias.
+ *
+ * ```mermaid
+ * classDiagram
+ *   MainSceneAreaProps {
+ *     +equipment: Equipment[]
+ *     +layers: Layer[]
+ *     +annotations: Annotation[]
+ *     +selectedEquipmentTags: string[]
+ *     +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
+ *     +hoveredEquipmentTag: string | null
+ *     +setHoveredEquipmentTag(tag: string | null): void
+ *     +cameraState: CameraState | undefined
+ *     +onCameraChange(cameraState: CameraState): void
+ *     +initialCameraPosition: Point3D
+ *     +initialCameraLookAt: Point3D
+ *     +colorMode: ColorMode
+ *     +targetSystemToFrame: string | null
+ *     +onSystemFramed(): void
+ *     +selectedEquipmentDetails: Equipment | null
+ *     +equipmentAnnotation: Annotation | null
+ *     +onOpenAnnotationDialog(): void
+ *     +onDeleteAnnotation(equipmentTag: string): void
+ *     +onOperationalStateChange(equipmentTag: string, newState: string): void
+ *     +availableOperationalStatesList: string[]
+ *     +onProductChange(equipmentTag: string, newProduct: string): void
+ *     +availableProductsList: string[]
+ *   }
+ *   Point3D {
+ *     +x: number
+ *     +y: number
+ *     +z: number
+ *   }
+ *   MainSceneAreaProps ..> Equipment
+ *   MainSceneAreaProps ..> Layer
+ *   MainSceneAreaProps ..> Annotation
+ *   MainSceneAreaProps ..> CameraState
+ *   MainSceneAreaProps ..> ColorMode
+ *   MainSceneAreaProps ..> Point3D
+ *   MainSceneArea --|> React.FC
+ *   MainSceneArea ..> ThreeScene : uses
+ *   MainSceneArea ..> InfoPanel : uses
+ * ```
  */
 "use client";
 
@@ -129,3 +172,5 @@ export function MainSceneArea({
     </div>
   );
 }
+
+    

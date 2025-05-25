@@ -1,24 +1,25 @@
 
 /**
- * Custom hook que fornece funcionalidade para gerenciar um histórico de comandos,
+ * @fileOverview Custom hook que fornece funcionalidade para gerenciar um histórico de comandos,
  * permitindo operações de desfazer (undo) e refazer (redo).
  *
- * Responsabilidades:
- * - Manter o estado do histórico de comandos:
- *   - `history`: Um array que armazena os objetos `Command` executados.
- *   - `currentIndex`: Um índice que aponta para o último comando executado no array `history`.
- *     Um valor de -1 indica que o histórico está vazio ou todos os comandos foram desfeitos.
- * - Fornecer funções para interagir com o histórico:
- *   - `executeCommand`: Executa um novo comando, o adiciona ao histórico e limpa qualquer
- *     histórico de "redo" futuro (comandos que foram desfeitos e poderiam ser refeitos).
- *   - `undo`: Desfaz o comando no `currentIndex`, chamando sua função `undo()`, e move
- *     o `currentIndex` para trás.
- *   - `redo`: Refaz o comando seguinte ao `currentIndex` (se houver), chamando sua função
- *     `execute()`, e move o `currentIndex` para frente.
- * - Disponibilizar indicadores de estado:
- *   - `canUndo`: Booleano indicando se há comandos para desfazer.
- *   - `canRedo`: Booleano indicando se há comandos para refazer.
- * - Expor o `commandHistory` (o array completo de comandos) para fins de depuração ou logging.
+ * Principal Responsabilidade:
+ * Manter uma pilha de comandos executados, permitir a execução de novos comandos,
+ * e fornecer a capacidade de navegar para frente (redo) e para trás (undo)
+ * nesse histórico, chamando as funções `execute()` e `undo()` dos respectivos comandos.
+ *
+ * ```mermaid
+ * classDiagram
+ *   UseCommandHistoryReturn {
+ *     +executeCommand(command: Command): void
+ *     +undo(): void
+ *     +redo(): void
+ *     +canUndo: boolean
+ *     +canRedo: boolean
+ *     +commandHistory: Command[]
+ *   }
+ *   UseCommandHistoryReturn ..> Command
+ * ```
  */
 import type { Command } from '@/lib/types';
 import { useState, useCallback } from 'react';
@@ -132,3 +133,5 @@ export function useCommandHistory(initialState?: CommandHistoryState): UseComman
 
   return { executeCommand, undo, redo, canUndo, canRedo, commandHistory };
 }
+
+    

@@ -1,24 +1,24 @@
 
 /**
- * Custom hook responsável por buscar, armazenar e gerenciar os dados dos equipamentos
- * utilizados na aplicação. Este hook atua como a "fonte da verdade" para os dados brutos
- * dos equipamentos.
+ * @fileOverview Custom hook responsável por buscar, armazenar e gerenciar os dados dos equipamentos
+ * utilizados na aplicação.
  *
- * Responsabilidades:
- * - Inicializar e manter o estado da lista completa de equipamentos (`equipmentData` state),
- *   utilizando `initialEquipment` de `src/core/data/initial-data.ts` como valor inicial.
- * - Fornecer funções para modificar propriedades específicas dos equipamentos:
- *   - `handleOperationalStateChange`: Atualiza o `operationalState` de um equipamento
- *     identificado por sua `equipmentTag`.
- *   - `handleProductChange`: Atualiza o `product` de um equipamento identificado
- *     por sua `equipmentTag`.
- * - Utilizar o hook `useToast` para fornecer feedback visual ao usuário após a modificação
- *   de dados de um equipamento.
+ * Principal Responsabilidade:
+ * Atuar como a "fonte da verdade" para os dados brutos dos equipamentos.
+ * Inicializa os dados a partir de `initialEquipment` e fornece funções para
+ * modificar propriedades específicas dos equipamentos (estado operacional, produto),
+ * usando `useToast` para feedback.
  *
- * Nota: Este hook lida com a modificação direta dos dados dos equipamentos. A integração com
- *       o sistema de histórico de comandos (undo/redo) para essas modificações não está
- *       implementada aqui e precisaria ser adicionada se desejado, envolvendo a criação de
- *       comandos específicos para alterações de estado/produto.
+ * ```mermaid
+ * classDiagram
+ *   UseEquipmentDataManagerReturn {
+ *     +equipmentData: Equipment[]
+ *     +handleOperationalStateChange(equipmentTag: string, newState: string): void
+ *     +handleProductChange(equipmentTag: string, newProduct: string): void
+ *   }
+ *   UseEquipmentDataManagerReturn ..> Equipment
+ *   useEquipmentDataManager ..> useToast : uses
+ * ```
  */
 import { useState, useCallback } from 'react';
 import type { Equipment } from '@/lib/types';
@@ -93,3 +93,5 @@ export function useEquipmentDataManager(): UseEquipmentDataManagerReturn {
     handleProductChange,
   };
 }
+
+    

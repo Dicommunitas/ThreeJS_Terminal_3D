@@ -1,20 +1,14 @@
 
 /**
- * Utilitários para determinar a cor dos equipamentos na cena 3D
- * com base no modo de colorização selecionado e nos atributos do equipamento.
+ * @fileOverview Utilitários para determinar a cor dos equipamentos na cena 3D.
  *
- * Responsabilidades:
- * - Fornecer uma função `getEquipmentColor` que calcula a cor final de um equipamento
- *   a ser renderizada na cena 3D.
- * - Implementar a lógica de coloração para diferentes modos:
- *   - **'Equipamento'**: Utiliza a cor base definida nos dados do equipamento (`item.color`).
- *   - **'Estado Operacional'**: Mapeia estados operacionais específicos (e.g., 'operando', 'manutenção',
- *     'em falha', 'não operando') para cores predefinidas (vermelho, amarelo, roxo, verde, respectivamente).
- *     Se o estado for 'Não aplicável' ou não reconhecido, usa a cor base.
- *   - **'Produto'**: Gera uma cor proceduralmente a partir dos três primeiros caracteres do código do produto.
- *     Se o produto não for aplicável ou for muito curto, usa a cor base.
- * - Incluir uma função auxiliar `getCharNumericValue` para converter caracteres de produto em valores numéricos
- *   usados na geração procedural de cores.
+ * Principal Responsabilidade:
+ * Fornecer a lógica para calcular a cor de um equipamento com base no modo de
+ * colorização selecionado (Equipamento, Estado Operacional, Produto) e nos
+ * atributos do próprio equipamento.
+ *
+ * Exporta:
+ * - `getEquipmentColor`: Função principal que retorna a cor calculada como `THREE.Color`.
  */
 import * as THREE from 'three';
 import type { Equipment, ColorMode } from '@/lib/types';
@@ -82,3 +76,5 @@ export function getEquipmentColor(item: Equipment, colorMode: ColorMode): THREE.
   // console.log(`[ColorUtils.ts getEquipmentColor] Item: ${item.tag}, ColorMode: ${colorMode}, BaseColor: #${baseColor.getHexString()}, FinalColor: #${finalColor.getHexString()}, OpState: ${item.operationalState}`);
   return finalColor;
 }
+
+    
