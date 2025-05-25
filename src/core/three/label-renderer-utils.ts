@@ -9,6 +9,26 @@
  * com base na camada de anotações e fornecer uma função para atualizar o tamanho do
  * `CSS2DRenderer` em caso de redimensionamento da viewport.
  *
+ * @mermaid
+ *   classDiagram
+ *     UpdateAnnotationPinsParams {
+ *       +scene: THREE.Scene | null
+ *       +labelRenderer: CSS2DRenderer | null
+ *       +annotations: Annotation[]
+ *       +equipmentData: Equipment[]
+ *       +layers: Layer[]
+ *       +existingPinsRef: React.MutableRefObject_CSS2DObject_Array_
+ *     }
+ *     Annotation { +equipmentTag: string; +text: string; +createdAt: string }
+ *     Equipment { +tag: string; +position: object; +size: object; +height: number; +radius: number; +type: string }
+ *     Layer { +id: string; +isVisible: boolean }
+ *     React.MutableRefObject_CSS2DObject_Array_ { current: CSS2DObject[] }
+ *     UpdateAnnotationPinsParams ..> Annotation
+ *     UpdateAnnotationPinsParams ..> Equipment
+ *     UpdateAnnotationPinsParams ..> Layer
+ *     UpdateAnnotationPinsParams ..> React.MutableRefObject_CSS2DObject_Array_
+ *     updateAnnotationPins ..> UpdateAnnotationPinsParams : receives
+ *
  * Exporta:
  * - `updateLabelRendererSize`: Atualiza o tamanho do CSS2DRenderer.
  * - `updateAnnotationPins`: Gerencia os pins de anotação na cena.
@@ -76,12 +96,12 @@ export function updateAnnotationPins({
 
   // Limpa pins de anotação antigos da cena e do DOM
   existingPinsRef.current.forEach(pinObj => {
-    scene.remove(pinObj); 
-    if (pinObj.element.parentNode) { 
+    scene.remove(pinObj);
+    if (pinObj.element.parentNode) {
       pinObj.element.parentNode.removeChild(pinObj.element);
     }
   });
-  existingPinsRef.current = []; 
+  existingPinsRef.current = [];
 
   const annotationsLayer = layers.find(l => l.id === 'layer-annotations');
   const areAnnotationsVisibleByLayer = annotationsLayer?.isVisible ?? true; // Assume visível se a camada não for encontrada (improvável)
@@ -104,7 +124,7 @@ export function updateAnnotationPins({
 
         // Calcula o deslocamento Y para posicionar o pin acima do equipamento
         let yOffset = 0;
-        const defaultSize = { width: 1, height: 1, depth: 1 }; 
+        const defaultSize = { width: 1, height: 1, depth: 1 };
         const itemSize = equipmentForItem.size || defaultSize;
         // Usa 'height' se for um cilindro/tubo (Tank, Pipe, Crane), senão 'size.height'
         const itemHeight = equipmentForItem.height !== undefined ? equipmentForItem.height : itemSize.height;
@@ -126,5 +146,3 @@ export function updateAnnotationPins({
     });
   }
 }
-
-    

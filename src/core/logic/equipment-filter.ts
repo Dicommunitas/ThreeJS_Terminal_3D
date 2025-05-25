@@ -6,6 +6,23 @@
  * Aplicar filtros de Sistema, Área e um termo de busca textual (nome, tipo, tag)
  * a uma lista de equipamentos, retornando a lista filtrada.
  *
+ * @mermaid
+ *   classDiagram
+ *     EquipmentFilterCriteria {
+ *       +searchTerm: string
+ *       +selectedSistema: string
+ *       +selectedArea: string
+ *     }
+ *     getFilteredEquipment --|> EquipmentFilterCriteria : uses as criteria
+ *     getFilteredEquipment --|> Equipment : returns array of
+ *     class Equipment {
+ *        +tag: string
+ *        +name: string
+ *        +type: string
+ *        +sistema: string | undefined
+ *        +area: string | undefined
+ *     }
+ *
  * Exporta:
  * - `EquipmentFilterCriteria`: Interface para os critérios de filtro.
  * - `getFilteredEquipment`: Função principal para filtrar equipamentos.
@@ -69,7 +86,3 @@ export function getFilteredEquipment(
   }
   return itemsToFilter;
 }
-
-    
-
-    

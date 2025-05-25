@@ -1,6 +1,19 @@
+
+/**
+ * @fileOverview Componente simples para renderizar o cabeçalho do site.
+ *
+ * Principal Responsabilidade:
+ * Exibir o título principal da aplicação ("Terminal 3D") e um ícone associado.
+ * Atua como um elemento de branding e navegação de topo fixo.
+ */
 import { Terminal } from 'lucide-react';
 
-export function SiteHeader() {
+/**
+ * Renderiza o cabeçalho fixo do site.
+ * Exibe o ícone `Terminal` e o nome da aplicação.
+ * @returns {JSX.Element} O componente SiteHeader.
+ */
+export function SiteHeader(): JSX.Element {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center">

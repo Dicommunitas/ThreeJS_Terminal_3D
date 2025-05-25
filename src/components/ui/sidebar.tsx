@@ -1,4 +1,47 @@
 
+/**
+ * @fileOverview Componente de Sidebar reutilizável e altamente configurável.
+ *
+ * Principal Responsabilidade:
+ * Fornecer uma estrutura de sidebar flexível que pode ser usada de várias maneiras:
+ * - Como uma sidebar tradicional fixa ou flutuante.
+ * - Em modo "icon" (colapsada, mostrando apenas ícones).
+ * - Como um "offcanvas" (desliza para fora da tela).
+ * - Adaptável para dispositivos móveis (geralmente usando o modo offcanvas).
+ *
+ * Subcomponentes:
+ * - `SidebarProvider`: Contexto para gerenciar o estado da sidebar (aberta/fechada, modo).
+ * - `Sidebar`: O contêiner principal da sidebar.
+ * - `SidebarTrigger`: Botão para alternar o estado da sidebar.
+ * - `SidebarRail`: Barra lateral fina para alternar a sidebar quando colapsada.
+ * - `SidebarInset`: Contêiner para o conteúdo principal da página, que se ajusta à sidebar.
+ * - `SidebarHeader`, `SidebarFooter`, `SidebarContent`: Seções estruturais dentro da sidebar.
+ * - `SidebarGroup`, `SidebarGroupLabel`, `SidebarGroupAction`, `SidebarGroupContent`: Para agrupar itens.
+ * - `SidebarMenu`, `SidebarMenuItem`, `SidebarMenuButton`, `SidebarMenuAction`, `SidebarMenuBadge`, `SidebarMenuSkeleton`, `SidebarMenuSub`, `SidebarMenuSubItem`, `SidebarMenuSubButton`: Para criar menus de navegação dentro da sidebar.
+ * - `SidebarInput`, `SidebarSeparator`: Elementos de UI utilitários para a sidebar.
+ *
+ * Utiliza cookies para persistir o estado da sidebar entre as sessões (desktop) e atalhos de teclado.
+ *
+ * @mermaid
+ *   graph LR
+ *     App --> SidebarProvider
+ *     SidebarProvider --> Sidebar
+ *     SidebarProvider --> SidebarInset
+ *     Sidebar --> SidebarHeader
+ *     Sidebar --> SidebarContent
+ *     Sidebar --> SidebarFooter
+ *     SidebarContent --> SidebarGroup
+ *     SidebarGroup --> SidebarGroupLabel
+ *     SidebarGroup --> SidebarMenu
+ *     SidebarMenu --> SidebarMenuItem
+ *     SidebarMenuItem --> SidebarMenuButton
+ *     SidebarMenuItem --> SidebarMenuAction
+ *     SidebarMenuItem --> SidebarMenuBadge
+ *     SidebarMenuButton --> SidebarMenuSub
+ *     SidebarMenuSub --> SidebarMenuSubItem
+ *     SidebarMenuSubItem --> SidebarMenuSubButton
+ *     App --> SidebarTrigger
+ */
 "use client"
 
 import * as React from "react"
@@ -39,6 +82,12 @@ type SidebarContext = {
 
 const SidebarContext = React.createContext<SidebarContext | null>(null)
 
+/**
+ * Hook para acessar o contexto da Sidebar.
+ * Deve ser usado dentro de um `SidebarProvider`.
+ * @returns {SidebarContext} O contexto da sidebar.
+ * @throws {Error} Se usado fora de um `SidebarProvider`.
+ */
 function useSidebar() {
   const context = React.useContext(SidebarContext)
   if (!context) {
@@ -48,11 +97,19 @@ function useSidebar() {
   return context
 }
 
+/**
+ * Provedor de contexto para o estado da sidebar.
+ * Gerencia se a sidebar está aberta/fechada, tanto no desktop quanto no mobile,
+ * e o estado colapsado/expandido.
+ */
 const SidebarProvider = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & {
+    /** Estado de abertura padrão da sidebar no desktop. Padrão: `true`. */
     defaultOpen?: boolean
+    /** Controla o estado de abertura da sidebar no desktop externamente. */
     open?: boolean
+    /** Callback para quando o estado de abertura da sidebar no desktop muda. */
     onOpenChange?: (open: boolean) => void
   }
 >(
@@ -157,11 +214,26 @@ const SidebarProvider = React.forwardRef<
 )
 SidebarProvider.displayName = "SidebarProvider"
 
+/**
+ * Componente principal da Sidebar.
+ * Renderiza a sidebar com base no estado do `SidebarProvider` e nas props de configuração.
+ */
 const Sidebar = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & {
+    /** Lado em que a sidebar aparecerá. Padrão: `"left"`. */
     side?: "left" | "right"
+    /** Variante visual da sidebar. Padrão: `"sidebar"`.
+     * - `"sidebar"`: Sidebar tradicional.
+     * - `"floating"`: Sidebar flutuante com sombra e bordas.
+     * - `"inset"`: Sidebar que se encaixa dentro de um layout principal (`SidebarInset`).
+     */
     variant?: "sidebar" | "floating" | "inset"
+    /** Comportamento de colapso da sidebar. Padrão: `"offcanvas"`.
+     * - `"offcanvas"`: A sidebar desliza para fora da tela quando colapsada.
+     * - `"icon"`: A sidebar encolhe para mostrar apenas ícones quando colapsada.
+     * - `"none"`: A sidebar não é colapsável.
+     */
     collapsible?: "offcanvas" | "icon" | "none"
   }
 >(
@@ -213,11 +285,11 @@ const Sidebar = React.forwardRef<
         </Sheet>
       )
     }
-    
+
     // Logic for placeholder div classes
     const placeholderBaseClasses = "duration-200 relative h-svh transition-[width] ease-linear";
     let placeholderWidthClass = "";
-    
+
     if (collapsible === "offcanvas") {
       placeholderWidthClass = "w-0"; // Offcanvas placeholder should ALWAYS be w-0, regardless of state.
     } else if (collapsible === "icon") {
@@ -247,7 +319,7 @@ const Sidebar = React.forwardRef<
       placeholderBaseClasses,
       placeholderWidthClass,
       placeholderBgClass,
-      "group-data-[side=right]:rotate-180" 
+      "group-data-[side=right]:rotate-180"
     );
 
     const sidebarDivClasses = cn(
@@ -289,6 +361,11 @@ const Sidebar = React.forwardRef<
 )
 Sidebar.displayName = "Sidebar"
 
+/**
+ * Botão para alternar o estado de visibilidade da sidebar.
+ * Em modo mobile, abre/fecha a sidebar offcanvas.
+ * Em modo desktop, colapsa/expande a sidebar.
+ */
 const SidebarTrigger = React.forwardRef<
   React.ElementRef<typeof Button>,
   React.ComponentProps<typeof Button>
@@ -322,6 +399,10 @@ const SidebarTrigger = React.forwardRef<
 })
 SidebarTrigger.displayName = "SidebarTrigger"
 
+/**
+ * Barra lateral fina ("rail") que aparece quando a sidebar está colapsada em modo "icon".
+ * Permite ao usuário clicar para expandir a sidebar.
+ */
 const SidebarRail = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<"button">
@@ -351,6 +432,11 @@ const SidebarRail = React.forwardRef<
 })
 SidebarRail.displayName = "SidebarRail"
 
+/**
+ * Componente para envolver o conteúdo principal da página.
+ * Ajusta sua margem e aparência com base no estado e variante da sidebar,
+ * especialmente útil com a variante "inset".
+ */
 const SidebarInset = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"main">
@@ -369,6 +455,9 @@ const SidebarInset = React.forwardRef<
 })
 SidebarInset.displayName = "SidebarInset"
 
+/**
+ * Componente de Input estilizado para uso dentro da Sidebar.
+ */
 const SidebarInput = React.forwardRef<
   React.ElementRef<typeof Input>,
   React.ComponentProps<typeof Input>
@@ -387,6 +476,9 @@ const SidebarInput = React.forwardRef<
 })
 SidebarInput.displayName = "SidebarInput"
 
+/**
+ * Contêiner para o cabeçalho da Sidebar.
+ */
 const SidebarHeader = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div">
@@ -402,6 +494,9 @@ const SidebarHeader = React.forwardRef<
 })
 SidebarHeader.displayName = "SidebarHeader"
 
+/**
+ * Contêiner para o rodapé da Sidebar.
+ */
 const SidebarFooter = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div">
@@ -417,6 +512,9 @@ const SidebarFooter = React.forwardRef<
 })
 SidebarFooter.displayName = "SidebarFooter"
 
+/**
+ * Componente Separator estilizado para uso dentro da Sidebar.
+ */
 const SidebarSeparator = React.forwardRef<
   React.ElementRef<typeof Separator>,
   React.ComponentProps<typeof Separator>
@@ -432,6 +530,9 @@ const SidebarSeparator = React.forwardRef<
 })
 SidebarSeparator.displayName = "SidebarSeparator"
 
+/**
+ * Contêiner para a área de conteúdo principal da Sidebar (geralmente rolável).
+ */
 const SidebarContent = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div">
@@ -450,6 +551,9 @@ const SidebarContent = React.forwardRef<
 })
 SidebarContent.displayName = "SidebarContent"
 
+/**
+ * Contêiner para agrupar logicamente itens dentro da Sidebar.
+ */
 const SidebarGroup = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div">
@@ -465,6 +569,9 @@ const SidebarGroup = React.forwardRef<
 })
 SidebarGroup.displayName = "SidebarGroup"
 
+/**
+ * Rótulo para um `SidebarGroup`. Fica oculto quando a sidebar está em modo "icon".
+ */
 const SidebarGroupLabel = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & { asChild?: boolean }
@@ -486,6 +593,10 @@ const SidebarGroupLabel = React.forwardRef<
 })
 SidebarGroupLabel.displayName = "SidebarGroupLabel"
 
+/**
+ * Botão de ação opcional para um `SidebarGroup` (e.g., um botão "+").
+ * Fica oculto quando a sidebar está em modo "icon".
+ */
 const SidebarGroupAction = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<"button"> & { asChild?: boolean }
@@ -509,6 +620,9 @@ const SidebarGroupAction = React.forwardRef<
 })
 SidebarGroupAction.displayName = "SidebarGroupAction"
 
+/**
+ * Contêiner para o conteúdo de um `SidebarGroup`.
+ */
 const SidebarGroupContent = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div">
@@ -522,6 +636,9 @@ const SidebarGroupContent = React.forwardRef<
 ))
 SidebarGroupContent.displayName = "SidebarGroupContent"
 
+/**
+ * Lista `<ul>` para um menu dentro da Sidebar.
+ */
 const SidebarMenu = React.forwardRef<
   HTMLUListElement,
   React.ComponentProps<"ul">
@@ -535,6 +652,9 @@ const SidebarMenu = React.forwardRef<
 ))
 SidebarMenu.displayName = "SidebarMenu"
 
+/**
+ * Item `<li>` de um `SidebarMenu`.
+ */
 const SidebarMenuItem = React.forwardRef<
   HTMLLIElement,
   React.ComponentProps<"li">
@@ -570,11 +690,18 @@ const sidebarMenuButtonVariants = cva(
   }
 )
 
+/**
+ * Botão clicável dentro de um `SidebarMenuItem`.
+ * Pode conter um ícone e texto. O texto é truncado quando a sidebar está em modo "icon".
+ * Suporta um tooltip opcional que aparece quando a sidebar está em modo "icon".
+ */
 const SidebarMenuButton = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<"button"> & {
     asChild?: boolean
+    /** Indica se o item de menu está ativo. */
     isActive?: boolean
+    /** Conteúdo do tooltip a ser exibido no modo "icon", ou um objeto de props para `TooltipContent`. */
     tooltip?: string | React.ComponentProps<typeof TooltipContent>
   } & VariantProps<typeof sidebarMenuButtonVariants>
 >(
@@ -629,10 +756,16 @@ const SidebarMenuButton = React.forwardRef<
 )
 SidebarMenuButton.displayName = "SidebarMenuButton"
 
+/**
+ * Botão de ação opcional para um `SidebarMenuItem` (e.g., um ícone de "mais opções").
+ * Fica oculto quando a sidebar está em modo "icon".
+ * Pode ser configurado para aparecer apenas no hover.
+ */
 const SidebarMenuAction = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<"button"> & {
     asChild?: boolean
+    /** Se true, a ação só aparece quando o mouse está sobre o item de menu. */
     showOnHover?: boolean
   }
 >(({ className, asChild = false, showOnHover = false, ...props }, ref) => {
@@ -660,6 +793,10 @@ const SidebarMenuAction = React.forwardRef<
 })
 SidebarMenuAction.displayName = "SidebarMenuAction"
 
+/**
+ * Badge opcional para um `SidebarMenuItem` (e.g., para contagens de notificações).
+ * Fica oculto quando a sidebar está em modo "icon".
+ */
 const SidebarMenuBadge = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div">
@@ -681,9 +818,14 @@ const SidebarMenuBadge = React.forwardRef<
 ))
 SidebarMenuBadge.displayName = "SidebarMenuBadge"
 
+/**
+ * Componente de esqueleto de carregamento para itens de menu.
+ * Útil para indicar que o conteúdo do menu está sendo carregado.
+ */
 const SidebarMenuSkeleton = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & {
+    /** Se true, mostra um esqueleto de ícone. */
     showIcon?: boolean
   }
 >(({ className, showIcon = false, ...props }, ref) => {
@@ -719,6 +861,10 @@ const SidebarMenuSkeleton = React.forwardRef<
 })
 SidebarMenuSkeleton.displayName = "SidebarMenuSkeleton"
 
+/**
+ * Lista `<ul>` para um submenu dentro de um `SidebarMenuButton` (geralmente usado com dropdowns ou accordions).
+ * Fica oculto quando a sidebar está em modo "icon".
+ */
 const SidebarMenuSub = React.forwardRef<
   HTMLUListElement,
   React.ComponentProps<"ul">
@@ -736,17 +882,25 @@ const SidebarMenuSub = React.forwardRef<
 ))
 SidebarMenuSub.displayName = "SidebarMenuSub"
 
+/**
+ * Item `<li>` de um `SidebarMenuSub`.
+ */
 const SidebarMenuSubItem = React.forwardRef<
   HTMLLIElement,
   React.ComponentProps<"li">
 >(({ ...props }, ref) => <li ref={ref} {...props} />)
 SidebarMenuSubItem.displayName = "SidebarMenuSubItem"
 
+/**
+ * Botão clicável (ou link) dentro de um `SidebarMenuSubItem`.
+ */
 const SidebarMenuSubButton = React.forwardRef<
   HTMLAnchorElement,
   React.ComponentProps<"a"> & {
     asChild?: boolean
+    /** Tamanho do botão do submenu. */
     size?: "sm" | "md"
+    /** Indica se o item de submenu está ativo. */
     isActive?: boolean
   }
 >(({ asChild = false, size = "md", isActive, className, ...props }, ref) => {

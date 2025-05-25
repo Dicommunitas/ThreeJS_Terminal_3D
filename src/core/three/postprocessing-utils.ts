@@ -8,6 +8,14 @@
  * funções para atualizar dinamicamente o efeito de contorno (quais objetos destacar
  * e com qual estilo) e para redimensionar os passes de pós-processamento.
  *
+ * @mermaid
+ *   classDiagram
+ *     setupPostProcessing_return {
+ *       +composer: EffectComposer
+ *       +outlinePass: OutlinePass
+ *     }
+ *     setupPostProcessing ..> setupPostProcessing_return : returns
+ *
  * Exporta:
  * - `setupPostProcessing`: Configura o pipeline inicial de pós-processamento.
  * - `updatePostProcessingSize`: Atualiza o tamanho do composer e do outline pass.
@@ -40,16 +48,16 @@ function applyOutlinePassStyle(outlinePass: OutlinePass, styleType: 'selected' |
     case 'selected':
       // console.log('[applyOutlinePassStyle] Applying SELECTED style');
       outlinePass.visibleEdgeColor.set('#0000FF'); // Azul forte
-      outlinePass.edgeStrength = 10.0; 
-      outlinePass.edgeThickness = 2.0; 
-      outlinePass.edgeGlow = 0.7; 
+      outlinePass.edgeStrength = 10.0;
+      outlinePass.edgeThickness = 2.0;
+      outlinePass.edgeGlow = 0.7;
       break;
     case 'hover':
       // console.log('[applyOutlinePassStyle] Applying HOVER style');
       outlinePass.visibleEdgeColor.set('#87CEFA'); // LightSkyBlue
-      outlinePass.edgeStrength = 7.0; 
-      outlinePass.edgeThickness = 1.5; 
-      outlinePass.edgeGlow = 0.5; 
+      outlinePass.edgeStrength = 7.0;
+      outlinePass.edgeThickness = 1.5;
+      outlinePass.edgeGlow = 0.5;
       break;
     case 'none':
     default:
@@ -178,7 +186,7 @@ export function updateOutlineEffect(
   if (objectsToOutline.length === 0) {
     styleType = 'none';
   }
-  
+
   // Se há seleção, o estilo de seleção prevalece mesmo que o mouse esteja sobre um deles.
   // Se não há seleção e há hover, aplica estilo de hover.
   // Senão, nenhum estilo.
@@ -192,11 +200,8 @@ export function updateOutlineEffect(
 
 
   // console.log(`[updateOutlineEffect] Style: ${styleType}. Outlining: ${objectsToOutline.map(o => o.userData.tag).join(', ') || 'None'}`);
-  
+
   setOutlinePassObjects(outlinePass, objectsToOutline);
   applyOutlinePassStyle(outlinePass, styleType);
   // console.log(`[updateOutlineEffect] OutlinePass strength: ${outlinePass.edgeStrength}`);
 }
-
-
-    

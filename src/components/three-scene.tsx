@@ -17,42 +17,43 @@
  * Orquestrar os diversos hooks que gerenciam aspectos específicos da cena 3D,
  * passar props e refs entre eles, e fornecer o ponto de montagem no DOM.
  *
- * @mermaid
- *   classDiagram
- *     ThreeSceneProps {
- *       +equipment: Equipment[]  // Filtered list
- *       +allEquipmentData: Equipment[] // Full list for annotation context
- *       +layers: Layer[]
- *       +annotations: Annotation[]
- *       +selectedEquipmentTags: string[] | undefined
- *       +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
- *       +hoveredEquipmentTag: string | null | undefined
- *       +setHoveredEquipmentTag(tag: string | null): void
- *       +cameraState: CameraState | undefined
- *       +onCameraChange(cameraState: CameraState): void
- *       +initialCameraPosition: Point3D
- *       +initialCameraLookAt: Point3D
- *       +colorMode: ColorMode
- *       +targetSystemToFrame: string | null
- *       +onSystemFramed(): void
- *     }
- *     Point3D {
- *       +x: number
- *       +y: number
- *       +z: number
- *     }
- *     ThreeSceneProps ..> Equipment
- *     ThreeSceneProps ..> Layer
- *     ThreeSceneProps ..> Annotation
- *     ThreeSceneProps ..> CameraState
- *     ThreeSceneProps ..> ColorMode
- *     ThreeSceneProps ..> Point3D
- *     ThreeScene ..> useSceneSetup : uses
- *     ThreeScene ..> useEquipmentRenderer : uses
- *     ThreeScene ..> useAnnotationPinRenderer : uses
- *     ThreeScene ..> useMouseInteractionManager : uses
- *     ThreeScene ..> useSceneOutline : uses
- *     ThreeScene ..> useAnimationLoop : uses
+ * ```mermaid
+ * classDiagram
+ *   ThreeSceneProps {
+ *     +equipment: Equipment[]  // Filtered list
+ *     +allEquipmentData: Equipment[] // Full list for annotation context
+ *     +layers: Layer[]
+ *     +annotations: Annotation[]
+ *     +selectedEquipmentTags: string[] | undefined
+ *     +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
+ *     +hoveredEquipmentTag: string | null | undefined
+ *     +setHoveredEquipmentTag(tag: string | null): void
+ *     +cameraState: CameraState | undefined
+ *     +onCameraChange(cameraState: CameraState): void
+ *     +initialCameraPosition: Point3D
+ *     +initialCameraLookAt: Point3D
+ *     +colorMode: ColorMode
+ *     +targetSystemToFrame: string | null
+ *     +onSystemFramed(): void
+ *   }
+ *   Point3D {
+ *     +x: number
+ *     +y: number
+ *     +z: number
+ *   }
+ *   ThreeSceneProps ..> Equipment
+ *   ThreeSceneProps ..> Layer
+ *   ThreeSceneProps ..> Annotation
+ *   ThreeSceneProps ..> CameraState
+ *   ThreeSceneProps ..> ColorMode
+ *   ThreeSceneProps ..> Point3D
+ *   ThreeScene ..> useSceneSetup : uses
+ *   ThreeScene ..> useEquipmentRenderer : uses
+ *   ThreeScene ..> useAnnotationPinRenderer : uses
+ *   ThreeScene ..> useMouseInteractionManager : uses
+ *   ThreeScene ..> useSceneOutline : uses
+ *   ThreeScene ..> useAnimationLoop : uses
+ * ```
  */
 "use client";
 
