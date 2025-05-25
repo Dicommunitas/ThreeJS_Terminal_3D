@@ -6,30 +6,31 @@
 
 # Interface: ThreeSceneProps
 
-Defined in: src/components/three-scene.tsx:76
-
-Props para o componente ThreeScene.
- ThreeSceneProps
+Defined in: [src/components/three-scene.tsx:78](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L78)
 
 ## Properties
+
+### allEquipmentData
+
+> **allEquipmentData**: `Equipment`[]
+
+Defined in: [src/components/three-scene.tsx:80](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L80)
+
+***
 
 ### annotations
 
 > **annotations**: `Annotation`[]
 
-Defined in: src/components/three-scene.tsx:79
-
-Lista de anotações a serem exibidas como pins na cena.
+Defined in: [src/components/three-scene.tsx:82](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L82)
 
 ***
 
-### cameraState?
+### cameraState
 
-> `optional` **cameraState**: `CameraState`
+> **cameraState**: `undefined` \| `CameraState`
 
-Defined in: src/components/three-scene.tsx:84
-
-O estado atual da câmera (posição, lookAt) controlado externamente (e.g., por presets ou undo/redo).
+Defined in: [src/components/three-scene.tsx:88](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L88)
 
 ***
 
@@ -37,9 +38,7 @@ O estado atual da câmera (posição, lookAt) controlado externamente (e.g., por
 
 > **colorMode**: `ColorMode`
 
-Defined in: src/components/three-scene.tsx:88
-
-O modo de colorização atual para os equipamentos.
+Defined in: [src/components/three-scene.tsx:93](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L93)
 
 ***
 
@@ -47,9 +46,7 @@ O modo de colorização atual para os equipamentos.
 
 > **equipment**: `Equipment`[]
 
-Defined in: src/components/three-scene.tsx:77
-
-Lista de equipamentos a serem renderizados (já filtrados).
+Defined in: [src/components/three-scene.tsx:79](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L79)
 
 ***
 
@@ -57,9 +54,7 @@ Lista de equipamentos a serem renderizados (já filtrados).
 
 > **hoveredEquipmentTag**: `undefined` \| `null` \| `string`
 
-Defined in: src/components/three-scene.tsx:82
-
-Tag do equipamento atualmente sob o cursor, para aplicar o efeito de contorno de hover.
+Defined in: [src/components/three-scene.tsx:85](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L85)
 
 ***
 
@@ -67,9 +62,7 @@ Tag do equipamento atualmente sob o cursor, para aplicar o efeito de contorno de
 
 > **initialCameraLookAt**: `object`
 
-Defined in: src/components/three-scene.tsx:87
-
-Ponto de observação (lookAt) inicial da câmera.
+Defined in: [src/components/three-scene.tsx:92](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L92)
 
 #### x
 
@@ -89,9 +82,7 @@ Ponto de observação (lookAt) inicial da câmera.
 
 > **initialCameraPosition**: `object`
 
-Defined in: src/components/three-scene.tsx:86
-
-Posição inicial da câmera.
+Defined in: [src/components/three-scene.tsx:91](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L91)
 
 #### x
 
@@ -111,9 +102,7 @@ Posição inicial da câmera.
 
 > **layers**: `Layer`[]
 
-Defined in: src/components/three-scene.tsx:78
-
-Configuração das camadas de visibilidade para os tipos de equipamento.
+Defined in: [src/components/three-scene.tsx:81](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L81)
 
 ***
 
@@ -121,9 +110,7 @@ Configuração das camadas de visibilidade para os tipos de equipamento.
 
 > **onCameraChange**: (`cameraState`) => `void`
 
-Defined in: src/components/three-scene.tsx:85
-
-Callback invocado quando o estado da câmera muda devido à interação do usuário na cena (e.g., órbita).
+Defined in: [src/components/three-scene.tsx:89](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L89)
 
 #### Parameters
 
@@ -141,9 +128,7 @@ Callback invocado quando o estado da câmera muda devido à interação do usuá
 
 > **onSelectEquipment**: (`tag`, `isMultiSelectModifierPressed`) => `void`
 
-Defined in: src/components/three-scene.tsx:81
-
-Callback invocado quando um equipamento é selecionado/deselecionado na cena.
+Defined in: [src/components/three-scene.tsx:84](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L84)
 
 #### Parameters
 
@@ -165,9 +150,7 @@ Callback invocado quando um equipamento é selecionado/deselecionado na cena.
 
 > **onSystemFramed**: () => `void`
 
-Defined in: src/components/three-scene.tsx:90
-
-Callback chamado após a câmera terminar de enquadrar um sistema.
+Defined in: [src/components/three-scene.tsx:96](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L96)
 
 #### Returns
 
@@ -179,9 +162,7 @@ Callback chamado após a câmera terminar de enquadrar um sistema.
 
 > **selectedEquipmentTags**: `undefined` \| `string`[]
 
-Defined in: src/components/three-scene.tsx:80
-
-Tags dos equipamentos atualmente selecionados, para aplicar o efeito de contorno.
+Defined in: [src/components/three-scene.tsx:83](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L83)
 
 ***
 
@@ -189,9 +170,7 @@ Tags dos equipamentos atualmente selecionados, para aplicar o efeito de contorno
 
 > **setHoveredEquipmentTag**: (`tag`) => `void`
 
-Defined in: src/components/three-scene.tsx:83
-
-Callback para definir o equipamento em hover.
+Defined in: [src/components/three-scene.tsx:86](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L86)
 
 #### Parameters
 
@@ -209,6 +188,4 @@ Callback para definir o equipamento em hover.
 
 > **targetSystemToFrame**: `null` \| `string`
 
-Defined in: src/components/three-scene.tsx:89
-
-O sistema que deve ser enquadrado pela câmera. Se não nulo, a câmera tentará focar nos equipamentos deste sistema.
+Defined in: [src/components/three-scene.tsx:95](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/three-scene.tsx#L95)

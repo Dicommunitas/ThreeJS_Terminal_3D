@@ -8,7 +8,7 @@
 
 > **SiteHeader**(): `Element`
 
-Defined in: src/components/site-header.tsx:3
+Defined in: [src/components/site-header.tsx:3](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/site-header.tsx#L3)
 
 ## Returns
 

@@ -8,4 +8,4 @@
 
 > `const` **MenubarSeparator**: `ForwardRefExoticComponent`\<`Omit`\<`MenubarSeparatorProps` & `RefAttributes`\<`HTMLDivElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: src/components/ui/menubar.tsx:211
+Defined in: [src/components/ui/menubar.tsx:211](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/ui/menubar.tsx#L211)

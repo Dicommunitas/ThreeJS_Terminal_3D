@@ -8,4 +8,4 @@
 
 ## Functions
 
-- [useMouseInteraction](functions/useMouseInteraction.md)
+- [useMouseInteractionManager](functions/useMouseInteractionManager.md)

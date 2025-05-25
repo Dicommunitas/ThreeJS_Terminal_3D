@@ -8,4 +8,4 @@
 
 > `const` **TableCaption**: `ForwardRefExoticComponent`\<`HTMLAttributes`\<`HTMLTableCaptionElement`\> & `RefAttributes`\<`HTMLTableCaptionElement`\>\>
 
-Defined in: src/components/ui/table.tsx:96
+Defined in: [src/components/ui/table.tsx:96](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/ui/table.tsx#L96)

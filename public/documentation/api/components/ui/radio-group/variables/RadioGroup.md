@@ -8,4 +8,4 @@
 
 > `const` **RadioGroup**: `ForwardRefExoticComponent`\<`Omit`\<`RadioGroupProps` & `RefAttributes`\<`HTMLDivElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: src/components/ui/radio-group.tsx:9
+Defined in: [src/components/ui/radio-group.tsx:9](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/ui/radio-group.tsx#L9)

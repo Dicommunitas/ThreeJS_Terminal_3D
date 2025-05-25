@@ -6,7 +6,7 @@
 
 # Interface: UseLayerManagerProps
 
-Defined in: src/hooks/use-layer-manager.ts:31
+Defined in: [src/hooks/use-layer-manager.ts:35](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/hooks/use-layer-manager.ts#L35)
 
 Props para o hook `useLayerManager`.
  UseLayerManagerProps
@@ -17,7 +17,7 @@ Props para o hook `useLayerManager`.
 
 > **executeCommand**: (`command`) => `void`
 
-Defined in: src/hooks/use-layer-manager.ts:32
+Defined in: [src/hooks/use-layer-manager.ts:36](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/hooks/use-layer-manager.ts#L36)
 
 Função para executar comandos
                                                        (e.g., alternância de visibilidade de camada)

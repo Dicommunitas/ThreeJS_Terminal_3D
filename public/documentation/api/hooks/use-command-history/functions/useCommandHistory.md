@@ -8,7 +8,7 @@
 
 > **useCommandHistory**(`initialState?`): `UseCommandHistoryReturn`
 
-Defined in: src/hooks/use-command-history.ts:67
+Defined in: [src/hooks/use-command-history.ts:68](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/hooks/use-command-history.ts#L68)
 
 Hook customizado para gerenciar um histórico de comandos, permitindo Undo e Redo.
 Armazena uma lista de comandos e o índice atual, permitindo navegar para frente e para trás

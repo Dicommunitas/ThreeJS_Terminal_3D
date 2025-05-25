@@ -8,4 +8,4 @@
 
 > `const` **TooltipContent**: `ForwardRefExoticComponent`\<`Omit`\<`TooltipContentProps` & `RefAttributes`\<`HTMLDivElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: src/components/ui/tooltip.tsx:14
+Defined in: [src/components/ui/tooltip.tsx:14](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/ui/tooltip.tsx#L14)

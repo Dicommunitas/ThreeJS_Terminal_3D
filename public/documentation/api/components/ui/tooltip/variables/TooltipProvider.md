@@ -8,4 +8,4 @@
 
 > `const` **TooltipProvider**: `FC`\<`TooltipProviderProps`\> = `TooltipPrimitive.Provider`
 
-Defined in: src/components/ui/tooltip.tsx:8
+Defined in: [src/components/ui/tooltip.tsx:8](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/ui/tooltip.tsx#L8)

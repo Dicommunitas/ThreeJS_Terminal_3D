@@ -8,4 +8,4 @@
 
 > `const` **AlertTitle**: `ForwardRefExoticComponent`\<`HTMLAttributes`\<`HTMLHeadingElement`\> & `RefAttributes`\<`HTMLParagraphElement`\>\>
 
-Defined in: src/components/ui/alert.tsx:35
+Defined in: [src/components/ui/alert.tsx:35](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/ui/alert.tsx#L35)

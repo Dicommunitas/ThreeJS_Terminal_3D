@@ -8,11 +8,12 @@
 
 > **useSceneSetup**(`props`): `UseSceneSetupReturn`
 
-Defined in: src/hooks/use-scene-setup.ts:60
+Defined in: [src/hooks/use-scene-setup.ts:114](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/hooks/use-scene-setup.ts#L114)
 
 A custom hook for handling the initial setup of a Three.js scene.
 Encapsulates the creation of the scene, camera, renderers, controls, lighting, and ground plane.
 Also manages the scene's readiness state and handles window resizing.
+OrbitControls are configured by default for Left and Middle mouse buttons to rotate, and Right mouse button to pan.
 
 ## Parameters
 

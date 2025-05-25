@@ -8,4 +8,4 @@
 
 > `const` **SidebarGroupLabel**: `ForwardRefExoticComponent`\<`Omit`\<`ClassAttributes`\<`HTMLDivElement`\> & `HTMLAttributes`\<`HTMLDivElement`\> & `object`, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: src/components/ui/sidebar.tsx:468
+Defined in: [src/components/ui/sidebar.tsx:468](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/ui/sidebar.tsx#L468)

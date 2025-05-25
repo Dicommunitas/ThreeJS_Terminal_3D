@@ -8,7 +8,7 @@
 
 > **default**(`__namedParameters`): `Element`
 
-Defined in: src/app/layout.tsx:21
+Defined in: [src/app/layout.tsx:21](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/app/layout.tsx#L21)
 
 ## Parameters
 
