@@ -7,7 +7,8 @@
  * - O componente `ThreeScene` (a própria cena 3D).
  * - O `InfoPanel` (painel de detalhes do equipamento selecionado).
  * Este componente não possui lógica complexa própria, mas sim delega a renderização
- * e o comportamento para seus filhos, passando as props necessárias.
+ * e o comportamento para seus filhos, passando as props necessárias, incluindo a lista
+ * completa de equipamentos (`allEquipmentData`) para contexto de renderização de anotações.
  *
  * ```mermaid
  * classDiagram
@@ -64,7 +65,7 @@ import { InfoPanel } from '@/components/info-panel';
  *
  * @interface MainSceneAreaProps
  * @property {Equipment[]} equipment - Lista de equipamentos filtrados a serem renderizados na cena.
- * @property {Equipment[]} allEquipmentData - Lista completa de todos os equipamentos, para contexto (e.g., anotações).
+ * @property {Equipment[]} allEquipmentData - Lista completa de todos os equipamentos, para contexto (e.g., anotações no `ThreeScene`).
  * @property {Layer[]} layers - Configuração das camadas de visibilidade.
  * @property {Annotation[]} annotations - Lista de anotações a serem exibidas.
  * @property {string[]} selectedEquipmentTags - Tags dos equipamentos atualmente selecionados.

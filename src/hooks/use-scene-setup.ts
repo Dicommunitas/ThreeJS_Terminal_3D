@@ -82,7 +82,7 @@ interface UseSceneSetupProps {
  * @property {React.RefObject<THREE.PerspectiveCamera | null>} cameraRef - Ref to the Three.js Camera.
  * @property {React.RefObject<THREE.WebGLRenderer | null>} rendererRef - Ref to the WebGLRenderer.
  * @property {React.RefObject<CSS2DRenderer | null>} labelRendererRef - Ref to the CSS2DRenderer.
- * @property {React.RefObject<OrbitControlsType | null>} controlsRef - Ref to the OrbitControls.
+ * @property {React.RefObject<OrbitControlsType | null>} controlsRef - Ref to the OrbitControls. Configured by default for Left and Middle mouse buttons to rotate, and Right mouse button to pan.
  * @property {React.RefObject<EffectComposer | null>} composerRef - Ref to the EffectComposer.
  * @property {React.RefObject<OutlinePass | null>} outlinePassRef - Ref to the OutlinePass.
  * @property {React.RefObject<THREE.Mesh | null>} groundMeshRef - Ref to the ground plane mesh.
@@ -104,6 +104,7 @@ interface UseSceneSetupReturn {
  * A custom hook for handling the initial setup of a Three.js scene.
  * Encapsulates the creation of the scene, camera, renderers, controls, lighting, and ground plane.
  * Also manages the scene's readiness state and handles window resizing.
+ * OrbitControls are configured by default for Left and Middle mouse buttons to rotate, and Right mouse button to pan.
  *
  * @param {UseSceneSetupProps} props - The properties for the hook.
  * @returns {UseSceneSetupReturn} An object containing refs to the core scene elements and the readiness state.
