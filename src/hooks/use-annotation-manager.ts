@@ -10,6 +10,10 @@
  *
  * ```mermaid
  * classDiagram
+ *   UseAnnotationManagerProps {
+ *     +initialAnnotations: Annotation[]
+ *     +equipmentData: Equipment[]
+ *   }
  *   UseAnnotationManagerReturn {
  *     +annotations: Annotation[]
  *     +isAnnotationDialogOpen: boolean
@@ -22,6 +26,8 @@
  *     +setAnnotations(annotations: Annotation[]): void
  *     +setIsAnnotationDialogOpen(isOpen: boolean): void
  *   }
+ *   UseAnnotationManagerProps ..> Annotation
+ *   UseAnnotationManagerProps ..> Equipment
  *   UseAnnotationManagerReturn ..> Annotation
  *   UseAnnotationManagerReturn ..> Equipment
  *   useAnnotationManager ..> useToast : uses
@@ -98,7 +104,10 @@ export function useAnnotationManager({ initialAnnotations = [], equipmentData }:
       setAnnotationTargetEquipment(equipment);
       setIsAnnotationDialogOpen(true);
     } else {
-      toast({ title: "Nenhum Equipamento Selecionado", description: "Por favor, selecione um equipamento para gerenciar sua anotação.", variant: "destructive" });
+      // Defer toast call
+      setTimeout(() => {
+        toast({ title: "Nenhum Equipamento Selecionado", description: "Por favor, selecione um equipamento para gerenciar sua anotação.", variant: "destructive" });
+      }, 0);
     }
   }, [annotations, toast]);
 
@@ -114,12 +123,12 @@ export function useAnnotationManager({ initialAnnotations = [], equipmentData }:
 
     const equipmentName = annotationTargetEquipment.name;
     const currentDate = new Date().toISOString(); // Formato ISO 8601 para data/hora
+    let toastDescriptionMessage = "";
 
     setAnnotations(prevAnnotations => {
       const existingAnnotationIndex = prevAnnotations.findIndex(a => a.equipmentTag === annotationTargetEquipment.tag);
       let newAnnotationsList: Annotation[];
-      let toastDescription: string;
-
+      
       if (existingAnnotationIndex > -1) {
         // Atualiza anotação existente
         newAnnotationsList = [...prevAnnotations];
@@ -128,7 +137,7 @@ export function useAnnotationManager({ initialAnnotations = [], equipmentData }:
           text: text,
           createdAt: currentDate, // Atualiza data de modificação
         };
-        toastDescription = `Anotação para ${equipmentName} atualizada.`;
+        toastDescriptionMessage = `Anotação para ${equipmentName} atualizada.`;
       } else {
         // Cria nova anotação
         const newAnnotation: Annotation = {
@@ -137,11 +146,17 @@ export function useAnnotationManager({ initialAnnotations = [], equipmentData }:
           createdAt: currentDate,
         };
         newAnnotationsList = [...prevAnnotations, newAnnotation];
-        toastDescription = `Anotação para ${equipmentName} adicionada.`;
+        toastDescriptionMessage = `Anotação para ${equipmentName} adicionada.`;
       }
-      toast({ title: "Anotação Salva", description: toastDescription });
       return newAnnotationsList;
     });
+
+    if (toastDescriptionMessage) {
+      // Defer toast call
+      setTimeout(() => {
+        toast({ title: "Anotação Salva", description: toastDescriptionMessage });
+      }, 0);
+    }
 
     setIsAnnotationDialogOpen(false);
     setEditingAnnotation(null);
@@ -158,14 +173,21 @@ export function useAnnotationManager({ initialAnnotations = [], equipmentData }:
     const equipment = equipmentData.find(e => e.tag === equipmentTag);
     if (!equipment) return; // Equipamento não encontrado, não faz nada
 
+    let toastTitleMessage = "";
+    let toastDescriptionMessage = "";
+    let toastVariantValue: "default" | "destructive" | undefined = undefined;
+
     setAnnotations(prevAnnotations => {
       const newAnnotationsList = prevAnnotations.filter(a => a.equipmentTag !== equipmentTag);
       if (prevAnnotations.length === newAnnotationsList.length) {
         // Nenhuma anotação foi removida, significa que não existia
-        toast({ title: "Nenhuma Anotação", description: `Nenhuma anotação encontrada para ${equipment.name} para excluir.`, variant: "destructive" });
+        toastTitleMessage = "Nenhuma Anotação";
+        toastDescriptionMessage = `Nenhuma anotação encontrada para ${equipment.name} para excluir.`;
+        toastVariantValue = "destructive";
         return prevAnnotations;
       }
-      toast({ title: "Anotação Excluída", description: `Anotação para ${equipment.name} foi excluída.` });
+      toastTitleMessage = "Anotação Excluída";
+      toastDescriptionMessage = `Anotação para ${equipment.name} foi excluída.`;
       return newAnnotationsList;
     });
 
@@ -174,6 +196,13 @@ export function useAnnotationManager({ initialAnnotations = [], equipmentData }:
         setIsAnnotationDialogOpen(false);
         setEditingAnnotation(null);
         setAnnotationTargetEquipment(null);
+    }
+
+    if (toastTitleMessage && toastDescriptionMessage) {
+      // Defer toast call
+      setTimeout(() => {
+        toast({ title: toastTitleMessage, description: toastDescriptionMessage, variant: toastVariantValue });
+      }, 0);
     }
   }, [toast, equipmentData, annotationTargetEquipment]);
 
@@ -200,5 +229,3 @@ export function useAnnotationManager({ initialAnnotations = [], equipmentData }:
     getAnnotationForEquipment,
   };
 }
-
-    
