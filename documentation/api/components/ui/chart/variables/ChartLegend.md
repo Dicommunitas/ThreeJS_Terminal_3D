@@ -8,4 +8,4 @@
 
 > `const` **ChartLegend**: *typeof* `Legend` = `RechartsPrimitive.Legend`
 
-Defined in: [src/components/ui/chart.tsx:259](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/components/ui/chart.tsx#L259)
+Defined in: [src/components/ui/chart.tsx:259](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/components/ui/chart.tsx#L259)

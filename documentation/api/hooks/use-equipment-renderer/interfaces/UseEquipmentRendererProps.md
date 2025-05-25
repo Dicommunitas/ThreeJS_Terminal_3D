@@ -6,7 +6,7 @@
 
 # Interface: UseEquipmentRendererProps
 
-Defined in: [src/hooks/use-equipment-renderer.ts:41](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/hooks/use-equipment-renderer.ts#L41)
+Defined in: [src/hooks/use-equipment-renderer.ts:41](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-equipment-renderer.ts#L41)
 
 ## File Overview
 
@@ -87,7 +87,7 @@ UseEquipmentRendererProps {
 
 > **colorMode**: [`ColorMode`](../../../lib/types/type-aliases/ColorMode.md)
 
-Defined in: [src/hooks/use-equipment-renderer.ts:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/hooks/use-equipment-renderer.ts#L46)
+Defined in: [src/hooks/use-equipment-renderer.ts:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-equipment-renderer.ts#L46)
 
 ***
 
@@ -95,7 +95,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:46](https://github.com/Dicommun
 
 > **createSingleEquipmentMesh**: (`item`) => `Object3D`
 
-Defined in: [src/hooks/use-equipment-renderer.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/hooks/use-equipment-renderer.ts#L47)
+Defined in: [src/hooks/use-equipment-renderer.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-equipment-renderer.ts#L47)
 
 #### Parameters
 
@@ -113,7 +113,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:47](https://github.com/Dicommun
 
 > **equipmentData**: [`Equipment`](../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/hooks/use-equipment-renderer.ts:44](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/hooks/use-equipment-renderer.ts#L44)
+Defined in: [src/hooks/use-equipment-renderer.ts:44](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-equipment-renderer.ts#L44)
 
 ***
 
@@ -121,7 +121,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:44](https://github.com/Dicommun
 
 > **groundMeshRef**: `RefObject`\<`null` \| `Mesh`\<`BufferGeometry`\<`NormalBufferAttributes`\>, `Material` \| `Material`[], `Object3DEventMap`\>\>
 
-Defined in: [src/hooks/use-equipment-renderer.ts:48](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/hooks/use-equipment-renderer.ts#L48)
+Defined in: [src/hooks/use-equipment-renderer.ts:48](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-equipment-renderer.ts#L48)
 
 ***
 
@@ -129,7 +129,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:48](https://github.com/Dicommun
 
 > **isSceneReady**: `boolean`
 
-Defined in: [src/hooks/use-equipment-renderer.ts:43](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/hooks/use-equipment-renderer.ts#L43)
+Defined in: [src/hooks/use-equipment-renderer.ts:43](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-equipment-renderer.ts#L43)
 
 ***
 
@@ -137,7 +137,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:43](https://github.com/Dicommun
 
 > **layers**: [`Layer`](../../../lib/types/interfaces/Layer.md)[]
 
-Defined in: [src/hooks/use-equipment-renderer.ts:45](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/hooks/use-equipment-renderer.ts#L45)
+Defined in: [src/hooks/use-equipment-renderer.ts:45](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-equipment-renderer.ts#L45)
 
 ***
 
@@ -145,7 +145,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:45](https://github.com/Dicommun
 
 > **sceneRef**: `RefObject`\<`null` \| `Scene`\>
 
-Defined in: [src/hooks/use-equipment-renderer.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/hooks/use-equipment-renderer.ts#L42)
+Defined in: [src/hooks/use-equipment-renderer.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-equipment-renderer.ts#L42)
 <style>
 :root.mermaid-enabled .mermaid-block > pre {
   display: none;

@@ -6,7 +6,7 @@
 
 # Interface: SheetContentProps
 
-Defined in: [src/components/ui/sheet.tsx:52](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/components/ui/sheet.tsx#L52)
+Defined in: [src/components/ui/sheet.tsx:52](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/components/ui/sheet.tsx#L52)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/components/ui/sheet.tsx:52](https://github.com/Dicommunitas/Thr
 
 > `optional` **side**: `null` \| `"top"` \| `"bottom"` \| `"left"` \| `"right"`
 
-Defined in: [src/components/ui/sheet.tsx:37](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/components/ui/sheet.tsx#L37)
+Defined in: [src/components/ui/sheet.tsx:37](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/components/ui/sheet.tsx#L37)
 
 #### Inherited from
 

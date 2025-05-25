@@ -1,14 +1,6 @@
-
 {
   "$schema": "https://typedoc.org/schema.json",
-  "entryPoints": [
-    "./src/app/*",
-    "./src/components/*",
-    "./src/core/*",
-    "./src/hooks/*",
-    "./src/lib/types.ts"
-  ],
-  "entryPointStrategy": "expand",
+  "entryPoints": ["src"],
   "out": "documentation/api",
   "plugin": [
     "typedoc-plugin-markdown",
@@ -24,5 +16,6 @@
     "useTsLinkResolution": true
   },
   "excludeExternals": true,
-  "externalPattern": ["**/node_modules/**", "**/dist/**"]
+  "externalPattern": ["**/node_modules/**", "**/dist/**"],
+  "tsdoc": "tsdoc.json"
 }

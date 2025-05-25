@@ -8,4 +8,4 @@
 
 > `const` **Alert**: `ForwardRefExoticComponent`\<`HTMLAttributes`\<`HTMLDivElement`\> & `VariantProps`\<(`props?`) => `string`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: [src/components/ui/alert.tsx:22](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/components/ui/alert.tsx#L22)
+Defined in: [src/components/ui/alert.tsx:22](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/components/ui/alert.tsx#L22)

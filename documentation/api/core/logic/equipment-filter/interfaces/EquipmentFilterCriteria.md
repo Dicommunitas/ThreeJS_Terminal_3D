@@ -6,7 +6,7 @@
 
 # Interface: EquipmentFilterCriteria
 
-Defined in: [src/core/logic/equipment-filter.ts:39](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/core/logic/equipment-filter.ts#L39)
+Defined in: [src/core/logic/equipment-filter.ts:39](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/core/logic/equipment-filter.ts#L39)
 
 Define os critérios de filtro aplicáveis aos equipamentos.
  EquipmentFilterCriteria
@@ -17,7 +17,7 @@ Define os critérios de filtro aplicáveis aos equipamentos.
 
 > **searchTerm**: `string`
 
-Defined in: [src/core/logic/equipment-filter.ts:40](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/core/logic/equipment-filter.ts#L40)
+Defined in: [src/core/logic/equipment-filter.ts:40](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/core/logic/equipment-filter.ts#L40)
 
 Termo de busca textual. Múltiplos termos separados por espaço são tratados com lógica "E".
 
@@ -27,7 +27,7 @@ Termo de busca textual. Múltiplos termos separados por espaço são tratados co
 
 > **selectedArea**: `string`
 
-Defined in: [src/core/logic/equipment-filter.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/core/logic/equipment-filter.ts#L42)
+Defined in: [src/core/logic/equipment-filter.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/core/logic/equipment-filter.ts#L42)
 
 Área selecionada para filtro (ou "All" para não filtrar por área).
 
@@ -37,6 +37,6 @@ Defined in: [src/core/logic/equipment-filter.ts:42](https://github.com/Dicommuni
 
 > **selectedSistema**: `string`
 
-Defined in: [src/core/logic/equipment-filter.ts:41](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/core/logic/equipment-filter.ts#L41)
+Defined in: [src/core/logic/equipment-filter.ts:41](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/core/logic/equipment-filter.ts#L41)
 
 Sistema selecionado para filtro (ou "All" para não filtrar por sistema).

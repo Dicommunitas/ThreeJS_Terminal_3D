@@ -1,0 +1,13 @@
+{
+  "extends": "@microsoft/tsdoc",
+  "tagDefinitions": [
+    {
+      "tagName": "@fileOverview",
+      "syntaxKind": "block"
+    },
+    {
+      "tagName": "@mermaid",
+      "syntaxKind": "block"
+    }
+  ]
+}

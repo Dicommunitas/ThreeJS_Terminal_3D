@@ -19,7 +19,7 @@ export type ToasterToast = ToastProps & {
   action?: ToastActionElement
 }
 
-const actionTypes = {
+export const actionTypes = { // Adicionado export
   ADD_TOAST: "ADD_TOAST",
   UPDATE_TOAST: "UPDATE_TOAST",
   DISMISS_TOAST: "DISMISS_TOAST",
@@ -33,7 +33,7 @@ function genId() {
   return count.toString()
 }
 
-export type ActionType = typeof actionTypes; // Added export
+export type ActionType = typeof actionTypes;
 
 export type Action =
   | {
@@ -143,7 +143,7 @@ function dispatch(action: Action) {
 
 export type Toast = Omit<ToasterToast, "id">
 
-function toast({ ...props }: Toast) {
+export function toast({ ...props }: Toast) { // Adicionado export para a função toast
   const id = genId()
 
   const update = (props: ToasterToast) =>
@@ -172,7 +172,7 @@ function toast({ ...props }: Toast) {
   }
 }
 
-function useToast() {
+export function useToast() { // Adicionado export para o hook useToast
   const [state, setState] = React.useState<State>(memoryState)
 
   React.useEffect(() => {
@@ -183,7 +183,7 @@ function useToast() {
         listeners.splice(index, 1)
       }
     }
-  }, []) // Corrected: empty dependency array
+  }, []) 
 
   return {
     ...state,
@@ -191,5 +191,3 @@ function useToast() {
     dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
   }
 }
-
-export { useToast, toast }

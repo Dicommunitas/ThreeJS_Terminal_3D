@@ -8,7 +8,7 @@
 
 > **toast**(`__namedParameters`): `object`
 
-Defined in: [src/hooks/use-toast.ts:146](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/hooks/use-toast.ts#L146)
+Defined in: [src/hooks/use-toast.ts:146](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-toast.ts#L146)
 
 ## Parameters
 

@@ -8,7 +8,7 @@
 
 > **AnnotationDialog**(`props`): `Element`
 
-Defined in: [src/components/annotation-dialog.tsx:65](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/bf102b883b1f46260971486ec9fa4290f009e866/src/components/annotation-dialog.tsx#L65)
+Defined in: [src/components/annotation-dialog.tsx:65](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/components/annotation-dialog.tsx#L65)
 
 Renderiza um diálogo modal para o usuário inserir ou editar o texto de uma anotação.
 Exibe o nome do equipamento associado e um Textarea para o texto da anotação.
