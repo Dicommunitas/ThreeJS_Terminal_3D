@@ -295,4 +295,8 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
     labelRendererRef,
     controlsRef,
     composerRef,
-    outlinePassRef
+    outlinePassRef,
+    groundMeshRef,
+    isSceneReady,
+  };
+};
