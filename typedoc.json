@@ -1,0 +1,16 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["./src/app/*", "./src/components/*", "./src/core/*", "./src/hooks/*"],
+  "entryPointStrategy": "expand",
+  "out": "public/documentation/api",
+  "plugin": [
+    "typedoc-plugin-markdown",
+    "typedoc-plugin-mermaid"
+  ],
+  "readme": "none",
+  "hideGenerator": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "name": "3D Terminal System API Documentation",
+  "disableSources": false,
+}
