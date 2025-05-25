@@ -1,14 +1,14 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / [lib/types](../README.md) / ColorMode
+[nextn](../../../modules.md) / [lib/types](../README.md) / ColorMode
 
 # Type Alias: ColorMode
 
 > **ColorMode** = `"Produto"` \| `"Estado Operacional"` \| `"Equipamento"`
 
-Defined in: [src/lib/types.ts:133](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/lib/types.ts#L133)
+Defined in: [src/lib/types.ts:133](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/lib/types.ts#L133)
 
 Define os modos de colorização disponíveis para os equipamentos na cena 3D.
 O usuário pode selecionar um desses modos para alterar a forma como os equipamentos são coloridos.

@@ -1,15 +1,18 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / [hooks/use-layer-manager](../README.md) / UseLayerManagerProps
+[nextn](../../../modules.md) / [hooks/use-layer-manager](../README.md) / UseLayerManagerProps
 
 # Interface: UseLayerManagerProps
 
-Defined in: [src/hooks/use-layer-manager.ts:38](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-layer-manager.ts#L38)
+Defined in: [src/hooks/use-layer-manager.ts:38](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-layer-manager.ts#L38)
 
 Props para o hook `useLayerManager`.
- UseLayerManagerProps
+
+## Interface
+
+UseLayerManagerProps
 
 ## Properties
 
@@ -17,7 +20,7 @@ Props para o hook `useLayerManager`.
 
 > **executeCommand**: (`command`) => `void`
 
-Defined in: [src/hooks/use-layer-manager.ts:39](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-layer-manager.ts#L39)
+Defined in: [src/hooks/use-layer-manager.ts:39](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-layer-manager.ts#L39)
 
 Função para executar comandos
                                                        (e.g., alternância de visibilidade de camada)

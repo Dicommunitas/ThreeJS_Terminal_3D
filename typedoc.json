@@ -1,7 +1,10 @@
+
 {
   "$schema": "https://typedoc.org/schema.json",
   "entryPoints": ["src"],
+  "entryPointStrategy": "expand",
   "out": "documentation/api",
+  "tsconfig": "tsconfig.json",
   "plugin": [
     "typedoc-plugin-markdown",
     "typedoc-plugin-mermaid"

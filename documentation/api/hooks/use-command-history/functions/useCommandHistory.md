@@ -1,14 +1,14 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / [hooks/use-command-history](../README.md) / useCommandHistory
+[nextn](../../../modules.md) / [hooks/use-command-history](../README.md) / useCommandHistory
 
 # Function: useCommandHistory()
 
 > **useCommandHistory**(`initialState?`): [`UseCommandHistoryReturn`](../interfaces/UseCommandHistoryReturn.md)
 
-Defined in: [src/hooks/use-command-history.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-command-history.ts#L67)
+Defined in: [src/hooks/use-command-history.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-command-history.ts#L67)
 
 Hook customizado para gerenciar um histórico de comandos, permitindo Undo e Redo.
 Armazena uma lista de comandos e o índice atual, permitindo navegar para frente e para trás

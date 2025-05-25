@@ -1,8 +1,8 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / core/three/equipment-geometry-factory
+[nextn](../../../modules.md) / core/three/equipment-geometry-factory
 
 # core/three/equipment-geometry-factory
 

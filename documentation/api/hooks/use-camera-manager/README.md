@@ -1,8 +1,8 @@
-[**3D Terminal System API Documentation**](../../README.md)
+[**nextn**](../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../README.md) / hooks/use-camera-manager
+[nextn](../../modules.md) / hooks/use-camera-manager
 
 # hooks/use-camera-manager
 

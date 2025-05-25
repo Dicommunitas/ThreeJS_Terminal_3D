@@ -1,14 +1,14 @@
-[**3D Terminal System API Documentation**](../../../../README.md)
+[**nextn**](../../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../../README.md) / [core/logic/equipment-filter](../README.md) / getFilteredEquipment
+[nextn](../../../../modules.md) / [core/logic/equipment-filter](../README.md) / getFilteredEquipment
 
 # Function: getFilteredEquipment()
 
 > **getFilteredEquipment**(`allEquipment`, `criteria`): [`Equipment`](../../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/core/logic/equipment-filter.ts:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/core/logic/equipment-filter.ts#L55)
+Defined in: [src/core/logic/equipment-filter.ts:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/core/logic/equipment-filter.ts#L55)
 
 Filtra uma lista de equipamentos com base nos critérios fornecidos.
 A filtragem ocorre na seguinte ordem: Sistema, depois Área, depois Termo de Busca.

@@ -1,14 +1,14 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / [hooks/use-mouse-interaction](../README.md) / useMouseInteractionManager
+[nextn](../../../modules.md) / [hooks/use-mouse-interaction](../README.md) / useMouseInteractionManager
 
 # Function: useMouseInteractionManager()
 
 > **useMouseInteractionManager**(`props`): `void`
 
-Defined in: [src/hooks/use-mouse-interaction.ts:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-mouse-interaction.ts#L57)
+Defined in: [src/hooks/use-mouse-interaction.ts:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-mouse-interaction.ts#L57)
 
 Hook customizado para gerenciar interações do mouse (clique e movimento)
 para seleção e hover de equipamentos em uma cena Three.js.

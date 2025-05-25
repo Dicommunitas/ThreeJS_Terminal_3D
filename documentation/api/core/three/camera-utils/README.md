@@ -1,8 +1,8 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / core/three/camera-utils
+[nextn](../../../modules.md) / core/three/camera-utils
 
 # core/three/camera-utils
 

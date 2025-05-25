@@ -1,15 +1,18 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / [components/camera-controls-panel](../README.md) / CameraControlsPanelProps
+[nextn](../../../modules.md) / [components/camera-controls-panel](../README.md) / CameraControlsPanelProps
 
 # Interface: CameraControlsPanelProps
 
-Defined in: [src/components/camera-controls-panel.tsx:31](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/components/camera-controls-panel.tsx#L31)
+Defined in: [src/components/camera-controls-panel.tsx:31](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/components/camera-controls-panel.tsx#L31)
 
 Props para o componente CameraControlsPanel.
- CameraControlsPanelProps
+
+## Interface
+
+CameraControlsPanelProps
 
 ## Properties
 
@@ -17,7 +20,7 @@ Props para o componente CameraControlsPanel.
 
 > **onSetView**: (`systemName`) => `void`
 
-Defined in: [src/components/camera-controls-panel.tsx:33](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/components/camera-controls-panel.tsx#L33)
+Defined in: [src/components/camera-controls-panel.tsx:33](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/components/camera-controls-panel.tsx#L33)
 
 Callback chamado quando um sistema é selecionado para foco.
 
@@ -37,6 +40,6 @@ Callback chamado quando um sistema é selecionado para foco.
 
 > **systems**: `string`[]
 
-Defined in: [src/components/camera-controls-panel.tsx:32](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/components/camera-controls-panel.tsx#L32)
+Defined in: [src/components/camera-controls-panel.tsx:32](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/components/camera-controls-panel.tsx#L32)
 
 Lista de nomes dos sistemas disponíveis para foco.

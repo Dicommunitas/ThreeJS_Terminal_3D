@@ -1,14 +1,14 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / [hooks/use-scene-setup](../README.md) / useSceneSetup
+[nextn](../../../modules.md) / [hooks/use-scene-setup](../README.md) / useSceneSetup
 
 # Function: useSceneSetup()
 
 > **useSceneSetup**(`props`): [`UseSceneSetupReturn`](../interfaces/UseSceneSetupReturn.md)
 
-Defined in: [src/hooks/use-scene-setup.ts:112](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-scene-setup.ts#L112)
+Defined in: [src/hooks/use-scene-setup.ts:112](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-scene-setup.ts#L112)
 
 A custom hook for handling the initial setup of a Three.js scene.
 Encapsulates the creation of the scene, camera, renderers, controls, lighting, and ground plane.

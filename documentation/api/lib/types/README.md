@@ -1,8 +1,8 @@
-[**3D Terminal System API Documentation**](../../README.md)
+[**nextn**](../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../README.md) / lib/types
+[nextn](../../modules.md) / lib/types
 
 # lib/types
 

@@ -1,8 +1,8 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / core/logic/equipment-filter
+[nextn](../../../modules.md) / core/logic/equipment-filter
 
 # core/logic/equipment-filter
 

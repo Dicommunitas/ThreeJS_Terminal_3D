@@ -1,8 +1,8 @@
-[**3D Terminal System API Documentation**](../../README.md)
+[**nextn**](../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../README.md) / hooks/use-layer-manager
+[nextn](../../modules.md) / hooks/use-layer-manager
 
 # hooks/use-layer-manager
 

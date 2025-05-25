@@ -1,8 +1,8 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / core/data/initial-data
+[nextn](../../../modules.md) / core/data/initial-data
 
 # core/data/initial-data
 

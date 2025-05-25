@@ -1,8 +1,8 @@
-[**3D Terminal System API Documentation**](../../README.md)
+[**nextn**](../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../README.md) / hooks/use-equipment-selection-manager
+[nextn](../../modules.md) / hooks/use-equipment-selection-manager
 
 # hooks/use-equipment-selection-manager
 

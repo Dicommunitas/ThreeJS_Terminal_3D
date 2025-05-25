@@ -1,14 +1,14 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / [components/site-header](../README.md) / SiteHeader
+[nextn](../../../modules.md) / [components/site-header](../README.md) / SiteHeader
 
 # Function: SiteHeader()
 
 > **SiteHeader**(): `Element`
 
-Defined in: [src/components/site-header.tsx:16](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/components/site-header.tsx#L16)
+Defined in: [src/components/site-header.tsx:16](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/components/site-header.tsx#L16)
 
 Renderiza o cabeçalho fixo do site.
 Exibe o ícone `Terminal` e o nome da aplicação.

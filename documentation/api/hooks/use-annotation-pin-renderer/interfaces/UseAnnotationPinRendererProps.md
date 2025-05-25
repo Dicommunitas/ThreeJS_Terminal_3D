@@ -1,12 +1,12 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / [hooks/use-annotation-pin-renderer](../README.md) / UseAnnotationPinRendererProps
+[nextn](../../../modules.md) / [hooks/use-annotation-pin-renderer](../README.md) / UseAnnotationPinRendererProps
 
 # Interface: UseAnnotationPinRendererProps
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:40](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-annotation-pin-renderer.ts#L40)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:40](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-annotation-pin-renderer.ts#L40)
 
 ## File Overview
 
@@ -83,7 +83,7 @@ UseAnnotationPinRendererProps {
 
 > **allEquipmentData**: [`Equipment`](../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:45](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-annotation-pin-renderer.ts#L45)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:45](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-annotation-pin-renderer.ts#L45)
 
 ***
 
@@ -91,7 +91,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:45](https://github.com/Dic
 
 > **annotations**: [`Annotation`](../../../lib/types/interfaces/Annotation.md)[]
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:44](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-annotation-pin-renderer.ts#L44)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:44](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-annotation-pin-renderer.ts#L44)
 
 ***
 
@@ -99,7 +99,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:44](https://github.com/Dic
 
 > **isSceneReady**: `boolean`
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:43](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-annotation-pin-renderer.ts#L43)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:43](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-annotation-pin-renderer.ts#L43)
 
 ***
 
@@ -107,7 +107,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:43](https://github.com/Dic
 
 > **labelRendererRef**: `RefObject`\<`null` \| `CSS2DRenderer`\>
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-annotation-pin-renderer.ts#L42)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-annotation-pin-renderer.ts#L42)
 
 ***
 
@@ -115,7 +115,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:42](https://github.com/Dic
 
 > **layers**: [`Layer`](../../../lib/types/interfaces/Layer.md)[]
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-annotation-pin-renderer.ts#L47)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-annotation-pin-renderer.ts#L47)
 
 ***
 
@@ -123,7 +123,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:47](https://github.com/Dic
 
 > **sceneRef**: `RefObject`\<`null` \| `Scene`\>
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:41](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/hooks/use-annotation-pin-renderer.ts#L41)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:41](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-annotation-pin-renderer.ts#L41)
 <style>
 :root.mermaid-enabled .mermaid-block > pre {
   display: none;

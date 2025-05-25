@@ -1,8 +1,8 @@
-[**3D Terminal System API Documentation**](../../README.md)
+[**nextn**](../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../README.md) / hooks/use-toast
+[nextn](../../modules.md) / hooks/use-toast
 
 # hooks/use-toast
 
@@ -16,6 +16,10 @@
 - [ActionType](type-aliases/ActionType.md)
 - [Toast](type-aliases/Toast.md)
 - [ToasterToast](type-aliases/ToasterToast.md)
+
+## Variables
+
+- [actionTypes](variables/actionTypes.md)
 
 ## Functions
 

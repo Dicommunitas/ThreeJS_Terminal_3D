@@ -1,8 +1,8 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / components/ui/separator
+[nextn](../../../modules.md) / components/ui/separator
 
 # components/ui/separator
 

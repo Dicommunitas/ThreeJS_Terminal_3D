@@ -1,8 +1,8 @@
-[**3D Terminal System API Documentation**](../../README.md)
+[**nextn**](../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../README.md) / hooks/use-scene-outline
+[nextn](../../modules.md) / hooks/use-scene-outline
 
 # hooks/use-scene-outline
 

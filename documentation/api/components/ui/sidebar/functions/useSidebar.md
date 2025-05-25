@@ -1,14 +1,14 @@
-[**3D Terminal System API Documentation**](../../../../README.md)
+[**nextn**](../../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../../README.md) / [components/ui/sidebar](../README.md) / useSidebar
+[nextn](../../../../modules.md) / [components/ui/sidebar](../README.md) / useSidebar
 
 # Function: useSidebar()
 
 > **useSidebar**(): [`SidebarContext`](../type-aliases/SidebarContext.md)
 
-Defined in: [src/components/ui/sidebar.tsx:91](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/8075b8a92723c99d6c5409bf1c44d7734e99d256/src/components/ui/sidebar.tsx#L91)
+Defined in: [src/components/ui/sidebar.tsx:91](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/components/ui/sidebar.tsx#L91)
 
 Hook para acessar o contexto da Sidebar.
 Deve ser usado dentro de um `SidebarProvider`.

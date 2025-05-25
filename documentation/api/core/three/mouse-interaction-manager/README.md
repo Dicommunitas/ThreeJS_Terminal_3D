@@ -1,7 +1,7 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / core/three/mouse-interaction-manager
+[nextn](../../../modules.md) / core/three/mouse-interaction-manager
 
 # core/three/mouse-interaction-manager

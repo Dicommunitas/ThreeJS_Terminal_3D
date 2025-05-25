@@ -1,8 +1,8 @@
-[**3D Terminal System API Documentation**](../../../README.md)
+[**nextn**](../../../README.md)
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / core/three/postprocessing-utils
+[nextn](../../../modules.md) / core/three/postprocessing-utils
 
 # core/three/postprocessing-utils
 
