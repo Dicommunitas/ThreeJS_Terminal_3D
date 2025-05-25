@@ -75,7 +75,7 @@ import { XIcon, SearchIcon, FilterIcon, BookOpenIcon } from "lucide-react";
  * @property {string[]} cameraViewSystems - Lista de nomes de sistemas para o CameraControlsPanel.
  * @property {(systemName: string) => void} onFocusAndSelectSystem - Callback para focar e selecionar um sistema.
  */
-interface SidebarContentLayoutProps {
+export interface SidebarContentLayoutProps {
   searchTerm: string;
   setSearchTerm: (value: string) => void;
   selectedSistema: string;
@@ -214,5 +214,3 @@ export function SidebarContentLayout({
     </ScrollArea>
   );
 }
-
-    

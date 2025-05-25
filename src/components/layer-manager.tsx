@@ -32,7 +32,7 @@ import type { Layer } from '@/lib/types';
  * @property {Layer[]} layers - A lista de camadas disponíveis e seus estados de visibilidade.
  * @property {(layerId: string) => void} onToggleLayer - Callback para quando a visibilidade de uma camada é alternada.
  */
-interface LayerManagerProps {
+export interface LayerManagerProps {
   layers: Layer[];
   onToggleLayer: (layerId: string) => void;
 }
@@ -70,7 +70,3 @@ export function LayerManager({ layers, onToggleLayer }: LayerManagerProps): JSX.
     </Card>
   );
 }
-
-    
-
-    

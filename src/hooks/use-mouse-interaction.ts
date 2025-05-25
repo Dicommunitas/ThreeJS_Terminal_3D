@@ -39,7 +39,7 @@ import * as THREE from 'three';
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
-interface UseMouseInteractionManagerProps {
+export interface UseMouseInteractionManagerProps {
   mountRef: React.RefObject<HTMLDivElement | null>;
   cameraRef: React.RefObject<THREE.PerspectiveCamera | null>;
   equipmentMeshesRef: React.RefObject<THREE.Object3D[] | null>;

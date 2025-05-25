@@ -38,7 +38,7 @@ import { getFilteredEquipment, type EquipmentFilterCriteria } from '@/core/logic
  * @interface UseFilterManagerProps
  * @property {Equipment[]} allEquipment - A lista completa de todos os equipamentos que podem ser filtrados.
  */
-interface UseFilterManagerProps {
+export interface UseFilterManagerProps {
   allEquipment: Equipment[];
 }
 
@@ -135,5 +135,3 @@ export function useFilterManager({ allEquipment }: UseFilterManagerProps): UseFi
     filteredEquipment,
   };
 }
-
-    

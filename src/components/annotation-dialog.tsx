@@ -5,13 +5,15 @@
  *
  * @mermaid
  *   classDiagram
- *     AnnotationDialogProps <|-- AnnotationDialog
- *     AnnotationDialogProps : +isOpen: boolean
- *     AnnotationDialogProps : +onOpenChange: (isOpen: boolean) -> void
- *     AnnotationDialogProps : +onConfirm: (text: string) -> void
- *     AnnotationDialogProps : +currentAnnotation: Annotation | null
- *     AnnotationDialogProps : +equipmentName: string
- *     AnnotationDialog ..> Annotation : uses (via currentAnnotation)
+ *     AnnotationDialogProps {
+ *       +isOpen: boolean
+ *       +onOpenChange: (isOpen: boolean) -> void
+ *       +onConfirm: (text: string) -> void
+ *       +currentAnnotation: Annotation | null
+ *       +equipmentName: string
+ *     }
+ *     AnnotationDialog --|> React.FC
+ *     AnnotationDialogProps ..> Annotation : uses (via currentAnnotation)
  *
  *     class Annotation {
  *       +equipmentTag: string
@@ -45,7 +47,7 @@ import type { Annotation } from '@/lib/types';
  * @property {Annotation | null} currentAnnotation - A anotação atual sendo editada, ou null se for uma nova anotação.
  * @property {string} equipmentName - O nome do equipamento ao qual a anotação se refere, para exibição no diálogo.
  */
-interface AnnotationDialogProps {
+export interface AnnotationDialogProps {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
   onConfirm: (text: string) => void;

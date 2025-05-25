@@ -8,15 +8,11 @@
 
 > **useFormField**(): `object`
 
-Defined in: [src/components/ui/form.tsx:44](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5bec8212bfd37e45fdf0e49aa57af1be9d74e77/src/components/ui/form.tsx#L44)
+Defined in: [src/components/ui/form.tsx:44](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/31531b560b5bf5acf587cf3f1c2c703355c09988/src/components/ui/form.tsx#L44)
 
 ## Returns
 
 `object`
-
-### error?
-
-> `optional` **error**: `FieldError`
 
 ### formDescriptionId
 
@@ -33,22 +29,6 @@ Defined in: [src/components/ui/form.tsx:44](https://github.com/Dicommunitas/Thre
 ### id
 
 > **id**: `string`
-
-### invalid
-
-> **invalid**: `boolean`
-
-### isDirty
-
-> **isDirty**: `boolean`
-
-### isTouched
-
-> **isTouched**: `boolean`
-
-### isValidating
-
-> **isValidating**: `boolean`
 
 ### name
 

@@ -76,4 +76,3 @@
 - [hooks/use-scene-setup](hooks/use-scene-setup/README.md)
 - [hooks/use-toast](hooks/use-toast/README.md)
 - [lib/types](lib/types/README.md)
-- [lib/utils](lib/utils/README.md)

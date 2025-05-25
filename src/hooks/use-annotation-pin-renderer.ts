@@ -37,7 +37,7 @@ import { updateAnnotationPins } from '@/core/three/label-renderer-utils';
  *     class RefObject_Scene_ { current: Scene | null }
  *     class RefObject_CSS2DRenderer_ { current: CSS2DRenderer | null }
  */
-interface UseAnnotationPinRendererProps {
+export interface UseAnnotationPinRendererProps {
   sceneRef: React.RefObject<THREE.Scene | null>;
   labelRendererRef: React.RefObject<CSS2DRenderer | null>;
   isSceneReady: boolean;

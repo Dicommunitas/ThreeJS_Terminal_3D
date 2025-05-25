@@ -38,7 +38,7 @@ import { updateOutlineEffect } from '@/core/three/postprocessing-utils';
  * @property {string | null | undefined} hoveredEquipmentTag - Tag do equipamento atualmente em hover.
  * @property {boolean} isSceneReady - Flag indicando se a cena 3D está pronta.
  */
-interface UseSceneOutlineProps {
+export interface UseSceneOutlineProps {
   outlinePassRef: React.RefObject<OutlinePass | null>;
   equipmentMeshesRef: React.RefObject<THREE.Object3D[]>;
   selectedEquipmentTags: string[] | undefined;
@@ -86,4 +86,3 @@ export function useSceneOutline({
     outlinePassRef,
   ]);
 }
-

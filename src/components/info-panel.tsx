@@ -14,18 +14,20 @@
  *
  * @mermaid
  *   classDiagram
- *     InfoPanelProps <|-- InfoPanel
- *     InfoPanelProps : +equipment: Equipment | null
- *     InfoPanelProps : +annotation: Annotation | null
- *     InfoPanelProps : +onClose: () -> void
- *     InfoPanelProps : +onOpenAnnotationDialog: () -> void
- *     InfoPanelProps : +onDeleteAnnotation: (equipmentTag: string) -> void
- *     InfoPanelProps : +onOperationalStateChange: (equipmentTag: string, newState: string) -> void
- *     InfoPanelProps : +availableOperationalStatesList: string[]
- *     InfoPanelProps : +onProductChange: (equipmentTag: string, newProduct: string) -> void
- *     InfoPanelProps : +availableProductsList: string[]
- *     InfoPanel ..> Equipment : uses
- *     InfoPanel ..> Annotation : uses
+ *     InfoPanelProps {
+ *       +equipment: Equipment | null
+ *       +annotation: Annotation | null
+ *       +onClose: () -> void
+ *       +onOpenAnnotationDialog: () -> void
+ *       +onDeleteAnnotation: (equipmentTag: string) -> void
+ *       +onOperationalStateChange: (equipmentTag: string, newState: string) -> void
+ *       +availableOperationalStatesList: string[]
+ *       +onProductChange: (equipmentTag: string, newProduct: string) -> void
+ *       +availableProductsList: string[]
+ *     }
+ *     InfoPanel --|> React.FC
+ *     InfoPanelProps ..> Equipment : uses
+ *     InfoPanelProps ..> Annotation : uses
  */
 "use client";
 
@@ -41,7 +43,7 @@ import { format, parseISO } from 'date-fns';
 /**
  * Props para o componente InfoPanel.
  */
-interface InfoPanelProps {
+export interface InfoPanelProps {
   /** O equipamento selecionado para exibir detalhes. Null se nenhum equipamento único estiver selecionado. */
   equipment: Equipment | null;
   /** A anotação associada ao equipamento selecionado. Null se não houver anotação. */

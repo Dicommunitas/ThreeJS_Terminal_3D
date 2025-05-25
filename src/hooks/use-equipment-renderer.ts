@@ -38,7 +38,7 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
  *     class RefObject_Scene_ { current: Scene | null }
  *     class RefObject_Mesh_ { current: Mesh | null }
  */
-interface UseEquipmentRendererProps {
+export interface UseEquipmentRendererProps {
   sceneRef: React.RefObject<THREE.Scene | null>;
   isSceneReady: boolean;
   equipmentData: Equipment[]; // Typically the filtered list of equipment to be rendered

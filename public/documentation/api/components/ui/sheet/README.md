@@ -6,6 +6,10 @@
 
 # components/ui/sheet
 
+## Interfaces
+
+- [SheetContentProps](interfaces/SheetContentProps.md)
+
 ## Variables
 
 - [Sheet](variables/Sheet.md)

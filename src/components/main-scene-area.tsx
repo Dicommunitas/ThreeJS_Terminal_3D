@@ -87,9 +87,9 @@ import { InfoPanel } from '@/components/info-panel';
  * @property {(equipmentTag: string, newProduct: string) => void} onProductChange - Callback para alterar o produto de um equipamento.
  * @property {string[]} availableProductsList - Lista de produtos disponíveis.
  */
-interface MainSceneAreaProps {
+export interface MainSceneAreaProps {
   equipment: Equipment[];
-  allEquipmentData: Equipment[]; // Adicionada para passar a lista completa para ThreeScene
+  allEquipmentData: Equipment[];
   layers: Layer[];
   annotations: Annotation[];
   selectedEquipmentTags: string[];

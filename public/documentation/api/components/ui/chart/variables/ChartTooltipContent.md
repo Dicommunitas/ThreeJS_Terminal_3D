@@ -8,4 +8,4 @@
 
 > `const` **ChartTooltipContent**: `ForwardRefExoticComponent`\<`Omit`\<`Props`\<`ValueType`, `NameType`\> & `object` & `ClassAttributes`\<`HTMLDivElement`\> & `HTMLAttributes`\<`HTMLDivElement`\> & `object`, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: [src/components/ui/chart.tsx:105](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5bec8212bfd37e45fdf0e49aa57af1be9d74e77/src/components/ui/chart.tsx#L105)
+Defined in: [src/components/ui/chart.tsx:105](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/31531b560b5bf5acf587cf3f1c2c703355c09988/src/components/ui/chart.tsx#L105)

@@ -35,7 +35,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
  * @property {() => void} onUndo - Callback chamado quando o botão "Undo" é clicado.
  * @property {() => void} onRedo - Callback chamado quando o botão "Redo" é clicado.
  */
-interface CommandHistoryPanelProps {
+export interface CommandHistoryPanelProps {
   canUndo: boolean;
   canRedo: boolean;
   onUndo: () => void;

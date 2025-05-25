@@ -32,7 +32,7 @@ import type { ColorMode } from '@/lib/types';
  * @property {ColorMode} colorMode - O modo de colorização atualmente selecionado.
  * @property {(mode: ColorMode) => void} onColorModeChange - Callback para quando o modo de colorização é alterado.
  */
-interface ColorModeSelectorProps {
+export interface ColorModeSelectorProps {
   colorMode: ColorMode;
   onColorModeChange: (mode: ColorMode) => void;
 }
@@ -70,7 +70,3 @@ export function ColorModeSelector({ colorMode, onColorModeChange }: ColorModeSel
     </Card>
   );
 }
-
-    
-
-    

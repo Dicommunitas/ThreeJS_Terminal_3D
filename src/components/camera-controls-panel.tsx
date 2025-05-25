@@ -28,7 +28,7 @@ import { VideoIcon } from 'lucide-react';
  * @property {string[]} systems - Lista de nomes dos sistemas disponíveis para foco.
  * @property {(systemName: string) => void} onSetView - Callback chamado quando um sistema é selecionado para foco.
  */
-interface CameraControlsPanelProps {
+export interface CameraControlsPanelProps {
   systems: string[];
   onSetView: (systemName: string) => void;
 }
@@ -69,7 +69,3 @@ export function CameraControlsPanel({ systems, onSetView }: CameraControlsPanelP
     </Card>
   );
 }
-
-    
-
-    

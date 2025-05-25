@@ -40,7 +40,7 @@ import type { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.j
  * @property {RefObject<EffectComposer | null>} composerRef - Ref para o EffectComposer (pós-processamento).
  * @property {RefObject<CSS2DRenderer | null>} labelRendererRef - Ref para o CSS2DRenderer (rótulos HTML).
  */
-interface UseAnimationLoopProps {
+export interface UseAnimationLoopProps {
   isSceneReady: boolean;
   sceneRef: RefObject<THREE.Scene | null>;
   cameraRef: RefObject<THREE.PerspectiveCamera | null>;
@@ -100,7 +100,3 @@ export function useAnimationLoop({
     };
   }, [isSceneReady, sceneRef, cameraRef, controlsRef, composerRef, labelRendererRef]);
 }
-
-    
-
-    

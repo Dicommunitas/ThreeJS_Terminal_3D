@@ -67,7 +67,7 @@ import type { CameraState } from '@/lib/types';
  * @property {{ x: number; y: number; z: number }} initialCameraLookAt - The initial point the camera is looking at.
  * @property {(cameraState: CameraState) => void} onCameraChange - Callback function to be called when the camera changes.
  */
-interface UseSceneSetupProps {
+export interface UseSceneSetupProps {
   mountRef: React.RefObject<HTMLDivElement>;
   initialCameraPosition: { x: number; y: number; z: number };
   initialCameraLookAt: { x: number; y: number; z: number };
@@ -88,7 +88,7 @@ interface UseSceneSetupProps {
  * @property {React.RefObject<THREE.Mesh | null>} groundMeshRef - Ref to the ground plane mesh.
  * @property {boolean} isSceneReady - State indicating if the scene setup is complete.
  */
-interface UseSceneSetupReturn {
+export interface UseSceneSetupReturn {
   sceneRef: React.RefObject<THREE.Scene | null>;
   cameraRef: React.RefObject<THREE.PerspectiveCamera | null>;
   rendererRef: React.RefObject<THREE.WebGLRenderer | null>;
@@ -201,7 +201,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
 
         localControls.mouseButtons = {
           LEFT: THREE.MOUSE.ROTATE,
-          MIDDLE: THREE.MOUSE.ROTATE, 
+          MIDDLE: THREE.MOUSE.ROTATE, // Changed to ROTATE as per user request
           RIGHT: THREE.MOUSE.PAN
         };
         localControls.update();

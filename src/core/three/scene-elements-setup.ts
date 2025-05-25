@@ -177,7 +177,7 @@ export function setupRenderPipeline(
  * @property {(item: Equipment) => THREE.Object3D} createSingleEquipmentMesh - Função callback para criar um mesh de equipamento individual.
  * @property {React.MutableRefObject<THREE.Mesh | null>} groundMeshRef - Ref para o mesh do plano de chão, para controle de visibilidade.
  */
-interface UpdateEquipmentMeshesParams {
+export interface UpdateEquipmentMeshesParams {
   scene: THREE.Scene;
   equipmentMeshesRef: React.MutableRefObject<THREE.Object3D[]>;
   newEquipmentData: Equipment[];

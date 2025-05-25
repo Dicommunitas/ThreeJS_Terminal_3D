@@ -30,7 +30,7 @@ import { useState, useCallback } from 'react';
  * @property {number} currentIndex - Índice do comando atual no array `history`.
  *                                  -1 se o histórico estiver vazio ou todos os comandos foram desfeitos.
  */
-interface CommandHistoryState {
+export interface CommandHistoryState {
   history: Command[];
   currentIndex: number;
 }
@@ -46,7 +46,7 @@ interface CommandHistoryState {
  * @property {boolean} canRedo - Verdadeiro se há comandos para refazer, falso caso contrário.
  * @property {Command[]} commandHistory - O array completo do histórico de comandos, principalmente para depuração.
  */
-interface UseCommandHistoryReturn {
+export interface UseCommandHistoryReturn {
   executeCommand: (command: Command) => void;
   undo: () => void;
   redo: () => void;
@@ -132,5 +132,3 @@ export function useCommandHistory(initialState?: CommandHistoryState): UseComman
 
   return { executeCommand, undo, redo, canUndo, canRedo, commandHistory };
 }
-
-    

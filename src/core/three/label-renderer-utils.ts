@@ -66,7 +66,7 @@ export function updateLabelRendererSize(
  * @property {Layer[]} layers A lista de camadas, usada para verificar a visibilidade da camada de "Annotations".
  * @property {React.MutableRefObject<CSS2DObject[]>} existingPinsRef Ref para o array de objetos CSS2DObject (pins) atualmente na cena.
  */
-interface UpdateAnnotationPinsParams {
+export interface UpdateAnnotationPinsParams {
   scene: THREE.Scene | null;
   labelRenderer: CSS2DRenderer | null;
   annotations: Annotation[];
