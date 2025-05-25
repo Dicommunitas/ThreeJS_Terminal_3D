@@ -6,7 +6,7 @@
 
 # Interface: UseCameraManagerProps
 
-Defined in: [src/hooks/use-camera-manager.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/hooks/use-camera-manager.ts#L47)
+Defined in: [src/hooks/use-camera-manager.ts:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-camera-manager.ts#L46)
 
 Props para o hook `useCameraManager`.
  UseCameraManagerProps
@@ -17,7 +17,7 @@ Props para o hook `useCameraManager`.
 
 > **executeCommand**: (`command`) => `void`
 
-Defined in: [src/hooks/use-camera-manager.ts:48](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/hooks/use-camera-manager.ts#L48)
+Defined in: [src/hooks/use-camera-manager.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-camera-manager.ts#L47)
 
 Função para executar comandos (e.g., movimento de câmera)
                                                        e adicioná-los ao histórico de undo/redo.

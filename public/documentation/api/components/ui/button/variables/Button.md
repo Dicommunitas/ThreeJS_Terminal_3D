@@ -8,4 +8,4 @@
 
 > `const` **Button**: `ForwardRefExoticComponent`\<[`ButtonProps`](../interfaces/ButtonProps.md) & `RefAttributes`\<`HTMLButtonElement`\>\>
 
-Defined in: [src/components/ui/button.tsx:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/ui/button.tsx#L42)
+Defined in: [src/components/ui/button.tsx:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/components/ui/button.tsx#L42)

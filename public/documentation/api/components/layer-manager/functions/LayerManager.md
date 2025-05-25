@@ -8,7 +8,7 @@
 
 > **LayerManager**(`props`): `Element`
 
-Defined in: [src/components/layer-manager.tsx:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/components/layer-manager.tsx#L47)
+Defined in: [src/components/layer-manager.tsx:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/components/layer-manager.tsx#L46)
 
 Renderiza um Card com checkboxes para controlar a visibilidade de cada camada.
 Cada checkbox corresponde a uma camada (e.g., Prédios, Tanques, Anotações).

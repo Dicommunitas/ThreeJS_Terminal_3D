@@ -6,7 +6,7 @@
 
 # Interface: UseLayerManagerReturn
 
-Defined in: [src/hooks/use-layer-manager.ts:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/hooks/use-layer-manager.ts#L46)
+Defined in: [src/hooks/use-layer-manager.ts:49](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-layer-manager.ts#L49)
 
 Retorno do hook `useLayerManager`.
  UseLayerManagerReturn
@@ -17,7 +17,7 @@ Retorno do hook `useLayerManager`.
 
 > **handleToggleLayer**: (`layerId`) => `void`
 
-Defined in: [src/hooks/use-layer-manager.ts:48](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/hooks/use-layer-manager.ts#L48)
+Defined in: [src/hooks/use-layer-manager.ts:51](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-layer-manager.ts#L51)
 
 Função para alternar a visibilidade de uma camada específica.
                                                          Esta ação é registrada no histórico de comandos.
@@ -38,6 +38,6 @@ Função para alternar a visibilidade de uma camada específica.
 
 > **layers**: `Layer`[]
 
-Defined in: [src/hooks/use-layer-manager.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/hooks/use-layer-manager.ts#L47)
+Defined in: [src/hooks/use-layer-manager.ts:50](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-layer-manager.ts#L50)
 
 A lista atual de todas as camadas e seus respectivos estados de visibilidade.

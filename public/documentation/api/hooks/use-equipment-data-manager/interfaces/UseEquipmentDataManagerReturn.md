@@ -6,7 +6,7 @@
 
 # Interface: UseEquipmentDataManagerReturn
 
-Defined in: [src/hooks/use-equipment-data-manager.ts:38](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/hooks/use-equipment-data-manager.ts#L38)
+Defined in: [src/hooks/use-equipment-data-manager.ts:37](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-equipment-data-manager.ts#L37)
 
 Retorno do hook `useEquipmentDataManager`.
  UseEquipmentDataManagerReturn
@@ -17,7 +17,7 @@ Retorno do hook `useEquipmentDataManager`.
 
 > **equipmentData**: `Equipment`[]
 
-Defined in: [src/hooks/use-equipment-data-manager.ts:39](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/hooks/use-equipment-data-manager.ts#L39)
+Defined in: [src/hooks/use-equipment-data-manager.ts:38](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-equipment-data-manager.ts#L38)
 
 A lista atual de todos os equipamentos. Esta é a "fonte da verdade".
 
@@ -27,7 +27,7 @@ A lista atual de todos os equipamentos. Esta é a "fonte da verdade".
 
 > **handleOperationalStateChange**: (`equipmentTag`, `newState`) => `void`
 
-Defined in: [src/hooks/use-equipment-data-manager.ts:40](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/hooks/use-equipment-data-manager.ts#L40)
+Defined in: [src/hooks/use-equipment-data-manager.ts:39](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-equipment-data-manager.ts#L39)
 
 Função para modificar
                                                                                              o estado operacional
@@ -53,7 +53,7 @@ Função para modificar
 
 > **handleProductChange**: (`equipmentTag`, `newProduct`) => `void`
 
-Defined in: [src/hooks/use-equipment-data-manager.ts:41](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/48170ffd573f70d66a1c284f1f35045f3d98e94f/src/hooks/use-equipment-data-manager.ts#L41)
+Defined in: [src/hooks/use-equipment-data-manager.ts:40](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-equipment-data-manager.ts#L40)
 
 Função para modificar o produto
                                                                                       associado a um equipamento específico.
