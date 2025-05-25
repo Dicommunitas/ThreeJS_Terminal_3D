@@ -6,7 +6,7 @@
 
 # Interface: UseCommandHistoryReturn
 
-Defined in: [src/hooks/use-command-history.ts:49](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-command-history.ts#L49)
+Defined in: [src/hooks/use-command-history.ts:49](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-command-history.ts#L49)
 
 Retorno do hook `useCommandHistory`.
  UseCommandHistoryReturn
@@ -17,7 +17,7 @@ Retorno do hook `useCommandHistory`.
 
 > **canRedo**: `boolean`
 
-Defined in: [src/hooks/use-command-history.ts:54](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-command-history.ts#L54)
+Defined in: [src/hooks/use-command-history.ts:54](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-command-history.ts#L54)
 
 Verdadeiro se há comandos para refazer, falso caso contrário.
 
@@ -27,7 +27,7 @@ Verdadeiro se há comandos para refazer, falso caso contrário.
 
 > **canUndo**: `boolean`
 
-Defined in: [src/hooks/use-command-history.ts:53](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-command-history.ts#L53)
+Defined in: [src/hooks/use-command-history.ts:53](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-command-history.ts#L53)
 
 Verdadeiro se há comandos para desfazer, falso caso contrário.
 
@@ -35,9 +35,9 @@ Verdadeiro se há comandos para desfazer, falso caso contrário.
 
 ### commandHistory
 
-> **commandHistory**: [`Command`](../../../lib/types/interfaces/Command.md)[]
+> **commandHistory**: `Command`[]
 
-Defined in: [src/hooks/use-command-history.ts:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-command-history.ts#L55)
+Defined in: [src/hooks/use-command-history.ts:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-command-history.ts#L55)
 
 O array completo do histórico de comandos, principalmente para depuração.
 
@@ -47,7 +47,7 @@ O array completo do histórico de comandos, principalmente para depuração.
 
 > **executeCommand**: (`command`) => `void`
 
-Defined in: [src/hooks/use-command-history.ts:50](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-command-history.ts#L50)
+Defined in: [src/hooks/use-command-history.ts:50](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-command-history.ts#L50)
 
 Executa um novo comando e o adiciona ao histórico.
                                                        Limpa o histórico de "redo" futuro.
@@ -56,7 +56,7 @@ Executa um novo comando e o adiciona ao histórico.
 
 ##### command
 
-[`Command`](../../../lib/types/interfaces/Command.md)
+`Command`
 
 #### Returns
 
@@ -68,7 +68,7 @@ Executa um novo comando e o adiciona ao histórico.
 
 > **redo**: () => `void`
 
-Defined in: [src/hooks/use-command-history.ts:52](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-command-history.ts#L52)
+Defined in: [src/hooks/use-command-history.ts:52](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-command-history.ts#L52)
 
 Refaz o último comando desfeito, se houver.
 
@@ -82,7 +82,7 @@ Refaz o último comando desfeito, se houver.
 
 > **undo**: () => `void`
 
-Defined in: [src/hooks/use-command-history.ts:51](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-command-history.ts#L51)
+Defined in: [src/hooks/use-command-history.ts:51](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-command-history.ts#L51)
 
 Desfaz o último comando executado, se houver.
 

@@ -6,9 +6,9 @@
 
 # Function: getFilteredEquipment()
 
-> **getFilteredEquipment**(`allEquipment`, `criteria`): [`Equipment`](../../../../lib/types/interfaces/Equipment.md)[]
+> **getFilteredEquipment**(`allEquipment`, `criteria`): `Equipment`[]
 
-Defined in: [src/core/logic/equipment-filter.ts:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/core/logic/equipment-filter.ts#L55)
+Defined in: [src/core/logic/equipment-filter.ts:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/core/logic/equipment-filter.ts#L55)
 
 Filtra uma lista de equipamentos com base nos critérios fornecidos.
 A filtragem ocorre na seguinte ordem: Sistema, depois Área, depois Termo de Busca.
@@ -19,7 +19,7 @@ Os filtros de sistema e área são aplicados se não forem "All".
 
 ### allEquipment
 
-[`Equipment`](../../../../lib/types/interfaces/Equipment.md)[]
+`Equipment`[]
 
 A lista completa de equipamentos a serem filtrados.
 
@@ -31,6 +31,6 @@ Os critérios de filtro a serem aplicados.
 
 ## Returns
 
-[`Equipment`](../../../../lib/types/interfaces/Equipment.md)[]
+`Equipment`[]
 
 A lista de equipamentos filtrada.

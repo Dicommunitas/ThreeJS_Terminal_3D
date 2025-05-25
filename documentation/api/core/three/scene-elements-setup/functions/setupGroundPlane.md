@@ -8,7 +8,7 @@
 
 > **setupGroundPlane**(`scene`): `Mesh`
 
-Defined in: [src/core/three/scene-elements-setup.ts:74](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/core/three/scene-elements-setup.ts#L74)
+Defined in: [src/core/three/scene-elements-setup.ts:74](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/core/three/scene-elements-setup.ts#L74)
 
 Configura o plano de chão (terreno) para a cena.
 Cria um `THREE.Mesh` com `PlaneGeometry` e `MeshStandardMaterial`.
