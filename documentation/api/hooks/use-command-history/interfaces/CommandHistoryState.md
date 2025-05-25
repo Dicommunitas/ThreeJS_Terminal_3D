@@ -6,7 +6,7 @@
 
 # Interface: CommandHistoryState
 
-Defined in: [src/hooks/use-command-history.ts:33](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-command-history.ts#L33)
+Defined in: [src/hooks/use-command-history.ts:34](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-command-history.ts#L34)
 
 Interface para o estado interno do histórico de comandos.
  CommandHistoryState
@@ -17,7 +17,7 @@ Interface para o estado interno do histórico de comandos.
 
 > **currentIndex**: `number`
 
-Defined in: [src/hooks/use-command-history.ts:35](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-command-history.ts#L35)
+Defined in: [src/hooks/use-command-history.ts:36](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-command-history.ts#L36)
 
 Índice do comando atual no array `history`.
                                  -1 se o histórico estiver vazio ou todos os comandos foram desfeitos.
@@ -26,8 +26,8 @@ Defined in: [src/hooks/use-command-history.ts:35](https://github.com/Dicommunita
 
 ### history
 
-> **history**: `Command`[]
+> **history**: [`Command`](../../../lib/types/interfaces/Command.md)[]
 
-Defined in: [src/hooks/use-command-history.ts:34](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-command-history.ts#L34)
+Defined in: [src/hooks/use-command-history.ts:35](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-command-history.ts#L35)
 
 Array de objetos de comando que foram executados.

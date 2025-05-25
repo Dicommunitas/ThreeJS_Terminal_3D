@@ -8,6 +8,6 @@
 
 > `const` **SidebarMenu**: `ForwardRefExoticComponent`\<`Omit`\<`DetailedHTMLProps`\<`HTMLAttributes`\<`HTMLUListElement`\>, `HTMLUListElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLUListElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:642](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/components/ui/sidebar.tsx#L642)
+Defined in: [src/components/ui/sidebar.tsx:643](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/components/ui/sidebar.tsx#L643)
 
 Lista `<ul>` para um menu dentro da Sidebar.

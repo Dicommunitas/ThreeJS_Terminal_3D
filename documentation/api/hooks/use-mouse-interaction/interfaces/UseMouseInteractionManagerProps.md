@@ -6,7 +6,7 @@
 
 # Interface: UseMouseInteractionManagerProps
 
-Defined in: [src/hooks/use-mouse-interaction.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-mouse-interaction.ts#L42)
+Defined in: [src/hooks/use-mouse-interaction.ts:43](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-mouse-interaction.ts#L43)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/hooks/use-mouse-interaction.ts:42](https://github.com/Dicommuni
 
 > **cameraRef**: `RefObject`\<`null` \| `PerspectiveCamera`\>
 
-Defined in: [src/hooks/use-mouse-interaction.ts:44](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-mouse-interaction.ts#L44)
+Defined in: [src/hooks/use-mouse-interaction.ts:45](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-mouse-interaction.ts#L45)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/hooks/use-mouse-interaction.ts:44](https://github.com/Dicommuni
 
 > **equipmentMeshesRef**: `RefObject`\<`null` \| `Object3D`\<`Object3DEventMap`\>[]\>
 
-Defined in: [src/hooks/use-mouse-interaction.ts:45](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-mouse-interaction.ts#L45)
+Defined in: [src/hooks/use-mouse-interaction.ts:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-mouse-interaction.ts#L46)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/hooks/use-mouse-interaction.ts:45](https://github.com/Dicommuni
 
 > **isSceneReady**: `boolean`
 
-Defined in: [src/hooks/use-mouse-interaction.ts:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-mouse-interaction.ts#L46)
+Defined in: [src/hooks/use-mouse-interaction.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-mouse-interaction.ts#L47)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [src/hooks/use-mouse-interaction.ts:46](https://github.com/Dicommuni
 
 > **mountRef**: `RefObject`\<`null` \| `HTMLDivElement`\>
 
-Defined in: [src/hooks/use-mouse-interaction.ts:43](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-mouse-interaction.ts#L43)
+Defined in: [src/hooks/use-mouse-interaction.ts:44](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-mouse-interaction.ts#L44)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [src/hooks/use-mouse-interaction.ts:43](https://github.com/Dicommuni
 
 > **onSelectEquipment**: (`tag`, `isMultiSelectModifierPressed`) => `void`
 
-Defined in: [src/hooks/use-mouse-interaction.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-mouse-interaction.ts#L47)
+Defined in: [src/hooks/use-mouse-interaction.ts:48](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-mouse-interaction.ts#L48)
 
 #### Parameters
 
@@ -68,7 +68,7 @@ Defined in: [src/hooks/use-mouse-interaction.ts:47](https://github.com/Dicommuni
 
 > **setHoveredEquipmentTag**: (`tag`) => `void`
 
-Defined in: [src/hooks/use-mouse-interaction.ts:48](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-mouse-interaction.ts#L48)
+Defined in: [src/hooks/use-mouse-interaction.ts:49](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-mouse-interaction.ts#L49)
 
 #### Parameters
 

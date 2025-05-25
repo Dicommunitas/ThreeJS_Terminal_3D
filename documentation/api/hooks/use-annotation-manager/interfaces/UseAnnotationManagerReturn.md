@@ -6,7 +6,7 @@
 
 # Interface: UseAnnotationManagerReturn
 
-Defined in: [src/hooks/use-annotation-manager.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-annotation-manager.ts#L67)
+Defined in: [src/hooks/use-annotation-manager.ts:68](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-annotation-manager.ts#L68)
 
 Retorno do hook `useAnnotationManager`.
  UseAnnotationManagerReturn
@@ -15,9 +15,9 @@ Retorno do hook `useAnnotationManager`.
 
 ### annotations
 
-> **annotations**: `Annotation`[]
+> **annotations**: [`Annotation`](../../../lib/types/interfaces/Annotation.md)[]
 
-Defined in: [src/hooks/use-annotation-manager.ts:68](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-annotation-manager.ts#L68)
+Defined in: [src/hooks/use-annotation-manager.ts:69](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-annotation-manager.ts#L69)
 
 A lista atual de todas as anotações.
 
@@ -25,9 +25,9 @@ A lista atual de todas as anotações.
 
 ### annotationTargetEquipment
 
-> **annotationTargetEquipment**: `null` \| `Equipment`
+> **annotationTargetEquipment**: `null` \| [`Equipment`](../../../lib/types/interfaces/Equipment.md)
 
-Defined in: [src/hooks/use-annotation-manager.ts:72](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-annotation-manager.ts#L72)
+Defined in: [src/hooks/use-annotation-manager.ts:73](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-annotation-manager.ts#L73)
 
 O equipamento que é o alvo atual para adicionar/editar uma anotação.
 
@@ -35,9 +35,9 @@ O equipamento que é o alvo atual para adicionar/editar uma anotação.
 
 ### editingAnnotation
 
-> **editingAnnotation**: `null` \| `Annotation`
+> **editingAnnotation**: `null` \| [`Annotation`](../../../lib/types/interfaces/Annotation.md)
 
-Defined in: [src/hooks/use-annotation-manager.ts:73](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-annotation-manager.ts#L73)
+Defined in: [src/hooks/use-annotation-manager.ts:74](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-annotation-manager.ts#L74)
 
 A anotação que está atualmente em edição no diálogo (null se for uma nova anotação).
 
@@ -45,9 +45,9 @@ A anotação que está atualmente em edição no diálogo (null se for uma nova 
 
 ### getAnnotationForEquipment()
 
-> **getAnnotationForEquipment**: (`equipmentTag`) => `null` \| `Annotation`
+> **getAnnotationForEquipment**: (`equipmentTag`) => `null` \| [`Annotation`](../../../lib/types/interfaces/Annotation.md)
 
-Defined in: [src/hooks/use-annotation-manager.ts:77](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-annotation-manager.ts#L77)
+Defined in: [src/hooks/use-annotation-manager.ts:78](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-annotation-manager.ts#L78)
 
 Retorna a anotação para a tag do equipamento fornecida, ou null se não existir.
 
@@ -59,7 +59,7 @@ Retorna a anotação para a tag do equipamento fornecida, ou null se não existi
 
 #### Returns
 
-`null` \| `Annotation`
+`null` \| [`Annotation`](../../../lib/types/interfaces/Annotation.md)
 
 ***
 
@@ -67,7 +67,7 @@ Retorna a anotação para a tag do equipamento fornecida, ou null se não existi
 
 > **handleDeleteAnnotation**: (`equipmentTag`) => `void`
 
-Defined in: [src/hooks/use-annotation-manager.ts:76](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-annotation-manager.ts#L76)
+Defined in: [src/hooks/use-annotation-manager.ts:77](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-annotation-manager.ts#L77)
 
 Exclui a anotação associada à tag do equipamento fornecida.
 
@@ -87,7 +87,7 @@ Exclui a anotação associada à tag do equipamento fornecida.
 
 > **handleOpenAnnotationDialog**: (`equipment`) => `void`
 
-Defined in: [src/hooks/use-annotation-manager.ts:74](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-annotation-manager.ts#L74)
+Defined in: [src/hooks/use-annotation-manager.ts:75](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-annotation-manager.ts#L75)
 
 Abre o diálogo de anotação para o equipamento fornecido.
 
@@ -95,7 +95,7 @@ Abre o diálogo de anotação para o equipamento fornecido.
 
 ##### equipment
 
-`null` | `Equipment`
+`null` | [`Equipment`](../../../lib/types/interfaces/Equipment.md)
 
 #### Returns
 
@@ -107,7 +107,7 @@ Abre o diálogo de anotação para o equipamento fornecido.
 
 > **handleSaveAnnotation**: (`text`) => `void`
 
-Defined in: [src/hooks/use-annotation-manager.ts:75](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-annotation-manager.ts#L75)
+Defined in: [src/hooks/use-annotation-manager.ts:76](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-annotation-manager.ts#L76)
 
 Salva (cria ou atualiza) a anotação para o `annotationTargetEquipment`.
 
@@ -127,7 +127,7 @@ Salva (cria ou atualiza) a anotação para o `annotationTargetEquipment`.
 
 > **isAnnotationDialogOpen**: `boolean`
 
-Defined in: [src/hooks/use-annotation-manager.ts:70](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-annotation-manager.ts#L70)
+Defined in: [src/hooks/use-annotation-manager.ts:71](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-annotation-manager.ts#L71)
 
 Indica se o diálogo de anotação está aberto.
 
@@ -135,9 +135,9 @@ Indica se o diálogo de anotação está aberto.
 
 ### setAnnotations
 
-> **setAnnotations**: `Dispatch`\<`SetStateAction`\<`Annotation`[]\>\>
+> **setAnnotations**: `Dispatch`\<`SetStateAction`\<[`Annotation`](../../../lib/types/interfaces/Annotation.md)[]\>\>
 
-Defined in: [src/hooks/use-annotation-manager.ts:69](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-annotation-manager.ts#L69)
+Defined in: [src/hooks/use-annotation-manager.ts:70](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-annotation-manager.ts#L70)
 
 Função para definir diretamente a lista de anotações (geralmente usada internamente ou para inicialização).
 
@@ -147,6 +147,6 @@ Função para definir diretamente a lista de anotações (geralmente usada inter
 
 > **setIsAnnotationDialogOpen**: `Dispatch`\<`SetStateAction`\<`boolean`\>\>
 
-Defined in: [src/hooks/use-annotation-manager.ts:71](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-annotation-manager.ts#L71)
+Defined in: [src/hooks/use-annotation-manager.ts:72](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-annotation-manager.ts#L72)
 
 Função para definir o estado de abertura/fechamento do diálogo.

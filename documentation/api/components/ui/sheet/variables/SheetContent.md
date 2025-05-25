@@ -8,4 +8,4 @@
 
 > `const` **SheetContent**: `ForwardRefExoticComponent`\<[`SheetContentProps`](../interfaces/SheetContentProps.md) & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: [src/components/ui/sheet.tsx:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/components/ui/sheet.tsx#L56)
+Defined in: [src/components/ui/sheet.tsx:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/components/ui/sheet.tsx#L56)

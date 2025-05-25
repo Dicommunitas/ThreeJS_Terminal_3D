@@ -6,7 +6,7 @@
 
 # Interface: UseFilterManagerProps
 
-Defined in: [src/hooks/use-filter-manager.ts:41](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-filter-manager.ts#L41)
+Defined in: [src/hooks/use-filter-manager.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-filter-manager.ts#L42)
 
 Props para o hook `useFilterManager`.
  UseFilterManagerProps
@@ -15,8 +15,8 @@ Props para o hook `useFilterManager`.
 
 ### allEquipment
 
-> **allEquipment**: `Equipment`[]
+> **allEquipment**: [`Equipment`](../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/hooks/use-filter-manager.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/a3c5b1c59fdfa3d9f217f579fadf3e59d797e664/src/hooks/use-filter-manager.ts#L42)
+Defined in: [src/hooks/use-filter-manager.ts:43](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-filter-manager.ts#L43)
 
 A lista completa de todos os equipamentos que podem ser filtrados.

@@ -123,6 +123,68 @@
 
 ##
 
+Componente principal da página da aplicação Terminal 3D.
+Responsável por orquestrar os diversos hooks de gerenciamento de estado da aplicação
+e renderizar a interface do usuário principal, que inclui a área da cena 3D (`MainSceneArea`)
+e a barra lateral de controles (`Sidebar`). Este componente atua como o ponto central de
+integração para as funcionalidades da aplicação.
+
+Principais Responsabilidades:
+
+*   Inicializar e fornecer os hooks de estado para:
+    *   Histórico de Comandos (`useCommandHistory`): Para funcionalidades de Undo/Redo.
+    *   Dados dos Equipamentos (`useEquipmentDataManager`): Gerencia a "fonte da verdade" dos dados dos equipamentos.
+    *   Câmera 3D (`useCameraManager`): Controla o estado da câmera, incluindo presets e foco em sistemas.
+    *   Filtros (`useFilterManager`): Gerencia os estados e a lógica de filtragem dos equipamentos.
+    *   Anotações (`useAnnotationManager`): Lida com o estado e as operações CRUD para anotações.
+    *   Seleção de Equipamentos (`useEquipmentSelectionManager`): Gerencia a seleção e hover de equipamentos.
+    *   Camadas de Visibilidade (`useLayerManager`): Controla a visibilidade das camadas de objetos na cena.
+*   Gerenciar estados locais da UI, como o modo de colorização (`colorMode`).
+*   Calcular dados derivados (e.g., `selectedEquipmentDetails`, listas de opções para filtros) para popular
+    os componentes da interface.
+*   Renderizar a estrutura principal da UI, incluindo a `Sidebar` e a `MainSceneArea`.
+*   Passar os estados e callbacks apropriados dos hooks para os componentes filhos.
+*   Definir lógicas de alto nível que coordenam múltiplos hooks (e.g., `handleFocusAndSelectSystem`).
+
+```mermaid
+  graph LR
+    Terminal3DPage --> useCommandHistory
+    Terminal3DPage --> useEquipmentDataManager
+    Terminal3DPage --> useCameraManager
+    Terminal3DPage --> useFilterManager
+    Terminal3DPage --> useAnnotationManager
+    Terminal3DPage --> useEquipmentSelectionManager
+    Terminal3DPage --> useLayerManager
+    Terminal3DPage --> MainSceneArea
+    Terminal3DPage --> Sidebar
+    Terminal3DPage --> AnnotationDialog
+
+    MainSceneArea --> ThreeScene
+    MainSceneArea --> InfoPanel
+    Sidebar --> SidebarContentLayout
+
+    subgraph "Hooks de Estado"
+      useCommandHistory
+      useEquipmentDataManager
+      useCameraManager
+      useFilterManager
+      useAnnotationManager
+      useEquipmentSelectionManager
+      useLayerManager
+    end
+
+    subgraph "Componentes de UI Principais"
+      MainSceneArea
+      Sidebar
+      AnnotationDialog
+      InfoPanel
+      ThreeScene
+      SidebarContentLayout
+    end
+
+    style Terminal3DPage fill:#f9f,stroke:#333,stroke-width:2px
+```
+
 ## Terminal3DPage
 
 Componente principal da página Terminal 3D (Terminal3DPage).
@@ -168,6 +230,25 @@ Usada para popular o dropdown de alteração de produto no InfoPanel.
 Componente de diálogo modal para adicionar ou editar anotações textuais
 associadas a um equipamento. Utiliza um Textarea para permitir anotações de texto longo.
 
+```mermaid
+  classDiagram
+    AnnotationDialogProps {
+      +isOpen: boolean
+      +onOpenChange: (isOpen: boolean) -> void
+      +onConfirm: (text: string) -> void
+      +currentAnnotation: Annotation | null
+      +equipmentName: string
+    }
+    AnnotationDialog --|> React.FC
+    AnnotationDialogProps ..> Annotation : uses (via currentAnnotation)
+
+    class Annotation {
+      +equipmentTag: string
+      +text: string
+      +createdAt: string
+    }
+```
+
 ## AnnotationDialogProps
 
 Props para o componente AnnotationDialog.
@@ -207,6 +288,23 @@ e fechando o diálogo.
 
 ##
 
+Componente de painel para controles de câmera, especificamente para focar em sistemas.
+
+Principal Responsabilidade:
+Renderizar botões para cada sistema disponível, permitindo ao usuário focar a câmera
+e selecionar todos os equipamentos pertencentes àquele sistema ao clicar em um botão.
+
+```mermaid
+  classDiagram
+    CameraControlsPanelProps {
+      +systems: string[]
+      +onSetView(systemName: string): void
+    }
+    CameraControlsPanel --|> React.FC
+    CameraControlsPanel ..> Button : uses
+    CameraControlsPanel ..> Card : uses
+```
+
 ## CameraControlsPanelProps
 
 Props para o componente CameraControlsPanel.
@@ -231,6 +329,25 @@ Returns **JSX.Element** O componente CameraControlsPanel.
 
 ##
 
+Componente para selecionar o modo de colorização dos equipamentos na cena 3D.
+
+Principal Responsabilidade:
+Permitir ao usuário escolher como os equipamentos serão coloridos (por cor base,
+estado operacional ou produto) através de um menu dropdown (Select).
+
+```mermaid
+  classDiagram
+    ColorModeSelectorProps {
+      +colorMode: ColorMode
+      +onColorModeChange(mode: ColorMode): void
+    }
+    ColorModeSelectorProps ..> ColorMode
+    ColorModeSelector --|> React.FC
+    ColorModeSelector ..> Card : uses
+    ColorModeSelector ..> Select : uses
+    ColorModeSelector ..> Label : uses
+```
+
 ## ColorModeSelectorProps
 
 Props para o componente ColorModeSelector.
@@ -254,6 +371,28 @@ As opções são "Equipamento (Cor Base)", "Estado Operacional" e "Produto".
 Returns **JSX.Element** O componente do seletor de modo de coloração.
 
 ##
+
+Componente de painel para exibir controles de histórico de comandos (Undo/Redo).
+
+Principal Responsabilidade:
+Renderizar botões que permitem ao usuário desfazer (Undo) e refazer (Redo)
+ações previamente executadas na aplicação, com base no estado fornecido pelo
+hook `useCommandHistory`.
+
+```mermaid
+  classDiagram
+    CommandHistoryPanelProps {
+      +canUndo: boolean
+      +canRedo: boolean
+      +onUndo(): void
+      +onRedo(): void
+    }
+    CommandHistoryPanel --|> React.FC
+    CommandHistoryPanel ..> Button : uses
+    CommandHistoryPanel ..> Card : uses
+    CommandHistoryPanel ..> Undo2Icon : uses
+    CommandHistoryPanel ..> Redo2Icon : uses
+```
 
 ## CommandHistoryPanelProps
 
@@ -294,6 +433,24 @@ Responsabilidades:
     *   Exibir o texto e a data da anotação existente.
     *   Fornecer botões para adicionar, editar ou excluir a anotação.
 *   Fornecer um botão para fechar o painel de informações (desselecionando o equipamento).
+
+```mermaid
+  classDiagram
+    InfoPanelProps {
+      +equipment: Equipment | null
+      +annotation: Annotation | null
+      +onClose: () -> void
+      +onOpenAnnotationDialog: () -> void
+      +onDeleteAnnotation: (equipmentTag: string) -> void
+      +onOperationalStateChange: (equipmentTag: string, newState: string) -> void
+      +availableOperationalStatesList: string[]
+      +onProductChange: (equipmentTag: string, newProduct: string) -> void
+      +availableProductsList: string[]
+    }
+    InfoPanel --|> React.FC
+    InfoPanelProps ..> Equipment : uses
+    InfoPanelProps ..> Annotation : uses
+```
 
 ## InfoPanelProps
 
@@ -387,6 +544,25 @@ Type: ([string][119] | null)
 
 ##
 
+Componente para gerenciar a visibilidade das camadas de equipamentos e anotações.
+
+Principal Responsabilidade:
+Renderizar um card com checkboxes para cada camada definida, permitindo ao usuário controlar
+o que é exibido na cena 3D, como prédios, tanques, anotações, etc.
+
+```mermaid
+  classDiagram
+    LayerManagerProps {
+      +layers: Layer[]
+      +onToggleLayer(layerId: string): void
+    }
+    LayerManagerProps ..> Layer
+    LayerManager --|> React.FC
+    LayerManager ..> Card : uses
+    LayerManager ..> Checkbox : uses
+    LayerManager ..> Label : uses
+```
+
 ## LayerManagerProps
 
 Props para o componente LayerManager.
@@ -410,6 +586,60 @@ Cada checkbox corresponde a uma camada (e.g., Prédios, Tanques, Anotações).
 Returns **JSX.Element** O componente gerenciador de camadas.
 
 ##
+
+Componente responsável por renderizar a área principal da cena 3D.
+
+Principal Responsabilidade:
+Atuar como um contêiner de layout para os elementos visuais centrais da aplicação:
+
+*   O componente `ThreeScene` (a própria cena 3D).
+*   O `InfoPanel` (painel de detalhes do equipamento selecionado).
+    Este componente não possui lógica complexa própria, mas sim delega a renderização
+    e o comportamento para seus filhos, passando as props necessárias, incluindo a lista
+    completa de equipamentos (`allEquipmentData`) para contexto de renderização de anotações.
+
+```mermaid
+  classDiagram
+    MainSceneAreaProps {
+      +equipment: Equipment[]
+      +allEquipmentData: Equipment[]
+      +layers: Layer[]
+      +annotations: Annotation[]
+      +selectedEquipmentTags: string[]
+      +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
+      +hoveredEquipmentTag: string | null
+      +setHoveredEquipmentTag(tag: string | null): void
+      +cameraState: CameraState | undefined
+      +onCameraChange(cameraState: CameraState): void
+      +initialCameraPosition: Point3D
+      +initialCameraLookAt: Point3D
+      +colorMode: ColorMode
+      +targetSystemToFrame: string | null
+      +onSystemFramed(): void
+      +selectedEquipmentDetails: Equipment | null
+      +equipmentAnnotation: Annotation | null
+      +onOpenAnnotationDialog(): void
+      +onDeleteAnnotation(equipmentTag: string): void
+      +onOperationalStateChange(equipmentTag: string, newState: string): void
+      +availableOperationalStatesList: string[]
+      +onProductChange(equipmentTag: string, newProduct: string): void
+      +availableProductsList: string[]
+    }
+    Point3D {
+      +x: number
+      +y: number
+      +z: number
+    }
+    MainSceneAreaProps ..> Equipment
+    MainSceneAreaProps ..> Layer
+    MainSceneAreaProps ..> Annotation
+    MainSceneAreaProps ..> CameraState
+    MainSceneAreaProps ..> ColorMode
+    MainSceneAreaProps ..> Point3D
+    MainSceneArea --|> React.FC
+    MainSceneArea ..> ThreeScene : uses
+    MainSceneArea ..> InfoPanel : uses
+```
 
 ## MainSceneAreaProps
 
@@ -469,6 +699,50 @@ Returns **JSX.Element** O componente MainSceneArea.
 
 ##
 
+Componente para renderizar o conteúdo principal da sidebar.
+
+Principal Responsabilidade:
+Exibir os diversos painéis de controle e filtros dentro da área de conteúdo da sidebar.
+Utiliza uma ScrollArea para permitir a rolagem do conteúdo.
+
+Inclui:
+
+*   Controles de câmera ("Focus on System").
+*   Filtros de busca textual e seleção por Sistema/Área.
+*   Seletor de modo de colorização.
+*   Gerenciador de camadas de visibilidade.
+*   Link para a documentação externa do projeto.
+
+```mermaid
+  classDiagram
+    SidebarContentLayoutProps {
+      +searchTerm: string
+      +setSearchTerm(value: string): void
+      +selectedSistema: string
+      +setSelectedSistema(value: string): void
+      +availableSistemas: string[]
+      +selectedArea: string
+      +setSelectedArea(value: string): void
+      +availableAreas: string[]
+      +colorMode: ColorMode
+      +onColorModeChange(mode: ColorMode): void
+      +layers: Layer[]
+      +onToggleLayer(layerId: string): void
+      +cameraViewSystems: string[]
+      +onFocusAndSelectSystem(systemName: string): void
+    }
+    SidebarContentLayoutProps ..> ColorMode
+    SidebarContentLayoutProps ..> Layer
+    SidebarContentLayout --|> React.FC
+    SidebarContentLayout ..> CameraControlsPanel : uses
+    SidebarContentLayout ..> ColorModeSelector : uses
+    SidebarContentLayout ..> LayerManager : uses
+    SidebarContentLayout ..> Input : uses
+    SidebarContentLayout ..> Select : uses
+    SidebarContentLayout ..> Button : uses
+    SidebarContentLayout ..> ScrollArea : uses
+```
+
 ## SidebarContentLayoutProps
 
 Props para o componente SidebarContentLayout.
@@ -511,6 +785,12 @@ Utiliza uma ScrollArea para permitir a rolagem do conteúdo se ele exceder a alt
 Returns **JSX.Element** O componente SidebarContentLayout.
 
 ## Terminal
+
+Componente simples para renderizar o cabeçalho do site.
+
+Principal Responsabilidade:
+Exibir o título principal da aplicação ("Terminal 3D") e um ícone associado.
+Atua como um elemento de branding e navegação de topo fixo.
 
 ## SiteHeader
 
@@ -683,6 +963,51 @@ Type: React.FC\<ThreeSceneProps>
 Returns **JSX.Element** O elemento div que serve como contêiner para a cena 3D.
 
 ##
+
+Componente de Sidebar reutilizável e altamente configurável.
+
+Principal Responsabilidade:
+Fornecer uma estrutura de sidebar flexível que pode ser usada de várias maneiras:
+
+*   Como uma sidebar tradicional fixa ou flutuante.
+*   Em modo "icon" (colapsada, mostrando apenas ícones).
+*   Como um "offcanvas" (desliza para fora da tela).
+*   Adaptável para dispositivos móveis (geralmente usando o modo offcanvas).
+
+Subcomponentes:
+
+*   `SidebarProvider`: Contexto para gerenciar o estado da sidebar (aberta/fechada, modo).
+*   `Sidebar`: O contêiner principal da sidebar.
+*   `SidebarTrigger`: Botão para alternar o estado da sidebar.
+*   `SidebarRail`: Barra lateral fina para alternar a sidebar quando colapsada.
+*   `SidebarInset`: Contêiner para o conteúdo principal da página, que se ajusta à sidebar.
+*   `SidebarHeader`, `SidebarFooter`, `SidebarContent`: Seções estruturais dentro da sidebar.
+*   `SidebarGroup`, `SidebarGroupLabel`, `SidebarGroupAction`, `SidebarGroupContent`: Para agrupar itens.
+*   `SidebarMenu`, `SidebarMenuItem`, `SidebarMenuButton`, `SidebarMenuAction`, `SidebarMenuBadge`, `SidebarMenuSkeleton`, `SidebarMenuSub`, `SidebarMenuSubItem`, `SidebarMenuSubButton`: Para criar menus de navegação dentro da sidebar.
+*   `SidebarInput`, `SidebarSeparator`: Elementos de UI utilitários para a sidebar.
+
+Utiliza cookies para persistir o estado da sidebar entre as sessões (desktop) e atalhos de teclado.
+
+```mermaid
+  graph LR
+    App --> SidebarProvider
+    SidebarProvider --> Sidebar
+    SidebarProvider --> SidebarInset
+    Sidebar --> SidebarHeader
+    Sidebar --> SidebarContent
+    Sidebar --> SidebarFooter
+    SidebarContent --> SidebarGroup
+    SidebarGroup --> SidebarGroupLabel
+    SidebarGroup --> SidebarMenu
+    SidebarMenu --> SidebarMenuItem
+    SidebarMenuItem --> SidebarMenuButton
+    SidebarMenuItem --> SidebarMenuAction
+    SidebarMenuItem --> SidebarMenuBadge
+    SidebarMenuButton --> SidebarMenuSub
+    SidebarMenuSub --> SidebarMenuSubItem
+    SidebarMenuSubItem --> SidebarMenuSubButton
+    App --> SidebarTrigger
+```
 
 ## useSidebar
 
