@@ -57,7 +57,7 @@ export default function Terminal3DPage(): JSX.Element {
   const { executeCommand, undo, redo, canUndo, canRedo } = useCommandHistory();
 
   const {
-    equipmentData,
+    equipmentData, // Esta é a lista completa de todos os equipamentos (allEquipmentData)
     handleOperationalStateChange,
     handleProductChange,
   } = useEquipmentDataManager();
@@ -79,8 +79,8 @@ export default function Terminal3DPage(): JSX.Element {
     setSelectedArea,
     availableSistemas,
     availableAreas,
-    filteredEquipment,
-  } = useFilterManager({ allEquipment: equipmentData });
+    filteredEquipment, // Esta é a lista filtrada
+  } = useFilterManager({ allEquipment: equipmentData }); // Passa a lista completa para o filter manager
 
   const {
     annotations,
@@ -92,7 +92,7 @@ export default function Terminal3DPage(): JSX.Element {
     handleDeleteAnnotation,
     getAnnotationForEquipment,
     setIsAnnotationDialogOpen,
-  } = useAnnotationManager({ equipmentData });
+  } = useAnnotationManager({ equipmentData }); // Passa a lista completa para o annotation manager
 
   const {
     selectedEquipmentTags,
@@ -100,7 +100,7 @@ export default function Terminal3DPage(): JSX.Element {
     handleEquipmentClick, // Renomeado no hook
     handleSetHoveredEquipmentTag, // Renomeado no hook
     selectTagsBatch, // Renomeado no hook
-  } = useEquipmentSelectionManager({ equipmentData, executeCommand });
+  } = useEquipmentSelectionManager({ equipmentData, executeCommand }); // Passa a lista completa
 
   const { layers, handleToggleLayer } = useLayerManager({ executeCommand });
 
@@ -121,7 +121,7 @@ export default function Terminal3DPage(): JSX.Element {
   const handleFocusAndSelectSystem = useCallback((systemName: string) => {
     // console.log(`[Page.tsx] Focusing and selecting system: ${systemName}`);
     handleSetCameraViewForSystem(systemName); // Do useCameraManager
-    const equipmentInSystem = equipmentData
+    const equipmentInSystem = equipmentData // Usa a lista completa para identificar equipamentos no sistema
       .filter(equip => equip.sistema === systemName)
       .map(equip => equip.tag);
     selectTagsBatch(equipmentInSystem, `Focado e selecionado sistema ${systemName}.`); // Do useEquipmentSelectionManager
@@ -135,7 +135,7 @@ export default function Terminal3DPage(): JSX.Element {
   const selectedEquipmentDetails = useMemo(() => {
     if (selectedEquipmentTags.length === 1) {
       const tag = selectedEquipmentTags[0];
-      return equipmentData.find(e => e.tag === tag) || null;
+      return equipmentData.find(e => e.tag === tag) || null; // Busca na lista completa
     }
     return null;
   }, [selectedEquipmentTags, equipmentData]);
@@ -156,7 +156,7 @@ export default function Terminal3DPage(): JSX.Element {
    */
   const availableOperationalStatesList = useMemo(() => {
     const states = new Set<string>();
-    equipmentData.forEach(equip => {
+    equipmentData.forEach(equip => { // Usa a lista completa
       if (equip.operationalState) states.add(equip.operationalState);
     });
     // Garante que "Não aplicável" fique no início se existir, depois ordena o resto.
@@ -174,7 +174,7 @@ export default function Terminal3DPage(): JSX.Element {
    */
   const availableProductsList = useMemo(() => {
     const products = new Set<string>();
-    equipmentData.forEach(equip => {
+    equipmentData.forEach(equip => { // Usa a lista completa
       if (equip.product) products.add(equip.product);
     });
     // Garante que "Não aplicável" fique no início se existir, depois ordena o resto.
@@ -199,7 +199,8 @@ export default function Terminal3DPage(): JSX.Element {
       {/* Wrapper para MainSceneArea e SidebarTrigger */}
       <div className="h-screen flex-1 flex flex-col relative min-w-0 overflow-x-hidden">
         <MainSceneArea
-          equipment={filteredEquipment}
+          equipment={filteredEquipment} // Passa a lista filtrada para renderização dos meshes
+          allEquipmentData={equipmentData} // Passa a lista completa para contexto de anotações e outros
           layers={layers}
           annotations={annotations}
           selectedEquipmentTags={selectedEquipmentTags}

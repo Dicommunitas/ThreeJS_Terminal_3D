@@ -200,7 +200,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
 
         localControls.mouseButtons = {
           LEFT: THREE.MOUSE.ROTATE,
-          MIDDLE: THREE.MOUSE.DOLLY,
+          MIDDLE: THREE.MOUSE.ROTATE, // Changed from DOLLY to ROTATE for orbit
           RIGHT: THREE.MOUSE.PAN
         };
         localControls.update();

@@ -13,6 +13,7 @@
  * classDiagram
  *   MainSceneAreaProps {
  *     +equipment: Equipment[]
+ *     +allEquipmentData: Equipment[]
  *     +layers: Layer[]
  *     +annotations: Annotation[]
  *     +selectedEquipmentTags: string[]
@@ -63,6 +64,7 @@ import { InfoPanel } from '@/components/info-panel';
  *
  * @interface MainSceneAreaProps
  * @property {Equipment[]} equipment - Lista de equipamentos filtrados a serem renderizados na cena.
+ * @property {Equipment[]} allEquipmentData - Lista completa de todos os equipamentos, para contexto (e.g., anotações).
  * @property {Layer[]} layers - Configuração das camadas de visibilidade.
  * @property {Annotation[]} annotations - Lista de anotações a serem exibidas.
  * @property {string[]} selectedEquipmentTags - Tags dos equipamentos atualmente selecionados.
@@ -87,6 +89,7 @@ import { InfoPanel } from '@/components/info-panel';
  */
 interface MainSceneAreaProps {
   equipment: Equipment[];
+  allEquipmentData: Equipment[]; // Adicionada para passar a lista completa para ThreeScene
   layers: Layer[];
   annotations: Annotation[];
   selectedEquipmentTags: string[];
@@ -118,6 +121,7 @@ interface MainSceneAreaProps {
  */
 export function MainSceneArea({
   equipment,
+  allEquipmentData, // Recebe a prop
   layers,
   annotations,
   selectedEquipmentTags,
@@ -143,7 +147,8 @@ export function MainSceneArea({
   return (
     <div className="flex-1 relative w-full bg-muted/20 min-w-0"> {/* min-w-0 é importante para flexbox */}
       <ThreeScene
-        equipment={equipment}
+        equipment={equipment} // Lista filtrada para meshes
+        allEquipmentData={allEquipmentData} // Lista completa para contexto de anotações
         layers={layers}
         annotations={annotations}
         selectedEquipmentTags={selectedEquipmentTags}
@@ -172,5 +177,3 @@ export function MainSceneArea({
     </div>
   );
 }
-
-    
