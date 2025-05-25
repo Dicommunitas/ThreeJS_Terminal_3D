@@ -7,6 +7,7 @@ import * as THREE from 'three';
 /**
  * @fileOverview Custom hook para gerenciar interações do mouse (clique e movimento)
  * com objetos 3D em uma cena Three.js, especificamente para seleção e hover de equipamentos.
+ * Anteriormente parte de `core/three/mouse-interaction-manager.ts`, agora encapsulado como hook.
  *
  * Principal Responsabilidade:
  * Encapsular a lógica de raycasting para detectar interseções do mouse com meshes de
@@ -25,6 +26,13 @@ import * as THREE from 'three';
  *     +setHoveredEquipmentTag(tag: string | null): void
  *   }
  *   useMouseInteractionManager --|> React.FC_Hook
+ *   UseMouseInteractionManagerProps ..> RefObject_HTMLDivElement_
+ *   UseMouseInteractionManagerProps ..> RefObject_PerspectiveCamera_
+ *   UseMouseInteractionManagerProps ..> RefObject_Object3D_Array_
+ *
+ *   class RefObject_HTMLDivElement_ { +current: HTMLDivElement | null }
+ *   class RefObject_PerspectiveCamera_ { +current: PerspectiveCamera | null }
+ *   class RefObject_Object3D_Array_ { +current: THREE.Object3D[] | null }
  * ```
  */
 
@@ -178,4 +186,3 @@ export function useMouseInteractionManager({
     };
   }, [mountRef, isSceneReady, handleClick, handleMouseMove]);
 }
-

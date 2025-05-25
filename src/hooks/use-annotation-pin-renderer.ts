@@ -14,7 +14,7 @@ import { updateAnnotationPins } from '@/core/three/label-renderer-utils';
  * Encapsular a lógica de criação, atualização e remoção dos `CSS2DObject` (pins)
  * que representam as anotações. Observa mudanças nas anotações, dados dos equipamentos
  * (para posicionamento), e camadas de visibilidade, atualizando os pins conforme necessário.
- * Utiliza `updateAnnotationPins` para a lógica de sincronização.
+ * Utiliza `updateAnnotationPins` de `label-renderer-utils.ts` para a lógica de sincronização.
  *
  * ```mermaid
  * classDiagram
@@ -23,7 +23,7 @@ import { updateAnnotationPins } from '@/core/three/label-renderer-utils';
  *     +labelRendererRef: RefObject_CSS2DRenderer_
  *     +isSceneReady: boolean
  *     +annotations: Annotation[]
- *     +allEquipmentData: Equipment[]
+ *     +allEquipmentData: Equipment[] // Full list for correct positioning
  *     +layers: Layer[]
  *   }
  *   useAnnotationPinRenderer --|> React.FC_Hook
@@ -31,6 +31,11 @@ import { updateAnnotationPins } from '@/core/three/label-renderer-utils';
  *   UseAnnotationPinRendererProps ..> Annotation
  *   UseAnnotationPinRendererProps ..> Equipment
  *   UseAnnotationPinRendererProps ..> Layer
+ *   UseAnnotationPinRendererProps ..> RefObject_Scene_
+ *   UseAnnotationPinRendererProps ..> RefObject_CSS2DRenderer_
+ *
+ *   class RefObject_Scene_ { +current: Scene | null }
+ *   class RefObject_CSS2DRenderer_ { +current: CSS2DRenderer | null }
  * ```
  */
 interface UseAnnotationPinRendererProps {

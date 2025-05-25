@@ -82,7 +82,9 @@ interface UseSceneSetupProps {
  * @property {React.RefObject<THREE.PerspectiveCamera | null>} cameraRef - Ref to the Three.js Camera.
  * @property {React.RefObject<THREE.WebGLRenderer | null>} rendererRef - Ref to the WebGLRenderer.
  * @property {React.RefObject<CSS2DRenderer | null>} labelRendererRef - Ref to the CSS2DRenderer.
- * @property {React.RefObject<OrbitControlsType | null>} controlsRef - Ref to the OrbitControls. Configured by default for Left and Middle mouse buttons to rotate, and Right mouse button to pan.
+ * @property {React.RefObject<OrbitControlsType | null>} controlsRef - Ref to the OrbitControls.
+ *                                                                    Configured for Left and Middle mouse buttons to rotate,
+ *                                                                    and Right mouse button to pan.
  * @property {React.RefObject<EffectComposer | null>} composerRef - Ref to the EffectComposer.
  * @property {React.RefObject<OutlinePass | null>} outlinePassRef - Ref to the OutlinePass.
  * @property {React.RefObject<THREE.Mesh | null>} groundMeshRef - Ref to the ground plane mesh.
@@ -227,7 +229,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
     const initialSetupTimeoutId = setTimeout(() => {
       handleResize(); 
       setIsSceneReady(true);
-      console.log('[useSceneSetup] Scene is now READY.');
+      // console.log('[useSceneSetup] Scene is now READY.');
     }, 150); 
 
 
@@ -235,7 +237,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
      * Cleanup function for the effect. Disposes of Three.js objects and removes event listeners.
      */
     return () => {
-      console.log('[useSceneSetup] Setup useEffect CLEANUP running.');
+      // console.log('[useSceneSetup] Setup useEffect CLEANUP running.');
       clearTimeout(initialSetupTimeoutId);
 
       if (currentMount) {
@@ -284,7 +286,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
       cameraRef.current = null;
 
       setIsSceneReady(false);
-      console.log('[useSceneSetup] Setup CLEANUP finished.');
+      // console.log('[useSceneSetup] Setup CLEANUP finished.');
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mountRef, initialCameraPosition.x, initialCameraPosition.y, initialCameraPosition.z, initialCameraLookAt.x, initialCameraLookAt.y, initialCameraLookAt.z]); 

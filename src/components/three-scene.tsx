@@ -20,8 +20,8 @@
  * ```mermaid
  * classDiagram
  *   ThreeSceneProps {
- *     +equipment: Equipment[]
- *     +allEquipmentData: Equipment[]
+ *     +equipment: Equipment[]  // Filtered list
+ *     +allEquipmentData: Equipment[] // Full list for annotation context
  *     +layers: Layer[]
  *     +annotations: Annotation[]
  *     +selectedEquipmentTags: string[] | undefined

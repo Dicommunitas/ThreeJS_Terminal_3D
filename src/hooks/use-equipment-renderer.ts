@@ -11,16 +11,17 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
  *
  * Principal Responsabilidade:
  * Encapsular a lógica de criação, atualização e remoção dos meshes 3D que representam
- * os equipamentos. Observa mudanças nos dados dos equipamentos, camadas de visibilidade
+ * os equipamentos. Observa mudanças nos dados dos equipamentos (filtrados), camadas de visibilidade
  * e modo de colorização, e atualiza a cena Three.js de acordo.
- * Utiliza `updateEquipmentMeshesInScene` para a lógica de sincronização.
+ * Utiliza `updateEquipmentMeshesInScene` de `scene-elements-setup.ts` para a lógica de sincronização
+ * dos meshes e do plano de chão com base na visibilidade das camadas.
  *
  * ```mermaid
  * classDiagram
  *   UseEquipmentRendererProps {
  *     +sceneRef: RefObject_Scene_
  *     +isSceneReady: boolean
- *     +equipmentData: Equipment[]
+ *     +equipmentData: Equipment[]  // Filtered list
  *     +layers: Layer[]
  *     +colorMode: ColorMode
  *     +createSingleEquipmentMesh(item: Equipment): Object3D
@@ -31,6 +32,11 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
  *   UseEquipmentRendererProps ..> Equipment
  *   UseEquipmentRendererProps ..> Layer
  *   UseEquipmentRendererProps ..> ColorMode
+ *   UseEquipmentRendererProps ..> RefObject_Scene_
+ *   UseEquipmentRendererProps ..> RefObject_Mesh_
+ *
+ *   class RefObject_Scene_ { +current: Scene | null }
+ *   class RefObject_Mesh_ { +current: Mesh | null }
  * ```
  */
 interface UseEquipmentRendererProps {
