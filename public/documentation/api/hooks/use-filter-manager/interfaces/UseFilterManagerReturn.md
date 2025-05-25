@@ -6,7 +6,7 @@
 
 # Interface: UseFilterManagerReturn
 
-Defined in: [src/hooks/use-filter-manager.ts:58](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-filter-manager.ts#L58)
+Defined in: [src/hooks/use-filter-manager.ts:58](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/3fbd351dd3271531d3a02300dce1fb3d97e4435b/src/hooks/use-filter-manager.ts#L58)
 
 Retorno do hook `useFilterManager`.
  UseFilterManagerReturn
@@ -17,7 +17,7 @@ Retorno do hook `useFilterManager`.
 
 > **availableAreas**: `string`[]
 
-Defined in: [src/hooks/use-filter-manager.ts:66](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-filter-manager.ts#L66)
+Defined in: [src/hooks/use-filter-manager.ts:66](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/3fbd351dd3271531d3a02300dce1fb3d97e4435b/src/hooks/use-filter-manager.ts#L66)
 
 Lista ordenada de áreas únicas disponíveis para seleção no filtro, incluindo "All".
 
@@ -27,7 +27,7 @@ Lista ordenada de áreas únicas disponíveis para seleção no filtro, incluind
 
 > **availableSistemas**: `string`[]
 
-Defined in: [src/hooks/use-filter-manager.ts:65](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-filter-manager.ts#L65)
+Defined in: [src/hooks/use-filter-manager.ts:65](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/3fbd351dd3271531d3a02300dce1fb3d97e4435b/src/hooks/use-filter-manager.ts#L65)
 
 Lista ordenada de sistemas únicos disponíveis para seleção no filtro, incluindo "All".
 
@@ -37,7 +37,7 @@ Lista ordenada de sistemas únicos disponíveis para seleção no filtro, inclui
 
 > **filteredEquipment**: `Equipment`[]
 
-Defined in: [src/hooks/use-filter-manager.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-filter-manager.ts#L67)
+Defined in: [src/hooks/use-filter-manager.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/3fbd351dd3271531d3a02300dce1fb3d97e4435b/src/hooks/use-filter-manager.ts#L67)
 
 A lista de equipamentos resultante após a aplicação de todos os filtros ativos.
 
@@ -47,7 +47,7 @@ A lista de equipamentos resultante após a aplicação de todos os filtros ativo
 
 > **searchTerm**: `string`
 
-Defined in: [src/hooks/use-filter-manager.ts:59](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-filter-manager.ts#L59)
+Defined in: [src/hooks/use-filter-manager.ts:59](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/3fbd351dd3271531d3a02300dce1fb3d97e4435b/src/hooks/use-filter-manager.ts#L59)
 
 O termo de busca textual atualmente aplicado.
 
@@ -57,7 +57,7 @@ O termo de busca textual atualmente aplicado.
 
 > **selectedArea**: `string`
 
-Defined in: [src/hooks/use-filter-manager.ts:63](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-filter-manager.ts#L63)
+Defined in: [src/hooks/use-filter-manager.ts:63](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/3fbd351dd3271531d3a02300dce1fb3d97e4435b/src/hooks/use-filter-manager.ts#L63)
 
 A área atualmente selecionada para filtro (e.g., "Área 31", "All").
 
@@ -67,7 +67,7 @@ A área atualmente selecionada para filtro (e.g., "Área 31", "All").
 
 > **selectedSistema**: `string`
 
-Defined in: [src/hooks/use-filter-manager.ts:61](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-filter-manager.ts#L61)
+Defined in: [src/hooks/use-filter-manager.ts:61](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/3fbd351dd3271531d3a02300dce1fb3d97e4435b/src/hooks/use-filter-manager.ts#L61)
 
 O sistema atualmente selecionado para filtro (e.g., "GA", "All").
 
@@ -77,7 +77,7 @@ O sistema atualmente selecionado para filtro (e.g., "GA", "All").
 
 > **setSearchTerm**: `Dispatch`\<`SetStateAction`\<`string`\>\>
 
-Defined in: [src/hooks/use-filter-manager.ts:60](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-filter-manager.ts#L60)
+Defined in: [src/hooks/use-filter-manager.ts:60](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/3fbd351dd3271531d3a02300dce1fb3d97e4435b/src/hooks/use-filter-manager.ts#L60)
 
 Função para atualizar o `searchTerm`.
 
@@ -87,7 +87,7 @@ Função para atualizar o `searchTerm`.
 
 > **setSelectedArea**: `Dispatch`\<`SetStateAction`\<`string`\>\>
 
-Defined in: [src/hooks/use-filter-manager.ts:64](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-filter-manager.ts#L64)
+Defined in: [src/hooks/use-filter-manager.ts:64](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/3fbd351dd3271531d3a02300dce1fb3d97e4435b/src/hooks/use-filter-manager.ts#L64)
 
 Função para atualizar o `selectedArea`.
 
@@ -97,6 +97,6 @@ Função para atualizar o `selectedArea`.
 
 > **setSelectedSistema**: `Dispatch`\<`SetStateAction`\<`string`\>\>
 
-Defined in: [src/hooks/use-filter-manager.ts:62](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-filter-manager.ts#L62)
+Defined in: [src/hooks/use-filter-manager.ts:62](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/3fbd351dd3271531d3a02300dce1fb3d97e4435b/src/hooks/use-filter-manager.ts#L62)
 
 Função para atualizar o `selectedSistema`.

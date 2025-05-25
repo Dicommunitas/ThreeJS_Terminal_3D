@@ -8,7 +8,7 @@
 
 > `const` **defaultInitialCameraPosition**: `object`
 
-Defined in: [src/hooks/use-camera-manager.ts:36](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/hooks/use-camera-manager.ts#L36)
+Defined in: [src/hooks/use-camera-manager.ts:36](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/3fbd351dd3271531d3a02300dce1fb3d97e4435b/src/hooks/use-camera-manager.ts#L36)
 
 Posição inicial padrão da câmera: { x: 25, y: 20, z: 25 }.
 

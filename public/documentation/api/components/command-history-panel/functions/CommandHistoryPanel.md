@@ -6,16 +6,23 @@
 
 # Function: CommandHistoryPanel()
 
-> **CommandHistoryPanel**(`__namedParameters`): `Element`
+> **CommandHistoryPanel**(`props`): `Element`
 
-Defined in: [src/components/command-history-panel.tsx:14](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/ddd5d4bcdcae7e6ea863634448491f6c8a8bd764/src/components/command-history-panel.tsx#L14)
+Defined in: [src/components/command-history-panel.tsx:51](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/3fbd351dd3271531d3a02300dce1fb3d97e4435b/src/components/command-history-panel.tsx#L51)
+
+Renderiza um painel com botões de Undo e Redo.
+A habilitação dos botões é controlada pelas props `canUndo` e `canRedo`.
 
 ## Parameters
 
-### \_\_namedParameters
+### props
 
 `CommandHistoryPanelProps`
+
+As props do componente.
 
 ## Returns
 
 `Element`
+
+O componente CommandHistoryPanel.
