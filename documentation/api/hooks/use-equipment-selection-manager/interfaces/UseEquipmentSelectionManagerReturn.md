@@ -1,18 +1,15 @@
-[**nextn**](../../../README.md)
+[**3D Terminal System API Documentation**](../../../README.md)
 
 ***
 
-[nextn](../../../modules.md) / [hooks/use-equipment-selection-manager](../README.md) / UseEquipmentSelectionManagerReturn
+[3D Terminal System API Documentation](../../../README.md) / [hooks/use-equipment-selection-manager](../README.md) / UseEquipmentSelectionManagerReturn
 
 # Interface: UseEquipmentSelectionManagerReturn
 
-Defined in: [src/hooks/use-equipment-selection-manager.ts:58](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-equipment-selection-manager.ts#L58)
+Defined in: [src/hooks/use-equipment-selection-manager.ts:58](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-equipment-selection-manager.ts#L58)
 
 Retorno do hook `useEquipmentSelectionManager`.
-
-## Interface
-
-UseEquipmentSelectionManagerReturn
+ UseEquipmentSelectionManagerReturn
 
 ## Properties
 
@@ -20,7 +17,7 @@ UseEquipmentSelectionManagerReturn
 
 > **handleEquipmentClick**: (`tag`, `isMultiSelectModifierPressed`) => `void`
 
-Defined in: [src/hooks/use-equipment-selection-manager.ts:61](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-equipment-selection-manager.ts#L61)
+Defined in: [src/hooks/use-equipment-selection-manager.ts:61](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-equipment-selection-manager.ts#L61)
 
 Manipulador para eventos de clique em equipamentos
                                                                                                       (ou em espaço vazio para deselecionar).
@@ -45,7 +42,7 @@ Manipulador para eventos de clique em equipamentos
 
 > **handleSetHoveredEquipmentTag**: (`tag`) => `void`
 
-Defined in: [src/hooks/use-equipment-selection-manager.ts:62](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-equipment-selection-manager.ts#L62)
+Defined in: [src/hooks/use-equipment-selection-manager.ts:62](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-equipment-selection-manager.ts#L62)
 
 Define o equipamento atualmente em hover.
 
@@ -65,7 +62,7 @@ Define o equipamento atualmente em hover.
 
 > **hoveredEquipmentTag**: `null` \| `string`
 
-Defined in: [src/hooks/use-equipment-selection-manager.ts:60](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-equipment-selection-manager.ts#L60)
+Defined in: [src/hooks/use-equipment-selection-manager.ts:60](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-equipment-selection-manager.ts#L60)
 
 Tag do equipamento atualmente sob o cursor do mouse, ou null.
 
@@ -75,7 +72,7 @@ Tag do equipamento atualmente sob o cursor do mouse, ou null.
 
 > **selectedEquipmentTags**: `string`[]
 
-Defined in: [src/hooks/use-equipment-selection-manager.ts:59](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-equipment-selection-manager.ts#L59)
+Defined in: [src/hooks/use-equipment-selection-manager.ts:59](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-equipment-selection-manager.ts#L59)
 
 Array das tags dos equipamentos atualmente selecionados.
 
@@ -85,7 +82,7 @@ Array das tags dos equipamentos atualmente selecionados.
 
 > **selectTagsBatch**: (`tagsToSelect`, `operationDescription?`) => `void`
 
-Defined in: [src/hooks/use-equipment-selection-manager.ts:63](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-equipment-selection-manager.ts#L63)
+Defined in: [src/hooks/use-equipment-selection-manager.ts:63](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-equipment-selection-manager.ts#L63)
 
 Seleciona programaticamente um lote de equipamentos.
                                                                                               `operationDescription` é usado para o histórico de comandos.

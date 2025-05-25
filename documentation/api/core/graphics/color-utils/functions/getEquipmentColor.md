@@ -1,14 +1,14 @@
-[**nextn**](../../../../README.md)
+[**3D Terminal System API Documentation**](../../../../README.md)
 
 ***
 
-[nextn](../../../../modules.md) / [core/graphics/color-utils](../README.md) / getEquipmentColor
+[3D Terminal System API Documentation](../../../../README.md) / [core/graphics/color-utils](../README.md) / getEquipmentColor
 
 # Function: getEquipmentColor()
 
 > **getEquipmentColor**(`item`, `colorMode`): `Color`
 
-Defined in: [src/core/graphics/color-utils.ts:41](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/core/graphics/color-utils.ts#L41)
+Defined in: [src/core/graphics/color-utils.ts:41](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/core/graphics/color-utils.ts#L41)
 
 Determina a cor final de um equipamento com base no modo de colorização e seus atributos.
 

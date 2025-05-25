@@ -1,8 +1,8 @@
-[**nextn**](../../README.md)
+[**3D Terminal System API Documentation**](../../README.md)
 
 ***
 
-[nextn](../../modules.md) / ai/genkit
+[3D Terminal System API Documentation](../../README.md) / ai/genkit
 
 # ai/genkit
 

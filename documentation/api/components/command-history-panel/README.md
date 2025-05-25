@@ -1,8 +1,8 @@
-[**nextn**](../../README.md)
+[**3D Terminal System API Documentation**](../../README.md)
 
 ***
 
-[nextn](../../modules.md) / components/command-history-panel
+[3D Terminal System API Documentation](../../README.md) / components/command-history-panel
 
 # components/command-history-panel
 

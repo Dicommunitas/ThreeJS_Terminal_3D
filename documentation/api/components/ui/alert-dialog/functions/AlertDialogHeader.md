@@ -1,14 +1,14 @@
-[**nextn**](../../../../README.md)
+[**3D Terminal System API Documentation**](../../../../README.md)
 
 ***
 
-[nextn](../../../../modules.md) / [components/ui/alert-dialog](../README.md) / AlertDialogHeader
+[3D Terminal System API Documentation](../../../../README.md) / [components/ui/alert-dialog](../README.md) / AlertDialogHeader
 
 # Function: AlertDialogHeader()
 
 > **AlertDialogHeader**(`__namedParameters`): `Element`
 
-Defined in: [src/components/ui/alert-dialog.tsx:48](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/components/ui/alert-dialog.tsx#L48)
+Defined in: [src/components/ui/alert-dialog.tsx:48](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/components/ui/alert-dialog.tsx#L48)
 
 ## Parameters
 

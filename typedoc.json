@@ -1,4 +1,3 @@
-
 {
   "$schema": "https://typedoc.org/schema.json",
   "entryPoints": ["src"],
@@ -15,9 +14,6 @@
   "excludeProtected": true,
   "name": "3D Terminal System API Documentation",
   "disableSources": false,
-  "markdown": {
-    "useTsLinkResolution": true
-  },
   "excludeExternals": true,
   "externalPattern": ["**/node_modules/**", "**/dist/**"]
 }

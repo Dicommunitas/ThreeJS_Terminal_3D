@@ -1,8 +1,8 @@
-[**nextn**](../../README.md)
+[**3D Terminal System API Documentation**](../../README.md)
 
 ***
 
-[nextn](../../modules.md) / components/main-scene-area
+[3D Terminal System API Documentation](../../README.md) / components/main-scene-area
 
 # components/main-scene-area
 

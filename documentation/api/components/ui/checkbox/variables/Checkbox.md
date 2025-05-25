@@ -1,11 +1,11 @@
-[**nextn**](../../../../README.md)
+[**3D Terminal System API Documentation**](../../../../README.md)
 
 ***
 
-[nextn](../../../../modules.md) / [components/ui/checkbox](../README.md) / Checkbox
+[3D Terminal System API Documentation](../../../../README.md) / [components/ui/checkbox](../README.md) / Checkbox
 
 # Variable: Checkbox
 
 > `const` **Checkbox**: `ForwardRefExoticComponent`\<`Omit`\<`CheckboxProps` & `RefAttributes`\<`HTMLButtonElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLButtonElement`\>\>
 
-Defined in: [src/components/ui/checkbox.tsx:9](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/components/ui/checkbox.tsx#L9)
+Defined in: [src/components/ui/checkbox.tsx:9](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/components/ui/checkbox.tsx#L9)

@@ -1,8 +1,8 @@
-[**nextn**](../../README.md)
+[**3D Terminal System API Documentation**](../../README.md)
 
 ***
 
-[nextn](../../modules.md) / hooks/use-command-history
+[3D Terminal System API Documentation](../../README.md) / hooks/use-command-history
 
 # hooks/use-command-history
 

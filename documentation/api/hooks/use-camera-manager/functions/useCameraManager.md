@@ -1,14 +1,14 @@
-[**nextn**](../../../README.md)
+[**3D Terminal System API Documentation**](../../../README.md)
 
 ***
 
-[nextn](../../../modules.md) / [hooks/use-camera-manager](../README.md) / useCameraManager
+[3D Terminal System API Documentation](../../../README.md) / [hooks/use-camera-manager](../README.md) / useCameraManager
 
 # Function: useCameraManager()
 
 > **useCameraManager**(`props`): [`UseCameraManagerReturn`](../interfaces/UseCameraManagerReturn.md)
 
-Defined in: [src/hooks/use-camera-manager.ts:82](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-camera-manager.ts#L82)
+Defined in: [src/hooks/use-camera-manager.ts:82](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-camera-manager.ts#L82)
 
 Hook customizado para gerenciar o estado e as interações da câmera 3D.
 Responsável pelo estado da câmera, foco em sistemas e integração com o histórico de comandos.

@@ -1,7 +1,7 @@
-[**nextn**](../../README.md)
+[**3D Terminal System API Documentation**](../../README.md)
 
 ***
 
-[nextn](../../modules.md) / ai/dev
+[3D Terminal System API Documentation](../../README.md) / ai/dev
 
 # ai/dev

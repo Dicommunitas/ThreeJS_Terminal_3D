@@ -1,8 +1,8 @@
-[**nextn**](../../README.md)
+[**3D Terminal System API Documentation**](../../README.md)
 
 ***
 
-[nextn](../../modules.md) / components/color-mode-selector
+[3D Terminal System API Documentation](../../README.md) / components/color-mode-selector
 
 # components/color-mode-selector
 

@@ -1,14 +1,14 @@
-[**nextn**](../../../README.md)
+[**3D Terminal System API Documentation**](../../../README.md)
 
 ***
 
-[nextn](../../../modules.md) / [app/page](../README.md) / default
+[3D Terminal System API Documentation](../../../README.md) / [app/page](../README.md) / default
 
 # Function: default()
 
 > **default**(): `Element`
 
-Defined in: [src/app/page.tsx:92](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/app/page.tsx#L92)
+Defined in: [src/app/page.tsx:92](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/app/page.tsx#L92)
 
 Componente principal da página Terminal 3D (Terminal3DPage).
 

@@ -1,8 +1,8 @@
-[**nextn**](../../README.md)
+[**3D Terminal System API Documentation**](../../README.md)
 
 ***
 
-[nextn](../../modules.md) / hooks/use-mobile
+[3D Terminal System API Documentation](../../README.md) / hooks/use-mobile
 
 # hooks/use-mobile
 

@@ -1,18 +1,15 @@
-[**nextn**](../../../README.md)
+[**3D Terminal System API Documentation**](../../../README.md)
 
 ***
 
-[nextn](../../../modules.md) / [hooks/use-command-history](../README.md) / CommandHistoryState
+[3D Terminal System API Documentation](../../../README.md) / [hooks/use-command-history](../README.md) / CommandHistoryState
 
 # Interface: CommandHistoryState
 
-Defined in: [src/hooks/use-command-history.ts:33](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-command-history.ts#L33)
+Defined in: [src/hooks/use-command-history.ts:33](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-command-history.ts#L33)
 
 Interface para o estado interno do histórico de comandos.
-
-## Interface
-
-CommandHistoryState
+ CommandHistoryState
 
 ## Properties
 
@@ -20,7 +17,7 @@ CommandHistoryState
 
 > **currentIndex**: `number`
 
-Defined in: [src/hooks/use-command-history.ts:35](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-command-history.ts#L35)
+Defined in: [src/hooks/use-command-history.ts:35](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-command-history.ts#L35)
 
 Índice do comando atual no array `history`.
                                  -1 se o histórico estiver vazio ou todos os comandos foram desfeitos.
@@ -31,6 +28,6 @@ Defined in: [src/hooks/use-command-history.ts:35](https://github.com/Dicommunita
 
 > **history**: [`Command`](../../../lib/types/interfaces/Command.md)[]
 
-Defined in: [src/hooks/use-command-history.ts:34](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-command-history.ts#L34)
+Defined in: [src/hooks/use-command-history.ts:34](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-command-history.ts#L34)
 
 Array de objetos de comando que foram executados.

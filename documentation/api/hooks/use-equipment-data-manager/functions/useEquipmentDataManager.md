@@ -1,14 +1,14 @@
-[**nextn**](../../../README.md)
+[**3D Terminal System API Documentation**](../../../README.md)
 
 ***
 
-[nextn](../../../modules.md) / [hooks/use-equipment-data-manager](../README.md) / useEquipmentDataManager
+[3D Terminal System API Documentation](../../../README.md) / [hooks/use-equipment-data-manager](../README.md) / useEquipmentDataManager
 
 # Function: useEquipmentDataManager()
 
 > **useEquipmentDataManager**(): [`UseEquipmentDataManagerReturn`](../interfaces/UseEquipmentDataManagerReturn.md)
 
-Defined in: [src/hooks/use-equipment-data-manager.ts:51](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/hooks/use-equipment-data-manager.ts#L51)
+Defined in: [src/hooks/use-equipment-data-manager.ts:51](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/hooks/use-equipment-data-manager.ts#L51)
 
 Hook customizado para gerenciar os dados dos equipamentos (a "fonte da verdade" dos equipamentos).
 Inicializa os dados com `initialEquipment` e fornece funções para modificar

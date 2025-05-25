@@ -1,8 +1,8 @@
-[**nextn**](../../../README.md)
+[**3D Terminal System API Documentation**](../../../README.md)
 
 ***
 
-[nextn](../../../modules.md) / core/three/scene-elements-setup
+[3D Terminal System API Documentation](../../../README.md) / core/three/scene-elements-setup
 
 # core/three/scene-elements-setup
 

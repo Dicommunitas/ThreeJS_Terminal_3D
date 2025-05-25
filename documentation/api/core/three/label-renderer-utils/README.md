@@ -1,8 +1,8 @@
-[**nextn**](../../../README.md)
+[**3D Terminal System API Documentation**](../../../README.md)
 
 ***
 
-[nextn](../../../modules.md) / core/three/label-renderer-utils
+[3D Terminal System API Documentation](../../../README.md) / core/three/label-renderer-utils
 
 # core/three/label-renderer-utils
 

@@ -1,8 +1,8 @@
-[**nextn**](../../README.md)
+[**3D Terminal System API Documentation**](../../README.md)
 
 ***
 
-[nextn](../../modules.md) / components/sidebar-content-layout
+[3D Terminal System API Documentation](../../README.md) / components/sidebar-content-layout
 
 # components/sidebar-content-layout
 

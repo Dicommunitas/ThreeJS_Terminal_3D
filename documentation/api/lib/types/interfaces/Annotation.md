@@ -1,19 +1,17 @@
-[**nextn**](../../../README.md)
+[**3D Terminal System API Documentation**](../../../README.md)
 
 ***
 
-[nextn](../../../modules.md) / [lib/types](../README.md) / Annotation
+[3D Terminal System API Documentation](../../../README.md) / [lib/types](../README.md) / Annotation
 
 # Interface: Annotation
 
-Defined in: [src/lib/types.ts:115](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/lib/types.ts#L115)
+Defined in: [src/lib/types.ts:115](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/lib/types.ts#L115)
 
 Representa uma anotação textual associada a um equipamento específico.
 Cada equipamento pode ter no máximo uma anotação.
 
-## Interface
-
-Annotation
+ Annotation
 
 ## Properties
 
@@ -21,7 +19,7 @@ Annotation
 
 > **createdAt**: `string`
 
-Defined in: [src/lib/types.ts:118](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/lib/types.ts#L118)
+Defined in: [src/lib/types.ts:118](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/lib/types.ts#L118)
 
 Data e hora em formato string ISO 8601 (e.g., "2023-10-27T10:30:00.000Z")
                                indicando quando a anotação foi criada ou atualizada pela última vez.
@@ -32,7 +30,7 @@ Data e hora em formato string ISO 8601 (e.g., "2023-10-27T10:30:00.000Z")
 
 > **equipmentTag**: `string`
 
-Defined in: [src/lib/types.ts:116](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/lib/types.ts#L116)
+Defined in: [src/lib/types.ts:116](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/lib/types.ts#L116)
 
 A tag do equipamento ao qual esta anotação está vinculada.
                                  Serve como chave estrangeira para o objeto `Equipment`.
@@ -43,6 +41,6 @@ A tag do equipamento ao qual esta anotação está vinculada.
 
 > **text**: `string`
 
-Defined in: [src/lib/types.ts:117](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/c2331e405b00973e4f5e87258cdaf1d7c733b058/src/lib/types.ts#L117)
+Defined in: [src/lib/types.ts:117](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/924f3613caa2db721a2c5fd220c2ea062aa5d81f/src/lib/types.ts#L117)
 
 O conteúdo textual da anotação.
