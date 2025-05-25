@@ -1,13 +1,23 @@
 {
-  "extends": "@microsoft/tsdoc",
+  "$schema": "https://developer.microsoft.com/json-schemas/tsdoc/v0/tsdoc.schema.json",
+  "extends": [
+    "@microsoft/tsdoc/tsdoc-metadata.json"
+  ],
   "tagDefinitions": [
     {
       "tagName": "@fileOverview",
-      "syntaxKind": "block"
+      "syntaxKind": "block",
+      "allowMultiple": false
     },
     {
       "tagName": "@mermaid",
-      "syntaxKind": "block"
+      "syntaxKind": "block",
+      "allowMultiple": true
     }
-  ]
+  ],
+  "supportForTags": {
+    "@fileOverview": true,
+    "@mermaid": true
+  },
+  "reportUnsupportedHtmlElements": false
 }
