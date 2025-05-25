@@ -9,7 +9,7 @@
     "./src/lib/types.ts"
   ],
   "entryPointStrategy": "expand",
-  "out": "public/documentation/api",
+  "out": "documentation/api",
   "plugin": [
     "typedoc-plugin-markdown",
     "typedoc-plugin-mermaid"
