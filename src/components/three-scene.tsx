@@ -17,11 +17,13 @@
  * Orquestrar os diversos hooks que gerenciam aspectos específicos da cena 3D,
  * passar props e refs entre eles, e fornecer o ponto de montagem no DOM.
  *
- * ```mermaid
+ * @mermaid
  * classDiagram
+ *   ThreeScene --|> React.FC
+ *   ThreeScene ..> ThreeSceneProps : uses
  *   ThreeSceneProps {
- *     +equipment: Equipment[]  // Filtered list
- *     +allEquipmentData: Equipment[] // Full list for annotation context
+ *     +equipment: Equipment[]
+ *     +allEquipmentData: Equipment[]
  *     +layers: Layer[]
  *     +annotations: Annotation[]
  *     +selectedEquipmentTags: string[] | undefined
@@ -53,7 +55,6 @@
  *   ThreeScene ..> useMouseInteractionManager : uses
  *   ThreeScene ..> useSceneOutline : uses
  *   ThreeScene ..> useAnimationLoop : uses
- * ```
  */
 "use client";
 
@@ -76,24 +77,36 @@ import { calculateViewForMeshes } from '@/core/three/camera-utils';
 
 
 export interface ThreeSceneProps {
-  equipment: Equipment[]; // Filtered list for rendering meshes
-  allEquipmentData: Equipment[]; // Full list, needed for annotations context
+  /** Lista de equipamentos filtrados a serem renderizados na cena. */
+  equipment: Equipment[];
+  /** Lista completa de todos os equipamentos, para contexto (e.g., anotações no `ThreeScene`). */
+  allEquipmentData: Equipment[];
+  /** Configuração das camadas de visibilidade. */
   layers: Layer[];
+  /** Lista de anotações a serem exibidas. */
   annotations: Annotation[];
+  /** Tags dos equipamentos atualmente selecionados. */
   selectedEquipmentTags: string[] | undefined;
+  /** Callback para quando um equipamento é selecionado/deselecionado. */
   onSelectEquipment: (tag: string | null, isMultiSelectModifierPressed: boolean) => void;
+  /** Tag do equipamento atualmente sob o cursor. */
   hoveredEquipmentTag: string | null | undefined;
+  /** Callback para definir o equipamento em hover. */
   setHoveredEquipmentTag: (tag: string | null) => void;
-  
-  cameraState: CameraState | undefined; // Current desired camera state from useCameraManager
-  onCameraChange: (cameraState: CameraState) => void; // Callback for OrbitControls and programmatic changes
-  
+  /** O estado atual da câmera (posição, lookAt). */
+  cameraState: CameraState | undefined;
+  /** Callback para quando o estado da câmera muda devido à interação do usuário na cena. */
+  onCameraChange: (cameraState: CameraState) => void;
+  /** Posição inicial da câmera. */
   initialCameraPosition: { x: number; y: number; z: number };
+  /** Ponto de observação (lookAt) inicial da câmera. */
   initialCameraLookAt: { x: number; y: number; z: number };
+  /** O modo de colorização atual para os equipamentos. */
   colorMode: ColorMode;
-  
-  targetSystemToFrame: string | null; // From useCameraManager, triggers framing
-  onSystemFramed: () => void; // Callback to useCameraManager after framing
+  /** O sistema que deve ser enquadrado pela câmera (se houver). */
+  targetSystemToFrame: string | null;
+  /** Callback chamado após a câmera terminar de enquadrar um sistema. */
+  onSystemFramed: () => void;
 }
 
 /**
