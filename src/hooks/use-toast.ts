@@ -33,7 +33,7 @@ function genId() {
   return count.toString()
 }
 
-type ActionType = typeof actionTypes
+export type ActionType = typeof actionTypes; // Added export
 
 export type Action =
   | {
