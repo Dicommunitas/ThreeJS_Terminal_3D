@@ -521,6 +521,64 @@ Returns **JSX.Element** O componente SiteHeader.
 
 ##
 
+Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
+ATUALIZADO: Este componente foi refatorado para atuar como um "condutor", delegando a maior
+parte de suas responsabilidades anteriores para hooks customizados especializados.
+Ele agora foca em:
+
+*   Utilizar `useSceneSetup` para a infraestrutura básica da cena (cena, câmera, renderizadores, etc.).
+*   Utilizar `useEquipmentRenderer` para gerenciar os meshes dos equipamentos.
+*   Utilizar `useAnnotationPinRenderer` para gerenciar os pins de anotação.
+*   Utilizar `useMouseInteractionManager` para processar interações do mouse.
+*   Utilizar `useSceneOutline` para aplicar efeitos de contorno.
+*   Utilizar `useAnimationLoop` para o loop de renderização.
+*   Aplicar estados de câmera programáticos e lidar com o enquadramento de sistemas.
+*   Renderizar o elemento de montagem (`div`) para a cena.
+
+Principal Responsabilidade (Pós-Refatoração):
+Orquestrar os diversos hooks que gerenciam aspectos específicos da cena 3D,
+passar props e refs entre eles, e fornecer o ponto de montagem no DOM.
+
+```mermaid
+classDiagram
+  ThreeScene --|> React.FC
+  ThreeScene ..> ThreeSceneProps : uses
+  ThreeSceneProps {
+    +equipment: Equipment[]
+    +allEquipmentData: Equipment[]
+    +layers: Layer[]
+    +annotations: Annotation[]
+    +selectedEquipmentTags: string[] | undefined
+    +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
+    +hoveredEquipmentTag: string | null | undefined
+    +setHoveredEquipmentTag(tag: string | null): void
+    +cameraState: CameraState | undefined
+    +onCameraChange(cameraState: CameraState): void
+    +initialCameraPosition: Point3D
+    +initialCameraLookAt: Point3D
+    +colorMode: ColorMode
+    +targetSystemToFrame: string | null
+    +onSystemFramed(): void
+  }
+  Point3D {
+    +x: number
+    +y: number
+    +z: number
+  }
+  ThreeSceneProps ..> Equipment
+  ThreeSceneProps ..> Layer
+  ThreeSceneProps ..> Annotation
+  ThreeSceneProps ..> CameraState
+  ThreeSceneProps ..> ColorMode
+  ThreeSceneProps ..> Point3D
+  ThreeScene ..> useSceneSetup : uses
+  ThreeScene ..> useEquipmentRenderer : uses
+  ThreeScene ..> useAnnotationPinRenderer : uses
+  ThreeScene ..> useMouseInteractionManager : uses
+  ThreeScene ..> useSceneOutline : uses
+  ThreeScene ..> useAnimationLoop : uses
+```
+
 ## equipment
 
 Lista de equipamentos filtrados a serem renderizados na cena.

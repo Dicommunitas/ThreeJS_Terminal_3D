@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
+ * Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
  * ATUALIZADO: Este componente foi refatorado para atuar como um "condutor", delegando a maior
  * parte de suas responsabilidades anteriores para hooks customizados especializados.
  * Ele agora foca em:
@@ -17,7 +17,7 @@
  * Orquestrar os diversos hooks que gerenciam aspectos específicos da cena 3D,
  * passar props e refs entre eles, e fornecer o ponto de montagem no DOM.
  *
- * @mermaid
+ * ```mermaid
  * classDiagram
  *   ThreeScene --|> React.FC
  *   ThreeScene ..> ThreeSceneProps : uses
