@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run docs:build && next dev --turbopack -p 9002",
+    "dev": "next dev --turbopack -p 9002",
     "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
     "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",
     "build": "next build",
@@ -11,7 +11,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "docs:generate-api": "typedoc",
-    "docs:build": "npm run docs:generate-api"
+    "docs:build": "npm run docs:generate-api",
+    "docs:dev": "npm run docs:build"
   },
   "dependencies": {
     "@genkit-ai/googleai": "^1.8.0",
@@ -63,6 +64,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/three": "^0.167.0",
+    "@microsoft/tsdoc": "^0.14.2",
     "docsify-cli": "^4.4.4",
     "genkit-cli": "^1.8.0",
     "postcss": "^8",
