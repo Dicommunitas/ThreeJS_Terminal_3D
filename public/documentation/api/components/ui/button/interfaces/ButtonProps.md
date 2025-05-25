@@ -6,7 +6,7 @@
 
 # Interface: ButtonProps
 
-Defined in: [src/components/ui/button.tsx:36](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/2ffad36b03338064b23ef8f941c65d1facfc3d76/src/components/ui/button.tsx#L36)
+Defined in: [src/components/ui/button.tsx:36](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5bec8212bfd37e45fdf0e49aa57af1be9d74e77/src/components/ui/button.tsx#L36)
 
 ## Extends
 
@@ -919,7 +919,7 @@ Defines the human readable text alternative of aria-valuenow for a range widget.
 
 > `optional` **asChild**: `boolean`
 
-Defined in: [src/components/ui/button.tsx:39](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/2ffad36b03338064b23ef8f941c65d1facfc3d76/src/components/ui/button.tsx#L39)
+Defined in: [src/components/ui/button.tsx:39](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5bec8212bfd37e45fdf0e49aa57af1be9d74e77/src/components/ui/button.tsx#L39)
 
 ***
 
@@ -3571,7 +3571,7 @@ Defined in: node\_modules/@types/react/index.d.ts:2957
 
 > `optional` **size**: `null` \| `"lg"` \| `"sm"` \| `"default"` \| `"icon"`
 
-Defined in: [src/components/ui/button.tsx:22](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/2ffad36b03338064b23ef8f941c65d1facfc3d76/src/components/ui/button.tsx#L22)
+Defined in: [src/components/ui/button.tsx:22](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5bec8212bfd37e45fdf0e49aa57af1be9d74e77/src/components/ui/button.tsx#L22)
 
 #### Inherited from
 
@@ -3747,7 +3747,7 @@ Defined in: node\_modules/@types/react/index.d.ts:3163
 
 > `optional` **variant**: `null` \| `"link"` \| `"secondary"` \| `"destructive"` \| `"default"` \| `"outline"` \| `"ghost"`
 
-Defined in: [src/components/ui/button.tsx:11](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/2ffad36b03338064b23ef8f941c65d1facfc3d76/src/components/ui/button.tsx#L11)
+Defined in: [src/components/ui/button.tsx:11](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5bec8212bfd37e45fdf0e49aa57af1be9d74e77/src/components/ui/button.tsx#L11)
 
 #### Inherited from
 

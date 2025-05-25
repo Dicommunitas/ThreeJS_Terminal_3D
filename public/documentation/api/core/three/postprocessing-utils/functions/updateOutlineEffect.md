@@ -8,7 +8,7 @@
 
 > **updateOutlineEffect**(`outlinePass`, `allMeshes`, `selectedTags`, `hoveredTag`): `void`
 
-Defined in: [src/core/three/postprocessing-utils.ts:135](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/2ffad36b03338064b23ef8f941c65d1facfc3d76/src/core/three/postprocessing-utils.ts#L135)
+Defined in: [src/core/three/postprocessing-utils.ts:135](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5bec8212bfd37e45fdf0e49aa57af1be9d74e77/src/core/three/postprocessing-utils.ts#L135)
 
 Atualiza o efeito de contorno (OutlinePass) com base nos equipamentos selecionados e em hover.
 Determina quais objetos contornar e qual estilo aplicar.

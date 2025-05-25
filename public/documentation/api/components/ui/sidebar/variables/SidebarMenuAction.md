@@ -8,7 +8,7 @@
 
 > `const` **SidebarMenuAction**: `ForwardRefExoticComponent`\<`Omit`\<`ClassAttributes`\<`HTMLButtonElement`\> & `ButtonHTMLAttributes`\<`HTMLButtonElement`\> & `object`, `"ref"`\> & `RefAttributes`\<`HTMLButtonElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:764](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/2ffad36b03338064b23ef8f941c65d1facfc3d76/src/components/ui/sidebar.tsx#L764)
+Defined in: [src/components/ui/sidebar.tsx:764](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5bec8212bfd37e45fdf0e49aa57af1be9d74e77/src/components/ui/sidebar.tsx#L764)
 
 Botão de ação opcional para um `SidebarMenuItem` (e.g., um ícone de "mais opções").
 Fica oculto quando a sidebar está em modo "icon".

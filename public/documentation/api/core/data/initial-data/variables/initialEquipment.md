@@ -6,9 +6,9 @@
 
 # Variable: initialEquipment
 
-> `const` **initialEquipment**: `Equipment`[]
+> `const` **initialEquipment**: [`Equipment`](../../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/core/data/initial-data.ts:18](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/2ffad36b03338064b23ef8f941c65d1facfc3d76/src/core/data/initial-data.ts#L18)
+Defined in: [src/core/data/initial-data.ts:18](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5bec8212bfd37e45fdf0e49aa57af1be9d74e77/src/core/data/initial-data.ts#L18)
 
 Lista inicial de equipamentos para a cena 3D.
 Cada equipamento possui propriedades como tag, nome, tipo, sistema, área, estado operacional,
