@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Custom hook para gerenciar o efeito de contorno (OutlinePass) na cena 3D.
+ * Custom hook para gerenciar o efeito de contorno (OutlinePass) na cena 3D.
  *
  * Principal Responsabilidade:
  * Observar mudanças nos equipamentos selecionados (`selectedEquipmentTags`) e no equipamento
@@ -9,7 +9,7 @@
  * `postprocessing-utils.ts` para aplicar os estilos de contorno corretos.
  * O efeito só é aplicado quando a cena (`isSceneReady`) e os refs necessários estão prontos.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     UseSceneOutlineProps {
  *       +outlinePassRef: RefObject_OutlinePass_
@@ -21,6 +21,7 @@
  *     RefObject_OutlinePass_ { current: OutlinePass | null }
  *     RefObject_Object3D_Array_ { current: THREE.Object3D[] | null }
  *     useSceneOutline ..> postprocessing_utils : uses updateOutlineEffect
+ * ```
  */
 "use client";
 

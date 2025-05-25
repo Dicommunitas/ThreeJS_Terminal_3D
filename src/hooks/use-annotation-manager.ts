@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Custom hook para gerenciar o estado e a lógica das anotações textuais dos equipamentos.
+ * Custom hook para gerenciar o estado e a lógica das anotações textuais dos equipamentos.
  *
  * Principal Responsabilidade:
  * Encapsular o estado das anotações (lista de anotações, estado do diálogo de edição)
@@ -8,7 +8,7 @@
  * associadas a equipamentos específicos. Cada equipamento pode ter no máximo uma anotação.
  * Utiliza `useToast` para feedback ao usuário.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     UseAnnotationManagerProps {
  *       +initialAnnotations: Annotation[]
@@ -31,6 +31,7 @@
  *     UseAnnotationManagerReturn ..> Annotation
  *     UseAnnotationManagerReturn ..> Equipment
  *     useAnnotationManager ..> useToast : uses
+ * ```
  */
 "use client";
 

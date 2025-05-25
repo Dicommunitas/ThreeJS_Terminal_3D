@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Fábrica para criar geometrias de equipamentos para a cena Three.js.
+ * Fábrica para criar geometrias de equipamentos para a cena Three.js.
  *
  * Principal Responsabilidade:
  * Encapsular a lógica de criação de diferentes tipos de `THREE.BufferGeometry`

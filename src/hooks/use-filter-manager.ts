@@ -1,13 +1,13 @@
 
 /**
- * @fileOverview Custom hook para gerenciar os estados de filtragem e a lógica de filtragem de equipamentos.
+ * Custom hook para gerenciar os estados de filtragem e a lógica de filtragem de equipamentos.
  *
  * Principal Responsabilidade:
  * Manter os critérios de filtro (termo de busca, sistema, área), derivar listas
  * de opções de filtro disponíveis (sistemas, áreas) e calcular a lista de
  * equipamentos que correspondem aos filtros atuais, utilizando `getFilteredEquipment`.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     UseFilterManagerProps {
  *       +allEquipment: Equipment[]
@@ -26,6 +26,7 @@
  *     UseFilterManagerProps ..> Equipment
  *     UseFilterManagerReturn ..> Equipment
  *     useFilterManager ..> equipment_filter : uses getFilteredEquipment
+ * ```
  */
 'use client';
 

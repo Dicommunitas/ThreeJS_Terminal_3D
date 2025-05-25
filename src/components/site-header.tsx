@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Componente simples para renderizar o cabeçalho do site.
+ * Componente simples para renderizar o cabeçalho do site.
  *
  * Principal Responsabilidade:
  * Exibir o título principal da aplicação ("Terminal 3D") e um ícone associado.

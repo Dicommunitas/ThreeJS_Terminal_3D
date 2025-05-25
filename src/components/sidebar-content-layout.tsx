@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Componente para renderizar o conteúdo principal da sidebar.
+ * Componente para renderizar o conteúdo principal da sidebar.
  *
  * Principal Responsabilidade:
  * Exibir os diversos painéis de controle e filtros dentro da área de conteúdo da sidebar.
@@ -13,7 +13,7 @@
  * - Gerenciador de camadas de visibilidade.
  * - Link para a documentação externa do projeto.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     SidebarContentLayoutProps {
  *       +searchTerm: string
@@ -41,6 +41,7 @@
  *     SidebarContentLayout ..> Select : uses
  *     SidebarContentLayout ..> Button : uses
  *     SidebarContentLayout ..> ScrollArea : uses
+ * ```
  */
 "use client";
 

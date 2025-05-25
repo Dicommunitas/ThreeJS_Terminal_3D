@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Componente responsável por renderizar a área principal da cena 3D.
+ * Componente responsável por renderizar a área principal da cena 3D.
  *
  * Principal Responsabilidade:
  * Atuar como um contêiner de layout para os elementos visuais centrais da aplicação:
@@ -10,7 +10,7 @@
  * e o comportamento para seus filhos, passando as props necessárias, incluindo a lista
  * completa de equipamentos (`allEquipmentData`) para contexto de renderização de anotações.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     MainSceneAreaProps {
  *       +equipment: Equipment[]
@@ -51,6 +51,7 @@
  *     MainSceneArea --|> React.FC
  *     MainSceneArea ..> ThreeScene : uses
  *     MainSceneArea ..> InfoPanel : uses
+ * ```
  */
 "use client";
 

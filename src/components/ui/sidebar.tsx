@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Componente de Sidebar reutilizável e altamente configurável.
+ * Componente de Sidebar reutilizável e altamente configurável.
  *
  * Principal Responsabilidade:
  * Fornecer uma estrutura de sidebar flexível que pode ser usada de várias maneiras:
@@ -22,7 +22,7 @@
  *
  * Utiliza cookies para persistir o estado da sidebar entre as sessões (desktop) e atalhos de teclado.
  *
- * @mermaid
+ * ```mermaid
  *   graph LR
  *     App --> SidebarProvider
  *     SidebarProvider --> Sidebar
@@ -41,6 +41,7 @@
  *     SidebarMenuSub --> SidebarMenuSubItem
  *     SidebarMenuSubItem --> SidebarMenuSubButton
  *     App --> SidebarTrigger
+ * ```
  */
 "use client"
 
@@ -70,7 +71,7 @@ const SIDEBAR_WIDTH_MOBILE = "18rem"
 const SIDEBAR_WIDTH_ICON = "3rem"
 const SIDEBAR_KEYBOARD_SHORTCUT = "b"
 
-export type SidebarContext = { // Added export
+export type SidebarContext = {
   state: "expanded" | "collapsed"
   open: boolean
   setOpen: (open: boolean) => void
@@ -88,7 +89,7 @@ const SidebarContext = React.createContext<SidebarContext | null>(null)
  * @returns {SidebarContext} O contexto da sidebar.
  * @throws {Error} Se usado fora de um `SidebarProvider`.
  */
-function useSidebar() {
+export function useSidebar() { // Adicionado export
   const context = React.useContext(SidebarContext)
   if (!context) {
     throw new Error("useSidebar must be used within a SidebarProvider.")
@@ -950,5 +951,5 @@ export {
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
-  useSidebar,
+  // useSidebar, // A exportação de useSidebar já está acima com export type
 }

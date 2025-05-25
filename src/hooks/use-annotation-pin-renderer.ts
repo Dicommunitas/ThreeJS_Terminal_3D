@@ -8,7 +8,7 @@ import type { Annotation, Equipment, Layer } from '@/lib/types';
 import { updateAnnotationPins } from '@/core/three/label-renderer-utils';
 
 /**
- * @fileOverview Custom hook para gerenciar a renderização de pins de anotação na cena 3D.
+ * Custom hook para gerenciar a renderização de pins de anotação na cena 3D.
  *
  * Principal Responsabilidade:
  * Encapsular a lógica de criação, atualização e remoção dos `CSS2DObject` (pins)
@@ -16,7 +16,7 @@ import { updateAnnotationPins } from '@/core/three/label-renderer-utils';
  * (para posicionamento), e camadas de visibilidade, atualizando os pins conforme necessário.
  * Utiliza `updateAnnotationPins` de `label-renderer-utils.ts` para a lógica de sincronização.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     UseAnnotationPinRendererProps {
  *       +sceneRef: RefObject_Scene_
@@ -36,6 +36,7 @@ import { updateAnnotationPins } from '@/core/three/label-renderer-utils';
  *
  *     class RefObject_Scene_ { current: Scene | null }
  *     class RefObject_CSS2DRenderer_ { current: CSS2DRenderer | null }
+ * ```
  */
 export interface UseAnnotationPinRendererProps {
   sceneRef: React.RefObject<THREE.Scene | null>;

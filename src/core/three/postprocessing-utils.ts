@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Utilitários para configurar e gerenciar o pipeline de pós-processamento
+ * Utilitários para configurar e gerenciar o pipeline de pós-processamento
  * para a cena Three.js.
  *
  * Principal Responsabilidade:
@@ -8,13 +8,14 @@
  * funções para atualizar dinamicamente o efeito de contorno (quais objetos destacar
  * e com qual estilo) e para redimensionar os passes de pós-processamento.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     setupPostProcessing_return {
  *       +composer: EffectComposer
  *       +outlinePass: OutlinePass
  *     }
  *     setupPostProcessing ..> setupPostProcessing_return : returns
+ * ```
  *
  * Exporta:
  * - `setupPostProcessing`: Configura o pipeline inicial de pós-processamento.

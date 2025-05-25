@@ -1,12 +1,12 @@
 
 /**
- * @fileOverview Componente para gerenciar a visibilidade das camadas de equipamentos e anotações.
+ * Componente para gerenciar a visibilidade das camadas de equipamentos e anotações.
  *
  * Principal Responsabilidade:
  * Renderizar um card com checkboxes para cada camada definida, permitindo ao usuário controlar
  * o que é exibido na cena 3D, como prédios, tanques, anotações, etc.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     LayerManagerProps {
  *       +layers: Layer[]
@@ -17,6 +17,7 @@
  *     LayerManager ..> Card : uses
  *     LayerManager ..> Checkbox : uses
  *     LayerManager ..> Label : uses
+ * ```
  */
 "use client";
 

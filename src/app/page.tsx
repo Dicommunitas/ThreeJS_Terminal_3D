@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Componente principal da página da aplicação Terminal 3D.
+ * Componente principal da página da aplicação Terminal 3D.
  * Responsável por orquestrar os diversos hooks de gerenciamento de estado da aplicação
  * e renderizar a interface do usuário principal, que inclui a área da cena 3D (`MainSceneArea`)
  * e a barra lateral de controles (`Sidebar`). Este componente atua como o ponto central de
@@ -22,7 +22,7 @@
  * - Passar os estados e callbacks apropriados dos hooks para os componentes filhos.
  * - Definir lógicas de alto nível que coordenam múltiplos hooks (e.g., `handleFocusAndSelectSystem`).
  *
- * @mermaid
+ * ```mermaid
  *   graph LR
  *     Terminal3DPage --> useCommandHistory
  *     Terminal3DPage --> useEquipmentDataManager
@@ -59,6 +59,7 @@
  *     end
  *
  *     style Terminal3DPage fill:#f9f,stroke:#333,stroke-width:2px
+ * ```
  */
 "use client";
 

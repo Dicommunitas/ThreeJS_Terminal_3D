@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Hook customizado para a configuração inicial de uma cena Three.js.
+ * Hook customizado para a configuração inicial de uma cena Three.js.
  *
  * Principal Responsabilidade:
  * Encapsular a criação e inicialização dos principais componentes de uma cena Three.js,
@@ -9,7 +9,7 @@
  * iluminação básica e um plano de chão. Gerencia também o estado de "prontidão" da cena
  * e o tratamento de redimensionamento da janela/contêiner.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     UseSceneSetupProps {
  *       +mountRef: RefObject_HTMLDivElement_
@@ -48,6 +48,7 @@
  *     UseSceneSetupReturn ..> Point3D
  *     UseSceneSetupReturn ..> CameraState
  *     useSceneSetup ..> scene_elements_setup : uses setupRenderPipeline, setupLighting, setupGroundPlane
+ * ```
  */
 import { useRef, useEffect, useState, useCallback } from 'react';
 import * as THREE from 'three';

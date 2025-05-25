@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Utilitários para gerenciar a exibição de rótulos HTML (pins de anotação)
+ * Utilitários para gerenciar a exibição de rótulos HTML (pins de anotação)
  * sobrepostos à cena Three.js.
  *
  * Principal Responsabilidade:
@@ -9,7 +9,7 @@
  * com base na camada de anotações e fornecer uma função para atualizar o tamanho do
  * `CSS2DRenderer` em caso de redimensionamento da viewport.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     UpdateAnnotationPinsParams {
  *       +scene: THREE.Scene | null
@@ -28,6 +28,7 @@
  *     UpdateAnnotationPinsParams ..> Layer
  *     UpdateAnnotationPinsParams ..> React.MutableRefObject_CSS2DObject_Array_
  *     updateAnnotationPins ..> UpdateAnnotationPinsParams : receives
+ * ```
  *
  * Exporta:
  * - `updateLabelRendererSize`: Atualiza o tamanho do CSS2DRenderer.

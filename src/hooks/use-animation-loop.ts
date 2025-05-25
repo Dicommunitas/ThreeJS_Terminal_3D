@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Custom hook para gerenciar o loop de animação de uma cena Three.js.
+ * Custom hook para gerenciar o loop de animação de uma cena Three.js.
  *
  * Principal Responsabilidade:
  * Encapsular a lógica de `requestAnimationFrame` para renderizar a cena Three.js continuamente.
@@ -8,7 +8,7 @@
  * e o `CSS2DRenderer` (para rótulos HTML), garantindo que a animação só comece quando a cena
  * e todos os seus componentes necessários estiverem prontos.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     UseAnimationLoopProps {
  *       +isSceneReady: boolean
@@ -23,6 +23,7 @@
  *     RefObject_OrbitControls_ { current: OrbitControls | null }
  *     RefObject_EffectComposer_ { current: EffectComposer | null }
  *     RefObject_CSS2DRenderer_ { current: CSS2DRenderer | null }
+ * ```
  */
 import type * as THREE from 'three';
 import { useEffect, type RefObject } from 'react';

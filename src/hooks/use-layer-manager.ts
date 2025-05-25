@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Custom hook para gerenciar o estado das camadas (layers) de visibilidade na cena 3D
+ * Custom hook para gerenciar o estado das camadas (layers) de visibilidade na cena 3D
  * e a lógica para alternar sua visibilidade.
  *
  * Principal Responsabilidade:
@@ -9,7 +9,7 @@
  * Esta ação de alternância é integrada com o sistema de histórico de comandos (`useCommandHistory`)
  * para permitir undo/redo.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     UseLayerManagerProps {
  *       +executeCommand(command: Command): void
@@ -21,6 +21,7 @@
  *     UseLayerManagerProps ..> Command
  *     UseLayerManagerReturn ..> Layer
  *     useLayerManager ..> Command : uses (via executeCommand)
+ * ```
  */
 "use client";
 

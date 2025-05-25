@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Utilitários para determinar a cor dos equipamentos na cena 3D.
+ * Utilitários para determinar a cor dos equipamentos na cena 3D.
  *
  * Principal Responsabilidade:
  * Fornecer a lógica para calcular a cor de um equipamento com base no modo de

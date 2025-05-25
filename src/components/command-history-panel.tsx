@@ -1,13 +1,13 @@
 
 /**
- * @fileOverview Componente de painel para exibir controles de histórico de comandos (Undo/Redo).
+ * Componente de painel para exibir controles de histórico de comandos (Undo/Redo).
  *
  * Principal Responsabilidade:
  * Renderizar botões que permitem ao usuário desfazer (Undo) e refazer (Redo)
  * ações previamente executadas na aplicação, com base no estado fornecido pelo
  * hook `useCommandHistory`.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     CommandHistoryPanelProps {
  *       +canUndo: boolean
@@ -20,6 +20,7 @@
  *     CommandHistoryPanel ..> Card : uses
  *     CommandHistoryPanel ..> Undo2Icon : uses
  *     CommandHistoryPanel ..> Redo2Icon : uses
+ * ```
  */
 "use client";
 

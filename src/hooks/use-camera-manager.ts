@@ -1,13 +1,13 @@
 
 /**
- * @fileOverview Custom hook para gerenciar o estado e as interações da câmera 3D.
+ * Custom hook para gerenciar o estado e as interações da câmera 3D.
  *
  * Principal Responsabilidade:
  * Manter o estado da câmera (posição e ponto de observação), controlar o enquadramento
  * de sistemas de equipamentos e integrar movimentos de câmera com o sistema de histórico
  * de comandos para permitir undo/redo.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     UseCameraManagerReturn {
  *       +currentCameraState: CameraState | undefined
@@ -26,6 +26,7 @@
  *     UseCameraManagerReturn ..> CameraState
  *     UseCameraManagerReturn ..> Point3D
  *     useCameraManager ..> Command : uses (via executeCommand)
+ * ```
  */
 "use client";
 

@@ -3,7 +3,7 @@
  * Componente de diálogo modal para adicionar ou editar anotações textuais
  * associadas a um equipamento. Utiliza um Textarea para permitir anotações de texto longo.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     AnnotationDialogProps {
  *       +isOpen: boolean
@@ -20,6 +20,7 @@
  *       +text: string
  *       +createdAt: string
  *     }
+ * ```
  */
 "use client";
 

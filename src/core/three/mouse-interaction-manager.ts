@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Gerencia interações do mouse (clique e movimento) dentro da cena Three.js.
+ * Gerencia interações do mouse (clique e movimento) dentro da cena Three.js.
  *
  * ATENÇÃO: Este arquivo foi esvaziado. A lógica de interação do mouse
  * foi movida para o hook customizado `src/hooks/use-mouse-interaction.ts`

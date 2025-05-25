@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Custom hook responsável por buscar, armazenar e gerenciar os dados dos equipamentos
+ * Custom hook responsável por buscar, armazenar e gerenciar os dados dos equipamentos
  * utilizados na aplicação.
  *
  * Principal Responsabilidade:
@@ -9,7 +9,7 @@
  * modificar propriedades específicas dos equipamentos (estado operacional, produto),
  * usando `useToast` para feedback.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     UseEquipmentDataManagerReturn {
  *       +equipmentData: Equipment[]
@@ -18,6 +18,7 @@
  *     }
  *     UseEquipmentDataManagerReturn ..> Equipment
  *     useEquipmentDataManager ..> useToast : uses
+ * ```
  */
 import { useState, useCallback } from 'react';
 import type { Equipment } from '@/lib/types';

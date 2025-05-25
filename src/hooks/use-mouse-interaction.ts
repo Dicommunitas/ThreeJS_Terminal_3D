@@ -5,7 +5,7 @@ import { useRef, useEffect, useCallback } from 'react';
 import * as THREE from 'three';
 
 /**
- * @fileOverview Custom hook para gerenciar interações do mouse (clique e movimento)
+ * Custom hook para gerenciar interações do mouse (clique e movimento)
  * com objetos 3D em uma cena Three.js, especificamente para seleção e hover de equipamentos.
  * Anteriormente parte de `core/three/mouse-interaction-manager.ts`, agora encapsulado como hook.
  *
@@ -15,7 +15,7 @@ import * as THREE from 'three';
  * com base nessas interações. Adiciona e remove os ouvintes de eventos de mouse
  * do elemento de montagem da cena.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     UseMouseInteractionManagerProps {
  *       +mountRef: RefObject_HTMLDivElement_
@@ -33,6 +33,7 @@ import * as THREE from 'three';
  *     class RefObject_HTMLDivElement_ { current: HTMLDivElement | null }
  *     class RefObject_PerspectiveCamera_ { current: PerspectiveCamera | null }
  *     class RefObject_Object3D_Array_ { current: THREE.Object3D[] | null }
+ * ```
  */
 
 // Instâncias reutilizáveis para raycasting para otimizar performance.

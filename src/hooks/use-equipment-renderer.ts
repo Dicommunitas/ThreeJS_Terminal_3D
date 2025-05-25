@@ -7,7 +7,7 @@ import type { Equipment, Layer, ColorMode } from '@/lib/types';
 import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup';
 
 /**
- * @fileOverview Custom hook to manage the rendering of equipment meshes in the 3D scene.
+ * Custom hook to manage the rendering of equipment meshes in the 3D scene.
  *
  * Principal Responsabilidade:
  * Encapsular a lógica de criação, atualização e remoção dos meshes 3D que representam
@@ -16,7 +16,7 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
  * Utiliza `updateEquipmentMeshesInScene` de `scene-elements-setup.ts` para a lógica de sincronização
  * dos meshes e do plano de chão com base na visibilidade das camadas.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     UseEquipmentRendererProps {
  *       +sceneRef: RefObject_Scene_
@@ -37,6 +37,7 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
  *
  *     class RefObject_Scene_ { current: Scene | null }
  *     class RefObject_Mesh_ { current: Mesh | null }
+ * ```
  */
 export interface UseEquipmentRendererProps {
   sceneRef: React.RefObject<THREE.Scene | null>;

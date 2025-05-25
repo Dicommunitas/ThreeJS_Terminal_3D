@@ -1,12 +1,12 @@
 
 /**
- * @fileOverview Utilitário para filtrar a lista de equipamentos com base em múltiplos critérios.
+ * Utilitário para filtrar a lista de equipamentos com base em múltiplos critérios.
  *
  * Principal Responsabilidade:
  * Aplicar filtros de Sistema, Área e um termo de busca textual (nome, tipo, tag)
  * a uma lista de equipamentos, retornando a lista filtrada.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     EquipmentFilterCriteria {
  *       +searchTerm: string
@@ -22,6 +22,7 @@
  *        +sistema: string | undefined
  *        +area: string | undefined
  *     }
+ * ```
  *
  * Exporta:
  * - `EquipmentFilterCriteria`: Interface para os critérios de filtro.

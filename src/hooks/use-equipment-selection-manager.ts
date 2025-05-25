@@ -1,13 +1,13 @@
 
 /**
- * @fileOverview Custom hook para gerenciar o estado e a lógica de seleção e hover de equipamentos na cena 3D.
+ * Custom hook para gerenciar o estado e a lógica de seleção e hover de equipamentos na cena 3D.
  *
  * Principal Responsabilidade:
  * Manter o estado dos equipamentos selecionados e em hover, e fornecer funções para
  * manipular essas seleções (clique único, clique múltiplo, seleção em lote).
  * Integra-se com `useCommandHistory` para registrar ações de seleção e `useToast` para feedback.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     UseEquipmentSelectionManagerProps {
  *       +equipmentData: Equipment[]
@@ -24,6 +24,7 @@
  *     UseEquipmentSelectionManagerProps ..> Command : uses (via executeCommand)
  *     UseEquipmentSelectionManagerReturn ..> Command
  *     useEquipmentSelectionManager ..> useToast : uses
+ * ```
  */
 "use client";
 
@@ -52,7 +53,7 @@ export interface UseEquipmentSelectionManagerProps {
  * @property {(tag: string | null, isMultiSelectModifierPressed: boolean) => void} handleEquipmentClick - Manipulador para eventos de clique em equipamentos
  *                                                                                                       (ou em espaço vazio para deselecionar).
  * @property {(tag: string | null) => void} handleSetHoveredEquipmentTag - Define o equipamento atualmente em hover.
- * @property {(tagsToSelect: string[], operationDescription?: string) => void} selectTagsBatch - Seleciona programaticamente um lote de equipamentos.
+ * @property {(tagsToSelect: string[], operationDescription?: string) => void} selectTagsBatch - Seleciona programaticamente um conjunto de equipamentos.
  *                                                                                               `operationDescription` é usado para o histórico de comandos.
  */
 export interface UseEquipmentSelectionManagerReturn {

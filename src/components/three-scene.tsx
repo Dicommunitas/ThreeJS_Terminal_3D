@@ -55,6 +55,7 @@
  *   ThreeScene ..> useMouseInteractionManager : uses
  *   ThreeScene ..> useSceneOutline : uses
  *   ThreeScene ..> useAnimationLoop : uses
+ * ```
  */
 "use client";
 

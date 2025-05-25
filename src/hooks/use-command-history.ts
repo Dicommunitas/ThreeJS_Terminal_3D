@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Custom hook que fornece funcionalidade para gerenciar um histórico de comandos,
+ * Custom hook que fornece funcionalidade para gerenciar um histórico de comandos,
  * permitindo operações de desfazer (undo) e refazer (redo).
  *
  * Principal Responsabilidade:
@@ -8,7 +8,7 @@
  * e fornecer a capacidade de navegar para frente (redo) e para trás (undo)
  * nesse histórico, chamando as funções `execute()` e `undo()` dos respectivos comandos.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     UseCommandHistoryReturn {
  *       +executeCommand(command: Command): void
@@ -19,6 +19,7 @@
  *       +commandHistory: Command[]
  *     }
  *     UseCommandHistoryReturn ..> Command
+ * ```
  */
 import type { Command } from '@/lib/types';
 import { useState, useCallback } from 'react';

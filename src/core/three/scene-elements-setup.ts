@@ -1,6 +1,6 @@
 
 /**
- * @fileOverview Utilitários para configurar elementos básicos e gerenciar meshes de equipamentos em uma cena Three.js.
+ * Utilitários para configurar elementos básicos e gerenciar meshes de equipamentos em uma cena Three.js.
  *
  * Principal Responsabilidade:
  * Encapsular a lógica de baixo nível para a criação, configuração e atualização de
@@ -8,7 +8,7 @@
  * (WebGL e CSS2D), pipeline de pós-processamento (EffectComposer, OutlinePass), e a
  * sincronização dinâmica dos meshes de equipamentos com os dados da aplicação.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     setupRenderPipeline_return {
  *       +renderer: THREE.WebGLRenderer
@@ -28,6 +28,7 @@
  *       +groundMeshRef: React.MutableRefObject_Mesh_
  *     }
  *     updateEquipmentMeshesInScene ..> UpdateEquipmentMeshesParams : receives
+ * ```
  *
  * Exporta:
  * - `setupLighting`: Configura a iluminação da cena.

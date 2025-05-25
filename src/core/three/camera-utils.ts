@@ -1,12 +1,12 @@
 
 /**
- * @fileOverview Utilitários para cálculos e manipulações relacionados à câmera em cenas Three.js.
+ * Utilitários para cálculos e manipulações relacionados à câmera em cenas Three.js.
  *
  * Principal Responsabilidade:
  * Calcular a posição e o ponto de observação ideais da câmera para enquadrar um conjunto
  * de objetos 3D (meshes) de forma clara e centralizada na viewport.
  *
- * @mermaid
+ * ```mermaid
  *   classDiagram
  *     calculateViewForMeshes_params {
  *       +meshes: THREE.Object3D[]
@@ -18,6 +18,7 @@
  *     }
  *     calculateViewForMeshes ..> calculateViewForMeshes_params : receives
  *     calculateViewForMeshes ..> calculateViewForMeshes_return : returns or null
+ * ```
  *
  * Exporta:
  * - `calculateViewForMeshes`: Função para calcular a visão da câmera para um conjunto de meshes.
