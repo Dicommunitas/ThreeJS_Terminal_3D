@@ -3,22 +3,21 @@
  * Componente de diálogo modal para adicionar ou editar anotações textuais
  * associadas a um equipamento. Utiliza um Textarea para permitir anotações de texto longo.
  *
- * ```mermaid
- * classDiagram
- *   AnnotationDialogProps <|-- AnnotationDialog
- *   AnnotationDialogProps : +isOpen: boolean
- *   AnnotationDialogProps : +onOpenChange: (isOpen: boolean) -> void
- *   AnnotationDialogProps : +onConfirm: (text: string) -> void
- *   AnnotationDialogProps : +currentAnnotation: Annotation | null
- *   AnnotationDialogProps : +equipmentName: string
- *   AnnotationDialog ..> Annotation : uses (via currentAnnotation)
+ * @mermaid
+ *   classDiagram
+ *     AnnotationDialogProps <|-- AnnotationDialog
+ *     AnnotationDialogProps : +isOpen: boolean
+ *     AnnotationDialogProps : +onOpenChange: (isOpen: boolean) -> void
+ *     AnnotationDialogProps : +onConfirm: (text: string) -> void
+ *     AnnotationDialogProps : +currentAnnotation: Annotation | null
+ *     AnnotationDialogProps : +equipmentName: string
+ *     AnnotationDialog ..> Annotation : uses (via currentAnnotation)
  *
- *   class Annotation {
- *     +equipmentTag: string
- *     +text: string
- *     +createdAt: string
- *   }
- * ```
+ *     class Annotation {
+ *       +equipmentTag: string
+ *       +text: string
+ *       +createdAt: string
+ *     }
  */
 "use client";
 

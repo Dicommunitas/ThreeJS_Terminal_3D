@@ -7,19 +7,23 @@
  * manipular essas seleções (clique único, clique múltiplo, seleção em lote).
  * Integra-se com `useCommandHistory` para registrar ações de seleção e `useToast` para feedback.
  *
- * ```mermaid
- * classDiagram
- *   UseEquipmentSelectionManagerReturn {
- *     +selectedEquipmentTags: string[]
- *     +hoveredEquipmentTag: string | null
- *     +handleEquipmentClick(tag: string | null, isMultiSelectModifierPressed: boolean): void
- *     +handleSetHoveredEquipmentTag(tag: string | null): void
- *     +selectTagsBatch(tagsToSelect: string[], operationDescription?: string): void
- *   }
- *   useEquipmentSelectionManager ..> Equipment : uses (via equipmentData for names)
- *   useEquipmentSelectionManager ..> Command : uses (via executeCommand)
- *   useEquipmentSelectionManager ..> useToast : uses
- * ```
+ * @mermaid
+ *   classDiagram
+ *     UseEquipmentSelectionManagerProps {
+ *       +equipmentData: Equipment[]
+ *       +executeCommand(command: Command): void
+ *     }
+ *     UseEquipmentSelectionManagerReturn {
+ *       +selectedEquipmentTags: string[]
+ *       +hoveredEquipmentTag: string | null
+ *       +handleEquipmentClick(tag: string | null, isMultiSelectModifierPressed: boolean): void
+ *       +handleSetHoveredEquipmentTag(tag: string | null): void
+ *       +selectTagsBatch(tagsToSelect: string[], operationDescription?: string): void
+ *     }
+ *     UseEquipmentSelectionManagerProps ..> Equipment : uses (via equipmentData for names)
+ *     UseEquipmentSelectionManagerProps ..> Command : uses (via executeCommand)
+ *     UseEquipmentSelectionManagerReturn ..> Command
+ *     useEquipmentSelectionManager ..> useToast : uses
  */
 "use client";
 

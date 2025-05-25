@@ -10,48 +10,47 @@
  * e o comportamento para seus filhos, passando as props necessárias, incluindo a lista
  * completa de equipamentos (`allEquipmentData`) para contexto de renderização de anotações.
  *
- * ```mermaid
- * classDiagram
- *   MainSceneAreaProps {
- *     +equipment: Equipment[]
- *     +allEquipmentData: Equipment[]
- *     +layers: Layer[]
- *     +annotations: Annotation[]
- *     +selectedEquipmentTags: string[]
- *     +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
- *     +hoveredEquipmentTag: string | null
- *     +setHoveredEquipmentTag(tag: string | null): void
- *     +cameraState: CameraState | undefined
- *     +onCameraChange(cameraState: CameraState): void
- *     +initialCameraPosition: Point3D
- *     +initialCameraLookAt: Point3D
- *     +colorMode: ColorMode
- *     +targetSystemToFrame: string | null
- *     +onSystemFramed(): void
- *     +selectedEquipmentDetails: Equipment | null
- *     +equipmentAnnotation: Annotation | null
- *     +onOpenAnnotationDialog(): void
- *     +onDeleteAnnotation(equipmentTag: string): void
- *     +onOperationalStateChange(equipmentTag: string, newState: string): void
- *     +availableOperationalStatesList: string[]
- *     +onProductChange(equipmentTag: string, newProduct: string): void
- *     +availableProductsList: string[]
- *   }
- *   Point3D {
- *     +x: number
- *     +y: number
- *     +z: number
- *   }
- *   MainSceneAreaProps ..> Equipment
- *   MainSceneAreaProps ..> Layer
- *   MainSceneAreaProps ..> Annotation
- *   MainSceneAreaProps ..> CameraState
- *   MainSceneAreaProps ..> ColorMode
- *   MainSceneAreaProps ..> Point3D
- *   MainSceneArea --|> React.FC
- *   MainSceneArea ..> ThreeScene : uses
- *   MainSceneArea ..> InfoPanel : uses
- * ```
+ * @mermaid
+ *   classDiagram
+ *     MainSceneAreaProps {
+ *       +equipment: Equipment[]
+ *       +allEquipmentData: Equipment[]
+ *       +layers: Layer[]
+ *       +annotations: Annotation[]
+ *       +selectedEquipmentTags: string[]
+ *       +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
+ *       +hoveredEquipmentTag: string | null
+ *       +setHoveredEquipmentTag(tag: string | null): void
+ *       +cameraState: CameraState | undefined
+ *       +onCameraChange(cameraState: CameraState): void
+ *       +initialCameraPosition: Point3D
+ *       +initialCameraLookAt: Point3D
+ *       +colorMode: ColorMode
+ *       +targetSystemToFrame: string | null
+ *       +onSystemFramed(): void
+ *       +selectedEquipmentDetails: Equipment | null
+ *       +equipmentAnnotation: Annotation | null
+ *       +onOpenAnnotationDialog(): void
+ *       +onDeleteAnnotation(equipmentTag: string): void
+ *       +onOperationalStateChange(equipmentTag: string, newState: string): void
+ *       +availableOperationalStatesList: string[]
+ *       +onProductChange(equipmentTag: string, newProduct: string): void
+ *       +availableProductsList: string[]
+ *     }
+ *     Point3D {
+ *       +x: number
+ *       +y: number
+ *       +z: number
+ *     }
+ *     MainSceneAreaProps ..> Equipment
+ *     MainSceneAreaProps ..> Layer
+ *     MainSceneAreaProps ..> Annotation
+ *     MainSceneAreaProps ..> CameraState
+ *     MainSceneAreaProps ..> ColorMode
+ *     MainSceneAreaProps ..> Point3D
+ *     MainSceneArea --|> React.FC
+ *     MainSceneArea ..> ThreeScene : uses
+ *     MainSceneArea ..> InfoPanel : uses
  */
 "use client";
 

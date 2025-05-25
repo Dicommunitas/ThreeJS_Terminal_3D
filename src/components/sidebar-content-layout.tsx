@@ -13,35 +13,34 @@
  * - Gerenciador de camadas de visibilidade.
  * - Link para a documentação externa do projeto.
  *
- * ```mermaid
- * classDiagram
- *   SidebarContentLayoutProps {
- *     +searchTerm: string
- *     +setSearchTerm(value: string): void
- *     +selectedSistema: string
- *     +setSelectedSistema(value: string): void
- *     +availableSistemas: string[]
- *     +selectedArea: string
- *     +setSelectedArea(value: string): void
- *     +availableAreas: string[]
- *     +colorMode: ColorMode
- *     +onColorModeChange(mode: ColorMode): void
- *     +layers: Layer[]
- *     +onToggleLayer(layerId: string): void
- *     +cameraViewSystems: string[]
- *     +onFocusAndSelectSystem(systemName: string): void
- *   }
- *   SidebarContentLayoutProps ..> ColorMode
- *   SidebarContentLayoutProps ..> Layer
- *   SidebarContentLayout --|> React.FC
- *   SidebarContentLayout ..> CameraControlsPanel : uses
- *   SidebarContentLayout ..> ColorModeSelector : uses
- *   SidebarContentLayout ..> LayerManager : uses
- *   SidebarContentLayout ..> Input : uses
- *   SidebarContentLayout ..> Select : uses
- *   SidebarContentLayout ..> Button : uses
- *   SidebarContentLayout ..> ScrollArea : uses
- * ```
+ * @mermaid
+ *   classDiagram
+ *     SidebarContentLayoutProps {
+ *       +searchTerm: string
+ *       +setSearchTerm(value: string): void
+ *       +selectedSistema: string
+ *       +setSelectedSistema(value: string): void
+ *       +availableSistemas: string[]
+ *       +selectedArea: string
+ *       +setSelectedArea(value: string): void
+ *       +availableAreas: string[]
+ *       +colorMode: ColorMode
+ *       +onColorModeChange(mode: ColorMode): void
+ *       +layers: Layer[]
+ *       +onToggleLayer(layerId: string): void
+ *       +cameraViewSystems: string[]
+ *       +onFocusAndSelectSystem(systemName: string): void
+ *     }
+ *     SidebarContentLayoutProps ..> ColorMode
+ *     SidebarContentLayoutProps ..> Layer
+ *     SidebarContentLayout --|> React.FC
+ *     SidebarContentLayout ..> CameraControlsPanel : uses
+ *     SidebarContentLayout ..> ColorModeSelector : uses
+ *     SidebarContentLayout ..> LayerManager : uses
+ *     SidebarContentLayout ..> Input : uses
+ *     SidebarContentLayout ..> Select : uses
+ *     SidebarContentLayout ..> Button : uses
+ *     SidebarContentLayout ..> ScrollArea : uses
  */
 "use client";
 

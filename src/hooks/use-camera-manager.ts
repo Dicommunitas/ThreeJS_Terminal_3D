@@ -7,26 +7,25 @@
  * de sistemas de equipamentos e integrar movimentos de câmera com o sistema de histórico
  * de comandos para permitir undo/redo.
  *
- * ```mermaid
- * classDiagram
- *   UseCameraManagerReturn {
- *     +currentCameraState: CameraState | undefined
- *     +targetSystemToFrame: string | null
- *     +handleSetCameraViewForSystem(systemName: string): void
- *     +handleCameraChangeFromScene(newSceneCameraState: CameraState): void
- *     +onSystemFramed(): void
- *     +defaultInitialCameraPosition: Point3D
- *     +defaultInitialCameraLookAt: Point3D
- *   }
- *   Point3D {
- *     +x: number
- *     +y: number
- *     +z: number
- *   }
- *   UseCameraManagerReturn ..> CameraState
- *   UseCameraManagerReturn ..> Point3D
- *   useCameraManager ..> Command : uses (via executeCommand)
- * ```
+ * @mermaid
+ *   classDiagram
+ *     UseCameraManagerReturn {
+ *       +currentCameraState: CameraState | undefined
+ *       +targetSystemToFrame: string | null
+ *       +handleSetCameraViewForSystem(systemName: string): void
+ *       +handleCameraChangeFromScene(newSceneCameraState: CameraState): void
+ *       +onSystemFramed(): void
+ *       +defaultInitialCameraPosition: Point3D
+ *       +defaultInitialCameraLookAt: Point3D
+ *     }
+ *     Point3D {
+ *       +x: number
+ *       +y: number
+ *       +z: number
+ *     }
+ *     UseCameraManagerReturn ..> CameraState
+ *     UseCameraManagerReturn ..> Point3D
+ *     useCameraManager ..> Command : uses (via executeCommand)
  */
 "use client";
 

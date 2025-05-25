@@ -9,16 +9,15 @@
  * modificar propriedades específicas dos equipamentos (estado operacional, produto),
  * usando `useToast` para feedback.
  *
- * ```mermaid
- * classDiagram
- *   UseEquipmentDataManagerReturn {
- *     +equipmentData: Equipment[]
- *     +handleOperationalStateChange(equipmentTag: string, newState: string): void
- *     +handleProductChange(equipmentTag: string, newProduct: string): void
- *   }
- *   UseEquipmentDataManagerReturn ..> Equipment
- *   useEquipmentDataManager ..> useToast : uses
- * ```
+ * @mermaid
+ *   classDiagram
+ *     UseEquipmentDataManagerReturn {
+ *       +equipmentData: Equipment[]
+ *       +handleOperationalStateChange(equipmentTag: string, newState: string): void
+ *       +handleProductChange(equipmentTag: string, newProduct: string): void
+ *     }
+ *     UseEquipmentDataManagerReturn ..> Equipment
+ *     useEquipmentDataManager ..> useToast : uses
  */
 import { useState, useCallback } from 'react';
 import type { Equipment } from '@/lib/types';

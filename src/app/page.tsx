@@ -21,6 +21,44 @@
  * - Renderizar a estrutura principal da UI, incluindo a `Sidebar` e a `MainSceneArea`.
  * - Passar os estados e callbacks apropriados dos hooks para os componentes filhos.
  * - Definir lógicas de alto nível que coordenam múltiplos hooks (e.g., `handleFocusAndSelectSystem`).
+ *
+ * @mermaid
+ *   graph LR
+ *     Terminal3DPage --> useCommandHistory
+ *     Terminal3DPage --> useEquipmentDataManager
+ *     Terminal3DPage --> useCameraManager
+ *     Terminal3DPage --> useFilterManager
+ *     Terminal3DPage --> useAnnotationManager
+ *     Terminal3DPage --> useEquipmentSelectionManager
+ *     Terminal3DPage --> useLayerManager
+ *     Terminal3DPage --> MainSceneArea
+ *     Terminal3DPage --> Sidebar
+ *     Terminal3DPage --> AnnotationDialog
+ *
+ *     MainSceneArea --> ThreeScene
+ *     MainSceneArea --> InfoPanel
+ *     Sidebar --> SidebarContentLayout
+ *
+ *     subgraph "Hooks de Estado"
+ *       useCommandHistory
+ *       useEquipmentDataManager
+ *       useCameraManager
+ *       useFilterManager
+ *       useAnnotationManager
+ *       useEquipmentSelectionManager
+ *       useLayerManager
+ *     end
+ *
+ *     subgraph "Componentes de UI Principais"
+ *       MainSceneArea
+ *       Sidebar
+ *       AnnotationDialog
+ *       InfoPanel
+ *       ThreeScene
+ *       SidebarContentLayout
+ *     end
+ *
+ *     style Terminal3DPage fill:#f9f,stroke:#333,stroke-width:2px
  */
 "use client";
 

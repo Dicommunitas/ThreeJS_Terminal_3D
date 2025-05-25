@@ -12,21 +12,20 @@
  *   - Fornecer botões para adicionar, editar ou excluir a anotação.
  * - Fornecer um botão para fechar o painel de informações (desselecionando o equipamento).
  *
- * ```mermaid
- * classDiagram
- *   InfoPanelProps <|-- InfoPanel
- *   InfoPanelProps : +equipment: Equipment | null
- *   InfoPanelProps : +annotation: Annotation | null
- *   InfoPanelProps : +onClose: () -> void
- *   InfoPanelProps : +onOpenAnnotationDialog: () -> void
- *   InfoPanelProps : +onDeleteAnnotation: (equipmentTag: string) -> void
- *   InfoPanelProps : +onOperationalStateChange: (equipmentTag: string, newState: string) -> void
- *   InfoPanelProps : +availableOperationalStatesList: string[]
- *   InfoPanelProps : +onProductChange: (equipmentTag: string, newProduct: string) -> void
- *   InfoPanelProps : +availableProductsList: string[]
- *   InfoPanel ..> Equipment : uses
- *   InfoPanel ..> Annotation : uses
- * ```
+ * @mermaid
+ *   classDiagram
+ *     InfoPanelProps <|-- InfoPanel
+ *     InfoPanelProps : +equipment: Equipment | null
+ *     InfoPanelProps : +annotation: Annotation | null
+ *     InfoPanelProps : +onClose: () -> void
+ *     InfoPanelProps : +onOpenAnnotationDialog: () -> void
+ *     InfoPanelProps : +onDeleteAnnotation: (equipmentTag: string) -> void
+ *     InfoPanelProps : +onOperationalStateChange: (equipmentTag: string, newState: string) -> void
+ *     InfoPanelProps : +availableOperationalStatesList: string[]
+ *     InfoPanelProps : +onProductChange: (equipmentTag: string, newProduct: string) -> void
+ *     InfoPanelProps : +availableProductsList: string[]
+ *     InfoPanel ..> Equipment : uses
+ *     InfoPanel ..> Annotation : uses
  */
 "use client";
 

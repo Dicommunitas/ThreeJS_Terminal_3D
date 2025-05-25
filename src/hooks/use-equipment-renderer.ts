@@ -16,28 +16,27 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
  * Utiliza `updateEquipmentMeshesInScene` de `scene-elements-setup.ts` para a lógica de sincronização
  * dos meshes e do plano de chão com base na visibilidade das camadas.
  *
- * ```mermaid
- * classDiagram
- *   UseEquipmentRendererProps {
- *     +sceneRef: RefObject_Scene_
- *     +isSceneReady: boolean
- *     +equipmentData: Equipment[]  // Filtered list
- *     +layers: Layer[]
- *     +colorMode: ColorMode
- *     +createSingleEquipmentMesh(item: Equipment): Object3D
- *     +groundMeshRef: RefObject_Mesh_
- *   }
- *   useEquipmentRenderer --|> React.FC_Hook
- *   useEquipmentRenderer ..> scene_elements_setup : uses updateEquipmentMeshesInScene
- *   UseEquipmentRendererProps ..> Equipment
- *   UseEquipmentRendererProps ..> Layer
- *   UseEquipmentRendererProps ..> ColorMode
- *   UseEquipmentRendererProps ..> RefObject_Scene_
- *   UseEquipmentRendererProps ..> RefObject_Mesh_
+ * @mermaid
+ *   classDiagram
+ *     UseEquipmentRendererProps {
+ *       +sceneRef: RefObject_Scene_
+ *       +isSceneReady: boolean
+ *       +equipmentData: Equipment[]  // Filtered list
+ *       +layers: Layer[]
+ *       +colorMode: ColorMode
+ *       +createSingleEquipmentMesh(item: Equipment): Object3D
+ *       +groundMeshRef: RefObject_Mesh_
+ *     }
+ *     useEquipmentRenderer --|> React.FC_Hook
+ *     useEquipmentRenderer ..> scene_elements_setup : uses updateEquipmentMeshesInScene
+ *     UseEquipmentRendererProps ..> Equipment
+ *     UseEquipmentRendererProps ..> Layer
+ *     UseEquipmentRendererProps ..> ColorMode
+ *     UseEquipmentRendererProps ..> RefObject_Scene_
+ *     UseEquipmentRendererProps ..> RefObject_Mesh_
  *
- *   class RefObject_Scene_ { +current: Scene | null }
- *   class RefObject_Mesh_ { +current: Mesh | null }
- * ```
+ *     class RefObject_Scene_ { current: Scene | null }
+ *     class RefObject_Mesh_ { current: Mesh | null }
  */
 interface UseEquipmentRendererProps {
   sceneRef: React.RefObject<THREE.Scene | null>;

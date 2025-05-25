@@ -8,30 +8,29 @@
  * associadas a equipamentos específicos. Cada equipamento pode ter no máximo uma anotação.
  * Utiliza `useToast` para feedback ao usuário.
  *
- * ```mermaid
- * classDiagram
- *   UseAnnotationManagerProps {
- *     +initialAnnotations: Annotation[]
- *     +equipmentData: Equipment[]
- *   }
- *   UseAnnotationManagerReturn {
- *     +annotations: Annotation[]
- *     +isAnnotationDialogOpen: boolean
- *     +annotationTargetEquipment: Equipment | null
- *     +editingAnnotation: Annotation | null
- *     +handleOpenAnnotationDialog(equipment: Equipment | null): void
- *     +handleSaveAnnotation(text: string): void
- *     +handleDeleteAnnotation(equipmentTag: string): void
- *     +getAnnotationForEquipment(equipmentTag: string | null): Annotation | null
- *     +setAnnotations(annotations: Annotation[]): void
- *     +setIsAnnotationDialogOpen(isOpen: boolean): void
- *   }
- *   UseAnnotationManagerProps ..> Annotation
- *   UseAnnotationManagerProps ..> Equipment
- *   UseAnnotationManagerReturn ..> Annotation
- *   UseAnnotationManagerReturn ..> Equipment
- *   useAnnotationManager ..> useToast : uses
- * ```
+ * @mermaid
+ *   classDiagram
+ *     UseAnnotationManagerProps {
+ *       +initialAnnotations: Annotation[]
+ *       +equipmentData: Equipment[]
+ *     }
+ *     UseAnnotationManagerReturn {
+ *       +annotations: Annotation[]
+ *       +isAnnotationDialogOpen: boolean
+ *       +annotationTargetEquipment: Equipment | null
+ *       +editingAnnotation: Annotation | null
+ *       +handleOpenAnnotationDialog(equipment: Equipment | null): void
+ *       +handleSaveAnnotation(text: string): void
+ *       +handleDeleteAnnotation(equipmentTag: string): void
+ *       +getAnnotationForEquipment(equipmentTag: string | null): Annotation | null
+ *       +setAnnotations(annotations: Annotation[]): void
+ *       +setIsAnnotationDialogOpen(isOpen: boolean): void
+ *     }
+ *     UseAnnotationManagerProps ..> Annotation
+ *     UseAnnotationManagerProps ..> Equipment
+ *     UseAnnotationManagerReturn ..> Annotation
+ *     UseAnnotationManagerReturn ..> Equipment
+ *     useAnnotationManager ..> useToast : uses
  */
 "use client";
 
@@ -152,7 +151,6 @@ export function useAnnotationManager({ initialAnnotations = [], equipmentData }:
     });
 
     if (toastDescriptionMessage) {
-      // Defer toast call
       setTimeout(() => {
         toast({ title: "Anotação Salva", description: toastDescriptionMessage });
       }, 0);
@@ -171,7 +169,7 @@ export function useAnnotationManager({ initialAnnotations = [], equipmentData }:
    */
   const handleDeleteAnnotation = useCallback((equipmentTag: string) => {
     const equipment = equipmentData.find(e => e.tag === equipmentTag);
-    if (!equipment) return; // Equipamento não encontrado, não faz nada
+    if (!equipment) return; 
 
     let toastTitleMessage = "";
     let toastDescriptionMessage = "";
@@ -180,7 +178,6 @@ export function useAnnotationManager({ initialAnnotations = [], equipmentData }:
     setAnnotations(prevAnnotations => {
       const newAnnotationsList = prevAnnotations.filter(a => a.equipmentTag !== equipmentTag);
       if (prevAnnotations.length === newAnnotationsList.length) {
-        // Nenhuma anotação foi removida, significa que não existia
         toastTitleMessage = "Nenhuma Anotação";
         toastDescriptionMessage = `Nenhuma anotação encontrada para ${equipment.name} para excluir.`;
         toastVariantValue = "destructive";
@@ -191,7 +188,6 @@ export function useAnnotationManager({ initialAnnotations = [], equipmentData }:
       return newAnnotationsList;
     });
 
-    // Se o diálogo estava aberto para este equipamento, fecha e limpa
     if (annotationTargetEquipment?.tag === equipmentTag) {
         setIsAnnotationDialogOpen(false);
         setEditingAnnotation(null);
@@ -199,7 +195,6 @@ export function useAnnotationManager({ initialAnnotations = [], equipmentData }:
     }
 
     if (toastTitleMessage && toastDescriptionMessage) {
-      // Defer toast call
       setTimeout(() => {
         toast({ title: toastTitleMessage, description: toastDescriptionMessage, variant: toastVariantValue });
       }, 0);

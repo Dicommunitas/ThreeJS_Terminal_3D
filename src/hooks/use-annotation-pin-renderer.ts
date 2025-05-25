@@ -16,27 +16,26 @@ import { updateAnnotationPins } from '@/core/three/label-renderer-utils';
  * (para posicionamento), e camadas de visibilidade, atualizando os pins conforme necessário.
  * Utiliza `updateAnnotationPins` de `label-renderer-utils.ts` para a lógica de sincronização.
  *
- * ```mermaid
- * classDiagram
- *   UseAnnotationPinRendererProps {
- *     +sceneRef: RefObject_Scene_
- *     +labelRendererRef: RefObject_CSS2DRenderer_
- *     +isSceneReady: boolean
- *     +annotations: Annotation[]
- *     +allEquipmentData: Equipment[] // Full list for correct positioning
- *     +layers: Layer[]
- *   }
- *   useAnnotationPinRenderer --|> React.FC_Hook
- *   useAnnotationPinRenderer ..> label_renderer_utils : uses updateAnnotationPins
- *   UseAnnotationPinRendererProps ..> Annotation
- *   UseAnnotationPinRendererProps ..> Equipment
- *   UseAnnotationPinRendererProps ..> Layer
- *   UseAnnotationPinRendererProps ..> RefObject_Scene_
- *   UseAnnotationPinRendererProps ..> RefObject_CSS2DRenderer_
+ * @mermaid
+ *   classDiagram
+ *     UseAnnotationPinRendererProps {
+ *       +sceneRef: RefObject_Scene_
+ *       +labelRendererRef: RefObject_CSS2DRenderer_
+ *       +isSceneReady: boolean
+ *       +annotations: Annotation[]
+ *       +allEquipmentData: Equipment[] // Full list for correct positioning
+ *       +layers: Layer[]
+ *     }
+ *     useAnnotationPinRenderer --|> React.FC_Hook
+ *     useAnnotationPinRenderer ..> label_renderer_utils : uses updateAnnotationPins
+ *     UseAnnotationPinRendererProps ..> Annotation
+ *     UseAnnotationPinRendererProps ..> Equipment
+ *     UseAnnotationPinRendererProps ..> Layer
+ *     UseAnnotationPinRendererProps ..> RefObject_Scene_
+ *     UseAnnotationPinRendererProps ..> RefObject_CSS2DRenderer_
  *
- *   class RefObject_Scene_ { +current: Scene | null }
- *   class RefObject_CSS2DRenderer_ { +current: CSS2DRenderer | null }
- * ```
+ *     class RefObject_Scene_ { current: Scene | null }
+ *     class RefObject_CSS2DRenderer_ { current: CSS2DRenderer | null }
  */
 interface UseAnnotationPinRendererProps {
   sceneRef: React.RefObject<THREE.Scene | null>;

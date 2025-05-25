@@ -15,25 +15,24 @@ import * as THREE from 'three';
  * com base nessas interações. Adiciona e remove os ouvintes de eventos de mouse
  * do elemento de montagem da cena.
  *
- * ```mermaid
- * classDiagram
- *   UseMouseInteractionManagerProps {
- *     +mountRef: RefObject_HTMLDivElement_
- *     +cameraRef: RefObject_PerspectiveCamera_
- *     +equipmentMeshesRef: RefObject_Object3D_Array_
- *     +isSceneReady: boolean
- *     +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
- *     +setHoveredEquipmentTag(tag: string | null): void
- *   }
- *   useMouseInteractionManager --|> React.FC_Hook
- *   UseMouseInteractionManagerProps ..> RefObject_HTMLDivElement_
- *   UseMouseInteractionManagerProps ..> RefObject_PerspectiveCamera_
- *   UseMouseInteractionManagerProps ..> RefObject_Object3D_Array_
+ * @mermaid
+ *   classDiagram
+ *     UseMouseInteractionManagerProps {
+ *       +mountRef: RefObject_HTMLDivElement_
+ *       +cameraRef: RefObject_PerspectiveCamera_
+ *       +equipmentMeshesRef: RefObject_Object3D_Array_
+ *       +isSceneReady: boolean
+ *       +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
+ *       +setHoveredEquipmentTag(tag: string | null): void
+ *     }
+ *     useMouseInteractionManager --|> React.FC_Hook
+ *     UseMouseInteractionManagerProps ..> RefObject_HTMLDivElement_
+ *     UseMouseInteractionManagerProps ..> RefObject_PerspectiveCamera_
+ *     UseMouseInteractionManagerProps ..> RefObject_Object3D_Array_
  *
- *   class RefObject_HTMLDivElement_ { +current: HTMLDivElement | null }
- *   class RefObject_PerspectiveCamera_ { +current: PerspectiveCamera | null }
- *   class RefObject_Object3D_Array_ { +current: THREE.Object3D[] | null }
- * ```
+ *     class RefObject_HTMLDivElement_ { current: HTMLDivElement | null }
+ *     class RefObject_PerspectiveCamera_ { current: PerspectiveCamera | null }
+ *     class RefObject_Object3D_Array_ { current: THREE.Object3D[] | null }
  */
 
 // Instâncias reutilizáveis para raycasting para otimizar performance.

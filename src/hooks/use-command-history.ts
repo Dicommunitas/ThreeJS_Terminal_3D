@@ -8,18 +8,17 @@
  * e fornecer a capacidade de navegar para frente (redo) e para trás (undo)
  * nesse histórico, chamando as funções `execute()` e `undo()` dos respectivos comandos.
  *
- * ```mermaid
- * classDiagram
- *   UseCommandHistoryReturn {
- *     +executeCommand(command: Command): void
- *     +undo(): void
- *     +redo(): void
- *     +canUndo: boolean
- *     +canRedo: boolean
- *     +commandHistory: Command[]
- *   }
- *   UseCommandHistoryReturn ..> Command
- * ```
+ * @mermaid
+ *   classDiagram
+ *     UseCommandHistoryReturn {
+ *       +executeCommand(command: Command): void
+ *       +undo(): void
+ *       +redo(): void
+ *       +canUndo: boolean
+ *       +canRedo: boolean
+ *       +commandHistory: Command[]
+ *     }
+ *     UseCommandHistoryReturn ..> Command
  */
 import type { Command } from '@/lib/types';
 import { useState, useCallback } from 'react';

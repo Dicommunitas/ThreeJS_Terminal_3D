@@ -7,22 +7,25 @@
  * de opções de filtro disponíveis (sistemas, áreas) e calcular a lista de
  * equipamentos que correspondem aos filtros atuais, utilizando `getFilteredEquipment`.
  *
- * ```mermaid
- * classDiagram
- *   UseFilterManagerReturn {
- *     +searchTerm: string
- *     +setSearchTerm(value: string): void
- *     +selectedSistema: string
- *     +setSelectedSistema(value: string): void
- *     +selectedArea: string
- *     +setSelectedArea(value: string): void
- *     +availableSistemas: string[]
- *     +availableAreas: string[]
- *     +filteredEquipment: Equipment[]
- *   }
- *   UseFilterManagerReturn ..> Equipment
- *   useFilterManager ..> equipment_filter : uses getFilteredEquipment
- * ```
+ * @mermaid
+ *   classDiagram
+ *     UseFilterManagerProps {
+ *       +allEquipment: Equipment[]
+ *     }
+ *     UseFilterManagerReturn {
+ *       +searchTerm: string
+ *       +setSearchTerm(value: string): void
+ *       +selectedSistema: string
+ *       +setSelectedSistema(value: string): void
+ *       +selectedArea: string
+ *       +setSelectedArea(value: string): void
+ *       +availableSistemas: string[]
+ *       +availableAreas: string[]
+ *       +filteredEquipment: Equipment[]
+ *     }
+ *     UseFilterManagerProps ..> Equipment
+ *     UseFilterManagerReturn ..> Equipment
+ *     useFilterManager ..> equipment_filter : uses getFilteredEquipment
  */
 'use client';
 

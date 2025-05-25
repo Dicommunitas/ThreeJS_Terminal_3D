@@ -9,46 +9,45 @@
  * iluminação básica e um plano de chão. Gerencia também o estado de "prontidão" da cena
  * e o tratamento de redimensionamento da janela/contêiner.
  *
- * ```mermaid
- * classDiagram
- *   UseSceneSetupProps {
- *     +mountRef: RefObject_HTMLDivElement_
- *     +initialCameraPosition: Point3D
- *     +initialCameraLookAt: Point3D
- *     +onCameraChange(cameraState: CameraState): void
- *   }
- *   UseSceneSetupReturn {
- *     +sceneRef: RefObject_Scene_
- *     +cameraRef: RefObject_PerspectiveCamera_
- *     +rendererRef: RefObject_WebGLRenderer_
- *     +labelRendererRef: RefObject_CSS2DRenderer_
- *     +controlsRef: RefObject_OrbitControls_
- *     +composerRef: RefObject_EffectComposer_
- *     +outlinePassRef: RefObject_OutlinePass_
- *     +groundMeshRef: RefObject_Mesh_
- *     +isSceneReady: boolean
- *   }
- *   Point3D {
- *     +x: number
- *     +y: number
- *     +z: number
- *   }
- *   RefObject_HTMLDivElement_ { +current: HTMLDivElement | null }
- *   RefObject_Scene_ { +current: Scene | null }
- *   RefObject_PerspectiveCamera_ { +current: PerspectiveCamera | null }
- *   RefObject_WebGLRenderer_ { +current: WebGLRenderer | null }
- *   RefObject_CSS2DRenderer_ { +current: CSS2DRenderer | null }
- *   RefObject_OrbitControls_ { +current: OrbitControls | null }
- *   RefObject_EffectComposer_ { +current: EffectComposer | null }
- *   RefObject_OutlinePass_ { +current: OutlinePass | null }
- *   RefObject_Mesh_ { +current: Mesh | null }
+ * @mermaid
+ *   classDiagram
+ *     UseSceneSetupProps {
+ *       +mountRef: RefObject_HTMLDivElement_
+ *       +initialCameraPosition: Point3D
+ *       +initialCameraLookAt: Point3D
+ *       +onCameraChange(cameraState: CameraState): void
+ *     }
+ *     UseSceneSetupReturn {
+ *       +sceneRef: RefObject_Scene_
+ *       +cameraRef: RefObject_PerspectiveCamera_
+ *       +rendererRef: RefObject_WebGLRenderer_
+ *       +labelRendererRef: RefObject_CSS2DRenderer_
+ *       +controlsRef: RefObject_OrbitControls_
+ *       +composerRef: RefObject_EffectComposer_
+ *       +outlinePassRef: RefObject_OutlinePass_
+ *       +groundMeshRef: RefObject_Mesh_
+ *       +isSceneReady: boolean
+ *     }
+ *     Point3D {
+ *       +x: number
+ *       +y: number
+ *       +z: number
+ *     }
+ *     RefObject_HTMLDivElement_ { current: HTMLDivElement | null }
+ *     RefObject_Scene_ { current: Scene | null }
+ *     RefObject_PerspectiveCamera_ { current: PerspectiveCamera | null }
+ *     RefObject_WebGLRenderer_ { current: WebGLRenderer | null }
+ *     RefObject_CSS2DRenderer_ { current: CSS2DRenderer | null }
+ *     RefObject_OrbitControls_ { current: OrbitControls | null }
+ *     RefObject_EffectComposer_ { current: EffectComposer | null }
+ *     RefObject_OutlinePass_ { current: OutlinePass | null }
+ *     RefObject_Mesh_ { current: Mesh | null }
  *
- *   UseSceneSetupProps ..> Point3D
- *   UseSceneSetupProps ..> CameraState
- *   UseSceneSetupReturn ..> Point3D
- *   UseSceneSetupReturn ..> CameraState
- *   useSceneSetup ..> scene_elements_setup : uses setupRenderPipeline, setupLighting, setupGroundPlane
- * ```
+ *     UseSceneSetupProps ..> Point3D
+ *     UseSceneSetupProps ..> CameraState
+ *     UseSceneSetupReturn ..> Point3D
+ *     UseSceneSetupReturn ..> CameraState
+ *     useSceneSetup ..> scene_elements_setup : uses setupRenderPipeline, setupLighting, setupGroundPlane
  */
 import { useRef, useEffect, useState, useCallback } from 'react';
 import * as THREE from 'three';
@@ -83,8 +82,7 @@ interface UseSceneSetupProps {
  * @property {React.RefObject<THREE.WebGLRenderer | null>} rendererRef - Ref to the WebGLRenderer.
  * @property {React.RefObject<CSS2DRenderer | null>} labelRendererRef - Ref to the CSS2DRenderer.
  * @property {React.RefObject<OrbitControlsType | null>} controlsRef - Ref to the OrbitControls.
- *                                                                    Configured for Left and Middle mouse buttons to rotate,
- *                                                                    and Right mouse button to pan.
+ *           Configured for Left and Middle mouse buttons to rotate, and Right mouse button to pan.
  * @property {React.RefObject<EffectComposer | null>} composerRef - Ref to the EffectComposer.
  * @property {React.RefObject<OutlinePass | null>} outlinePassRef - Ref to the OutlinePass.
  * @property {React.RefObject<THREE.Mesh | null>} groundMeshRef - Ref to the ground plane mesh.
@@ -203,7 +201,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
 
         localControls.mouseButtons = {
           LEFT: THREE.MOUSE.ROTATE,
-          MIDDLE: THREE.MOUSE.ROTATE, // Changed from DOLLY to ROTATE for orbit
+          MIDDLE: THREE.MOUSE.ROTATE, 
           RIGHT: THREE.MOUSE.PAN
         };
         localControls.update();

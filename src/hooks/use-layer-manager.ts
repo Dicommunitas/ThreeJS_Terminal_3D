@@ -9,15 +9,18 @@
  * Esta ação de alternância é integrada com o sistema de histórico de comandos (`useCommandHistory`)
  * para permitir undo/redo.
  *
- * ```mermaid
- * classDiagram
- *   UseLayerManagerReturn {
- *     +layers: Layer[]
- *     +handleToggleLayer(layerId: string): void
- *   }
- *   UseLayerManagerReturn ..> Layer
- *   useLayerManager ..> Command : uses (via executeCommand)
- * ```
+ * @mermaid
+ *   classDiagram
+ *     UseLayerManagerProps {
+ *       +executeCommand(command: Command): void
+ *     }
+ *     UseLayerManagerReturn {
+ *       +layers: Layer[]
+ *       +handleToggleLayer(layerId: string): void
+ *     }
+ *     UseLayerManagerProps ..> Command
+ *     UseLayerManagerReturn ..> Layer
+ *     useLayerManager ..> Command : uses (via executeCommand)
  */
 "use client";
 
