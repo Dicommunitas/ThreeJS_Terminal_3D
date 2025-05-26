@@ -22,7 +22,7 @@
  *
  * Utiliza cookies para persistir o estado da sidebar entre as sessões (desktop) e atalhos de teclado.
  *
- * ```mermaid
+ * @mermaid
  *   graph LR
  *     App --> SidebarProvider
  *     SidebarProvider --> Sidebar
@@ -41,7 +41,7 @@
  *     SidebarMenuSub --> SidebarMenuSubItem
  *     SidebarMenuSubItem --> SidebarMenuSubButton
  *     App --> SidebarTrigger
- * ```
+ *
  */
 "use client"
 
@@ -55,7 +55,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
-import { Sheet, SheetContent } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet" // Added SheetTitle
 import { Skeleton } from "@/components/ui/skeleton"
 import {
   Tooltip,
@@ -81,7 +81,7 @@ export type SidebarContext = {
   toggleSidebar: () => void
 }
 
-const SidebarContext = React.createContext<SidebarContext | null>(null)
+const _SidebarContext = React.createContext<SidebarContext | null>(null) // Renamed to avoid conflict
 
 /**
  * Hook para acessar o contexto da Sidebar.
@@ -89,8 +89,8 @@ const SidebarContext = React.createContext<SidebarContext | null>(null)
  * @returns {SidebarContext} O contexto da sidebar.
  * @throws {Error} Se usado fora de um `SidebarProvider`.
  */
-export function useSidebar() { // Adicionado export
-  const context = React.useContext(SidebarContext)
+export function useSidebar() { 
+  const context = React.useContext(_SidebarContext) // Use renamed context
   if (!context) {
     throw new Error("useSidebar must be used within a SidebarProvider.")
   }
@@ -189,7 +189,7 @@ const SidebarProvider = React.forwardRef<
     )
 
     return (
-      <SidebarContext.Provider value={contextValue}>
+      <_SidebarContext.Provider value={contextValue}>
         <TooltipProvider delayDuration={0}>
           <div
             style={
@@ -209,7 +209,7 @@ const SidebarProvider = React.forwardRef<
             {children}
           </div>
         </TooltipProvider>
-      </SidebarContext.Provider>
+      </_SidebarContext.Provider>
     )
   }
 )
@@ -281,6 +281,8 @@ const Sidebar = React.forwardRef<
             }
             side={side}
           >
+            {/* Add a visually hidden title for accessibility */}
+            <SheetTitle className="sr-only">Navegação Principal</SheetTitle>
             <div className="flex h-full w-full flex-col">{children}</div>
           </SheetContent>
         </Sheet>
@@ -953,3 +955,7 @@ export {
   SidebarTrigger,
   // useSidebar, // A exportação de useSidebar já está acima com export type
 }
+
+export type { SidebarContext as _SidebarContextType }; // Exporting the type for external use if needed, aliased.
+
+    
