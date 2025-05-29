@@ -232,7 +232,7 @@ associadas a um equipamento. Utiliza um Textarea para permitir anotações de te
 
 ```mermaid
   classDiagram
-    AnnotationDialogProps {
+    class AnnotationDialogProps {
       +isOpen: boolean
       +onOpenChange: (isOpen: boolean) -> void
       +onConfirm: (text: string) -> void
