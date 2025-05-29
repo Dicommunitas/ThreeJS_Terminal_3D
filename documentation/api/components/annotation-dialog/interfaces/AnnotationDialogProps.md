@@ -6,7 +6,7 @@
 
 # Interface: AnnotationDialogProps
 
-Defined in: [src/components/annotation-dialog.tsx:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/annotation-dialog.tsx#L55)
+Defined in: [src/components/annotation-dialog.tsx:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/annotation-dialog.tsx#L56)
 
 Props para o componente AnnotationDialog.
  AnnotationDialogProps
@@ -17,7 +17,7 @@ Props para o componente AnnotationDialog.
 
 > **currentAnnotation**: `null` \| [`Annotation`](../../../lib/types/interfaces/Annotation.md)
 
-Defined in: [src/components/annotation-dialog.tsx:59](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/annotation-dialog.tsx#L59)
+Defined in: [src/components/annotation-dialog.tsx:60](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/annotation-dialog.tsx#L60)
 
 A anotação atual sendo editada, ou null se for uma nova anotação.
 
@@ -27,7 +27,7 @@ A anotação atual sendo editada, ou null se for uma nova anotação.
 
 > **equipmentName**: `string`
 
-Defined in: [src/components/annotation-dialog.tsx:60](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/annotation-dialog.tsx#L60)
+Defined in: [src/components/annotation-dialog.tsx:61](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/annotation-dialog.tsx#L61)
 
 O nome do equipamento ao qual a anotação se refere, para exibição no diálogo.
 
@@ -37,7 +37,7 @@ O nome do equipamento ao qual a anotação se refere, para exibição no diálog
 
 > **isOpen**: `boolean`
 
-Defined in: [src/components/annotation-dialog.tsx:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/annotation-dialog.tsx#L56)
+Defined in: [src/components/annotation-dialog.tsx:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/annotation-dialog.tsx#L57)
 
 Controla se o diálogo está aberto ou fechado.
 
@@ -47,7 +47,7 @@ Controla se o diálogo está aberto ou fechado.
 
 > **onConfirm**: (`text`) => `void`
 
-Defined in: [src/components/annotation-dialog.tsx:58](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/annotation-dialog.tsx#L58)
+Defined in: [src/components/annotation-dialog.tsx:59](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/annotation-dialog.tsx#L59)
 
 Callback para confirmar e salvar a anotação, passando o texto inserido.
 
@@ -67,7 +67,7 @@ Callback para confirmar e salvar a anotação, passando o texto inserido.
 
 > **onOpenChange**: (`isOpen`) => `void`
 
-Defined in: [src/components/annotation-dialog.tsx:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/annotation-dialog.tsx#L57)
+Defined in: [src/components/annotation-dialog.tsx:58](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/annotation-dialog.tsx#L58)
 
 Callback para quando o estado de abertura do diálogo muda.
 

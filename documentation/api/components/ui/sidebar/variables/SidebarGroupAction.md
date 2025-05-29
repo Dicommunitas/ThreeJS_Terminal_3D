@@ -8,7 +8,7 @@
 
 > `const` **SidebarGroupAction**: `ForwardRefExoticComponent`\<`Omit`\<`ClassAttributes`\<`HTMLButtonElement`\> & `ButtonHTMLAttributes`\<`HTMLButtonElement`\> & `object`, `"ref"`\> & `RefAttributes`\<`HTMLButtonElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:603](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/ui/sidebar.tsx#L603)
+Defined in: [src/components/ui/sidebar.tsx:620](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/ui/sidebar.tsx#L620)
 
 Botão de ação opcional para um `SidebarGroup` (e.g., um botão "+").
 Fica oculto quando a sidebar está em modo "icon".

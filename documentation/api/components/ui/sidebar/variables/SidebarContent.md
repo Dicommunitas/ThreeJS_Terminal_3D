@@ -8,6 +8,6 @@
 
 > `const` **SidebarContent**: `ForwardRefExoticComponent`\<`Omit`\<`DetailedHTMLProps`\<`HTMLAttributes`\<`HTMLDivElement`\>, `HTMLDivElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:539](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/ui/sidebar.tsx#L539)
+Defined in: [src/components/ui/sidebar.tsx:556](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/ui/sidebar.tsx#L556)
 
 Contêiner para a área de conteúdo principal da Sidebar (geralmente rolável).

@@ -8,7 +8,7 @@
 
 > `const` **SidebarRail**: `ForwardRefExoticComponent`\<`Omit`\<`DetailedHTMLProps`\<`ButtonHTMLAttributes`\<`HTMLButtonElement`\>, `HTMLButtonElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLButtonElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:409](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/ui/sidebar.tsx#L409)
+Defined in: [src/components/ui/sidebar.tsx:426](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/ui/sidebar.tsx#L426)
 
 Barra lateral fina ("rail") que aparece quando a sidebar está colapsada em modo "icon".
 Permite ao usuário clicar para expandir a sidebar.

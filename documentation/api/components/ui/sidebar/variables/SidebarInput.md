@@ -8,6 +8,6 @@
 
 > `const` **SidebarInput**: `ForwardRefExoticComponent`\<`Omit`\<`Omit`\<`DetailedHTMLProps`\<`InputHTMLAttributes`\<`HTMLInputElement`\>, `HTMLInputElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLInputElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLInputElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:464](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/ui/sidebar.tsx#L464)
+Defined in: [src/components/ui/sidebar.tsx:481](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/ui/sidebar.tsx#L481)
 
 Componente de Input estilizado para uso dentro da Sidebar.

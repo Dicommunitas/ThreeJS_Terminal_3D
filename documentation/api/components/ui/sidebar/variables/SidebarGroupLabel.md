@@ -8,6 +8,6 @@
 
 > `const` **SidebarGroupLabel**: `ForwardRefExoticComponent`\<`Omit`\<`ClassAttributes`\<`HTMLDivElement`\> & `HTMLAttributes`\<`HTMLDivElement`\> & `object`, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:578](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/ui/sidebar.tsx#L578)
+Defined in: [src/components/ui/sidebar.tsx:595](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/ui/sidebar.tsx#L595)
 
 Rótulo para um `SidebarGroup`. Fica oculto quando a sidebar está em modo "icon".

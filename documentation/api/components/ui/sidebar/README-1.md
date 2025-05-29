@@ -8,12 +8,6 @@
 
 ## References
 
-### \_SidebarContextType
-
-Renames and re-exports [SidebarContext](type-aliases/SidebarContext.md)
-
-***
-
 ### Sidebar
 
 Re-exports [Sidebar](variables/Sidebar.md)

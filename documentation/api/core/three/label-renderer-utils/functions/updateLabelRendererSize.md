@@ -8,7 +8,7 @@
 
 > **updateLabelRendererSize**(`labelRenderer`, `width`, `height`): `void`
 
-Defined in: [src/core/three/label-renderer-utils.ts:51](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/core/three/label-renderer-utils.ts#L51)
+Defined in: [src/core/three/label-renderer-utils.ts:51](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/core/three/label-renderer-utils.ts#L51)
 
 Atualiza o tamanho do CSS2DRenderer.
 Deve ser chamado quando o contêiner de renderização da cena é redimensionado

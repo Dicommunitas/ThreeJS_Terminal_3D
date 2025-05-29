@@ -146,46 +146,45 @@ Principais Responsabilidades:
 *   Passar os estados e callbacks apropriados dos hooks para os componentes filhos.
 *   Definir lógicas de alto nível que coordenam múltiplos hooks (e.g., `handleFocusAndSelectSystem`).
 
-<pre>
 ```mermaid
   graph LR
-    Terminal3DPage --> useCommandHistory
-    Terminal3DPage --> useEquipmentDataManager
-    Terminal3DPage --> useCameraManager
-    Terminal3DPage --> useFilterManager
-    Terminal3DPage --> useAnnotationManager
-    Terminal3DPage --> useEquipmentSelectionManager
-    Terminal3DPage --> useLayerManager
-    Terminal3DPage --> MainSceneArea
-    Terminal3DPage --> Sidebar
-    Terminal3DPage --> AnnotationDialog
+    Terminal3DPage["Terminal3DPage"] --> H_CmdHistory["useCommandHistory"];
+    Terminal3DPage --> H_EquipData["useEquipmentDataManager"];
+    Terminal3DPage --> H_CameraMgr["useCameraManager"];
+    Terminal3DPage --> H_FilterMgr["useFilterManager"];
+    Terminal3DPage --> H_AnnotMgr["useAnnotationManager"];
+    Terminal3DPage --> H_EquipSelectMgr["useEquipmentSelectionManager"];
+    Terminal3DPage --> H_LayerMgr["useLayerManager"];
 
-    MainSceneArea --> ThreeScene
-    MainSceneArea --> InfoPanel
-    Sidebar --> SidebarContentLayout
+    Terminal3DPage --> MainSceneArea_Comp["MainSceneArea"];
+    Terminal3DPage --> Sidebar_Comp["Sidebar"];
+    Terminal3DPage --> AnnotationDialog_Comp["AnnotationDialog"];
 
-    subgraph "Hooks de Estado"
-      useCommandHistory
-      useEquipmentDataManager
-      useCameraManager
-      useFilterManager
-      useAnnotationManager
-      useEquipmentSelectionManager
-      useLayerManager
+    MainSceneArea_Comp --> ThreeScene_Comp["ThreeScene"];
+    MainSceneArea_Comp --> InfoPanel_Comp["InfoPanel"];
+    Sidebar_Comp --> SidebarContentLayout_Comp["SidebarContentLayout"];
+
+    subgraph "Hooks de Estado Alto Nível"
+      H_CmdHistory;
+      H_EquipData;
+      H_CameraMgr;
+      H_FilterMgr;
+      H_AnnotMgr;
+      H_EquipSelectMgr;
+      H_LayerMgr;
     end
 
     subgraph "Componentes de UI Principais"
-      MainSceneArea
-      Sidebar
-      AnnotationDialog
-      InfoPanel
-      ThreeScene
-      SidebarContentLayout
+      MainSceneArea_Comp;
+      Sidebar_Comp;
+      AnnotationDialog_Comp;
+      InfoPanel_Comp;
+      ThreeScene_Comp;
+      SidebarContentLayout_Comp;
     end
 
     style Terminal3DPage fill:#f9f,stroke:#333,stroke-width:2px
 ```
-</pre>
 
 ## Terminal3DPage
 
@@ -232,7 +231,6 @@ Usada para popular o dropdown de alteração de produto no InfoPanel.
 Componente de diálogo modal para adicionar ou editar anotações textuais
 associadas a um equipamento. Utiliza um Textarea para permitir anotações de texto longo.
 
-<pre>
 ```mermaid
   classDiagram
     class AnnotationDialogProps {
@@ -242,18 +240,19 @@ associadas a um equipamento. Utiliza um Textarea para permitir anotações de te
       +currentAnnotation: Annotation | null
       +equipmentName: string
     }
-    class AnnotationDialog {}
-    class ReactFC {}
+    class AnnotationDialog {
+    }
     class Annotation {
       +equipmentTag: string
       +text: string
       +createdAt: string
     }
+    class ReactFC {
+    }
     AnnotationDialog --|> ReactFC
     AnnotationDialogProps ..> Annotation : uses (via currentAnnotation)
     AnnotationDialogProps --> AnnotationDialog : implicitly uses
 ```
-</pre>
 
 ## AnnotationDialogProps
 
@@ -300,7 +299,6 @@ Principal Responsabilidade:
 Renderizar botões para cada sistema disponível, permitindo ao usuário focar a câmera
 e selecionar todos os equipamentos pertencentes àquele sistema ao clicar em um botão.
 
-<pre>
 ```mermaid
   classDiagram
     class CameraControlsPanelProps {
@@ -315,7 +313,6 @@ e selecionar todos os equipamentos pertencentes àquele sistema ao clicar em um 
     CameraControlsPanel ..> Button : uses
     CameraControlsPanel ..> Card : uses
 ```
-</pre>
 
 ## CameraControlsPanelProps
 
@@ -347,13 +344,13 @@ Principal Responsabilidade:
 Permitir ao usuário escolher como os equipamentos serão coloridos (por cor base,
 estado operacional ou produto) através de um menu dropdown (Select).
 
-<pre>
 ```mermaid
   classDiagram
     class ColorModeSelectorProps {
       +colorMode: ColorMode
       +onColorModeChange(mode: ColorMode): void
     }
+    class ColorMode {}
     ColorModeSelectorProps ..> ColorMode
     class ColorModeSelector {}
     class ReactFC {}
@@ -365,7 +362,6 @@ estado operacional ou produto) através de um menu dropdown (Select).
     ColorModeSelector ..> Select : uses
     ColorModeSelector ..> Label : uses
 ```
-</pre>
 
 ## ColorModeSelectorProps
 
@@ -398,7 +394,6 @@ Renderizar botões que permitem ao usuário desfazer (Undo) e refazer (Redo)
 ações previamente executadas na aplicação, com base no estado fornecido pelo
 hook `useCommandHistory`.
 
-<pre>
 ```mermaid
   classDiagram
     class CommandHistoryPanelProps {
@@ -419,7 +414,6 @@ hook `useCommandHistory`.
     CommandHistoryPanel ..> Undo2Icon : uses
     CommandHistoryPanel ..> Redo2Icon : uses
 ```
-</pre>
 
 ## CommandHistoryPanelProps
 
@@ -461,7 +455,6 @@ Responsabilidades:
     *   Fornecer botões para adicionar, editar ou excluir a anotação.
 *   Fornecer um botão para fechar o painel de informações (desselecionando o equipamento).
 
-<pre>
 ```mermaid
   classDiagram
     class InfoPanelProps {
@@ -477,11 +470,12 @@ Responsabilidades:
     }
     class InfoPanel {}
     class ReactFC {}
+    class Equipment{}
+    class Annotation{}
     InfoPanel --|> ReactFC
     InfoPanelProps ..> Equipment : uses
     InfoPanelProps ..> Annotation : uses
 ```
-</pre>
 
 ## InfoPanelProps
 
@@ -581,13 +575,13 @@ Principal Responsabilidade:
 Renderizar um card com checkboxes para cada camada definida, permitindo ao usuário controlar
 o que é exibido na cena 3D, como prédios, tanques, anotações, etc.
 
-<pre>
 ```mermaid
   classDiagram
     class LayerManagerProps {
       +layers: Layer[]
       +onToggleLayer(layerId: string): void
     }
+    class Layer {}
     LayerManagerProps ..> Layer
     class LayerManager {}
     class ReactFC {}
@@ -599,7 +593,6 @@ o que é exibido na cena 3D, como prédios, tanques, anotações, etc.
     LayerManager ..> Checkbox : uses
     LayerManager ..> Label : uses
 ```
-</pre>
 
 ## LayerManagerProps
 
@@ -636,7 +629,6 @@ Atuar como um contêiner de layout para os elementos visuais centrais da aplica�
     e o comportamento para seus filhos, passando as props necessárias, incluindo a lista
     completa de equipamentos (`allEquipmentData`) para contexto de renderização de anotações.
 
-<pre>
 ```mermaid
   classDiagram
     class MainSceneAreaProps {
@@ -669,6 +661,11 @@ Atuar como um contêiner de layout para os elementos visuais centrais da aplica�
       +y: number
       +z: number
     }
+    class Equipment {}
+    class Layer {}
+    class Annotation {}
+    class CameraState {}
+    class ColorMode {}
     MainSceneAreaProps ..> Equipment
     MainSceneAreaProps ..> Layer
     MainSceneAreaProps ..> Annotation
@@ -683,7 +680,6 @@ Atuar como um contêiner de layout para os elementos visuais centrais da aplica�
     MainSceneArea ..> ThreeScene : uses
     MainSceneArea ..> InfoPanel : uses
 ```
-</pre>
 
 ## MainSceneAreaProps
 
@@ -757,7 +753,6 @@ Inclui:
 *   Gerenciador de camadas de visibilidade.
 *   Link para a documentação externa do projeto.
 
-<pre>
 ```mermaid
   classDiagram
     class SidebarContentLayoutProps {
@@ -776,6 +771,8 @@ Inclui:
       +cameraViewSystems: string[]
       +onFocusAndSelectSystem(systemName: string): void
     }
+    class ColorMode {}
+    class Layer {}
     SidebarContentLayoutProps ..> ColorMode
     SidebarContentLayoutProps ..> Layer
     class SidebarContentLayout {}
@@ -796,7 +793,6 @@ Inclui:
     SidebarContentLayout ..> Button : uses
     SidebarContentLayout ..> ScrollArea : uses
 ```
-</pre>
 
 ## SidebarContentLayoutProps
 
@@ -874,7 +870,6 @@ Principal Responsabilidade (Pós-Refatoração):
 Orquestrar os diversos hooks que gerenciam aspectos específicos da cena 3D,
 passar props e refs entre eles, e fornecer o ponto de montagem no DOM.
 
-<pre>
 ```mermaid
 classDiagram
   class ThreeSceneProps {
@@ -899,6 +894,11 @@ classDiagram
     +y: number
     +z: number
   }
+  class Equipment{}
+  class Layer{}
+  class Annotation{}
+  class CameraState{}
+  class ColorMode{}
   ThreeSceneProps ..> Equipment
   ThreeSceneProps ..> Layer
   ThreeSceneProps ..> Annotation
@@ -915,7 +915,6 @@ classDiagram
   ThreeScene ..> useSceneOutline : uses
   ThreeScene ..> useAnimationLoop : uses
 ```
-</pre>
 
 ## equipment
 
@@ -1046,28 +1045,42 @@ Subcomponentes:
 
 Utiliza cookies para persistir o estado da sidebar entre as sessões (desktop) e atalhos de teclado.
 
-<pre>
 ```mermaid
   graph LR
-    App --> SidebarProvider
-    SidebarProvider --> Sidebar
-    SidebarProvider --> SidebarInset
-    Sidebar --> SidebarHeader
-    Sidebar --> SidebarContent
-    Sidebar --> SidebarFooter
-    SidebarContent --> SidebarGroup
-    SidebarGroup --> SidebarGroupLabel
-    SidebarGroup --> SidebarMenu
-    SidebarMenu --> SidebarMenuItem
-    SidebarMenuItem --> SidebarMenuButton
-    SidebarMenuItem --> SidebarMenuAction
-    SidebarMenuItem --> SidebarMenuBadge
-    SidebarMenuButton --> SidebarMenuSub
-    SidebarMenuSub --> SidebarMenuSubItem
-    SidebarMenuSubItem --> SidebarMenuSubButton
-    App --> SidebarTrigger
+    App --> SidebarProvider_Context["SidebarProvider (Context)"];
+    SidebarProvider_Context --> Sidebar_Comp["Sidebar"];
+    SidebarProvider_Context --> SidebarInset_Comp["SidebarInset (Main Content Wrapper)"];
+    App --> SidebarTrigger_Button["SidebarTrigger (Button)"];
+
+    Sidebar_Comp --> SidebarHeader_Sec["SidebarHeader"];
+    Sidebar_Comp --> SidebarContent_Sec["SidebarContent (Scrollable)"];
+    Sidebar_Comp --> SidebarFooter_Sec["SidebarFooter"];
+
+    SidebarContent_Sec --> SidebarGroup_Container["SidebarGroup"];
+    SidebarGroup_Container --> SidebarGroupLabel_Text["SidebarGroupLabel"];
+    SidebarGroup_Container --> SidebarMenu_List["SidebarMenu (ul)"];
+
+    SidebarMenu_List --> SidebarMenuItem_Item["SidebarMenuItem (li)"];
+    SidebarMenuItem_Item --> SidebarMenuButton_Action["SidebarMenuButton (Button/Link)"];
+    SidebarMenuItem_Item --> SidebarMenuAction_Opt["SidebarMenuAction (Optional Button)"];
+    SidebarMenuItem_Item --> SidebarMenuBadge_Info["SidebarMenuBadge (Optional Info)"];
+
+    SidebarMenuButton_Action --> SidebarMenuSub_SubList["SidebarMenuSub (ul for dropdowns)"];
+    SidebarMenuSub_SubList --> SidebarMenuSubItem_SubItem["SidebarMenuSubItem (li)"];
+    SidebarMenuSubItem_SubItem --> SidebarMenuSubButton_SubAction["SidebarMenuSubButton (Button/Link)"];
+
+   classDef context fill:#lightcoral,stroke:#333;
+   classDef component fill:#lightblue,stroke:#333;
+   classDef section fill:#lightgreen,stroke:#333;
+   classDef container fill:#lightyellow,stroke:#333;
+   classDef item fill:#whitesmoke,stroke:#333;
+
+   class SidebarProvider_Context context;
+   class Sidebar_Comp,SidebarInset_Comp,SidebarTrigger_Button,SidebarMenuButton_Action,SidebarMenuAction_Opt,SidebarMenuBadge_Info,SidebarMenuSubButton_SubAction component;
+   class SidebarHeader_Sec,SidebarContent_Sec,SidebarFooter_Sec section;
+   class SidebarGroup_Container container;
+   class SidebarMenu_List,SidebarMenuItem_Item,SidebarMenuSub_SubList,SidebarMenuSubItem_SubItem item;
 ```
-</pre>
 
 ## useSidebar
 

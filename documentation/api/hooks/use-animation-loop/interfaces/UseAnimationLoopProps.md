@@ -6,7 +6,7 @@
 
 # Interface: UseAnimationLoopProps
 
-Defined in: [src/hooks/use-animation-loop.ts:45](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-animation-loop.ts#L45)
+Defined in: [src/hooks/use-animation-loop.ts:49](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-animation-loop.ts#L49)
 
 Props para o hook useAnimationLoop.
  UseAnimationLoopProps
@@ -17,7 +17,7 @@ Props para o hook useAnimationLoop.
 
 > **cameraRef**: `RefObject`\<`null` \| `PerspectiveCamera`\>
 
-Defined in: [src/hooks/use-animation-loop.ts:48](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-animation-loop.ts#L48)
+Defined in: [src/hooks/use-animation-loop.ts:52](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-animation-loop.ts#L52)
 
 Ref para a câmera da cena.
 
@@ -27,7 +27,7 @@ Ref para a câmera da cena.
 
 > **composerRef**: `RefObject`\<`null` \| `EffectComposer`\>
 
-Defined in: [src/hooks/use-animation-loop.ts:50](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-animation-loop.ts#L50)
+Defined in: [src/hooks/use-animation-loop.ts:54](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-animation-loop.ts#L54)
 
 Ref para o EffectComposer (pós-processamento).
 
@@ -37,7 +37,7 @@ Ref para o EffectComposer (pós-processamento).
 
 > **controlsRef**: `RefObject`\<`null` \| `OrbitControls`\>
 
-Defined in: [src/hooks/use-animation-loop.ts:49](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-animation-loop.ts#L49)
+Defined in: [src/hooks/use-animation-loop.ts:53](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-animation-loop.ts#L53)
 
 Ref para os OrbitControls.
 
@@ -47,7 +47,7 @@ Ref para os OrbitControls.
 
 > **isSceneReady**: `boolean`
 
-Defined in: [src/hooks/use-animation-loop.ts:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-animation-loop.ts#L46)
+Defined in: [src/hooks/use-animation-loop.ts:50](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-animation-loop.ts#L50)
 
 Indica se a cena está pronta para iniciar o loop.
 
@@ -57,7 +57,7 @@ Indica se a cena está pronta para iniciar o loop.
 
 > **labelRendererRef**: `RefObject`\<`null` \| `CSS2DRenderer`\>
 
-Defined in: [src/hooks/use-animation-loop.ts:51](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-animation-loop.ts#L51)
+Defined in: [src/hooks/use-animation-loop.ts:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-animation-loop.ts#L55)
 
 Ref para o CSS2DRenderer (rótulos HTML).
 
@@ -67,6 +67,6 @@ Ref para o CSS2DRenderer (rótulos HTML).
 
 > **sceneRef**: `RefObject`\<`null` \| `Scene`\>
 
-Defined in: [src/hooks/use-animation-loop.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-animation-loop.ts#L47)
+Defined in: [src/hooks/use-animation-loop.ts:51](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-animation-loop.ts#L51)
 
 Ref para a cena Three.js.

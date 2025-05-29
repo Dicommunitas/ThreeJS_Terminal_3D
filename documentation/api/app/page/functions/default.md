@@ -8,7 +8,7 @@
 
 > **default**(): `Element`
 
-Defined in: [src/app/page.tsx:94](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/app/page.tsx#L94)
+Defined in: [src/app/page.tsx:96](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/app/page.tsx#L96)
 
 Componente principal da página Terminal 3D (Terminal3DPage).
 

@@ -6,7 +6,7 @@
 
 # Interface: UseSceneSetupReturn
 
-Defined in: [src/hooks/use-scene-setup.ts:94](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-scene-setup.ts#L94)
+Defined in: [src/hooks/use-scene-setup.ts:105](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-scene-setup.ts#L105)
 
 Return value of the useSceneSetup hook.
  UseSceneSetupReturn
@@ -17,7 +17,7 @@ Return value of the useSceneSetup hook.
 
 > **cameraRef**: `RefObject`\<`null` \| `PerspectiveCamera`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:96](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-scene-setup.ts#L96)
+Defined in: [src/hooks/use-scene-setup.ts:107](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-scene-setup.ts#L107)
 
 Ref to the Three.js Camera.
 
@@ -27,7 +27,7 @@ Ref to the Three.js Camera.
 
 > **composerRef**: `RefObject`\<`null` \| `EffectComposer`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:100](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-scene-setup.ts#L100)
+Defined in: [src/hooks/use-scene-setup.ts:111](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-scene-setup.ts#L111)
 
 Ref to the EffectComposer.
 
@@ -37,7 +37,7 @@ Ref to the EffectComposer.
 
 > **controlsRef**: `RefObject`\<`null` \| `OrbitControls`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:99](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-scene-setup.ts#L99)
+Defined in: [src/hooks/use-scene-setup.ts:110](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-scene-setup.ts#L110)
 
 Ref to the OrbitControls.
           Configured for Left and Middle mouse buttons to rotate, and Right mouse button to pan.
@@ -48,7 +48,7 @@ Ref to the OrbitControls.
 
 > **groundMeshRef**: `RefObject`\<`null` \| `Mesh`\<`BufferGeometry`\<`NormalBufferAttributes`\>, `Material` \| `Material`[], `Object3DEventMap`\>\>
 
-Defined in: [src/hooks/use-scene-setup.ts:102](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-scene-setup.ts#L102)
+Defined in: [src/hooks/use-scene-setup.ts:113](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-scene-setup.ts#L113)
 
 Ref to the ground plane mesh.
 
@@ -58,7 +58,7 @@ Ref to the ground plane mesh.
 
 > **isSceneReady**: `boolean`
 
-Defined in: [src/hooks/use-scene-setup.ts:103](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-scene-setup.ts#L103)
+Defined in: [src/hooks/use-scene-setup.ts:114](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-scene-setup.ts#L114)
 
 State indicating if the scene setup is complete.
 
@@ -68,7 +68,7 @@ State indicating if the scene setup is complete.
 
 > **labelRendererRef**: `RefObject`\<`null` \| `CSS2DRenderer`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:98](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-scene-setup.ts#L98)
+Defined in: [src/hooks/use-scene-setup.ts:109](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-scene-setup.ts#L109)
 
 Ref to the CSS2DRenderer.
 
@@ -78,7 +78,7 @@ Ref to the CSS2DRenderer.
 
 > **outlinePassRef**: `RefObject`\<`null` \| `OutlinePass`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:101](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-scene-setup.ts#L101)
+Defined in: [src/hooks/use-scene-setup.ts:112](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-scene-setup.ts#L112)
 
 Ref to the OutlinePass.
 
@@ -88,7 +88,7 @@ Ref to the OutlinePass.
 
 > **rendererRef**: `RefObject`\<`null` \| `WebGLRenderer`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:97](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-scene-setup.ts#L97)
+Defined in: [src/hooks/use-scene-setup.ts:108](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-scene-setup.ts#L108)
 
 Ref to the WebGLRenderer.
 
@@ -98,6 +98,6 @@ Ref to the WebGLRenderer.
 
 > **sceneRef**: `RefObject`\<`null` \| `Scene`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:95](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-scene-setup.ts#L95)
+Defined in: [src/hooks/use-scene-setup.ts:106](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-scene-setup.ts#L106)
 
 Ref to the Three.js Scene.

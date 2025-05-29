@@ -8,7 +8,7 @@
 
 > **useLayerManager**(`props`): [`UseLayerManagerReturn`](../interfaces/UseLayerManagerReturn.md)
 
-Defined in: [src/hooks/use-layer-manager.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-layer-manager.ts#L67)
+Defined in: [src/hooks/use-layer-manager.ts:69](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-layer-manager.ts#L69)
 
 Hook customizado para gerenciar o estado das camadas de visibilidade da cena e sua manipulação.
 Inicializa as camadas com os dados de `initialLayers` e permite alternar a visibilidade
