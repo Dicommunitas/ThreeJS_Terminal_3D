@@ -141,53 +141,54 @@ O sistema é uma aplicação web Single Page Application (SPA) construída com N
 ```mermaid
 graph TD
     %% Main Page and Layout
-    Terminal3DPage["Terminal3DPage (src/app/page.tsx)"] --> MainSceneArea["MainSceneArea (src/components/main-scene-area.tsx)"];
-    Terminal3DPage --> Sidebar["Sidebar (src/components/ui/sidebar.tsx)"];
-    Terminal3DPage --> AnnotationDialog["AnnotationDialog (src/components/annotation-dialog.tsx)"];
+    Terminal3DPage["Terminal3DPage (src/app/page.tsx)"] --> MainSceneArea["MainSceneArea (src/components/main-scene-area.tsx)"]
+    Terminal3DPage --> Sidebar["Sidebar (src/components/ui/sidebar.tsx)"]
+    Terminal3DPage --> AnnotationDialog["AnnotationDialog (src/components/annotation-dialog.tsx)"]
 
     %% Main Scene Area Content
-    MainSceneArea --> ThreeScene["ThreeScene (src/components/three-scene.tsx)"];
-    MainSceneArea --> InfoPanel["InfoPanel (src/components/info-panel.tsx)"];
+    MainSceneArea --> ThreeScene["ThreeScene (src/components/three-scene.tsx)"]
+    MainSceneArea --> InfoPanel["InfoPanel (src/components/info-panel.tsx)"]
 
     %% Sidebar Content
-    Sidebar --> SidebarContentLayout["SidebarContentLayout (src/components/sidebar-content-layout.tsx)"];
+    Sidebar --> SidebarContentLayout["SidebarContentLayout (src/components/sidebar-content-layout.tsx)"]
 
     %% ThreeScene uses Specialized Hooks
-    ThreeScene -- uses --> H_SceneSetup["useSceneSetup"];
-    ThreeScene -- uses --> H_EquipRenderer["useEquipmentRenderer"];
-    ThreeScene -- uses --> H_AnnotPinRenderer["useAnnotationPinRenderer"];
-    ThreeScene -- uses --> H_MouseInteraction["useMouseInteractionManager"];
-    ThreeScene -- uses --> H_SceneOutline["useSceneOutline"];
-    ThreeScene -- uses --> H_AnimLoop["useAnimationLoop"];
+    ThreeScene -- uses --> H_SceneSetup["useSceneSetup"]
+    ThreeScene -- uses --> H_EquipRenderer["useEquipmentRenderer"]
+    ThreeScene -- uses --> H_AnnotPinRenderer["useAnnotationPinRenderer"]
+    ThreeScene -- uses --> H_MouseInteraction["useMouseInteractionManager"]
+    ThreeScene -- uses --> H_SceneOutline["useSceneOutline"]
+    ThreeScene -- uses --> H_AnimLoop["useAnimationLoop"]
 
     %% Page uses State Management Hooks
-    Terminal3DPage -- uses --> H_CmdHistory["useCommandHistory"];
-    Terminal3DPage -- uses --> H_EquipData["useEquipmentDataManager"];
-    Terminal3DPage -- uses --> H_CameraMgr["useCameraManager"];
-    Terminal3DPage -- uses --> H_FilterMgr["useFilterManager"];
-    Terminal3DPage -- uses --> H_AnnotMgr["useAnnotationManager"];
-    Terminal3DPage -- uses --> H_EquipSelectMgr["useEquipmentSelectionManager"];
-    Terminal3DPage -- uses --> H_LayerMgr["useLayerManager"];
+    Terminal3DPage -- uses --> H_CmdHistory["useCommandHistory"]
+    Terminal3DPage -- uses --> H_EquipData["useEquipmentDataManager"]
+    Terminal3DPage -- uses --> H_CameraMgr["useCameraManager"]
+    Terminal3DPage -- uses --> H_FilterMgr["useFilterManager"]
+    Terminal3DPage -- uses --> H_AnnotMgr["useAnnotationManager"]
+    Terminal3DPage -- uses --> H_EquipSelectMgr["useEquipmentSelectionManager"]
+    Terminal3DPage -- uses --> H_LayerMgr["useLayerManager"]
 
     subgraph "Hooks de Estado (UI Logic & Facades)"
         direction LR
-        H_CmdHistory; H_EquipData; H_CameraMgr; H_FilterMgr; H_AnnotMgr; H_EquipSelectMgr; H_LayerMgr;
+        H_CmdHistory
+        H_EquipData
+        H_CameraMgr
+        H_FilterMgr
+        H_AnnotMgr
+        H_EquipSelectMgr
+        H_LayerMgr
     end
 
     subgraph "Hooks da Cena 3D (Rendering & Interaction Logic)"
         direction LR
-        H_SceneSetup; H_EquipRenderer; H_AnnotPinRenderer; H_MouseInteraction; H_SceneOutline; H_AnimLoop;
+        H_SceneSetup
+        H_EquipRenderer
+        H_AnnotPinRenderer
+        H_MouseInteraction
+        H_SceneOutline
+        H_AnimLoop
     end
-
-    classDef mainComponent fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef uiComponent fill:#e0e0e0,stroke:#333;
-    classDef hook fill:#9fdf9f,stroke:#333;
-    classDef coreUtil fill:#add8e6,stroke:#333;
-
-    class Terminal3DPage mainComponent;
-    class MainSceneArea,Sidebar,AnnotationDialog,InfoPanel,ThreeScene,SidebarContentLayout uiComponent;
-    class H_SceneSetup,H_EquipRenderer,H_AnnotPinRenderer,H_MouseInteraction,H_SceneOutline,H_AnimLoop hook;
-    class H_CmdHistory,H_EquipData,H_CameraMgr,H_FilterMgr,H_AnnotMgr,H_EquipSelectMgr,H_LayerMgr hook;
 ```
 
 ### 4.4. Proposta de Arquitetura de Comunicação Futura
