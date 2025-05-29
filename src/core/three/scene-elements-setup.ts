@@ -7,18 +7,19 @@
  * componentes fundamentais da cena 3D, como iluminação, plano de chão, renderizadores
  * (WebGL e CSS2D), pipeline de pós-processamento (EffectComposer, OutlinePass), e a
  * sincronização dinâmica dos meshes de equipamentos com os dados da aplicação.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     setupRenderPipeline_return {
+ *     class setupRenderPipeline_return {
  *       +renderer: THREE.WebGLRenderer
  *       +labelRenderer: CSS2DRenderer
  *       +composer: EffectComposer
  *       +outlinePass: OutlinePass
  *     }
+ *     class setupRenderPipeline {}
  *     setupRenderPipeline ..> setupRenderPipeline_return : returns
  *
- *     UpdateEquipmentMeshesParams {
+ *     class UpdateEquipmentMeshesParams {
  *       +scene: THREE.Scene
  *       +equipmentMeshesRef: React.MutableRefObject_Object3D_Array_
  *       +newEquipmentData: Equipment[]
@@ -27,9 +28,10 @@
  *       +createSingleEquipmentMesh(item: Equipment): THREE.Object3D
  *       +groundMeshRef: React.MutableRefObject_Mesh_
  *     }
+ *     class updateEquipmentMeshesInScene {}
  *     updateEquipmentMeshesInScene ..> UpdateEquipmentMeshesParams : receives
  * ```
- *
+ * </pre>
  * Exporta:
  * - `setupLighting`: Configura a iluminação da cena.
  * - `setupGroundPlane`: Configura o plano de chão.
@@ -239,7 +241,7 @@ export function updateEquipmentMeshesInScene({
       if (mesh instanceof THREE.Mesh) {
         mesh.geometry?.dispose();
         if (Array.isArray(mesh.material)) {
-          mesh.material.forEach(m => m.dispose());
+          (mesh.material as THREE.Material[]).forEach(m => m.dispose());
         } else if (mesh.material) {
           (mesh.material as THREE.Material).dispose();
         }

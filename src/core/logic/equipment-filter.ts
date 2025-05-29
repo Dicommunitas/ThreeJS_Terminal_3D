@@ -5,14 +5,15 @@
  * Principal Responsabilidade:
  * Aplicar filtros de Sistema, Área e um termo de busca textual (nome, tipo, tag)
  * a uma lista de equipamentos, retornando a lista filtrada.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     EquipmentFilterCriteria {
+ *     class EquipmentFilterCriteria {
  *       +searchTerm: string
  *       +selectedSistema: string
  *       +selectedArea: string
  *     }
+ *     class getFilteredEquipment {}
  *     getFilteredEquipment --|> EquipmentFilterCriteria : uses as criteria
  *     getFilteredEquipment --|> Equipment : returns array of
  *     class Equipment {
@@ -23,7 +24,7 @@
  *        +area: string | undefined
  *     }
  * ```
- *
+ * </pre>
  * Exporta:
  * - `EquipmentFilterCriteria`: Interface para os critérios de filtro.
  * - `getFilteredEquipment`: Função principal para filtrar equipamentos.

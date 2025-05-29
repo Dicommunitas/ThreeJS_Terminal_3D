@@ -12,10 +12,10 @@
  * - Seletor de modo de colorização.
  * - Gerenciador de camadas de visibilidade.
  * - Link para a documentação externa do projeto.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     SidebarContentLayoutProps {
+ *     class SidebarContentLayoutProps {
  *       +searchTerm: string
  *       +setSearchTerm(value: string): void
  *       +selectedSistema: string
@@ -33,7 +33,16 @@
  *     }
  *     SidebarContentLayoutProps ..> ColorMode
  *     SidebarContentLayoutProps ..> Layer
- *     SidebarContentLayout --|> React.FC
+ *     class SidebarContentLayout {}
+ *     class ReactFC {}
+ *     class CameraControlsPanel {}
+ *     class ColorModeSelector {}
+ *     class LayerManager {}
+ *     class Input {}
+ *     class Select {}
+ *     class Button {}
+ *     class ScrollArea {}
+ *     SidebarContentLayout --|> ReactFC
  *     SidebarContentLayout ..> CameraControlsPanel : uses
  *     SidebarContentLayout ..> ColorModeSelector : uses
  *     SidebarContentLayout ..> LayerManager : uses
@@ -42,6 +51,7 @@
  *     SidebarContentLayout ..> Button : uses
  *     SidebarContentLayout ..> ScrollArea : uses
  * ```
+ * </pre>
  */
 "use client";
 

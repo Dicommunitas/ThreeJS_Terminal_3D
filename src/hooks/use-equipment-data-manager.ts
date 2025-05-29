@@ -8,17 +8,19 @@
  * Inicializa os dados a partir de `initialEquipment` e fornece funções para
  * modificar propriedades específicas dos equipamentos (estado operacional, produto),
  * usando `useToast` para feedback.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     UseEquipmentDataManagerReturn {
+ *     class UseEquipmentDataManagerReturn {
  *       +equipmentData: Equipment[]
  *       +handleOperationalStateChange(equipmentTag: string, newState: string): void
  *       +handleProductChange(equipmentTag: string, newProduct: string): void
  *     }
  *     UseEquipmentDataManagerReturn ..> Equipment
+ *     class useEquipmentDataManager {}
  *     useEquipmentDataManager ..> useToast : uses
  * ```
+ * </pre>
  */
 import { useState, useCallback } from 'react';
 import type { Equipment } from '@/lib/types';
@@ -93,5 +95,3 @@ export function useEquipmentDataManager(): UseEquipmentDataManagerReturn {
     handleProductChange,
   };
 }
-
-    

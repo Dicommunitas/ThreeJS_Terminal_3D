@@ -8,20 +8,22 @@
  * os objetos 3D correspondentes na cena. Utiliza `updateOutlineEffect` de
  * `postprocessing-utils.ts` para aplicar os estilos de contorno corretos.
  * O efeito só é aplicado quando a cena (`isSceneReady`) e os refs necessários estão prontos.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     UseSceneOutlineProps {
+ *     class UseSceneOutlineProps {
  *       +outlinePassRef: RefObject_OutlinePass_
  *       +equipmentMeshesRef: RefObject_Object3D_Array_
  *       +selectedEquipmentTags: string[] | undefined
  *       +hoveredEquipmentTag: string | null | undefined
  *       +isSceneReady: boolean
  *     }
- *     RefObject_OutlinePass_ { current: OutlinePass | null }
- *     RefObject_Object3D_Array_ { current: THREE.Object3D[] | null }
+ *     class RefObject_OutlinePass_ { current: OutlinePass | null }
+ *     class RefObject_Object3D_Array_ { current: THREE.Object3D[] | null }
+ *     class useSceneOutline {}
  *     useSceneOutline ..> postprocessing_utils : uses updateOutlineEffect
  * ```
+ * </pre>
  */
 "use client";
 

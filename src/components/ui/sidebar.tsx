@@ -21,8 +21,8 @@
  * - `SidebarInput`, `SidebarSeparator`: Elementos de UI utilitários para a sidebar.
  *
  * Utiliza cookies para persistir o estado da sidebar entre as sessões (desktop) e atalhos de teclado.
- *
- * @mermaid
+ * <pre>
+ * ```mermaid
  *   graph LR
  *     App --> SidebarProvider
  *     SidebarProvider --> Sidebar
@@ -41,7 +41,8 @@
  *     SidebarMenuSub --> SidebarMenuSubItem
  *     SidebarMenuSubItem --> SidebarMenuSubButton
  *     App --> SidebarTrigger
- *
+ * ```
+ * </pre>
  */
 "use client"
 
@@ -55,7 +56,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
-import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet" // Added SheetTitle
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet" 
 import { Skeleton } from "@/components/ui/skeleton"
 import {
   Tooltip,
@@ -81,7 +82,7 @@ export type SidebarContext = {
   toggleSidebar: () => void
 }
 
-const _SidebarContext = React.createContext<SidebarContext | null>(null) // Renamed to avoid conflict
+const _SidebarContext = React.createContext<SidebarContext | null>(null) 
 
 /**
  * Hook para acessar o contexto da Sidebar.
@@ -90,7 +91,7 @@ const _SidebarContext = React.createContext<SidebarContext | null>(null) // Rena
  * @throws {Error} Se usado fora de um `SidebarProvider`.
  */
 export function useSidebar() { 
-  const context = React.useContext(_SidebarContext) // Use renamed context
+  const context = React.useContext(_SidebarContext) 
   if (!context) {
     throw new Error("useSidebar must be used within a SidebarProvider.")
   }
@@ -281,7 +282,6 @@ const Sidebar = React.forwardRef<
             }
             side={side}
           >
-            {/* Add a visually hidden title for accessibility */}
             <SheetTitle className="sr-only">Navegação Principal</SheetTitle>
             <div className="flex h-full w-full flex-col">{children}</div>
           </SheetContent>
@@ -957,5 +957,3 @@ export {
 }
 
 export type { SidebarContext as _SidebarContextType }; // Exporting the type for external use if needed, aliased.
-
-    

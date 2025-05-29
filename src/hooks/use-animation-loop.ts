@@ -7,10 +7,10 @@
  * Isso inclui atualizar controles de órbita, renderizar o `EffectComposer` (para pós-processamento)
  * e o `CSS2DRenderer` (para rótulos HTML), garantindo que a animação só comece quando a cena
  * e todos os seus componentes necessários estiverem prontos.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     UseAnimationLoopProps {
+ *     class UseAnimationLoopProps {
  *       +isSceneReady: boolean
  *       +sceneRef: RefObject_Scene_
  *       +cameraRef: RefObject_PerspectiveCamera_
@@ -18,12 +18,13 @@
  *       +composerRef: RefObject_EffectComposer_
  *       +labelRendererRef: RefObject_CSS2DRenderer_
  *     }
- *     RefObject_Scene_ { current: Scene | null }
- *     RefObject_PerspectiveCamera_ { current: PerspectiveCamera | null }
- *     RefObject_OrbitControls_ { current: OrbitControls | null }
- *     RefObject_EffectComposer_ { current: EffectComposer | null }
- *     RefObject_CSS2DRenderer_ { current: CSS2DRenderer | null }
+ *     class RefObject_Scene_ { current: Scene | null }
+ *     class RefObject_PerspectiveCamera_ { current: PerspectiveCamera | null }
+ *     class RefObject_OrbitControls_ { current: OrbitControls | null }
+ *     class RefObject_EffectComposer_ { current: EffectComposer | null }
+ *     class RefObject_CSS2DRenderer_ { current: CSS2DRenderer | null }
  * ```
+ * </pre>
  */
 import type * as THREE from 'three';
 import { useEffect, type RefObject } from 'react';

@@ -6,21 +6,28 @@
  * Renderizar botões que permitem ao usuário desfazer (Undo) e refazer (Redo)
  * ações previamente executadas na aplicação, com base no estado fornecido pelo
  * hook `useCommandHistory`.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     CommandHistoryPanelProps {
+ *     class CommandHistoryPanelProps {
  *       +canUndo: boolean
  *       +canRedo: boolean
  *       +onUndo(): void
  *       +onRedo(): void
  *     }
- *     CommandHistoryPanel --|> React.FC
+ *     class CommandHistoryPanel {}
+ *     class ReactFC {}
+ *     class Button {}
+ *     class Card {}
+ *     class Undo2Icon {}
+ *     class Redo2Icon {}
+ *     CommandHistoryPanel --|> ReactFC
  *     CommandHistoryPanel ..> Button : uses
  *     CommandHistoryPanel ..> Card : uses
  *     CommandHistoryPanel ..> Undo2Icon : uses
  *     CommandHistoryPanel ..> Redo2Icon : uses
  * ```
+ * </pre>
  */
 "use client";
 

@@ -7,14 +7,14 @@
  * e fornecer uma API (funções) para criar, ler, atualizar e excluir anotações
  * associadas a equipamentos específicos. Cada equipamento pode ter no máximo uma anotação.
  * Utiliza `useToast` para feedback ao usuário.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     UseAnnotationManagerProps {
+ *     class UseAnnotationManagerProps {
  *       +initialAnnotations: Annotation[]
  *       +equipmentData: Equipment[]
  *     }
- *     UseAnnotationManagerReturn {
+ *     class UseAnnotationManagerReturn {
  *       +annotations: Annotation[]
  *       +isAnnotationDialogOpen: boolean
  *       +annotationTargetEquipment: Equipment | null
@@ -30,8 +30,10 @@
  *     UseAnnotationManagerProps ..> Equipment
  *     UseAnnotationManagerReturn ..> Annotation
  *     UseAnnotationManagerReturn ..> Equipment
+ *     class useAnnotationManager {}
  *     useAnnotationManager ..> useToast : uses
  * ```
+ * </pre>
  */
 "use client";
 

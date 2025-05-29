@@ -15,10 +15,10 @@ import { updateAnnotationPins } from '@/core/three/label-renderer-utils';
  * que representam as anotações. Observa mudanças nas anotações, dados dos equipamentos
  * (para posicionamento), e camadas de visibilidade, atualizando os pins conforme necessário.
  * Utiliza `updateAnnotationPins` de `label-renderer-utils.ts` para a lógica de sincronização.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     UseAnnotationPinRendererProps {
+ *     class UseAnnotationPinRendererProps {
  *       +sceneRef: RefObject_Scene_
  *       +labelRendererRef: RefObject_CSS2DRenderer_
  *       +isSceneReady: boolean
@@ -26,17 +26,19 @@ import { updateAnnotationPins } from '@/core/three/label-renderer-utils';
  *       +allEquipmentData: Equipment[] // Full list for correct positioning
  *       +layers: Layer[]
  *     }
- *     useAnnotationPinRenderer --|> React.FC_Hook
+ *     class useAnnotationPinRenderer {}
+ *     class ReactFCHook {}
+ *     useAnnotationPinRenderer --|> ReactFCHook
  *     useAnnotationPinRenderer ..> label_renderer_utils : uses updateAnnotationPins
  *     UseAnnotationPinRendererProps ..> Annotation
  *     UseAnnotationPinRendererProps ..> Equipment
  *     UseAnnotationPinRendererProps ..> Layer
- *     UseAnnotationPinRendererProps ..> RefObject_Scene_
- *     UseAnnotationPinRendererProps ..> RefObject_CSS2DRenderer_
- *
  *     class RefObject_Scene_ { current: Scene | null }
+ *     UseAnnotationPinRendererProps ..> RefObject_Scene_
  *     class RefObject_CSS2DRenderer_ { current: CSS2DRenderer | null }
+ *     UseAnnotationPinRendererProps ..> RefObject_CSS2DRenderer_
  * ```
+ * </pre>
  */
 export interface UseAnnotationPinRendererProps {
   sceneRef: React.RefObject<THREE.Scene | null>;

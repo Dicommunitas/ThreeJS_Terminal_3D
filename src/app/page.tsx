@@ -21,7 +21,7 @@
  * - Renderizar a estrutura principal da UI, incluindo a `Sidebar` e a `MainSceneArea`.
  * - Passar os estados e callbacks apropriados dos hooks para os componentes filhos.
  * - Definir lógicas de alto nível que coordenam múltiplos hooks (e.g., `handleFocusAndSelectSystem`).
- *
+ * <pre>
  * ```mermaid
  *   graph LR
  *     Terminal3DPage --> useCommandHistory
@@ -60,6 +60,7 @@
  *
  *     style Terminal3DPage fill:#f9f,stroke:#333,stroke-width:2px
  * ```
+ * </pre>
  */
 "use client";
 

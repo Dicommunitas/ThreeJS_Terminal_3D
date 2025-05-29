@@ -8,16 +8,16 @@
  * controles de órbita, pipeline de pós-processamento (EffectComposer, OutlinePass),
  * iluminação básica e um plano de chão. Gerencia também o estado de "prontidão" da cena
  * e o tratamento de redimensionamento da janela/contêiner.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     UseSceneSetupProps {
+ *     class UseSceneSetupProps {
  *       +mountRef: RefObject_HTMLDivElement_
  *       +initialCameraPosition: Point3D
  *       +initialCameraLookAt: Point3D
  *       +onCameraChange(cameraState: CameraState): void
  *     }
- *     UseSceneSetupReturn {
+ *     class UseSceneSetupReturn {
  *       +sceneRef: RefObject_Scene_
  *       +cameraRef: RefObject_PerspectiveCamera_
  *       +rendererRef: RefObject_WebGLRenderer_
@@ -28,27 +28,29 @@
  *       +groundMeshRef: RefObject_Mesh_
  *       +isSceneReady: boolean
  *     }
- *     Point3D {
+ *     class Point3D {
  *       +x: number
  *       +y: number
  *       +z: number
  *     }
- *     RefObject_HTMLDivElement_ { current: HTMLDivElement | null }
- *     RefObject_Scene_ { current: Scene | null }
- *     RefObject_PerspectiveCamera_ { current: PerspectiveCamera | null }
- *     RefObject_WebGLRenderer_ { current: WebGLRenderer | null }
- *     RefObject_CSS2DRenderer_ { current: CSS2DRenderer | null }
- *     RefObject_OrbitControls_ { current: OrbitControls | null }
- *     RefObject_EffectComposer_ { current: EffectComposer | null }
- *     RefObject_OutlinePass_ { current: OutlinePass | null }
- *     RefObject_Mesh_ { current: Mesh | null }
+ *     class RefObject_HTMLDivElement_ {}
+ *     class RefObject_Scene_ {}
+ *     class RefObject_PerspectiveCamera_ {}
+ *     class RefObject_WebGLRenderer_ {}
+ *     class RefObject_CSS2DRenderer_ {}
+ *     class RefObject_OrbitControls_ {}
+ *     class RefObject_EffectComposer_ {}
+ *     class RefObject_OutlinePass_ {}
+ *     class RefObject_Mesh_ {}
  *
  *     UseSceneSetupProps ..> Point3D
  *     UseSceneSetupProps ..> CameraState
  *     UseSceneSetupReturn ..> Point3D
  *     UseSceneSetupReturn ..> CameraState
+ *     class useSceneSetup {}
  *     useSceneSetup ..> scene_elements_setup : uses setupRenderPipeline, setupLighting, setupGroundPlane
  * ```
+ * </pre>
  */
 import { useRef, useEffect, useState, useCallback } from 'react';
 import * as THREE from 'three';

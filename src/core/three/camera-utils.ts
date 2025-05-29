@@ -5,21 +5,22 @@
  * Principal Responsabilidade:
  * Calcular a posição e o ponto de observação ideais da câmera para enquadrar um conjunto
  * de objetos 3D (meshes) de forma clara e centralizada na viewport.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     calculateViewForMeshes_params {
+ *     class calculateViewForMeshes_params {
  *       +meshes: THREE.Object3D[]
  *       +camera: THREE.PerspectiveCamera
  *     }
- *     calculateViewForMeshes_return {
+ *     class calculateViewForMeshes_return {
  *       +position: THREE.Vector3
  *       +lookAt: THREE.Vector3
  *     }
+ *     class calculateViewForMeshes {}
  *     calculateViewForMeshes ..> calculateViewForMeshes_params : receives
  *     calculateViewForMeshes ..> calculateViewForMeshes_return : returns or null
  * ```
- *
+ * </pre>
  * Exporta:
  * - `calculateViewForMeshes`: Função para calcular a visão da câmera para um conjunto de meshes.
  */

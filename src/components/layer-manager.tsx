@@ -5,19 +5,25 @@
  * Principal Responsabilidade:
  * Renderizar um card com checkboxes para cada camada definida, permitindo ao usuário controlar
  * o que é exibido na cena 3D, como prédios, tanques, anotações, etc.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     LayerManagerProps {
+ *     class LayerManagerProps {
  *       +layers: Layer[]
  *       +onToggleLayer(layerId: string): void
  *     }
  *     LayerManagerProps ..> Layer
- *     LayerManager --|> React.FC
+ *     class LayerManager {}
+ *     class ReactFC {}
+ *     class Card {}
+ *     class Checkbox {}
+ *     class Label {}
+ *     LayerManager --|> ReactFC
  *     LayerManager ..> Card : uses
  *     LayerManager ..> Checkbox : uses
  *     LayerManager ..> Label : uses
  * ```
+ * </pre>
  */
 "use client";
 

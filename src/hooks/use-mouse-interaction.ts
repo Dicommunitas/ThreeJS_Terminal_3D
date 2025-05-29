@@ -14,10 +14,10 @@ import * as THREE from 'three';
  * equipamentos. Dispara callbacks fornecidos (`onSelectEquipment`, `setHoveredEquipmentTag`)
  * com base nessas interações. Adiciona e remove os ouvintes de eventos de mouse
  * do elemento de montagem da cena.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     UseMouseInteractionManagerProps {
+ *     class UseMouseInteractionManagerProps {
  *       +mountRef: RefObject_HTMLDivElement_
  *       +cameraRef: RefObject_PerspectiveCamera_
  *       +equipmentMeshesRef: RefObject_Object3D_Array_
@@ -25,15 +25,17 @@ import * as THREE from 'three';
  *       +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
  *       +setHoveredEquipmentTag(tag: string | null): void
  *     }
- *     useMouseInteractionManager --|> React.FC_Hook
+ *     class useMouseInteractionManager {}
+ *     class ReactFCHook {}
+ *     useMouseInteractionManager --|> ReactFCHook
+ *     class RefObject_HTMLDivElement_ {}
  *     UseMouseInteractionManagerProps ..> RefObject_HTMLDivElement_
+ *     class RefObject_PerspectiveCamera_ {}
  *     UseMouseInteractionManagerProps ..> RefObject_PerspectiveCamera_
+ *     class RefObject_Object3D_Array_ {}
  *     UseMouseInteractionManagerProps ..> RefObject_Object3D_Array_
- *
- *     class RefObject_HTMLDivElement_ { current: HTMLDivElement | null }
- *     class RefObject_PerspectiveCamera_ { current: PerspectiveCamera | null }
- *     class RefObject_Object3D_Array_ { current: THREE.Object3D[] | null }
  * ```
+ * </pre>
  */
 
 // Instâncias reutilizáveis para raycasting para otimizar performance.

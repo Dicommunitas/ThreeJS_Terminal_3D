@@ -7,16 +7,17 @@
  * Lidar com a configuração inicial do `EffectComposer` e `OutlinePass`, e fornecer
  * funções para atualizar dinamicamente o efeito de contorno (quais objetos destacar
  * e com qual estilo) e para redimensionar os passes de pós-processamento.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     setupPostProcessing_return {
+ *     class setupPostProcessing_return {
  *       +composer: EffectComposer
  *       +outlinePass: OutlinePass
  *     }
+ *     class setupPostProcessing {}
  *     setupPostProcessing ..> setupPostProcessing_return : returns
  * ```
- *
+ * </pre>
  * Exporta:
  * - `setupPostProcessing`: Configura o pipeline inicial de pós-processamento.
  * - `updatePostProcessingSize`: Atualiza o tamanho do composer e do outline pass.

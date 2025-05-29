@@ -3,24 +3,28 @@
  * Componente de diálogo modal para adicionar ou editar anotações textuais
  * associadas a um equipamento. Utiliza um Textarea para permitir anotações de texto longo.
  *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     AnnotationDialogProps {
+ *     class AnnotationDialogProps {
  *       +isOpen: boolean
  *       +onOpenChange: (isOpen: boolean) -> void
  *       +onConfirm: (text: string) -> void
  *       +currentAnnotation: Annotation | null
  *       +equipmentName: string
  *     }
- *     AnnotationDialog --|> React.FC
- *     AnnotationDialogProps ..> Annotation : uses (via currentAnnotation)
- *
+ *     class AnnotationDialog {}
+ *     class ReactFC {}
  *     class Annotation {
  *       +equipmentTag: string
  *       +text: string
  *       +createdAt: string
  *     }
+ *     AnnotationDialog --|> ReactFC
+ *     AnnotationDialogProps ..> Annotation : uses (via currentAnnotation)
+ *     AnnotationDialogProps --> AnnotationDialog : implicitly uses
  * ```
+ * </pre>
  */
 "use client";
 

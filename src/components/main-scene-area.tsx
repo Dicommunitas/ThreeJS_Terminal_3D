@@ -9,10 +9,10 @@
  * Este componente não possui lógica complexa própria, mas sim delega a renderização
  * e o comportamento para seus filhos, passando as props necessárias, incluindo a lista
  * completa de equipamentos (`allEquipmentData`) para contexto de renderização de anotações.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     MainSceneAreaProps {
+ *     class MainSceneAreaProps {
  *       +equipment: Equipment[]
  *       +allEquipmentData: Equipment[]
  *       +layers: Layer[]
@@ -37,7 +37,7 @@
  *       +onProductChange(equipmentTag: string, newProduct: string): void
  *       +availableProductsList: string[]
  *     }
- *     Point3D {
+ *     class Point3D {
  *       +x: number
  *       +y: number
  *       +z: number
@@ -48,10 +48,15 @@
  *     MainSceneAreaProps ..> CameraState
  *     MainSceneAreaProps ..> ColorMode
  *     MainSceneAreaProps ..> Point3D
- *     MainSceneArea --|> React.FC
+ *     class MainSceneArea {}
+ *     class ReactFC {}
+ *     class ThreeScene {}
+ *     class InfoPanel {}
+ *     MainSceneArea --|> ReactFC
  *     MainSceneArea ..> ThreeScene : uses
  *     MainSceneArea ..> InfoPanel : uses
  * ```
+ * </pre>
  */
 "use client";
 

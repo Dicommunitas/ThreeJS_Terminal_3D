@@ -12,9 +12,10 @@
  *   - Fornecer botões para adicionar, editar ou excluir a anotação.
  * - Fornecer um botão para fechar o painel de informações (desselecionando o equipamento).
  *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     InfoPanelProps {
+ *     class InfoPanelProps {
  *       +equipment: Equipment | null
  *       +annotation: Annotation | null
  *       +onClose: () -> void
@@ -25,10 +26,13 @@
  *       +onProductChange: (equipmentTag: string, newProduct: string) -> void
  *       +availableProductsList: string[]
  *     }
- *     InfoPanel --|> React.FC
+ *     class InfoPanel {}
+ *     class ReactFC {}
+ *     InfoPanel --|> ReactFC
  *     InfoPanelProps ..> Equipment : uses
  *     InfoPanelProps ..> Annotation : uses
  * ```
+ * </pre>
  */
 "use client";
 

@@ -5,17 +5,22 @@
  * Principal Responsabilidade:
  * Renderizar botões para cada sistema disponível, permitindo ao usuário focar a câmera
  * e selecionar todos os equipamentos pertencentes àquele sistema ao clicar em um botão.
- *
+ * <pre>
  * ```mermaid
  *   classDiagram
- *     CameraControlsPanelProps {
+ *     class CameraControlsPanelProps {
  *       +systems: string[]
  *       +onSetView(systemName: string): void
  *     }
- *     CameraControlsPanel --|> React.FC
+ *     class CameraControlsPanel {}
+ *     class ReactFC {}
+ *     class Button {}
+ *     class Card {}
+ *     CameraControlsPanel --|> ReactFC
  *     CameraControlsPanel ..> Button : uses
  *     CameraControlsPanel ..> Card : uses
  * ```
+ * </pre>
  */
 "use client";
 
