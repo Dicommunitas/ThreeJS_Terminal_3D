@@ -12,7 +12,6 @@
  *   - Fornecer botões para adicionar, editar ou excluir a anotação.
  * - Fornecer um botão para fechar o painel de informações (desselecionando o equipamento).
  *
- * <pre>
  * ```mermaid
  *   classDiagram
  *     class InfoPanelProps {
@@ -28,11 +27,13 @@
  *     }
  *     class InfoPanel {}
  *     class ReactFC {}
+ *     class Equipment{}
+ *     class Annotation{}
  *     InfoPanel --|> ReactFC
  *     InfoPanelProps ..> Equipment : uses
  *     InfoPanelProps ..> Annotation : uses
  * ```
- * </pre>
+ * 
  */
 "use client";
 
@@ -223,3 +224,5 @@ export function InfoPanel({
     </Card>
   );
 }
+
+    

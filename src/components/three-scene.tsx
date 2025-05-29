@@ -16,7 +16,7 @@
  * Principal Responsabilidade (Pós-Refatoração):
  * Orquestrar os diversos hooks que gerenciam aspectos específicos da cena 3D,
  * passar props e refs entre eles, e fornecer o ponto de montagem no DOM.
- * <pre>
+ * 
  * ```mermaid
  * classDiagram
  *   class ThreeSceneProps {
@@ -41,6 +41,11 @@
  *     +y: number
  *     +z: number
  *   }
+ *   class Equipment{}
+ *   class Layer{}
+ *   class Annotation{}
+ *   class CameraState{}
+ *   class ColorMode{}
  *   ThreeSceneProps ..> Equipment
  *   ThreeSceneProps ..> Layer
  *   ThreeSceneProps ..> Annotation
@@ -57,7 +62,7 @@
  *   ThreeScene ..> useSceneOutline : uses
  *   ThreeScene ..> useAnimationLoop : uses
  * ```
- * </pre>
+ * 
  */
 "use client";
 
@@ -301,3 +306,5 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 };
 
 export default ThreeScene;
+
+    

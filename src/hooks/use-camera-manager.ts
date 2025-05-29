@@ -6,7 +6,7 @@
  * Manter o estado da câmera (posição e ponto de observação), controlar o enquadramento
  * de sistemas de equipamentos e integrar movimentos de câmera com o sistema de histórico
  * de comandos para permitir undo/redo.
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class UseCameraManagerReturn {
@@ -23,12 +23,14 @@
  *       +y: number
  *       +z: number
  *     }
+ *     class CameraState{}
+ *     class Command{}
  *     UseCameraManagerReturn ..> CameraState
  *     UseCameraManagerReturn ..> Point3D
  *     class useCameraManager {}
  *     useCameraManager ..> Command : uses (via executeCommand)
  * ```
- * </pre>
+ * 
  */
 "use client";
 
@@ -151,3 +153,5 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
     defaultInitialCameraLookAt,
   };
 }
+
+    

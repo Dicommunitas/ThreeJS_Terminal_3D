@@ -21,28 +21,44 @@
  * - `SidebarInput`, `SidebarSeparator`: Elementos de UI utilitários para a sidebar.
  *
  * Utiliza cookies para persistir o estado da sidebar entre as sessões (desktop) e atalhos de teclado.
- * <pre>
+ * 
  * ```mermaid
  *   graph LR
- *     App --> SidebarProvider
- *     SidebarProvider --> Sidebar
- *     SidebarProvider --> SidebarInset
- *     Sidebar --> SidebarHeader
- *     Sidebar --> SidebarContent
- *     Sidebar --> SidebarFooter
- *     SidebarContent --> SidebarGroup
- *     SidebarGroup --> SidebarGroupLabel
- *     SidebarGroup --> SidebarMenu
- *     SidebarMenu --> SidebarMenuItem
- *     SidebarMenuItem --> SidebarMenuButton
- *     SidebarMenuItem --> SidebarMenuAction
- *     SidebarMenuItem --> SidebarMenuBadge
- *     SidebarMenuButton --> SidebarMenuSub
- *     SidebarMenuSub --> SidebarMenuSubItem
- *     SidebarMenuSubItem --> SidebarMenuSubButton
- *     App --> SidebarTrigger
+ *     App --> SidebarProvider_Context["SidebarProvider (Context)"];
+ *     SidebarProvider_Context --> Sidebar_Comp["Sidebar"];
+ *     SidebarProvider_Context --> SidebarInset_Comp["SidebarInset (Main Content Wrapper)"];
+ *     App --> SidebarTrigger_Button["SidebarTrigger (Button)"];
+ *
+ *     Sidebar_Comp --> SidebarHeader_Sec["SidebarHeader"];
+ *     Sidebar_Comp --> SidebarContent_Sec["SidebarContent (Scrollable)"];
+ *     Sidebar_Comp --> SidebarFooter_Sec["SidebarFooter"];
+ *
+ *     SidebarContent_Sec --> SidebarGroup_Container["SidebarGroup"];
+ *     SidebarGroup_Container --> SidebarGroupLabel_Text["SidebarGroupLabel"];
+ *     SidebarGroup_Container --> SidebarMenu_List["SidebarMenu (ul)"];
+ *
+ *     SidebarMenu_List --> SidebarMenuItem_Item["SidebarMenuItem (li)"];
+ *     SidebarMenuItem_Item --> SidebarMenuButton_Action["SidebarMenuButton (Button/Link)"];
+ *     SidebarMenuItem_Item --> SidebarMenuAction_Opt["SidebarMenuAction (Optional Button)"];
+ *     SidebarMenuItem_Item --> SidebarMenuBadge_Info["SidebarMenuBadge (Optional Info)"];
+ *
+ *     SidebarMenuButton_Action --> SidebarMenuSub_SubList["SidebarMenuSub (ul for dropdowns)"];
+ *     SidebarMenuSub_SubList --> SidebarMenuSubItem_SubItem["SidebarMenuSubItem (li)"];
+ *     SidebarMenuSubItem_SubItem --> SidebarMenuSubButton_SubAction["SidebarMenuSubButton (Button/Link)"];
+ *
+ *    classDef context fill:#lightcoral,stroke:#333;
+ *    classDef component fill:#lightblue,stroke:#333;
+ *    classDef section fill:#lightgreen,stroke:#333;
+ *    classDef container fill:#lightyellow,stroke:#333;
+ *    classDef item fill:#whitesmoke,stroke:#333;
+ *
+ *    class SidebarProvider_Context context;
+ *    class Sidebar_Comp,SidebarInset_Comp,SidebarTrigger_Button,SidebarMenuButton_Action,SidebarMenuAction_Opt,SidebarMenuBadge_Info,SidebarMenuSubButton_SubAction component;
+ *    class SidebarHeader_Sec,SidebarContent_Sec,SidebarFooter_Sec section;
+ *    class SidebarGroup_Container container;
+ *    class SidebarMenu_List,SidebarMenuItem_Item,SidebarMenuSub_SubList,SidebarMenuSubItem_SubItem item;
  * ```
- * </pre>
+ * 
  */
 "use client"
 
@@ -282,6 +298,7 @@ const Sidebar = React.forwardRef<
             }
             side={side}
           >
+            {/* Adicionado SheetTitle para acessibilidade */}
             <SheetTitle className="sr-only">Navegação Principal</SheetTitle>
             <div className="flex h-full w-full flex-col">{children}</div>
           </SheetContent>
@@ -956,4 +973,6 @@ export {
   // useSidebar, // A exportação de useSidebar já está acima com export type
 }
 
-export type { SidebarContext as _SidebarContextType }; // Exporting the type for external use if needed, aliased.
+export type { SidebarContext }; 
+
+    

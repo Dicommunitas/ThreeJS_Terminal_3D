@@ -6,7 +6,7 @@
  * Renderizar botões que permitem ao usuário desfazer (Undo) e refazer (Redo)
  * ações previamente executadas na aplicação, com base no estado fornecido pelo
  * hook `useCommandHistory`.
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class CommandHistoryPanelProps {
@@ -27,7 +27,7 @@
  *     CommandHistoryPanel ..> Undo2Icon : uses
  *     CommandHistoryPanel ..> Redo2Icon : uses
  * ```
- * </pre>
+ * 
  */
 "use client";
 
@@ -76,3 +76,5 @@ export function CommandHistoryPanel({ canUndo, canRedo, onUndo, onRedo }: Comman
     </Card>
   );
 }
+
+    

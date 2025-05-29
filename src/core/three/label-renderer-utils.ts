@@ -8,7 +8,7 @@
  * na cena, utilizando `CSS2DRenderer`. Isso inclui lidar com a visibilidade dos pins
  * com base na camada de anotações e fornecer uma função para atualizar o tamanho do
  * `CSS2DRenderer` em caso de redimensionamento da viewport.
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class UpdateAnnotationPinsParams {
@@ -30,7 +30,7 @@
  *     class updateAnnotationPins {}
  *     updateAnnotationPins ..> UpdateAnnotationPinsParams : receives
  * ```
- * </pre>
+ * 
  * Exporta:
  * - `updateLabelRendererSize`: Atualiza o tamanho do CSS2DRenderer.
  * - `updateAnnotationPins`: Gerencia os pins de anotação na cena.
@@ -148,3 +148,5 @@ export function updateAnnotationPins({
     });
   }
 }
+
+    

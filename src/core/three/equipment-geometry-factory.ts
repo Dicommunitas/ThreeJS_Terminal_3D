@@ -75,3 +75,5 @@ export function createGeometryForItem(item: Equipment): THREE.BufferGeometry {
     
 
     
+
+    

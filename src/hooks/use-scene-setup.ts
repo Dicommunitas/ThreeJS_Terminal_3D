@@ -8,7 +8,7 @@
  * controles de órbita, pipeline de pós-processamento (EffectComposer, OutlinePass),
  * iluminação básica e um plano de chão. Gerencia também o estado de "prontidão" da cena
  * e o tratamento de redimensionamento da janela/contêiner.
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class UseSceneSetupProps {
@@ -42,15 +42,26 @@
  *     class RefObject_EffectComposer_ {}
  *     class RefObject_OutlinePass_ {}
  *     class RefObject_Mesh_ {}
+ *     class CameraState {}
  *
  *     UseSceneSetupProps ..> Point3D
  *     UseSceneSetupProps ..> CameraState
  *     UseSceneSetupReturn ..> Point3D
  *     UseSceneSetupReturn ..> CameraState
  *     class useSceneSetup {}
+ *     class scene_elements_setup {}
  *     useSceneSetup ..> scene_elements_setup : uses setupRenderPipeline, setupLighting, setupGroundPlane
+ *     UseSceneSetupProps --> RefObject_HTMLDivElement_
+ *     UseSceneSetupReturn --> RefObject_Scene_
+ *     UseSceneSetupReturn --> RefObject_PerspectiveCamera_
+ *     UseSceneSetupReturn --> RefObject_WebGLRenderer_
+ *     UseSceneSetupReturn --> RefObject_CSS2DRenderer_
+ *     UseSceneSetupReturn --> RefObject_OrbitControls_
+ *     UseSceneSetupReturn --> RefObject_EffectComposer_
+ *     UseSceneSetupReturn --> RefObject_OutlinePass_
+ *     UseSceneSetupReturn --> RefObject_Mesh_
  * ```
- * </pre>
+ * 
  */
 import { useRef, useEffect, useState, useCallback } from 'react';
 import * as THREE from 'three';
@@ -304,3 +315,5 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
     isSceneReady,
   };
 };
+
+    

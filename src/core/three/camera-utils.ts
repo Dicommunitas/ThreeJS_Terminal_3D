@@ -5,7 +5,7 @@
  * Principal Responsabilidade:
  * Calcular a posição e o ponto de observação ideais da câmera para enquadrar um conjunto
  * de objetos 3D (meshes) de forma clara e centralizada na viewport.
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class calculateViewForMeshes_params {
@@ -20,7 +20,7 @@
  *     calculateViewForMeshes ..> calculateViewForMeshes_params : receives
  *     calculateViewForMeshes ..> calculateViewForMeshes_return : returns or null
  * ```
- * </pre>
+ * 
  * Exporta:
  * - `calculateViewForMeshes`: Função para calcular a visão da câmera para um conjunto de meshes.
  */
@@ -91,3 +91,5 @@ export function calculateViewForMeshes(
     lookAt: center,
   };
 }
+
+    

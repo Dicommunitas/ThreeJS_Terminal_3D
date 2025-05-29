@@ -5,7 +5,7 @@
  * Principal Responsabilidade:
  * Renderizar botões para cada sistema disponível, permitindo ao usuário focar a câmera
  * e selecionar todos os equipamentos pertencentes àquele sistema ao clicar em um botão.
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class CameraControlsPanelProps {
@@ -20,7 +20,7 @@
  *     CameraControlsPanel ..> Button : uses
  *     CameraControlsPanel ..> Card : uses
  * ```
- * </pre>
+ * 
  */
 "use client";
 
@@ -75,3 +75,5 @@ export function CameraControlsPanel({ systems, onSetView }: CameraControlsPanelP
     </Card>
   );
 }
+
+    

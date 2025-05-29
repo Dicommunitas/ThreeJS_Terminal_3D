@@ -6,7 +6,7 @@
  * Manter os critérios de filtro (termo de busca, sistema, área), derivar listas
  * de opções de filtro disponíveis (sistemas, áreas) e calcular a lista de
  * equipamentos que correspondem aos filtros atuais, utilizando `getFilteredEquipment`.
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class UseFilterManagerProps {
@@ -23,12 +23,14 @@
  *       +availableAreas: string[]
  *       +filteredEquipment: Equipment[]
  *     }
+ *     class Equipment{}
+ *     class equipment_filter{}
  *     UseFilterManagerProps ..> Equipment
  *     UseFilterManagerReturn ..> Equipment
  *     class useFilterManager {}
  *     useFilterManager ..> equipment_filter : uses getFilteredEquipment
  * ```
- * </pre>
+ * 
  */
 'use client';
 
@@ -138,3 +140,5 @@ export function useFilterManager({ allEquipment }: UseFilterManagerProps): UseFi
     filteredEquipment,
   };
 }
+
+    

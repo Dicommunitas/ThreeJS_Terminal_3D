@@ -15,7 +15,6 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
  * e modo de colorização, e atualiza a cena Three.js de acordo.
  * Utiliza `updateEquipmentMeshesInScene` de `scene-elements-setup.ts` para a lógica de sincronização
  * dos meshes e do plano de chão com base na visibilidade das camadas.
- * <pre>
  * ```mermaid
  *   classDiagram
  *     class UseEquipmentRendererProps {
@@ -29,17 +28,21 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
  *     }
  *     class useEquipmentRenderer {}
  *     class ReactFCHook {}
+ *     class scene_elements_setup {}
+ *     class Equipment{}
+ *     class Layer{}
+ *     class ColorMode{}
+ *     class RefObject_Scene_ {}
+ *     class RefObject_Mesh_ {}
  *     useEquipmentRenderer --|> ReactFCHook
  *     useEquipmentRenderer ..> scene_elements_setup : uses updateEquipmentMeshesInScene
  *     UseEquipmentRendererProps ..> Equipment
  *     UseEquipmentRendererProps ..> Layer
  *     UseEquipmentRendererProps ..> ColorMode
- *     class RefObject_Scene_ {}
  *     UseEquipmentRendererProps ..> RefObject_Scene_
- *     class RefObject_Mesh_ {}
  *     UseEquipmentRendererProps ..> RefObject_Mesh_
  * ```
- * </pre>
+ * 
  */
 export interface UseEquipmentRendererProps {
   sceneRef: React.RefObject<THREE.Scene | null>;
@@ -104,3 +107,5 @@ export function useEquipmentRenderer({
 
   return equipmentMeshesRef;
 }
+
+    

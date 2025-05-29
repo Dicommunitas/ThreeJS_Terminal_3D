@@ -7,7 +7,7 @@
  * Manter uma pilha de comandos executados, permitir a execução de novos comandos,
  * e fornecer a capacidade de navegar para frente (redo) e para trás (undo)
  * nesse histórico, chamando as funções `execute()` e `undo()` dos respectivos comandos.
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class UseCommandHistoryReturn {
@@ -18,9 +18,10 @@
  *       +canRedo: boolean
  *       +commandHistory: Command[]
  *     }
+ *     class Command {}
  *     UseCommandHistoryReturn ..> Command
  * ```
- * </pre>
+ * 
  */
 import type { Command } from '@/lib/types';
 import { useState, useCallback } from 'react';
@@ -134,3 +135,5 @@ export function useCommandHistory(initialState?: CommandHistoryState): UseComman
 
   return { executeCommand, undo, redo, canUndo, canRedo, commandHistory };
 }
+
+    

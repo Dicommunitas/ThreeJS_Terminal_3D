@@ -3,7 +3,6 @@
  * Componente de diálogo modal para adicionar ou editar anotações textuais
  * associadas a um equipamento. Utiliza um Textarea para permitir anotações de texto longo.
  *
- * <pre>
  * ```mermaid
  *   classDiagram
  *     class AnnotationDialogProps {
@@ -13,18 +12,20 @@
  *       +currentAnnotation: Annotation | null
  *       +equipmentName: string
  *     }
- *     class AnnotationDialog {}
- *     class ReactFC {}
+ *     class AnnotationDialog {
+ *     }
  *     class Annotation {
  *       +equipmentTag: string
  *       +text: string
  *       +createdAt: string
  *     }
+ *     class ReactFC {
+ *     }
  *     AnnotationDialog --|> ReactFC
  *     AnnotationDialogProps ..> Annotation : uses (via currentAnnotation)
  *     AnnotationDialogProps --> AnnotationDialog : implicitly uses
  * ```
- * </pre>
+ * 
  */
 "use client";
 
@@ -126,3 +127,5 @@ export function AnnotationDialog({ isOpen, onOpenChange, onConfirm, currentAnnot
     </Dialog>
   );
 }
+
+    

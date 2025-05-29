@@ -9,7 +9,7 @@
  * Este componente não possui lógica complexa própria, mas sim delega a renderização
  * e o comportamento para seus filhos, passando as props necessárias, incluindo a lista
  * completa de equipamentos (`allEquipmentData`) para contexto de renderização de anotações.
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class MainSceneAreaProps {
@@ -42,6 +42,11 @@
  *       +y: number
  *       +z: number
  *     }
+ *     class Equipment {}
+ *     class Layer {}
+ *     class Annotation {}
+ *     class CameraState {}
+ *     class ColorMode {}
  *     MainSceneAreaProps ..> Equipment
  *     MainSceneAreaProps ..> Layer
  *     MainSceneAreaProps ..> Annotation
@@ -56,7 +61,7 @@
  *     MainSceneArea ..> ThreeScene : uses
  *     MainSceneArea ..> InfoPanel : uses
  * ```
- * </pre>
+ * 
  */
 "use client";
 
@@ -183,3 +188,5 @@ export function MainSceneArea({
     </div>
   );
 }
+
+    

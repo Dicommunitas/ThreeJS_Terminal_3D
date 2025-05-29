@@ -5,13 +5,14 @@
  * Principal Responsabilidade:
  * Permitir ao usuário escolher como os equipamentos serão coloridos (por cor base,
  * estado operacional ou produto) através de um menu dropdown (Select).
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class ColorModeSelectorProps {
  *       +colorMode: ColorMode
  *       +onColorModeChange(mode: ColorMode): void
  *     }
+ *     class ColorMode {}
  *     ColorModeSelectorProps ..> ColorMode
  *     class ColorModeSelector {}
  *     class ReactFC {}
@@ -23,7 +24,7 @@
  *     ColorModeSelector ..> Select : uses
  *     ColorModeSelector ..> Label : uses
  * ```
- * </pre>
+ * 
  */
 "use client";
 
@@ -77,3 +78,5 @@ export function ColorModeSelector({ colorMode, onColorModeChange }: ColorModeSel
     </Card>
   );
 }
+
+    

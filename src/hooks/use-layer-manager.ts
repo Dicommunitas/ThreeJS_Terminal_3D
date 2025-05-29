@@ -8,7 +8,7 @@
  * e fornecer uma função para alternar a visibilidade de uma camada específica.
  * Esta ação de alternância é integrada com o sistema de histórico de comandos (`useCommandHistory`)
  * para permitir undo/redo.
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class UseLayerManagerProps {
@@ -18,12 +18,14 @@
  *       +layers: Layer[]
  *       +handleToggleLayer(layerId: string): void
  *     }
+ *     class Command{}
+ *     class Layer{}
  *     UseLayerManagerProps ..> Command
  *     UseLayerManagerReturn ..> Layer
  *     class useLayerManager {}
  *     useLayerManager ..> Command : uses (via executeCommand)
  * ```
- * </pre>
+ * 
  */
 "use client";
 
@@ -108,3 +110,5 @@ export function useLayerManager({ executeCommand }: UseLayerManagerProps): UseLa
 
   return { layers, handleToggleLayer };
 }
+
+    

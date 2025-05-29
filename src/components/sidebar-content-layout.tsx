@@ -12,7 +12,7 @@
  * - Seletor de modo de colorização.
  * - Gerenciador de camadas de visibilidade.
  * - Link para a documentação externa do projeto.
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class SidebarContentLayoutProps {
@@ -31,6 +31,8 @@
  *       +cameraViewSystems: string[]
  *       +onFocusAndSelectSystem(systemName: string): void
  *     }
+ *     class ColorMode {}
+ *     class Layer {}
  *     SidebarContentLayoutProps ..> ColorMode
  *     SidebarContentLayoutProps ..> Layer
  *     class SidebarContentLayout {}
@@ -51,7 +53,7 @@
  *     SidebarContentLayout ..> Button : uses
  *     SidebarContentLayout ..> ScrollArea : uses
  * ```
- * </pre>
+ * 
  */
 "use client";
 
@@ -225,3 +227,5 @@ export function SidebarContentLayout({
     </ScrollArea>
   );
 }
+
+    

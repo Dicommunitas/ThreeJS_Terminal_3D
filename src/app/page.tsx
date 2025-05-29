@@ -1,4 +1,5 @@
 
+
 /**
  * Componente principal da página da aplicação Terminal 3D.
  * Responsável por orquestrar os diversos hooks de gerenciamento de estado da aplicação
@@ -21,46 +22,47 @@
  * - Renderizar a estrutura principal da UI, incluindo a `Sidebar` e a `MainSceneArea`.
  * - Passar os estados e callbacks apropriados dos hooks para os componentes filhos.
  * - Definir lógicas de alto nível que coordenam múltiplos hooks (e.g., `handleFocusAndSelectSystem`).
- * <pre>
+ *
  * ```mermaid
  *   graph LR
- *     Terminal3DPage --> useCommandHistory
- *     Terminal3DPage --> useEquipmentDataManager
- *     Terminal3DPage --> useCameraManager
- *     Terminal3DPage --> useFilterManager
- *     Terminal3DPage --> useAnnotationManager
- *     Terminal3DPage --> useEquipmentSelectionManager
- *     Terminal3DPage --> useLayerManager
- *     Terminal3DPage --> MainSceneArea
- *     Terminal3DPage --> Sidebar
- *     Terminal3DPage --> AnnotationDialog
+ *     Terminal3DPage["Terminal3DPage"] --> H_CmdHistory["useCommandHistory"];
+ *     Terminal3DPage --> H_EquipData["useEquipmentDataManager"];
+ *     Terminal3DPage --> H_CameraMgr["useCameraManager"];
+ *     Terminal3DPage --> H_FilterMgr["useFilterManager"];
+ *     Terminal3DPage --> H_AnnotMgr["useAnnotationManager"];
+ *     Terminal3DPage --> H_EquipSelectMgr["useEquipmentSelectionManager"];
+ *     Terminal3DPage --> H_LayerMgr["useLayerManager"];
  *
- *     MainSceneArea --> ThreeScene
- *     MainSceneArea --> InfoPanel
- *     Sidebar --> SidebarContentLayout
+ *     Terminal3DPage --> MainSceneArea_Comp["MainSceneArea"];
+ *     Terminal3DPage --> Sidebar_Comp["Sidebar"];
+ *     Terminal3DPage --> AnnotationDialog_Comp["AnnotationDialog"];
  *
- *     subgraph "Hooks de Estado"
- *       useCommandHistory
- *       useEquipmentDataManager
- *       useCameraManager
- *       useFilterManager
- *       useAnnotationManager
- *       useEquipmentSelectionManager
- *       useLayerManager
+ *     MainSceneArea_Comp --> ThreeScene_Comp["ThreeScene"];
+ *     MainSceneArea_Comp --> InfoPanel_Comp["InfoPanel"];
+ *     Sidebar_Comp --> SidebarContentLayout_Comp["SidebarContentLayout"];
+ *
+ *     subgraph "Hooks de Estado Alto Nível"
+ *       H_CmdHistory;
+ *       H_EquipData;
+ *       H_CameraMgr;
+ *       H_FilterMgr;
+ *       H_AnnotMgr;
+ *       H_EquipSelectMgr;
+ *       H_LayerMgr;
  *     end
  *
  *     subgraph "Componentes de UI Principais"
- *       MainSceneArea
- *       Sidebar
- *       AnnotationDialog
- *       InfoPanel
- *       ThreeScene
- *       SidebarContentLayout
+ *       MainSceneArea_Comp;
+ *       Sidebar_Comp;
+ *       AnnotationDialog_Comp;
+ *       InfoPanel_Comp;
+ *       ThreeScene_Comp;
+ *       SidebarContentLayout_Comp;
  *     end
  *
  *     style Terminal3DPage fill:#f9f,stroke:#333,stroke-width:2px
  * ```
- * </pre>
+ * 
  */
 "use client";
 
@@ -322,3 +324,5 @@ export default function Terminal3DPage(): JSX.Element {
     </SidebarProvider>
   );
 }
+
+    

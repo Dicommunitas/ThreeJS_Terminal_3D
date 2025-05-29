@@ -6,7 +6,7 @@
  * Manter o estado dos equipamentos selecionados e em hover, e fornecer funções para
  * manipular essas seleções (clique único, clique múltiplo, seleção em lote).
  * Integra-se com `useCommandHistory` para registrar ações de seleção e `useToast` para feedback.
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class UseEquipmentSelectionManagerProps {
@@ -20,13 +20,15 @@
  *       +handleSetHoveredEquipmentTag(tag: string | null): void
  *       +selectTagsBatch(tagsToSelect: string[], operationDescription?: string): void
  *     }
+ *     class Equipment{}
+ *     class Command{}
  *     UseEquipmentSelectionManagerProps ..> Equipment : uses (via equipmentData for names)
  *     UseEquipmentSelectionManagerProps ..> Command : uses (via executeCommand)
  *     UseEquipmentSelectionManagerReturn ..> Command
  *     class useEquipmentSelectionManager {}
  *     useEquipmentSelectionManager ..> useToast : uses
  * ```
- * </pre>
+ * 
  */
 "use client";
 
@@ -219,3 +221,5 @@ export function useEquipmentSelectionManager({
     selectTagsBatch,
   };
 }
+
+    

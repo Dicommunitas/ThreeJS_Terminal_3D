@@ -7,7 +7,7 @@
  * componentes fundamentais da cena 3D, como iluminação, plano de chão, renderizadores
  * (WebGL e CSS2D), pipeline de pós-processamento (EffectComposer, OutlinePass), e a
  * sincronização dinâmica dos meshes de equipamentos com os dados da aplicação.
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class setupRenderPipeline_return {
@@ -28,10 +28,16 @@
  *       +createSingleEquipmentMesh(item: Equipment): THREE.Object3D
  *       +groundMeshRef: React.MutableRefObject_Mesh_
  *     }
+ *     class Equipment {}
+ *     class Layer {}
+ *     class ColorMode {}
+ *     UpdateEquipmentMeshesParams ..> Equipment
+ *     UpdateEquipmentMeshesParams ..> Layer
+ *     UpdateEquipmentMeshesParams ..> ColorMode
  *     class updateEquipmentMeshesInScene {}
  *     updateEquipmentMeshesInScene ..> UpdateEquipmentMeshesParams : receives
  * ```
- * </pre>
+ * 
  * Exporta:
  * - `setupLighting`: Configura a iluminação da cena.
  * - `setupGroundPlane`: Configura o plano de chão.
@@ -305,3 +311,5 @@ export function updateEquipmentMeshesInScene({
     groundMeshRef.current.visible = groundShouldBeVisible;
   }
 }
+
+    

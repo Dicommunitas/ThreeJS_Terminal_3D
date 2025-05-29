@@ -14,7 +14,7 @@ import * as THREE from 'three';
  * equipamentos. Dispara callbacks fornecidos (`onSelectEquipment`, `setHoveredEquipmentTag`)
  * com base nessas interações. Adiciona e remove os ouvintes de eventos de mouse
  * do elemento de montagem da cena.
- * <pre>
+ * 
  * ```mermaid
  *   classDiagram
  *     class UseMouseInteractionManagerProps {
@@ -27,15 +27,15 @@ import * as THREE from 'three';
  *     }
  *     class useMouseInteractionManager {}
  *     class ReactFCHook {}
- *     useMouseInteractionManager --|> ReactFCHook
  *     class RefObject_HTMLDivElement_ {}
- *     UseMouseInteractionManagerProps ..> RefObject_HTMLDivElement_
  *     class RefObject_PerspectiveCamera_ {}
- *     UseMouseInteractionManagerProps ..> RefObject_PerspectiveCamera_
  *     class RefObject_Object3D_Array_ {}
+ *     useMouseInteractionManager --|> ReactFCHook
+ *     UseMouseInteractionManagerProps ..> RefObject_HTMLDivElement_
+ *     UseMouseInteractionManagerProps ..> RefObject_PerspectiveCamera_
  *     UseMouseInteractionManagerProps ..> RefObject_Object3D_Array_
  * ```
- * </pre>
+ * 
  */
 
 // Instâncias reutilizáveis para raycasting para otimizar performance.
@@ -188,3 +188,5 @@ export function useMouseInteractionManager({
     };
   }, [mountRef, isSceneReady, handleClick, handleMouseMove]);
 }
+
+    
