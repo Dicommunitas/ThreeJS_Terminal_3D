@@ -8,7 +8,7 @@
 
 > `const` **SidebarMenuSkeleton**: `ForwardRefExoticComponent`\<`Omit`\<`ClassAttributes`\<`HTMLDivElement`\> & `HTMLAttributes`\<`HTMLDivElement`\> & `object`, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:826](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/components/ui/sidebar.tsx#L826)
+Defined in: [src/components/ui/sidebar.tsx:828](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/ui/sidebar.tsx#L828)
 
 Componente de esqueleto de carregamento para itens de menu.
 Útil para indicar que o conteúdo do menu está sendo carregado.

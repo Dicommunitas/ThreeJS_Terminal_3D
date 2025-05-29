@@ -8,7 +8,7 @@
 
 > `const` **Sidebar**: `ForwardRefExoticComponent`\<`Omit`\<`ClassAttributes`\<`HTMLDivElement`\> & `HTMLAttributes`\<`HTMLDivElement`\> & `object`, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:222](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/components/ui/sidebar.tsx#L222)
+Defined in: [src/components/ui/sidebar.tsx:223](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/ui/sidebar.tsx#L223)
 
 Componente principal da Sidebar.
 Renderiza a sidebar com base no estado do `SidebarProvider` e nas props de configuração.

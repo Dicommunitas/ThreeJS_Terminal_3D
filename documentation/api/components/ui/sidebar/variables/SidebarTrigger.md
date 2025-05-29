@@ -8,7 +8,7 @@
 
 > `const` **SidebarTrigger**: `ForwardRefExoticComponent`\<`Omit`\<[`ButtonProps`](../../button/interfaces/ButtonProps.md) & `RefAttributes`\<`HTMLButtonElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLButtonElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:370](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/components/ui/sidebar.tsx#L370)
+Defined in: [src/components/ui/sidebar.tsx:372](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/ui/sidebar.tsx#L372)
 
 Botão para alternar o estado de visibilidade da sidebar.
 Em modo mobile, abre/fecha a sidebar offcanvas.

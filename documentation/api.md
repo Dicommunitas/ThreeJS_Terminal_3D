@@ -146,6 +146,7 @@ Principais Responsabilidades:
 *   Passar os estados e callbacks apropriados dos hooks para os componentes filhos.
 *   Definir lógicas de alto nível que coordenam múltiplos hooks (e.g., `handleFocusAndSelectSystem`).
 
+<pre>
 ```mermaid
   graph LR
     Terminal3DPage --> useCommandHistory
@@ -184,6 +185,7 @@ Principais Responsabilidades:
 
     style Terminal3DPage fill:#f9f,stroke:#333,stroke-width:2px
 ```
+</pre>
 
 ## Terminal3DPage
 
@@ -230,6 +232,7 @@ Usada para popular o dropdown de alteração de produto no InfoPanel.
 Componente de diálogo modal para adicionar ou editar anotações textuais
 associadas a um equipamento. Utiliza um Textarea para permitir anotações de texto longo.
 
+<pre>
 ```mermaid
   classDiagram
     class AnnotationDialogProps {
@@ -239,15 +242,18 @@ associadas a um equipamento. Utiliza um Textarea para permitir anotações de te
       +currentAnnotation: Annotation | null
       +equipmentName: string
     }
-    AnnotationDialog --|> React.FC
-    AnnotationDialogProps ..> Annotation : uses (via currentAnnotation)
-
+    class AnnotationDialog {}
+    class ReactFC {}
     class Annotation {
       +equipmentTag: string
       +text: string
       +createdAt: string
     }
+    AnnotationDialog --|> ReactFC
+    AnnotationDialogProps ..> Annotation : uses (via currentAnnotation)
+    AnnotationDialogProps --> AnnotationDialog : implicitly uses
 ```
+</pre>
 
 ## AnnotationDialogProps
 
@@ -294,16 +300,22 @@ Principal Responsabilidade:
 Renderizar botões para cada sistema disponível, permitindo ao usuário focar a câmera
 e selecionar todos os equipamentos pertencentes àquele sistema ao clicar em um botão.
 
+<pre>
 ```mermaid
   classDiagram
-    CameraControlsPanelProps {
+    class CameraControlsPanelProps {
       +systems: string[]
       +onSetView(systemName: string): void
     }
-    CameraControlsPanel --|> React.FC
+    class CameraControlsPanel {}
+    class ReactFC {}
+    class Button {}
+    class Card {}
+    CameraControlsPanel --|> ReactFC
     CameraControlsPanel ..> Button : uses
     CameraControlsPanel ..> Card : uses
 ```
+</pre>
 
 ## CameraControlsPanelProps
 
@@ -335,18 +347,25 @@ Principal Responsabilidade:
 Permitir ao usuário escolher como os equipamentos serão coloridos (por cor base,
 estado operacional ou produto) através de um menu dropdown (Select).
 
+<pre>
 ```mermaid
   classDiagram
-    ColorModeSelectorProps {
+    class ColorModeSelectorProps {
       +colorMode: ColorMode
       +onColorModeChange(mode: ColorMode): void
     }
     ColorModeSelectorProps ..> ColorMode
-    ColorModeSelector --|> React.FC
+    class ColorModeSelector {}
+    class ReactFC {}
+    class Card {}
+    class Select {}
+    class Label {}
+    ColorModeSelector --|> ReactFC
     ColorModeSelector ..> Card : uses
     ColorModeSelector ..> Select : uses
     ColorModeSelector ..> Label : uses
 ```
+</pre>
 
 ## ColorModeSelectorProps
 
@@ -379,20 +398,28 @@ Renderizar botões que permitem ao usuário desfazer (Undo) e refazer (Redo)
 ações previamente executadas na aplicação, com base no estado fornecido pelo
 hook `useCommandHistory`.
 
+<pre>
 ```mermaid
   classDiagram
-    CommandHistoryPanelProps {
+    class CommandHistoryPanelProps {
       +canUndo: boolean
       +canRedo: boolean
       +onUndo(): void
       +onRedo(): void
     }
-    CommandHistoryPanel --|> React.FC
+    class CommandHistoryPanel {}
+    class ReactFC {}
+    class Button {}
+    class Card {}
+    class Undo2Icon {}
+    class Redo2Icon {}
+    CommandHistoryPanel --|> ReactFC
     CommandHistoryPanel ..> Button : uses
     CommandHistoryPanel ..> Card : uses
     CommandHistoryPanel ..> Undo2Icon : uses
     CommandHistoryPanel ..> Redo2Icon : uses
 ```
+</pre>
 
 ## CommandHistoryPanelProps
 
@@ -434,9 +461,10 @@ Responsabilidades:
     *   Fornecer botões para adicionar, editar ou excluir a anotação.
 *   Fornecer um botão para fechar o painel de informações (desselecionando o equipamento).
 
+<pre>
 ```mermaid
   classDiagram
-    InfoPanelProps {
+    class InfoPanelProps {
       +equipment: Equipment | null
       +annotation: Annotation | null
       +onClose: () -> void
@@ -447,10 +475,13 @@ Responsabilidades:
       +onProductChange: (equipmentTag: string, newProduct: string) -> void
       +availableProductsList: string[]
     }
-    InfoPanel --|> React.FC
+    class InfoPanel {}
+    class ReactFC {}
+    InfoPanel --|> ReactFC
     InfoPanelProps ..> Equipment : uses
     InfoPanelProps ..> Annotation : uses
 ```
+</pre>
 
 ## InfoPanelProps
 
@@ -550,18 +581,25 @@ Principal Responsabilidade:
 Renderizar um card com checkboxes para cada camada definida, permitindo ao usuário controlar
 o que é exibido na cena 3D, como prédios, tanques, anotações, etc.
 
+<pre>
 ```mermaid
   classDiagram
-    LayerManagerProps {
+    class LayerManagerProps {
       +layers: Layer[]
       +onToggleLayer(layerId: string): void
     }
     LayerManagerProps ..> Layer
-    LayerManager --|> React.FC
+    class LayerManager {}
+    class ReactFC {}
+    class Card {}
+    class Checkbox {}
+    class Label {}
+    LayerManager --|> ReactFC
     LayerManager ..> Card : uses
     LayerManager ..> Checkbox : uses
     LayerManager ..> Label : uses
 ```
+</pre>
 
 ## LayerManagerProps
 
@@ -598,9 +636,10 @@ Atuar como um contêiner de layout para os elementos visuais centrais da aplica�
     e o comportamento para seus filhos, passando as props necessárias, incluindo a lista
     completa de equipamentos (`allEquipmentData`) para contexto de renderização de anotações.
 
+<pre>
 ```mermaid
   classDiagram
-    MainSceneAreaProps {
+    class MainSceneAreaProps {
       +equipment: Equipment[]
       +allEquipmentData: Equipment[]
       +layers: Layer[]
@@ -625,7 +664,7 @@ Atuar como um contêiner de layout para os elementos visuais centrais da aplica�
       +onProductChange(equipmentTag: string, newProduct: string): void
       +availableProductsList: string[]
     }
-    Point3D {
+    class Point3D {
       +x: number
       +y: number
       +z: number
@@ -636,10 +675,15 @@ Atuar como um contêiner de layout para os elementos visuais centrais da aplica�
     MainSceneAreaProps ..> CameraState
     MainSceneAreaProps ..> ColorMode
     MainSceneAreaProps ..> Point3D
-    MainSceneArea --|> React.FC
+    class MainSceneArea {}
+    class ReactFC {}
+    class ThreeScene {}
+    class InfoPanel {}
+    MainSceneArea --|> ReactFC
     MainSceneArea ..> ThreeScene : uses
     MainSceneArea ..> InfoPanel : uses
 ```
+</pre>
 
 ## MainSceneAreaProps
 
@@ -713,9 +757,10 @@ Inclui:
 *   Gerenciador de camadas de visibilidade.
 *   Link para a documentação externa do projeto.
 
+<pre>
 ```mermaid
   classDiagram
-    SidebarContentLayoutProps {
+    class SidebarContentLayoutProps {
       +searchTerm: string
       +setSearchTerm(value: string): void
       +selectedSistema: string
@@ -733,7 +778,16 @@ Inclui:
     }
     SidebarContentLayoutProps ..> ColorMode
     SidebarContentLayoutProps ..> Layer
-    SidebarContentLayout --|> React.FC
+    class SidebarContentLayout {}
+    class ReactFC {}
+    class CameraControlsPanel {}
+    class ColorModeSelector {}
+    class LayerManager {}
+    class Input {}
+    class Select {}
+    class Button {}
+    class ScrollArea {}
+    SidebarContentLayout --|> ReactFC
     SidebarContentLayout ..> CameraControlsPanel : uses
     SidebarContentLayout ..> ColorModeSelector : uses
     SidebarContentLayout ..> LayerManager : uses
@@ -742,6 +796,7 @@ Inclui:
     SidebarContentLayout ..> Button : uses
     SidebarContentLayout ..> ScrollArea : uses
 ```
+</pre>
 
 ## SidebarContentLayoutProps
 
@@ -819,11 +874,10 @@ Principal Responsabilidade (Pós-Refatoração):
 Orquestrar os diversos hooks que gerenciam aspectos específicos da cena 3D,
 passar props e refs entre eles, e fornecer o ponto de montagem no DOM.
 
+<pre>
 ```mermaid
 classDiagram
-  ThreeScene --|> React.FC
-  ThreeScene ..> ThreeSceneProps : uses
-  ThreeSceneProps {
+  class ThreeSceneProps {
     +equipment: Equipment[]
     +allEquipmentData: Equipment[]
     +layers: Layer[]
@@ -840,7 +894,7 @@ classDiagram
     +targetSystemToFrame: string | null
     +onSystemFramed(): void
   }
-  Point3D {
+  class Point3D {
     +x: number
     +y: number
     +z: number
@@ -851,6 +905,9 @@ classDiagram
   ThreeSceneProps ..> CameraState
   ThreeSceneProps ..> ColorMode
   ThreeSceneProps ..> Point3D
+  class ThreeScene {}
+  class ReactFC {}
+  ThreeScene --|> ReactFC;
   ThreeScene ..> useSceneSetup : uses
   ThreeScene ..> useEquipmentRenderer : uses
   ThreeScene ..> useAnnotationPinRenderer : uses
@@ -858,6 +915,7 @@ classDiagram
   ThreeScene ..> useSceneOutline : uses
   ThreeScene ..> useAnimationLoop : uses
 ```
+</pre>
 
 ## equipment
 
@@ -988,6 +1046,7 @@ Subcomponentes:
 
 Utiliza cookies para persistir o estado da sidebar entre as sessões (desktop) e atalhos de teclado.
 
+<pre>
 ```mermaid
   graph LR
     App --> SidebarProvider
@@ -1008,6 +1067,7 @@ Utiliza cookies para persistir o estado da sidebar entre as sessões (desktop) e
     SidebarMenuSubItem --> SidebarMenuSubButton
     App --> SidebarTrigger
 ```
+</pre>
 
 ## useSidebar
 

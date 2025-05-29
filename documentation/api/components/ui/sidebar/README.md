@@ -39,3 +39,9 @@
 ## Functions
 
 - [useSidebar](functions/useSidebar.md)
+
+## References
+
+### \_SidebarContextType
+
+Renames and re-exports [SidebarContext](type-aliases/SidebarContext.md)

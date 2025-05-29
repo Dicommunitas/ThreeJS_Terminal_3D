@@ -8,7 +8,7 @@
 
 > **useAnnotationPinRenderer**(`props`): `void`
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-annotation-pin-renderer.ts#L57)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:59](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-annotation-pin-renderer.ts#L59)
 
 Hook customizado para gerenciar a renderização (criação, atualização, remoção)
 dos pins de anotação (`CSS2DObject`) na cena.

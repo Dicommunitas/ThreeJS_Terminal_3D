@@ -6,7 +6,7 @@
 
 # Interface: UseEquipmentRendererProps
 
-Defined in: [src/hooks/use-equipment-renderer.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-equipment-renderer.ts#L42)
+Defined in: [src/hooks/use-equipment-renderer.ts:44](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-equipment-renderer.ts#L44)
 
 Custom hook to manage the rendering of equipment meshes in the 3D scene.
 
@@ -16,10 +16,10 @@ os equipamentos. Observa mudanças nos dados dos equipamentos (filtrados), camad
 e modo de colorização, e atualiza a cena Three.js de acordo.
 Utiliza `updateEquipmentMeshesInScene` de `scene-elements-setup.ts` para a lógica de sincronização
 dos meshes e do plano de chão com base na visibilidade das camadas.
-
+<pre>
 <div class="mermaid-block"><div class="mermaid dark">%%{init:{"theme":"dark"}}%%
 classDiagram
-    UseEquipmentRendererProps {
+    class UseEquipmentRendererProps {
       +sceneRef: RefObject_Scene_
       +isSceneReady: boolean
       +equipmentData: Equipment[]  // Filtered list
@@ -28,18 +28,19 @@ classDiagram
       +createSingleEquipmentMesh(item: Equipment): Object3D
       +groundMeshRef: RefObject_Mesh_
     }
-    useEquipmentRenderer --|&gt; React.FC_Hook
+    class useEquipmentRenderer {}
+    class ReactFCHook {}
+    useEquipmentRenderer --|&gt; ReactFCHook
     useEquipmentRenderer ..&gt; scene_elements_setup : uses updateEquipmentMeshesInScene
     UseEquipmentRendererProps ..&gt; Equipment
     UseEquipmentRendererProps ..&gt; Layer
     UseEquipmentRendererProps ..&gt; ColorMode
+    class RefObject_Scene_ {}
     UseEquipmentRendererProps ..&gt; RefObject_Scene_
-    UseEquipmentRendererProps ..&gt; RefObject_Mesh_
-
-    class RefObject_Scene_ { current: Scene | null }
-    class RefObject_Mesh_ { current: Mesh | null }</div><div class="mermaid light">%%{init:{"theme":"default"}}%%
+    class RefObject_Mesh_ {}
+    UseEquipmentRendererProps ..&gt; RefObject_Mesh_</div><div class="mermaid light">%%{init:{"theme":"default"}}%%
 classDiagram
-    UseEquipmentRendererProps {
+    class UseEquipmentRendererProps {
       +sceneRef: RefObject_Scene_
       +isSceneReady: boolean
       +equipmentData: Equipment[]  // Filtered list
@@ -48,17 +49,18 @@ classDiagram
       +createSingleEquipmentMesh(item: Equipment): Object3D
       +groundMeshRef: RefObject_Mesh_
     }
-    useEquipmentRenderer --|&gt; React.FC_Hook
+    class useEquipmentRenderer {}
+    class ReactFCHook {}
+    useEquipmentRenderer --|&gt; ReactFCHook
     useEquipmentRenderer ..&gt; scene_elements_setup : uses updateEquipmentMeshesInScene
     UseEquipmentRendererProps ..&gt; Equipment
     UseEquipmentRendererProps ..&gt; Layer
     UseEquipmentRendererProps ..&gt; ColorMode
+    class RefObject_Scene_ {}
     UseEquipmentRendererProps ..&gt; RefObject_Scene_
-    UseEquipmentRendererProps ..&gt; RefObject_Mesh_
-
-    class RefObject_Scene_ { current: Scene | null }
-    class RefObject_Mesh_ { current: Mesh | null }</div><pre><code class="language-mermaid">classDiagram
-    UseEquipmentRendererProps {
+    class RefObject_Mesh_ {}
+    UseEquipmentRendererProps ..&gt; RefObject_Mesh_</div><pre><code class="language-mermaid">classDiagram
+    class UseEquipmentRendererProps {
       +sceneRef: RefObject_Scene_
       +isSceneReady: boolean
       +equipmentData: Equipment[]  // Filtered list
@@ -67,16 +69,18 @@ classDiagram
       +createSingleEquipmentMesh(item: Equipment): Object3D
       +groundMeshRef: RefObject_Mesh_
     }
-    useEquipmentRenderer --|&gt; React.FC_Hook
+    class useEquipmentRenderer {}
+    class ReactFCHook {}
+    useEquipmentRenderer --|&gt; ReactFCHook
     useEquipmentRenderer ..&gt; scene_elements_setup : uses updateEquipmentMeshesInScene
     UseEquipmentRendererProps ..&gt; Equipment
     UseEquipmentRendererProps ..&gt; Layer
     UseEquipmentRendererProps ..&gt; ColorMode
+    class RefObject_Scene_ {}
     UseEquipmentRendererProps ..&gt; RefObject_Scene_
-    UseEquipmentRendererProps ..&gt; RefObject_Mesh_
-
-    class RefObject_Scene_ { current: Scene | null }
-    class RefObject_Mesh_ { current: Mesh | null }</code></pre></div>
+    class RefObject_Mesh_ {}
+    UseEquipmentRendererProps ..&gt; RefObject_Mesh_</code></pre></div>
+</pre>
 
 ## Properties
 
@@ -84,7 +88,7 @@ classDiagram
 
 > **colorMode**: [`ColorMode`](../../../lib/types/type-aliases/ColorMode.md)
 
-Defined in: [src/hooks/use-equipment-renderer.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-equipment-renderer.ts#L47)
+Defined in: [src/hooks/use-equipment-renderer.ts:49](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-equipment-renderer.ts#L49)
 
 ***
 
@@ -92,7 +96,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:47](https://github.com/Dicommun
 
 > **createSingleEquipmentMesh**: (`item`) => `Object3D`
 
-Defined in: [src/hooks/use-equipment-renderer.ts:48](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-equipment-renderer.ts#L48)
+Defined in: [src/hooks/use-equipment-renderer.ts:50](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-equipment-renderer.ts#L50)
 
 #### Parameters
 
@@ -110,7 +114,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:48](https://github.com/Dicommun
 
 > **equipmentData**: [`Equipment`](../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/hooks/use-equipment-renderer.ts:45](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-equipment-renderer.ts#L45)
+Defined in: [src/hooks/use-equipment-renderer.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-equipment-renderer.ts#L47)
 
 ***
 
@@ -118,7 +122,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:45](https://github.com/Dicommun
 
 > **groundMeshRef**: `RefObject`\<`null` \| `Mesh`\<`BufferGeometry`\<`NormalBufferAttributes`\>, `Material` \| `Material`[], `Object3DEventMap`\>\>
 
-Defined in: [src/hooks/use-equipment-renderer.ts:49](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-equipment-renderer.ts#L49)
+Defined in: [src/hooks/use-equipment-renderer.ts:51](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-equipment-renderer.ts#L51)
 
 ***
 
@@ -126,7 +130,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:49](https://github.com/Dicommun
 
 > **isSceneReady**: `boolean`
 
-Defined in: [src/hooks/use-equipment-renderer.ts:44](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-equipment-renderer.ts#L44)
+Defined in: [src/hooks/use-equipment-renderer.ts:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-equipment-renderer.ts#L46)
 
 ***
 
@@ -134,7 +138,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:44](https://github.com/Dicommun
 
 > **layers**: [`Layer`](../../../lib/types/interfaces/Layer.md)[]
 
-Defined in: [src/hooks/use-equipment-renderer.ts:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-equipment-renderer.ts#L46)
+Defined in: [src/hooks/use-equipment-renderer.ts:48](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-equipment-renderer.ts#L48)
 
 ***
 
@@ -142,7 +146,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:46](https://github.com/Dicommun
 
 > **sceneRef**: `RefObject`\<`null` \| `Scene`\>
 
-Defined in: [src/hooks/use-equipment-renderer.ts:43](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/hooks/use-equipment-renderer.ts#L43)
+Defined in: [src/hooks/use-equipment-renderer.ts:45](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/hooks/use-equipment-renderer.ts#L45)
 <style>
 :root.mermaid-enabled .mermaid-block > pre {
   display: none;

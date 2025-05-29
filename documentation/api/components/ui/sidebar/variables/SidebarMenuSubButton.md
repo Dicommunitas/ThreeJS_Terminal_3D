@@ -8,6 +8,6 @@
 
 > `const` **SidebarMenuSubButton**: `ForwardRefExoticComponent`\<`Omit`\<`ClassAttributes`\<`HTMLAnchorElement`\> & `AnchorHTMLAttributes`\<`HTMLAnchorElement`\> & `object`, `"ref"`\> & `RefAttributes`\<`HTMLAnchorElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:898](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/components/ui/sidebar.tsx#L898)
+Defined in: [src/components/ui/sidebar.tsx:900](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/components/ui/sidebar.tsx#L900)
 
 Botão clicável (ou link) dentro de um `SidebarMenuSubItem`.

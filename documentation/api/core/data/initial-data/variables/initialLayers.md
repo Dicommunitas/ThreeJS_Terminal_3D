@@ -8,7 +8,7 @@
 
 > `const` **initialLayers**: [`Layer`](../../../../lib/types/interfaces/Layer.md)[]
 
-Defined in: [src/core/data/initial-data.ts:49](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/badc3233eff8eb21985e1864af032399a617b0af/src/core/data/initial-data.ts#L49)
+Defined in: [src/core/data/initial-data.ts:49](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/afa16084199c8b26e5e606d73d21408027534f3a/src/core/data/initial-data.ts#L49)
 
 Lista inicial de camadas para controle de visibilidade na interface.
 Cada camada define um nome, o tipo de equipamento que ela controla (ou 'Annotations' para pins de anotação, 'Terrain' para o chão),
