@@ -1,5 +1,4 @@
 
-
 /**
  * Componente principal da página da aplicação Terminal 3D.
  * Responsável por orquestrar os diversos hooks de gerenciamento de estado da aplicação
@@ -41,7 +40,7 @@
  *     MainSceneArea_Comp --> InfoPanel_Comp["InfoPanel"];
  *     Sidebar_Comp --> SidebarContentLayout_Comp["SidebarContentLayout"];
  *
- *     subgraph "Hooks de Estado Alto Nível"
+ *     subgraph "Hooks de Estado"
  *       H_CmdHistory;
  *       H_EquipData;
  *       H_CameraMgr;
@@ -324,5 +323,3 @@ export default function Terminal3DPage(): JSX.Element {
     </SidebarProvider>
   );
 }
-
-    

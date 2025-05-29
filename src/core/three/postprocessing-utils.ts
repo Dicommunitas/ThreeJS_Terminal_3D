@@ -14,7 +14,9 @@
  *       +composer: EffectComposer
  *       +outlinePass: OutlinePass
  *     }
- *     class setupPostProcessing {}
+ *     class setupPostProcessing {
+ *
+ *     }
  *     setupPostProcessing ..> setupPostProcessing_return : returns
  * ```
  * 
@@ -207,5 +209,3 @@ export function updateOutlineEffect(
   applyOutlinePassStyle(outlinePass, styleType);
   // console.log(`[updateOutlineEffect] OutlinePass strength: ${outlinePass.edgeStrength}`);
 }
-
-    

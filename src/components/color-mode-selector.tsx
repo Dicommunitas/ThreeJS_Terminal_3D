@@ -12,13 +12,25 @@
  *       +colorMode: ColorMode
  *       +onColorModeChange(mode: ColorMode): void
  *     }
- *     class ColorMode {}
+ *     class ColorMode {
+ *
+ *     }
  *     ColorModeSelectorProps ..> ColorMode
- *     class ColorModeSelector {}
- *     class ReactFC {}
- *     class Card {}
- *     class Select {}
- *     class Label {}
+ *     class ColorModeSelector {
+ *
+ *     }
+ *     class ReactFC {
+ *
+ *     }
+ *     class Card {
+ *
+ *     }
+ *     class Select {
+ *
+ *     }
+ *     class Label {
+ *
+ *     }
  *     ColorModeSelector --|> ReactFC
  *     ColorModeSelector ..> Card : uses
  *     ColorModeSelector ..> Select : uses
@@ -78,5 +90,3 @@ export function ColorModeSelector({ colorMode, onColorModeChange }: ColorModeSel
     </Card>
   );
 }
-
-    

@@ -33,23 +33,35 @@
  *       +y: number
  *       +z: number
  *     }
- *     class RefObject_HTMLDivElement_ {}
- *     class RefObject_Scene_ {}
- *     class RefObject_PerspectiveCamera_ {}
- *     class RefObject_WebGLRenderer_ {}
- *     class RefObject_CSS2DRenderer_ {}
- *     class RefObject_OrbitControls_ {}
- *     class RefObject_EffectComposer_ {}
- *     class RefObject_OutlinePass_ {}
- *     class RefObject_Mesh_ {}
- *     class CameraState {}
+ *     class RefObject_HTMLDivElement_ {
+ *     }
+ *     class RefObject_Scene_ {
+ *     }
+ *     class RefObject_PerspectiveCamera_ {
+ *     }
+ *     class RefObject_WebGLRenderer_ {
+ *     }
+ *     class RefObject_CSS2DRenderer_ {
+ *     }
+ *     class RefObject_OrbitControls_ {
+ *     }
+ *     class RefObject_EffectComposer_ {
+ *     }
+ *     class RefObject_OutlinePass_ {
+ *     }
+ *     class RefObject_Mesh_ {
+ *     }
+ *     class CameraState {
+ *     }
  *
  *     UseSceneSetupProps ..> Point3D
  *     UseSceneSetupProps ..> CameraState
  *     UseSceneSetupReturn ..> Point3D
  *     UseSceneSetupReturn ..> CameraState
- *     class useSceneSetup {}
- *     class scene_elements_setup {}
+ *     class useSceneSetup {
+ *     }
+ *     class scene_elements_setup {
+ *     }
  *     useSceneSetup ..> scene_elements_setup : uses setupRenderPipeline, setupLighting, setupGroundPlane
  *     UseSceneSetupProps --> RefObject_HTMLDivElement_
  *     UseSceneSetupReturn --> RefObject_Scene_
@@ -315,5 +327,3 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
     isSceneReady,
   };
 };
-
-    

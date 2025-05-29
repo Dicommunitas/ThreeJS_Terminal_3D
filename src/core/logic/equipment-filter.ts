@@ -12,8 +12,12 @@
  *       +selectedSistema: string
  *       +selectedArea: string
  *     }
- *     class getFilteredEquipment {}
- *     class Equipment{}
+ *     class getFilteredEquipment {
+ *
+ *     }
+ *     class Equipment {
+ *
+ *     }
  *     getFilteredEquipment --|> EquipmentFilterCriteria : uses as criteria
  *     getFilteredEquipment --|> Equipment : returns array of
  *     
@@ -82,5 +86,3 @@ export function getFilteredEquipment(
   }
   return itemsToFilter;
 }
-
-    

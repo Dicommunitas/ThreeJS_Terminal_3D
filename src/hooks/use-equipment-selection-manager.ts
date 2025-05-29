@@ -20,12 +20,18 @@
  *       +handleSetHoveredEquipmentTag(tag: string | null): void
  *       +selectTagsBatch(tagsToSelect: string[], operationDescription?: string): void
  *     }
- *     class Equipment{}
- *     class Command{}
+ *     class Equipment {
+ *
+ *     }
+ *     class Command {
+ *
+ *     }
  *     UseEquipmentSelectionManagerProps ..> Equipment : uses (via equipmentData for names)
  *     UseEquipmentSelectionManagerProps ..> Command : uses (via executeCommand)
  *     UseEquipmentSelectionManagerReturn ..> Command
- *     class useEquipmentSelectionManager {}
+ *     class useEquipmentSelectionManager {
+ *
+ *     }
  *     useEquipmentSelectionManager ..> useToast : uses
  * ```
  * 
@@ -221,5 +227,3 @@ export function useEquipmentSelectionManager({
     selectTagsBatch,
   };
 }
-
-    

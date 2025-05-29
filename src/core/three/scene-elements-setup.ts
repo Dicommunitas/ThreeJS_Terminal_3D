@@ -16,7 +16,9 @@
  *       +composer: EffectComposer
  *       +outlinePass: OutlinePass
  *     }
- *     class setupRenderPipeline {}
+ *     class setupRenderPipeline {
+ *
+ *     }
  *     setupRenderPipeline ..> setupRenderPipeline_return : returns
  *
  *     class UpdateEquipmentMeshesParams {
@@ -28,13 +30,21 @@
  *       +createSingleEquipmentMesh(item: Equipment): THREE.Object3D
  *       +groundMeshRef: React.MutableRefObject_Mesh_
  *     }
- *     class Equipment {}
- *     class Layer {}
- *     class ColorMode {}
+ *     class Equipment {
+ *
+ *     }
+ *     class Layer {
+ *
+ *     }
+ *     class ColorMode {
+ *
+ *     }
  *     UpdateEquipmentMeshesParams ..> Equipment
  *     UpdateEquipmentMeshesParams ..> Layer
  *     UpdateEquipmentMeshesParams ..> ColorMode
- *     class updateEquipmentMeshesInScene {}
+ *     class updateEquipmentMeshesInScene {
+ *
+ *     }
  *     updateEquipmentMeshesInScene ..> UpdateEquipmentMeshesParams : receives
  * ```
  * 
@@ -311,5 +321,3 @@ export function updateEquipmentMeshesInScene({
     groundMeshRef.current.visible = groundShouldBeVisible;
   }
 }
-
-    

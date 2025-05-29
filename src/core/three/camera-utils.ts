@@ -16,7 +16,9 @@
  *       +position: THREE.Vector3
  *       +lookAt: THREE.Vector3
  *     }
- *     class calculateViewForMeshes {}
+ *     class calculateViewForMeshes {
+ *
+ *     }
  *     calculateViewForMeshes ..> calculateViewForMeshes_params : receives
  *     calculateViewForMeshes ..> calculateViewForMeshes_return : returns or null
  * ```
@@ -91,5 +93,3 @@ export function calculateViewForMeshes(
     lookAt: center,
   };
 }
-
-    

@@ -12,10 +12,18 @@
  *       +systems: string[]
  *       +onSetView(systemName: string): void
  *     }
- *     class CameraControlsPanel {}
- *     class ReactFC {}
- *     class Button {}
- *     class Card {}
+ *     class CameraControlsPanel {
+ *
+ *     }
+ *     class ReactFC {
+ *
+ *     }
+ *     class Button {
+ *
+ *     }
+ *     class Card {
+ *
+ *     }
  *     CameraControlsPanel --|> ReactFC
  *     CameraControlsPanel ..> Button : uses
  *     CameraControlsPanel ..> Card : uses
@@ -75,5 +83,3 @@ export function CameraControlsPanel({ systems, onSetView }: CameraControlsPanelP
     </Card>
   );
 }
-
-    

@@ -25,14 +25,30 @@ import { updateAnnotationPins } from '@/core/three/label-renderer-utils';
  *       +allEquipmentData: Equipment[] // Full list for correct positioning
  *       +layers: Layer[]
  *     }
- *     class useAnnotationPinRenderer {}
- *     class ReactFCHook {}
- *     class label_renderer_utils{}
- *     class Annotation{}
- *     class Equipment{}
- *     class Layer{}
- *     class RefObject_Scene_ {}
- *     class RefObject_CSS2DRenderer_ {}
+ *     class useAnnotationPinRenderer {
+ *
+ *     }
+ *     class ReactFCHook {
+ *
+ *     }
+ *     class label_renderer_utils{
+ *
+ *     }
+ *     class Annotation {
+ *
+ *     }
+ *     class Equipment {
+ *
+ *     }
+ *     class Layer {
+ *
+ *     }
+ *     class RefObject_Scene_ {
+ *
+ *     }
+ *     class RefObject_CSS2DRenderer_ {
+ *
+ *     }
  *     useAnnotationPinRenderer --|> ReactFCHook
  *     useAnnotationPinRenderer ..> label_renderer_utils : uses updateAnnotationPins
  *     UseAnnotationPinRendererProps ..> Annotation
@@ -100,5 +116,3 @@ export function useAnnotationPinRenderer({
     };
   }, [annotations, layers, allEquipmentData, isSceneReady, sceneRef, labelRendererRef]);
 }
-
-    

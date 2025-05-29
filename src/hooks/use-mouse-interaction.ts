@@ -25,11 +25,21 @@ import * as THREE from 'three';
  *       +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
  *       +setHoveredEquipmentTag(tag: string | null): void
  *     }
- *     class useMouseInteractionManager {}
- *     class ReactFCHook {}
- *     class RefObject_HTMLDivElement_ {}
- *     class RefObject_PerspectiveCamera_ {}
- *     class RefObject_Object3D_Array_ {}
+ *     class useMouseInteractionManager {
+ *
+ *     }
+ *     class ReactFCHook {
+ *
+ *     }
+ *     class RefObject_HTMLDivElement_ {
+ *
+ *     }
+ *     class RefObject_PerspectiveCamera_ {
+ *
+ *     }
+ *     class RefObject_Object3D_Array_ {
+ *
+ *     }
  *     useMouseInteractionManager --|> ReactFCHook
  *     UseMouseInteractionManagerProps ..> RefObject_HTMLDivElement_
  *     UseMouseInteractionManagerProps ..> RefObject_PerspectiveCamera_
@@ -188,5 +198,3 @@ export function useMouseInteractionManager({
     };
   }, [mountRef, isSceneReady, handleClick, handleMouseMove]);
 }
-
-    

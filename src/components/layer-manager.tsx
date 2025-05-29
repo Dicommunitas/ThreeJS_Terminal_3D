@@ -12,13 +12,25 @@
  *       +layers: Layer[]
  *       +onToggleLayer(layerId: string): void
  *     }
- *     class Layer {}
+ *     class Layer {
+ *
+ *     }
  *     LayerManagerProps ..> Layer
- *     class LayerManager {}
- *     class ReactFC {}
- *     class Card {}
- *     class Checkbox {}
- *     class Label {}
+ *     class LayerManager {
+ *
+ *     }
+ *     class ReactFC {
+ *
+ *     }
+ *     class Card {
+ *
+ *     }
+ *     class Checkbox {
+ *
+ *     }
+ *     class Label {
+ *
+ *     }
  *     LayerManager --|> ReactFC
  *     LayerManager ..> Card : uses
  *     LayerManager ..> Checkbox : uses
@@ -78,5 +90,3 @@ export function LayerManager({ layers, onToggleLayer }: LayerManagerProps): JSX.
     </Card>
   );
 }
-
-    

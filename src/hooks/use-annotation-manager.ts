@@ -26,13 +26,19 @@
  *       +setAnnotations(annotations: Annotation[]): void
  *       +setIsAnnotationDialogOpen(isOpen: boolean): void
  *     }
- *     class Annotation{}
- *     class Equipment{}
+ *     class Annotation {
+ *
+ *     }
+ *     class Equipment {
+ *
+ *     }
  *     UseAnnotationManagerProps ..> Annotation
  *     UseAnnotationManagerProps ..> Equipment
  *     UseAnnotationManagerReturn ..> Annotation
  *     UseAnnotationManagerReturn ..> Equipment
- *     class useAnnotationManager {}
+ *     class useAnnotationManager {
+ *
+ *     }
  *     useAnnotationManager ..> useToast : uses
  * ```
  * 
@@ -229,5 +235,3 @@ export function useAnnotationManager({ initialAnnotations = [], equipmentData }:
     getAnnotationForEquipment,
   };
 }
-
-    

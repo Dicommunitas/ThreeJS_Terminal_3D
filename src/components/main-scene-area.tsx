@@ -42,21 +42,34 @@
  *       +y: number
  *       +z: number
  *     }
- *     class Equipment {}
- *     class Layer {}
- *     class Annotation {}
- *     class CameraState {}
- *     class ColorMode {}
+ *     class Equipment {
+ *     }
+ *     class Layer {
+ *     }
+ *     class Annotation {
+ *     }
+ *     class CameraState {
+ *     }
+ *     class ColorMode {
+ *     }
  *     MainSceneAreaProps ..> Equipment
  *     MainSceneAreaProps ..> Layer
  *     MainSceneAreaProps ..> Annotation
  *     MainSceneAreaProps ..> CameraState
  *     MainSceneAreaProps ..> ColorMode
  *     MainSceneAreaProps ..> Point3D
- *     class MainSceneArea {}
- *     class ReactFC {}
- *     class ThreeScene {}
- *     class InfoPanel {}
+ *     class MainSceneArea {
+ *
+ *     }
+ *     class ReactFC {
+ *
+ *     }
+ *     class ThreeScene {
+ *
+ *     }
+ *     class InfoPanel {
+ *
+ *     }
  *     MainSceneArea --|> ReactFC
  *     MainSceneArea ..> ThreeScene : uses
  *     MainSceneArea ..> InfoPanel : uses
@@ -188,5 +201,3 @@ export function MainSceneArea({
     </div>
   );
 }
-
-    

@@ -18,11 +18,17 @@
  *       +layers: Layer[]
  *       +handleToggleLayer(layerId: string): void
  *     }
- *     class Command{}
- *     class Layer{}
+ *     class Command {
+ *
+ *     }
+ *     class Layer {
+ *
+ *     }
  *     UseLayerManagerProps ..> Command
  *     UseLayerManagerReturn ..> Layer
- *     class useLayerManager {}
+ *     class useLayerManager {
+ *
+ *     }
  *     useLayerManager ..> Command : uses (via executeCommand)
  * ```
  * 
@@ -110,5 +116,3 @@ export function useLayerManager({ executeCommand }: UseLayerManagerProps): UseLa
 
   return { layers, handleToggleLayer };
 }
-
-    

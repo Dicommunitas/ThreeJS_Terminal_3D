@@ -18,10 +18,18 @@
  *       +hoveredEquipmentTag: string | null | undefined
  *       +isSceneReady: boolean
  *     }
- *     class RefObject_OutlinePass_ { current: OutlinePass | null }
- *     class RefObject_Object3D_Array_ { current: THREE.Object3D[] | null }
- *     class useSceneOutline {}
- *     class postprocessing_utils {}
+ *     class RefObject_OutlinePass_ {
+ *       current: OutlinePass | null
+ *     }
+ *     class RefObject_Object3D_Array_ {
+ *       current: THREE.Object3D[] | null
+ *     }
+ *     class useSceneOutline {
+ *
+ *     }
+ *     class postprocessing_utils {
+ *
+ *     }
  *     useSceneOutline ..> postprocessing_utils : uses updateOutlineEffect
  *     UseSceneOutlineProps --> RefObject_OutlinePass_
  *     UseSceneOutlineProps --> RefObject_Object3D_Array_
@@ -92,5 +100,3 @@ export function useSceneOutline({
     outlinePassRef,
   ]);
 }
-
-    

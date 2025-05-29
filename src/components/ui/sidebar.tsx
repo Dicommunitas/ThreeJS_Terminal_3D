@@ -52,11 +52,38 @@
  *    classDef container fill:#lightyellow,stroke:#333;
  *    classDef item fill:#whitesmoke,stroke:#333;
  *
- *    class SidebarProvider_Context context;
- *    class Sidebar_Comp,SidebarInset_Comp,SidebarTrigger_Button,SidebarMenuButton_Action,SidebarMenuAction_Opt,SidebarMenuBadge_Info,SidebarMenuSubButton_SubAction component;
- *    class SidebarHeader_Sec,SidebarContent_Sec,SidebarFooter_Sec section;
- *    class SidebarGroup_Container container;
- *    class SidebarMenu_List,SidebarMenuItem_Item,SidebarMenuSub_SubList,SidebarMenuSubItem_SubItem item;
+ *    class SidebarProvider_Context {
+ *    }
+ *    class Sidebar_Comp{
+ *    }
+ *    class SidebarInset_Comp{
+ *    }
+ *    class SidebarTrigger_Button{
+ *    }
+ *    class SidebarMenuButton_Action{
+ *    }
+ *    class SidebarMenuAction_Opt{
+ *    }
+ *    class SidebarMenuBadge_Info{
+ *    }
+ *    class SidebarMenuSubButton_SubAction{
+ *    }
+ *    class SidebarHeader_Sec{
+ *    }
+ *    class SidebarContent_Sec{
+ *    }
+ *    class SidebarFooter_Sec{
+ *    }
+ *    class SidebarGroup_Container{
+ *    }
+ *    class SidebarMenu_List{
+ *    }
+ *    class SidebarMenuItem_Item{
+ *    }
+ *    class SidebarMenuSub_SubList{
+ *    }
+ *    class SidebarMenuSubItem_SubItem{
+ *    }
  * ```
  * 
  */
@@ -298,7 +325,6 @@ const Sidebar = React.forwardRef<
             }
             side={side}
           >
-            {/* Adicionado SheetTitle para acessibilidade */}
             <SheetTitle className="sr-only">Navegação Principal</SheetTitle>
             <div className="flex h-full w-full flex-col">{children}</div>
           </SheetContent>
@@ -973,6 +999,4 @@ export {
   // useSidebar, // A exportação de useSidebar já está acima com export type
 }
 
-//export type { SidebarContext }; 
-
-    
+export type { SidebarContext };

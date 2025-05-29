@@ -15,12 +15,24 @@
  *       +onUndo(): void
  *       +onRedo(): void
  *     }
- *     class CommandHistoryPanel {}
- *     class ReactFC {}
- *     class Button {}
- *     class Card {}
- *     class Undo2Icon {}
- *     class Redo2Icon {}
+ *     class CommandHistoryPanel {
+ *
+ *     }
+ *     class ReactFC {
+ *
+ *     }
+ *     class Button {
+ *
+ *     }
+ *     class Card {
+ *
+ *     }
+ *     class Undo2Icon {
+ *
+ *     }
+ *     class Redo2Icon {
+ *
+ *     }
  *     CommandHistoryPanel --|> ReactFC
  *     CommandHistoryPanel ..> Button : uses
  *     CommandHistoryPanel ..> Card : uses
@@ -76,5 +88,3 @@ export function CommandHistoryPanel({ canUndo, canRedo, onUndo, onRedo }: Comman
     </Card>
   );
 }
-
-    

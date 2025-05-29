@@ -18,7 +18,9 @@
  *       +canRedo: boolean
  *       +commandHistory: Command[]
  *     }
- *     class Command {}
+ *     class Command {
+ *
+ *     }
  *     UseCommandHistoryReturn ..> Command
  * ```
  * 
@@ -135,5 +137,3 @@ export function useCommandHistory(initialState?: CommandHistoryState): UseComman
 
   return { executeCommand, undo, redo, canUndo, canRedo, commandHistory };
 }
-
-    

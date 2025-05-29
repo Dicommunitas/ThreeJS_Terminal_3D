@@ -31,19 +31,41 @@
  *       +cameraViewSystems: string[]
  *       +onFocusAndSelectSystem(systemName: string): void
  *     }
- *     class ColorMode {}
- *     class Layer {}
+ *     class ColorMode {
+ *
+ *     }
+ *     class Layer {
+ *
+ *     }
  *     SidebarContentLayoutProps ..> ColorMode
  *     SidebarContentLayoutProps ..> Layer
- *     class SidebarContentLayout {}
- *     class ReactFC {}
- *     class CameraControlsPanel {}
- *     class ColorModeSelector {}
- *     class LayerManager {}
- *     class Input {}
- *     class Select {}
- *     class Button {}
- *     class ScrollArea {}
+ *     class SidebarContentLayout {
+ *
+ *     }
+ *     class ReactFC {
+ *
+ *     }
+ *     class CameraControlsPanel {
+ *
+ *     }
+ *     class ColorModeSelector {
+ *
+ *     }
+ *     class LayerManager {
+ *
+ *     }
+ *     class Input {
+ *
+ *     }
+ *     class Select {
+ *
+ *     }
+ *     class Button {
+ *
+ *     }
+ *     class ScrollArea {
+ *
+ *     }
  *     SidebarContentLayout --|> ReactFC
  *     SidebarContentLayout ..> CameraControlsPanel : uses
  *     SidebarContentLayout ..> ColorModeSelector : uses
@@ -227,5 +249,3 @@ export function SidebarContentLayout({
     </ScrollArea>
   );
 }
-
-    

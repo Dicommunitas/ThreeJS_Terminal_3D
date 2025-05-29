@@ -25,10 +25,18 @@
  *       +onProductChange: (equipmentTag: string, newProduct: string) -> void
  *       +availableProductsList: string[]
  *     }
- *     class InfoPanel {}
- *     class ReactFC {}
- *     class Equipment{}
- *     class Annotation{}
+ *     class InfoPanel {
+ *
+ *     }
+ *     class ReactFC {
+ *
+ *     }
+ *     class Equipment {
+ *
+ *     }
+ *     class Annotation {
+ *
+ *     }
  *     InfoPanel --|> ReactFC
  *     InfoPanelProps ..> Equipment : uses
  *     InfoPanelProps ..> Annotation : uses
@@ -224,5 +232,3 @@ export function InfoPanel({
     </Card>
   );
 }
-
-    

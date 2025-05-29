@@ -13,6 +13,7 @@
  *       +equipmentName: string
  *     }
  *     class AnnotationDialog {
+ *
  *     }
  *     class Annotation {
  *       +equipmentTag: string
@@ -20,10 +21,11 @@
  *       +createdAt: string
  *     }
  *     class ReactFC {
+ *
  *     }
  *     AnnotationDialog --|> ReactFC
  *     AnnotationDialogProps ..> Annotation : uses (via currentAnnotation)
- *     AnnotationDialogProps --> AnnotationDialog : implicitly uses
+ *     AnnotationDialogProps --> AnnotationDialog : (implicitamente usado por)
  * ```
  * 
  */
@@ -127,5 +129,3 @@ export function AnnotationDialog({ isOpen, onOpenChange, onConfirm, currentAnnot
     </Dialog>
   );
 }
-
-    

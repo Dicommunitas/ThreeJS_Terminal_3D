@@ -26,14 +26,30 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
  *       +createSingleEquipmentMesh(item: Equipment): Object3D
  *       +groundMeshRef: RefObject_Mesh_
  *     }
- *     class useEquipmentRenderer {}
- *     class ReactFCHook {}
- *     class scene_elements_setup {}
- *     class Equipment{}
- *     class Layer{}
- *     class ColorMode{}
- *     class RefObject_Scene_ {}
- *     class RefObject_Mesh_ {}
+ *     class useEquipmentRenderer {
+ *
+ *     }
+ *     class ReactFCHook {
+ *
+ *     }
+ *     class scene_elements_setup {
+ *
+ *     }
+ *     class Equipment {
+ *
+ *     }
+ *     class Layer {
+ *
+ *     }
+ *     class ColorMode {
+ *
+ *     }
+ *     class RefObject_Scene_ {
+ *
+ *     }
+ *     class RefObject_Mesh_ {
+ *
+ *     }
  *     useEquipmentRenderer --|> ReactFCHook
  *     useEquipmentRenderer ..> scene_elements_setup : uses updateEquipmentMeshesInScene
  *     UseEquipmentRendererProps ..> Equipment
@@ -107,5 +123,3 @@ export function useEquipmentRenderer({
 
   return equipmentMeshesRef;
 }
-
-    

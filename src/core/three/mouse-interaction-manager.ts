@@ -18,5 +18,3 @@
  */
 
 // Conteúdo removido. A lógica agora reside em src/hooks/use-mouse-interaction.ts
-
-    

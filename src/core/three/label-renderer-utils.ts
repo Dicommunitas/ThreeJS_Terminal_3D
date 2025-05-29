@@ -19,15 +19,33 @@
  *       +layers: Layer[]
  *       +existingPinsRef: React.MutableRefObject_CSS2DObject_Array_
  *     }
- *     class Annotation { +equipmentTag: string; +text: string; +createdAt: string }
- *     class Equipment { +tag: string; +position: object; +size: object; +height: number; +radius: number; +type: string }
- *     class Layer { +id: string; +isVisible: boolean }
- *     class ReactMutableRefObject_CSS2DObject_Array_ { current: CSS2DObject[] }
+ *     class Annotation {
+ *        +equipmentTag: string
+ *        +text: string
+ *        +createdAt: string
+ *     }
+ *     class Equipment {
+ *        +tag: string
+ *        +position: object
+ *        +size: object
+ *        +height: number
+ *        +radius: number
+ *        +type: string
+ *     }
+ *     class Layer {
+ *        +id: string
+ *        +isVisible: boolean
+ *     }
+ *     class ReactMutableRefObject_CSS2DObject_Array_ {
+ *       current: CSS2DObject[]
+ *     }
  *     UpdateAnnotationPinsParams ..> Annotation
  *     UpdateAnnotationPinsParams ..> Equipment
  *     UpdateAnnotationPinsParams ..> Layer
  *     UpdateAnnotationPinsParams ..> ReactMutableRefObject_CSS2DObject_Array_
- *     class updateAnnotationPins {}
+ *     class updateAnnotationPins {
+ *
+ *     }
  *     updateAnnotationPins ..> UpdateAnnotationPinsParams : receives
  * ```
  * 
@@ -148,5 +166,3 @@ export function updateAnnotationPins({
     });
   }
 }
-
-    

@@ -23,11 +23,17 @@
  *       +y: number
  *       +z: number
  *     }
- *     class CameraState{}
- *     class Command{}
+ *     class CameraState {
+ *
+ *     }
+ *     class Command {
+ *
+ *     }
  *     UseCameraManagerReturn ..> CameraState
  *     UseCameraManagerReturn ..> Point3D
- *     class useCameraManager {}
+ *     class useCameraManager {
+ *
+ *     }
  *     useCameraManager ..> Command : uses (via executeCommand)
  * ```
  * 
@@ -153,5 +159,3 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
     defaultInitialCameraLookAt,
   };
 }
-
-    

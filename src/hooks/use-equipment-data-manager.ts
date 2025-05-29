@@ -16,9 +16,13 @@
  *       +handleOperationalStateChange(equipmentTag: string, newState: string): void
  *       +handleProductChange(equipmentTag: string, newProduct: string): void
  *     }
- *     class Equipment {}
+ *     class Equipment {
+ *
+ *     }
  *     UseEquipmentDataManagerReturn ..> Equipment
- *     class useEquipmentDataManager {}
+ *     class useEquipmentDataManager {
+ *
+ *     }
  *     useEquipmentDataManager ..> useToast : uses
  * ```
  * 
@@ -96,5 +100,3 @@ export function useEquipmentDataManager(): UseEquipmentDataManagerReturn {
     handleProductChange,
   };
 }
-
-    

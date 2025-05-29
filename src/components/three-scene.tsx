@@ -41,19 +41,26 @@
  *     +y: number
  *     +z: number
  *   }
- *   class Equipment{}
- *   class Layer{}
- *   class Annotation{}
- *   class CameraState{}
- *   class ColorMode{}
+ *   class Equipment {
+ *   }
+ *   class Layer {
+ *   }
+ *   class Annotation {
+ *   }
+ *   class CameraState {
+ *   }
+ *   class ColorMode {
+ *   }
  *   ThreeSceneProps ..> Equipment
  *   ThreeSceneProps ..> Layer
  *   ThreeSceneProps ..> Annotation
  *   ThreeSceneProps ..> CameraState
  *   ThreeSceneProps ..> ColorMode
  *   ThreeSceneProps ..> Point3D
- *   class ThreeScene {}
- *   class ReactFC {}
+ *   class ThreeScene {
+ *   }
+ *   class ReactFC {
+ *   }
  *   ThreeScene --|> ReactFC;
  *   ThreeScene ..> useSceneSetup : uses
  *   ThreeScene ..> useEquipmentRenderer : uses
@@ -306,5 +313,3 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 };
 
 export default ThreeScene;
-
-    

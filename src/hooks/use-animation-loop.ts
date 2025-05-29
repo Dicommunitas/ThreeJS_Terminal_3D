@@ -17,11 +17,21 @@
  *       +composerRef: RefObject_EffectComposer_
  *       +labelRendererRef: RefObject_CSS2DRenderer_
  *     }
- *     class RefObject_Scene_ { current: Scene | null }
- *     class RefObject_PerspectiveCamera_ { current: PerspectiveCamera | null }
- *     class RefObject_OrbitControls_ { current: OrbitControls | null }
- *     class RefObject_EffectComposer_ { current: EffectComposer | null }
- *     class RefObject_CSS2DRenderer_ { current: CSS2DRenderer | null }
+ *     class RefObject_Scene_ {
+ *       current: Scene | null
+ *     }
+ *     class RefObject_PerspectiveCamera_ {
+ *       current: PerspectiveCamera | null
+ *     }
+ *     class RefObject_OrbitControls_ {
+ *       current: OrbitControls | null
+ *     }
+ *     class RefObject_EffectComposer_ {
+ *       current: EffectComposer | null
+ *     }
+ *     class RefObject_CSS2DRenderer_ {
+ *       current: CSS2DRenderer | null
+ *     }
  *     UseAnimationLoopProps --> RefObject_Scene_
  *     UseAnimationLoopProps --> RefObject_PerspectiveCamera_
  *     UseAnimationLoopProps --> RefObject_OrbitControls_
@@ -106,5 +116,3 @@ export function useAnimationLoop({
     };
   }, [isSceneReady, sceneRef, cameraRef, controlsRef, composerRef, labelRendererRef]);
 }
-
-    

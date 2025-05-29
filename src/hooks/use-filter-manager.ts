@@ -23,11 +23,17 @@
  *       +availableAreas: string[]
  *       +filteredEquipment: Equipment[]
  *     }
- *     class Equipment{}
- *     class equipment_filter{}
+ *     class Equipment {
+ *
+ *     }
+ *     class equipment_filter {
+ *
+ *     }
  *     UseFilterManagerProps ..> Equipment
  *     UseFilterManagerReturn ..> Equipment
- *     class useFilterManager {}
+ *     class useFilterManager {
+ *
+ *     }
  *     useFilterManager ..> equipment_filter : uses getFilteredEquipment
  * ```
  * 
@@ -140,5 +146,3 @@ export function useFilterManager({ allEquipment }: UseFilterManagerProps): UseFi
     filteredEquipment,
   };
 }
-
-    
