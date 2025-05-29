@@ -1178,7 +1178,7 @@ classDiagram
   }
   class ReactFC {
   }
-  ThreeScene --|> ReactFC;
+  ThreeScene --|> ReactFC
   ThreeScene ..> useSceneSetup : uses
   ThreeScene ..> useEquipmentRenderer : uses
   ThreeScene ..> useAnnotationPinRenderer : uses
@@ -1317,67 +1317,28 @@ Subcomponentes:
 Utiliza cookies para persistir o estado da sidebar entre as sessões (desktop) e atalhos de teclado.
 
 ```mermaid
-  graph LR
-    App --> SidebarProvider_Context["SidebarProvider (Context)"];
-    SidebarProvider_Context --> Sidebar_Comp["Sidebar"];
-    SidebarProvider_Context --> SidebarInset_Comp["SidebarInset (Main Content Wrapper)"];
-    App --> SidebarTrigger_Button["SidebarTrigger (Button)"];
+graph LR
+  App --> SidebarProvider_Context["SidebarProvider (Context)"]
+  SidebarProvider_Context --> Sidebar_Comp["Sidebar"]
+  SidebarProvider_Context --> SidebarInset_Comp["SidebarInset (Main Content Wrapper)"]
+  App --> SidebarTrigger_Button["SidebarTrigger (Button)"]
 
-    Sidebar_Comp --> SidebarHeader_Sec["SidebarHeader"];
-    Sidebar_Comp --> SidebarContent_Sec["SidebarContent (Scrollable)"];
-    Sidebar_Comp --> SidebarFooter_Sec["SidebarFooter"];
+  Sidebar_Comp --> SidebarHeader_Sec["SidebarHeader"]
+  Sidebar_Comp --> SidebarContent_Sec["SidebarContent (Scrollable)"]
+  Sidebar_Comp --> SidebarFooter_Sec["SidebarFooter"]
 
-    SidebarContent_Sec --> SidebarGroup_Container["SidebarGroup"];
-    SidebarGroup_Container --> SidebarGroupLabel_Text["SidebarGroupLabel"];
-    SidebarGroup_Container --> SidebarMenu_List["SidebarMenu (ul)"];
+  SidebarContent_Sec --> SidebarGroup_Container["SidebarGroup"]
+  SidebarGroup_Container --> SidebarGroupLabel_Text["SidebarGroupLabel"]
+  SidebarGroup_Container --> SidebarMenu_List["SidebarMenu (ul)"]
 
-    SidebarMenu_List --> SidebarMenuItem_Item["SidebarMenuItem (li)"];
-    SidebarMenuItem_Item --> SidebarMenuButton_Action["SidebarMenuButton (Button/Link)"];
-    SidebarMenuItem_Item --> SidebarMenuAction_Opt["SidebarMenuAction (Optional Button)"];
-    SidebarMenuItem_Item --> SidebarMenuBadge_Info["SidebarMenuBadge (Optional Info)"];
+  SidebarMenu_List --> SidebarMenuItem_Item["SidebarMenuItem (li)"]
+  SidebarMenuItem_Item --> SidebarMenuButton_Action["SidebarMenuButton (Button/Link)"]
+  SidebarMenuItem_Item --> SidebarMenuAction_Opt["SidebarMenuAction (Optional Button)"]
+  SidebarMenuItem_Item --> SidebarMenuBadge_Info["SidebarMenuBadge (Optional Info)"]
 
-    SidebarMenuButton_Action --> SidebarMenuSub_SubList["SidebarMenuSub (ul for dropdowns)"];
-    SidebarMenuSub_SubList --> SidebarMenuSubItem_SubItem["SidebarMenuSubItem (li)"];
-    SidebarMenuSubItem_SubItem --> SidebarMenuSubButton_SubAction["SidebarMenuSubButton (Button/Link)"];
-
-   classDef context fill:#lightcoral,stroke:#333;
-   classDef component fill:#lightblue,stroke:#333;
-   classDef section fill:#lightgreen,stroke:#333;
-   classDef container fill:#lightyellow,stroke:#333;
-   classDef item fill:#whitesmoke,stroke:#333;
-
-   class SidebarProvider_Context {
-   }
-   class Sidebar_Comp{
-   }
-   class SidebarInset_Comp{
-   }
-   class SidebarTrigger_Button{
-   }
-   class SidebarMenuButton_Action{
-   }
-   class SidebarMenuAction_Opt{
-   }
-   class SidebarMenuBadge_Info{
-   }
-   class SidebarMenuSubButton_SubAction{
-   }
-   class SidebarHeader_Sec{
-   }
-   class SidebarContent_Sec{
-   }
-   class SidebarFooter_Sec{
-   }
-   class SidebarGroup_Container{
-   }
-   class SidebarMenu_List{
-   }
-   class SidebarMenuItem_Item{
-   }
-   class SidebarMenuSub_SubList{
-   }
-   class SidebarMenuSubItem_SubItem{
-   }
+  SidebarMenuButton_Action --> SidebarMenuSub_SubList["SidebarMenuSub (ul for dropdowns)"]
+  SidebarMenuSub_SubList --> SidebarMenuSubItem_SubItem["SidebarMenuSubItem (li)"]
+  SidebarMenuSubItem_SubItem --> SidebarMenuSubButton_SubAction["SidebarMenuSubButton (Button/Link)"]
 ```
 
 ## useSidebar
