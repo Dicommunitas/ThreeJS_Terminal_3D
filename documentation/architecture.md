@@ -206,24 +206,24 @@ graph LR
     IFixSystem["iFix SCADA"]
     ExternalDB["External Database"]
 
-    UI -- REST HTTP --> NextAPI;
-    UI -- WebSocket --> WebSocketServer;
+    UI -- REST HTTP --> NextAPI
+    UI -- WebSocket --> WebSocketServer
     
-    NextAPI -- Reads/Writes --> InMemoryRepo;
-    NextAPI -- Publishes Events --> EventBus;
+    NextAPI -- Reads/Writes --> InMemoryRepo
+    NextAPI -- Publishes Events --> EventBus
 
-    IFixService -- OPC-UA/REST --> IFixSystem;
-    IFixService -- Publishes Data --> EventBus;
+    IFixService -- OPC-UA/REST --> IFixSystem
+    IFixService -- Publishes Data --> EventBus
 
-    EventBus -- Consumes Events --> InMemoryRepo;
-    EventBus -- Consumes Events --> WebSocketServer;
-    EventBus -- Consumes Events (optionally) --> PersistenceMod;
+    EventBus -- Consumes Events --> InMemoryRepo
+    EventBus -- Consumes Events --> WebSocketServer
+    EventBus -- Consumes Events (optionally) --> PersistenceMod
 
-    InMemoryRepo -- Notifies Changes (hook/internal event) --> PersistenceMod; 
-    PersistenceMod -- Writes To --> ExternalDB;
-    PersistenceMod -- Reads From (initial load/recovery) --> ExternalDB;
+    InMemoryRepo -- Notifies Changes (hook/internal event) --> PersistenceMod 
+    PersistenceMod -- Writes To --> ExternalDB
+    PersistenceMod -- Reads From (initial load/recovery) --> ExternalDB
     
-    WebSocketServer -- Pushes Updates --> UI;
+    WebSocketServer -- Pushes Updates --> UI
 
     subgraph "Aplicação Next.js (Servidor)"
         direction TB
@@ -243,16 +243,6 @@ graph LR
     subgraph "Broker de Mensagens"
         EventBus
     end
-
-    style UI fill:#lightgrey,stroke:#333,stroke-width:2px
-    style NextAPI fill:#lightblue,stroke:#333,stroke-width:2px
-    style InMemoryRepo fill:#lightblue,stroke:#333,stroke-width:2px
-    style IFixService fill:#lightblue,stroke:#333,stroke-width:2px
-    style WebSocketServer fill:#lightblue,stroke:#333,stroke-width:2px
-    style PersistenceMod fill:#lightblue,stroke:#333,stroke-width:2px
-    style EventBus fill:#moccasin,stroke:#333,stroke-width:2px
-    style IFixSystem fill:#orange,stroke:#333,stroke-width:2px
-    style ExternalDB fill:#orange,stroke:#333,stroke-width:2px
 ```
 
 **Componentes da Arquitetura de Comunicação:**
@@ -275,54 +265,52 @@ A implementação dos novos requisitos pode ser dividida nas seguintes fases, fo
 graph TD
     F0["Fase 0: Fund. Essencial (Atual)"]
 
-    subgraph Fase 1: Dados em Memória, Tipos Detalhados & API Leitura
+    subgraph "Fase 1: Dados em Memória, Tipos Detalhados & API Leitura"
         direction LR
-        A[RF014: Repo. Memória] --> B[RF-EQUIP-TYPES-EXT: Modelagem Tipos (incl. Bombas)]
-        B --> BA[RF024: Georref. (Modelagem, Cadastro)]
-        BA --> C[RF016: API GET Equip/Annot (c/ Geo)]
-        C --> D[RF006: Annot. c/ Repo]
-        C --> E[RF004/005: Estado/Prod c/ Repo]
+        A["RF014: Repo. Memória"] --> B["RF-EQUIP-TYPES-EXT: Modelagem Tipos (incl. Bombas)"]
+        B --> BA["RF024: Georref. (Modelagem, Cadastro)"]
+        BA --> C["RF016: API GET Equip/Annot (c/ Geo)"]
+        C --> D["RF006: Annot. c/ Repo"]
+        C --> E["RF004/005: Estado/Prod c/ Repo"]
     end
 
-    subgraph Fase 2: CRUD UI & Histórico com Nome
+    subgraph "Fase 2: CRUD UI & Histórico com Nome"
         direction LR
-        F[RF016: API CRUD Completo] --> G[RF023: CRUD UI Equip. (c/ Geo)]
-        G --> GA[RF-AUTH-SIMPLE: Nome Usuário p/ Log]
-        GA --> H[RF019: Hist. Alterações (c/ Nome Usuário)]
+        F["RF016: API CRUD Completo"] --> G["RF023: CRUD UI Equip. (c/ Geo)"]
+        G --> GA["RF-AUTH-SIMPLE: Nome Usuário p/ Log"]
+        GA --> H["RF019: Hist. Alterações (c/ Nome Usuário)"]
     end
 
-    subgraph Fase 3: Simulações & Domain Logic
+    subgraph "Fase 3: Simulações & Domain Logic"
         direction LR
-        I[RF-EQUIP-TYPES-EXT: Render 3D Tipos Detalhados] --> J[RF020: Medição 3D]
-        J --> K[RF-A-STAR: Roteamento A*]
-        K --> L[RF-SIM-OP: Sim. Operações]
+        I["RF-EQUIP-TYPES-EXT: Render 3D Tipos Detalhados"] --> J["RF020: Medição 3D"]
+        J --> K["RF-A-STAR: Roteamento A*"]
+        K --> L["RF-SIM-OP: Sim. Operações"]
     end
 
-    subgraph Fase 4: Otimizações & Mod. Planta
+    subgraph "Fase 4: Otimizações & Mod. Planta"
         direction LR
-        M[RF022: Biblioteca 3D (Instancing)]
-        N[RF-SIM-PLANT-MOD: Mod. Dinâmica Planta]
+        M["RF022: Biblioteca 3D (Instancing)"]
+        N["RF-SIM-PLANT-MOD: Mod. Dinâmica Planta"]
     end
-    
-    subgraph Fase 5: Auth Completa, Integrações & Tempo Real (Postergado)
+
+    subgraph "Fase 5: Auth Completa, Integrações & Tempo Real (Postergado)"
         direction LR
-        O[RF-AUTH: Autenticação Completa] --> P[RF015: Persistência Externa]
-        P --> Q[RF017: Integração iFix]
-        Q --> R[RF018: Colaboração Real-time]
+        O["RF-AUTH: Autenticação Completa"] --> P["RF015: Persistência Externa"]
+        P --> Q["RF017: Integração iFix"]
+        Q --> R["RF018: Colaboração Real-time"]
     end
-    
+
     RFDOC["RF012: Documentação (Contínuo)"]
 
     F0 --> A
     E --> F
     H --> I
-    L --> M & N
-    
+    L --> M
+    L --> N
+
     M --> O
     N --> O
-    
-    classDef faseStyle fill:#f2f2f2,stroke:#555,stroke-width:2px,color:#333
-    class Fase0,Fase1,Fase2,Fase3,Fase4,Fase5 faseStyle
 ```
 
 Com esses novos requisitos e a arquitetura proposta, o Terminal 3D ganha camadas claras para gerenciamento de dados em memória, persistência futura, comunicação robusta com sistemas externos como o iFix, e suporte a colaboração e histórico detalhado.
