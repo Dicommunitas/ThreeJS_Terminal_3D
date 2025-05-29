@@ -8,7 +8,7 @@
 
 > `const` **SidebarMenuButton**: `ForwardRefExoticComponent`\<`Omit`\<`ClassAttributes`\<`HTMLButtonElement`\> & `ButtonHTMLAttributes`\<`HTMLButtonElement`\> & `object` & `VariantProps`\<(`props?`) => `string`\>, `"ref"`\> & `RefAttributes`\<`HTMLButtonElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:718](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/ui/sidebar.tsx#L718)
+Defined in: [src/components/ui/sidebar.tsx:744](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/ui/sidebar.tsx#L744)
 
 Botão clicável dentro de um `SidebarMenuItem`.
 Pode conter um ícone e texto. O texto é truncado quando a sidebar está em modo "icon".

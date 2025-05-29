@@ -8,4 +8,4 @@
 
 > `const` **SelectTrigger**: `ForwardRefExoticComponent`\<`Omit`\<`SelectTriggerProps` & `RefAttributes`\<`HTMLButtonElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLButtonElement`\>\>
 
-Defined in: [src/components/ui/select.tsx:15](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/ui/select.tsx#L15)
+Defined in: [src/components/ui/select.tsx:15](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/ui/select.tsx#L15)

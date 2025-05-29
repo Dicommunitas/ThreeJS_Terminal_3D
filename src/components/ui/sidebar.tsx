@@ -999,4 +999,4 @@ export {
   // useSidebar, // A exportação de useSidebar já está acima com export type
 }
 
-export type { SidebarContext };
+//export type { SidebarContext };

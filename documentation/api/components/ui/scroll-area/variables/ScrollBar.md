@@ -8,4 +8,4 @@
 
 > `const` **ScrollBar**: `ForwardRefExoticComponent`\<`Omit`\<`ScrollAreaScrollbarProps` & `RefAttributes`\<`HTMLDivElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: [src/components/ui/scroll-area.tsx:26](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/ui/scroll-area.tsx#L26)
+Defined in: [src/components/ui/scroll-area.tsx:26](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/ui/scroll-area.tsx#L26)

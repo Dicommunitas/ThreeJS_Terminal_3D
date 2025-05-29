@@ -6,7 +6,7 @@
 
 # Interface: SidebarContentLayoutProps
 
-Defined in: [src/components/sidebar-content-layout.tsx:91](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L91)
+Defined in: [src/components/sidebar-content-layout.tsx:113](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L113)
 
 Props para o componente SidebarContentLayout.
  SidebarContentLayoutProps
@@ -17,7 +17,7 @@ Props para o componente SidebarContentLayout.
 
 > **availableAreas**: `string`[]
 
-Defined in: [src/components/sidebar-content-layout.tsx:99](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L99)
+Defined in: [src/components/sidebar-content-layout.tsx:121](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L121)
 
 Lista de áreas disponíveis para filtro.
 
@@ -27,7 +27,7 @@ Lista de áreas disponíveis para filtro.
 
 > **availableSistemas**: `string`[]
 
-Defined in: [src/components/sidebar-content-layout.tsx:96](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L96)
+Defined in: [src/components/sidebar-content-layout.tsx:118](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L118)
 
 Lista de sistemas disponíveis para filtro.
 
@@ -37,7 +37,7 @@ Lista de sistemas disponíveis para filtro.
 
 > **cameraViewSystems**: `string`[]
 
-Defined in: [src/components/sidebar-content-layout.tsx:104](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L104)
+Defined in: [src/components/sidebar-content-layout.tsx:126](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L126)
 
 Lista de nomes de sistemas para o CameraControlsPanel.
 
@@ -47,7 +47,7 @@ Lista de nomes de sistemas para o CameraControlsPanel.
 
 > **colorMode**: [`ColorMode`](../../../lib/types/type-aliases/ColorMode.md)
 
-Defined in: [src/components/sidebar-content-layout.tsx:100](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L100)
+Defined in: [src/components/sidebar-content-layout.tsx:122](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L122)
 
 O modo de colorização atual.
 
@@ -57,7 +57,7 @@ O modo de colorização atual.
 
 > **layers**: [`Layer`](../../../lib/types/interfaces/Layer.md)[]
 
-Defined in: [src/components/sidebar-content-layout.tsx:102](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L102)
+Defined in: [src/components/sidebar-content-layout.tsx:124](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L124)
 
 Lista de camadas para o LayerManager.
 
@@ -67,7 +67,7 @@ Lista de camadas para o LayerManager.
 
 > **onColorModeChange**: (`mode`) => `void`
 
-Defined in: [src/components/sidebar-content-layout.tsx:101](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L101)
+Defined in: [src/components/sidebar-content-layout.tsx:123](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L123)
 
 Função para atualizar o modo de colorização.
 
@@ -87,7 +87,7 @@ Função para atualizar o modo de colorização.
 
 > **onFocusAndSelectSystem**: (`systemName`) => `void`
 
-Defined in: [src/components/sidebar-content-layout.tsx:105](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L105)
+Defined in: [src/components/sidebar-content-layout.tsx:127](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L127)
 
 Callback para focar e selecionar um sistema.
 
@@ -107,7 +107,7 @@ Callback para focar e selecionar um sistema.
 
 > **onToggleLayer**: (`layerId`) => `void`
 
-Defined in: [src/components/sidebar-content-layout.tsx:103](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L103)
+Defined in: [src/components/sidebar-content-layout.tsx:125](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L125)
 
 Função para alternar a visibilidade de uma camada.
 
@@ -127,7 +127,7 @@ Função para alternar a visibilidade de uma camada.
 
 > **searchTerm**: `string`
 
-Defined in: [src/components/sidebar-content-layout.tsx:92](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L92)
+Defined in: [src/components/sidebar-content-layout.tsx:114](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L114)
 
 O termo de busca textual atual.
 
@@ -137,7 +137,7 @@ O termo de busca textual atual.
 
 > **selectedArea**: `string`
 
-Defined in: [src/components/sidebar-content-layout.tsx:97](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L97)
+Defined in: [src/components/sidebar-content-layout.tsx:119](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L119)
 
 A área selecionada para filtro.
 
@@ -147,7 +147,7 @@ A área selecionada para filtro.
 
 > **selectedSistema**: `string`
 
-Defined in: [src/components/sidebar-content-layout.tsx:94](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L94)
+Defined in: [src/components/sidebar-content-layout.tsx:116](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L116)
 
 O sistema selecionado para filtro.
 
@@ -157,7 +157,7 @@ O sistema selecionado para filtro.
 
 > **setSearchTerm**: (`value`) => `void`
 
-Defined in: [src/components/sidebar-content-layout.tsx:93](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L93)
+Defined in: [src/components/sidebar-content-layout.tsx:115](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L115)
 
 Função para atualizar o termo de busca.
 
@@ -177,7 +177,7 @@ Função para atualizar o termo de busca.
 
 > **setSelectedArea**: (`value`) => `void`
 
-Defined in: [src/components/sidebar-content-layout.tsx:98](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L98)
+Defined in: [src/components/sidebar-content-layout.tsx:120](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L120)
 
 Função para atualizar a área selecionada.
 
@@ -197,7 +197,7 @@ Função para atualizar a área selecionada.
 
 > **setSelectedSistema**: (`value`) => `void`
 
-Defined in: [src/components/sidebar-content-layout.tsx:95](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/sidebar-content-layout.tsx#L95)
+Defined in: [src/components/sidebar-content-layout.tsx:117](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/sidebar-content-layout.tsx#L117)
 
 Função para atualizar o sistema selecionado.
 

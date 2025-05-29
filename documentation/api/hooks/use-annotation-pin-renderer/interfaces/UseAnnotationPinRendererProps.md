@@ -6,7 +6,7 @@
 
 # Interface: UseAnnotationPinRendererProps
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-annotation-pin-renderer.ts#L46)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:62](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-annotation-pin-renderer.ts#L62)
 
 Custom hook para gerenciar a renderização de pins de anotação na cena 3D.
 
@@ -25,14 +25,30 @@ classDiagram
       +allEquipmentData: Equipment[] // Full list for correct positioning
       +layers: Layer[]
     }
-    class useAnnotationPinRenderer {}
-    class ReactFCHook {}
-    class label_renderer_utils{}
-    class Annotation{}
-    class Equipment{}
-    class Layer{}
-    class RefObject_Scene_ {}
-    class RefObject_CSS2DRenderer_ {}
+    class useAnnotationPinRenderer {
+
+    }
+    class ReactFCHook {
+
+    }
+    class label_renderer_utils{
+
+    }
+    class Annotation {
+
+    }
+    class Equipment {
+
+    }
+    class Layer {
+
+    }
+    class RefObject_Scene_ {
+
+    }
+    class RefObject_CSS2DRenderer_ {
+
+    }
     useAnnotationPinRenderer --|&gt; ReactFCHook
     useAnnotationPinRenderer ..&gt; label_renderer_utils : uses updateAnnotationPins
     UseAnnotationPinRendererProps ..&gt; Annotation
@@ -49,14 +65,30 @@ classDiagram
       +allEquipmentData: Equipment[] // Full list for correct positioning
       +layers: Layer[]
     }
-    class useAnnotationPinRenderer {}
-    class ReactFCHook {}
-    class label_renderer_utils{}
-    class Annotation{}
-    class Equipment{}
-    class Layer{}
-    class RefObject_Scene_ {}
-    class RefObject_CSS2DRenderer_ {}
+    class useAnnotationPinRenderer {
+
+    }
+    class ReactFCHook {
+
+    }
+    class label_renderer_utils{
+
+    }
+    class Annotation {
+
+    }
+    class Equipment {
+
+    }
+    class Layer {
+
+    }
+    class RefObject_Scene_ {
+
+    }
+    class RefObject_CSS2DRenderer_ {
+
+    }
     useAnnotationPinRenderer --|&gt; ReactFCHook
     useAnnotationPinRenderer ..&gt; label_renderer_utils : uses updateAnnotationPins
     UseAnnotationPinRendererProps ..&gt; Annotation
@@ -72,14 +104,30 @@ classDiagram
       +allEquipmentData: Equipment[] // Full list for correct positioning
       +layers: Layer[]
     }
-    class useAnnotationPinRenderer {}
-    class ReactFCHook {}
-    class label_renderer_utils{}
-    class Annotation{}
-    class Equipment{}
-    class Layer{}
-    class RefObject_Scene_ {}
-    class RefObject_CSS2DRenderer_ {}
+    class useAnnotationPinRenderer {
+
+    }
+    class ReactFCHook {
+
+    }
+    class label_renderer_utils{
+
+    }
+    class Annotation {
+
+    }
+    class Equipment {
+
+    }
+    class Layer {
+
+    }
+    class RefObject_Scene_ {
+
+    }
+    class RefObject_CSS2DRenderer_ {
+
+    }
     useAnnotationPinRenderer --|&gt; ReactFCHook
     useAnnotationPinRenderer ..&gt; label_renderer_utils : uses updateAnnotationPins
     UseAnnotationPinRendererProps ..&gt; Annotation
@@ -94,7 +142,7 @@ classDiagram
 
 > **allEquipmentData**: [`Equipment`](../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:51](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-annotation-pin-renderer.ts#L51)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-annotation-pin-renderer.ts#L67)
 
 ***
 
@@ -102,7 +150,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:51](https://github.com/Dic
 
 > **annotations**: [`Annotation`](../../../lib/types/interfaces/Annotation.md)[]
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:50](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-annotation-pin-renderer.ts#L50)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:66](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-annotation-pin-renderer.ts#L66)
 
 ***
 
@@ -110,7 +158,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:50](https://github.com/Dic
 
 > **isSceneReady**: `boolean`
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:49](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-annotation-pin-renderer.ts#L49)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:65](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-annotation-pin-renderer.ts#L65)
 
 ***
 
@@ -118,7 +166,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:49](https://github.com/Dic
 
 > **labelRendererRef**: `RefObject`\<`null` \| `CSS2DRenderer`\>
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:48](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-annotation-pin-renderer.ts#L48)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:64](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-annotation-pin-renderer.ts#L64)
 
 ***
 
@@ -126,7 +174,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:48](https://github.com/Dic
 
 > **layers**: [`Layer`](../../../lib/types/interfaces/Layer.md)[]
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:53](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-annotation-pin-renderer.ts#L53)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:69](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-annotation-pin-renderer.ts#L69)
 
 ***
 
@@ -134,7 +182,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:53](https://github.com/Dic
 
 > **sceneRef**: `RefObject`\<`null` \| `Scene`\>
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/hooks/use-annotation-pin-renderer.ts#L47)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:63](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-annotation-pin-renderer.ts#L63)
 <style>
 :root.mermaid-enabled .mermaid-block > pre {
   display: none;

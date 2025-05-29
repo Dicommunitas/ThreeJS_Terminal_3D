@@ -8,7 +8,7 @@
 
 > **useSidebar**(): [`SidebarContext`](../type-aliases/SidebarContext.md)
 
-Defined in: [src/components/ui/sidebar.tsx:109](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7e8c963a689af2f4b56042f0dd4bd67cbf96b13b/src/components/ui/sidebar.tsx#L109)
+Defined in: [src/components/ui/sidebar.tsx:136](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/components/ui/sidebar.tsx#L136)
 
 Hook para acessar o contexto da Sidebar.
 Deve ser usado dentro de um `SidebarProvider`.
