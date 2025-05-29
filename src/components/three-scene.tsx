@@ -61,7 +61,7 @@
  *   }
  *   class ReactFC {
  *   }
- *   ThreeScene --|> ReactFC;
+ *   ThreeScene --|> ReactFC
  *   ThreeScene ..> useSceneSetup : uses
  *   ThreeScene ..> useEquipmentRenderer : uses
  *   ThreeScene ..> useAnnotationPinRenderer : uses
