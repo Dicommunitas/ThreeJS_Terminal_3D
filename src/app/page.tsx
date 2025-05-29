@@ -59,7 +59,6 @@
  *       SidebarContentLayout_Comp;
  *     end
  *
- *     style Terminal3DPage fill:#f9f,stroke:#333,stroke-width:2px
  * ```
  * 
  */
