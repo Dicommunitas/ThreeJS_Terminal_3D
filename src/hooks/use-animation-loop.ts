@@ -12,6 +12,7 @@
  *   classDiagram
  *     class UseAnimationLoopProps {
  *       +isSceneReady: boolean
+ *       +isControlsReady: boolean
  *       +sceneRef: RefObject_Scene_
  *       +cameraRef: RefObject_PerspectiveCamera_
  *       +controlsRef: RefObject_OrbitControls_
@@ -49,16 +50,10 @@ import type { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.j
 
 /**
  * Props para o hook useAnimationLoop.
- * @interface UseAnimationLoopProps
- * @property {boolean} isSceneReady - Indica se a cena está pronta para iniciar o loop.
- * @property {RefObject<THREE.Scene | null>} sceneRef - Ref para a cena Three.js.
- * @property {RefObject<THREE.PerspectiveCamera | null>} cameraRef - Ref para a câmera da cena.
- * @property {RefObject<OrbitControls | null>} controlsRef - Ref para os OrbitControls.
- * @property {RefObject<EffectComposer | null>} composerRef - Ref para o EffectComposer (pós-processamento).
- * @property {RefObject<CSS2DRenderer | null>} labelRendererRef - Ref para o CSS2DRenderer (rótulos HTML).
  */
 export interface UseAnimationLoopProps {
   isSceneReady: boolean;
+  isControlsReady: boolean; // Added
   sceneRef: RefObject<THREE.Scene | null>;
   cameraRef: RefObject<THREE.PerspectiveCamera | null>;
   controlsRef: RefObject<OrbitControls | null>;
@@ -70,12 +65,13 @@ export interface UseAnimationLoopProps {
  * Hook customizado para gerenciar o loop de animação de uma cena Three.js.
  * Ele configura e executa o `requestAnimationFrame` para renderizar a cena
  * e atualizar os controles, o composer e o renderizador de rótulos.
- * O loop só é iniciado quando `isSceneReady` é verdadeiro e todos os refs necessários estão populados.
+ * O loop só é iniciado quando `isSceneReady`, `isControlsReady` e todos os refs necessários estão populados.
  *
  * @param {UseAnimationLoopProps} props - As props necessárias para o loop de animação.
  */
 export function useAnimationLoop({
   isSceneReady,
+  isControlsReady, // Added
   sceneRef,
   cameraRef,
   controlsRef,
@@ -83,11 +79,38 @@ export function useAnimationLoop({
   labelRendererRef,
 }: UseAnimationLoopProps): void {
   useEffect(() => {
-    console.log(`[useAnimationLoop] useEffect triggered. isSceneReady: ${isSceneReady}`);
-    if (!isSceneReady || !sceneRef.current || !cameraRef.current || !controlsRef.current || !composerRef.current || !labelRendererRef.current) {
-      console.log('[useAnimationLoop] Skipping animation frame: Not all refs are ready or scene is not ready.');
+    console.log(`[useAnimationLoop] useEffect triggered. isSceneReady: ${isSceneReady}, isControlsReady: ${isControlsReady}`);
+    
+    if (!isSceneReady) {
+      console.log('[useAnimationLoop] Skipping: Scene not ready yet.');
       return;
     }
+    if (!isControlsReady) {
+      console.log('[useAnimationLoop] Skipping: Controls not ready yet.');
+      return;
+    }
+    if (!sceneRef.current) {
+      console.log('[useAnimationLoop] Skipping: sceneRef.current is null.');
+      return;
+    }
+    if (!cameraRef.current) {
+      console.log('[useAnimationLoop] Skipping: cameraRef.current is null.');
+      return;
+    }
+    if (!controlsRef.current) {
+      console.log('[useAnimationLoop] Skipping: controlsRef.current is null.');
+      return;
+    }
+    if (!composerRef.current) {
+      console.log('[useAnimationLoop] Skipping: composerRef.current is null.');
+      return;
+    }
+    if (!labelRendererRef.current) {
+      console.log('[useAnimationLoop] Skipping: labelRendererRef.current is null.');
+      return;
+    }
+    console.log('[useAnimationLoop] All refs and readiness flags are set, proceeding to start animation loop.');
+
 
     const scene = sceneRef.current;
     const camera = cameraRef.current;
@@ -96,7 +119,7 @@ export function useAnimationLoop({
     const labelRenderer = labelRendererRef.current;
 
     let animationFrameId: number;
-    let frameCount = 0; // For less frequent logging
+    // let frameCount = 0; // For less frequent logging
 
     /**
      * Função de animação chamada recursivamente via requestAnimationFrame.
@@ -104,14 +127,14 @@ export function useAnimationLoop({
      */
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
-      if (controls.enabled) controls.update(); // Atualiza apenas se habilitado
+      if (controls.enabled) controls.update(); 
       composer.render();
       labelRenderer.render(scene, camera);
 
-      frameCount++;
-      if (frameCount % 300 === 0) { // Log every ~5 seconds at 60fps
-        // console.log('[useAnimationLoop] Animate function still running.');
-      }
+      // frameCount++;
+      // if (frameCount % 300 === 0) { 
+      //   console.log('[useAnimationLoop] Animate function still running.');
+      // }
     };
 
     console.log('[useAnimationLoop] Starting animation loop.');
@@ -121,5 +144,6 @@ export function useAnimationLoop({
       console.log('[useAnimationLoop] Cancelling animation frame.');
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isSceneReady, sceneRef, cameraRef, controlsRef, composerRef, labelRendererRef]);
+  }, [isSceneReady, isControlsReady, sceneRef, cameraRef, controlsRef, composerRef, labelRendererRef]);
 }
+
