@@ -1,14 +1,16 @@
 
+
 /**
  * Hook customizado para a configuração inicial de uma cena Three.js.
  *
  * Principal Responsabilidade:
  * Encapsular a criação e inicialização dos principais componentes de uma cena Three.js,
  * incluindo a cena em si, câmera, renderizadores (WebGL e CSS2D para labels),
- * controles de órbita, pipeline de pós-processamento (EffectComposer, OutlinePass),
+ * controles de órbita (com configuração específica para botões do mouse: esquerdo e meio para rotacionar, direito para pan),
+ * pipeline de pós-processamento (EffectComposer, OutlinePass),
  * iluminação básica e um plano de chão. Gerencia também o estado de "prontidão" da cena
  * e o tratamento de redimensionamento da janela/contêiner.
- * 
+ *
  * ```mermaid
  *   classDiagram
  *     class UseSceneSetupProps {
@@ -33,26 +35,19 @@
  *       +y: number
  *       +z: number
  *     }
- *     class RefObject_HTMLDivElement_ {
- *     }
- *     class RefObject_Scene_ {
- *     }
- *     class RefObject_PerspectiveCamera_ {
- *     }
- *     class RefObject_WebGLRenderer_ {
- *     }
- *     class RefObject_CSS2DRenderer_ {
- *     }
- *     class RefObject_OrbitControls_ {
- *     }
- *     class RefObject_EffectComposer_ {
- *     }
- *     class RefObject_OutlinePass_ {
- *     }
- *     class RefObject_Mesh_ {
- *     }
  *     class CameraState {
+ *        +position: Point3D
+ *        +lookAt: Point3D
  *     }
+ *     class RefObject_HTMLDivElement_ {}
+ *     class RefObject_Scene_ {}
+ *     class RefObject_PerspectiveCamera_ {}
+ *     class RefObject_WebGLRenderer_ {}
+ *     class RefObject_CSS2DRenderer_ {}
+ *     class RefObject_OrbitControls_ {}
+ *     class RefObject_EffectComposer_ {}
+ *     class RefObject_OutlinePass_ {}
+ *     class RefObject_Mesh_ {}
  *
  *     UseSceneSetupProps ..> Point3D
  *     UseSceneSetupProps ..> CameraState
@@ -63,17 +58,21 @@
  *     class scene_elements_setup {
  *     }
  *     useSceneSetup ..> scene_elements_setup : uses setupRenderPipeline, setupLighting, setupGroundPlane
- *     UseSceneSetupProps --> RefObject_HTMLDivElement_
- *     UseSceneSetupReturn --> RefObject_Scene_
- *     UseSceneSetupReturn --> RefObject_PerspectiveCamera_
- *     UseSceneSetupReturn --> RefObject_WebGLRenderer_
- *     UseSceneSetupReturn --> RefObject_CSS2DRenderer_
- *     UseSceneSetupReturn --> RefObject_OrbitControls_
- *     UseSceneSetupReturn --> RefObject_EffectComposer_
- *     UseSceneSetupReturn --> RefObject_OutlinePass_
- *     UseSceneSetupReturn --> RefObject_Mesh_
+ *     UseSceneSetupProps --> RefObject_HTMLDivElement_ : mountRef
+ *     UseSceneSetupReturn --> RefObject_Scene_ : sceneRef
+ *     UseSceneSetupReturn --> RefObject_PerspectiveCamera_ : cameraRef
+ *     UseSceneSetupReturn --> RefObject_WebGLRenderer_ : rendererRef
+ *     UseSceneSetupReturn --> RefObject_CSS2DRenderer_ : labelRendererRef
+ *     UseSceneSetupReturn --> RefObject_OrbitControls_ : controlsRef
+ *     UseSceneSetupReturn --> RefObject_EffectComposer_ : composerRef
+ *     UseSceneSetupReturn --> RefObject_OutlinePass_ : outlinePassRef
+ *     UseSceneSetupReturn --> RefObject_Mesh_ : groundMeshRef
+ *
+ *     style UseSceneSetupProps,UseSceneSetupReturn fill:#DCDCDC,stroke:#333,stroke-width:2px,color:black
+ *     style Point3D,CameraState,RefObject_HTMLDivElement_,RefObject_Scene_,RefObject_PerspectiveCamera_,RefObject_WebGLRenderer_,RefObject_CSS2DRenderer_,RefObject_OrbitControls_,RefObject_EffectComposer_,RefObject_OutlinePass_,RefObject_Mesh_ fill:#FFFFE0,stroke:#333,stroke-width:2px,color:black
+ *     style useSceneSetup,scene_elements_setup fill:#ADD8E6,stroke:#333,stroke-width:2px,color:black
  * ```
- * 
+ *
  */
 import { useRef, useEffect, useState, useCallback } from 'react';
 import * as THREE from 'three';
@@ -88,10 +87,10 @@ import type { CameraState } from '@/lib/types';
 /**
  * Props for the useSceneSetup hook.
  * @interface UseSceneSetupProps
- * @property {React.RefObject<HTMLDivElement>} mountRef - Ref to the container element for the scene.
- * @property {{ x: number; y: number; z: number }} initialCameraPosition - The initial position of the camera.
- * @property {{ x: number; y: number; z: number }} initialCameraLookAt - The initial point the camera is looking at.
- * @property {(cameraState: CameraState) => void} onCameraChange - Callback function to be called when the camera changes.
+ * @property mountRef - Ref to the container element for the scene.
+ * @property initialCameraPosition - The initial position of the camera.
+ * @property initialCameraLookAt - The initial point the camera is looking at.
+ * @property onCameraChange - Callback function to be called when the camera changes.
  */
 export interface UseSceneSetupProps {
   mountRef: React.RefObject<HTMLDivElement>;
@@ -103,16 +102,16 @@ export interface UseSceneSetupProps {
 /**
  * Return value of the useSceneSetup hook.
  * @interface UseSceneSetupReturn
- * @property {React.RefObject<THREE.Scene | null>} sceneRef - Ref to the Three.js Scene.
- * @property {React.RefObject<THREE.PerspectiveCamera | null>} cameraRef - Ref to the Three.js Camera.
- * @property {React.RefObject<THREE.WebGLRenderer | null>} rendererRef - Ref to the WebGLRenderer.
- * @property {React.RefObject<CSS2DRenderer | null>} labelRendererRef - Ref to the CSS2DRenderer.
- * @property {React.RefObject<OrbitControlsType | null>} controlsRef - Ref to the OrbitControls.
+ * @property sceneRef - Ref to the Three.js Scene.
+ * @property cameraRef - Ref to the Three.js Camera.
+ * @property rendererRef - Ref to the WebGLRenderer.
+ * @property labelRendererRef - Ref to the CSS2DRenderer.
+ * @property controlsRef - Ref to the OrbitControls.
  *           Configured for Left and Middle mouse buttons to rotate, and Right mouse button to pan.
- * @property {React.RefObject<EffectComposer | null>} composerRef - Ref to the EffectComposer.
- * @property {React.RefObject<OutlinePass | null>} outlinePassRef - Ref to the OutlinePass.
- * @property {React.RefObject<THREE.Mesh | null>} groundMeshRef - Ref to the ground plane mesh.
- * @property {boolean} isSceneReady - State indicating if the scene setup is complete.
+ * @property composerRef - Ref to the EffectComposer.
+ * @property outlinePassRef - Ref to the OutlinePass.
+ * @property groundMeshRef - Ref to the ground plane mesh.
+ * @property isSceneReady - State indicating if the scene setup is complete.
  */
 export interface UseSceneSetupReturn {
   sceneRef: React.RefObject<THREE.Scene | null>;
@@ -132,8 +131,8 @@ export interface UseSceneSetupReturn {
  * Also manages the scene's readiness state and handles window resizing.
  * OrbitControls are configured by default for Left and Middle mouse buttons to rotate, and Right mouse button to pan.
  *
- * @param {UseSceneSetupProps} props - The properties for the hook.
- * @returns {UseSceneSetupReturn} An object containing refs to the core scene elements and the readiness state.
+ * @param props - The properties for the hook.
+ * @returns An object containing refs to the core scene elements and the readiness state.
  */
 export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn => {
   const { mountRef, initialCameraPosition, initialCameraLookAt, onCameraChange } = props;
@@ -198,11 +197,35 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
     composerRef.current = pipeline.composer;
     outlinePassRef.current = pipeline.outlinePass;
 
+    // WebGL Context Loss/Restore Listeners
+    const handleContextLost = (event: Event) => {
+      event.preventDefault();
+      console.error("WebGL context lost. Application may need to reinitialize resources.");
+      // Optionally, trigger a state update to inform the UI or attempt recovery
+    };
+    const handleContextRestored = () => {
+      console.log("WebGL context restored. Reinitializing scene if necessary.");
+      // Here you might need to re-setup parts of your scene, re-upload textures, etc.
+      // For now, we'll just log. A full re-init might involve calling setup functions again or reloading data.
+      if (sceneRef.current && cameraRef.current && rendererRef.current && labelRendererRef.current && composerRef.current) {
+         // A simple re-render might be triggered by other state changes,
+         // but a full re-init would be more complex.
+         // This example just logs, actual re-init depends on app complexity.
+         rendererRef.current.compile(sceneRef.current, cameraRef.current); // Attempt to recompile shaders
+      }
+    };
+
+    if (rendererRef.current) {
+      rendererRef.current.domElement.addEventListener('webglcontextlost', handleContextLost, false);
+      rendererRef.current.domElement.addEventListener('webglcontextrestored', handleContextRestored, false);
+    }
+
+
     if (sceneRef.current) {
       setupLighting(sceneRef.current);
       groundMeshRef.current = setupGroundPlane(sceneRef.current);
     }
-    
+
     let localControls: OrbitControlsType | null = null;
 
     import('three/examples/jsm/controls/OrbitControls.js')
@@ -215,19 +238,19 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
 
         localControls = new OrbitControls(cameraRef.current, rendererRef.current.domElement);
         controlsRef.current = localControls; // Assign to the ref
-        
+
         localControls.enableDamping = true;
 
         if (initialCameraLookAt) {
           localControls.target.set(initialCameraLookAt.x, initialCameraLookAt.y, initialCameraLookAt.z);
         } else {
           console.warn("[useSceneSetup] initialLookAt is undefined during OrbitControls setup. Using default target (0,0,0).");
-          localControls.target.set(0, 0, 0); 
+          localControls.target.set(0, 0, 0);
         }
 
         localControls.mouseButtons = {
           LEFT: THREE.MOUSE.ROTATE,
-          MIDDLE: THREE.MOUSE.ROTATE, // Changed to ROTATE as per user request
+          MIDDLE: THREE.MOUSE.ROTATE,
           RIGHT: THREE.MOUSE.PAN
         };
         localControls.update();
@@ -246,15 +269,15 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
             onCameraChangeRef.current(newCameraState);
         }
     };
-    
+
     const resizeObserver = new ResizeObserver(() => handleResize());
     resizeObserver.observe(currentMount);
 
     const initialSetupTimeoutId = setTimeout(() => {
-      handleResize(); 
+      handleResize();
       setIsSceneReady(true);
       // console.log('[useSceneSetup] Scene is now READY.');
-    }, 150); 
+    }, 150);
 
 
     /**
@@ -267,7 +290,12 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
       if (currentMount) {
         resizeObserver.unobserve(currentMount);
       }
-      
+
+      if (rendererRef.current) {
+        rendererRef.current.domElement.removeEventListener('webglcontextlost', handleContextLost, false);
+        rendererRef.current.domElement.removeEventListener('webglcontextrestored', handleContextRestored, false);
+      }
+
       if (localControls) { // Use the locally scoped variable for cleanup
         localControls.removeEventListener('end', handleControlsChangeEnd);
         localControls.dispose();
@@ -313,7 +341,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
       // console.log('[useSceneSetup] Setup CLEANUP finished.');
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mountRef, initialCameraPosition.x, initialCameraPosition.y, initialCameraPosition.z, initialCameraLookAt.x, initialCameraLookAt.y, initialCameraLookAt.z]); 
+  }, [mountRef, initialCameraPosition.x, initialCameraPosition.y, initialCameraPosition.z, initialCameraLookAt.x, initialCameraLookAt.y, initialCameraLookAt.z]);
 
   return {
     sceneRef,

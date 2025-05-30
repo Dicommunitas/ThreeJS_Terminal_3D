@@ -1,4 +1,5 @@
 
+
 /**
  * Utilitários para configurar elementos básicos e gerenciar meshes de equipamentos em uma cena Three.js.
  *
@@ -7,47 +8,31 @@
  * componentes fundamentais da cena 3D, como iluminação, plano de chão, renderizadores
  * (WebGL e CSS2D), pipeline de pós-processamento (EffectComposer, OutlinePass), e a
  * sincronização dinâmica dos meshes de equipamentos com os dados da aplicação.
- * 
+ *
  * ```mermaid
- *   classDiagram
- *     class setupRenderPipeline_return {
- *       +renderer: THREE.WebGLRenderer
- *       +labelRenderer: CSS2DRenderer
- *       +composer: EffectComposer
- *       +outlinePass: OutlinePass
- *     }
- *     class setupRenderPipeline {
+ *   graph TD;
+ *     A[setupRenderPipeline] --> B{renderer: WebGLRenderer};
+ *     A --> C{labelRenderer: CSS2DRenderer};
+ *     A --> D{composer: EffectComposer};
+ *     A --> E{outlinePass: OutlinePass};
  *
- *     }
- *     setupRenderPipeline ..> setupRenderPipeline_return : returns
+ *     F[UpdateEquipmentMeshesParams] --> G[updateEquipmentMeshesInScene];
+ *     H[Equipment] --> F;
+ *     I[Layer] --> F;
+ *     J[ColorMode] --> F;
  *
- *     class UpdateEquipmentMeshesParams {
- *       +scene: THREE.Scene
- *       +equipmentMeshesRef: React.MutableRefObject_Object3D_Array_
- *       +newEquipmentData: Equipment[]
- *       +layers: Layer[]
- *       +colorMode: ColorMode
- *       +createSingleEquipmentMesh(item: Equipment): THREE.Object3D
- *       +groundMeshRef: React.MutableRefObject_Mesh_
- *     }
- *     class Equipment {
+ *     classDef params fill:#DCDCDC,stroke:#333,stroke-width:2px,color:black;
+ *     classDef func fill:#ADD8E6,stroke:#333,stroke-width:2px,color:black;
+ *     classDef return fill:#90EE90,stroke:#333,stroke-width:2px,color:black;
+ *     classDef type fill:#FFFFE0,stroke:#333,stroke-width:2px,color:black;
  *
- *     }
- *     class Layer {
- *
- *     }
- *     class ColorMode {
- *
- *     }
- *     UpdateEquipmentMeshesParams ..> Equipment
- *     UpdateEquipmentMeshesParams ..> Layer
- *     UpdateEquipmentMeshesParams ..> ColorMode
- *     class updateEquipmentMeshesInScene {
- *
- *     }
- *     updateEquipmentMeshesInScene ..> UpdateEquipmentMeshesParams : receives
+ *     class A func;
+ *     class B,C,D,E return;
+ *     class F params;
+ *     class G func;
+ *     class H,I,J type;
  * ```
- * 
+ *
  * Exporta:
  * - `setupLighting`: Configura a iluminação da cena.
  * - `setupGroundPlane`: Configura o plano de chão.
@@ -65,7 +50,7 @@ import type { Equipment, Layer, ColorMode } from '@/lib/types';
  * Configura a iluminação padrão para a cena.
  * Adiciona uma AmbientLight para iluminação geral, uma HemisphereLight para simular luz do céu e do chão,
  * e uma DirectionalLight para simular luz solar com sombras (atualmente desabilitadas por performance).
- * @param {THREE.Scene} scene A instância da cena Three.js onde as luzes serão adicionadas.
+ * @param scene A instância da cena Three.js onde as luzes serão adicionadas.
  */
 export function setupLighting(scene: THREE.Scene): void {
   const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
@@ -87,8 +72,8 @@ export function setupLighting(scene: THREE.Scene): void {
  * Configura o plano de chão (terreno) para a cena.
  * Cria um `THREE.Mesh` com `PlaneGeometry` e `MeshStandardMaterial`.
  * O plano é posicionado em Y=0 e rotacionado para ficar horizontal.
- * @param {THREE.Scene} scene A instância da cena Three.js onde o plano será adicionado.
- * @returns {THREE.Mesh} O mesh do plano de chão criado.
+ * @param scene A instância da cena Three.js onde o plano será adicionado.
+ * @returns O mesh do plano de chão criado.
  */
 export function setupGroundPlane(scene: THREE.Scene): THREE.Mesh {
   const groundGeometry = new THREE.PlaneGeometry(100, 100);
@@ -114,15 +99,10 @@ export function setupGroundPlane(scene: THREE.Scene): THREE.Mesh {
 /**
  * Configura os renderizadores principais (WebGL, CSS2D) e o pipeline de pós-processamento.
  * Centraliza a criação do WebGLRenderer, CSS2DRenderer, EffectComposer e OutlinePass.
- * @param {HTMLElement} mountElement - O elemento DOM onde o canvas WebGL e o renderer de labels serão montados.
- * @param {THREE.Scene} scene - A cena Three.js.
- * @param {THREE.PerspectiveCamera} camera - A câmera da cena.
- * @returns {{
- *   renderer: THREE.WebGLRenderer;
- *   labelRenderer: CSS2DRenderer;
- *   composer: EffectComposer;
- *   outlinePass: OutlinePass;
- * } | null} Um objeto contendo as instâncias configuradas, ou null se mountElement não for válido.
+ * @param mountElement - O elemento DOM onde o canvas WebGL e o renderer de labels serão montados.
+ * @param scene - A cena Three.js.
+ * @param camera - A câmera da cena.
+ * @returns Um objeto contendo as instâncias configuradas, ou null se mountElement não for válido.
  */
 export function setupRenderPipeline(
   mountElement: HTMLElement,
@@ -141,7 +121,11 @@ export function setupRenderPipeline(
   const initialHeight = Math.max(1, mountElement.clientHeight);
 
   // WebGL Renderer
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  const renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    preserveDrawingBuffer: true, // Parâmetro crucial adicionado
+    alpha: true // Adicionado conforme sugestão
+  });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(initialWidth, initialHeight);
   renderer.shadowMap.enabled = false; // Sombras desabilitadas para performance
@@ -187,14 +171,51 @@ export function setupRenderPipeline(
 
 /**
  * Interface para os parâmetros da função `updateEquipmentMeshesInScene`.
+ * ```mermaid
+ *   classDiagram
+ *     class UpdateEquipmentMeshesParams {
+ *       +scene: THREE.Scene
+ *       +equipmentMeshesRef: React.MutableRefObject_Object3D_Array_
+ *       +newEquipmentData: Equipment[]
+ *       +layers: Layer[]
+ *       +colorMode: ColorMode
+ *       +createSingleEquipmentMesh(item: Equipment): THREE.Object3D
+ *       +groundMeshRef: React.MutableRefObject_Mesh_
+ *     }
+ *     class Equipment {
+ *     }
+ *     class Layer {
+ *     }
+ *     class ColorMode {
+ *     }
+ *     class THREE_Object3D {
+ *     }
+ *     class THREE_Mesh {
+ *     }
+ *     class THREE_Scene {
+ *     }
+ *     class React_MutableRefObject {}
+ *
+ *     UpdateEquipmentMeshesParams --> THREE_Scene : scene
+ *     UpdateEquipmentMeshesParams --> React_MutableRefObject : equipmentMeshesRef
+ *     UpdateEquipmentMeshesParams --> React_MutableRefObject : groundMeshRef
+ *     React_MutableRefObject --> THREE_Object3D : (array for equipment)
+ *     React_MutableRefObject --> THREE_Mesh : (for ground)
+ *     UpdateEquipmentMeshesParams --> Equipment : newEquipmentData (array)
+ *     UpdateEquipmentMeshesParams --> Layer : layers (array)
+ *     UpdateEquipmentMeshesParams --> ColorMode : colorMode
+ *
+ *     style UpdateEquipmentMeshesParams fill:#DCDCDC,stroke:#333,stroke-width:2px,color:black
+ *     style Equipment,Layer,ColorMode,THREE_Object3D,THREE_Mesh,THREE_Scene,React_MutableRefObject fill:#FFFFE0,stroke:#333,stroke-width:2px,color:black
+ * ```
  * @interface UpdateEquipmentMeshesParams
- * @property {THREE.Scene} scene - A cena Three.js.
- * @property {React.MutableRefObject<THREE.Object3D[]>} equipmentMeshesRef - Ref para o array de meshes de equipamentos existentes na cena.
- * @property {Equipment[]} newEquipmentData - A nova lista de equipamentos a serem renderizados (já filtrada).
- * @property {Layer[]} layers - A lista de camadas para determinar a visibilidade por tipo de equipamento e do terreno.
- * @property {ColorMode} colorMode - O modo de colorização atual para os equipamentos.
- * @property {(item: Equipment) => THREE.Object3D} createSingleEquipmentMesh - Função callback para criar um mesh de equipamento individual.
- * @property {React.MutableRefObject<THREE.Mesh | null>} groundMeshRef - Ref para o mesh do plano de chão, para controle de visibilidade.
+ * @property scene - A cena Three.js.
+ * @property equipmentMeshesRef - Ref para o array de meshes de equipamentos existentes na cena.
+ * @property newEquipmentData - A nova lista de equipamentos a serem renderizados (já filtrada).
+ * @property layers - A lista de camadas para determinar a visibilidade por tipo de equipamento e do terreno.
+ * @property colorMode - O modo de colorização atual para os equipamentos.
+ * @property createSingleEquipmentMesh - Função callback para criar um mesh de equipamento individual.
+ * @property groundMeshRef - Ref para o mesh do plano de chão, para controle de visibilidade.
  */
 export interface UpdateEquipmentMeshesParams {
   scene: THREE.Scene;
@@ -213,7 +234,7 @@ export interface UpdateEquipmentMeshesParams {
  * Esta função é otimizada para recriar meshes apenas quando necessário, mas a lógica atual recria
  * para simplificar a atualização de cor e outras propriedades visuais baseadas em `colorMode` ou dados do equipamento.
  *
- * @param {UpdateEquipmentMeshesParams} params - Os parâmetros para a função.
+ * @param params - Os parâmetros para a função.
  */
 export function updateEquipmentMeshesInScene({
   scene,
