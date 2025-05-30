@@ -82,6 +82,38 @@ export interface CameraState {
 }
 
 /**
+ * Alias para CameraState, usado para clareza ao descrever uma visão específica do sistema.
+ * @type SystemView
+ */
+export type SystemView = CameraState;
+
+/**
+ * Define as diferentes opções de visualização para um sistema focado.
+ * @interface SystemViewOptions
+ * @property {SystemView} default - A visão padrão calculada.
+ * @property {SystemView} [topDown] - Uma visão de cima para baixo.
+ * @property {SystemView} [isometric] - Uma visão isométrica simulada.
+ */
+export interface SystemViewOptions {
+  default: SystemView;
+  topDown: SystemView; // Tornando obrigatório para simplificar o ciclo
+  isometric: SystemView; // Tornando obrigatório
+}
+
+/**
+ * Informações sobre o sistema alvo para o qual a câmera deve ser enquadrada,
+ * incluindo o índice da visão desejada.
+ * @interface TargetSystemInfo
+ * @property {string} systemName - O nome do sistema a ser focado.
+ * @property {number} viewIndex - O índice da visualização desejada (0 para padrão, 1 para top-down, etc.).
+ */
+export interface TargetSystemInfo {
+  systemName: string;
+  viewIndex: number;
+}
+
+
+/**
  * Representa um comando executável e reversível para o sistema de Undo/Redo.
  * Cada ação do usuário que pode ser desfeita (e.g., mover a câmera, alternar visibilidade de camada,
  * selecionar equipamento) deve ser encapsulada como um `Command`.

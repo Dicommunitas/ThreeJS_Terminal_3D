@@ -1,80 +1,68 @@
 
 /**
- * Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
- * ATUALIZADO: Este componente foi refatorado para atuar como um "condutor", delegando a maior
- * parte de suas responsabilidades anteriores para hooks customizados especializados.
- * Ele agora foca em:
- * - Utilizar `useSceneSetup` para a infraestrutura básica da cena (cena, câmera, renderizadores, etc.).
- * - Utilizar `useEquipmentRenderer` para gerenciar os meshes dos equipamentos.
- * - Utilizar `useAnnotationPinRenderer` para gerenciar os pins de anotação.
- * - Utilizar `useMouseInteractionManager` para processar interações do mouse.
- * - Utilizar `useSceneOutline` para aplicar efeitos de contorno.
- * - Utilizar `useAnimationLoop` para o loop de renderização.
- * - Aplicar estados de câmera programáticos e lidar com o enquadramento de sistemas.
- * - Renderizar o elemento de montagem (`div`) para a cena.
- *
- * Principal Responsabilidade (Pós-Refatoração):
- * Orquestrar os diversos hooks que gerenciam aspectos específicos da cena 3D,
- * passar props e refs entre eles, e fornecer o ponto de montagem no DOM.
- * 
  * ```mermaid
- * classDiagram
- *   class ThreeSceneProps {
- *     +equipment: Equipment[]
- *     +allEquipmentData: Equipment[]
- *     +layers: Layer[]
- *     +annotations: Annotation[]
- *     +selectedEquipmentTags: string[] | undefined
- *     +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
- *     +hoveredEquipmentTag: string | null | undefined
- *     +setHoveredEquipmentTag(tag: string | null): void
- *     +cameraState: CameraState | undefined
- *     +onCameraChange(cameraState: CameraState): void
- *     +initialCameraPosition: Point3D
- *     +initialCameraLookAt: Point3D
- *     +colorMode: ColorMode
- *     +targetSystemToFrame: string | null
- *     +onSystemFramed(): void
- *   }
- *   class Point3D {
- *     +x: number
- *     +y: number
- *     +z: number
- *   }
- *   class Equipment {
- *   }
- *   class Layer {
- *   }
- *   class Annotation {
- *   }
- *   class CameraState {
- *   }
- *   class ColorMode {
- *   }
- *   ThreeSceneProps ..> Equipment
- *   ThreeSceneProps ..> Layer
- *   ThreeSceneProps ..> Annotation
- *   ThreeSceneProps ..> CameraState
- *   ThreeSceneProps ..> ColorMode
- *   ThreeSceneProps ..> Point3D
- *   class ThreeScene {
- *   }
- *   class ReactFC {
- *   }
- *   ThreeScene --|> ReactFC
- *   ThreeScene ..> useSceneSetup : uses
- *   ThreeScene ..> useEquipmentRenderer : uses
- *   ThreeScene ..> useAnnotationPinRenderer : uses
- *   ThreeScene ..> useMouseInteractionManager : uses
- *   ThreeScene ..> useSceneOutline : uses
- *   ThreeScene ..> useAnimationLoop : uses
+ *   classDiagram
+ *     class ThreeSceneProps {
+ *       +equipment: Equipment[]
+ *       +allEquipmentData: Equipment[]
+ *       +layers: Layer[]
+ *       +annotations: Annotation[]
+ *       +selectedEquipmentTags: string[] | undefined
+ *       +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
+ *       +hoveredEquipmentTag: string | null | undefined
+ *       +setHoveredEquipmentTag(tag: string | null): void
+ *       +cameraState: CameraState | undefined
+ *       +onCameraChange(cameraState: CameraState): void
+ *       +initialCameraPosition: Point3D
+ *       +initialCameraLookAt: Point3D
+ *       +colorMode: ColorMode
+ *       +targetSystemToFrame: TargetSystemInfo | null
+ *       +onSystemFramed(): void
+ *     }
+ *     class Point3D {
+ *       +x: number
+ *       +y: number
+ *       +z: number
+ *     }
+ *     class Equipment {
+ *     }
+ *     class Layer {
+ *     }
+ *     class Annotation {
+ *     }
+ *     class CameraState {
+ *     }
+ *     class ColorMode {
+ *     }
+ *     class TargetSystemInfo{
+ *        +systemName: string
+ *        +viewIndex: number
+ *     }
+ *     class ThreeScene {
+ *     }
+ *     class ReactFC {
+ *     }
+ *     ThreeScene --|> ReactFC
+ *     ThreeSceneProps ..> Equipment
+ *     ThreeSceneProps ..> Layer
+ *     ThreeSceneProps ..> Annotation
+ *     ThreeSceneProps ..> CameraState
+ *     ThreeSceneProps ..> ColorMode
+ *     ThreeSceneProps ..> Point3D
+ *     ThreeSceneProps ..> TargetSystemInfo
+ *     ThreeScene ..> useSceneSetup : uses
+ *     ThreeScene ..> useEquipmentRenderer : uses
+ *     ThreeScene ..> useAnnotationPinRenderer : uses
+ *     ThreeScene ..> useMouseInteractionManager : uses
+ *     ThreeScene ..> useSceneOutline : uses
+ *     ThreeScene ..> useAnimationLoop : uses
  * ```
  * 
  */
 "use client";
 
 import React, { useRef, useEffect, useCallback } from 'react';
-import * as THREE from 'three'; // Kept for Vector3 and potential direct THREE access if needed
+import * as THREE from 'three'; 
 
 // Hooks
 import { useSceneSetup } from '@/hooks/use-scene-setup';
@@ -85,7 +73,7 @@ import { useSceneOutline } from '@/hooks/use-scene-outline';
 import { useAnimationLoop } from '@/hooks/use-animation-loop';
 
 // Types & Utils
-import type { Equipment, Layer, CameraState, Annotation, ColorMode } from '@/lib/types';
+import type { Equipment, Layer, CameraState, Annotation, ColorMode, TargetSystemInfo, SystemViewOptions } from '@/lib/types';
 import { getEquipmentColor } from '@/core/graphics/color-utils';
 import { createGeometryForItem } from '@/core/three/equipment-geometry-factory';
 import { calculateViewForMeshes } from '@/core/three/camera-utils';
@@ -118,8 +106,8 @@ export interface ThreeSceneProps {
   initialCameraLookAt: { x: number; y: number; z: number };
   /** O modo de colorização atual para os equipamentos. */
   colorMode: ColorMode;
-  /** O sistema que deve ser enquadrado pela câmera (se houver). */
-  targetSystemToFrame: string | null;
+  /** Informações sobre o sistema e visão a serem enquadrados pela câmera (se houver). */
+  targetSystemToFrame: TargetSystemInfo | null;
   /** Callback chamado após a câmera terminar de enquadrar um sistema. */
   onSystemFramed: () => void;
 }
@@ -141,8 +129,8 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     onSelectEquipment,
     hoveredEquipmentTag,
     setHoveredEquipmentTag,
-    cameraState: programmaticCameraState, // This is the desired state from the parent
-    onCameraChange, // This callback is used by OrbitControls (via useSceneSetup) AND for programmatic changes
+    cameraState: programmaticCameraState, 
+    onCameraChange, 
     initialCameraPosition,
     initialCameraLookAt,
     colorMode,
@@ -152,7 +140,6 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
   const mountRef = useRef<HTMLDivElement>(null);
 
-  // 1. Scene Setup Hook: Initializes core Three.js elements (scene, camera, renderers, controls, etc.)
   const {
     sceneRef,
     cameraRef,
@@ -166,23 +153,21 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     mountRef,
     initialCameraPosition,
     initialCameraLookAt,
-    onCameraChange, // Pass down for OrbitControls to report changes
+    onCameraChange, 
   });
   
-  // Refs for callbacks to ensure latest versions are used in effects
   const onCameraChangeRef = useRef(onCameraChange);
   const onSystemFramedRef = useRef(onSystemFramed);
   useEffect(() => { onCameraChangeRef.current = onCameraChange; }, [onCameraChange]);
   useEffect(() => { onSystemFramedRef.current = onSystemFramed; }, [onSystemFramed]);
 
-  // 2. Callback to create a single equipment mesh (passed to useEquipmentRenderer)
   const createSingleEquipmentMesh = useCallback((item: Equipment): THREE.Object3D => {
     const finalColor = getEquipmentColor(item, colorMode);
     const material = new THREE.MeshStandardMaterial({
       color: finalColor,
       metalness: 0.3,
       roughness: 0.6,
-      transparent: false, // Ensure opacity is handled if needed elsewhere
+      transparent: false, 
       opacity: 1.0,
     });
     const geometry = createGeometryForItem(item);
@@ -194,51 +179,46 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     mesh.userData = { tag: item.tag, type: item.type, sistema: item.sistema };
     mesh.castShadow = false;
     mesh.receiveShadow = false;
-    mesh.visible = true; // Initial visibility, will be managed by layers
+    mesh.visible = true; 
     return mesh;
   }, [colorMode]);
 
-  // 3. Equipment Renderer Hook: Manages equipment meshes in the scene
   const equipmentMeshesRef = useEquipmentRenderer({
     sceneRef,
     isSceneReady,
-    equipmentData: equipment, // Filtered list for rendering
+    equipmentData: equipment, 
     layers,
     colorMode,
     createSingleEquipmentMesh,
     groundMeshRef,
   });
 
-  // 4. Annotation Pin Renderer Hook: Manages annotation pins
   useAnnotationPinRenderer({
     sceneRef,
     labelRendererRef,
     isSceneReady,
     annotations,
-    allEquipmentData: allEquipmentData, // Full list for correct pin positioning
+    allEquipmentData: allEquipmentData, 
     layers,
   });
 
-  // 5. Mouse Interaction Hook: Handles mouse clicks and hovers
   useMouseInteractionManager({
     mountRef,
     cameraRef,
-    equipmentMeshesRef, // Ref from useEquipmentRenderer
+    equipmentMeshesRef, 
     isSceneReady,
     onSelectEquipment,
     setHoveredEquipmentTag,
   });
 
-  // 6. Scene Outline Hook: Applies outline effect to selected/hovered equipment
   useSceneOutline({
     outlinePassRef,
-    equipmentMeshesRef, // Ref from useEquipmentRenderer
+    equipmentMeshesRef, 
     selectedEquipmentTags: selectedEquipmentTags,
     hoveredEquipmentTag: hoveredEquipmentTag,
     isSceneReady,
   });
 
-  // 7. Effect to apply programmatic camera state changes
   useEffect(() => {
     if (programmaticCameraState && cameraRef.current && controlsRef.current && isSceneReady) {
       const camera = cameraRef.current;
@@ -247,35 +227,31 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
       const targetPosition = new THREE.Vector3(programmaticCameraState.position.x, programmaticCameraState.position.y, programmaticCameraState.position.z);
       const targetLookAt = new THREE.Vector3(programmaticCameraState.lookAt.x, programmaticCameraState.lookAt.y, programmaticCameraState.lookAt.z);
       
-      // Check if update is actually needed to prevent unnecessary control disabling/enabling
       const positionChanged = !camera.position.equals(targetPosition);
       const lookAtChanged = !controls.target.equals(targetLookAt);
 
       if (positionChanged || lookAtChanged) {
         const oldEnabled = controls.enabled;
-        controls.enabled = false; // Temporarily disable controls during programmatic update to prevent conflicts
+        controls.enabled = false; 
         if (positionChanged) camera.position.copy(targetPosition);
         if (lookAtChanged) controls.target.copy(targetLookAt);
-        controls.update(); // Important to apply changes to controls target
+        controls.update(); 
         controls.enabled = oldEnabled;
       }
     }
   }, [programmaticCameraState, isSceneReady, cameraRef, controlsRef]);
 
 
-  // 8. Effect to handle framing a target system
   useEffect(() => {
     if (!targetSystemToFrame || !sceneRef.current || !cameraRef.current || !controlsRef.current || !isSceneReady || !equipmentMeshesRef.current || equipmentMeshesRef.current.length === 0) {
       if (targetSystemToFrame && typeof onSystemFramedRef.current === 'function') {
-        onSystemFramedRef.current(); // Ensure callback is called if we bail early
+        onSystemFramedRef.current(); 
       }
       return;
     }
 
-    // equipmentMeshesRef.current contains meshes derived from the 'equipment' (filtered) prop.
-    // The userData.sistema is set on these meshes.
     const systemMeshes = equipmentMeshesRef.current.filter(
-        (mesh) => mesh.userData.sistema === targetSystemToFrame && mesh.visible
+        (mesh) => mesh.userData.sistema === targetSystemToFrame.systemName && mesh.visible
     );
 
     if (systemMeshes.length === 0) {
@@ -283,22 +259,29 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
       return;
     }
 
-    const newView = calculateViewForMeshes(systemMeshes, cameraRef.current);
+    const viewOptions: SystemViewOptions | null = calculateViewForMeshes(systemMeshes, cameraRef.current);
 
-    if (newView && typeof onCameraChangeRef.current === 'function') {
-      // This calculated view becomes the new "programmatic camera state"
-      // So, we call onCameraChange to update the state in useCameraManager.
-      onCameraChangeRef.current({
-        position: {x: newView.position.x, y: newView.position.y, z: newView.position.z },
-        lookAt: {x: newView.lookAt.x, y: newView.lookAt.y, z: newView.lookAt.z },
-      });
+    if (viewOptions && typeof onCameraChangeRef.current === 'function') {
+      let selectedView: CameraState;
+      switch (targetSystemToFrame.viewIndex) {
+        case 1: // topDown
+          selectedView = viewOptions.topDown;
+          break;
+        case 2: // isometric
+          selectedView = viewOptions.isometric;
+          break;
+        case 0: // default
+        default:
+          selectedView = viewOptions.default;
+          break;
+      }
+      onCameraChangeRef.current(selectedView);
     }
     if (typeof onSystemFramedRef.current === 'function') {
-      onSystemFramedRef.current(); // Signal that framing attempt is complete
+      onSystemFramedRef.current(); 
     }
-  }, [targetSystemToFrame, isSceneReady, equipmentMeshesRef, sceneRef, cameraRef, controlsRef]); // Dependencies for system framing
+  }, [targetSystemToFrame, isSceneReady, equipmentMeshesRef, sceneRef, cameraRef, controlsRef]); 
 
-  // 9. Animation Loop Hook: Drives the continuous rendering of the scene
   useAnimationLoop({
     isSceneReady,
     sceneRef,
@@ -308,7 +291,6 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     labelRendererRef,
   });
 
-  // Render the div element that Three.js will use to mount the canvas
   return <div ref={mountRef} className="w-full h-full" />;
 };
 

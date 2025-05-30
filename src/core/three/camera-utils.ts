@@ -1,11 +1,5 @@
 
 /**
- * Utilitários para cálculos e manipulações relacionados à câmera em cenas Three.js.
- *
- * Principal Responsabilidade:
- * Calcular a posição e o ponto de observação ideais da câmera para enquadrar um conjunto
- * de objetos 3D (meshes) de forma clara e centralizada na viewport.
- * 
  * ```mermaid
  *   classDiagram
  *     class calculateViewForMeshes_params {
@@ -13,54 +7,53 @@
  *       +camera: THREE.PerspectiveCamera
  *     }
  *     class calculateViewForMeshes_return {
- *       +position: THREE.Vector3
- *       +lookAt: THREE.Vector3
+ *       +default: SystemView
+ *       +topDown: SystemView
+ *       +isometric: SystemView
+ *     }
+ *     class SystemView {
+ *       +position: Point3D
+ *       +lookAt: Point3D
  *     }
  *     class calculateViewForMeshes {
- *
  *     }
  *     calculateViewForMeshes ..> calculateViewForMeshes_params : receives
  *     calculateViewForMeshes ..> calculateViewForMeshes_return : returns or null
  * ```
  * 
- * Exporta:
- * - `calculateViewForMeshes`: Função para calcular a visão da câmera para um conjunto de meshes.
  */
 import * as THREE from 'three';
+import type { SystemViewOptions, SystemView } from '@/lib/types';
 
 /**
- * Calcula uma posição e um ponto de observação (lookAt) para a câmera
+ * Calcula múltiplas opções de visualização (padrão, de cima, isométrica) para a câmera
  * de forma a enquadrar um conjunto de meshes fornecidos.
- * Tenta encontrar uma posição que mostre todos os meshes de forma clara.
  *
  * @param {THREE.Object3D[]} meshes - Um array de meshes 3D a serem enquadrados.
  * @param {THREE.PerspectiveCamera} camera - A câmera de perspectiva da cena.
- * @returns {{ position: THREE.Vector3, lookAt: THREE.Vector3 } | null} Um objeto contendo a nova posição
- *          e o ponto de observação da câmera, ou null se não for possível calcular
- *          (e.g., nenhum mesh fornecido ou meshes sem geometria).
+ * @returns {SystemViewOptions | null} Um objeto contendo as diferentes visualizações calculadas
+ *          ou null se não for possível calcular (e.g., nenhum mesh fornecido).
  */
 export function calculateViewForMeshes(
   meshes: THREE.Object3D[],
   camera: THREE.PerspectiveCamera
-): { position: THREE.Vector3; lookAt: THREE.Vector3 } | null {
+): SystemViewOptions | null {
   if (!meshes || meshes.length === 0) {
     return null;
   }
 
   const boundingBox = new THREE.Box3();
   meshes.forEach(mesh => {
-    // Garante que o objeto seja um Mesh e tenha geometria antes de calcular o bounding box
     if (mesh instanceof THREE.Mesh && mesh.geometry) {
-      mesh.updateMatrixWorld(true); // Garante que a matriz do mundo esteja atualizada
+      mesh.updateMatrixWorld(true);
       const meshBox = new THREE.Box3().setFromObject(mesh);
-      if (!meshBox.isEmpty()) { // Apenas une se a caixa não estiver vazia
+      if (!meshBox.isEmpty()) {
         boundingBox.union(meshBox);
       }
     }
   });
 
   if (boundingBox.isEmpty()) {
-    // console.warn("[CameraUtils] BoundingBox is empty for provided meshes. Cannot calculate view.");
     return null;
   }
 
@@ -72,24 +65,47 @@ export function calculateViewForMeshes(
 
   const maxDim = Math.max(size.x, size.y, size.z);
   const fov = camera.fov * (Math.PI / 180);
-  let cameraDistance = maxDim / (2 * Math.tan(fov / 2));
+  let cameraDistance = Math.max(maxDim / (2 * Math.tan(fov / 2)), 5); // Distância mínima
+  const fillFactor = 1.5;
+  cameraDistance *= fillFactor;
 
-  cameraDistance *= 1.5; // Fator de preenchimento
-  cameraDistance = Math.max(cameraDistance, 5); // Distância mínima
 
-  const newCamPos = new THREE.Vector3(
+  // Visão Padrão (Default)
+  const defaultPosVec = new THREE.Vector3(
     center.x,
-    center.y + Math.max(size.y * 0.5, maxDim * 0.3),
+    center.y + Math.max(size.y * 0.5, maxDim * 0.3) + 2, // Adiciona uma pequena elevação extra
     center.z + cameraDistance
   );
-
-  if (size.y < maxDim * 0.2) {
-    newCamPos.y = center.y + cameraDistance * 0.5;
+  if (size.y < maxDim * 0.2) { // Ajuste para objetos "baixos"
+    defaultPosVec.y = Math.max(center.y + cameraDistance * 0.5, center.y + 2);
   }
-  newCamPos.y = Math.max(newCamPos.y, center.y + 2);
+  const defaultView: SystemView = {
+    position: { x: defaultPosVec.x, y: defaultPosVec.y, z: defaultPosVec.z },
+    lookAt: { x: center.x, y: center.y, z: center.z },
+  };
+
+  // Visão de Cima (Top-Down)
+  const topDownDistance = Math.max(maxDim * 1.2, cameraDistance * 0.8); // Ajustar distância para visão de cima
+  const topDownView: SystemView = {
+    position: { x: center.x, y: center.y + topDownDistance, z: center.z + 0.1 }, // Pequeno offset em Z para não ser perfeitamente reto
+    lookAt: { x: center.x, y: center.y, z: center.z },
+  };
+
+  // Visão Isométrica (Simulada para Câmera Perspectiva)
+  // Um ângulo comum é deslocar igualmente em X, Y, Z
+  const isoOffset = cameraDistance * 0.707; // Aproximadamente 1/sqrt(2) para manter distância similar
+  const isometricView: SystemView = {
+    position: {
+      x: center.x + isoOffset,
+      y: center.y + isoOffset,
+      z: center.z + isoOffset,
+    },
+    lookAt: { x: center.x, y: center.y, z: center.z },
+  };
 
   return {
-    position: newCamPos,
-    lookAt: center,
+    default: defaultView,
+    topDown: topDownView,
+    isometric: isometricView,
   };
 }

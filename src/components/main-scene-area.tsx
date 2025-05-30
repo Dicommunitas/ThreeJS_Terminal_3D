@@ -1,15 +1,5 @@
 
 /**
- * Componente responsável por renderizar a área principal da cena 3D.
- *
- * Principal Responsabilidade:
- * Atuar como um contêiner de layout para os elementos visuais centrais da aplicação:
- * - O componente `ThreeScene` (a própria cena 3D).
- * - O `InfoPanel` (painel de detalhes do equipamento selecionado).
- * Este componente não possui lógica complexa própria, mas sim delega a renderização
- * e o comportamento para seus filhos, passando as props necessárias, incluindo a lista
- * completa de equipamentos (`allEquipmentData`) para contexto de renderização de anotações.
- * 
  * ```mermaid
  *   classDiagram
  *     class MainSceneAreaProps {
@@ -26,7 +16,7 @@
  *       +initialCameraPosition: Point3D
  *       +initialCameraLookAt: Point3D
  *       +colorMode: ColorMode
- *       +targetSystemToFrame: string | null
+ *       +targetSystemToFrame: TargetSystemInfo | null
  *       +onSystemFramed(): void
  *       +selectedEquipmentDetails: Equipment | null
  *       +equipmentAnnotation: Annotation | null
@@ -52,23 +42,24 @@
  *     }
  *     class ColorMode {
  *     }
+ *    class TargetSystemInfo {
+ *       +systemName: string
+ *       +viewIndex: number
+ *    }
  *     MainSceneAreaProps ..> Equipment
  *     MainSceneAreaProps ..> Layer
  *     MainSceneAreaProps ..> Annotation
  *     MainSceneAreaProps ..> CameraState
  *     MainSceneAreaProps ..> ColorMode
  *     MainSceneAreaProps ..> Point3D
+ *     MainSceneAreaProps ..> TargetSystemInfo
  *     class MainSceneArea {
- *
  *     }
  *     class ReactFC {
- *
  *     }
  *     class ThreeScene {
- *
  *     }
  *     class InfoPanel {
- *
  *     }
  *     MainSceneArea --|> ReactFC
  *     MainSceneArea ..> ThreeScene : uses
@@ -78,7 +69,7 @@
  */
 "use client";
 
-import type { Equipment, Layer, CameraState, Annotation, ColorMode } from '@/lib/types';
+import type { Equipment, Layer, CameraState, Annotation, ColorMode, TargetSystemInfo } from '@/lib/types';
 import ThreeScene from '@/components/three-scene';
 import { InfoPanel } from '@/components/info-panel';
 
@@ -100,7 +91,7 @@ import { InfoPanel } from '@/components/info-panel';
  * @property {{ x: number; y: number; z: number }} initialCameraPosition - Posição inicial da câmera.
  * @property {{ x: number; y: number; z: number }} initialCameraLookAt - Ponto de observação (lookAt) inicial da câmera.
  * @property {ColorMode} colorMode - O modo de colorização atual para os equipamentos.
- * @property {string | null} targetSystemToFrame - O sistema que deve ser enquadrado pela câmera (se houver).
+ * @property {TargetSystemInfo | null} targetSystemToFrame - Informações sobre o sistema e visão a serem enquadrados pela câmera (se houver).
  * @property {() => void} onSystemFramed - Callback chamado após a câmera terminar de enquadrar um sistema.
  * @property {Equipment | null} selectedEquipmentDetails - Detalhes do equipamento único selecionado (para InfoPanel).
  * @property {Annotation | null} equipmentAnnotation - Anotação do equipamento único selecionado (para InfoPanel).
@@ -125,7 +116,7 @@ export interface MainSceneAreaProps {
   initialCameraPosition: { x: number; y: number; z: number };
   initialCameraLookAt: { x: number; y: number; z: number };
   colorMode: ColorMode;
-  targetSystemToFrame: string | null;
+  targetSystemToFrame: TargetSystemInfo | null; // Atualizado
   onSystemFramed: () => void;
   selectedEquipmentDetails: Equipment | null;
   equipmentAnnotation: Annotation | null;
@@ -145,7 +136,7 @@ export interface MainSceneAreaProps {
  */
 export function MainSceneArea({
   equipment,
-  allEquipmentData, // Recebe a prop
+  allEquipmentData, 
   layers,
   annotations,
   selectedEquipmentTags,
@@ -157,7 +148,7 @@ export function MainSceneArea({
   initialCameraPosition,
   initialCameraLookAt,
   colorMode,
-  targetSystemToFrame,
+  targetSystemToFrame, // Tipo já atualizado na interface
   onSystemFramed,
   selectedEquipmentDetails,
   equipmentAnnotation,
@@ -171,8 +162,8 @@ export function MainSceneArea({
   return (
     <div className="flex-1 relative w-full bg-muted/20 min-w-0"> {/* min-w-0 é importante para flexbox */}
       <ThreeScene
-        equipment={equipment} // Lista filtrada para meshes
-        allEquipmentData={allEquipmentData} // Lista completa para contexto de anotações
+        equipment={equipment} 
+        allEquipmentData={allEquipmentData} 
         layers={layers}
         annotations={annotations}
         selectedEquipmentTags={selectedEquipmentTags}
@@ -184,13 +175,13 @@ export function MainSceneArea({
         initialCameraPosition={initialCameraPosition}
         initialCameraLookAt={initialCameraLookAt}
         colorMode={colorMode}
-        targetSystemToFrame={targetSystemToFrame}
+        targetSystemToFrame={targetSystemToFrame} // Passando o tipo atualizado
         onSystemFramed={onSystemFramed}
       />
       <InfoPanel
         equipment={selectedEquipmentDetails}
         annotation={equipmentAnnotation}
-        onClose={() => onSelectEquipment(null, false)} // Simple way to close: deselect all
+        onClose={() => onSelectEquipment(null, false)} 
         onOpenAnnotationDialog={onOpenAnnotationDialog}
         onDeleteAnnotation={onDeleteAnnotation}
         onOperationalStateChange={onOperationalStateChange}

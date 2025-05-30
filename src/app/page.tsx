@@ -1,30 +1,8 @@
 
 /**
- * Componente principal da página da aplicação Terminal 3D.
- * Responsável por orquestrar os diversos hooks de gerenciamento de estado da aplicação
- * e renderizar a interface do usuário principal, que inclui a área da cena 3D (`MainSceneArea`)
- * e a barra lateral de controles (`Sidebar`). Este componente atua como o ponto central de
- * integração para as funcionalidades da aplicação.
- *
- * Principais Responsabilidades:
- * - Inicializar e fornecer os hooks de estado para:
- *   - Histórico de Comandos (`useCommandHistory`): Para funcionalidades de Undo/Redo.
- *   - Dados dos Equipamentos (`useEquipmentDataManager`): Gerencia a "fonte da verdade" dos dados dos equipamentos.
- *   - Câmera 3D (`useCameraManager`): Controla o estado da câmera, incluindo presets e foco em sistemas.
- *   - Filtros (`useFilterManager`): Gerencia os estados e a lógica de filtragem dos equipamentos.
- *   - Anotações (`useAnnotationManager`): Lida com o estado e as operações CRUD para anotações.
- *   - Seleção de Equipamentos (`useEquipmentSelectionManager`): Gerencia a seleção e hover de equipamentos.
- *   - Camadas de Visibilidade (`useLayerManager`): Controla a visibilidade das camadas de objetos na cena.
- * - Gerenciar estados locais da UI, como o modo de colorização (`colorMode`).
- * - Calcular dados derivados (e.g., `selectedEquipmentDetails`, listas de opções para filtros) para popular
- *   os componentes da interface.
- * - Renderizar a estrutura principal da UI, incluindo a `Sidebar` e a `MainSceneArea`.
- * - Passar os estados e callbacks apropriados dos hooks para os componentes filhos.
- * - Definir lógicas de alto nível que coordenam múltiplos hooks (e.g., `handleFocusAndSelectSystem`).
- *
  * ```mermaid
  *   graph LR
- *     Terminal3DPage["Terminal3DPage"] --> H_CmdHistory["useCommandHistory"];
+ *     Terminal3DPage["Terminal3DPage (src/app/page.tsx)"] --> H_CmdHistory["useCommandHistory"];
  *     Terminal3DPage --> H_EquipData["useEquipmentDataManager"];
  *     Terminal3DPage --> H_CameraMgr["useCameraManager"];
  *     Terminal3DPage --> H_FilterMgr["useFilterManager"];
@@ -41,31 +19,30 @@
  *     Sidebar_Comp --> SidebarContentLayout_Comp["SidebarContentLayout"];
  *
  *     subgraph "Hooks de Estado"
- *       H_CmdHistory;
- *       H_EquipData;
- *       H_CameraMgr;
- *       H_FilterMgr;
- *       H_AnnotMgr;
- *       H_EquipSelectMgr;
- *       H_LayerMgr;
+ *       H_CmdHistory["useCommandHistory"];
+ *       H_EquipData["useEquipmentDataManager"];
+ *       H_CameraMgr["useCameraManager"];
+ *       H_FilterMgr["useFilterManager"];
+ *       H_AnnotMgr["useAnnotationManager"];
+ *       H_EquipSelectMgr["useEquipmentSelectionManager"];
+ *       H_LayerMgr["useLayerManager"];
  *     end
  *
  *     subgraph "Componentes de UI Principais"
- *       MainSceneArea_Comp;
- *       Sidebar_Comp;
- *       AnnotationDialog_Comp;
- *       InfoPanel_Comp;
- *       ThreeScene_Comp;
- *       SidebarContentLayout_Comp;
+ *       MainSceneArea_Comp["MainSceneArea"];
+ *       Sidebar_Comp["Sidebar"];
+ *       AnnotationDialog_Comp["AnnotationDialog"];
+ *       InfoPanel_Comp["InfoPanel"];
+ *       ThreeScene_Comp["ThreeScene"];
+ *       SidebarContentLayout_Comp["SidebarContentLayout"];
  *     end
- *
  * ```
  * 
  */
 "use client";
 
 import { useState, useMemo, useCallback } from 'react';
-import type { Equipment, Layer, Command, CameraState, Annotation, ColorMode } from '@/lib/types'; // ColorMode precisa ser importado
+import type { Equipment, Layer, Command, CameraState, Annotation, ColorMode, TargetSystemInfo } from '@/lib/types'; 
 import { useCommandHistory } from '@/hooks/use-command-history';
 import { SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarTrigger } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
@@ -83,7 +60,7 @@ import { useLayerManager } from '@/hooks/use-layer-manager';
 import { MainSceneArea } from '@/components/main-scene-area';
 import { SidebarContentLayout } from '@/components/sidebar-content-layout';
 import { AnnotationDialog } from '@/components/annotation-dialog';
-// ThreeScene é importado por MainSceneArea
+
 
 /**
  * Componente principal da página Terminal 3D (Terminal3DPage).
@@ -92,22 +69,22 @@ import { AnnotationDialog } from '@/components/annotation-dialog';
  * @returns {JSX.Element} O componente da página Terminal 3D.
  */
 export default function Terminal3DPage(): JSX.Element {
-  // console.log('[Page.tsx] Terminal3DPage rendering init');
-  // Hooks de gerenciamento de estado
   const { executeCommand, undo, redo, canUndo, canRedo } = useCommandHistory();
 
   const {
-    equipmentData, // Esta é a lista completa de todos os equipamentos (allEquipmentData)
+    equipmentData, 
     handleOperationalStateChange,
     handleProductChange,
   } = useEquipmentDataManager();
 
   const {
     currentCameraState,
-    targetSystemToFrame,
-    handleSetCameraViewForSystem, // Renomeado no hook
+    targetSystemToFrame, // Agora é TargetSystemInfo | null
+    handleSetCameraViewForSystem, 
     handleCameraChangeFromScene,
     onSystemFramed,
+    // focusedSystemName, // Não usado diretamente aqui, mas gerenciado pelo hook
+    // currentViewIndex, // Não usado diretamente aqui, mas gerenciado pelo hook
   } = useCameraManager({ executeCommand });
 
   const {
@@ -119,8 +96,8 @@ export default function Terminal3DPage(): JSX.Element {
     setSelectedArea,
     availableSistemas,
     availableAreas,
-    filteredEquipment, // Esta é a lista filtrada
-  } = useFilterManager({ allEquipment: equipmentData }); // Passa a lista completa para o filter manager
+    filteredEquipment, 
+  } = useFilterManager({ allEquipment: equipmentData }); 
 
   const {
     annotations,
@@ -132,57 +109,45 @@ export default function Terminal3DPage(): JSX.Element {
     handleDeleteAnnotation,
     getAnnotationForEquipment,
     setIsAnnotationDialogOpen,
-  } = useAnnotationManager({ equipmentData }); // Passa a lista completa para o annotation manager
+  } = useAnnotationManager({ equipmentData }); 
 
   const {
     selectedEquipmentTags,
     hoveredEquipmentTag,
-    handleEquipmentClick, // Renomeado no hook
-    handleSetHoveredEquipmentTag, // Renomeado no hook
-    selectTagsBatch, // Renomeado no hook
-  } = useEquipmentSelectionManager({ equipmentData, executeCommand }); // Passa a lista completa
+    handleEquipmentClick, 
+    handleSetHoveredEquipmentTag, 
+    selectTagsBatch, 
+  } = useEquipmentSelectionManager({ equipmentData, executeCommand }); 
 
   const { layers, handleToggleLayer } = useLayerManager({ executeCommand });
 
   const [colorMode, setColorMode] = useState<ColorMode>('Estado Operacional');
 
-  /**
-   * Lista de sistemas únicos disponíveis para o painel de controle da câmera ("Focus on System").
-   * Exclui "All" se estiver presente em `availableSistemas`.
-   */
+  
   const cameraViewSystems = useMemo(() => {
     return availableSistemas.filter(s => s !== 'All');
   }, [availableSistemas]);
 
-  /**
-   * Manipula a ação de focar a câmera em um sistema e selecionar todos os equipamentos desse sistema.
-   * @param {string} systemName - O nome do sistema para focar e selecionar.
-   */
+  
   const handleFocusAndSelectSystem = useCallback((systemName: string) => {
-    // console.log(`[Page.tsx] Focusing and selecting system: ${systemName}`);
-    handleSetCameraViewForSystem(systemName); // Do useCameraManager
-    const equipmentInSystem = equipmentData // Usa a lista completa para identificar equipamentos no sistema
+    handleSetCameraViewForSystem(systemName); 
+    const equipmentInSystem = equipmentData 
       .filter(equip => equip.sistema === systemName)
       .map(equip => equip.tag);
-    selectTagsBatch(equipmentInSystem, `Focado e selecionado sistema ${systemName}.`); // Do useEquipmentSelectionManager
+    selectTagsBatch(equipmentInSystem, `Focado e selecionado sistema ${systemName}.`); 
   }, [equipmentData, handleSetCameraViewForSystem, selectTagsBatch]);
 
 
-  /**
-   * Deriva os detalhes do equipamento selecionado.
-   * Mostra detalhes apenas se um único equipamento estiver selecionado.
-   */
+  
   const selectedEquipmentDetails = useMemo(() => {
     if (selectedEquipmentTags.length === 1) {
       const tag = selectedEquipmentTags[0];
-      return equipmentData.find(e => e.tag === tag) || null; // Busca na lista completa
+      return equipmentData.find(e => e.tag === tag) || null; 
     }
     return null;
   }, [selectedEquipmentTags, equipmentData]);
 
-  /**
-   * Obtém a anotação para o equipamento atualmente selecionado (se houver um único selecionado).
-   */
+  
   const equipmentAnnotation = useMemo(() => {
     if (selectedEquipmentDetails) {
       return getAnnotationForEquipment(selectedEquipmentDetails.tag);
@@ -190,16 +155,12 @@ export default function Terminal3DPage(): JSX.Element {
     return null;
   }, [selectedEquipmentDetails, getAnnotationForEquipment]);
 
-  /**
-   * Lista de estados operacionais únicos disponíveis, derivada dos dados dos equipamentos.
-   * Usada para popular o dropdown de alteração de estado no InfoPanel.
-   */
+  
   const availableOperationalStatesList = useMemo(() => {
     const states = new Set<string>();
-    equipmentData.forEach(equip => { // Usa a lista completa
+    equipmentData.forEach(equip => { 
       if (equip.operationalState) states.add(equip.operationalState);
     });
-    // Garante que "Não aplicável" fique no início se existir, depois ordena o resto.
     const sortedStates = Array.from(states).sort((a, b) => {
       if (a === "Não aplicável") return -1;
       if (b === "Não aplicável") return 1;
@@ -208,16 +169,12 @@ export default function Terminal3DPage(): JSX.Element {
     return sortedStates;
   }, [equipmentData]);
 
-  /**
-   * Lista de produtos únicos disponíveis, derivada dos dados dos equipamentos.
-   * Usada para popular o dropdown de alteração de produto no InfoPanel.
-   */
+  
   const availableProductsList = useMemo(() => {
     const products = new Set<string>();
-    equipmentData.forEach(equip => { // Usa a lista completa
+    equipmentData.forEach(equip => { 
       if (equip.product) products.add(equip.product);
     });
-    // Garante que "Não aplicável" fique no início se existir, depois ordena o resto.
      const sortedProducts = Array.from(products).sort((a,b) => {
       if (a === "Não aplicável") return -1;
       if (b === "Não aplicável") return 1;
@@ -226,21 +183,13 @@ export default function Terminal3DPage(): JSX.Element {
     return sortedProducts;
   }, [equipmentData]);
 
-  // console.log('[Page.tsx] Data before render:', {
-  //   filteredEquipmentCount: filteredEquipment.length,
-  //   layers: JSON.stringify(layers),
-  //   colorMode,
-  //   selectedEquipmentTags,
-  //   hoveredEquipmentTag,
-  // });
 
   return (
     <SidebarProvider defaultOpen={false}>
-      {/* Wrapper para MainSceneArea e SidebarTrigger */}
       <div className="h-screen flex-1 flex flex-col relative min-w-0 overflow-x-hidden">
         <MainSceneArea
-          equipment={filteredEquipment} // Passa a lista filtrada para renderização dos meshes
-          allEquipmentData={equipmentData} // Passa a lista completa para contexto de anotações e outros
+          equipment={filteredEquipment} 
+          allEquipmentData={equipmentData} 
           layers={layers}
           annotations={annotations}
           selectedEquipmentTags={selectedEquipmentTags}
@@ -252,7 +201,7 @@ export default function Terminal3DPage(): JSX.Element {
           initialCameraPosition={defaultInitialCameraPosition}
           initialCameraLookAt={defaultInitialCameraLookAt}
           colorMode={colorMode}
-          targetSystemToFrame={targetSystemToFrame}
+          targetSystemToFrame={targetSystemToFrame} // Passa o tipo TargetSystemInfo | null
           onSystemFramed={onSystemFramed}
           selectedEquipmentDetails={selectedEquipmentDetails}
           equipmentAnnotation={equipmentAnnotation}

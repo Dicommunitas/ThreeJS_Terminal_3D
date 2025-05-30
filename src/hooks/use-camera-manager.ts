@@ -1,17 +1,12 @@
 
 /**
- * Custom hook para gerenciar o estado e as interações da câmera 3D.
- *
- * Principal Responsabilidade:
- * Manter o estado da câmera (posição e ponto de observação), controlar o enquadramento
- * de sistemas de equipamentos e integrar movimentos de câmera com o sistema de histórico
- * de comandos para permitir undo/redo.
- * 
  * ```mermaid
  *   classDiagram
  *     class UseCameraManagerReturn {
  *       +currentCameraState: CameraState | undefined
- *       +targetSystemToFrame: string | null
+ *       +targetSystemToFrame: TargetSystemInfo | null
+ *       +focusedSystemName: string | null
+ *       +currentViewIndex: number
  *       +handleSetCameraViewForSystem(systemName: string): void
  *       +handleCameraChangeFromScene(newSceneCameraState: CameraState): void
  *       +onSystemFramed(): void
@@ -24,15 +19,17 @@
  *       +z: number
  *     }
  *     class CameraState {
- *
+ *     }
+ *     class TargetSystemInfo {
+ *        +systemName: string
+ *        +viewIndex: number
  *     }
  *     class Command {
- *
  *     }
- *     UseCameraManagerReturn ..> CameraState
- *     UseCameraManagerReturn ..> Point3D
+ *     UseCameraManagerReturn --> CameraState
+ *     UseCameraManagerReturn --> TargetSystemInfo
+ *     UseCameraManagerReturn --> Point3D
  *     class useCameraManager {
- *
  *     }
  *     useCameraManager ..> Command : uses (via executeCommand)
  * ```
@@ -41,12 +38,14 @@
 "use client";
 
 import { useState, useCallback } from 'react';
-import type { CameraState, Command } from '@/lib/types';
+import type { CameraState, Command, TargetSystemInfo } from '@/lib/types';
 
 /** Posição inicial padrão da câmera: { x: 25, y: 20, z: 25 }. */
 export const defaultInitialCameraPosition = { x: 25, y: 20, z: 25 };
 /** Ponto de observação (lookAt) inicial padrão da câmera: { x: 0, y: 2, z: 0 }. */
 export const defaultInitialCameraLookAt = { x: 0, y: 2, z: 0 };
+
+const NUMBER_OF_VIEWS = 3; // 0: default, 1: topDown, 2: isometric
 
 /**
  * Props para o hook `useCameraManager`.
@@ -63,20 +62,23 @@ export interface UseCameraManagerProps {
  * @interface UseCameraManagerReturn
  * @property {CameraState | undefined} currentCameraState - O estado atual da câmera (posição e ponto de observação).
  *                                                       Pode ser `undefined` antes da inicialização completa.
- * @property {string | null} targetSystemToFrame - O nome do sistema alvo para a câmera enquadrar.
+ * @property {TargetSystemInfo | null} targetSystemToFrame - Informações sobre o sistema alvo e a visão desejada.
  *                                                Null se nenhum sistema estiver sendo focado.
- * @property {(systemName: string) => void} handleSetCameraViewForSystem - Função para definir o sistema alvo para a câmera enquadrar.
+ * @property {string | null} focusedSystemName - O nome do sistema que está atualmente em foco para ciclo de visões.
+ * @property {number} currentViewIndex - O índice da visão atual para o `focusedSystemName`.
+ * @property {(systemName: string) => void} handleSetCameraViewForSystem - Função para definir o sistema alvo e ciclar pelas visões.
  * @property {(newSceneCameraState: CameraState) => void} handleCameraChangeFromScene - Manipula mudanças de câmera provenientes da cena 3D
- *                                                                                    (e.g., interações do usuário com OrbitControls)
  *                                                                                    e as registra no histórico de comandos.
  * @property {() => void} onSystemFramed - Callback para ser chamado pela `ThreeScene` após o enquadramento do sistema ser concluído.
- *                                       Isso reseta o `targetSystemToFrame`.
+ *                                       Reseta o `targetSystemToFrame`.
  * @property {typeof defaultInitialCameraPosition} defaultInitialCameraPosition - Exporta a posição inicial padrão da câmera.
  * @property {typeof defaultInitialCameraLookAt} defaultInitialCameraLookAt - Exporta o ponto de observação inicial padrão da câmera.
  */
 export interface UseCameraManagerReturn {
   currentCameraState: CameraState | undefined;
-  targetSystemToFrame: string | null;
+  targetSystemToFrame: TargetSystemInfo | null;
+  focusedSystemName: string | null; // Para saber em qual sistema estamos ciclando as visões
+  currentViewIndex: number;      // Para saber qual visão do sistema focado está ativa
   handleSetCameraViewForSystem: (systemName: string) => void;
   handleCameraChangeFromScene: (newSceneCameraState: CameraState) => void;
   onSystemFramed: () => void;
@@ -95,23 +97,33 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
     position: defaultInitialCameraPosition,
     lookAt: defaultInitialCameraLookAt,
   });
-  const [targetSystemToFrame, setTargetSystemToFrame] = useState<string | null>(null);
+  const [targetSystemToFrame, setTargetSystemToFrame] = useState<TargetSystemInfo | null>(null);
+  const [focusedSystemName, setFocusedSystemName] = useState<string | null>(null);
+  const [currentViewIndex, setCurrentViewIndex] = useState<number>(0);
 
   /**
-   * Define o sistema alvo para a câmera enquadrar.
-   * Esta função apenas define o estado `targetSystemToFrame`. A lógica de cálculo
-   * da visão e atualização da câmera é realizada pelo componente `ThreeScene`
-   * que observa este estado.
+   * Define o sistema alvo para a câmera enquadrar e cicla pelas visões disponíveis.
    * @param {string} systemName O nome do sistema para focar.
    */
   const handleSetCameraViewForSystem = useCallback((systemName: string) => {
-    setTargetSystemToFrame(systemName);
-  }, []);
+    let nextViewIndex = 0;
+    if (systemName === focusedSystemName) {
+      // Cicla para a próxima visão se for o mesmo sistema
+      nextViewIndex = (currentViewIndex + 1) % NUMBER_OF_VIEWS;
+    } else {
+      // Novo sistema focado, reseta para a primeira visão
+      setFocusedSystemName(systemName);
+      nextViewIndex = 0;
+    }
+    setCurrentViewIndex(nextViewIndex);
+    setTargetSystemToFrame({ systemName, viewIndex: nextViewIndex });
+  }, [focusedSystemName, currentViewIndex]);
 
   /**
    * Manipula as mudanças de câmera provenientes da cena 3D (e.g., órbita do usuário).
    * Registra a mudança no histórico de comandos se o novo estado for significativamente
    * diferente do estado atual, evitando registros duplicados para movimentos triviais.
+   * Também reseta o foco do sistema se a câmera for movida manualmente.
    * @param {CameraState} newSceneCameraState O novo estado da câmera da cena.
    */
   const handleCameraChangeFromScene = useCallback((newSceneCameraState: CameraState) => {
@@ -120,7 +132,9 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
       lookAt: { ...currentCameraState.lookAt }
     } : undefined;
 
-    // Evita registrar comando se a câmera não mudou significativamente
+    setFocusedSystemName(null); // Interação manual do usuário reseta o ciclo de foco
+    setCurrentViewIndex(0);
+
     if (oldCameraStateSnapshot &&
         Math.abs(oldCameraStateSnapshot.position.x - newSceneCameraState.position.x) < 0.01 &&
         Math.abs(oldCameraStateSnapshot.position.y - newSceneCameraState.position.y) < 0.01 &&
@@ -128,7 +142,7 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
         Math.abs(oldCameraStateSnapshot.lookAt.x - newSceneCameraState.lookAt.x) < 0.01 &&
         Math.abs(oldCameraStateSnapshot.lookAt.y - newSceneCameraState.lookAt.y) < 0.01 &&
         Math.abs(oldCameraStateSnapshot.lookAt.z - newSceneCameraState.lookAt.z) < 0.01) {
-      return; // Sem mudança significativa, não registra comando
+      return; 
     }
 
     const command: Command = {
@@ -143,7 +157,7 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
 
   /**
    * Callback para ser chamado pela ThreeScene após o enquadramento do sistema ser concluído.
-   * Reseta o `targetSystemToFrame` para `null`, indicando que o enquadramento foi finalizado.
+   * Reseta o `targetSystemToFrame` para `null`.
    */
   const onSystemFramed = useCallback(() => {
     setTargetSystemToFrame(null);
@@ -152,6 +166,8 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
   return {
     currentCameraState,
     targetSystemToFrame,
+    focusedSystemName,
+    currentViewIndex,
     handleSetCameraViewForSystem,
     handleCameraChangeFromScene,
     onSystemFramed,
