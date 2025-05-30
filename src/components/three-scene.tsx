@@ -1,5 +1,23 @@
 
+
 /**
+ * Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
+ * ATUALIZADO: Este componente foi refatorado para atuar como um "condutor", delegando a maior
+ * parte de suas responsabilidades anteriores para hooks customizados especializados.
+ * Ele agora foca em:
+ * - Utilizar `useSceneSetup` para a infraestrutura básica da cena (cena, câmera, renderizadores, etc.).
+ * - Utilizar `useEquipmentRenderer` para gerenciar os meshes dos equipamentos.
+ * - Utilizar `useAnnotationPinRenderer` para gerenciar os pins de anotação.
+ * - Utilizar `useMouseInteractionManager` para processar interações do mouse.
+ * - Utilizar `useSceneOutline` para aplicar efeitos de contorno.
+ * - Utilizar `useAnimationLoop` para o loop de renderização.
+ * - Aplicar estados de câmera programáticos e lidar com o enquadramento de sistemas.
+ * - Renderizar o elemento de montagem (`div`) para a cena.
+ *
+ * Principal Responsabilidade (Pós-Refatoração):
+ * Orquestrar os diversos hooks que gerenciam aspectos específicos da cena 3D,
+ * passar props e refs entre eles, e fornecer o ponto de montagem no DOM.
+ *
  * ```mermaid
  *   classDiagram
  *     class ThreeSceneProps {
@@ -42,6 +60,7 @@
  *     }
  *     class ReactFC {
  *     }
+ *
  *     ThreeScene --|> ReactFC
  *     ThreeSceneProps ..> Equipment
  *     ThreeSceneProps ..> Layer
@@ -57,12 +76,12 @@
  *     ThreeScene ..> useSceneOutline : uses
  *     ThreeScene ..> useAnimationLoop : uses
  * ```
- * 
+ *
  */
 "use client";
 
 import React, { useRef, useEffect, useCallback } from 'react';
-import * as THREE from 'three'; 
+import * as THREE from 'three';
 
 // Hooks
 import { useSceneSetup } from '@/hooks/use-scene-setup';
@@ -129,14 +148,16 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     onSelectEquipment,
     hoveredEquipmentTag,
     setHoveredEquipmentTag,
-    cameraState: programmaticCameraState, 
-    onCameraChange, 
+    cameraState: programmaticCameraState,
+    onCameraChange,
     initialCameraPosition,
     initialCameraLookAt,
     colorMode,
     targetSystemToFrame,
     onSystemFramed,
   } = props;
+  // console.log('[ThreeScene] Rendering. isSceneReady from props (indirectly via useSceneSetup): not directly available here yet.');
+
 
   const mountRef = useRef<HTMLDivElement>(null);
 
@@ -153,9 +174,13 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     mountRef,
     initialCameraPosition,
     initialCameraLookAt,
-    onCameraChange, 
+    onCameraChange,
   });
-  
+  // Log isSceneReady as it's received from useSceneSetup
+  useEffect(() => {
+    // console.log(`[ThreeScene] isSceneReady from useSceneSetup updated: ${isSceneReady}`);
+  }, [isSceneReady]);
+
   const onCameraChangeRef = useRef(onCameraChange);
   const onSystemFramedRef = useRef(onSystemFramed);
   useEffect(() => { onCameraChangeRef.current = onCameraChange; }, [onCameraChange]);
@@ -167,7 +192,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
       color: finalColor,
       metalness: 0.3,
       roughness: 0.6,
-      transparent: false, 
+      transparent: false,
       opacity: 1.0,
     });
     const geometry = createGeometryForItem(item);
@@ -179,14 +204,14 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     mesh.userData = { tag: item.tag, type: item.type, sistema: item.sistema };
     mesh.castShadow = false;
     mesh.receiveShadow = false;
-    mesh.visible = true; 
+    mesh.visible = true;
     return mesh;
   }, [colorMode]);
 
   const equipmentMeshesRef = useEquipmentRenderer({
     sceneRef,
     isSceneReady,
-    equipmentData: equipment, 
+    equipmentData: equipment,
     layers,
     colorMode,
     createSingleEquipmentMesh,
@@ -198,14 +223,14 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     labelRendererRef,
     isSceneReady,
     annotations,
-    allEquipmentData: allEquipmentData, 
+    allEquipmentData: allEquipmentData,
     layers,
   });
 
   useMouseInteractionManager({
     mountRef,
     cameraRef,
-    equipmentMeshesRef, 
+    equipmentMeshesRef,
     isSceneReady,
     onSelectEquipment,
     setHoveredEquipmentTag,
@@ -213,7 +238,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
   useSceneOutline({
     outlinePassRef,
-    equipmentMeshesRef, 
+    equipmentMeshesRef,
     selectedEquipmentTags: selectedEquipmentTags,
     hoveredEquipmentTag: hoveredEquipmentTag,
     isSceneReady,
@@ -221,31 +246,35 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
   useEffect(() => {
     if (programmaticCameraState && cameraRef.current && controlsRef.current && isSceneReady) {
+      // console.log('[ThreeScene] Applying programmaticCameraState:', programmaticCameraState);
       const camera = cameraRef.current;
       const controls = controlsRef.current;
-      
+
       const targetPosition = new THREE.Vector3(programmaticCameraState.position.x, programmaticCameraState.position.y, programmaticCameraState.position.z);
       const targetLookAt = new THREE.Vector3(programmaticCameraState.lookAt.x, programmaticCameraState.lookAt.y, programmaticCameraState.lookAt.z);
-      
+
       const positionChanged = !camera.position.equals(targetPosition);
       const lookAtChanged = !controls.target.equals(targetLookAt);
 
       if (positionChanged || lookAtChanged) {
         const oldEnabled = controls.enabled;
-        controls.enabled = false; 
+        controls.enabled = false;
         if (positionChanged) camera.position.copy(targetPosition);
         if (lookAtChanged) controls.target.copy(targetLookAt);
-        controls.update(); 
+        controls.update();
         controls.enabled = oldEnabled;
+        // console.log('[ThreeScene] Programmatic camera state applied.');
       }
     }
   }, [programmaticCameraState, isSceneReady, cameraRef, controlsRef]);
 
 
   useEffect(() => {
+    // console.log('[ThreeScene] targetSystemToFrame useEffect triggered. target:', targetSystemToFrame, 'isSceneReady:', isSceneReady);
     if (!targetSystemToFrame || !sceneRef.current || !cameraRef.current || !controlsRef.current || !isSceneReady || !equipmentMeshesRef.current || equipmentMeshesRef.current.length === 0) {
       if (targetSystemToFrame && typeof onSystemFramedRef.current === 'function') {
-        onSystemFramedRef.current(); 
+        // console.log('[ThreeScene] Conditions not met for framing or target is null, calling onSystemFramed.');
+        onSystemFramedRef.current();
       }
       return;
     }
@@ -255,32 +284,38 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     );
 
     if (systemMeshes.length === 0) {
+      // console.log(`[ThreeScene] No visible meshes found for system: ${targetSystemToFrame.systemName}. Calling onSystemFramed.`);
       if (typeof onSystemFramedRef.current === 'function') onSystemFramedRef.current();
       return;
     }
 
     const viewOptions: SystemViewOptions | null = calculateViewForMeshes(systemMeshes, cameraRef.current);
+    // console.log(`[ThreeScene] Calculated view options for system ${targetSystemToFrame.systemName}:`, viewOptions);
 
     if (viewOptions && typeof onCameraChangeRef.current === 'function') {
       let selectedView: CameraState;
       switch (targetSystemToFrame.viewIndex) {
         case 1: // topDown
           selectedView = viewOptions.topDown;
+          // console.log('[ThreeScene] Selecting topDown view.');
           break;
         case 2: // isometric
           selectedView = viewOptions.isometric;
+          // console.log('[ThreeScene] Selecting isometric view.');
           break;
         case 0: // default
         default:
           selectedView = viewOptions.default;
+          // console.log('[ThreeScene] Selecting default view.');
           break;
       }
       onCameraChangeRef.current(selectedView);
     }
     if (typeof onSystemFramedRef.current === 'function') {
-      onSystemFramedRef.current(); 
+      // console.log('[ThreeScene] Framing complete, calling onSystemFramed.');
+      onSystemFramedRef.current();
     }
-  }, [targetSystemToFrame, isSceneReady, equipmentMeshesRef, sceneRef, cameraRef, controlsRef]); 
+  }, [targetSystemToFrame, isSceneReady, equipmentMeshesRef, sceneRef, cameraRef, controlsRef]);
 
   useAnimationLoop({
     isSceneReady,

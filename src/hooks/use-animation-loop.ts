@@ -1,4 +1,5 @@
 
+
 /**
  * Custom hook para gerenciar o loop de animação de uma cena Three.js.
  *
@@ -38,7 +39,7 @@
  *     UseAnimationLoopProps --> RefObject_EffectComposer_
  *     UseAnimationLoopProps --> RefObject_CSS2DRenderer_
  * ```
- * 
+ *
  */
 import type * as THREE from 'three';
 import { useEffect, type RefObject } from 'react';
@@ -82,9 +83,9 @@ export function useAnimationLoop({
   labelRendererRef,
 }: UseAnimationLoopProps): void {
   useEffect(() => {
-    // console.log(`[AnimationLoop] useEffect triggered. isSceneReady: ${isSceneReady}`);
+    console.log(`[useAnimationLoop] useEffect triggered. isSceneReady: ${isSceneReady}`);
     if (!isSceneReady || !sceneRef.current || !cameraRef.current || !controlsRef.current || !composerRef.current || !labelRendererRef.current) {
-      // console.log('[AnimationLoop] Skipping animation frame: Not all refs are ready or scene is not ready.');
+      console.log('[useAnimationLoop] Skipping animation frame: Not all refs are ready or scene is not ready.');
       return;
     }
 
@@ -95,6 +96,7 @@ export function useAnimationLoop({
     const labelRenderer = labelRendererRef.current;
 
     let animationFrameId: number;
+    let frameCount = 0; // For less frequent logging
 
     /**
      * Função de animação chamada recursivamente via requestAnimationFrame.
@@ -105,13 +107,18 @@ export function useAnimationLoop({
       if (controls.enabled) controls.update(); // Atualiza apenas se habilitado
       composer.render();
       labelRenderer.render(scene, camera);
+
+      frameCount++;
+      if (frameCount % 300 === 0) { // Log every ~5 seconds at 60fps
+        // console.log('[useAnimationLoop] Animate function still running.');
+      }
     };
 
-    // console.log('[AnimationLoop] Starting animation loop.');
+    console.log('[useAnimationLoop] Starting animation loop.');
     animate();
 
     return () => {
-      // console.log('[AnimationLoop] Cancelling animation frame.');
+      console.log('[useAnimationLoop] Cancelling animation frame.');
       cancelAnimationFrame(animationFrameId);
     };
   }, [isSceneReady, sceneRef, cameraRef, controlsRef, composerRef, labelRendererRef]);

@@ -17,9 +17,9 @@
  *     A --> E{outlinePass: OutlinePass};
  *
  *     F[UpdateEquipmentMeshesParams] --> G[updateEquipmentMeshesInScene];
- *     H[Equipment] --> F;
- *     I[Layer] --> F;
- *     J[ColorMode] --> F;
+ *     class H[Equipment] --> F;
+ *     class I[Layer] --> F;
+ *     class J[ColorMode] --> F;
  *
  *     classDef params fill:#DCDCDC,stroke:#333,stroke-width:2px,color:black;
  *     classDef func fill:#ADD8E6,stroke:#333,stroke-width:2px,color:black;
@@ -82,8 +82,8 @@ export function setupGroundPlane(scene: THREE.Scene): THREE.Mesh {
     side: THREE.DoubleSide,
     metalness: 0.1,
     roughness: 0.8,
-    transparent: false, // Modificado na depuração
-    opacity: 1.0,     // Modificado na depuração
+    transparent: false,
+    opacity: 1.0,
   });
   const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
   groundMesh.rotation.x = -Math.PI / 2;
@@ -114,24 +114,27 @@ export function setupRenderPipeline(
   composer: EffectComposer;
   outlinePass: OutlinePass;
 } | null {
+  console.log('[setupRenderPipeline] Starting setup...');
   if (!mountElement) {
+    console.error('[setupRenderPipeline] mountElement is null. Aborting.');
     return null;
   }
   const initialWidth = Math.max(1, mountElement.clientWidth);
   const initialHeight = Math.max(1, mountElement.clientHeight);
+  console.log(`[setupRenderPipeline] Initial dimensions: ${initialWidth}x${initialHeight}`);
 
   // WebGL Renderer
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
-    preserveDrawingBuffer: true, // Parâmetro crucial adicionado
-    alpha: true // Adicionado conforme sugestão
+    preserveDrawingBuffer: true,
+    alpha: true
   });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(initialWidth, initialHeight);
   renderer.shadowMap.enabled = false; // Sombras desabilitadas para performance
   scene.background = new THREE.Color(0xA9C1D1); // Cor de fundo azulada/cinza claro
-  scene.fog = new THREE.Fog(0xA9C1D1, 200, 1000); // Ajustado na depuração: Fog(cor, início, fim)
-  // console.log("[SceneElementsSetup.ts setupRenderPipeline] WebGLRenderer created.");
+  scene.fog = new THREE.Fog(0xA9C1D1, 200, 1000);
+  console.log("[setupRenderPipeline] WebGLRenderer created.");
 
 
   // CSS2D Renderer para rótulos HTML
@@ -140,8 +143,8 @@ export function setupRenderPipeline(
   labelRenderer.domElement.style.position = 'absolute';
   labelRenderer.domElement.style.top = '0px';
   labelRenderer.domElement.style.left = '0px';
-  labelRenderer.domElement.style.pointerEvents = 'none'; // Rótulos não devem interceptar eventos de mouse da cena 3D
-  // console.log("[SceneElementsSetup.ts setupRenderPipeline] CSS2DRenderer created.");
+  labelRenderer.domElement.style.pointerEvents = 'none';
+  console.log("[setupRenderPipeline] CSS2DRenderer created.");
 
   // EffectComposer e Passes para Pós-Processamento
   const composer = new EffectComposer(renderer);
@@ -149,22 +152,23 @@ export function setupRenderPipeline(
   composer.addPass(renderPass);
 
   const outlinePass = new OutlinePass(new THREE.Vector2(initialWidth, initialHeight), scene, camera);
-  outlinePass.edgeStrength = 0; // Contorno desligado inicialmente
+  outlinePass.edgeStrength = 0;
   outlinePass.edgeGlow = 0.0;
   outlinePass.edgeThickness = 1.0;
-  outlinePass.visibleEdgeColor.set('#ffffff'); // Cor padrão, será sobrescrita por useSceneOutline
-  outlinePass.hiddenEdgeColor.set('#190a05'); // Cor para bordas que estariam ocultas
-  outlinePass.pulsePeriod = 0; // Sem pulsação por padrão
+  outlinePass.visibleEdgeColor.set('#ffffff');
+  outlinePass.hiddenEdgeColor.set('#190a05');
+  outlinePass.pulsePeriod = 0;
   composer.addPass(outlinePass);
-  // console.log("[SceneElementsSetup.ts setupRenderPipeline] EffectComposer with RenderPass and OutlinePass created.");
+  console.log("[setupRenderPipeline] EffectComposer with RenderPass and OutlinePass created.");
 
   if (!renderer.domElement.parentNode) {
     mountElement.appendChild(renderer.domElement);
+    console.log("[setupRenderPipeline] WebGLRenderer DOM element appended.");
   }
   if (!labelRenderer.domElement.parentNode) {
     mountElement.appendChild(labelRenderer.domElement);
+    console.log("[setupRenderPipeline] CSS2DRenderer DOM element appended.");
   }
-  // console.log("[SceneElementsSetup.ts setupRenderPipeline] Renderers appended to mountElement.");
 
   return { renderer, labelRenderer, composer, outlinePass };
 }
@@ -194,7 +198,8 @@ export function setupRenderPipeline(
  *     }
  *     class THREE_Scene {
  *     }
- *     class React_MutableRefObject {}
+ *     class React_MutableRefObject {
+ *     }
  *
  *     UpdateEquipmentMeshesParams --> THREE_Scene : scene
  *     UpdateEquipmentMeshesParams --> React_MutableRefObject : equipmentMeshesRef
