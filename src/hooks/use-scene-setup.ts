@@ -117,7 +117,7 @@ export interface UseSceneSetupReturn {
   outlinePassRef: React.RefObject<OutlinePass | null>;
   groundMeshRef: React.RefObject<THREE.Mesh | null>;
   isSceneReady: boolean;
-  isControlsReady: boolean; // Added this
+  isControlsReady: boolean; 
 }
 
 /**
@@ -143,7 +143,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
   const groundMeshRef = useRef<THREE.Mesh | null>(null);
 
   const [isSceneReady, setIsSceneReady] = useState(false);
-  const [isControlsReady, setIsControlsReady] = useState(false); // New state
+  const [isControlsReady, setIsControlsReady] = useState(false);
 
   const onCameraChangeRef = useRef(onCameraChange);
   useEffect(() => { onCameraChangeRef.current = onCameraChange; }, [onCameraChange]);
@@ -192,6 +192,10 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
     outlinePassRef.current = pipeline.outlinePass;
     console.log('[useSceneSetup] Render Pipeline setup complete.');
 
+    setIsSceneReady(true); // Set scene ready after basic pipeline setup
+    console.log('[useSceneSetup] isSceneReady set to true (after basic pipeline).');
+    handleResize(); // Perform initial resize
+
     const handleContextLost = (event: Event) => {
       event.preventDefault();
       console.error("[useSceneSetup] WebGL context lost. Application may need to reinitialize resources.");
@@ -226,7 +230,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
         const OrbitControls = module.OrbitControls;
         if (!cameraRef.current || !rendererRef.current?.domElement) {
           console.error("[useSceneSetup] Failed to initialize OrbitControls: Camera or Renderer domElement not ready.");
-          setIsControlsReady(false); // Explicitly false if setup fails
+          setIsControlsReady(false); 
           return;
         }
 
@@ -245,19 +249,19 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
 
         localControls.mouseButtons = {
           LEFT: THREE.MOUSE.ROTATE,
-          MIDDLE: THREE.MOUSE.ROTATE,
+          MIDDLE: THREE.MOUSE.ROTATE, 
           RIGHT: THREE.MOUSE.PAN
         };
         localControls.update();
         console.log("[useSceneSetup] OrbitControls configured and updated.");
-        setIsControlsReady(true); // Set controls ready flag
-        console.log("[useSceneSetup] isControlsReady set to true.");
-
+        
         localControls.addEventListener('end', handleControlsChangeEnd);
+        setIsControlsReady(true); 
+        console.log("[useSceneSetup] isControlsReady set to true.");
       })
       .catch(err => {
         console.error("[useSceneSetup] Failed to load OrbitControls", err);
-        setIsControlsReady(false); // Set to false on error
+        setIsControlsReady(false); 
       });
 
     const handleControlsChangeEnd = () => {
@@ -272,20 +276,15 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
     };
 
     const resizeObserver = new ResizeObserver(() => handleResize());
-    resizeObserver.observe(currentMount);
-    console.log("[useSceneSetup] ResizeObserver attached.");
+    if (currentMount) {
+        resizeObserver.observe(currentMount);
+        console.log("[useSceneSetup] ResizeObserver attached.");
+    }
 
-    const initialSetupTimeoutId = setTimeout(() => {
-      console.log("[useSceneSetup] Initial resize and setting scene to ready...");
-      handleResize();
-      setIsSceneReady(true);
-      console.log('[useSceneSetup] isSceneReady set to true.');
-    }, 150);
 
     return () => {
       console.log('[useSceneSetup] Main useEffect CLEANUP running.');
-      clearTimeout(initialSetupTimeoutId);
-
+      
       if (currentMount) {
         resizeObserver.unobserve(currentMount);
         console.log("[useSceneSetup] ResizeObserver detached.");
@@ -336,6 +335,8 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
          if (labelRendererRef.current.domElement.parentNode === currentMount) {
              currentMount.removeChild(labelRendererRef.current.domElement);
          }
+         // CSS2DRenderer não tem um método dispose() explícito como o WebGLRenderer.
+         // A remoção do DOM é a principal limpeza.
          labelRendererRef.current = null;
          console.log("[useSceneSetup] CSS2DRenderer cleaned up.");
       }
@@ -344,11 +345,11 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
       cameraRef.current = null;
 
       setIsSceneReady(false);
-      setIsControlsReady(false); // Reset controls ready on cleanup
+      setIsControlsReady(false); 
       console.log('[useSceneSetup] Main useEffect CLEANUP finished. Scene and Controls set to NOT READY.');
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mountRef]); // Removed camera/lookAt from deps as they are initial and shouldn't re-trigger full setup
+  }, [mountRef]); 
 
   return {
     sceneRef,
@@ -360,7 +361,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
     outlinePassRef,
     groundMeshRef,
     isSceneReady,
-    isControlsReady, // Return new state
+    isControlsReady, 
   };
 };
 
