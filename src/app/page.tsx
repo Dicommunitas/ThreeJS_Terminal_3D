@@ -1,5 +1,4 @@
 
-
 /**
  * ```mermaid
  *   graph LR
@@ -42,7 +41,7 @@
  */
 "use client";
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import type { Equipment, Layer, Command, CameraState, Annotation, ColorMode, TargetSystemInfo } from '@/lib/types'; 
 import { useCommandHistory } from '@/hooks/use-command-history';
 import { SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarTrigger } from '@/components/ui/sidebar';
@@ -78,23 +77,15 @@ export default function Terminal3DPage(): JSX.Element {
     handleProductChange,
   } = useEquipmentDataManager();
 
-  // O hook useCameraManager agora recebe onCameraChangeFromCommand
   const {
     currentCameraState,
     targetSystemToFrame, 
     handleSetCameraViewForSystem, 
-    handleCameraChangeFromScene, // Este é chamado pela ThreeScene quando OrbitControls muda a câmera
+    handleCameraChangeFromScene,
     onSystemFramed,
-    focusedSystemNameUI,
-    currentViewIndexUI,
-  } = useCameraManager({ 
-    executeCommand,
-    // onCameraChangeFromCommand: (newState) => {
-    //   // Se precisarmos forçar a ThreeScene a atualizar a câmera a partir de um comando (ex: undo de movimento de câmera)
-    //   // Isso pode envolver setar um estado que `programmaticCameraState` em ThreeScene observaria.
-    //   // Por agora, o currentCameraState do useCameraManager já deve servir para isso.
-    // }
-  });
+    focusedSystemNameUI, // Mantido para UI, se necessário
+    currentViewIndexUI, // Mantido para UI, se necessário
+  } = useCameraManager({ executeCommand });
 
   const {
     searchTerm,
@@ -131,24 +122,49 @@ export default function Terminal3DPage(): JSX.Element {
   const { layers, handleToggleLayer } = useLayerManager({ executeCommand });
 
   const [colorMode, setColorMode] = useState<ColorMode>('Estado Operacional');
-
   
   const cameraViewSystems = useMemo(() => {
     return availableSistemas.filter(s => s !== 'All');
   }, [availableSistemas]);
 
+  const isFocusingRef = useRef(false);
+  const focusTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   const handleFocusAndSelectSystem = useCallback((systemName: string) => {
+    console.log(`[Terminal3DPage] Attempting to focus on: ${systemName}, isFocusing: ${isFocusingRef.current}`);
+    if (isFocusingRef.current) {
+      console.log(`[Terminal3DPage] Focus operation already in progress for ${systemName}. Ignoring subsequent call.`);
+      return;
+    }
+
+    isFocusingRef.current = true;
     console.log(`[Terminal3DPage] handleFocusAndSelectSystem called for: ${systemName}`);
+    
     handleSetCameraViewForSystem(systemName); 
     const equipmentInSystem = equipmentData 
       .filter(equip => equip.sistema === systemName)
       .map(equip => equip.tag);
     selectTagsBatch(equipmentInSystem, `Focado e selecionado sistema ${systemName}.`); 
-  }, [equipmentData, handleSetCameraViewForSystem, selectTagsBatch]);
 
+    if (focusTimeoutRef.current) {
+      clearTimeout(focusTimeoutRef.current);
+    }
+    focusTimeoutRef.current = setTimeout(() => {
+      isFocusingRef.current = false;
+      console.log(`[Terminal3DPage] Focus lock released for ${systemName}.`);
+    }, 100); // 100ms debounce window
 
-  
+  }, [equipmentData, handleSetCameraViewForSystem, selectTagsBatch]); // Adicionadas as dependências corretas
+
+  useEffect(() => {
+    // Cleanup timeout on component unmount
+    return () => {
+      if (focusTimeoutRef.current) {
+        clearTimeout(focusTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const selectedEquipmentDetails = useMemo(() => {
     if (selectedEquipmentTags.length === 1) {
       const tag = selectedEquipmentTags[0];
@@ -157,7 +173,6 @@ export default function Terminal3DPage(): JSX.Element {
     return null;
   }, [selectedEquipmentTags, equipmentData]);
 
-  
   const equipmentAnnotation = useMemo(() => {
     if (selectedEquipmentDetails) {
       return getAnnotationForEquipment(selectedEquipmentDetails.tag);
@@ -165,7 +180,6 @@ export default function Terminal3DPage(): JSX.Element {
     return null;
   }, [selectedEquipmentDetails, getAnnotationForEquipment]);
 
-  
   const availableOperationalStatesList = useMemo(() => {
     const states = new Set<string>();
     equipmentData.forEach(equip => { 
@@ -179,7 +193,6 @@ export default function Terminal3DPage(): JSX.Element {
     return sortedStates;
   }, [equipmentData]);
 
-  
   const availableProductsList = useMemo(() => {
     const products = new Set<string>();
     equipmentData.forEach(equip => { 
@@ -206,8 +219,8 @@ export default function Terminal3DPage(): JSX.Element {
           onSelectEquipment={handleEquipmentClick}
           hoveredEquipmentTag={hoveredEquipmentTag}
           setHoveredEquipmentTag={handleSetHoveredEquipmentTag}
-          cameraState={currentCameraState} // Passa o estado da câmera para ThreeScene
-          onCameraChange={handleCameraChangeFromScene} // ThreeScene notifica quando a câmera é movida pelo usuário
+          cameraState={currentCameraState}
+          onCameraChange={handleCameraChangeFromScene}
           initialCameraPosition={defaultInitialCameraPosition}
           initialCameraLookAt={defaultInitialCameraLookAt}
           colorMode={colorMode}
@@ -281,4 +294,3 @@ export default function Terminal3DPage(): JSX.Element {
     </SidebarProvider>
   );
 }
-

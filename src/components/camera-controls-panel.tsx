@@ -1,5 +1,4 @@
 
-
 /**
  * Componente de painel para controles de câmera, especificamente para focar em sistemas.
  *
@@ -70,7 +69,7 @@ export function CameraControlsPanel({ systems, onSetView }: CameraControlsPanelP
             variant="outline"
             size="sm"
             onClick={() => {
-              console.log(`[CameraControlsPanel] Button clicked for system: ${systemName}`);
+              // O log aqui foi removido, pois o log em page.tsx/handleFocusAndSelectSystem é mais informativo agora.
               onSetView(systemName);
             }}
             className="w-full"
@@ -87,4 +86,3 @@ export function CameraControlsPanel({ systems, onSetView }: CameraControlsPanelP
     </Card>
   );
 }
-
