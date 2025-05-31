@@ -1,82 +1,4 @@
 
-/**
- * Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
- * ATUALIZADO: Este componente foi refatorado para atuar como um "condutor", delegando a maior
- * parte de suas responsabilidades anteriores para hooks customizados especializados.
- * Ele agora foca em:
- * - Utilizar `useSceneSetup` para a infraestrutura básica da cena (cena, câmera, renderizadores, etc.).
- * - Utilizar `useEquipmentRenderer` para gerenciar os meshes dos equipamentos.
- * - Utilizar `useAnnotationPinRenderer` para gerenciar os pins de anotação.
- * - Utilizar `useMouseInteractionManager` para processar interações do mouse.
- * - Utilizar `useSceneOutline` para aplicar efeitos de contorno.
- * - Utilizar `useAnimationLoop` para o loop de renderização, incluindo lógica de tweening da câmera.
- * - Aplicar estados de câmera programáticos e lidar com o enquadramento de sistemas.
- * - Renderizar o elemento de montagem (`div`) para a cena.
- *
- * Principal Responsabilidade (Pós-Refatoração):
- * Orquestrar os diversos hooks que gerenciam aspectos específicos da cena 3D,
- * passar props e refs entre eles, e fornecer o ponto de montagem no DOM.
- *
- * ```mermaid
- *   classDiagram
- *     class ThreeSceneProps {
- *       +equipment: Equipment[]
- *       +allEquipmentData: Equipment[]
- *       +layers: Layer[]
- *       +annotations: Annotation[]
- *       +selectedEquipmentTags: string[] | undefined
- *       +onSelectEquipment(tag: string | null, isMultiSelect: boolean): void
- *       +hoveredEquipmentTag: string | null | undefined
- *       +setHoveredEquipmentTag(tag: string | null): void
- *       +cameraState: CameraState | undefined
- *       +onCameraChange(cameraState: CameraState): void
- *       +initialCameraPosition: Point3D
- *       +initialCameraLookAt: Point3D
- *       +colorMode: ColorMode
- *       +targetSystemToFrame: TargetSystemInfo | null
- *       +onSystemFramed(): void
- *     }
- *     class Point3D {
- *       +x: number
- *       +y: number
- *       +z: number
- *     }
- *     class Equipment {
- *     }
- *     class Layer {
- *     }
- *     class Annotation {
- *     }
- *     class CameraState {
- *     }
- *     class ColorMode {
- *     }
- *     class TargetSystemInfo{
- *        +systemName: string
- *        +viewIndex: number
- *     }
- *     class ThreeScene {
- *     }
- *     class ReactFC {
- *     }
- *
- *     ThreeScene --|> ReactFC
- *     ThreeSceneProps ..> Equipment
- *     ThreeSceneProps ..> Layer
- *     ThreeSceneProps ..> Annotation
- *     ThreeSceneProps ..> CameraState
- *     ThreeSceneProps ..> ColorMode
- *     ThreeSceneProps ..> Point3D
- *     ThreeSceneProps ..> TargetSystemInfo
- *     ThreeScene ..> useSceneSetup : uses
- *     ThreeScene ..> useEquipmentRenderer : uses
- *     ThreeScene ..> useAnnotationPinRenderer : uses
- *     ThreeScene ..> useMouseInteractionManager : uses
- *     ThreeScene ..> useSceneOutline : uses
- *     ThreeScene ..> useAnimationLoop : uses
- * ```
- *
- */
 "use client";
 
 import React, { useRef, useEffect, useCallback } from 'react';
@@ -98,47 +20,25 @@ import { calculateViewForMeshes } from '@/core/three/camera-utils';
 
 
 export interface ThreeSceneProps {
-  /** Lista de equipamentos filtrados a serem renderizados na cena. */
   equipment: Equipment[];
-  /** Lista completa de todos os equipamentos, para contexto (e.g., anotações no `ThreeScene`). */
   allEquipmentData: Equipment[];
-  /** Configuração das camadas de visibilidade. */
   layers: Layer[];
-  /** Lista de anotações a serem exibidas. */
   annotations: Annotation[];
-  /** Tags dos equipamentos atualmente selecionados. */
   selectedEquipmentTags: string[] | undefined;
-  /** Callback para quando um equipamento é selecionado/deselecionado. */
   onSelectEquipment: (tag: string | null, isMultiSelectModifierPressed: boolean) => void;
-  /** Tag do equipamento atualmente sob o cursor. */
   hoveredEquipmentTag: string | null | undefined;
-  /** Callback para definir o equipamento em hover. */
   setHoveredEquipmentTag: (tag: string | null) => void;
-  /** O estado atual da câmera (posição, lookAt). Esta prop é usada para aplicar estados de câmera de forma programática. */
-  cameraState: CameraState | undefined;
-  /** Callback para quando o estado da câmera muda devido à interação do usuário na cena. */
+  cameraState: CameraState | undefined; // This is the programmaticCameraState
   onCameraChange: (cameraState: CameraState) => void;
-  /** Posição inicial da câmera. */
   initialCameraPosition: { x: number; y: number; z: number };
-  /** Ponto de observação (lookAt) inicial da câmera. */
   initialCameraLookAt: { x: number; y: number; z: number };
-  /** O modo de colorização atual para os equipamentos. */
   colorMode: ColorMode;
-  /** Informações sobre o sistema e visão a serem enquadrados pela câmera (se houver). */
   targetSystemToFrame: TargetSystemInfo | null;
-  /** Callback chamado após a câmera terminar de enquadrar um sistema. */
   onSystemFramed: () => void;
 }
 
-const ANIMATION_DURATION_MS = 700; // Duração da animação em milissegundos
+const ANIMATION_DURATION_MS = 700;
 
-/**
- * Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
- * Atua como um orquestrador de hooks especializados que gerenciam diferentes aspectos da cena.
- *
- * @param {ThreeSceneProps} props As props do componente.
- * @returns {JSX.Element} O elemento div que serve como contêiner para a cena 3D.
- */
 const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
   const {
     equipment,
@@ -149,7 +49,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     onSelectEquipment,
     hoveredEquipmentTag,
     setHoveredEquipmentTag,
-    cameraState: programmaticCameraState, 
+    cameraState: programmaticCameraState, // Renomeado para clareza interna
     onCameraChange,
     initialCameraPosition,
     initialCameraLookAt,
@@ -183,7 +83,6 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
   useEffect(() => { onCameraChangeRef.current = onCameraChange; }, [onCameraChange]);
   useEffect(() => { onSystemFramedRef.current = onSystemFramed; }, [onSystemFramed]);
 
-  // Refs para a animação da câmera
   const isAnimatingRef = useRef(false);
   const animationStartTimeRef = useRef(0);
   const animationStartPosRef = useRef<THREE.Vector3 | null>(null);
@@ -268,6 +167,26 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     }
   }, [cameraRef, controlsRef]);
 
+  // useEffect para aplicar mudanças de câmera programáticas (e.g., de undo/redo ou foco inicial)
+  useEffect(() => {
+    if (programmaticCameraState && cameraRef.current && controlsRef.current && isSceneReady && isControlsReady) {
+      const targetPosition = new THREE.Vector3(programmaticCameraState.position.x, programmaticCameraState.position.y, programmaticCameraState.position.z);
+      const targetLookAt = new THREE.Vector3(programmaticCameraState.lookAt.x, programmaticCameraState.lookAt.y, programmaticCameraState.lookAt.z);
+
+      // Só inicia a animação se o estado programático for DIFERENTE do estado atual da câmera.
+      // Isso evita que a animação seja acionada por atualizações de estado que refletem
+      // a posição para a qual a câmera acabou de se mover manualmente ou por uma animação anterior.
+      const isAlreadyAtTarget = cameraRef.current.position.equals(targetPosition) && controlsRef.current.target.equals(targetLookAt);
+
+      if (!isAlreadyAtTarget) {
+        console.log('[ThreeScene] Programmatic camera state change detected AND camera is not already at target. Starting animation.', programmaticCameraState);
+        startCameraAnimation(targetPosition, targetLookAt);
+      } else {
+        // console.log('[ThreeScene] Programmatic camera state change detected BUT camera is already at target. Skipping animation.', programmaticCameraState);
+      }
+    }
+  }, [programmaticCameraState, isSceneReady, isControlsReady, startCameraAnimation, cameraRef, controlsRef]);
+
 
   // Efeito para lidar com o foco em um sistema específico
   useEffect(() => {
@@ -349,7 +268,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
 
   useAnimationLoop({
-    isSceneReady: isSceneReady && isControlsReady, // Garante que ambos estejam prontos
+    isSceneReady: isSceneReady && isControlsReady,
     sceneRef,
     cameraRef,
     controlsRef,
@@ -363,3 +282,4 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
 export default ThreeScene;
 
+    
