@@ -57,7 +57,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     onSelectEquipment,
     hoveredEquipmentTag,
     setHoveredEquipmentTag,
-    cameraState: programmaticCameraState, // Renomeado para clareza interna
+    cameraState: programmaticCameraState, 
     onCameraChange,
     initialCameraPosition,
     initialCameraLookAt,
@@ -68,13 +68,13 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
   // Log props recebidas
   useEffect(() => {
-    console.log('[ThreeScene] Props received:', {
-      equipmentCount: equipment.length,
-      allEquipmentDataCount: allEquipmentData.length,
-      layers: layers.map(l => ({ id: l.id, visible: l.isVisible })),
-      programmaticCameraState,
-      targetSystemToFrame,
-    });
+    // console.log('[ThreeScene] Props received:', {
+    //   equipmentCount: equipment.length,
+    //   allEquipmentDataCount: allEquipmentData.length,
+    //   layers: layers.map(l => ({ id: l.id, visible: l.isVisible })),
+    //   programmaticCameraState,
+    //   targetSystemToFrame,
+    // });
   }, [equipment, allEquipmentData, layers, programmaticCameraState, targetSystemToFrame]);
 
 
@@ -99,7 +99,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
   // Log isSceneReady e isControlsReady
   useEffect(() => {
-    console.log('[ThreeScene] Readiness state:', { isSceneReady, isControlsReady });
+    // console.log('[ThreeScene] Readiness state:', { isSceneReady, isControlsReady });
   }, [isSceneReady, isControlsReady]);
 
 
@@ -139,8 +139,10 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     return mesh;
   }, [colorMode]);
 
-  const equipmentMeshesRef = useEquipmentRenderer({
+  useEquipmentRenderer({ // Pass cameraRef and controlsRef for logging
     sceneRef,
+    cameraRef,
+    controlsRef,
     isSceneReady,
     equipmentData: equipment,
     layers,
@@ -161,7 +163,17 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
   useMouseInteractionManager({
     mountRef,
     cameraRef,
-    equipmentMeshesRef,
+    equipmentMeshesRef: useEquipmentRenderer({ // Certifique-se de que a referência correta é passada
+      sceneRef,
+      cameraRef, 
+      controlsRef,
+      isSceneReady,
+      equipmentData: equipment,
+      layers,
+      colorMode,
+      createSingleEquipmentMesh,
+      groundMeshRef,
+    }),
     isSceneReady: isSceneReady && isControlsReady,
     onSelectEquipment,
     setHoveredEquipmentTag,
@@ -169,17 +181,29 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
   useSceneOutline({
     outlinePassRef,
-    equipmentMeshesRef,
+    equipmentMeshesRef: useEquipmentRenderer({ // E aqui também
+      sceneRef,
+      cameraRef,
+      controlsRef,
+      isSceneReady,
+      equipmentData: equipment,
+      layers,
+      colorMode,
+      createSingleEquipmentMesh,
+      groundMeshRef,
+    }),
     selectedEquipmentTags: selectedEquipmentTags,
     hoveredEquipmentTag: hoveredEquipmentTag,
     isSceneReady,
   });
 
   const startCameraAnimation = useCallback((targetPos: THREE.Vector3, targetLookAt: THREE.Vector3, onComplete?: () => void) => {
-    // console.log('[ThreeScene] startCameraAnimation called. Target Pos:', targetPos, 'Target LookAt:', targetLookAt);
+    console.log('[ThreeScene] startCameraAnimation. Current Camera - Pos:', cameraRef.current?.position.clone(), 'Target:', controlsRef.current?.target.clone());
+    console.log('[ThreeScene] startCameraAnimation. Animation Target - Pos:', targetPos, 'LookAt:', targetLookAt);
+
     if (!cameraRef.current || !controlsRef.current) {
       // console.log('[ThreeScene] startCameraAnimation: camera or controls not ready, aborting.');
-      onComplete?.(); // Chama onComplete mesmo se não animar, para destravar a lógica de foco.
+      onComplete?.(); 
       return;
     }
 
@@ -193,7 +217,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
     if (controlsRef.current) {
       controlsRef.current.enabled = false;
-      // console.log('[ThreeScene] OrbitControls disabled for animation.');
+      console.log('[ThreeScene] OrbitControls disabled for animation. controls.enabled:', controlsRef.current?.enabled);
     }
   }, [cameraRef, controlsRef]);
 
@@ -202,10 +226,8 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     if (programmaticCameraState && cameraRef.current && controlsRef.current && isSceneReady && isControlsReady) {
       const targetPosition = new THREE.Vector3(programmaticCameraState.position.x, programmaticCameraState.position.y, programmaticCameraState.position.z);
       const targetLookAt = new THREE.Vector3(programmaticCameraState.lookAt.x, programmaticCameraState.lookAt.y, programmaticCameraState.lookAt.z);
-
-      const isAlreadyAtTarget =
-        positionEqualsWithTolerance(cameraRef.current.position, targetPosition) &&
-        positionEqualsWithTolerance(controlsRef.current.target, targetLookAt);
+      
+      const isAlreadyAtTarget = positionEqualsWithTolerance(cameraRef.current.position, targetPosition) && positionEqualsWithTolerance(controlsRef.current.target, targetLookAt);
 
       if (!isAlreadyAtTarget) {
         // console.log('[ThreeScene] Programmatic camera state change detected AND camera is not already at target. Starting animation.', programmaticCameraState);
@@ -224,14 +246,20 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     }
     // console.log('[ThreeScene] targetSystemToFrame changed:', targetSystemToFrame);
 
-    if (!sceneRef.current || !cameraRef.current || !controlsRef.current || !isSceneReady || !isControlsReady || !equipmentMeshesRef.current) {
+    if (!sceneRef.current || !cameraRef.current || !controlsRef.current || !isSceneReady || !isControlsReady) {
       // console.log('[ThreeScene] targetSystemToFrame: Dependencies not ready, calling onSystemFramed early.');
       if (typeof onSystemFramedRef.current === 'function') {
         onSystemFramedRef.current();
       }
       return;
     }
-    if (equipmentMeshesRef.current.length === 0 && targetSystemToFrame.systemName !== 'INITIAL_LOAD_NO_SYSTEM') {
+    
+    const equipmentMeshesToConsider = useEquipmentRenderer({ 
+      sceneRef, cameraRef, controlsRef, isSceneReady, equipmentData: equipment, 
+      layers, colorMode, createSingleEquipmentMesh, groundMeshRef 
+    }).current;
+
+    if (!equipmentMeshesToConsider || (equipmentMeshesToConsider.length === 0 && targetSystemToFrame.systemName !== 'INITIAL_LOAD_NO_SYSTEM')) {
         // console.log('[ThreeScene] targetSystemToFrame: No equipment meshes to frame for system', targetSystemToFrame.systemName,'. Calling onSystemFramed.');
         if (typeof onSystemFramedRef.current === 'function') onSystemFramedRef.current();
         return;
@@ -240,7 +268,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
     let systemMeshes: THREE.Object3D[] = [];
     if (targetSystemToFrame.systemName !== 'INITIAL_LOAD_NO_SYSTEM') {
-         systemMeshes = equipmentMeshesRef.current.filter(
+         systemMeshes = equipmentMeshesToConsider.filter(
             (mesh) => mesh.userData.sistema === targetSystemToFrame.systemName && mesh.visible
         );
 
@@ -251,14 +279,6 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
         }
     } else {
         // console.log('[ThreeScene] targetSystemToFrame: Initial load, no specific system to frame. Using default view or current camera state.');
-        // Para a carga inicial sem sistema específico, podemos usar a posição inicial da câmera ou
-        // simplesmente não fazer nada se a câmera já estiver configurada.
-        // Se programaticCameraState já tem a posição inicial, o useEffect acima deve tratar.
-        // Se quisermos forçar uma animação para a posição inicial:
-        // const initialPos = new THREE.Vector3(initialCameraPosition.x, initialCameraPosition.y, initialCameraPosition.z);
-        // const initialLook = new THREE.Vector3(initialCameraLookAt.x, initialCameraLookAt.y, initialCameraLookAt.z);
-        // startCameraAnimation(initialPos, initialLook, onSystemFramedRef.current);
-        // Por agora, vamos assumir que o useEffect de programmaticCameraState cuida da posição inicial.
         if (typeof onSystemFramedRef.current === 'function') onSystemFramedRef.current();
         return;
     }
@@ -280,8 +300,8 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
           selectedView = viewOptions.default;
           break;
       }
+      console.log('[ThreeScene] Calculated view for system:', targetSystemToFrame.systemName, 'View Index:', targetSystemToFrame.viewIndex, 'Selected View:', selectedView);
 
-      // console.log('[ThreeScene] Calculated view for system:', targetSystemToFrame.systemName, 'View Index:', targetSystemToFrame.viewIndex, selectedView);
       const targetPositionVec = new THREE.Vector3(selectedView.position.x, selectedView.position.y, selectedView.position.z);
       const targetLookAtVec = new THREE.Vector3(selectedView.lookAt.x, selectedView.lookAt.y, selectedView.lookAt.z);
 
@@ -302,7 +322,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
         onSystemFramedRef.current();
       }
     }
-  }, [targetSystemToFrame, isSceneReady, isControlsReady, equipmentMeshesRef, sceneRef, cameraRef, controlsRef, startCameraAnimation, initialCameraPosition, initialCameraLookAt ]);
+  }, [targetSystemToFrame, isSceneReady, isControlsReady, equipment, layers, colorMode, createSingleEquipmentMesh, groundMeshRef, sceneRef, cameraRef, controlsRef, startCameraAnimation]);
 
 
   const handleFrameUpdate = useCallback(() => {
@@ -321,7 +341,8 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
         isAnimatingRef.current = false;
         if (controlsRef.current) {
           controlsRef.current.enabled = true;
-          // console.log('[ThreeScene] OrbitControls re-enabled after animation.');
+          console.log('[ThreeScene] OrbitControls re-enabled after animation. controls.enabled:', controlsRef.current?.enabled);
+          console.log('[ThreeScene] Animation complete. Final Camera - Pos:', cameraRef.current?.position.clone(), 'Target:', controlsRef.current?.target.clone());
         }
 
         if (animationOnCompleteCallbackRef.current) {

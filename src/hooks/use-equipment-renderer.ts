@@ -19,6 +19,8 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
  *   classDiagram
  *     class UseEquipmentRendererProps {
  *       +sceneRef: RefObject_Scene_
+ *       +cameraRef: RefObject_PerspectiveCamera_ // Adicionado para logging
+ *       +controlsRef: RefObject_OrbitControls_ // Adicionado para logging
  *       +isSceneReady: boolean
  *       +equipmentData: Equipment[]  // Filtered list
  *       +layers: Layer[]
@@ -47,6 +49,10 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
  *     class RefObject_Scene_ {
  *
  *     }
+ *     class RefObject_PerspectiveCamera_ {
+ *     }
+ *     class RefObject_OrbitControls_ {
+ *     }
  *     class RefObject_Mesh_ {
  *
  *     }
@@ -57,11 +63,15 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
  *     UseEquipmentRendererProps ..> ColorMode
  *     UseEquipmentRendererProps ..> RefObject_Scene_
  *     UseEquipmentRendererProps ..> RefObject_Mesh_
+ *     UseEquipmentRendererProps ..> RefObject_PerspectiveCamera_
+ *     UseEquipmentRendererProps ..> RefObject_OrbitControls_
  * ```
  *
  */
 export interface UseEquipmentRendererProps {
   sceneRef: React.RefObject<THREE.Scene | null>;
+  cameraRef: React.RefObject<THREE.PerspectiveCamera | null>; // Adicionado para logging
+  controlsRef: React.RefObject<THREE.OrbitControls | null>; // Adicionado para logging
   isSceneReady: boolean;
   equipmentData: Equipment[]; // Typically the filtered list of equipment to be rendered
   layers: Layer[];
@@ -81,6 +91,8 @@ export interface UseEquipmentRendererProps {
  */
 export function useEquipmentRenderer({
   sceneRef,
+  cameraRef, // Adicionado para logging
+  controlsRef, // Adicionado para logging
   isSceneReady,
   equipmentData,
   layers,
@@ -92,6 +104,12 @@ export function useEquipmentRenderer({
 
   useEffect(() => {
     // console.log(`[useEquipmentRenderer] useEffect triggered. isSceneReady: ${isSceneReady}, equipmentData count: ${equipmentData.length}, Layers: ${JSON.stringify(layers.map(l=>({id: l.id, visible: l.isVisible})))}`);
+    if (sceneRef.current && cameraRef.current && controlsRef.current) {
+      console.log(`[useEquipmentRenderer] Camera Pos: ${cameraRef.current.position.toArray().join(',')}, Target: ${controlsRef.current.target.toArray().join(',')}, Zoom: ${cameraRef.current.zoom}`);
+    } else {
+      // console.log('[useEquipmentRenderer] Camera or controls refs not ready for logging.');
+    }
+
     if (!isSceneReady || !sceneRef.current || !Array.isArray(equipmentData)) {
       // console.log('[useEquipmentRenderer] Skipping update: Scene not ready or equipmentData invalid.');
       if (sceneRef.current && equipmentMeshesRef.current.length > 0 && (!Array.isArray(equipmentData) || equipmentData.length === 0) ) {
@@ -117,9 +135,7 @@ export function useEquipmentRenderer({
       groundMeshRef,
     });
     // console.log(`[useEquipmentRenderer] Updated. Meshes in ref: ${equipmentMeshesRef.current.length}`);
-    // Cleanup of individual meshes (geometry, material) is handled by updateEquipmentMeshesInScene
-    // when they are removed from the scene.
-  }, [equipmentData, layers, colorMode, isSceneReady, sceneRef, createSingleEquipmentMesh, groundMeshRef]);
+  }, [equipmentData, layers, colorMode, isSceneReady, sceneRef, createSingleEquipmentMesh, groundMeshRef, cameraRef, controlsRef]);
 
   return equipmentMeshesRef;
 }
