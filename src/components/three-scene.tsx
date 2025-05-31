@@ -10,7 +10,7 @@
  * - Utilizar `useAnnotationPinRenderer` para gerenciar os pins de anotação.
  * - Utilizar `useMouseInteractionManager` para processar interações do mouse.
  * - Utilizar `useSceneOutline` para aplicar efeitos de contorno.
- * - Utilizar `useAnimationLoop` para o loop de renderização.
+ * - Utilizar `useAnimationLoop` para o loop de renderização, incluindo lógica de tweening da câmera.
  * - Aplicar estados de câmera programáticos e lidar com o enquadramento de sistemas.
  * - Renderizar o elemento de montagem (`div`) para a cena.
  *
@@ -131,6 +131,8 @@ export interface ThreeSceneProps {
   onSystemFramed: () => void;
 }
 
+const ANIMATION_DURATION_MS = 700; // Duração da animação em milissegundos
+
 /**
  * Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
  * Atua como um orquestrador de hooks especializados que gerenciam diferentes aspectos da cena.
@@ -148,8 +150,8 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     onSelectEquipment,
     hoveredEquipmentTag,
     setHoveredEquipmentTag,
-    cameraState: programmaticCameraState, // Estado da câmera vindo de comandos (undo/redo, foco em sistema)
-    onCameraChange, // Callback para notificar mudanças de câmera iniciadas na cena (OrbitControls)
+    cameraState: programmaticCameraState,
+    onCameraChange,
     initialCameraPosition,
     initialCameraLookAt,
     colorMode,
@@ -160,7 +162,6 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
   const mountRef = useRef<HTMLDivElement>(null);
 
-  // Hook para setup inicial da cena (cena, câmera, renderizadores, controles básicos)
   const {
     sceneRef,
     cameraRef,
@@ -169,23 +170,30 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     composerRef,
     outlinePassRef,
     groundMeshRef,
-    isSceneReady, // Flag que indica se a infraestrutura básica da cena está pronta
-    isControlsReady, // Flag que indica se OrbitControls estão prontos
+    isSceneReady,
+    isControlsReady,
   }: UseSceneSetupReturn = useSceneSetup({
     mountRef,
     initialCameraPosition,
     initialCameraLookAt,
-    onCameraChange, // Passa o callback para useSceneSetup, que o atachará ao 'end' do OrbitControls
+    onCameraChange,
   });
 
-
-  // Refs para os callbacks para garantir que as versões mais recentes sejam usadas dentro de useEffects
   const onCameraChangeRef = useRef(onCameraChange);
   const onSystemFramedRef = useRef(onSystemFramed);
   useEffect(() => { onCameraChangeRef.current = onCameraChange; }, [onCameraChange]);
   useEffect(() => { onSystemFramedRef.current = onSystemFramed; }, [onSystemFramed]);
 
-  // Callback para criar um mesh de equipamento individual, dependente do colorMode
+  // Refs para a animação da câmera
+  const isAnimatingRef = useRef(false);
+  const animationStartTimeRef = useRef(0);
+  const animationStartPosRef = useRef<THREE.Vector3 | null>(null);
+  const animationStartLookAtRef = useRef<THREE.Vector3 | null>(null);
+  const animationTargetPosRef = useRef<THREE.Vector3 | null>(null);
+  const animationTargetLookAtRef = useRef<THREE.Vector3 | null>(null);
+  const animationOnCompleteCallbackRef = useRef<(() => void) | null>(null);
+
+
   const createSingleEquipmentMesh = useCallback((item: Equipment): THREE.Object3D => {
     const finalColor = getEquipmentColor(item, colorMode);
     const material = new THREE.MeshStandardMaterial({
@@ -204,42 +212,38 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     mesh.userData = { tag: item.tag, type: item.type, sistema: item.sistema };
     mesh.castShadow = false;
     mesh.receiveShadow = false;
-    mesh.visible = true; // Visibilidade inicial, pode ser alterada por camadas
+    mesh.visible = true;
     return mesh;
-  }, [colorMode]); // Recriar esta função se colorMode mudar
+  }, [colorMode]);
 
-  // Hook para gerenciar a renderização dos meshes de equipamentos
   const equipmentMeshesRef = useEquipmentRenderer({
     sceneRef,
     isSceneReady,
-    equipmentData: equipment, // Lista filtrada de equipamentos
+    equipmentData: equipment,
     layers,
     colorMode,
     createSingleEquipmentMesh,
     groundMeshRef,
   });
 
-  // Hook para gerenciar a renderização dos pins de anotação
   useAnnotationPinRenderer({
     sceneRef,
     labelRendererRef,
     isSceneReady,
     annotations,
-    allEquipmentData: allEquipmentData, // Lista completa para posicionamento correto dos pins
+    allEquipmentData: allEquipmentData,
     layers,
   });
 
-  // Hook para gerenciar interações do mouse (clique para seleção, movimento para hover)
   useMouseInteractionManager({
     mountRef,
     cameraRef,
-    equipmentMeshesRef, // Ref para os meshes atualmente na cena
-    isSceneReady: isSceneReady && isControlsReady, // Interação só quando tudo estiver pronto
+    equipmentMeshesRef,
+    isSceneReady: isSceneReady && isControlsReady,
     onSelectEquipment,
     setHoveredEquipmentTag,
   });
 
-  // Hook para gerenciar o efeito de contorno (outline)
   useSceneOutline({
     outlinePassRef,
     equipmentMeshesRef,
@@ -248,35 +252,42 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     isSceneReady,
   });
 
+  const startCameraAnimation = useCallback((targetPos: THREE.Vector3, targetLookAt: THREE.Vector3, onComplete?: () => void) => {
+    if (!cameraRef.current || !controlsRef.current) return;
+
+    animationStartPosRef.current = cameraRef.current.position.clone();
+    animationStartLookAtRef.current = controlsRef.current.target.clone();
+    animationTargetPosRef.current = targetPos;
+    animationTargetLookAtRef.current = targetLookAt;
+    animationStartTimeRef.current = performance.now();
+    isAnimatingRef.current = true;
+    animationOnCompleteCallbackRef.current = onComplete || null;
+
+    if (controlsRef.current) {
+      controlsRef.current.enabled = false;
+    }
+  }, [cameraRef, controlsRef]);
+
   // Efeito para aplicar mudanças de câmera programáticas (e.g., de undo/redo ou foco inicial)
   useEffect(() => {
     if (programmaticCameraState && cameraRef.current && controlsRef.current && isSceneReady && isControlsReady) {
-      const camera = cameraRef.current;
-      const controls = controlsRef.current;
-
       const targetPosition = new THREE.Vector3(programmaticCameraState.position.x, programmaticCameraState.position.y, programmaticCameraState.position.z);
       const targetLookAt = new THREE.Vector3(programmaticCameraState.lookAt.x, programmaticCameraState.lookAt.y, programmaticCameraState.lookAt.z);
-
-      const positionChanged = !camera.position.equals(targetPosition);
-      const lookAtChanged = !controls.target.equals(targetLookAt);
-
-      if (positionChanged || lookAtChanged) {
-        const oldEnabled = controls.enabled;
-        controls.enabled = false; // Desabilita controles durante a mudança programática para evitar conflitos
-        if (positionChanged) camera.position.copy(targetPosition);
-        if (lookAtChanged) controls.target.copy(targetLookAt);
-        controls.update(); // Necessário para que o target dos controles seja efetivado
-        controls.enabled = oldEnabled; // Reabilita os controles
+      
+      // Evitar iniciar animação se já estiver no destino
+      if (cameraRef.current.position.equals(targetPosition) && controlsRef.current.target.equals(targetLookAt)) {
+        return;
       }
+      startCameraAnimation(targetPosition, targetLookAt);
     }
-  }, [programmaticCameraState, isSceneReady, isControlsReady, cameraRef, controlsRef]);
+  }, [programmaticCameraState, isSceneReady, isControlsReady, startCameraAnimation, cameraRef, controlsRef]);
 
 
   // Efeito para lidar com o foco em um sistema específico
   useEffect(() => {
     if (!targetSystemToFrame || !sceneRef.current || !cameraRef.current || !controlsRef.current || !isSceneReady || !isControlsReady || !equipmentMeshesRef.current || equipmentMeshesRef.current.length === 0) {
       if (targetSystemToFrame && typeof onSystemFramedRef.current === 'function') {
-        onSystemFramedRef.current(); // Limpa o target se não puder processar
+        onSystemFramedRef.current(); 
       }
       return;
     }
@@ -290,43 +301,77 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
       return;
     }
 
-    // Calcula as diferentes opções de visualização para os meshes do sistema
     const viewOptions: SystemViewOptions | null = calculateViewForMeshes(systemMeshes, cameraRef.current);
     
-    if (viewOptions && typeof onCameraChangeRef.current === 'function') {
+    if (viewOptions) {
       let selectedView: SystemView;
       switch (targetSystemToFrame.viewIndex) {
-        case 1: // topDown
+        case 1: 
           selectedView = viewOptions.topDown;
           break;
-        case 2: // isometric
+        case 2: 
           selectedView = viewOptions.isometric;
           break;
-        case 0: // default
+        case 0: 
         default:
           selectedView = viewOptions.default;
           break;
       }
-      // Notifica o `useCameraManager` (via `onCameraChange`) sobre a nova visão calculada.
-      // O `useCameraManager` então decidirá se cria um comando de undo/redo para esta mudança.
-      // E `previousCameraStateRef` em `useCameraManager` será atualizado.
-      onCameraChangeRef.current(selectedView); 
-    }
+      
+      const targetPositionVec = new THREE.Vector3(selectedView.position.x, selectedView.position.y, selectedView.position.z);
+      const targetLookAtVec = new THREE.Vector3(selectedView.lookAt.x, selectedView.lookAt.y, selectedView.lookAt.z);
 
-    if (typeof onSystemFramedRef.current === 'function') {
-      onSystemFramedRef.current(); // Notifica que o processo de enquadramento (tentativa) foi concluído
+      startCameraAnimation(targetPositionVec, targetLookAtVec, () => {
+        if (typeof onCameraChangeRef.current === 'function') {
+          onCameraChangeRef.current(selectedView); 
+        }
+        if (typeof onSystemFramedRef.current === 'function') {
+          onSystemFramedRef.current();
+        }
+      });
+    } else {
+      if (typeof onSystemFramedRef.current === 'function') {
+        onSystemFramedRef.current();
+      }
     }
-  }, [targetSystemToFrame, isSceneReady, isControlsReady, equipmentMeshesRef, sceneRef, cameraRef, controlsRef ]); // Removido onCameraChangeRef e onSystemFramedRef das dependências, pois já usamos refs para eles.
+  }, [targetSystemToFrame, isSceneReady, isControlsReady, equipmentMeshesRef, sceneRef, cameraRef, controlsRef, startCameraAnimation ]);
 
-  // Hook para gerenciar o loop de animação principal (requestAnimationFrame)
+
+  const handleFrameUpdate = useCallback(() => {
+    if (isAnimatingRef.current && cameraRef.current && controlsRef.current && animationStartPosRef.current && animationStartLookAtRef.current && animationTargetPosRef.current && animationTargetLookAtRef.current) {
+      const elapsedTime = performance.now() - animationStartTimeRef.current;
+      let alpha = Math.min(elapsedTime / ANIMATION_DURATION_MS, 1);
+
+      // Easing function (ease-out-quart)
+      alpha = 1 - Math.pow(1 - alpha, 4);
+
+      cameraRef.current.position.lerpVectors(animationStartPosRef.current, animationTargetPosRef.current, alpha);
+      controlsRef.current.target.lerpVectors(animationStartLookAtRef.current, animationTargetLookAtRef.current, alpha);
+      controlsRef.current.update();
+
+      if (alpha >= 1) {
+        isAnimatingRef.current = false;
+        if (controlsRef.current) controlsRef.current.enabled = true;
+        
+        // Chamar o callback de conclusão, se houver
+        if (animationOnCompleteCallbackRef.current) {
+          animationOnCompleteCallbackRef.current();
+          animationOnCompleteCallbackRef.current = null; 
+        }
+      }
+    }
+  }, [cameraRef, controlsRef]); // Nenhuma dependência aqui se usarmos apenas refs dentro
+
+
   useAnimationLoop({
     isSceneReady,
-    isControlsReady, // Passa a flag de prontidão dos controles
+    isControlsReady,
     sceneRef,
     cameraRef,
     controlsRef,
     composerRef,
     labelRendererRef,
+    onFrameUpdate: handleFrameUpdate, // Passa a função de atualização de frame
   });
 
   return <div ref={mountRef} className="w-full h-full" />;

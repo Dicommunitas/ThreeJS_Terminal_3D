@@ -1,5 +1,4 @@
 
-
 /**
  * Custom hook para gerenciar o loop de animação de uma cena Three.js.
  *
@@ -18,6 +17,7 @@
  *       +controlsRef: RefObject_OrbitControls_
  *       +composerRef: RefObject_EffectComposer_
  *       +labelRendererRef: RefObject_CSS2DRenderer_
+ *       +onFrameUpdate?: () => void // Novo callback opcional
  *     }
  *     class RefObject_Scene_ {
  *       current: Scene | null
@@ -53,12 +53,13 @@ import type { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.j
  */
 export interface UseAnimationLoopProps {
   isSceneReady: boolean;
-  isControlsReady: boolean; // Added
+  isControlsReady: boolean; 
   sceneRef: RefObject<THREE.Scene | null>;
   cameraRef: RefObject<THREE.PerspectiveCamera | null>;
   controlsRef: RefObject<OrbitControls | null>;
   composerRef: RefObject<EffectComposer | null>;
   labelRendererRef: RefObject<CSS2DRenderer | null>;
+  onFrameUpdate?: () => void; // Callback opcional para atualizações por frame
 }
 
 /**
@@ -71,45 +72,46 @@ export interface UseAnimationLoopProps {
  */
 export function useAnimationLoop({
   isSceneReady,
-  isControlsReady, // Added
+  isControlsReady,
   sceneRef,
   cameraRef,
   controlsRef,
   composerRef,
   labelRendererRef,
+  onFrameUpdate, // Novo prop
 }: UseAnimationLoopProps): void {
   useEffect(() => {
-    console.log(`[useAnimationLoop] useEffect triggered. isSceneReady: ${isSceneReady}, isControlsReady: ${isControlsReady}`);
+    // console.log(`[useAnimationLoop] useEffect triggered. isSceneReady: ${isSceneReady}, isControlsReady: ${isControlsReady}`);
     
     if (!isSceneReady) {
-      console.log('[useAnimationLoop] Skipping: Scene not ready yet.');
+      // console.log('[useAnimationLoop] Skipping: Scene not ready yet.');
       return;
     }
     if (!isControlsReady) {
-      console.log('[useAnimationLoop] Skipping: Controls not ready yet.');
+      // console.log('[useAnimationLoop] Skipping: Controls not ready yet.');
       return;
     }
     if (!sceneRef.current) {
-      console.log('[useAnimationLoop] Skipping: sceneRef.current is null.');
+      // console.log('[useAnimationLoop] Skipping: sceneRef.current is null.');
       return;
     }
     if (!cameraRef.current) {
-      console.log('[useAnimationLoop] Skipping: cameraRef.current is null.');
+      // console.log('[useAnimationLoop] Skipping: cameraRef.current is null.');
       return;
     }
     if (!controlsRef.current) {
-      console.log('[useAnimationLoop] Skipping: controlsRef.current is null.');
+      // console.log('[useAnimationLoop] Skipping: controlsRef.current is null.');
       return;
     }
     if (!composerRef.current) {
-      console.log('[useAnimationLoop] Skipping: composerRef.current is null.');
+      // console.log('[useAnimationLoop] Skipping: composerRef.current is null.');
       return;
     }
     if (!labelRendererRef.current) {
-      console.log('[useAnimationLoop] Skipping: labelRendererRef.current is null.');
+      // console.log('[useAnimationLoop] Skipping: labelRendererRef.current is null.');
       return;
     }
-    console.log('[useAnimationLoop] All refs and readiness flags are set, proceeding to start animation loop.');
+    // console.log('[useAnimationLoop] All refs and readiness flags are set, proceeding to start animation loop.');
 
 
     const scene = sceneRef.current;
@@ -119,31 +121,26 @@ export function useAnimationLoop({
     const labelRenderer = labelRendererRef.current;
 
     let animationFrameId: number;
-    // let frameCount = 0; // For less frequent logging
-
-    /**
-     * Função de animação chamada recursivamente via requestAnimationFrame.
-     * Atualiza controles e renderiza a cena.
-     */
+    
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
+      
+      // Chama o callback de atualização de frame, se fornecido
+      if (onFrameUpdate) {
+        onFrameUpdate();
+      }
+
       if (controls.enabled) controls.update(); 
       composer.render();
       labelRenderer.render(scene, camera);
-
-      // frameCount++;
-      // if (frameCount % 300 === 0) { 
-      //   console.log('[useAnimationLoop] Animate function still running.');
-      // }
     };
 
-    console.log('[useAnimationLoop] Starting animation loop.');
+    // console.log('[useAnimationLoop] Starting animation loop.');
     animate();
 
     return () => {
-      console.log('[useAnimationLoop] Cancelling animation frame.');
+      // console.log('[useAnimationLoop] Cancelling animation frame.');
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isSceneReady, isControlsReady, sceneRef, cameraRef, controlsRef, composerRef, labelRendererRef]);
+  }, [isSceneReady, isControlsReady, sceneRef, cameraRef, controlsRef, composerRef, labelRendererRef, onFrameUpdate]); // Adicionado onFrameUpdate às dependências
 }
-
