@@ -150,7 +150,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     onSelectEquipment,
     hoveredEquipmentTag,
     setHoveredEquipmentTag,
-    cameraState: programmaticCameraState,
+    cameraState: programmaticCameraState, // Renomeado para clareza no contexto do hook
     onCameraChange,
     initialCameraPosition,
     initialCameraLookAt,
@@ -272,25 +272,29 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
   // Efeito para aplicar mudanças de câmera programáticas (e.g., de undo/redo ou foco inicial)
   useEffect(() => {
     if (programmaticCameraState && cameraRef.current && controlsRef.current && isSceneReady && isControlsReady) {
-      console.log('[ThreeScene] Programmatic camera state change detected. Starting animation.', programmaticCameraState);
       const targetPosition = new THREE.Vector3(programmaticCameraState.position.x, programmaticCameraState.position.y, programmaticCameraState.position.z);
       const targetLookAt = new THREE.Vector3(programmaticCameraState.lookAt.x, programmaticCameraState.lookAt.y, programmaticCameraState.lookAt.z);
-      
-      if (cameraRef.current.position.equals(targetPosition) && controlsRef.current.target.equals(targetLookAt)) {
-        return;
+
+      // Só inicia a animação se o estado programático for DIFERENTE do estado atual da câmera.
+      // Isso evita que a animação seja acionada por atualizações de estado que refletem
+      // a posição para a qual a câmera acabou de se mover manualmente ou por uma animação anterior.
+      const isAlreadyAtTarget = cameraRef.current.position.equals(targetPosition) && controlsRef.current.target.equals(targetLookAt);
+
+      if (!isAlreadyAtTarget) {
+        console.log('[ThreeScene] Programmatic camera state change detected AND camera is not already at target. Starting animation.', programmaticCameraState);
+        startCameraAnimation(targetPosition, targetLookAt);
+      } else {
+        // console.log('[ThreeScene] Programmatic camera state change detected BUT camera is already at target. Skipping animation.', programmaticCameraState);
       }
-      startCameraAnimation(targetPosition, targetLookAt);
     }
   }, [programmaticCameraState, isSceneReady, isControlsReady, startCameraAnimation, cameraRef, controlsRef]);
 
 
   // Efeito para lidar com o foco em um sistema específico
   useEffect(() => {
-    // console.log(`[ThreeScene] targetSystemToFrame useEffect triggered. Target: ${JSON.stringify(targetSystemToFrame)}, isSceneReady: ${isSceneReady}, isControlsReady: ${isControlsReady}`);
     if (!targetSystemToFrame || !sceneRef.current || !cameraRef.current || !controlsRef.current || !isSceneReady || !isControlsReady || !equipmentMeshesRef.current || equipmentMeshesRef.current.length === 0) {
       if (targetSystemToFrame && typeof onSystemFramedRef.current === 'function') {
-        // console.log('[ThreeScene] Conditions not met for focusing, calling onSystemFramed early.');
-        onSystemFramedRef.current(); 
+        onSystemFramedRef.current();
       }
       return;
     }
@@ -298,51 +302,41 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     const systemMeshes = equipmentMeshesRef.current.filter(
         (mesh) => mesh.userData.sistema === targetSystemToFrame.systemName && mesh.visible
     );
-    // console.log(`[ThreeScene] Found ${systemMeshes.length} meshes for system: ${targetSystemToFrame.systemName}`);
-
 
     if (systemMeshes.length === 0) {
-      // console.log('[ThreeScene] No meshes found for system, calling onSystemFramed.');
       if (typeof onSystemFramedRef.current === 'function') onSystemFramedRef.current();
       return;
     }
 
     const viewOptions: SystemViewOptions | null = calculateViewForMeshes(systemMeshes, cameraRef.current);
-    // console.log(`[ThreeScene] Calculated view options for system ${targetSystemToFrame.systemName}: `, viewOptions);
-    
+
     if (viewOptions) {
       let selectedView: SystemView;
       switch (targetSystemToFrame.viewIndex) {
-        case 1: 
+        case 1:
           selectedView = viewOptions.topDown;
-          // console.log('[ThreeScene] Selecting topDown view: ', selectedView);
           break;
-        case 2: 
+        case 2:
           selectedView = viewOptions.isometric;
-          // console.log('[ThreeScene] Selecting isometric view: ', selectedView);
           break;
-        case 0: 
+        case 0:
         default:
           selectedView = viewOptions.default;
-          // console.log('[ThreeScene] Selecting default view: ', selectedView);
           break;
       }
-      
-      // console.log(`[ThreeScene] Applying selected view (index ${targetSystemToFrame.viewIndex}) to camera: `, selectedView);
+
       const targetPositionVec = new THREE.Vector3(selectedView.position.x, selectedView.position.y, selectedView.position.z);
       const targetLookAtVec = new THREE.Vector3(selectedView.lookAt.x, selectedView.lookAt.y, selectedView.lookAt.z);
 
       startCameraAnimation(targetPositionVec, targetLookAtVec, () => {
-        // console.log('[ThreeScene] Animation complete. Calling onCameraChange and onSystemFramed.');
         if (typeof onCameraChangeRef.current === 'function') {
-          onCameraChangeRef.current(selectedView); 
+          onCameraChangeRef.current(selectedView);
         }
         if (typeof onSystemFramedRef.current === 'function') {
           onSystemFramedRef.current();
         }
       });
     } else {
-      // console.log('[ThreeScene] No view options calculated, calling onSystemFramed.');
       if (typeof onSystemFramedRef.current === 'function') {
         onSystemFramedRef.current();
       }
@@ -365,14 +359,14 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
       if (alpha >= 1) {
         isAnimatingRef.current = false;
         if (controlsRef.current) controlsRef.current.enabled = true;
-        
+
         if (animationOnCompleteCallbackRef.current) {
           animationOnCompleteCallbackRef.current();
-          animationOnCompleteCallbackRef.current = null; 
+          animationOnCompleteCallbackRef.current = null;
         }
       }
     }
-  }, [cameraRef, controlsRef]); 
+  }, [cameraRef, controlsRef]);
 
 
   useAnimationLoop({
@@ -383,7 +377,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     controlsRef,
     composerRef,
     labelRendererRef,
-    onFrameUpdate: handleFrameUpdate, 
+    onFrameUpdate: handleFrameUpdate,
   });
 
   return <div ref={mountRef} className="w-full h-full" />;
