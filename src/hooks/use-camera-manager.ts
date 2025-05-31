@@ -5,8 +5,8 @@
  *     class UseCameraManagerReturn {
  *       +currentCameraState: CameraState | undefined
  *       +targetSystemToFrame: TargetSystemInfo | null
- *       +focusedSystemName: string | null
- *       +currentViewIndex: number
+ *       +focusedSystemName: string | null // Estado React para UI
+ *       +currentViewIndex: number // Estado React para UI
  *       +handleSetCameraViewForSystem(systemName: string): void
  *       +handleCameraChangeFromScene(newSceneCameraState: CameraState): void
  *       +onSystemFramed(): void
@@ -64,8 +64,8 @@ export interface UseCameraManagerProps {
  *                                                       Pode ser `undefined` antes da inicialização completa.
  * @property {TargetSystemInfo | null} targetSystemToFrame - Informações sobre o sistema alvo e a visão desejada.
  *                                                Null se nenhum sistema estiver sendo focado.
- * @property {string | null} focusedSystemName - O nome do sistema que está atualmente em foco para ciclo de visões.
- * @property {number} currentViewIndex - O índice da visão atual para o `focusedSystemName`.
+ * @property {string | null} focusedSystemName - O nome do sistema que está atualmente em foco para ciclo de visões (estado React para UI).
+ * @property {number} currentViewIndex - O índice da visão atual para o `focusedSystemName` (estado React para UI).
  * @property {(systemName: string) => void} handleSetCameraViewForSystem - Função para definir o sistema alvo e ciclar pelas visões.
  * @property {(newSceneCameraState: CameraState) => void} handleCameraChangeFromScene - Manipula mudanças de câmera provenientes da cena 3D
  *                                                                                    e as registra no histórico de comandos.
@@ -77,8 +77,8 @@ export interface UseCameraManagerProps {
 export interface UseCameraManagerReturn {
   currentCameraState: CameraState | undefined;
   targetSystemToFrame: TargetSystemInfo | null;
-  focusedSystemName: string | null;
-  currentViewIndex: number;
+  focusedSystemName: string | null; // Estado React para UI, pode ser usado por outros componentes
+  currentViewIndex: number;      // Estado React para UI
   handleSetCameraViewForSystem: (systemName: string) => void;
   handleCameraChangeFromScene: (newSceneCameraState: CameraState) => void;
   onSystemFramed: () => void;
@@ -98,8 +98,14 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
     lookAt: defaultInitialCameraLookAt,
   });
   const [targetSystemToFrame, setTargetSystemToFrame] = useState<TargetSystemInfo | null>(null);
-  const [focusedSystemName, setFocusedSystemName] = useState<string | null>(null);
-  const [currentViewIndex, setCurrentViewIndex] = useState<number>(0);
+  
+  // Estados React para UI, se necessário para outros componentes lerem
+  const [focusedSystemNameUI, setFocusedSystemNameUI] = useState<string | null>(null);
+  const [currentViewIndexUI, setCurrentViewIndexUI] = useState<number>(0);
+  
+  // Refs para o estado lógico interno e persistente do ciclo
+  const focusedSystemRef = useRef<string | null>(null);
+  const currentViewIndexRef = useRef<number>(0);
   
   const previousCameraStateRef = useRef<CameraState | undefined>(currentCameraState);
 
@@ -107,43 +113,39 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
     previousCameraStateRef.current = currentCameraState;
   }, [currentCameraState]);
 
-
   const handleSetCameraViewForSystem = useCallback((systemName: string) => {
-    console.log(`[useCameraManager] handleSetCameraViewForSystem CALLED with systemName: ${systemName}`);
-
-    setFocusedSystemName(prevFocusedSystem => {
-        console.log(`[useCameraManager] INSIDE setFocusedSystemName. systemName: ${systemName}, prevFocusedSystem: ${prevFocusedSystem}`);
-        
-        setCurrentViewIndex(prevCurrentViewIndex => {
-            console.log(`[useCameraManager] INSIDE setCurrentViewIndex. systemName: ${systemName}, prevFocusedSystem: ${prevFocusedSystem}, prevCurrentViewIndex: ${prevCurrentViewIndex}`);
-            
-            let nextViewIndex;
-            if (systemName === prevFocusedSystem) { // Compara com o estado anterior de focusedSystemName
-                nextViewIndex = (prevCurrentViewIndex + 1) % NUMBER_OF_VIEWS;
-                console.log(`[useCameraManager] SAME system. prevCurrentViewIndex: ${prevCurrentViewIndex}, nextViewIndex: ${nextViewIndex}`);
-            } else {
-                nextViewIndex = 0; // Novo sistema, reseta o índice
-                console.log(`[useCameraManager] NEW system (Incoming: ${systemName}, Previous focused: ${prevFocusedSystem}). Resetting view index to: ${nextViewIndex}`);
-            }
-            
-            const newTargetSystemInfo: TargetSystemInfo = { systemName, viewIndex: nextViewIndex };
-            // setTargetSystemToFrame precisa ser chamado fora do setState de outro estado se possível,
-            // mas como newTargetSystemInfo depende de nextViewIndex, colocamos aqui.
-            // No entanto, para evitar chamadas de setTargetSystemToFrame dentro de setCurrentViewIndex,
-            // seria melhor calcular nextViewIndex e newTargetSystemInfo fora,
-            // e então chamar os setters. Mas dado o fluxo aqui, está OK.
-            setTargetSystemToFrame(newTargetSystemInfo); 
-            console.log(`[useCameraManager] Setting targetSystemToFrame: `, newTargetSystemInfo);
-            console.log(`[useCameraManager] currentViewIndex will be: ${nextViewIndex}`);
-            return nextViewIndex; // Retorna o novo valor para setCurrentViewIndex
-        });
-        
-        console.log(`[useCameraManager] focusedSystemName will be: ${systemName}`);
-        return systemName; // Retorna o novo valor para setFocusedSystemName
-    });
-
-}, [setFocusedSystemName, setCurrentViewIndex, setTargetSystemToFrame]);
-
+    console.log(`[useCameraManager] handleSetCameraViewForSystem CALLED with systemName: ${systemName}, current focusedSystem (from ref): ${focusedSystemRef.current}`);
+    
+    let nextViewIndex: number;
+    
+    if (systemName === focusedSystemRef.current) {
+      // Mesmo sistema - avançar para próxima visualização
+      nextViewIndex = (currentViewIndexRef.current + 1) % NUMBER_OF_VIEWS;
+      console.log(`[useCameraManager] SAME system. Current viewIndex (from ref): ${currentViewIndexRef.current}, nextViewIndex: ${nextViewIndex}`);
+    } else {
+      // Novo sistema - resetar para visualização padrão
+      nextViewIndex = 0;
+      console.log(`[useCameraManager] NEW system (Incoming: ${systemName}, Current focused from ref: ${focusedSystemRef.current}). Resetting view index to: ${nextViewIndex}`);
+    }
+    
+    // Atualizar refs imediatamente para a lógica interna
+    focusedSystemRef.current = systemName;
+    currentViewIndexRef.current = nextViewIndex;
+    
+    // Atualizar estados React para UI, se necessário por outros componentes
+    setFocusedSystemNameUI(systemName);
+    setCurrentViewIndexUI(nextViewIndex);
+    
+    // Disparar a mudança de visualização
+    const newTargetSystemInfo: TargetSystemInfo = { 
+      systemName, 
+      viewIndex: nextViewIndex 
+    };
+    
+    console.log(`[useCameraManager] Setting targetSystemToFrame:`, newTargetSystemInfo);
+    setTargetSystemToFrame(newTargetSystemInfo);
+  }, [setTargetSystemToFrame, setFocusedSystemNameUI, setCurrentViewIndexUI]); // Depende apenas das funções set estáveis
+  
 
   /**
    * Manipula as mudanças de câmera provenientes da cena 3D (e.g., órbita do usuário).
@@ -160,17 +162,26 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
 
     console.log('[useCameraManager] handleCameraChangeFromScene. New state:', newSceneCameraState, 'Old snapshot:', oldCameraStateSnapshot);
 
-    setFocusedSystemName(null); 
-    setCurrentViewIndex(0); 
+    // Resetar o foco do sistema e o índice da visão se a câmera for movida manualmente
+    // e a mudança não for trivial (comparado com o estado que seria definido por targetSystemToFrame)
+    if (targetSystemToFrame === null) { // Só reseta se não estiver no meio de um enquadramento programático
+        focusedSystemRef.current = null;
+        currentViewIndexRef.current = 0;
+        setFocusedSystemNameUI(null);
+        setCurrentViewIndexUI(0);
+        console.log('[useCameraManager] Manual camera move detected, resetting focused system and view index.');
+    }
+
 
     if (oldCameraStateSnapshot &&
-        Math.abs(oldCameraStateSnapshot.position.x - newSceneCameraState.position.x) < 0.01 &&
-        Math.abs(oldCameraStateSnapshot.position.y - newSceneCameraState.position.y) < 0.01 &&
-        Math.abs(oldCameraStateSnapshot.position.z - newSceneCameraState.position.z) < 0.01 &&
-        Math.abs(oldCameraStateSnapshot.lookAt.x - newSceneCameraState.lookAt.x) < 0.01 &&
-        Math.abs(oldCameraStateSnapshot.lookAt.y - newSceneCameraState.lookAt.y) < 0.01 &&
-        Math.abs(oldCameraStateSnapshot.lookAt.z - newSceneCameraState.lookAt.z) < 0.01) {
+        Math.abs(oldCameraStateSnapshot.position.x - newSceneCameraState.position.x) < 0.001 &&
+        Math.abs(oldCameraStateSnapshot.position.y - newSceneCameraState.position.y) < 0.001 &&
+        Math.abs(oldCameraStateSnapshot.position.z - newSceneCameraState.position.z) < 0.001 &&
+        Math.abs(oldCameraStateSnapshot.lookAt.x - newSceneCameraState.lookAt.x) < 0.001 &&
+        Math.abs(oldCameraStateSnapshot.lookAt.y - newSceneCameraState.lookAt.y) < 0.001 &&
+        Math.abs(oldCameraStateSnapshot.lookAt.z - newSceneCameraState.lookAt.z) < 0.001) {
       console.log('[useCameraManager] Camera change too small, not creating command.');
+      // Mesmo que pequeno, atualizamos o estado para refletir a posição exata da cena
       setCurrentCameraState(newSceneCameraState); 
       return;
     }
@@ -184,7 +195,7 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
     };
     console.log('[useCameraManager] Executing CAMERA_MOVE command.');
     executeCommand(command);
-  }, [executeCommand]);
+  }, [executeCommand, targetSystemToFrame]); // Adicionado targetSystemToFrame como dependência
 
   /**
    * Callback para ser chamado pela ThreeScene após o enquadramento do sistema ser concluído.
@@ -198,8 +209,8 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
   return {
     currentCameraState,
     targetSystemToFrame,
-    focusedSystemName, 
-    currentViewIndex,  
+    focusedSystemName: focusedSystemNameUI, // Expõe o estado React para a UI
+    currentViewIndex: currentViewIndexUI,    // Expõe o estado React para a UI
     handleSetCameraViewForSystem,
     handleCameraChangeFromScene,
     onSystemFramed,
@@ -208,3 +219,5 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
   };
 }
 
+      
+      
