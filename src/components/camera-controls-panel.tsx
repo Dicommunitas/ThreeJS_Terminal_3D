@@ -1,4 +1,5 @@
 
+
 /**
  * Componente de painel para controles de câmera, especificamente para focar em sistemas.
  *
@@ -68,7 +69,10 @@ export function CameraControlsPanel({ systems, onSetView }: CameraControlsPanelP
             key={systemName}
             variant="outline"
             size="sm"
-            onClick={() => onSetView(systemName)}
+            onClick={() => {
+              console.log(`[CameraControlsPanel] Button clicked for system: ${systemName}`);
+              onSetView(systemName);
+            }}
             className="w-full"
           >
             {systemName}
@@ -83,3 +87,4 @@ export function CameraControlsPanel({ systems, onSetView }: CameraControlsPanelP
     </Card>
   );
 }
+

@@ -1,4 +1,5 @@
 
+
 /**
  * ```mermaid
  *   graph LR
@@ -77,15 +78,23 @@ export default function Terminal3DPage(): JSX.Element {
     handleProductChange,
   } = useEquipmentDataManager();
 
+  // O hook useCameraManager agora recebe onCameraChangeFromCommand
   const {
     currentCameraState,
     targetSystemToFrame, 
     handleSetCameraViewForSystem, 
-    handleCameraChangeFromScene,
+    handleCameraChangeFromScene, // Este é chamado pela ThreeScene quando OrbitControls muda a câmera
     onSystemFramed,
-    focusedSystemNameUI,      // Renomeado de focusedSystemName
-    currentViewIndexUI,       // Renomeado de currentViewIndex
-  } = useCameraManager({ executeCommand });
+    focusedSystemNameUI,
+    currentViewIndexUI,
+  } = useCameraManager({ 
+    executeCommand,
+    // onCameraChangeFromCommand: (newState) => {
+    //   // Se precisarmos forçar a ThreeScene a atualizar a câmera a partir de um comando (ex: undo de movimento de câmera)
+    //   // Isso pode envolver setar um estado que `programmaticCameraState` em ThreeScene observaria.
+    //   // Por agora, o currentCameraState do useCameraManager já deve servir para isso.
+    // }
+  });
 
   const {
     searchTerm,
@@ -130,7 +139,7 @@ export default function Terminal3DPage(): JSX.Element {
 
   
   const handleFocusAndSelectSystem = useCallback((systemName: string) => {
-    console.log(`[Terminal3DPage] handleFocusAndSelectSystem called for: ${systemName}`); // Log para investigar múltiplas chamadas
+    console.log(`[Terminal3DPage] handleFocusAndSelectSystem called for: ${systemName}`);
     handleSetCameraViewForSystem(systemName); 
     const equipmentInSystem = equipmentData 
       .filter(equip => equip.sistema === systemName)
@@ -197,8 +206,8 @@ export default function Terminal3DPage(): JSX.Element {
           onSelectEquipment={handleEquipmentClick}
           hoveredEquipmentTag={hoveredEquipmentTag}
           setHoveredEquipmentTag={handleSetHoveredEquipmentTag}
-          cameraState={currentCameraState}
-          onCameraChange={handleCameraChangeFromScene}
+          cameraState={currentCameraState} // Passa o estado da câmera para ThreeScene
+          onCameraChange={handleCameraChangeFromScene} // ThreeScene notifica quando a câmera é movida pelo usuário
           initialCameraPosition={defaultInitialCameraPosition}
           initialCameraLookAt={defaultInitialCameraLookAt}
           colorMode={colorMode}
@@ -272,3 +281,4 @@ export default function Terminal3DPage(): JSX.Element {
     </SidebarProvider>
   );
 }
+

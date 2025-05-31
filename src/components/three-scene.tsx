@@ -148,8 +148,8 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     onSelectEquipment,
     hoveredEquipmentTag,
     setHoveredEquipmentTag,
-    cameraState: programmaticCameraState,
-    onCameraChange,
+    cameraState: programmaticCameraState, // Estado da câmera vindo de comandos (undo/redo, foco em sistema)
+    onCameraChange, // Callback para notificar mudanças de câmera iniciadas na cena (OrbitControls)
     initialCameraPosition,
     initialCameraLookAt,
     colorMode,
@@ -160,6 +160,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
   const mountRef = useRef<HTMLDivElement>(null);
 
+  // Hook para setup inicial da cena (cena, câmera, renderizadores, controles básicos)
   const {
     sceneRef,
     cameraRef,
@@ -168,24 +169,23 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     composerRef,
     outlinePassRef,
     groundMeshRef,
-    isSceneReady,
-    isControlsReady,
+    isSceneReady, // Flag que indica se a infraestrutura básica da cena está pronta
+    isControlsReady, // Flag que indica se OrbitControls estão prontos
   }: UseSceneSetupReturn = useSceneSetup({
     mountRef,
     initialCameraPosition,
     initialCameraLookAt,
-    onCameraChange,
+    onCameraChange, // Passa o callback para useSceneSetup, que o atachará ao 'end' do OrbitControls
   });
 
-  // useEffect(() => {
-  //    console.log(`[ThreeScene] Props update. isSceneReady: ${isSceneReady}, isControlsReady: ${isControlsReady}`);
-  // }, [isSceneReady, isControlsReady]);
 
+  // Refs para os callbacks para garantir que as versões mais recentes sejam usadas dentro de useEffects
   const onCameraChangeRef = useRef(onCameraChange);
   const onSystemFramedRef = useRef(onSystemFramed);
   useEffect(() => { onCameraChangeRef.current = onCameraChange; }, [onCameraChange]);
   useEffect(() => { onSystemFramedRef.current = onSystemFramed; }, [onSystemFramed]);
 
+  // Callback para criar um mesh de equipamento individual, dependente do colorMode
   const createSingleEquipmentMesh = useCallback((item: Equipment): THREE.Object3D => {
     const finalColor = getEquipmentColor(item, colorMode);
     const material = new THREE.MeshStandardMaterial({
@@ -204,38 +204,42 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     mesh.userData = { tag: item.tag, type: item.type, sistema: item.sistema };
     mesh.castShadow = false;
     mesh.receiveShadow = false;
-    mesh.visible = true;
+    mesh.visible = true; // Visibilidade inicial, pode ser alterada por camadas
     return mesh;
-  }, [colorMode]);
+  }, [colorMode]); // Recriar esta função se colorMode mudar
 
+  // Hook para gerenciar a renderização dos meshes de equipamentos
   const equipmentMeshesRef = useEquipmentRenderer({
     sceneRef,
     isSceneReady,
-    equipmentData: equipment,
+    equipmentData: equipment, // Lista filtrada de equipamentos
     layers,
     colorMode,
     createSingleEquipmentMesh,
     groundMeshRef,
   });
 
+  // Hook para gerenciar a renderização dos pins de anotação
   useAnnotationPinRenderer({
     sceneRef,
     labelRendererRef,
     isSceneReady,
     annotations,
-    allEquipmentData: allEquipmentData,
+    allEquipmentData: allEquipmentData, // Lista completa para posicionamento correto dos pins
     layers,
   });
 
+  // Hook para gerenciar interações do mouse (clique para seleção, movimento para hover)
   useMouseInteractionManager({
     mountRef,
     cameraRef,
-    equipmentMeshesRef,
-    isSceneReady: isSceneReady && isControlsReady, 
+    equipmentMeshesRef, // Ref para os meshes atualmente na cena
+    isSceneReady: isSceneReady && isControlsReady, // Interação só quando tudo estiver pronto
     onSelectEquipment,
     setHoveredEquipmentTag,
   });
 
+  // Hook para gerenciar o efeito de contorno (outline)
   useSceneOutline({
     outlinePassRef,
     equipmentMeshesRef,
@@ -244,6 +248,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     isSceneReady,
   });
 
+  // Efeito para aplicar mudanças de câmera programáticas (e.g., de undo/redo ou foco inicial)
   useEffect(() => {
     if (programmaticCameraState && cameraRef.current && controlsRef.current && isSceneReady && isControlsReady) {
       const camera = cameraRef.current;
@@ -257,22 +262,21 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
       if (positionChanged || lookAtChanged) {
         const oldEnabled = controls.enabled;
-        controls.enabled = false;
+        controls.enabled = false; // Desabilita controles durante a mudança programática para evitar conflitos
         if (positionChanged) camera.position.copy(targetPosition);
         if (lookAtChanged) controls.target.copy(targetLookAt);
-        controls.update();
-        controls.enabled = oldEnabled;
+        controls.update(); // Necessário para que o target dos controles seja efetivado
+        controls.enabled = oldEnabled; // Reabilita os controles
       }
     }
   }, [programmaticCameraState, isSceneReady, isControlsReady, cameraRef, controlsRef]);
 
 
+  // Efeito para lidar com o foco em um sistema específico
   useEffect(() => {
-    // console.log(`[ThreeScene] targetSystemToFrame useEffect triggered. Target: ${JSON.stringify(targetSystemToFrame)}, isSceneReady: ${isSceneReady}, isControlsReady: ${isControlsReady}`);
     if (!targetSystemToFrame || !sceneRef.current || !cameraRef.current || !controlsRef.current || !isSceneReady || !isControlsReady || !equipmentMeshesRef.current || equipmentMeshesRef.current.length === 0) {
       if (targetSystemToFrame && typeof onSystemFramedRef.current === 'function') {
-        // console.log('[ThreeScene] Conditions not met for framing or target is null, calling onSystemFramed.');
-        onSystemFramedRef.current();
+        onSystemFramedRef.current(); // Limpa o target se não puder processar
       }
       return;
     }
@@ -280,49 +284,44 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     const systemMeshes = equipmentMeshesRef.current.filter(
         (mesh) => mesh.userData.sistema === targetSystemToFrame.systemName && mesh.visible
     );
-    // console.log(`[ThreeScene] Found ${systemMeshes.length} meshes for system: ${targetSystemToFrame.systemName}`);
 
     if (systemMeshes.length === 0) {
-      // console.log(`[ThreeScene] No visible meshes found for system: ${targetSystemToFrame.systemName}. Calling onSystemFramed.`);
       if (typeof onSystemFramedRef.current === 'function') onSystemFramedRef.current();
       return;
     }
 
+    // Calcula as diferentes opções de visualização para os meshes do sistema
     const viewOptions: SystemViewOptions | null = calculateViewForMeshes(systemMeshes, cameraRef.current);
-    // console.log(`[ThreeScene] Calculated view options for system ${targetSystemToFrame.systemName}:`, viewOptions);
-
+    
     if (viewOptions && typeof onCameraChangeRef.current === 'function') {
       let selectedView: SystemView;
       switch (targetSystemToFrame.viewIndex) {
-        case 1:
+        case 1: // topDown
           selectedView = viewOptions.topDown;
-          // console.log('[ThreeScene] Selecting topDown view:', selectedView);
           break;
-        case 2:
+        case 2: // isometric
           selectedView = viewOptions.isometric;
-          // console.log('[ThreeScene] Selecting isometric view:', selectedView);
           break;
-        case 0:
+        case 0: // default
         default:
           selectedView = viewOptions.default;
-          // console.log('[ThreeScene] Selecting default view:', selectedView);
           break;
       }
-      // console.log(`[ThreeScene] Applying selected view (index ${targetSystemToFrame.viewIndex}) to camera:`, selectedView);
-      onCameraChangeRef.current(selectedView);
-    } else {
-      // console.log('[ThreeScene] viewOptions is null or onCameraChangeRef.current is not a function.');
+      // Notifica o `useCameraManager` (via `onCameraChange`) sobre a nova visão calculada.
+      // O `useCameraManager` então decidirá se cria um comando de undo/redo para esta mudança.
+      // E `previousCameraStateRef` em `useCameraManager` será atualizado.
+      onCameraChangeRef.current(selectedView); 
     }
 
     if (typeof onSystemFramedRef.current === 'function') {
-      // console.log('[ThreeScene] Framing attempt complete, calling onSystemFramed.');
-      onSystemFramedRef.current();
+      onSystemFramedRef.current(); // Notifica que o processo de enquadramento (tentativa) foi concluído
     }
-  }, [targetSystemToFrame, isSceneReady, isControlsReady, equipmentMeshesRef, sceneRef, cameraRef, controlsRef]);
+  }, [targetSystemToFrame, isSceneReady, isControlsReady, equipmentMeshesRef, sceneRef, cameraRef, controlsRef ]); // Removido onCameraChangeRef e onSystemFramedRef das dependências, pois já usamos refs para eles.
 
+  // Hook para gerenciar o loop de animação principal (requestAnimationFrame)
   useAnimationLoop({
     isSceneReady,
-    isControlsReady,
+    isControlsReady, // Passa a flag de prontidão dos controles
     sceneRef,
     cameraRef,
     controlsRef,
@@ -334,3 +333,4 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 };
 
 export default ThreeScene;
+
