@@ -58,7 +58,7 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
  *     UseEquipmentRendererProps ..> RefObject_Scene_
  *     UseEquipmentRendererProps ..> RefObject_Mesh_
  * ```
- * 
+ *
  */
 export interface UseEquipmentRendererProps {
   sceneRef: React.RefObject<THREE.Scene | null>;
@@ -91,15 +91,14 @@ export function useEquipmentRenderer({
   const equipmentMeshesRef = useRef<THREE.Object3D[]>([]);
 
   useEffect(() => {
-    // console.log(`[useEquipmentRenderer] useEffect triggered. isSceneReady: ${isSceneReady}, equipmentData count: ${equipmentData.length}`);
+    // console.log(`[useEquipmentRenderer] useEffect triggered. isSceneReady: ${isSceneReady}, equipmentData count: ${equipmentData.length}, Layers: ${JSON.stringify(layers.map(l=>({id: l.id, visible: l.isVisible})))}`);
     if (!isSceneReady || !sceneRef.current || !Array.isArray(equipmentData)) {
       // console.log('[useEquipmentRenderer] Skipping update: Scene not ready or equipmentData invalid.');
-      // If scene is not ready, but we have meshes, ensure they are removed if equipmentData is empty or layers hide them
       if (sceneRef.current && equipmentMeshesRef.current.length > 0 && (!Array.isArray(equipmentData) || equipmentData.length === 0) ) {
          updateEquipmentMeshesInScene({
             scene: sceneRef.current,
             equipmentMeshesRef: equipmentMeshesRef,
-            newEquipmentData: [], // Force removal if equipmentData is empty
+            newEquipmentData: [],
             layers,
             colorMode,
             createSingleEquipmentMesh,
@@ -117,9 +116,12 @@ export function useEquipmentRenderer({
       createSingleEquipmentMesh,
       groundMeshRef,
     });
+    // console.log(`[useEquipmentRenderer] Updated. Meshes in ref: ${equipmentMeshesRef.current.length}`);
     // Cleanup of individual meshes (geometry, material) is handled by updateEquipmentMeshesInScene
     // when they are removed from the scene.
   }, [equipmentData, layers, colorMode, isSceneReady, sceneRef, createSingleEquipmentMesh, groundMeshRef]);
 
   return equipmentMeshesRef;
 }
+
+    

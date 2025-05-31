@@ -1,5 +1,4 @@
 
-
 /**
  * Utilitários para configurar elementos básicos e gerenciar meshes de equipamentos em uma cena Three.js.
  *
@@ -114,14 +113,14 @@ export function setupRenderPipeline(
   composer: EffectComposer;
   outlinePass: OutlinePass;
 } | null {
-  console.log('[setupRenderPipeline] Starting setup...');
+  // console.log('[setupRenderPipeline] Starting setup...');
   if (!mountElement) {
-    console.error('[setupRenderPipeline] mountElement is null. Aborting.');
+    // console.error('[setupRenderPipeline] mountElement is null. Aborting.');
     return null;
   }
   const initialWidth = Math.max(1, mountElement.clientWidth);
   const initialHeight = Math.max(1, mountElement.clientHeight);
-  console.log(`[setupRenderPipeline] Initial dimensions: ${initialWidth}x${initialHeight}`);
+  // console.log(`[setupRenderPipeline] Initial dimensions: ${initialWidth}x${initialHeight}`);
 
   // WebGL Renderer
   const renderer = new THREE.WebGLRenderer({
@@ -134,7 +133,7 @@ export function setupRenderPipeline(
   renderer.shadowMap.enabled = false; // Sombras desabilitadas para performance
   scene.background = new THREE.Color(0xA9C1D1); // Cor de fundo azulada/cinza claro
   scene.fog = new THREE.Fog(0xA9C1D1, 200, 1000);
-  console.log("[setupRenderPipeline] WebGLRenderer created.");
+  // console.log("[setupRenderPipeline] WebGLRenderer created.");
 
 
   // CSS2D Renderer para rótulos HTML
@@ -144,7 +143,7 @@ export function setupRenderPipeline(
   labelRenderer.domElement.style.top = '0px';
   labelRenderer.domElement.style.left = '0px';
   labelRenderer.domElement.style.pointerEvents = 'none';
-  console.log("[setupRenderPipeline] CSS2DRenderer created.");
+  // console.log("[setupRenderPipeline] CSS2DRenderer created.");
 
   // EffectComposer e Passes para Pós-Processamento
   const composer = new EffectComposer(renderer);
@@ -159,15 +158,15 @@ export function setupRenderPipeline(
   outlinePass.hiddenEdgeColor.set('#190a05');
   outlinePass.pulsePeriod = 0;
   composer.addPass(outlinePass);
-  console.log("[setupRenderPipeline] EffectComposer with RenderPass and OutlinePass created.");
+  // console.log("[setupRenderPipeline] EffectComposer with RenderPass and OutlinePass created.");
 
   if (!renderer.domElement.parentNode) {
     mountElement.appendChild(renderer.domElement);
-    console.log("[setupRenderPipeline] WebGLRenderer DOM element appended.");
+    // console.log("[setupRenderPipeline] WebGLRenderer DOM element appended.");
   }
   if (!labelRenderer.domElement.parentNode) {
     mountElement.appendChild(labelRenderer.domElement);
-    console.log("[setupRenderPipeline] CSS2DRenderer DOM element appended.");
+    // console.log("[setupRenderPipeline] CSS2DRenderer DOM element appended.");
   }
 
   return { renderer, labelRenderer, composer, outlinePass };
@@ -250,13 +249,14 @@ export function updateEquipmentMeshesInScene({
   createSingleEquipmentMesh,
   groundMeshRef,
 }: UpdateEquipmentMeshesParams): void {
-  // console.log(`[SceneElementsSetup.ts updateEquipmentMeshesInScene] Start. New data count: ${newEquipmentData.length}. Layers: ${JSON.stringify(layers)}`);
+  // console.log(`[updateEquipmentMeshesInScene] Updating. newEquipmentData count: ${newEquipmentData.length}, Layers: ${JSON.stringify(layers.map(l => ({ id: l.id, type: l.equipmentType, visible: l.isVisible })))}`);
+
   if (!scene) {
-    // console.warn("[SceneElementsSetup.ts updateEquipmentMeshesInScene] Scene is null. Aborting.");
+    // console.warn("[updateEquipmentMeshesInScene] Scene is null. Aborting.");
     return;
   }
   if (!equipmentMeshesRef || equipmentMeshesRef.current === undefined || equipmentMeshesRef.current === null) {
-    // console.warn("[SceneElementsSetup.ts updateEquipmentMeshesInScene] equipmentMeshesRef is invalid. Aborting.");
+    // console.warn("[updateEquipmentMeshesInScene] equipmentMeshesRef is invalid. Aborting.");
     return;
   }
 
@@ -278,7 +278,7 @@ export function updateEquipmentMeshesInScene({
     const isVisibleByLayer = layerForItem?.isVisible ?? (itemInNewData ? true : false);
 
     if (!tagsInNewData.has(itemTag) || (itemInNewData && !isVisibleByLayer)) {
-      // console.log(`[SceneElementsSetup.ts updateEquipmentMeshesInScene] Removing mesh: ${itemTag}. InNewData: ${tagsInNewData.has(itemTag)}, VisibleByLayer: ${isVisibleByLayer}`);
+      // console.log(`[updateEquipmentMeshesInScene] Removing mesh: ${itemTag}. InNewData: ${tagsInNewData.has(itemTag)}, VisibleByLayer: ${isVisibleByLayer}`);
       scene.remove(mesh);
       if (mesh instanceof THREE.Mesh) {
         mesh.geometry?.dispose();
@@ -305,7 +305,7 @@ export function updateEquipmentMeshesInScene({
     let existingMesh = currentMeshesByTag.get(item.tag);
 
     if (existingMesh) {
-        // console.log(`[SceneElementsSetup.ts updateEquipmentMeshesInScene] Removing existing mesh to update: ${item.tag}`);
+        // console.log(`[updateEquipmentMeshesInScene] Removing existing mesh to update: ${item.tag}`);
         scene.remove(existingMesh);
         if (existingMesh instanceof THREE.Mesh) {
             existingMesh.geometry?.dispose();
@@ -317,17 +317,15 @@ export function updateEquipmentMeshesInScene({
         }
     }
 
-    // console.log(`[SceneElementsSetup.ts updateEquipmentMeshesInScene] Creating new mesh for ${item.tag}.`);
     const newOrUpdatedMesh = createSingleEquipmentMesh(item);
-    newOrUpdatedMesh.visible = isVisibleByLayer;
+    newOrUpdatedMesh.visible = isVisibleByLayer; // Garante que a visibilidade inicial está correta
     scene.add(newOrUpdatedMesh);
     newVisibleMeshesList.push(newOrUpdatedMesh);
-    // console.log(`[SceneElementsSetup.ts updateEquipmentMeshesInScene] Added/Updated mesh ${item.tag} to scene. Visible: ${isVisibleByLayer}`);
+    // console.log(`[updateEquipmentMeshesInScene] Added/Updated mesh ${item.tag} to scene. Visible: ${isVisibleByLayer}`);
   });
 
   equipmentMeshesRef.current = newVisibleMeshesList;
-  // console.log(`[SceneElementsSetup.ts updateEquipmentMeshesInScene] Final equipmentMeshesRef.current count: ${equipmentMeshesRef.current.length}`);
-  // equipmentMeshesRef.current.forEach(m => console.log(`[SceneElementsSetup.ts updateEquipmentMeshesInScene] Mesh in scene: ${m.userData.tag}, visible: ${m.visible}`));
+  // console.log(`[updateEquipmentMeshesInScene] Finished. Meshes in sceneRef: ${newVisibleMeshesList.length}`);
 
 
   // 3. Gerenciar visibilidade do plano de chão
@@ -335,15 +333,17 @@ export function updateEquipmentMeshesInScene({
   if (terrainLayer && groundMeshRef && groundMeshRef.current) {
     const isGroundInScene = scene.children.some(child => child.uuid === groundMeshRef.current?.uuid);
     const groundShouldBeVisible = terrainLayer.isVisible;
-    // console.log(`[SceneElementsSetup.ts updateEquipmentMeshesInScene] Ground plane: layer.isVisible=${groundShouldBeVisible}, isGroundInScene=${isGroundInScene}`);
+    // console.log(`[updateEquipmentMeshesInScene] Ground plane: layer.isVisible=${groundShouldBeVisible}, isGroundInScene=${isGroundInScene}, currentMeshVisible: ${groundMeshRef.current.visible}`);
 
     if (groundShouldBeVisible && !isGroundInScene) {
       scene.add(groundMeshRef.current);
-      // console.log("[SceneElementsSetup.ts updateEquipmentMeshesInScene] Added ground plane to scene.");
+      // console.log("[updateEquipmentMeshesInScene] Added ground plane to scene.");
     } else if (!groundShouldBeVisible && isGroundInScene) {
       scene.remove(groundMeshRef.current);
-      // console.log("[SceneElementsSetup.ts updateEquipmentMeshesInScene] Removed ground plane from scene.");
+      // console.log("[updateEquipmentMeshesInScene] Removed ground plane from scene.");
     }
     groundMeshRef.current.visible = groundShouldBeVisible;
   }
 }
+
+    

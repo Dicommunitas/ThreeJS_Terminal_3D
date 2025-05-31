@@ -37,12 +37,12 @@
  *       SidebarContentLayout_Comp["SidebarContentLayout"];
  *     end
  * ```
- * 
+ *
  */
 "use client";
 
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
-import type { Equipment, Layer, Command, CameraState, Annotation, ColorMode, TargetSystemInfo } from '@/lib/types'; 
+import type { Equipment, Layer, Command, CameraState, Annotation, ColorMode, TargetSystemInfo } from '@/lib/types';
 import { useCommandHistory } from '@/hooks/use-command-history';
 import { SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarTrigger } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
@@ -72,15 +72,15 @@ export default function Terminal3DPage(): JSX.Element {
   const { executeCommand, undo, redo, canUndo, canRedo } = useCommandHistory();
 
   const {
-    equipmentData, 
+    equipmentData,
     handleOperationalStateChange,
     handleProductChange,
   } = useEquipmentDataManager();
 
   const {
     currentCameraState,
-    targetSystemToFrame, 
-    handleSetCameraViewForSystem, 
+    targetSystemToFrame,
+    handleSetCameraViewForSystem,
     handleCameraChangeFromScene,
     onSystemFramed,
     focusedSystemNameUI, // Mantido para UI, se necessário
@@ -96,8 +96,8 @@ export default function Terminal3DPage(): JSX.Element {
     setSelectedArea,
     availableSistemas,
     availableAreas,
-    filteredEquipment, 
-  } = useFilterManager({ allEquipment: equipmentData }); 
+    filteredEquipment,
+  } = useFilterManager({ allEquipment: equipmentData });
 
   const {
     annotations,
@@ -109,52 +109,52 @@ export default function Terminal3DPage(): JSX.Element {
     handleDeleteAnnotation,
     getAnnotationForEquipment,
     setIsAnnotationDialogOpen,
-  } = useAnnotationManager({ equipmentData }); 
+  } = useAnnotationManager({ equipmentData });
 
   const {
     selectedEquipmentTags,
     hoveredEquipmentTag,
-    handleEquipmentClick, 
-    handleSetHoveredEquipmentTag, 
-    selectTagsBatch, 
-  } = useEquipmentSelectionManager({ equipmentData, executeCommand }); 
+    handleEquipmentClick,
+    handleSetHoveredEquipmentTag,
+    selectTagsBatch,
+  } = useEquipmentSelectionManager({ equipmentData, executeCommand });
 
   const { layers, handleToggleLayer } = useLayerManager({ executeCommand });
 
   const [colorMode, setColorMode] = useState<ColorMode>('Estado Operacional');
-  
+
   const cameraViewSystems = useMemo(() => {
     return availableSistemas.filter(s => s !== 'All');
   }, [availableSistemas]);
 
   const isFocusingRef = useRef(false);
   const focusTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  
+
   const handleFocusAndSelectSystem = useCallback((systemName: string) => {
-    console.log(`[Terminal3DPage] Attempting to focus on: ${systemName}, isFocusing: ${isFocusingRef.current}`);
+    // console.log(`[Terminal3DPage] Attempting to focus on: ${systemName}, isFocusing: ${isFocusingRef.current}`);
     if (isFocusingRef.current) {
-      console.log(`[Terminal3DPage] Focus operation already in progress for ${systemName}. Ignoring subsequent call.`);
+      // console.log(`[Terminal3DPage] Focus operation already in progress for ${systemName}. Ignoring subsequent call.`);
       return;
     }
 
     isFocusingRef.current = true;
-    console.log(`[Terminal3DPage] handleFocusAndSelectSystem called for: ${systemName}`);
-    
-    handleSetCameraViewForSystem(systemName); 
-    const equipmentInSystem = equipmentData 
+    // console.log(`[Terminal3DPage] handleFocusAndSelectSystem called for: ${systemName}`);
+
+    handleSetCameraViewForSystem(systemName);
+    const equipmentInSystem = equipmentData
       .filter(equip => equip.sistema === systemName)
       .map(equip => equip.tag);
-    selectTagsBatch(equipmentInSystem, `Focado e selecionado sistema ${systemName}.`); 
+    selectTagsBatch(equipmentInSystem, `Focado e selecionado sistema ${systemName}.`);
 
     if (focusTimeoutRef.current) {
       clearTimeout(focusTimeoutRef.current);
     }
     focusTimeoutRef.current = setTimeout(() => {
       isFocusingRef.current = false;
-      console.log(`[Terminal3DPage] Focus lock released for ${systemName}.`);
+      // console.log(`[Terminal3DPage] Focus lock released for ${systemName}.`);
     }, 100); // 100ms debounce window
 
-  }, [equipmentData, handleSetCameraViewForSystem, selectTagsBatch]); // Adicionadas as dependências corretas
+  }, [equipmentData, handleSetCameraViewForSystem, selectTagsBatch]);
 
   useEffect(() => {
     // Cleanup timeout on component unmount
@@ -168,7 +168,7 @@ export default function Terminal3DPage(): JSX.Element {
   const selectedEquipmentDetails = useMemo(() => {
     if (selectedEquipmentTags.length === 1) {
       const tag = selectedEquipmentTags[0];
-      return equipmentData.find(e => e.tag === tag) || null; 
+      return equipmentData.find(e => e.tag === tag) || null;
     }
     return null;
   }, [selectedEquipmentTags, equipmentData]);
@@ -182,7 +182,7 @@ export default function Terminal3DPage(): JSX.Element {
 
   const availableOperationalStatesList = useMemo(() => {
     const states = new Set<string>();
-    equipmentData.forEach(equip => { 
+    equipmentData.forEach(equip => {
       if (equip.operationalState) states.add(equip.operationalState);
     });
     const sortedStates = Array.from(states).sort((a, b) => {
@@ -195,7 +195,7 @@ export default function Terminal3DPage(): JSX.Element {
 
   const availableProductsList = useMemo(() => {
     const products = new Set<string>();
-    equipmentData.forEach(equip => { 
+    equipmentData.forEach(equip => {
       if (equip.product) products.add(equip.product);
     });
      const sortedProducts = Array.from(products).sort((a,b) => {
@@ -206,13 +206,23 @@ export default function Terminal3DPage(): JSX.Element {
     return sortedProducts;
   }, [equipmentData]);
 
+  // Log para depurar dados passados para MainSceneArea
+  useEffect(() => {
+    console.log('[Page.tsx] Data for MainSceneArea:', {
+      filteredEquipmentCount: filteredEquipment.length,
+      allEquipmentDataCount: equipmentData.length,
+      layers: layers.map(l => ({ id: l.id, visible: l.isVisible })),
+      currentCameraState,
+    });
+  }, [filteredEquipment, equipmentData, layers, currentCameraState]);
+
 
   return (
     <SidebarProvider defaultOpen={false}>
       <div className="h-screen flex-1 flex flex-col relative min-w-0 overflow-x-hidden">
         <MainSceneArea
-          equipment={filteredEquipment} 
-          allEquipmentData={equipmentData} 
+          equipment={filteredEquipment}
+          allEquipmentData={equipmentData}
           layers={layers}
           annotations={annotations}
           selectedEquipmentTags={selectedEquipmentTags}
@@ -224,7 +234,7 @@ export default function Terminal3DPage(): JSX.Element {
           initialCameraPosition={defaultInitialCameraPosition}
           initialCameraLookAt={defaultInitialCameraLookAt}
           colorMode={colorMode}
-          targetSystemToFrame={targetSystemToFrame} 
+          targetSystemToFrame={targetSystemToFrame}
           onSystemFramed={onSystemFramed}
           selectedEquipmentDetails={selectedEquipmentDetails}
           equipmentAnnotation={equipmentAnnotation}
@@ -294,3 +304,5 @@ export default function Terminal3DPage(): JSX.Element {
     </SidebarProvider>
   );
 }
+
+    
