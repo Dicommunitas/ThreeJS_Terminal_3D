@@ -39,6 +39,14 @@ export interface ThreeSceneProps {
 
 const ANIMATION_DURATION_MS = 700;
 
+const positionEqualsWithTolerance = (v1: THREE.Vector3, v2: THREE.Vector3, epsilon: number = 0.0001): boolean => {
+  return (
+    Math.abs(v1.x - v2.x) < epsilon &&
+    Math.abs(v1.y - v2.y) < epsilon &&
+    Math.abs(v1.z - v2.z) < epsilon
+  );
+};
+
 const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
   const {
     equipment,
@@ -151,7 +159,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
   });
 
   const startCameraAnimation = useCallback((targetPos: THREE.Vector3, targetLookAt: THREE.Vector3, onComplete?: () => void) => {
-    console.log('[ThreeScene] startCameraAnimation called. Target Pos:', targetPos, 'Target LookAt:', targetLookAt);
+    // console.log('[ThreeScene] startCameraAnimation called. Target Pos:', targetPos, 'Target LookAt:', targetLookAt);
     if (!cameraRef.current || !controlsRef.current) return;
 
     animationStartPosRef.current = cameraRef.current.position.clone();
@@ -173,13 +181,12 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
       const targetPosition = new THREE.Vector3(programmaticCameraState.position.x, programmaticCameraState.position.y, programmaticCameraState.position.z);
       const targetLookAt = new THREE.Vector3(programmaticCameraState.lookAt.x, programmaticCameraState.lookAt.y, programmaticCameraState.lookAt.z);
 
-      // Só inicia a animação se o estado programático for DIFERENTE do estado atual da câmera.
-      // Isso evita que a animação seja acionada por atualizações de estado que refletem
-      // a posição para a qual a câmera acabou de se mover manualmente ou por uma animação anterior.
-      const isAlreadyAtTarget = cameraRef.current.position.equals(targetPosition) && controlsRef.current.target.equals(targetLookAt);
+      const isAlreadyAtTarget =
+        positionEqualsWithTolerance(cameraRef.current.position, targetPosition) &&
+        positionEqualsWithTolerance(controlsRef.current.target, targetLookAt);
 
       if (!isAlreadyAtTarget) {
-        console.log('[ThreeScene] Programmatic camera state change detected AND camera is not already at target. Starting animation.', programmaticCameraState);
+        // console.log('[ThreeScene] Programmatic camera state change detected AND camera is not already at target. Starting animation.', programmaticCameraState);
         startCameraAnimation(targetPosition, targetLookAt);
       } else {
         // console.log('[ThreeScene] Programmatic camera state change detected BUT camera is already at target. Skipping animation.', programmaticCameraState);
