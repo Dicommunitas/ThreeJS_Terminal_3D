@@ -150,7 +150,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     onSelectEquipment,
     hoveredEquipmentTag,
     setHoveredEquipmentTag,
-    cameraState: programmaticCameraState, // Renomeado para clareza no contexto do hook
+    cameraState: programmaticCameraState, 
     onCameraChange,
     initialCameraPosition,
     initialCameraLookAt,
@@ -268,26 +268,6 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
       controlsRef.current.enabled = false;
     }
   }, [cameraRef, controlsRef]);
-
-  // Efeito para aplicar mudanças de câmera programáticas (e.g., de undo/redo ou foco inicial)
-  useEffect(() => {
-    if (programmaticCameraState && cameraRef.current && controlsRef.current && isSceneReady && isControlsReady) {
-      const targetPosition = new THREE.Vector3(programmaticCameraState.position.x, programmaticCameraState.position.y, programmaticCameraState.position.z);
-      const targetLookAt = new THREE.Vector3(programmaticCameraState.lookAt.x, programmaticCameraState.lookAt.y, programmaticCameraState.lookAt.z);
-
-      // Só inicia a animação se o estado programático for DIFERENTE do estado atual da câmera.
-      // Isso evita que a animação seja acionada por atualizações de estado que refletem
-      // a posição para a qual a câmera acabou de se mover manualmente ou por uma animação anterior.
-      const isAlreadyAtTarget = cameraRef.current.position.equals(targetPosition) && controlsRef.current.target.equals(targetLookAt);
-
-      if (!isAlreadyAtTarget) {
-        console.log('[ThreeScene] Programmatic camera state change detected AND camera is not already at target. Starting animation.', programmaticCameraState);
-        startCameraAnimation(targetPosition, targetLookAt);
-      } else {
-        // console.log('[ThreeScene] Programmatic camera state change detected BUT camera is already at target. Skipping animation.', programmaticCameraState);
-      }
-    }
-  }, [programmaticCameraState, isSceneReady, isControlsReady, startCameraAnimation, cameraRef, controlsRef]);
 
 
   // Efeito para lidar com o foco em um sistema específico
