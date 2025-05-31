@@ -1,5 +1,4 @@
 
-
 /**
  * Hook customizado para a configuração inicial de uma cena Three.js.
  *
@@ -17,7 +16,7 @@
  *       +mountRef: RefObject_HTMLDivElement_
  *       +initialCameraPosition: Point3D
  *       +initialCameraLookAt: Point3D
- *       +onCameraChange(cameraState: CameraState): void
+ *       +onCameraChange(cameraState: CameraState, actionDescription?: string): void
  *     }
  *     class UseSceneSetupReturn {
  *       +sceneRef: RefObject_Scene_
@@ -101,7 +100,7 @@ export interface UseSceneSetupProps {
   mountRef: React.RefObject<HTMLDivElement>;
   initialCameraPosition: { x: number; y: number; z: number };
   initialCameraLookAt: { x: number; y: number; z: number };
-  onCameraChange: (cameraState: CameraState) => void;
+  onCameraChange: (cameraState: CameraState, actionDescription?: string) => void;
 }
 
 /**
@@ -117,7 +116,7 @@ export interface UseSceneSetupReturn {
   outlinePassRef: React.RefObject<OutlinePass | null>;
   groundMeshRef: React.RefObject<THREE.Mesh | null>;
   isSceneReady: boolean;
-  isControlsReady: boolean; 
+  isControlsReady: boolean;
 }
 
 /**
@@ -131,7 +130,7 @@ export interface UseSceneSetupReturn {
  */
 export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn => {
   const { mountRef, initialCameraPosition, initialCameraLookAt, onCameraChange } = props;
-  console.log('[useSceneSetup] Hook initialized.');
+  // console.log('[useSceneSetup] Hook initialized.');
 
   const sceneRef = useRef<THREE.Scene | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
@@ -152,7 +151,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
     if (mountRef.current && cameraRef.current && rendererRef.current) {
       const width = Math.max(1, mountRef.current.clientWidth);
       const height = Math.max(1, mountRef.current.clientHeight);
-      console.log(`[useSceneSetup] handleResize called. New dimensions: ${width}x${height}`);
+      // console.log(`[useSceneSetup] handleResize called. New dimensions: ${width}x${height}`);
 
       cameraRef.current.aspect = width / height;
       cameraRef.current.updateProjectionMatrix();
@@ -162,115 +161,117 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
       composerRef.current?.setSize(width, height);
       outlinePassRef.current?.resolution.set(width, height);
     } else {
-      console.warn('[useSceneSetup] handleResize called, but refs are not ready.');
+      // console.warn('[useSceneSetup] handleResize called, but refs are not ready.');
     }
   }, [mountRef]);
 
   useEffect(() => {
-    console.log('[useSceneSetup] Main useEffect for scene setup START.');
+    // console.log('[useSceneSetup] Main useEffect for scene setup START.');
     const currentMount = mountRef.current;
     if (!currentMount) {
-      console.warn('[useSceneSetup] mountRef.current is null. Aborting setup.');
+      // console.warn('[useSceneSetup] mountRef.current is null. Aborting setup.');
       return;
     }
 
-    console.log('[useSceneSetup] Initializing Scene and Camera...');
+    // console.log('[useSceneSetup] Initializing Scene and Camera...');
     sceneRef.current = new THREE.Scene();
     cameraRef.current = new THREE.PerspectiveCamera(75, Math.max(1, currentMount.clientWidth) / Math.max(1, currentMount.clientHeight), 0.1, 2000);
     cameraRef.current.position.set(initialCameraPosition.x, initialCameraPosition.y, initialCameraPosition.z);
-    console.log('[useSceneSetup] Scene and Camera initialized.');
+    // console.log('[useSceneSetup] Scene and Camera initialized.');
 
-    console.log('[useSceneSetup] Setting up Render Pipeline...');
+    // console.log('[useSceneSetup] Setting up Render Pipeline...');
     const pipeline = setupRenderPipeline(currentMount, sceneRef.current, cameraRef.current);
     if (!pipeline) {
-      console.error("[useSceneSetup] Failed to setup render pipeline. Aborting setup.");
+      // console.error("[useSceneSetup] Failed to setup render pipeline. Aborting setup.");
       return;
     }
     rendererRef.current = pipeline.renderer;
     labelRendererRef.current = pipeline.labelRenderer;
     composerRef.current = pipeline.composer;
     outlinePassRef.current = pipeline.outlinePass;
-    console.log('[useSceneSetup] Render Pipeline setup complete.');
+    // console.log('[useSceneSetup] Render Pipeline setup complete.');
 
-    setIsSceneReady(true); // Set scene ready after basic pipeline setup
-    console.log('[useSceneSetup] isSceneReady set to true (after basic pipeline).');
-    handleResize(); // Perform initial resize
+    setIsSceneReady(true);
+    // console.log('[useSceneSetup] isSceneReady set to true (after basic pipeline).');
+    handleResize();
 
     const handleContextLost = (event: Event) => {
       event.preventDefault();
-      console.error("[useSceneSetup] WebGL context lost. Application may need to reinitialize resources.");
+      // console.error("[useSceneSetup] WebGL context lost. Application may need to reinitialize resources.");
     };
     const handleContextRestored = () => {
-      console.log("[useSceneSetup] WebGL context restored. Reinitializing scene if necessary.");
+      // console.log("[useSceneSetup] WebGL context restored. Reinitializing scene if necessary.");
       if (sceneRef.current && cameraRef.current && rendererRef.current) {
          rendererRef.current.compile(sceneRef.current, cameraRef.current);
-         console.log("[useSceneSetup] Attempted to recompile shaders on context restore.");
+        //  console.log("[useSceneSetup] Attempted to recompile shaders on context restore.");
       }
     };
 
     if (rendererRef.current) {
       rendererRef.current.domElement.addEventListener('webglcontextlost', handleContextLost, false);
       rendererRef.current.domElement.addEventListener('webglcontextrestored', handleContextRestored, false);
-      console.log("[useSceneSetup] WebGL context event listeners added.");
+      // console.log("[useSceneSetup] WebGL context event listeners added.");
     }
 
     if (sceneRef.current) {
-      console.log("[useSceneSetup] Setting up Lighting and Ground Plane...");
+      // console.log("[useSceneSetup] Setting up Lighting and Ground Plane...");
       setupLighting(sceneRef.current);
       groundMeshRef.current = setupGroundPlane(sceneRef.current);
-      console.log("[useSceneSetup] Lighting and Ground Plane setup complete.");
+      // console.log("[useSceneSetup] Lighting and Ground Plane setup complete.");
     }
 
     let localControls: OrbitControlsType | null = null;
 
-    console.log("[useSceneSetup] Importing OrbitControls...");
+    // console.log("[useSceneSetup] Importing OrbitControls...");
     import('three/examples/jsm/controls/OrbitControls.js')
       .then(module => {
-        console.log("[useSceneSetup] OrbitControls module loaded.");
+        // console.log("[useSceneSetup] OrbitControls module loaded.");
         const OrbitControls = module.OrbitControls;
         if (!cameraRef.current || !rendererRef.current?.domElement) {
-          console.error("[useSceneSetup] Failed to initialize OrbitControls: Camera or Renderer domElement not ready.");
-          setIsControlsReady(false); 
+          // console.error("[useSceneSetup] Failed to initialize OrbitControls: Camera or Renderer domElement not ready.");
+          setIsControlsReady(false);
           return;
         }
 
         localControls = new OrbitControls(cameraRef.current, rendererRef.current.domElement);
         controlsRef.current = localControls;
-        console.log("[useSceneSetup] OrbitControls initialized.");
+        // console.log("[useSceneSetup] OrbitControls initialized.");
 
         localControls.enableDamping = true;
 
         if (initialCameraLookAt) {
           localControls.target.set(initialCameraLookAt.x, initialCameraLookAt.y, initialCameraLookAt.z);
         } else {
-          console.warn("[useSceneSetup] initialLookAt is undefined during OrbitControls setup. Using default target (0,0,0).");
+          // console.warn("[useSceneSetup] initialLookAt is undefined during OrbitControls setup. Using default target (0,0,0).");
           localControls.target.set(0, 0, 0);
         }
 
         localControls.mouseButtons = {
           LEFT: THREE.MOUSE.ROTATE,
-          MIDDLE: THREE.MOUSE.ROTATE, 
+          MIDDLE: THREE.MOUSE.ROTATE,
           RIGHT: THREE.MOUSE.PAN
         };
         localControls.update();
-        console.log("[useSceneSetup] OrbitControls configured and updated.");
-        
+        // console.log("[useSceneSetup] OrbitControls configured and updated.");
+
         localControls.addEventListener('end', handleControlsChangeEnd);
-        setIsControlsReady(true); 
-        console.log("[useSceneSetup] isControlsReady set to true.");
+        setIsControlsReady(true);
+        // console.log("[useSceneSetup] isControlsReady set to true.");
       })
       .catch(err => {
-        console.error("[useSceneSetup] Failed to load OrbitControls", err);
-        setIsControlsReady(false); 
+        // console.error("[useSceneSetup] Failed to load OrbitControls", err);
+        setIsControlsReady(false);
       });
 
     const handleControlsChangeEnd = () => {
         if (cameraRef.current && controlsRef.current && onCameraChangeRef.current) {
-            console.log("[useSceneSetup] OrbitControls 'end' event triggered.");
+            // console.log("[useSceneSetup] OrbitControls 'end' event triggered.");
             const newCameraState: CameraState = {
             position: cameraRef.current.position.clone(),
             lookAt: controlsRef.current.target.clone(),
             };
+            // O terceiro argumento (descrição) é omitido aqui, pois é um movimento manual.
+            // A descrição padrão "Câmera movida pelo usuário" será usada em useCameraManager.
             onCameraChangeRef.current(newCameraState);
         }
     };
@@ -278,28 +279,28 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
     const resizeObserver = new ResizeObserver(() => handleResize());
     if (currentMount) {
         resizeObserver.observe(currentMount);
-        console.log("[useSceneSetup] ResizeObserver attached.");
+        // console.log("[useSceneSetup] ResizeObserver attached.");
     }
 
 
     return () => {
-      console.log('[useSceneSetup] Main useEffect CLEANUP running.');
-      
+      // console.log('[useSceneSetup] Main useEffect CLEANUP running.');
+
       if (currentMount) {
         resizeObserver.unobserve(currentMount);
-        console.log("[useSceneSetup] ResizeObserver detached.");
+        // console.log("[useSceneSetup] ResizeObserver detached.");
       }
 
       if (rendererRef.current) {
         rendererRef.current.domElement.removeEventListener('webglcontextlost', handleContextLost, false);
         rendererRef.current.domElement.removeEventListener('webglcontextrestored', handleContextRestored, false);
-        console.log("[useSceneSetup] WebGL context event listeners removed.");
+        // console.log("[useSceneSetup] WebGL context event listeners removed.");
       }
 
       if (localControls) {
         localControls.removeEventListener('end', handleControlsChangeEnd);
         localControls.dispose();
-        console.log("[useSceneSetup] OrbitControls disposed.");
+        // console.log("[useSceneSetup] OrbitControls disposed.");
       }
       controlsRef.current = null;
 
@@ -310,7 +311,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
         }
         sceneRef.current?.remove(groundMeshRef.current);
         groundMeshRef.current = null;
-        console.log("[useSceneSetup] Ground plane resources disposed.");
+        // console.log("[useSceneSetup] Ground plane resources disposed.");
       }
 
        composerRef.current?.passes.forEach(pass => {
@@ -320,7 +321,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
        });
        composerRef.current = null;
        outlinePassRef.current = null;
-       console.log("[useSceneSetup] Composer passes disposed.");
+      //  console.log("[useSceneSetup] Composer passes disposed.");
 
       if (rendererRef.current) {
          if (rendererRef.current.domElement.parentNode === currentMount) {
@@ -328,28 +329,26 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
          }
          rendererRef.current.dispose();
          rendererRef.current = null;
-         console.log("[useSceneSetup] WebGLRenderer disposed.");
+        //  console.log("[useSceneSetup] WebGLRenderer disposed.");
       }
 
       if (labelRendererRef.current) {
          if (labelRendererRef.current.domElement.parentNode === currentMount) {
              currentMount.removeChild(labelRendererRef.current.domElement);
          }
-         // CSS2DRenderer não tem um método dispose() explícito como o WebGLRenderer.
-         // A remoção do DOM é a principal limpeza.
          labelRendererRef.current = null;
-         console.log("[useSceneSetup] CSS2DRenderer cleaned up.");
+        //  console.log("[useSceneSetup] CSS2DRenderer cleaned up.");
       }
 
       sceneRef.current = null;
       cameraRef.current = null;
 
       setIsSceneReady(false);
-      setIsControlsReady(false); 
-      console.log('[useSceneSetup] Main useEffect CLEANUP finished. Scene and Controls set to NOT READY.');
+      setIsControlsReady(false);
+      // console.log('[useSceneSetup] Main useEffect CLEANUP finished. Scene and Controls set to NOT READY.');
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mountRef]); 
+  }, [mountRef]);
 
   return {
     sceneRef,
@@ -361,7 +360,6 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
     outlinePassRef,
     groundMeshRef,
     isSceneReady,
-    isControlsReady, 
+    isControlsReady,
   };
 };
-
