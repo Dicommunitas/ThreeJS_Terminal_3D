@@ -51,7 +51,7 @@ import type { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.j
  * Props para o hook useAnimationLoop.
  */
 export interface UseAnimationLoopProps {
-  isSceneReady: boolean; // Esta prop agora representa a prontidão combinada
+  isSceneReady: boolean;
   sceneRef: RefObject<THREE.Scene | null>;
   cameraRef: RefObject<THREE.PerspectiveCamera | null>;
   controlsRef: RefObject<OrbitControls | null>;
@@ -64,12 +64,12 @@ export interface UseAnimationLoopProps {
  * Hook customizado para gerenciar o loop de animação de uma cena Three.js.
  * Ele configura e executa o `requestAnimationFrame` para renderizar a cena
  * e atualizar os controles, o composer e o renderizador de rótulos.
- * O loop só é iniciado quando `isSceneReady` (a prontidão combinada) e todos os refs necessários estão populados.
+ * O loop só é iniciado quando `isSceneReady` e todos os refs necessários estão populados.
  *
  * @param {UseAnimationLoopProps} props - As props necessárias para o loop de animação.
  */
 export function useAnimationLoop({
-  isSceneReady, // Esta é a prop de prontidão combinada
+  isSceneReady,
   sceneRef,
   cameraRef,
   controlsRef,
@@ -78,12 +78,13 @@ export function useAnimationLoop({
   onFrameUpdate,
 }: UseAnimationLoopProps): void {
   useEffect(() => {
-    console.log(`[useAnimationLoop] useEffect triggered. isSceneReady (combined): ${isSceneReady}`);
+    console.log(`[useAnimationLoop] useEffect triggered. isSceneReady: ${isSceneReady}`);
 
     if (!isSceneReady) {
       console.log('[useAnimationLoop] Skipping: Combined readiness (isSceneReady prop) is false.');
       return;
     }
+    // Validação adicional para garantir que os refs não são null.
     if (!sceneRef.current) {
       console.log('[useAnimationLoop] Skipping: sceneRef.current is null.');
       return;
@@ -93,7 +94,7 @@ export function useAnimationLoop({
       return;
     }
     if (!controlsRef.current) {
-      console.log('[useAnimationLoop] Skipping: controlsRef.current is null.');
+      console.log('[useAnimationLoop] Skipping: controlsRef.current is null.'); // Log original
       return;
     }
     if (!composerRef.current) {
@@ -123,12 +124,16 @@ export function useAnimationLoop({
         onFrameUpdate();
       }
 
+      // Só atualiza os OrbitControls se eles estiverem habilitados.
+      // Isso evita que o damping ou o zoom do scroll interfiram na animação personalizada.
       if (controls.enabled) {
         controls.update();
       }
 
       if (cameraRef.current && sceneRef.current && controlsRef.current) {
-        console.log(`[AnimationLoop] Rendering. Camera Pos: ${cameraRef.current.position.x.toFixed(2)},${cameraRef.current.position.y.toFixed(2)},${cameraRef.current.position.z.toFixed(2)}. Target: ${controlsRef.current.target.x.toFixed(2)},${controlsRef.current.target.y.toFixed(2)},${controlsRef.current.target.z.toFixed(2)}. Zoom: ${cameraRef.current.zoom.toFixed(2)}. Scene children: ${sceneRef.current.children.length}`);
+        // Removido log repetitivo para evitar poluição do console em cada frame.
+        // Pode ser reativado para depuração específica, se necessário.
+        // console.log(`[AnimationLoop] Rendering. Camera Pos: ${cameraRef.current.position.x.toFixed(2)},${cameraRef.current.position.y.toFixed(2)},${cameraRef.current.position.z.toFixed(2)}. Target: ${controlsRef.current.target.x.toFixed(2)},${controlsRef.current.target.y.toFixed(2)},${controlsRef.current.target.z.toFixed(2)}. Zoom: ${cameraRef.current.zoom.toFixed(2)}. Scene children: ${sceneRef.current.children.length}`);
       } else {
         // console.log('[AnimationLoop] Rendering details skipped: camera, scene or controls ref not current during log.');
       }
