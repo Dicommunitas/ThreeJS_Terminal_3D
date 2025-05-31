@@ -1,5 +1,4 @@
 
-
 /**
  * Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
  * ATUALIZADO: Este componente foi refatorado para atuar como um "condutor", delegando a maior
@@ -115,7 +114,7 @@ export interface ThreeSceneProps {
   hoveredEquipmentTag: string | null | undefined;
   /** Callback para definir o equipamento em hover. */
   setHoveredEquipmentTag: (tag: string | null) => void;
-  /** O estado atual da câmera (posição, lookAt). */
+  /** O estado atual da câmera (posição, lookAt). Esta prop é usada para aplicar estados de câmera de forma programática. */
   cameraState: CameraState | undefined;
   /** Callback para quando o estado da câmera muda devido à interação do usuário na cena. */
   onCameraChange: (cameraState: CameraState) => void;
@@ -350,8 +349,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
 
   useAnimationLoop({
-    isSceneReady,
-    isControlsReady,
+    isSceneReady: isSceneReady && isControlsReady, // Garante que ambos estejam prontos
     sceneRef,
     cameraRef,
     controlsRef,
