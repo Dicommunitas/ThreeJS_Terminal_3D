@@ -66,15 +66,6 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     onSystemFramed,
   } = props;
 
-  // console.log('[ThreeScene] Props received:', {
-  //   equipmentCount: equipment.length,
-  //   allEquipmentDataCount: allEquipmentData.length,
-  //   layers: layers.map(l => ({ id: l.id, visible: l.isVisible })),
-  //   programmaticCameraState,
-  //   targetSystemToFrame,
-  // });
-
-
   const mountRef = useRef<HTMLDivElement>(null);
 
   const {
@@ -86,16 +77,13 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     outlinePassRef,
     groundMeshRef,
     isSceneReady,
-    isControlsReady, // Obtendo isControlsReady
+    isControlsReady, 
   }: UseSceneSetupReturn = useSceneSetup({
     mountRef,
     initialCameraPosition,
     initialCameraLookAt,
     onCameraChange,
   });
-
-  // console.log('[ThreeScene] Readiness state:', { isSceneReady, isControlsReady });
-
 
   const onCameraChangeRef = useRef(onCameraChange);
   const onSystemFramedRef = useRef(onSystemFramed);
@@ -129,7 +117,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     mesh.userData = { tag: item.tag, type: item.type, sistema: item.sistema };
     mesh.castShadow = false;
     mesh.receiveShadow = false;
-    mesh.visible = true; // A visibilidade será gerenciada por updateEquipmentMeshesInScene
+    mesh.visible = true; 
     return mesh;
   }, [colorMode]);
 
@@ -138,8 +126,8 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     cameraRef,
     controlsRef,
     isSceneReady,
-    isControlsReady, // Passando isControlsReady
-    equipmentData: equipment, // Passando equipment (que é filteredEquipment de page.tsx)
+    isControlsReady, 
+    equipmentData: equipment, 
     layers,
     colorMode,
     createSingleEquipmentMesh,
@@ -159,7 +147,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     mountRef,
     cameraRef,
     equipmentMeshesRef: equipmentMeshesRef,
-    isSceneReady: isSceneReady && isControlsReady, // Condição combinada
+    isSceneReady: isSceneReady && isControlsReady, 
     onSelectEquipment,
     setHoveredEquipmentTag,
   });
@@ -174,11 +162,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
 
   const startCameraAnimation = useCallback((targetPos: THREE.Vector3, targetLookAt: THREE.Vector3, onComplete?: () => void) => {
-    console.log('[ThreeScene] startCameraAnimation. Current Camera - Pos:', cameraRef.current?.position.clone(), 'Target:', controlsRef.current?.target.clone());
-    console.log('[ThreeScene] startCameraAnimation. Animation Target - Pos:', targetPos, 'LookAt:', targetLookAt);
-
     if (!cameraRef.current || !controlsRef.current) {
-      // console.log('[ThreeScene] startCameraAnimation: camera or controls not ready, aborting.');
       onComplete?.();
       return;
     }
@@ -192,41 +176,31 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     animationOnCompleteCallbackRef.current = onComplete || null;
 
     if (controlsRef.current) {
-      controlsRef.current.enabled = false; // Desabilita controles durante a animação
-      console.log('[ThreeScene] OrbitControls disabled for animation. controls.enabled:', controlsRef.current?.enabled);
+      controlsRef.current.enabled = false; 
     }
   }, [cameraRef, controlsRef]);
 
 
-  // Este useEffect foi restaurado para lidar com mudanças de câmera de Undo/Redo ou inicialização.
-  // A verificação de !isAlreadyAtTarget é crucial.
   useEffect(() => {
     if (programmaticCameraState && cameraRef.current && controlsRef.current && isSceneReady && isControlsReady) {
       const targetPosition = new THREE.Vector3(programmaticCameraState.position.x, programmaticCameraState.position.y, programmaticCameraState.position.z);
       const targetLookAt = new THREE.Vector3(programmaticCameraState.lookAt.x, programmaticCameraState.lookAt.y, programmaticCameraState.lookAt.z);
 
-      // Só inicia a animação se o estado programático for DIFERENTE do estado atual da câmera.
       const isAlreadyAtTarget = positionEqualsWithTolerance(cameraRef.current.position, targetPosition) && positionEqualsWithTolerance(controlsRef.current.target, targetLookAt);
 
       if (!isAlreadyAtTarget) {
-        console.log('[ThreeScene] Programmatic camera state change detected AND camera is not already at target. Starting animation.', programmaticCameraState);
         startCameraAnimation(targetPosition, targetLookAt);
-      } else {
-        // console.log('[ThreeScene] Programmatic camera state change detected BUT camera is already at target. Skipping animation.', programmaticCameraState);
       }
     }
   }, [programmaticCameraState, isSceneReady, isControlsReady, startCameraAnimation, cameraRef, controlsRef]);
 
 
-  // Efeito para lidar com o foco em um sistema específico
   useEffect(() => {
     if (!targetSystemToFrame) {
       return;
     }
-    // console.log('[ThreeScene] targetSystemToFrame changed:', targetSystemToFrame);
 
     if (!sceneRef.current || !cameraRef.current || !controlsRef.current || !isSceneReady || !isControlsReady) {
-      // console.log('[ThreeScene] targetSystemToFrame: Dependencies not ready, calling onSystemFramed early.');
       if (typeof onSystemFramedRef.current === 'function') {
         onSystemFramedRef.current();
       }
@@ -236,11 +210,9 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     const equipmentMeshesToConsider = equipmentMeshesRef.current;
 
     if (!equipmentMeshesToConsider || (equipmentMeshesToConsider.length === 0 && targetSystemToFrame.systemName !== 'INITIAL_LOAD_NO_SYSTEM')) {
-        // console.log('[ThreeScene] targetSystemToFrame: No equipment meshes to frame for system', targetSystemToFrame.systemName,'. Calling onSystemFramed.');
         if (typeof onSystemFramedRef.current === 'function') onSystemFramedRef.current();
         return;
     }
-
 
     let systemMeshes: THREE.Object3D[] = [];
     if (targetSystemToFrame.systemName !== 'INITIAL_LOAD_NO_SYSTEM') {
@@ -249,16 +221,13 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
         );
 
         if (systemMeshes.length === 0) {
-          // console.log('[ThreeScene] targetSystemToFrame: No visible meshes found for system', targetSystemToFrame.systemName,'. Calling onSystemFramed.');
           if (typeof onSystemFramedRef.current === 'function') onSystemFramedRef.current();
           return;
         }
     } else {
-        // console.log('[ThreeScene] targetSystemToFrame: Initial load, no specific system to frame. Using default view or current camera state.');
         if (typeof onSystemFramedRef.current === 'function') onSystemFramedRef.current();
         return;
     }
-
 
     const viewOptions: SystemViewOptions | null = calculateViewForMeshes(systemMeshes, cameraRef.current);
 
@@ -276,24 +245,19 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
           selectedView = viewOptions.default;
           break;
       }
-      console.log('[ThreeScene] Calculated view for system:', targetSystemToFrame.systemName, 'View Index:', targetSystemToFrame.viewIndex, 'Selected View:', selectedView);
 
       const targetPositionVec = new THREE.Vector3(selectedView.position.x, selectedView.position.y, selectedView.position.z);
       const targetLookAtVec = new THREE.Vector3(selectedView.lookAt.x, selectedView.lookAt.y, selectedView.lookAt.z);
 
       startCameraAnimation(targetPositionVec, targetLookAtVec, () => {
-        // console.log('[ThreeScene] Animation complete for system focus:', targetSystemToFrame.systemName);
         if (typeof onCameraChangeRef.current === 'function') {
-          // console.log('[ThreeScene] Calling onCameraChange after system focus animation.');
           onCameraChangeRef.current(selectedView);
         }
         if (typeof onSystemFramedRef.current === 'function') {
-          // console.log('[ThreeScene] Calling onSystemFramed after system focus animation.');
           onSystemFramedRef.current();
         }
       });
     } else {
-      // console.log('[ThreeScene] Could not calculate view for system', targetSystemToFrame.systemName, '. Calling onSystemFramed.');
       if (typeof onSystemFramedRef.current === 'function') {
         onSystemFramedRef.current();
       }
@@ -306,23 +270,25 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
       const elapsedTime = performance.now() - animationStartTimeRef.current;
       let alpha = Math.min(elapsedTime / ANIMATION_DURATION_MS, 1);
 
-      // Easing function (ease-out-quart)
       alpha = 1 - Math.pow(1 - alpha, 4);
 
       cameraRef.current.position.lerpVectors(animationStartPosRef.current, animationTargetPosRef.current, alpha);
       controlsRef.current.target.lerpVectors(animationStartLookAtRef.current, animationTargetLookAtRef.current, alpha);
-      controlsRef.current.update();
+      
+      // Importante: Chamar controls.update() AQUI se o target é modificado programaticamente
+      // e o damping está habilitado, para que os controles "saibam" da nova posição do target.
+      // No entanto, como os controles estão desabilitados (enabled=false) durante a animação,
+      // o .update() aqui pode não ter o efeito desejado de damping, mas é necessário
+      // para que os controles internos reflitam o novo target.
+      controlsRef.current.update(); 
 
       if (alpha >= 1) {
         isAnimatingRef.current = false;
         if (controlsRef.current) {
           controlsRef.current.enabled = true;
-          console.log('[ThreeScene] OrbitControls re-enabled after animation. controls.enabled:', controlsRef.current?.enabled);
-          console.log('[ThreeScene] Animation complete. Final Camera - Pos:', cameraRef.current?.position.clone(), 'Target:', controlsRef.current?.target.clone());
         }
 
         if (animationOnCompleteCallbackRef.current) {
-          // console.log('[ThreeScene] Executing animationOnCompleteCallback.');
           animationOnCompleteCallbackRef.current();
           animationOnCompleteCallbackRef.current = null;
         }
@@ -330,9 +296,36 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     }
   }, [cameraRef, controlsRef]);
 
+  // Efeito para interromper animação personalizada no scroll do mouse
+  useEffect(() => {
+    const currentMount = mountRef.current;
+
+    const handleWheel = () => {
+      if (isAnimatingRef.current) {
+        console.log('[ThreeScene] Wheel event detected during animation. Stopping custom animation.');
+        isAnimatingRef.current = false;
+        if (controlsRef.current) {
+          controlsRef.current.enabled = true; // Re-enable controls immediately for zoom
+        }
+        if (animationOnCompleteCallbackRef.current) {
+          console.log('[ThreeScene] Calling pending animation complete callback due to wheel interruption.');
+          animationOnCompleteCallbackRef.current();
+          animationOnCompleteCallbackRef.current = null;
+        }
+      }
+    };
+
+    if (currentMount && isSceneReady && isControlsReady) {
+      currentMount.addEventListener('wheel', handleWheel, { passive: true });
+      return () => {
+        currentMount.removeEventListener('wheel', handleWheel);
+      };
+    }
+  }, [isSceneReady, isControlsReady, controlsRef]);
+
 
   useAnimationLoop({
-    isSceneReady: isSceneReady && isControlsReady, // Garante que ambos estejam prontos
+    isSceneReady: isSceneReady && isControlsReady, 
     sceneRef,
     cameraRef,
     controlsRef,
@@ -345,3 +338,4 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 };
 
 export default ThreeScene;
+
