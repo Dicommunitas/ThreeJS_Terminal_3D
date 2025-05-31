@@ -79,12 +79,12 @@ export default function Terminal3DPage(): JSX.Element {
 
   const {
     currentCameraState,
-    targetSystemToFrame, // Agora é TargetSystemInfo | null
+    targetSystemToFrame, 
     handleSetCameraViewForSystem, 
     handleCameraChangeFromScene,
     onSystemFramed,
-    // focusedSystemName, // Não usado diretamente aqui, mas gerenciado pelo hook
-    // currentViewIndex, // Não usado diretamente aqui, mas gerenciado pelo hook
+    focusedSystemNameUI,      // Renomeado de focusedSystemName
+    currentViewIndexUI,       // Renomeado de currentViewIndex
   } = useCameraManager({ executeCommand });
 
   const {
@@ -130,6 +130,7 @@ export default function Terminal3DPage(): JSX.Element {
 
   
   const handleFocusAndSelectSystem = useCallback((systemName: string) => {
+    console.log(`[Terminal3DPage] handleFocusAndSelectSystem called for: ${systemName}`); // Log para investigar múltiplas chamadas
     handleSetCameraViewForSystem(systemName); 
     const equipmentInSystem = equipmentData 
       .filter(equip => equip.sistema === systemName)
@@ -201,7 +202,7 @@ export default function Terminal3DPage(): JSX.Element {
           initialCameraPosition={defaultInitialCameraPosition}
           initialCameraLookAt={defaultInitialCameraLookAt}
           colorMode={colorMode}
-          targetSystemToFrame={targetSystemToFrame} // Passa o tipo TargetSystemInfo | null
+          targetSystemToFrame={targetSystemToFrame} 
           onSystemFramed={onSystemFramed}
           selectedEquipmentDetails={selectedEquipmentDetails}
           equipmentAnnotation={equipmentAnnotation}

@@ -177,9 +177,9 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     onCameraChange,
   });
 
-  useEffect(() => {
-     console.log(`[ThreeScene] Props update. isSceneReady: ${isSceneReady}, isControlsReady: ${isControlsReady}`);
-  }, [isSceneReady, isControlsReady]);
+  // useEffect(() => {
+  //    console.log(`[ThreeScene] Props update. isSceneReady: ${isSceneReady}, isControlsReady: ${isControlsReady}`);
+  // }, [isSceneReady, isControlsReady]);
 
   const onCameraChangeRef = useRef(onCameraChange);
   const onSystemFramedRef = useRef(onSystemFramed);
@@ -231,7 +231,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     mountRef,
     cameraRef,
     equipmentMeshesRef,
-    isSceneReady: isSceneReady && isControlsReady, // Mouse interactions need controls to be ready
+    isSceneReady: isSceneReady && isControlsReady, 
     onSelectEquipment,
     setHoveredEquipmentTag,
   });
@@ -246,7 +246,6 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
   useEffect(() => {
     if (programmaticCameraState && cameraRef.current && controlsRef.current && isSceneReady && isControlsReady) {
-      // console.log('[ThreeScene] Applying programmaticCameraState:', programmaticCameraState);
       const camera = cameraRef.current;
       const controls = controlsRef.current;
 
@@ -263,17 +262,16 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
         if (lookAtChanged) controls.target.copy(targetLookAt);
         controls.update();
         controls.enabled = oldEnabled;
-        // console.log('[ThreeScene] Programmatic camera state applied.');
       }
     }
   }, [programmaticCameraState, isSceneReady, isControlsReady, cameraRef, controlsRef]);
 
 
   useEffect(() => {
-    console.log(`[ThreeScene] targetSystemToFrame useEffect triggered. Target: ${JSON.stringify(targetSystemToFrame)}, isSceneReady: ${isSceneReady}, isControlsReady: ${isControlsReady}`);
+    // console.log(`[ThreeScene] targetSystemToFrame useEffect triggered. Target: ${JSON.stringify(targetSystemToFrame)}, isSceneReady: ${isSceneReady}, isControlsReady: ${isControlsReady}`);
     if (!targetSystemToFrame || !sceneRef.current || !cameraRef.current || !controlsRef.current || !isSceneReady || !isControlsReady || !equipmentMeshesRef.current || equipmentMeshesRef.current.length === 0) {
       if (targetSystemToFrame && typeof onSystemFramedRef.current === 'function') {
-        console.log('[ThreeScene] Conditions not met for framing or target is null, calling onSystemFramed.');
+        // console.log('[ThreeScene] Conditions not met for framing or target is null, calling onSystemFramed.');
         onSystemFramedRef.current();
       }
       return;
@@ -282,42 +280,42 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     const systemMeshes = equipmentMeshesRef.current.filter(
         (mesh) => mesh.userData.sistema === targetSystemToFrame.systemName && mesh.visible
     );
-    console.log(`[ThreeScene] Found ${systemMeshes.length} meshes for system: ${targetSystemToFrame.systemName}`);
+    // console.log(`[ThreeScene] Found ${systemMeshes.length} meshes for system: ${targetSystemToFrame.systemName}`);
 
     if (systemMeshes.length === 0) {
-      console.log(`[ThreeScene] No visible meshes found for system: ${targetSystemToFrame.systemName}. Calling onSystemFramed.`);
+      // console.log(`[ThreeScene] No visible meshes found for system: ${targetSystemToFrame.systemName}. Calling onSystemFramed.`);
       if (typeof onSystemFramedRef.current === 'function') onSystemFramedRef.current();
       return;
     }
 
     const viewOptions: SystemViewOptions | null = calculateViewForMeshes(systemMeshes, cameraRef.current);
-    console.log(`[ThreeScene] Calculated view options for system ${targetSystemToFrame.systemName}:`, viewOptions);
+    // console.log(`[ThreeScene] Calculated view options for system ${targetSystemToFrame.systemName}:`, viewOptions);
 
     if (viewOptions && typeof onCameraChangeRef.current === 'function') {
       let selectedView: SystemView;
       switch (targetSystemToFrame.viewIndex) {
         case 1:
           selectedView = viewOptions.topDown;
-          console.log('[ThreeScene] Selecting topDown view:', selectedView);
+          // console.log('[ThreeScene] Selecting topDown view:', selectedView);
           break;
         case 2:
           selectedView = viewOptions.isometric;
-          console.log('[ThreeScene] Selecting isometric view:', selectedView);
+          // console.log('[ThreeScene] Selecting isometric view:', selectedView);
           break;
         case 0:
         default:
           selectedView = viewOptions.default;
-          console.log('[ThreeScene] Selecting default view:', selectedView);
+          // console.log('[ThreeScene] Selecting default view:', selectedView);
           break;
       }
-      console.log(`[ThreeScene] Applying selected view (index ${targetSystemToFrame.viewIndex}) to camera:`, selectedView);
+      // console.log(`[ThreeScene] Applying selected view (index ${targetSystemToFrame.viewIndex}) to camera:`, selectedView);
       onCameraChangeRef.current(selectedView);
     } else {
-      console.log('[ThreeScene] viewOptions is null or onCameraChangeRef.current is not a function.');
+      // console.log('[ThreeScene] viewOptions is null or onCameraChangeRef.current is not a function.');
     }
 
     if (typeof onSystemFramedRef.current === 'function') {
-      console.log('[ThreeScene] Framing attempt complete, calling onSystemFramed.');
+      // console.log('[ThreeScene] Framing attempt complete, calling onSystemFramed.');
       onSystemFramedRef.current();
     }
   }, [targetSystemToFrame, isSceneReady, isControlsReady, equipmentMeshesRef, sceneRef, cameraRef, controlsRef]);
@@ -336,4 +334,3 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 };
 
 export default ThreeScene;
-
