@@ -53,7 +53,7 @@ import type { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.j
  */
 export interface UseAnimationLoopProps {
   isSceneReady: boolean;
-  isControlsReady: boolean; 
+  isControlsReady: boolean;
   sceneRef: RefObject<THREE.Scene | null>;
   cameraRef: RefObject<THREE.PerspectiveCamera | null>;
   controlsRef: RefObject<OrbitControls | null>;
@@ -82,7 +82,7 @@ export function useAnimationLoop({
 }: UseAnimationLoopProps): void {
   useEffect(() => {
     // console.log(`[useAnimationLoop] useEffect triggered. isSceneReady: ${isSceneReady}, isControlsReady: ${isControlsReady}`);
-    
+
     if (!isSceneReady) {
       // console.log('[useAnimationLoop] Skipping: Scene not ready yet.');
       return;
@@ -121,18 +121,29 @@ export function useAnimationLoop({
     const labelRenderer = labelRendererRef.current;
 
     let animationFrameId: number;
-    
+
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
-      
-      // Chama o callback de atualização de frame, se fornecido
+
       if (onFrameUpdate) {
         onFrameUpdate();
       }
 
-      if (controls.enabled) controls.update(); 
-      composer.render();
-      labelRenderer.render(scene, camera);
+      if (controls.enabled) controls.update();
+
+      // LOG ADICIONADO
+      if (cameraRef.current && sceneRef.current) {
+        console.log(`[AnimationLoop] Rendering. Camera Pos: ${cameraRef.current.position.x.toFixed(2)},${cameraRef.current.position.y.toFixed(2)},${cameraRef.current.position.z.toFixed(2)}. Target: ${controlsRef.current?.target.x.toFixed(2)},${controlsRef.current?.target.y.toFixed(2)},${controlsRef.current?.target.z.toFixed(2)}. Zoom: ${cameraRef.current.zoom.toFixed(2)}. Scene children: ${sceneRef.current.children.length}`);
+      } else {
+        console.log('[AnimationLoop] Rendering skipped: camera or scene ref not current.');
+      }
+
+      if (composerRef.current && sceneRef.current && cameraRef.current) {
+        composer.render();
+      }
+      if (labelRendererRef.current && sceneRef.current && cameraRef.current) {
+        labelRenderer.render(scene, camera);
+      }
     };
 
     // console.log('[useAnimationLoop] Starting animation loop.');
@@ -142,5 +153,5 @@ export function useAnimationLoop({
       // console.log('[useAnimationLoop] Cancelling animation frame.');
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isSceneReady, isControlsReady, sceneRef, cameraRef, controlsRef, composerRef, labelRendererRef, onFrameUpdate]); // Adicionado onFrameUpdate às dependências
+  }, [isSceneReady, isControlsReady, sceneRef, cameraRef, controlsRef, composerRef, labelRendererRef, onFrameUpdate]);
 }

@@ -320,6 +320,17 @@ export function updateEquipmentMeshesInScene({
 
     const newOrUpdatedMesh = createSingleEquipmentMesh(item);
     newOrUpdatedMesh.visible = isVisibleByLayer; // Garante que a visibilidade inicial está correta
+
+    // LOG ADICIONADO para verificar as propriedades do mesh antes de adicionar à cena
+    const meshWorldPosition = new THREE.Vector3();
+    newOrUpdatedMesh.getWorldPosition(meshWorldPosition);
+    const meshBoundingBox = new THREE.Box3().setFromObject(newOrUpdatedMesh);
+    const meshSize = new THREE.Vector3();
+    meshBoundingBox.getSize(meshSize);
+
+    console.log(`[updateEquipmentMeshesInScene] Mesh for ${item.tag} PRE-ADD. Visible: ${newOrUpdatedMesh.visible}, Position (world): ${meshWorldPosition.x.toFixed(2)},${meshWorldPosition.y.toFixed(2)},${meshWorldPosition.z.toFixed(2)}, Size: ${meshSize.x.toFixed(2)},${meshSize.y.toFixed(2)},${meshSize.z.toFixed(2)}`);
+
+
     scene.add(newOrUpdatedMesh);
     newVisibleMeshesList.push(newOrUpdatedMesh);
     console.log(`[updateEquipmentMeshesInScene] Mesh for ${item.tag} ADDED to scene. final mesh.visible: ${newOrUpdatedMesh.visible}`);
@@ -335,7 +346,7 @@ export function updateEquipmentMeshesInScene({
     const isGroundInScene = scene.children.some(child => child.uuid === groundMeshRef.current?.uuid);
     const groundShouldBeVisible = terrainLayer.isVisible;
     console.log(`[updateEquipmentMeshesInScene] Ground plane: layer.isVisible=${groundShouldBeVisible}, isGroundInScene=${isGroundInScene}, currentMeshVisibleState: ${groundMeshRef.current.visible}`);
-    
+
     if (groundShouldBeVisible && !isGroundInScene) {
       scene.add(groundMeshRef.current);
       console.log("[updateEquipmentMeshesInScene] Added ground plane to scene.");
@@ -348,5 +359,3 @@ export function updateEquipmentMeshesInScene({
   }
   console.log(`[updateEquipmentMeshesInScene] END. Meshes in sceneRef.current after update: ${equipmentMeshesRef.current.length}`);
 }
-
-    

@@ -69,5 +69,17 @@ export function createGeometryForItem(item: Equipment): THREE.BufferGeometry {
       geometry = new THREE.BoxGeometry(1, 1, 1);
       break;
   }
+
+  // LOG ADICIONADO para verificar a bounding box da geometria criada (antes de ser transformada em mesh)
+  geometry.computeBoundingBox();
+  if (geometry.boundingBox) {
+    const size = new THREE.Vector3();
+    geometry.boundingBox.getSize(size);
+    console.log(`[createGeometryForItem] Geometry for ${item.tag} (${item.type}). Original Geo Size: ${size.x.toFixed(2)},${size.y.toFixed(2)},${size.z.toFixed(2)}`);
+  } else {
+    console.log(`[createGeometryForItem] Geometry for ${item.tag} (${item.type}). Could not compute bounding box.`);
+  }
+
   return geometry;
 }
+
