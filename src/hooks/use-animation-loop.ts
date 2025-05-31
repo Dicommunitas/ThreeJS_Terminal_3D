@@ -81,37 +81,37 @@ export function useAnimationLoop({
   onFrameUpdate, // Novo prop
 }: UseAnimationLoopProps): void {
   useEffect(() => {
-    // console.log(`[useAnimationLoop] useEffect triggered. isSceneReady: ${isSceneReady}, isControlsReady: ${isControlsReady}`);
+    console.log(`[useAnimationLoop] useEffect triggered. isSceneReady: ${isSceneReady}, isControlsReady: ${isControlsReady}`);
 
     if (!isSceneReady) {
-      // console.log('[useAnimationLoop] Skipping: Scene not ready yet.');
+      console.log('[useAnimationLoop] Skipping: Scene not ready yet.');
       return;
     }
     if (!isControlsReady) {
-      // console.log('[useAnimationLoop] Skipping: Controls not ready yet.');
+      console.log('[useAnimationLoop] Skipping: Controls not ready yet.');
       return;
     }
     if (!sceneRef.current) {
-      // console.log('[useAnimationLoop] Skipping: sceneRef.current is null.');
+      console.log('[useAnimationLoop] Skipping: sceneRef.current is null.');
       return;
     }
     if (!cameraRef.current) {
-      // console.log('[useAnimationLoop] Skipping: cameraRef.current is null.');
+      console.log('[useAnimationLoop] Skipping: cameraRef.current is null.');
       return;
     }
     if (!controlsRef.current) {
-      // console.log('[useAnimationLoop] Skipping: controlsRef.current is null.');
+      console.log('[useAnimationLoop] Skipping: controlsRef.current is null.');
       return;
     }
     if (!composerRef.current) {
-      // console.log('[useAnimationLoop] Skipping: composerRef.current is null.');
+      console.log('[useAnimationLoop] Skipping: composerRef.current is null.');
       return;
     }
     if (!labelRendererRef.current) {
-      // console.log('[useAnimationLoop] Skipping: labelRendererRef.current is null.');
+      console.log('[useAnimationLoop] Skipping: labelRendererRef.current is null.');
       return;
     }
-    // console.log('[useAnimationLoop] All refs and readiness flags are set, proceeding to start animation loop.');
+    console.log('[useAnimationLoop] All refs and readiness flags are set, proceeding to start animation loop.');
 
 
     const scene = sceneRef.current;
@@ -123,35 +123,46 @@ export function useAnimationLoop({
     let animationFrameId: number;
 
     const animate = () => {
+      console.log('[AnimationLoop] animate() CALLED.'); // LOG ADICIONADO AQUI
       animationFrameId = requestAnimationFrame(animate);
 
       if (onFrameUpdate) {
         onFrameUpdate();
       }
 
-      if (controls.enabled) controls.update();
+      // Apenas atualiza os controles se eles estiverem habilitados (não durante animação da câmera)
+      if (controls.enabled) {
+        controls.update();
+      }
 
-      // LOG ADICIONADO
+
+      // LOG EXISTENTE (mantido)
       if (cameraRef.current && sceneRef.current) {
         console.log(`[AnimationLoop] Rendering. Camera Pos: ${cameraRef.current.position.x.toFixed(2)},${cameraRef.current.position.y.toFixed(2)},${cameraRef.current.position.z.toFixed(2)}. Target: ${controlsRef.current?.target.x.toFixed(2)},${controlsRef.current?.target.y.toFixed(2)},${controlsRef.current?.target.z.toFixed(2)}. Zoom: ${cameraRef.current.zoom.toFixed(2)}. Scene children: ${sceneRef.current.children.length}`);
       } else {
-        console.log('[AnimationLoop] Rendering skipped: camera or scene ref not current.');
+        console.log('[AnimationLoop] Rendering details skipped: camera or scene ref not current during log.');
       }
 
       if (composerRef.current && sceneRef.current && cameraRef.current) {
         composer.render();
+      } else {
+        console.warn('[AnimationLoop] Composer render skipped: refs not current.');
       }
+
       if (labelRendererRef.current && sceneRef.current && cameraRef.current) {
         labelRenderer.render(scene, camera);
+      } else {
+        console.warn('[AnimationLoop] LabelRenderer render skipped: refs not current.');
       }
     };
 
-    // console.log('[useAnimationLoop] Starting animation loop.');
+    console.log('[useAnimationLoop] Starting animation loop by calling animate() for the first time.'); // LOG ADICIONADO AQUI
     animate();
 
     return () => {
-      // console.log('[useAnimationLoop] Cancelling animation frame.');
+      console.log('[useAnimationLoop] Cleanup: Cancelling animation frame ID:', animationFrameId);
       cancelAnimationFrame(animationFrameId);
     };
   }, [isSceneReady, isControlsReady, sceneRef, cameraRef, controlsRef, composerRef, labelRendererRef, onFrameUpdate]);
 }
+
