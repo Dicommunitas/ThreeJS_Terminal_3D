@@ -10,14 +10,13 @@
  * ```mermaid
  *   classDiagram
  *     class UseAnimationLoopProps {
- *       +isSceneReady: boolean
- *       +isControlsReady: boolean
+ *       +isSceneReady: boolean // Representa a prontidão combinada da cena e dos controles
  *       +sceneRef: RefObject_Scene_
  *       +cameraRef: RefObject_PerspectiveCamera_
  *       +controlsRef: RefObject_OrbitControls_
  *       +composerRef: RefObject_EffectComposer_
  *       +labelRendererRef: RefObject_CSS2DRenderer_
- *       +onFrameUpdate?: () => void // Novo callback opcional
+ *       +onFrameUpdate?: () => void
  *     }
  *     class RefObject_Scene_ {
  *       current: Scene | null
@@ -52,8 +51,7 @@ import type { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.j
  * Props para o hook useAnimationLoop.
  */
 export interface UseAnimationLoopProps {
-  isSceneReady: boolean;
-  isControlsReady: boolean;
+  isSceneReady: boolean; // Esta prop agora representa a prontidão combinada
   sceneRef: RefObject<THREE.Scene | null>;
   cameraRef: RefObject<THREE.PerspectiveCamera | null>;
   controlsRef: RefObject<OrbitControls | null>;
@@ -66,29 +64,24 @@ export interface UseAnimationLoopProps {
  * Hook customizado para gerenciar o loop de animação de uma cena Three.js.
  * Ele configura e executa o `requestAnimationFrame` para renderizar a cena
  * e atualizar os controles, o composer e o renderizador de rótulos.
- * O loop só é iniciado quando `isSceneReady`, `isControlsReady` e todos os refs necessários estão populados.
+ * O loop só é iniciado quando `isSceneReady` (a prontidão combinada) e todos os refs necessários estão populados.
  *
  * @param {UseAnimationLoopProps} props - As props necessárias para o loop de animação.
  */
 export function useAnimationLoop({
-  isSceneReady,
-  isControlsReady,
+  isSceneReady, // Esta é a prop de prontidão combinada
   sceneRef,
   cameraRef,
   controlsRef,
   composerRef,
   labelRendererRef,
-  onFrameUpdate, // Novo prop
+  onFrameUpdate,
 }: UseAnimationLoopProps): void {
   useEffect(() => {
-    console.log(`[useAnimationLoop] useEffect triggered. isSceneReady: ${isSceneReady}, isControlsReady: ${isControlsReady}`);
+    console.log(`[useAnimationLoop] useEffect triggered. isSceneReady (combined): ${isSceneReady}`);
 
     if (!isSceneReady) {
-      console.log('[useAnimationLoop] Skipping: Scene not ready yet.');
-      return;
-    }
-    if (!isControlsReady) {
-      console.log('[useAnimationLoop] Skipping: Controls not ready yet.');
+      console.log('[useAnimationLoop] Skipping: Combined readiness (isSceneReady prop) is false.');
       return;
     }
     if (!sceneRef.current) {
@@ -123,46 +116,42 @@ export function useAnimationLoop({
     let animationFrameId: number;
 
     const animate = () => {
-      console.log('[AnimationLoop] animate() CALLED.'); // LOG ADICIONADO AQUI
+      // console.log('[AnimationLoop] animate() CALLED.'); 
       animationFrameId = requestAnimationFrame(animate);
 
       if (onFrameUpdate) {
         onFrameUpdate();
       }
 
-      // Apenas atualiza os controles se eles estiverem habilitados (não durante animação da câmera)
       if (controls.enabled) {
         controls.update();
       }
 
-
-      // LOG EXISTENTE (mantido)
-      if (cameraRef.current && sceneRef.current) {
-        console.log(`[AnimationLoop] Rendering. Camera Pos: ${cameraRef.current.position.x.toFixed(2)},${cameraRef.current.position.y.toFixed(2)},${cameraRef.current.position.z.toFixed(2)}. Target: ${controlsRef.current?.target.x.toFixed(2)},${controlsRef.current?.target.y.toFixed(2)},${controlsRef.current?.target.z.toFixed(2)}. Zoom: ${cameraRef.current.zoom.toFixed(2)}. Scene children: ${sceneRef.current.children.length}`);
+      if (cameraRef.current && sceneRef.current && controlsRef.current) {
+        console.log(`[AnimationLoop] Rendering. Camera Pos: ${cameraRef.current.position.x.toFixed(2)},${cameraRef.current.position.y.toFixed(2)},${cameraRef.current.position.z.toFixed(2)}. Target: ${controlsRef.current.target.x.toFixed(2)},${controlsRef.current.target.y.toFixed(2)},${controlsRef.current.target.z.toFixed(2)}. Zoom: ${cameraRef.current.zoom.toFixed(2)}. Scene children: ${sceneRef.current.children.length}`);
       } else {
-        console.log('[AnimationLoop] Rendering details skipped: camera or scene ref not current during log.');
+        // console.log('[AnimationLoop] Rendering details skipped: camera, scene or controls ref not current during log.');
       }
 
       if (composerRef.current && sceneRef.current && cameraRef.current) {
         composer.render();
       } else {
-        console.warn('[AnimationLoop] Composer render skipped: refs not current.');
+        // console.warn('[AnimationLoop] Composer render skipped: refs not current.');
       }
 
       if (labelRendererRef.current && sceneRef.current && cameraRef.current) {
         labelRenderer.render(scene, camera);
       } else {
-        console.warn('[AnimationLoop] LabelRenderer render skipped: refs not current.');
+        // console.warn('[AnimationLoop] LabelRenderer render skipped: refs not current.');
       }
     };
 
-    console.log('[useAnimationLoop] Starting animation loop by calling animate() for the first time.'); // LOG ADICIONADO AQUI
+    console.log('[useAnimationLoop] Starting animation loop by calling animate() for the first time.');
     animate();
 
     return () => {
       console.log('[useAnimationLoop] Cleanup: Cancelling animation frame ID:', animationFrameId);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isSceneReady, isControlsReady, sceneRef, cameraRef, controlsRef, composerRef, labelRendererRef, onFrameUpdate]);
+  }, [isSceneReady, sceneRef, cameraRef, controlsRef, composerRef, labelRendererRef, onFrameUpdate]);
 }
-
