@@ -72,7 +72,7 @@ export default function Terminal3DPage(): JSX.Element {
   const { executeCommand, undo, redo, canUndo, canRedo } = useCommandHistory();
 
   const {
-    equipmentData,
+    equipmentData, // Vem do repositório via hook
     handleOperationalStateChange,
     handleProductChange,
   } = useEquipmentDataManager();
@@ -83,8 +83,8 @@ export default function Terminal3DPage(): JSX.Element {
     handleSetCameraViewForSystem,
     handleCameraChangeFromScene,
     onSystemFramed,
-    focusedSystemNameUI, // Mantido para UI, se necessário
-    currentViewIndexUI, // Mantido para UI, se necessário
+    focusedSystemNameUI, 
+    currentViewIndexUI, 
   } = useCameraManager({ executeCommand });
 
   const {
@@ -97,10 +97,10 @@ export default function Terminal3DPage(): JSX.Element {
     availableSistemas,
     availableAreas,
     filteredEquipment,
-  } = useFilterManager({ allEquipment: equipmentData });
+  } = useFilterManager({ allEquipment: equipmentData }); // equipmentData agora vem do repositório
 
   const {
-    annotations,
+    annotations, // Vem do repositório via hook
     isAnnotationDialogOpen,
     annotationTargetEquipment,
     editingAnnotation,
@@ -109,7 +109,7 @@ export default function Terminal3DPage(): JSX.Element {
     handleDeleteAnnotation,
     getAnnotationForEquipment,
     setIsAnnotationDialogOpen,
-  } = useAnnotationManager({ equipmentData });
+  } = useAnnotationManager({ initialAnnotations: [] }); // Passando initialAnnotations vazio, pois o repo já tem initial data
 
   const {
     selectedEquipmentTags,
@@ -117,7 +117,7 @@ export default function Terminal3DPage(): JSX.Element {
     handleEquipmentClick,
     handleSetHoveredEquipmentTag,
     selectTagsBatch,
-  } = useEquipmentSelectionManager({ equipmentData, executeCommand });
+  } = useEquipmentSelectionManager({ equipmentData, executeCommand }); // equipmentData agora vem do repositório
 
   const { layers, handleToggleLayer } = useLayerManager({ executeCommand });
 
@@ -131,17 +131,12 @@ export default function Terminal3DPage(): JSX.Element {
   const focusTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleFocusAndSelectSystem = useCallback((systemName: string) => {
-    // console.log(`[Terminal3DPage] Attempting to focus on: ${systemName}, isFocusing: ${isFocusingRef.current}`);
     if (isFocusingRef.current) {
-      // console.log(`[Terminal3DPage] Focus operation already in progress for ${systemName}. Ignoring subsequent call.`);
       return;
     }
-
     isFocusingRef.current = true;
-    // console.log(`[Terminal3DPage] handleFocusAndSelectSystem called for: ${systemName}`);
-
     handleSetCameraViewForSystem(systemName);
-    const equipmentInSystem = equipmentData
+    const equipmentInSystem = equipmentData // equipmentData do useEquipmentDataManager
       .filter(equip => equip.sistema === systemName)
       .map(equip => equip.tag);
     selectTagsBatch(equipmentInSystem, `Focado e selecionado sistema ${systemName}.`);
@@ -151,13 +146,11 @@ export default function Terminal3DPage(): JSX.Element {
     }
     focusTimeoutRef.current = setTimeout(() => {
       isFocusingRef.current = false;
-      // console.log(`[Terminal3DPage] Focus lock released for ${systemName}.`);
-    }, 100); // 100ms debounce window
+    }, 100); 
 
   }, [equipmentData, handleSetCameraViewForSystem, selectTagsBatch]);
 
   useEffect(() => {
-    // Cleanup timeout on component unmount
     return () => {
       if (focusTimeoutRef.current) {
         clearTimeout(focusTimeoutRef.current);
@@ -168,7 +161,7 @@ export default function Terminal3DPage(): JSX.Element {
   const selectedEquipmentDetails = useMemo(() => {
     if (selectedEquipmentTags.length === 1) {
       const tag = selectedEquipmentTags[0];
-      return equipmentData.find(e => e.tag === tag) || null;
+      return equipmentData.find(e => e.tag === tag) || null; // equipmentData do useEquipmentDataManager
     }
     return null;
   }, [selectedEquipmentTags, equipmentData]);
@@ -182,7 +175,7 @@ export default function Terminal3DPage(): JSX.Element {
 
   const availableOperationalStatesList = useMemo(() => {
     const states = new Set<string>();
-    equipmentData.forEach(equip => {
+    equipmentData.forEach(equip => { // equipmentData do useEquipmentDataManager
       if (equip.operationalState) states.add(equip.operationalState);
     });
     const sortedStates = Array.from(states).sort((a, b) => {
@@ -195,7 +188,7 @@ export default function Terminal3DPage(): JSX.Element {
 
   const availableProductsList = useMemo(() => {
     const products = new Set<string>();
-    equipmentData.forEach(equip => {
+    equipmentData.forEach(equip => { // equipmentData do useEquipmentDataManager
       if (equip.product) products.add(equip.product);
     });
      const sortedProducts = Array.from(products).sort((a,b) => {
@@ -205,15 +198,14 @@ export default function Terminal3DPage(): JSX.Element {
     });
     return sortedProducts;
   }, [equipmentData]);
-
-  // Log para depurar dados passados para MainSceneArea
+  
   useEffect(() => {
-    console.log('[Page.tsx] Data for MainSceneArea:', {
-      filteredEquipmentCount: filteredEquipment.length,
-      allEquipmentDataCount: equipmentData.length,
-      layers: layers.map(l => ({ id: l.id, visible: l.isVisible })),
-      currentCameraState,
-    });
+    // console.log('[Page.tsx] Data for MainSceneArea:', {
+    //   filteredEquipmentCount: filteredEquipment.length,
+    //   allEquipmentDataCount: equipmentData.length,
+    //   layers: layers.map(l => ({ id: l.id, visible: l.isVisible })),
+    //   currentCameraState,
+    // });
   }, [filteredEquipment, equipmentData, layers, currentCameraState]);
 
 
@@ -221,10 +213,10 @@ export default function Terminal3DPage(): JSX.Element {
     <SidebarProvider defaultOpen={false}>
       <div className="h-screen flex-1 flex flex-col relative min-w-0 overflow-x-hidden">
         <MainSceneArea
-          equipment={filteredEquipment}
-          allEquipmentData={equipmentData}
+          equipment={filteredEquipment} // vem de useFilterManager, que usa equipmentData do useEquipmentDataManager
+          allEquipmentData={equipmentData} // vem de useEquipmentDataManager
           layers={layers}
-          annotations={annotations}
+          annotations={annotations} // vem de useAnnotationManager, que usa o repositório
           selectedEquipmentTags={selectedEquipmentTags}
           onSelectEquipment={handleEquipmentClick}
           hoveredEquipmentTag={hoveredEquipmentTag}

@@ -7,8 +7,9 @@
  * Exporta:
  * - `initialEquipment`: Array de objetos `Equipment` representando os itens 3D na cena.
  * - `initialLayers`: Array de objetos `Layer` especificando as camadas de visibilidade.
+ * - `initialAnnotations`: Array inicial de `Annotation` (geralmente vazio para começar).
  */
-import type { Equipment, Layer } from '@/lib/types';
+import type { Equipment, Layer, Annotation } from '@/lib/types';
 
 /**
  * Lista inicial de equipamentos para a cena 3D.
@@ -55,5 +56,12 @@ export const initialLayers: Layer[] = [
   { id: 'layer-valves', name: 'Válvulas', equipmentType: 'Valve', isVisible: true },
   { id: 'layer-annotations', name: 'Anotações', equipmentType: 'Annotations', isVisible: true },
 ];
+
+/**
+ * Lista inicial de anotações. Geralmente vazia para começar,
+ * a menos que queira popular com dados de exemplo.
+ */
+export const initialAnnotations: Annotation[] = [];
+    
 
     

@@ -1,102 +1,60 @@
 
-/**
- * Custom hook responsável por buscar, armazenar e gerenciar os dados dos equipamentos
- * utilizados na aplicação.
- *
- * Principal Responsabilidade:
- * Atuar como a "fonte da verdade" para os dados brutos dos equipamentos.
- * Inicializa os dados a partir de `initialEquipment` e fornece funções para
- * modificar propriedades específicas dos equipamentos (estado operacional, produto),
- * usando `useToast` para feedback.
- * 
- * ```mermaid
- *   classDiagram
- *     class UseEquipmentDataManagerReturn {
- *       +equipmentData: Equipment[]
- *       +handleOperationalStateChange(equipmentTag: string, newState: string): void
- *       +handleProductChange(equipmentTag: string, newProduct: string): void
- *     }
- *     class Equipment {
- *
- *     }
- *     UseEquipmentDataManagerReturn ..> Equipment
- *     class useEquipmentDataManager {
- *
- *     }
- *     useEquipmentDataManager ..> useToast : uses
- * ```
- * 
- */
-import { useState, useCallback } from 'react';
-import type { Equipment } from '@/lib/types';
-import { initialEquipment } from '@/core/data/initial-data'; // Dados iniciais dos equipamentos
-import { useToast } from '@/hooks/use-toast'; // Para feedback ao usuário
+"use client";
 
-/**
- * Retorno do hook `useEquipmentDataManager`.
- * @interface UseEquipmentDataManagerReturn
- * @property {Equipment[]} equipmentData - A lista atual de todos os equipamentos. Esta é a "fonte da verdade".
- * @property {(equipmentTag: string, newState: string) => void} handleOperationalStateChange - Função para modificar
- *                                                                                              o estado operacional
- *                                                                                              de um equipamento específico.
- * @property {(equipmentTag: string, newProduct: string) => void} handleProductChange - Função para modificar o produto
- *                                                                                       associado a um equipamento específico.
- */
+import { useState, useCallback, useEffect } from 'react';
+import type { Equipment } from '@/lib/types';
+import { equipmentRepository } from '@/core/repository/memory-repository';
+import { useToast } from '@/hooks/use-toast';
+
 export interface UseEquipmentDataManagerReturn {
   equipmentData: Equipment[];
   handleOperationalStateChange: (equipmentTag: string, newState: string) => void;
   handleProductChange: (equipmentTag: string, newProduct: string) => void;
+  refreshEquipmentData: () => void; // Adicionado para recarregar os dados se necessário
 }
 
-/**
- * Hook customizado para gerenciar os dados dos equipamentos (a "fonte da verdade" dos equipamentos).
- * Inicializa os dados com `initialEquipment` e fornece funções para modificar
- * propriedades como estado operacional e produto.
- *
- * @returns {UseEquipmentDataManagerReturn} Um objeto contendo os dados dos equipamentos
- *                                          e funções para modificá-los.
- */
 export function useEquipmentDataManager(): UseEquipmentDataManagerReturn {
-  const [equipmentData, setEquipmentData] = useState<Equipment[]>(initialEquipment);
+  const [equipmentData, setEquipmentData] = useState<Equipment[]>(() => equipmentRepository.getAllEquipment());
   const { toast } = useToast();
 
-  /**
-   * Manipula a alteração do estado operacional de um equipamento.
-   * Encontra o equipamento pela `equipmentTag`, atualiza seu `operationalState`
-   * no estado `equipmentData`, e exibe um toast de confirmação.
-   * @param {string} equipmentTag - A tag do equipamento a ser modificado.
-   * @param {string} newState - O novo estado operacional para o equipamento.
-   */
-  const handleOperationalStateChange = useCallback((equipmentTag: string, newState: string) => {
-    setEquipmentData(prevData =>
-      prevData.map(equip =>
-        equip.tag === equipmentTag ? { ...equip, operationalState: newState } : equip
-      )
-    );
-    const equip = equipmentData.find(e => e.tag === equipmentTag); // Encontra para usar o nome no toast
-    toast({ title: "Estado Atualizado", description: `Estado de ${equip?.name || 'Equipamento'} alterado para ${newState}.` });
-  }, [equipmentData, toast]); // `equipmentData` é dependência para pegar o nome atualizado no toast, embora setEquipmentData seja assíncrono.
+  // Efeito para garantir que os dados iniciais sejam carregados se o repositório for inicializado após o hook.
+  // Ou se os dados no repositório forem resetados.
+  useEffect(() => {
+    setEquipmentData(equipmentRepository.getAllEquipment());
+    // console.log('[useEquipmentDataManager] Initial data loaded from repository.');
+  }, []);
 
-  /**
-   * Manipula a alteração do produto de um equipamento.
-   * Encontra o equipamento pela `equipmentTag`, atualiza seu `product`
-   * no estado `equipmentData`, e exibe um toast de confirmação.
-   * @param {string} equipmentTag - A tag do equipamento a ser modificado.
-   * @param {string} newProduct - O novo produto para o equipamento.
-   */
+  const refreshEquipmentData = useCallback(() => {
+    setEquipmentData(equipmentRepository.getAllEquipment());
+    // console.log('[useEquipmentDataManager] Data refreshed from repository.');
+  }, []);
+
+  const handleOperationalStateChange = useCallback((equipmentTag: string, newState: string) => {
+    const updatedEquipment = equipmentRepository.updateEquipment(equipmentTag, { operationalState: newState });
+    if (updatedEquipment) {
+      setEquipmentData(equipmentRepository.getAllEquipment()); // Atualiza o estado local com todos os dados do repositório
+      toast({ title: "Estado Atualizado", description: `Estado de ${updatedEquipment.name || 'Equipamento'} alterado para ${newState}.` });
+    } else {
+      toast({ title: "Erro", description: `Equipamento com TAG ${equipmentTag} não encontrado.`, variant: "destructive" });
+    }
+  }, [toast]);
+
   const handleProductChange = useCallback((equipmentTag: string, newProduct: string) => {
-    setEquipmentData(prevData =>
-      prevData.map(equip =>
-        equip.tag === equipmentTag ? { ...equip, product: newProduct } : equip
-      )
-    );
-    const equip = equipmentData.find(e => e.tag === equipmentTag); // Encontra para usar o nome no toast
-    toast({ title: "Produto Atualizado", description: `Produto de ${equip?.name || 'Equipamento'} alterado para ${newProduct}.` });
-  }, [equipmentData, toast]); // `equipmentData` é dependência pelo mesmo motivo acima.
+    const updatedEquipment = equipmentRepository.updateEquipment(equipmentTag, { product: newProduct });
+    if (updatedEquipment) {
+      setEquipmentData(equipmentRepository.getAllEquipment()); // Atualiza o estado local
+      toast({ title: "Produto Atualizado", description: `Produto de ${updatedEquipment.name || 'Equipamento'} alterado para ${newProduct}.` });
+    } else {
+      toast({ title: "Erro", description: `Equipamento com TAG ${equipmentTag} não encontrado.`, variant: "destructive" });
+    }
+  }, [toast]);
 
   return {
     equipmentData,
     handleOperationalStateChange,
     handleProductChange,
+    refreshEquipmentData,
   };
 }
+
+    
