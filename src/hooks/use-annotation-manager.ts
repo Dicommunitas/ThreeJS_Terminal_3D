@@ -32,14 +32,13 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
   const { toast } = useToast();
 
   useEffect(() => {
-    // Se `initialAnnotations` for fornecido e o repositório de anotações estiver vazio, inicialize-o.
-    // Isso é útil se os dados iniciais de anotações vierem de uma prop e não do initial-data.ts do repositório.
-    if (initialAnnotations.length > 0 && annotationRepository.getAllAnnotations().length === 0) {
-      annotationRepository.initializeAnnotations(initialAnnotations);
-    }
+    // O repositório é auto-inicializável. Este efeito garante que o estado do hook
+    // esteja em sincronia com o repositório quando o componente é montado.
+    // Atualizações subsequentes ao repositório (por exemplo, via addOrUpdateAnnotation)
+    // irão acionar refreshAnnotationsFromRepo, que chama setAnnotationsState.
     setAnnotationsState(annotationRepository.getAllAnnotations());
-    // console.log('[useAnnotationManager] Initial annotations loaded from repository.');
-  }, [initialAnnotations]); // Dependência em initialAnnotations para permitir essa inicialização única.
+    // console.log('[useAnnotationManager] Synced annotations from repository on mount.');
+  }, []); // Array de dependências vazio: executa apenas na montagem para obter o estado inicial do repo
 
   const refreshAnnotationsFromRepo = useCallback(() => {
     setAnnotationsState(annotationRepository.getAllAnnotations());
@@ -134,5 +133,3 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
     getAnnotationForEquipment,
   };
 }
-
-    
