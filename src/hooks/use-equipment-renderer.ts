@@ -19,9 +19,10 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
  *   classDiagram
  *     class UseEquipmentRendererProps {
  *       +sceneRef: RefObject_Scene_
- *       +cameraRef: RefObject_PerspectiveCamera_ // Adicionado para logging
- *       +controlsRef: RefObject_OrbitControls_ // Adicionado para logging
+ *       +cameraRef: RefObject_PerspectiveCamera_
+ *       +controlsRef: RefObject_OrbitControls_
  *       +isSceneReady: boolean
+ *       +isControlsReady: boolean // Adicionado
  *       +equipmentData: Equipment[]  // Filtered list
  *       +layers: Layer[]
  *       +colorMode: ColorMode
@@ -73,6 +74,7 @@ export interface UseEquipmentRendererProps {
   cameraRef: React.RefObject<THREE.PerspectiveCamera | null>;
   controlsRef: React.RefObject<THREE.OrbitControls | null>;
   isSceneReady: boolean;
+  isControlsReady: boolean; // Adicionado
   equipmentData: Equipment[];
   layers: Layer[];
   colorMode: ColorMode;
@@ -94,6 +96,7 @@ export function useEquipmentRenderer({
   cameraRef,
   controlsRef,
   isSceneReady,
+  isControlsReady, // Adicionado
   equipmentData,
   layers,
   colorMode,
@@ -103,49 +106,39 @@ export function useEquipmentRenderer({
   const equipmentMeshesRef = useRef<THREE.Object3D[]>([]);
 
   useEffect(() => {
-    console.log(`[useEquipmentRenderer] useEffect triggered. isSceneReady: ${isSceneReady}, sceneRef.current (exists?): ${!!sceneRef.current}, equipmentData.length: ${Array.isArray(equipmentData) ? equipmentData.length : 'not an array'}, Layers: ${JSON.stringify(layers.map(l=>({id: l.id, visible: l.isVisible})))}`);
+    console.log(`[useEquipmentRenderer] useEffect triggered. 
+      isSceneReady: ${isSceneReady}, 
+      isControlsReady: ${isControlsReady},
+      sceneRef.current (exists?): ${!!sceneRef.current}, 
+      cameraRef.current (exists?): ${!!cameraRef.current}, 
+      controlsRef.current (exists?): ${!!controlsRef.current}, 
+      equipmentData.length: ${Array.isArray(equipmentData) ? equipmentData.length : 'not an array'}, 
+      Layers: ${JSON.stringify(layers.map(l => ({id: l.id, type: l.equipmentType, visible: l.isVisible})))}`);
 
-    if (sceneRef.current && cameraRef.current && controlsRef.current) {
-      console.log(`[useEquipmentRenderer] Camera Pos: ${cameraRef.current.position.toArray().join(',')}, Target: ${controlsRef.current.target.toArray().join(',')}, Zoom: ${cameraRef.current.zoom}`);
+    if (cameraRef.current && controlsRef.current) {
+      console.log(`[useEquipmentRenderer] INSIDE useEffect - Camera Pos: ${cameraRef.current.position.toArray().join(',')}, Target: ${controlsRef.current.target.toArray().join(',')}, Zoom: ${cameraRef.current.zoom}`);
     } else {
-      console.log('[useEquipmentRenderer] Camera or controls refs not ready for detailed logging inside useEffect.');
+      console.log('[useEquipmentRenderer] INSIDE useEffect - Camera or controls refs not ready for detailed logging.');
     }
 
-    if (!isSceneReady) {
-      console.log('[useEquipmentRenderer] Skipping update: Scene not ready (isSceneReady is false).');
-      // Se a cena não está pronta, mas temos equipamentos, e a lista de equipamentos no ref é diferente, limpamos os meshes.
-      // Isso pode acontecer se isSceneReady se tornar false após ter sido true.
-      if (equipmentMeshesRef.current.length > 0) {
-         console.log('[useEquipmentRenderer] Scene not ready, but meshes exist. Clearing them.');
-         if (sceneRef.current) { // Garante que sceneRef.current existe antes de tentar limpar
-            updateEquipmentMeshesInScene({
-                scene: sceneRef.current,
-                equipmentMeshesRef: equipmentMeshesRef,
-                newEquipmentData: [], // Força a remoção de todos os meshes
-                layers,
-                colorMode,
-                createSingleEquipmentMesh,
-                groundMeshRef,
-            });
-         }
-      }
-      return;
-    }
-    
-    if (!sceneRef.current) {
-      console.log('[useEquipmentRenderer] Skipping update: sceneRef.current is null.');
-      return;
-    }
-    
-    if (!Array.isArray(equipmentData)) {
-      console.log(`[useEquipmentRenderer] Skipping update: equipmentData is not an array. Type: ${typeof equipmentData}`);
-      // Similar ao caso de !isSceneReady, se equipmentData se tornar inválido mas meshes existirem, limpar.
+    // Condição principal para renderizar
+    if (!isSceneReady || !isControlsReady || !sceneRef.current || !cameraRef.current || !controlsRef.current || !Array.isArray(equipmentData)) {
+      console.log(`[useEquipmentRenderer] Skipping update. Conditions:
+        isSceneReady: ${isSceneReady}
+        isControlsReady: ${isControlsReady}
+        sceneRef.current: ${!!sceneRef.current}
+        cameraRef.current: ${!!cameraRef.current}
+        controlsRef.current: ${!!controlsRef.current}
+        Array.isArray(equipmentData): ${Array.isArray(equipmentData)}`);
+
+      // Se a cena não está pronta ou os dados são inválidos, mas temos meshes, limpamos os meshes.
+      // Isso garante que a cena não mostre meshes antigos se as condições de renderização mudarem para inválidas.
       if (equipmentMeshesRef.current.length > 0 && sceneRef.current) {
-         console.log('[useEquipmentRenderer] equipmentData invalid, but meshes exist. Clearing them.');
+         console.log('[useEquipmentRenderer] Conditions not met, but meshes exist in ref. Clearing them.');
          updateEquipmentMeshesInScene({
             scene: sceneRef.current,
             equipmentMeshesRef: equipmentMeshesRef,
-            newEquipmentData: [],
+            newEquipmentData: [], // Força a remoção de todos os meshes
             layers,
             colorMode,
             createSingleEquipmentMesh,
@@ -155,7 +148,7 @@ export function useEquipmentRenderer({
       return;
     }
     
-    // console.log('[useEquipmentRenderer] Proceeding to call updateEquipmentMeshesInScene.');
+    console.log('[useEquipmentRenderer] Conditions MET. Calling updateEquipmentMeshesInScene.');
     updateEquipmentMeshesInScene({
       scene: sceneRef.current,
       equipmentMeshesRef: equipmentMeshesRef,
@@ -165,8 +158,8 @@ export function useEquipmentRenderer({
       createSingleEquipmentMesh,
       groundMeshRef,
     });
-    // console.log(`[useEquipmentRenderer] Updated. Meshes in ref after update: ${equipmentMeshesRef.current.length}`);
-  }, [equipmentData, layers, colorMode, isSceneReady, sceneRef, createSingleEquipmentMesh, groundMeshRef, cameraRef, controlsRef]);
+    console.log(`[useEquipmentRenderer] Updated. Meshes in ref after update: ${equipmentMeshesRef.current.length}`);
+  }, [equipmentData, layers, colorMode, isSceneReady, isControlsReady, sceneRef, createSingleEquipmentMesh, groundMeshRef, cameraRef, controlsRef]);
 
   return equipmentMeshesRef;
 }
