@@ -249,14 +249,14 @@ export function updateEquipmentMeshesInScene({
   createSingleEquipmentMesh,
   groundMeshRef,
 }: UpdateEquipmentMeshesParams): void {
-  // console.log(`[updateEquipmentMeshesInScene] Updating. newEquipmentData count: ${newEquipmentData.length}, Layers: ${JSON.stringify(layers.map(l => ({ id: l.id, type: l.equipmentType, visible: l.isVisible })))}`);
+  console.log(`[updateEquipmentMeshesInScene] START. newEquipmentData count: ${newEquipmentData.length}, Layers: ${JSON.stringify(layers.map(l => ({ id: l.id, type: l.equipmentType, visible: l.isVisible })))}`);
 
   if (!scene) {
-    // console.warn("[updateEquipmentMeshesInScene] Scene is null. Aborting.");
+    console.warn("[updateEquipmentMeshesInScene] Scene is null. Aborting.");
     return;
   }
   if (!equipmentMeshesRef || equipmentMeshesRef.current === undefined || equipmentMeshesRef.current === null) {
-    // console.warn("[updateEquipmentMeshesInScene] equipmentMeshesRef is invalid. Aborting.");
+    console.warn("[updateEquipmentMeshesInScene] equipmentMeshesRef is invalid. Aborting.");
     return;
   }
 
@@ -296,9 +296,10 @@ export function updateEquipmentMeshesInScene({
   newEquipmentData.forEach(item => {
     const layerForItem = layers.find(l => l.equipmentType === item.type);
     const isVisibleByLayer = layerForItem?.isVisible ?? true;
+    console.log(`[updateEquipmentMeshesInScene] Processing item: ${item.tag}, Type: ${item.type}, Layer found: ${!!layerForItem}, Layer ID: ${layerForItem?.id}, isVisibleByLayer: ${isVisibleByLayer}`);
 
     if (!isVisibleByLayer) {
-      // console.log(`[SceneElementsSetup.ts updateEquipmentMeshesInScene] Skipping mesh (layer not visible): ${item.tag}`);
+      console.log(`[updateEquipmentMeshesInScene] Item ${item.tag} SKIPPED (layer not visible).`);
       return;
     }
 
@@ -321,7 +322,7 @@ export function updateEquipmentMeshesInScene({
     newOrUpdatedMesh.visible = isVisibleByLayer; // Garante que a visibilidade inicial está correta
     scene.add(newOrUpdatedMesh);
     newVisibleMeshesList.push(newOrUpdatedMesh);
-    // console.log(`[updateEquipmentMeshesInScene] Added/Updated mesh ${item.tag} to scene. Visible: ${isVisibleByLayer}`);
+    console.log(`[updateEquipmentMeshesInScene] Mesh for ${item.tag} ADDED to scene. final mesh.visible: ${newOrUpdatedMesh.visible}`);
   });
 
   equipmentMeshesRef.current = newVisibleMeshesList;
@@ -333,17 +334,19 @@ export function updateEquipmentMeshesInScene({
   if (terrainLayer && groundMeshRef && groundMeshRef.current) {
     const isGroundInScene = scene.children.some(child => child.uuid === groundMeshRef.current?.uuid);
     const groundShouldBeVisible = terrainLayer.isVisible;
-    // console.log(`[updateEquipmentMeshesInScene] Ground plane: layer.isVisible=${groundShouldBeVisible}, isGroundInScene=${isGroundInScene}, currentMeshVisible: ${groundMeshRef.current.visible}`);
-
+    console.log(`[updateEquipmentMeshesInScene] Ground plane: layer.isVisible=${groundShouldBeVisible}, isGroundInScene=${isGroundInScene}, currentMeshVisibleState: ${groundMeshRef.current.visible}`);
+    
     if (groundShouldBeVisible && !isGroundInScene) {
       scene.add(groundMeshRef.current);
-      // console.log("[updateEquipmentMeshesInScene] Added ground plane to scene.");
+      console.log("[updateEquipmentMeshesInScene] Added ground plane to scene.");
     } else if (!groundShouldBeVisible && isGroundInScene) {
       scene.remove(groundMeshRef.current);
-      // console.log("[updateEquipmentMeshesInScene] Removed ground plane from scene.");
+      console.log("[updateEquipmentMeshesInScene] Removed ground plane from scene.");
     }
     groundMeshRef.current.visible = groundShouldBeVisible;
+    console.log(`[updateEquipmentMeshesInScene] Ground plane final visibility set to: ${groundMeshRef.current.visible}`);
   }
+  console.log(`[updateEquipmentMeshesInScene] END. Meshes in sceneRef.current after update: ${equipmentMeshesRef.current.length}`);
 }
 
     
