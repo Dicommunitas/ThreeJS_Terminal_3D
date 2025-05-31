@@ -1,0 +1,62 @@
+[**3D Terminal System API Documentation**](../../../README.md)
+
+***
+
+[3D Terminal System API Documentation](../../../README.md) / [hooks/use-scene-outline](../README.md) / UseSceneOutlineProps
+
+# Interface: UseSceneOutlineProps
+
+Defined in: [src/hooks/use-scene-outline.ts:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-outline.ts#L55)
+
+Props para o hook useSceneOutline.
+ UseSceneOutlineProps
+
+## Properties
+
+### equipmentMeshesRef
+
+> **equipmentMeshesRef**: `RefObject`\<`Object3D`\<`Object3DEventMap`\>[]\>
+
+Defined in: [src/hooks/use-scene-outline.ts:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-outline.ts#L57)
+
+Ref para o array de meshes de equipamentos na cena.
+
+***
+
+### hoveredEquipmentTag
+
+> **hoveredEquipmentTag**: `undefined` \| `null` \| `string`
+
+Defined in: [src/hooks/use-scene-outline.ts:59](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-outline.ts#L59)
+
+Tag do equipamento atualmente em hover.
+
+***
+
+### isSceneReady
+
+> **isSceneReady**: `boolean`
+
+Defined in: [src/hooks/use-scene-outline.ts:60](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-outline.ts#L60)
+
+Flag indicando se a cena 3D está pronta.
+
+***
+
+### outlinePassRef
+
+> **outlinePassRef**: `RefObject`\<`null` \| `OutlinePass`\>
+
+Defined in: [src/hooks/use-scene-outline.ts:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-outline.ts#L56)
+
+Ref para a instância do OutlinePass.
+
+***
+
+### selectedEquipmentTags
+
+> **selectedEquipmentTags**: `undefined` \| `string`[]
+
+Defined in: [src/hooks/use-scene-outline.ts:58](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-outline.ts#L58)
+
+Array de tags dos equipamentos selecionados.
