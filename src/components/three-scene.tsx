@@ -57,7 +57,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     onSelectEquipment,
     hoveredEquipmentTag,
     setHoveredEquipmentTag,
-    cameraState: programmaticCameraState, 
+    cameraState: programmaticCameraState,
     onCameraChange,
     initialCameraPosition,
     initialCameraLookAt,
@@ -66,7 +66,6 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     onSystemFramed,
   } = props;
 
-  // Log props recebidas
   useEffect(() => {
     // console.log('[ThreeScene] Props received:', {
     //   equipmentCount: equipment.length,
@@ -97,7 +96,6 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     onCameraChange,
   });
 
-  // Log isSceneReady e isControlsReady
   useEffect(() => {
     // console.log('[ThreeScene] Readiness state:', { isSceneReady, isControlsReady });
   }, [isSceneReady, isControlsReady]);
@@ -139,7 +137,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     return mesh;
   }, [colorMode]);
 
-  useEquipmentRenderer({ // Pass cameraRef and controlsRef for logging
+  const equipmentMeshesRef = useEquipmentRenderer({
     sceneRef,
     cameraRef,
     controlsRef,
@@ -163,17 +161,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
   useMouseInteractionManager({
     mountRef,
     cameraRef,
-    equipmentMeshesRef: useEquipmentRenderer({ // Certifique-se de que a referência correta é passada
-      sceneRef,
-      cameraRef, 
-      controlsRef,
-      isSceneReady,
-      equipmentData: equipment,
-      layers,
-      colorMode,
-      createSingleEquipmentMesh,
-      groundMeshRef,
-    }),
+    equipmentMeshesRef: equipmentMeshesRef, // Corrigido: Passando a ref obtida
     isSceneReady: isSceneReady && isControlsReady,
     onSelectEquipment,
     setHoveredEquipmentTag,
@@ -181,21 +169,12 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
   useSceneOutline({
     outlinePassRef,
-    equipmentMeshesRef: useEquipmentRenderer({ // E aqui também
-      sceneRef,
-      cameraRef,
-      controlsRef,
-      isSceneReady,
-      equipmentData: equipment,
-      layers,
-      colorMode,
-      createSingleEquipmentMesh,
-      groundMeshRef,
-    }),
+    equipmentMeshesRef: equipmentMeshesRef, // Corrigido: Passando a ref obtida
     selectedEquipmentTags: selectedEquipmentTags,
     hoveredEquipmentTag: hoveredEquipmentTag,
     isSceneReady,
   });
+
 
   const startCameraAnimation = useCallback((targetPos: THREE.Vector3, targetLookAt: THREE.Vector3, onComplete?: () => void) => {
     console.log('[ThreeScene] startCameraAnimation. Current Camera - Pos:', cameraRef.current?.position.clone(), 'Target:', controlsRef.current?.target.clone());
@@ -203,7 +182,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
     if (!cameraRef.current || !controlsRef.current) {
       // console.log('[ThreeScene] startCameraAnimation: camera or controls not ready, aborting.');
-      onComplete?.(); 
+      onComplete?.();
       return;
     }
 
@@ -222,11 +201,13 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
   }, [cameraRef, controlsRef]);
 
   // useEffect para aplicar mudanças de câmera programáticas (e.g., de undo/redo ou foco inicial)
+  // Este useEffect foi restaurado na iteração anterior para corrigir o sumiço dos objetos.
+  // A verificação !isAlreadyAtTarget é importante.
   useEffect(() => {
     if (programmaticCameraState && cameraRef.current && controlsRef.current && isSceneReady && isControlsReady) {
       const targetPosition = new THREE.Vector3(programmaticCameraState.position.x, programmaticCameraState.position.y, programmaticCameraState.position.z);
       const targetLookAt = new THREE.Vector3(programmaticCameraState.lookAt.x, programmaticCameraState.lookAt.y, programmaticCameraState.lookAt.z);
-      
+
       const isAlreadyAtTarget = positionEqualsWithTolerance(cameraRef.current.position, targetPosition) && positionEqualsWithTolerance(controlsRef.current.target, targetLookAt);
 
       if (!isAlreadyAtTarget) {
@@ -253,11 +234,8 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
       }
       return;
     }
-    
-    const equipmentMeshesToConsider = useEquipmentRenderer({ 
-      sceneRef, cameraRef, controlsRef, isSceneReady, equipmentData: equipment, 
-      layers, colorMode, createSingleEquipmentMesh, groundMeshRef 
-    }).current;
+
+    const equipmentMeshesToConsider = equipmentMeshesRef.current; // Usa a ref já obtida
 
     if (!equipmentMeshesToConsider || (equipmentMeshesToConsider.length === 0 && targetSystemToFrame.systemName !== 'INITIAL_LOAD_NO_SYSTEM')) {
         // console.log('[ThreeScene] targetSystemToFrame: No equipment meshes to frame for system', targetSystemToFrame.systemName,'. Calling onSystemFramed.');
@@ -322,7 +300,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
         onSystemFramedRef.current();
       }
     }
-  }, [targetSystemToFrame, isSceneReady, isControlsReady, equipment, layers, colorMode, createSingleEquipmentMesh, groundMeshRef, sceneRef, cameraRef, controlsRef, startCameraAnimation]);
+  }, [targetSystemToFrame, isSceneReady, isControlsReady, equipmentMeshesRef, sceneRef, cameraRef, controlsRef, startCameraAnimation]);
 
 
   const handleFrameUpdate = useCallback(() => {
@@ -370,4 +348,3 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
 export default ThreeScene;
 
-    
