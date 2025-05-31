@@ -33,11 +33,11 @@
  *     }
  *     useCameraManager ..> Command : uses (via executeCommand)
  * ```
- * 
+ *
  */
 "use client";
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import type { CameraState, Command, TargetSystemInfo } from '@/lib/types';
 
 /** Posição inicial padrão da câmera: { x: 25, y: 20, z: 25 }. */
@@ -100,23 +100,38 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
   const [targetSystemToFrame, setTargetSystemToFrame] = useState<TargetSystemInfo | null>(null);
   const [focusedSystemName, setFocusedSystemName] = useState<string | null>(null);
   const [currentViewIndex, setCurrentViewIndex] = useState<number>(0);
+  const previousCameraStateRef = useRef<CameraState | undefined>(currentCameraState);
+
+  useEffect(() => {
+    previousCameraStateRef.current = currentCameraState;
+  }, [currentCameraState]);
+
 
   /**
    * Define o sistema alvo para a câmera enquadrar e cicla pelas visões disponíveis.
    * @param {string} systemName O nome do sistema para focar.
    */
   const handleSetCameraViewForSystem = useCallback((systemName: string) => {
+    console.log(`[useCameraManager] handleSetCameraViewForSystem called with: ${systemName}`);
+    console.log(`[useCameraManager] BEFORE cycle - focusedSystemName: ${focusedSystemName}, currentViewIndex: ${currentViewIndex}`);
+
     let nextViewIndex = 0;
     if (systemName === focusedSystemName) {
       // Cicla para a próxima visão se for o mesmo sistema
       nextViewIndex = (currentViewIndex + 1) % NUMBER_OF_VIEWS;
+      console.log(`[useCameraManager] Same system. Next view index: ${nextViewIndex}`);
     } else {
       // Novo sistema focado, reseta para a primeira visão
       setFocusedSystemName(systemName);
-      nextViewIndex = 0;
+      nextViewIndex = 0; // Garante que é 0 para novo sistema
+      console.log(`[useCameraManager] New system. View index reset to: ${nextViewIndex}`);
     }
-    setCurrentViewIndex(nextViewIndex);
-    setTargetSystemToFrame({ systemName, viewIndex: nextViewIndex });
+    setCurrentViewIndex(nextViewIndex); // Atualiza o estado do índice da visão
+    const newTargetSystemInfo: TargetSystemInfo = { systemName, viewIndex: nextViewIndex };
+    setTargetSystemToFrame(newTargetSystemInfo);
+    console.log(`[useCameraManager] AFTER cycle - Setting targetSystemToFrame:`, newTargetSystemInfo);
+    console.log(`[useCameraManager] AFTER cycle - focusedSystemName: ${systemName}, currentViewIndex updated to: ${nextViewIndex}`);
+
   }, [focusedSystemName, currentViewIndex]);
 
   /**
@@ -127,10 +142,12 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
    * @param {CameraState} newSceneCameraState O novo estado da câmera da cena.
    */
   const handleCameraChangeFromScene = useCallback((newSceneCameraState: CameraState) => {
-    const oldCameraStateSnapshot = currentCameraState ? {
-      position: { ...currentCameraState.position },
-      lookAt: { ...currentCameraState.lookAt }
+    const oldCameraStateSnapshot = previousCameraStateRef.current ? {
+      position: { ...previousCameraStateRef.current.position },
+      lookAt: { ...previousCameraStateRef.current.lookAt }
     } : undefined;
+
+    // console.log('[useCameraManager] handleCameraChangeFromScene. New state:', newSceneCameraState, 'Old snapshot:', oldCameraStateSnapshot);
 
     setFocusedSystemName(null); // Interação manual do usuário reseta o ciclo de foco
     setCurrentViewIndex(0);
@@ -142,7 +159,9 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
         Math.abs(oldCameraStateSnapshot.lookAt.x - newSceneCameraState.lookAt.x) < 0.01 &&
         Math.abs(oldCameraStateSnapshot.lookAt.y - newSceneCameraState.lookAt.y) < 0.01 &&
         Math.abs(oldCameraStateSnapshot.lookAt.z - newSceneCameraState.lookAt.z) < 0.01) {
-      return; 
+      // console.log('[useCameraManager] Camera change too small, not creating command.');
+      setCurrentCameraState(newSceneCameraState); // Ainda atualiza o estado local para consistência, mas sem comando
+      return;
     }
 
     const command: Command = {
@@ -152,14 +171,16 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
       execute: () => setCurrentCameraState(newSceneCameraState),
       undo: () => setCurrentCameraState(oldCameraStateSnapshot),
     };
+    // console.log('[useCameraManager] Executing CAMERA_MOVE command.');
     executeCommand(command);
-  }, [currentCameraState, executeCommand]);
+  }, [executeCommand]);
 
   /**
    * Callback para ser chamado pela ThreeScene após o enquadramento do sistema ser concluído.
    * Reseta o `targetSystemToFrame` para `null`.
    */
   const onSystemFramed = useCallback(() => {
+    console.log('[useCameraManager] onSystemFramed called. Clearing targetSystemToFrame.');
     setTargetSystemToFrame(null);
   }, []);
 
