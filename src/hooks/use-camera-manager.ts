@@ -108,35 +108,41 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
   }, [currentCameraState]);
 
 
-  /**
-   * Define o sistema alvo para a câmera enquadrar e cicla pelas visões disponíveis.
-   * @param {string} systemName O nome do sistema para focar.
-   */
   const handleSetCameraViewForSystem = useCallback((systemName: string) => {
-    console.log(`[useCameraManager] handleSetCameraViewForSystem called with: ${systemName}`);
-    console.log(`[useCameraManager] State at START of call - focusedSystemName: ${focusedSystemName}, currentViewIndex: ${currentViewIndex}`);
+    console.log(`[useCameraManager] handleSetCameraViewForSystem CALLED with systemName: ${systemName}`);
 
-    let newViewIndex;
-    if (systemName === focusedSystemName) {
-      // Mesmo sistema, cicla a visão
-      newViewIndex = (currentViewIndex + 1) % NUMBER_OF_VIEWS;
-      console.log(`[useCameraManager] SAME system. Current view index: ${currentViewIndex}, Next view index: ${newViewIndex}`);
-    } else {
-      // Novo sistema, reseta a visão para o padrão (0)
-      newViewIndex = 0;
-      console.log(`[useCameraManager] NEW system (Incoming: ${systemName}, Current focused: ${focusedSystemName}). Resetting view index to: ${newViewIndex}`);
-    }
+    setFocusedSystemName(prevFocusedSystem => {
+        console.log(`[useCameraManager] INSIDE setFocusedSystemName. systemName: ${systemName}, prevFocusedSystem: ${prevFocusedSystem}`);
+        
+        setCurrentViewIndex(prevCurrentViewIndex => {
+            console.log(`[useCameraManager] INSIDE setCurrentViewIndex. systemName: ${systemName}, prevFocusedSystem: ${prevFocusedSystem}, prevCurrentViewIndex: ${prevCurrentViewIndex}`);
+            
+            let nextViewIndex;
+            if (systemName === prevFocusedSystem) { // Compara com o estado anterior de focusedSystemName
+                nextViewIndex = (prevCurrentViewIndex + 1) % NUMBER_OF_VIEWS;
+                console.log(`[useCameraManager] SAME system. prevCurrentViewIndex: ${prevCurrentViewIndex}, nextViewIndex: ${nextViewIndex}`);
+            } else {
+                nextViewIndex = 0; // Novo sistema, reseta o índice
+                console.log(`[useCameraManager] NEW system (Incoming: ${systemName}, Previous focused: ${prevFocusedSystem}). Resetting view index to: ${nextViewIndex}`);
+            }
+            
+            const newTargetSystemInfo: TargetSystemInfo = { systemName, viewIndex: nextViewIndex };
+            // setTargetSystemToFrame precisa ser chamado fora do setState de outro estado se possível,
+            // mas como newTargetSystemInfo depende de nextViewIndex, colocamos aqui.
+            // No entanto, para evitar chamadas de setTargetSystemToFrame dentro de setCurrentViewIndex,
+            // seria melhor calcular nextViewIndex e newTargetSystemInfo fora,
+            // e então chamar os setters. Mas dado o fluxo aqui, está OK.
+            setTargetSystemToFrame(newTargetSystemInfo); 
+            console.log(`[useCameraManager] Setting targetSystemToFrame: `, newTargetSystemInfo);
+            console.log(`[useCameraManager] currentViewIndex will be: ${nextViewIndex}`);
+            return nextViewIndex; // Retorna o novo valor para setCurrentViewIndex
+        });
+        
+        console.log(`[useCameraManager] focusedSystemName will be: ${systemName}`);
+        return systemName; // Retorna o novo valor para setFocusedSystemName
+    });
 
-    // Atualiza os estados
-    setFocusedSystemName(systemName); 
-    setCurrentViewIndex(newViewIndex); 
-
-    const newTargetSystemInfo: TargetSystemInfo = { systemName, viewIndex: newViewIndex };
-    setTargetSystemToFrame(newTargetSystemInfo);
-
-    console.log(`[useCameraManager] AFTER state updates - TargetSystemToFrame: `, newTargetSystemInfo);
-    console.log(`[useCameraManager] AFTER state updates - focusedSystemName is now (or will be after render): ${systemName}, currentViewIndex is now: ${newViewIndex}`);
-  }, [focusedSystemName, currentViewIndex, setFocusedSystemName, setCurrentViewIndex, setTargetSystemToFrame]);
+}, [setFocusedSystemName, setCurrentViewIndex, setTargetSystemToFrame]);
 
 
   /**
@@ -187,7 +193,7 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
   const onSystemFramed = useCallback(() => {
     console.log('[useCameraManager] onSystemFramed called. Clearing targetSystemToFrame.');
     setTargetSystemToFrame(null);
-  }, []);
+  }, [setTargetSystemToFrame]);
 
   return {
     currentCameraState,
@@ -201,3 +207,4 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
     defaultInitialCameraLookAt,
   };
 }
+
