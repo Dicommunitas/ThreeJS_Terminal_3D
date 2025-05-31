@@ -10,4 +10,5 @@ This project implements a 3D Terminal system, as detailed in the documentation f
 
 ## Getting Started
 
+
 To explore the project and its implementation, start by looking at `src/app/page.tsx`.
