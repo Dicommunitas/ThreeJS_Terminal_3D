@@ -8,6 +8,6 @@
 
 > **SystemView** = [`CameraState`](../interfaces/CameraState.md)
 
-Defined in: [src/lib/types.ts:88](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/4466777f13a6776beed134cf281b05ece637d113/src/lib/types.ts#L88)
+Defined in: [src/lib/types.ts:88](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/lib/types.ts#L88)
 
 Alias para CameraState, usado para clareza ao descrever uma visão específica do sistema.

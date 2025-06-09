@@ -8,7 +8,7 @@
 
 > `const` **annotationRepository**: `object`
 
-Defined in: [src/core/repository/memory-repository.ts:168](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/4466777f13a6776beed134cf281b05ece637d113/src/core/repository/memory-repository.ts#L168)
+Defined in: [src/core/repository/memory-repository.ts:168](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/core/repository/memory-repository.ts#L168)
 
 Objeto repositório para gerenciar dados de `Annotation`.
 

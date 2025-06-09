@@ -8,7 +8,7 @@
 
 > `const` **THEMES**: `object`
 
-Defined in: [src/components/ui/chart.tsx:14](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/4466777f13a6776beed134cf281b05ece637d113/src/components/ui/chart.tsx#L14)
+Defined in: [src/components/ui/chart.tsx:14](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/components/ui/chart.tsx#L14)
 
 Define os seletores CSS para os temas claro e escuro.
 Usado internamente pelo ChartStyle para aplicar cores específicas do tema.

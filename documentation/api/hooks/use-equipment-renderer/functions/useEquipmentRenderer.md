@@ -8,7 +8,7 @@
 
 > **useEquipmentRenderer**(`props`): `RefObject`\<`Object3D`\<`Object3DEventMap`\>[]\>
 
-Defined in: [src/hooks/use-equipment-renderer.ts:92](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/4466777f13a6776beed134cf281b05ece637d113/src/hooks/use-equipment-renderer.ts#L92)
+Defined in: [src/hooks/use-equipment-renderer.ts:92](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/hooks/use-equipment-renderer.ts#L92)
 
 Hook customizado para gerenciar a renderização (criação, atualização, remoção)
 dos meshes de equipamentos na cena Three.js.

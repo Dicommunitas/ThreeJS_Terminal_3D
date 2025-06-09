@@ -3745,16 +3745,16 @@ Returns **[UseSceneSetupReturn][346]** Refs para os componentes da cena e flags 
 
 ##
 
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository][442] Para a fonte de dados das anotações.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository][443] Para obter dados de equipamentos (e.g., nome para toasts).
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Annotation][426] Para a interface de Anotação.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment][425] Para a interface de Equipamento.
+*   **See**: [core/repository/memory-repository.annotationRepository][442] Para a fonte de dados das anotações.
+*   **See**: [core/repository/memory-repository.equipmentRepository][443] Para obter dados de equipamentos (e.g., nome para toasts).
+*   **See**: [lib/types.Annotation][444] Para a interface de Anotação.
+*   **See**: [lib/types.Equipment][445] Para a interface de Equipamento.
 
 ### Examples
 
-```javascript
+````javascript
 // Diagrama de Interação do useAnnotationManager:
-\`\`\`mermaid
+```mermaid
 graph TD
     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOpenAnnotationDialog)
     B -- define estados --> DialogState["isAnnotationDialogOpen, editingAnnotation, annotationTargetEquipment"]
@@ -3787,14 +3787,14 @@ graph TD
    class E,G repo;
    class DialogState,H,I state;
    class useAnnotationManager hook;
-\`\`\`
 ```
+````
 
 ##
 
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#CameraState][444] Para a interface do estado da câmera.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Command][445] Para a interface de comando (usada com `executeCommand`).
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#TargetSystemInfo][446] Para a interface de informações do sistema alvo.
+*   **See**: [lib/types.CameraState][446] Para a interface do estado da câmera.
+*   **See**: [lib/types.Command][447] Para a interface de comando (usada com `executeCommand`).
+*   **See**: [lib/types.TargetSystemInfo][448] Para a interface de informações do sistema alvo.
 
 ### Examples
 
@@ -3846,8 +3846,8 @@ graph LR
 
 ##
 
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository][443] Para a fonte de dados.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment][425] Para a interface de Equipamento.
+*   **See**: [core/repository/memory-repository.equipmentRepository][443] Para a fonte de dados.
+*   **See**: [lib/types.Equipment][445] Para a interface de Equipamento.
 
 ### Examples
 
@@ -4014,8 +4014,8 @@ Returns **any** Refs para os renderizadores, composer, outline pass, e uma flag 
 
 ## useRef
 
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting][447] Para a função de configuração da iluminação.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane][448] Para a função de configuração do plano de chão.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting][449] Para a função de configuração da iluminação.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane][450] Para a função de configuração do plano de chão.
 
 ### Examples
 
@@ -5176,16 +5176,20 @@ Type: (`"Produto"` | `"Estado Operacional"` | `"Equipamento"`)
 
 [441]: https://developer.mozilla.org/docs/Web/API/HTMLDivElement
 
-[442]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository
+[442]: core/repository/memory-repository.annotationRepository
 
-[443]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository
+[443]: core/repository/memory-repository.equipmentRepository
 
-[444]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#CameraState
+[444]: lib/types.Annotation
 
-[445]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Command
+[445]: lib/types.Equipment
 
-[446]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#TargetSystemInfo
+[446]: lib/types.CameraState
 
-[447]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting
+[447]: lib/types.Command
 
-[448]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane
+[448]: lib/types.TargetSystemInfo
+
+[449]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting
+
+[450]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane

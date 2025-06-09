@@ -13,14 +13,14 @@
  *     refletir os dados mais recentes, garantindo a reatividade da UI.
  * -   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações de anotação.
  *
- * @see {@link core/repository/memory-repository.annotationRepository} Para a fonte de dados das anotações.
- * @see {@link core/repository/memory-repository.equipmentRepository} Para obter dados de equipamentos (e.g., nome para toasts).
- * @see {@link lib/types.Annotation} Para a interface de Anotação.
- * @see {@link lib/types.Equipment} Para a interface de Equipamento.
+ * @see {@link ../../documentation/api/core/repository/memory-repository/README.md#annotationrepository} Para a fonte de dados das anotações.
+ * @see {@link ../../documentation/api/core/repository/memory-repository/README.md#equipmentrepository} Para obter dados de equipamentos (e.g., nome para toasts).
+ * @see {@link ../../documentation/api/lib/types/README.md#Annotation} Para a interface de Anotação.
+ * @see {@link ../../documentation/api/lib/types/README.md#Equipment} Para a interface de Equipamento.
  *
  * @example
  * // Diagrama de Interação do useAnnotationManager:
- * ```mermaid
+ * * ```mermaid
  * graph TD
  *     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOpenAnnotationDialog)
  *     B -- define estados --> DialogState["isAnnotationDialogOpen, editingAnnotation, annotationTargetEquipment"]
@@ -53,7 +53,7 @@
  *    class E,G repo;
  *    class DialogState,H,I state;
  *    class useAnnotationManager hook;
- * ```
+ * * ```
  */
 "use client";
 

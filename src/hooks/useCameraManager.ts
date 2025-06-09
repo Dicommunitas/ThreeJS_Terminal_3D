@@ -16,13 +16,13 @@
  * sejam propagadas para os componentes que o utilizam (e.g., `ThreeScene` para aplicar
  * o estado à câmera Three.js).
  *
- * @see {@link lib/types.CameraState} Para a interface do estado da câmera.
- * @see {@link lib/types.Command} Para a interface de comando (usada com `executeCommand`).
- * @see {@link lib/types.TargetSystemInfo} Para a interface de informações do sistema alvo.
+ * @see {@link ../../documentation/api/lib/types/README.md#CameraState} Para a interface do estado da câmera.
+ * @see {@link ../../documentation/api/lib/types/README.md#Command} Para a interface de comando (usada com `executeCommand`).
+ * @see {@link ../../documentation/api/lib/types/README.md#TargetSystemInfo} Para a interface de informações do sistema alvo.
  *
  * @example
  * // Diagrama de Interação e Estado do useCameraManager:
- * \`\`\`mermaid
+ * * ```mermaid
  * graph LR
  *     A[Terminal3DPage] -- chama --> B(handleSetCameraViewForSystem)
  *     B -- atualiza --> C{targetSystemToFrame};
@@ -63,7 +63,7 @@
  *    class B,G,H,J,M func;
  *    class C,D,E,K,L,I state;
  *    class useCameraManager hook;
- * \`\`\`
+ * * ```
  */
 "use client";
 

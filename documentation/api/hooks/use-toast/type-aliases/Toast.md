@@ -8,4 +8,4 @@
 
 > **Toast** = `Omit`\<[`ToasterToast`](ToasterToast.md), `"id"`\>
 
-Defined in: [src/hooks/use-toast.ts:144](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/4466777f13a6776beed134cf281b05ece637d113/src/hooks/use-toast.ts#L144)
+Defined in: [src/hooks/use-toast.ts:144](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/hooks/use-toast.ts#L144)

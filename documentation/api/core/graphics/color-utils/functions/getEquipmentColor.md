@@ -8,7 +8,7 @@
 
 > **getEquipmentColor**(`item`, `colorMode`): `Color`
 
-Defined in: [src/core/graphics/color-utils.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/4466777f13a6776beed134cf281b05ece637d113/src/core/graphics/color-utils.ts#L42)
+Defined in: [src/core/graphics/color-utils.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/core/graphics/color-utils.ts#L42)
 
 Determina a cor final de um equipamento com base no modo de colorização e seus atributos.
 

@@ -8,14 +8,13 @@
 
 ## See
 
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository) Para a fonte de dados das anotações.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository) Para obter dados de equipamentos (e.g., nome para toasts).
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Annotation](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Annotation) Para a interface de Anotação.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment) Para a interface de Equipamento.
+ - [core/repository/memory-repository.annotationRepository](../../core/repository/memory-repository/variables/annotationRepository.md) Para a fonte de dados das anotações.
+ - [core/repository/memory-repository.equipmentRepository](../../core/repository/memory-repository/variables/equipmentRepository.md) Para obter dados de equipamentos (e.g., nome para toasts).
+ - [lib/types.Annotation](../../lib/types/interfaces/Annotation.md) Para a interface de Anotação.
+ - [lib/types.Equipment](../../lib/types/interfaces/Equipment.md) Para a interface de Equipamento.
 
 ## Example
 
-```ts
 // Diagrama de Interação do useAnnotationManager:
 ```mermaid
 graph TD
@@ -50,7 +49,6 @@ graph TD
    class E,G repo;
    class DialogState,H,I state;
    class useAnnotationManager hook;
-```
 ```
 
 ## Interfaces

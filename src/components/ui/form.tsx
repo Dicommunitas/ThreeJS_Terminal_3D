@@ -28,7 +28,7 @@ import { Label } from "@/components/ui/label"
  * @remarks
  * [API](https://react-hook-form.com/docs/useformcontext) • [Demo](https://codesandbox.io/s/react-hook-form-v7-form-context-ytudi)
  * @example
- * \`\`\`tsx
+ * * \`\`\`tsx
  * function App() {
  *   const methods = useForm();
  *   const onSubmit = data => console.log(data);
@@ -47,7 +47,7 @@ import { Label } from "@/components/ui/label"
  *   const { register } = useFormContext(); // retrieve all hook methods
  *   return <input {...register("test")} />;
  * }
- * \`\`\`
+ * * \`\`\`
  */
 const Form = FormProvider
 

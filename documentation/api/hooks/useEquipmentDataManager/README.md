@@ -8,8 +8,8 @@
 
 ## See
 
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository) Para a fonte de dados.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment) Para a interface de Equipamento.
+ - [core/repository/memory-repository.equipmentRepository](../../core/repository/memory-repository/variables/equipmentRepository.md) Para a fonte de dados.
+ - [lib/types.Equipment](../../lib/types/interfaces/Equipment.md) Para a interface de Equipamento.
 
 ## Example
 
