@@ -8,7 +8,7 @@
 
 > **setupPostProcessing**(`renderer`, `scene`, `camera`, `initialWidth`, `initialHeight`): `object`
 
-Defined in: [src/core/three/postprocessing-utils.ts:86](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99a29fe17cab393c4120b6b5906a4ebb1fb3c239/src/core/three/postprocessing-utils.ts#L86)
+Defined in: [src/core/three/postprocessing-utils.ts:86](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/core/three/postprocessing-utils.ts#L86)
 
 Configura o pipeline de pós-processamento, incluindo o EffectComposer e o OutlinePass.
 Esta função é chamada uma vez durante o setup inicial da cena.

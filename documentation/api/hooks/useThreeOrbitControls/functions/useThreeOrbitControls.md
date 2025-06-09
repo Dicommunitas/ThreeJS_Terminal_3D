@@ -8,7 +8,7 @@
 
 > **useThreeOrbitControls**(`props`): [`UseThreeOrbitControlsReturn`](../interfaces/UseThreeOrbitControlsReturn.md)
 
-Defined in: [src/hooks/useThreeOrbitControls.ts:85](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99a29fe17cab393c4120b6b5906a4ebb1fb3c239/src/hooks/useThreeOrbitControls.ts#L85)
+Defined in: [src/hooks/useThreeOrbitControls.ts:85](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/hooks/useThreeOrbitControls.ts#L85)
 
 Configura e gerencia os `OrbitControls` do Three.js.
 Lida com importação dinâmica, configuração e ouvintes de eventos para mudanças na câmera.

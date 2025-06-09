@@ -8,7 +8,7 @@
 
 > **useThreeResize**(`props`): `void`
 
-Defined in: [src/hooks/useThreeResize.ts:107](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99a29fe17cab393c4120b6b5906a4ebb1fb3c239/src/hooks/useThreeResize.ts#L107)
+Defined in: [src/hooks/useThreeResize.ts:107](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/hooks/useThreeResize.ts#L107)
 
 Lida com eventos de redimensionamento para a cena Three.js, atualizando câmera e renderizadores.
 
