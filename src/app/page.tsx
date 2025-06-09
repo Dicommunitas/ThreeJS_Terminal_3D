@@ -1,5 +1,20 @@
 
 /**
+ * @fileOverview Componente principal da página da aplicação Terminal 3D.
+ *
+ * @module app/page
+ * @see {@link module:components/main-scene-area~MainSceneArea} Para a área principal da cena.
+ * @see {@link module:components/ui/sidebar~Sidebar} Para a barra lateral de controles.
+ * @see {@link module:components/annotation-dialog~AnnotationDialog} Para o diálogo de anotações.
+ * @see {@link module:hooks/use-command-history~useCommandHistory} Para o gerenciamento de histórico de comandos.
+ * @see {@link module:hooks/use-equipment-data-manager~useEquipmentDataManager} Para o gerenciamento de dados de equipamentos.
+ * @see {@link module:hooks/use-camera-manager~useCameraManager} Para o gerenciamento da câmera.
+ * @see {@link module:hooks/use-filter-manager~useFilterManager} Para o gerenciamento de filtros.
+ * @see {@link module:hooks/use-annotation-manager~useAnnotationManager} Para o gerenciamento de anotações.
+ * @see {@link module:hooks/use-equipment-selection-manager~useEquipmentSelectionManager} Para o gerenciamento de seleção de equipamentos.
+ * @see {@link module:hooks/use-layer-manager~useLayerManager} Para o gerenciamento de camadas.
+ *
+ * @description
  * Componente principal da página da aplicação Terminal 3D.
  *
  * Responsabilidades:
@@ -8,7 +23,7 @@
  *     `useEquipmentDataManager`, `useCameraManager`, `useFilterManager`, `useAnnotationManager`,
  *     `useEquipmentSelectionManager`, `useLayerManager`).
  * 2.  **Gerenciamento de Estado da UI:** Controla estados locais específicos da UI que não pertencem
- *     a um hook dedicado (e.g., `colorMode`, `isFocusingRef`).
+ *     a um hook dedicado (e.g., `colorMode`).
  * 3.  **Derivação de Dados para UI:** Calcula ou formata dados derivados dos estados dos hooks para
  *     serem passados como props para componentes da UI (e.g., `cameraViewSystems`,
  *     `selectedEquipmentDetails`, `equipmentAnnotation`, `availableOperationalStatesList`,
@@ -21,44 +36,45 @@
  * 6.  **Passagem de Props e Callbacks:** Conecta os hooks de estado aos componentes da UI,
  *     fornecendo os dados necessários e as funções de callback para manipulação de eventos.
  *
- * ```mermaid
- *   graph LR
- *     Terminal3DPage["Terminal3DPage (src/app/page.tsx)"] --> H_CmdHistory["useCommandHistory"];
- *     Terminal3DPage --> H_EquipData["useEquipmentDataManager"];
- *     Terminal3DPage --> H_CameraMgr["useCameraManager"];
- *     Terminal3DPage --> H_FilterMgr["useFilterManager"];
- *     Terminal3DPage --> H_AnnotMgr["useAnnotationManager"];
- *     Terminal3DPage --> H_EquipSelectMgr["useEquipmentSelectionManager"];
- *     Terminal3DPage --> H_LayerMgr["useLayerManager"];
- *
- *     Terminal3DPage --> MainSceneArea_Comp["MainSceneArea"];
- *     Terminal3DPage --> Sidebar_Comp["Sidebar"];
- *     Terminal3DPage --> AnnotationDialog_Comp["AnnotationDialog"];
- *
- *     MainSceneArea_Comp --> ThreeScene_Comp["ThreeScene"];
- *     MainSceneArea_Comp --> InfoPanel_Comp["InfoPanel"];
- *     Sidebar_Comp --> SidebarContentLayout_Comp["SidebarContentLayout"];
- *
- *     subgraph "Hooks de Estado"
- *       H_CmdHistory["useCommandHistory"];
- *       H_EquipData["useEquipmentDataManager"];
- *       H_CameraMgr["useCameraManager"];
- *       H_FilterMgr["useFilterManager"];
- *       H_AnnotMgr["useAnnotationManager"];
- *       H_EquipSelectMgr["useEquipmentSelectionManager"];
- *       H_LayerMgr["useLayerManager"];
- *     end
- *
- *     subgraph "Componentes de UI Principais"
- *       MainSceneArea_Comp["MainSceneArea"];
- *       Sidebar_Comp["Sidebar"];
- *       AnnotationDialog_Comp["AnnotationDialog"];
- *       InfoPanel_Comp["InfoPanel"];
- *       ThreeScene_Comp["ThreeScene"];
- *       SidebarContentLayout_Comp["SidebarContentLayout"];
- *     end
- * ```
- *
+ * @example
+ * // Diagrama de Interação de Alto Nível da Terminal3DPage
+ * // mermaid
+ * // graph LR
+ * //     Terminal3DPage["Terminal3DPage (Página Principal)"] --> H_CmdHistory["useCommandHistory"];
+ * //     Terminal3DPage --> H_EquipData["useEquipmentDataManager"];
+ * //     Terminal3DPage --> H_CameraMgr["useCameraManager"];
+ * //     Terminal3DPage --> H_FilterMgr["useFilterManager"];
+ * //     Terminal3DPage --> H_AnnotMgr["useAnnotationManager"];
+ * //     Terminal3DPage --> H_EquipSelectMgr["useEquipmentSelectionManager"];
+ * //     Terminal3DPage --> H_LayerMgr["useLayerManager"];
+ * //
+ * //     Terminal3DPage --> MainSceneArea_Comp["MainSceneArea (Área da Cena)"];
+ * //     Terminal3DPage --> Sidebar_Comp["Sidebar (Barra Lateral)"];
+ * //     Terminal3DPage --> AnnotationDialog_Comp["AnnotationDialog (Diálogo de Anotação)"];
+ * //
+ * //     MainSceneArea_Comp --> ThreeScene_Comp["ThreeScene (Renderizador 3D)"];
+ * //     MainSceneArea_Comp --> InfoPanel_Comp["InfoPanel (Painel de Informações)"];
+ * //     Sidebar_Comp --> SidebarContentLayout_Comp["SidebarContentLayout (Conteúdo da Sidebar)"];
+ * //
+ * //     subgraph "Hooks de Gerenciamento de Estado da Aplicação"
+ * //       H_CmdHistory;
+ * //       H_EquipData;
+ * //       H_CameraMgr;
+ * //       H_FilterMgr;
+ * //       H_AnnotMgr;
+ * //       H_EquipSelectMgr;
+ * //       H_LayerMgr;
+ * //     end
+ * //
+ * //     subgraph "Componentes de UI Principais"
+ * //       MainSceneArea_Comp;
+ * //       Sidebar_Comp;
+ * //       AnnotationDialog_Comp;
+ * //       InfoPanel_Comp;
+ * //       ThreeScene_Comp;
+ * //       SidebarContentLayout_Comp;
+ * //     end
+ * //
  */
 "use client";
 
@@ -134,7 +150,7 @@ export default function Terminal3DPage(): JSX.Element {
     handleDeleteAnnotation,
     getAnnotationForEquipment,
     setIsAnnotationDialogOpen,
-  } = useAnnotationManager({ initialAnnotations: [] }); // Repositório lida com dados iniciais
+  } = useAnnotationManager({}); // Não precisa mais de initialAnnotations aqui, o repo cuida disso
 
   // Hook para gerenciar seleção de equipamentos
   const {
@@ -238,15 +254,6 @@ export default function Terminal3DPage(): JSX.Element {
     return sortedProducts;
   }, [equipmentData]);
   
-  // useEffect(() => {
-  //   // console.log('[Page.tsx] Data for MainSceneArea:', {
-  //   //   filteredEquipmentCount: filteredEquipment.length,
-  //   //   allEquipmentDataCount: equipmentData.length,
-  //   //   layers: layers.map(l => ({ id: l.id, visible: l.isVisible })),
-  //   //   currentCameraState,
-  //   // });
-  // }, [filteredEquipment, equipmentData, layers, currentCameraState]);
-
 
   return (
     <SidebarProvider defaultOpen={false}>
@@ -339,3 +346,4 @@ export default function Terminal3DPage(): JSX.Element {
     </SidebarProvider>
   );
 }
+

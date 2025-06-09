@@ -1,20 +1,64 @@
 
 /**
- * @fileOverview Custom hook for setting up and managing Three.js OrbitControls.
+ * @fileOverview Hook customizado para configurar e gerenciar os `OrbitControls` do Three.js.
  *
- * Responsibilities:
- * - Dynamically import `OrbitControls` from Three.js examples.
- * - Initialize `OrbitControls` with the provided camera and DOM element.
- * - Configure control properties like damping, target, and mouse button assignments.
- * - Add an event listener to the controls' 'end' event to trigger the `onCameraChange` callback.
- * - Manage an `isControlsReady` state flag that becomes true once controls are loaded and initialized.
- * - Handle cleanup by disposing of the controls and removing event listeners.
+ * @module hooks/useThreeOrbitControls
+ *
+ * @description
+ * Este hook é responsável por:
+ * -   Importar dinamicamente o módulo `OrbitControls` dos exemplos do Three.js.
+ * -   Inicializar os `OrbitControls` com a câmera e o elemento DOM do renderizador fornecidos.
+ * -   Configurar propriedades importantes dos controles, como `enableDamping` (para suavização),
+ *     `target` (ponto inicial de observação) e o mapeamento dos botões do mouse (esquerdo/meio para rotação, direito para pan).
+ * -   Adicionar um ouvinte de evento ao evento 'end' dos controles para disparar o callback `onCameraChange`
+ *     quando o usuário finaliza uma interação com a câmera.
+ * -   Gerenciar uma flag de estado `isControlsReady` que se torna `true` assim que os controles
+ *     são carregados e inicializados com sucesso.
+ * -   Lidar com a limpeza (dispose) dos controles e remoção do ouvinte de evento quando o componente
+ *     é desmontado ou as dependências do hook mudam.
+ *
+ * @returns Ref para a instância de `OrbitControls` e uma flag indicando sua prontidão.
+ *
+ * @example
+ * // Diagrama de Fluxo do useThreeOrbitControls
+ * // mermaid
+ * // sequenceDiagram
+ * //     participant Usuário
+ * //     participant ThreeScene as Componente React
+ * //     participant useThreeOrbitControls as Hook
+ * //     participant OrbitControls as Módulo Three.js
+ * //
+ * //     ThreeScene ->>+ useThreeOrbitControls: Chama com cameraRef, rendererRef.domElement, etc.
+ * //     Note right of useThreeOrbitControls: renderersReady = true?
+ * //     useThreeOrbitControls ->>+ OrbitControls: import('OrbitControls.js')
+ * //     OrbitControls -->>- useThreeOrbitControls: Módulo carregado
+ * //     useThreeOrbitControls -->> OrbitControls: new OrbitControls(camera, domElement)
+ * //     useThreeOrbitControls -->> OrbitControls: Configura (enableDamping, target, mouseButtons)
+ * //     useThreeOrbitControls -->> OrbitControls: addEventListener('end', handleEnd)
+ * //     useThreeOrbitControls -->> ThreeScene: Retorna controlsRef, isControlsReady = true
+ * //     activate Usuário
+ * //     Usuário ->> OrbitControls: Interage com a câmera (arrasta mouse)
+ * //     OrbitControls -->> OrbitControls: Atualiza posição/rotação da câmera
+ * //     Usuário ->> OrbitControls: Solta o botão do mouse
+ * //     deactivate Usuário
+ * //     OrbitControls -->> useThreeOrbitControls: Dispara evento 'end'
+ * //     useThreeOrbitControls ->> ThreeScene: Chama onCameraChange(novoEstado)
+ * //     Note right of ThreeScene: Atualiza estado da câmera da aplicação
  */
 import { useRef, useEffect, useState } from 'react';
-import * as THREE from 'three'; // Added import
+import * as THREE from 'three'; 
 import type { OrbitControls as OrbitControlsType } from 'three/examples/jsm/controls/OrbitControls.js';
 import type { CameraState } from '@/lib/types';
 
+/**
+ * Props para o hook `useThreeOrbitControls`.
+ * @interface UseThreeOrbitControlsProps
+ * @property {React.RefObject<THREE.PerspectiveCamera | null>} cameraRef - Ref para a câmera perspectiva.
+ * @property {React.RefObject<THREE.WebGLRenderer | null>} rendererRef - Ref para o renderizador WebGL (necessário para o `domElement`).
+ * @property {{ x: number; y: number; z: number }} initialCameraLookAt - O ponto inicial para onde a câmera (e os controles) deve olhar.
+ * @property {(cameraState: CameraState, actionDescription?: string) => void} onCameraChange - Callback acionado quando o usuário finaliza uma interação com a câmera.
+ * @property {boolean} renderersReady - Flag que indica se os renderizadores (especialmente o `domElement` do WebGLRenderer) estão prontos.
+ */
 export interface UseThreeOrbitControlsProps {
   cameraRef: React.RefObject<THREE.PerspectiveCamera | null>;
   rendererRef: React.RefObject<THREE.WebGLRenderer | null>;
@@ -23,16 +67,22 @@ export interface UseThreeOrbitControlsProps {
   renderersReady: boolean; 
 }
 
+/**
+ * Valor de retorno do hook `useThreeOrbitControls`.
+ * @interface UseThreeOrbitControlsReturn
+ * @property {React.RefObject<OrbitControlsType | null>} controlsRef - Ref para a instância de `OrbitControls`.
+ * @property {boolean} isControlsReady - Flag que indica se os `OrbitControls` foram carregados e inicializados com sucesso.
+ */
 export interface UseThreeOrbitControlsReturn {
   controlsRef: React.RefObject<OrbitControlsType | null>;
   isControlsReady: boolean;
 }
 
 /**
- * Sets up and manages Three.js OrbitControls.
- * Handles dynamic import, configuration, and event listeners for camera changes.
- * @param {UseThreeOrbitControlsProps} props - Properties for OrbitControls setup.
- * @returns {UseThreeOrbitControlsReturn} Ref to OrbitControls and readiness flag.
+ * Configura e gerencia os `OrbitControls` do Three.js.
+ * Lida com importação dinâmica, configuração e ouvintes de eventos para mudanças na câmera.
+ * @param {UseThreeOrbitControlsProps} props - Propriedades para a configuração dos OrbitControls.
+ * @returns {UseThreeOrbitControlsReturn} Ref para os OrbitControls e flag de prontidão.
  */
 export function useThreeOrbitControls({
   cameraRef,
@@ -50,39 +100,34 @@ export function useThreeOrbitControls({
   }, [onCameraChange]);
 
   useEffect(() => {
-    // console.log(`[useThreeOrbitControls] useEffect triggered. renderersReady: ${renderersReady}`);
     if (!renderersReady || !cameraRef.current || !rendererRef.current || !rendererRef.current.domElement) {
-      // console.warn('[useThreeOrbitControls] Skipping setup: renderers not ready or camera/rendererRef/rendererRef.domElement missing.');
       setIsControlsReady(false);
       return;
     }
-    // console.log('[useThreeOrbitControls] Prerequisites met, proceeding with OrbitControls setup.');
 
-    const domElement = rendererRef.current.domElement; // Store in a variable for check
+    const currentCamera = cameraRef.current;
+    const currentDomElement = rendererRef.current.domElement;
     let localControlsInstance: OrbitControlsType | null = null;
     let isEffectMounted = true;
 
     import('three/examples/jsm/controls/OrbitControls.js')
       .then(module => {
-        if (!isEffectMounted || !cameraRef.current || !domElement) { // Check domElement here
-          // console.log("[useThreeOrbitControls] Effect unmounted or refs (camera/domElement) changed/missing before OrbitControls module loaded or instantiated.");
+        if (!isEffectMounted || !currentCamera || !currentDomElement) {
           if (isEffectMounted) setIsControlsReady(false);
           return;
         }
-        // console.log("[useThreeOrbitControls] OrbitControls module loaded successfully.");
         const OrbitControls = module.OrbitControls;
-        localControlsInstance = new OrbitControls(cameraRef.current, domElement); // Use stored domElement
+        localControlsInstance = new OrbitControls(currentCamera, currentDomElement);
         controlsRef.current = localControlsInstance;
 
         localControlsInstance.enableDamping = true;
         localControlsInstance.target.set(initialCameraLookAt.x, initialCameraLookAt.y, initialCameraLookAt.z);
         localControlsInstance.mouseButtons = {
           LEFT: THREE.MOUSE.ROTATE,
-          MIDDLE: THREE.MOUSE.ROTATE, // Changed from default DOLLY
+          MIDDLE: THREE.MOUSE.ROTATE, 
           RIGHT: THREE.MOUSE.PAN
         };
         localControlsInstance.update(); 
-        // console.log("[useThreeOrbitControls] OrbitControls initialized and configured.");
 
         const handleControlsChangeEnd = () => {
           if (cameraRef.current && controlsRef.current && onCameraChangeRef.current) {
@@ -98,11 +143,10 @@ export function useThreeOrbitControls({
         
         if (isEffectMounted) {
           setIsControlsReady(true);
-          // console.log('[useThreeOrbitControls] isControlsReady set to true.');
         }
       })
       .catch(err => {
-        console.error("[useThreeOrbitControls] Failed to load OrbitControls", err);
+        console.error("[useThreeOrbitControls] Falha ao carregar OrbitControls", err);
         if (isEffectMounted) {
           setIsControlsReady(false);
         }
@@ -110,9 +154,7 @@ export function useThreeOrbitControls({
       
     return () => {
       isEffectMounted = false;
-      // console.log('[useThreeOrbitControls] Cleanup function running.');
       if (controlsRef.current) { 
-        // console.log('[useThreeOrbitControls] Disposing OrbitControls.');
         const listener = (controlsRef.current as any).__private_handleControlsChangeEndListener;
         if (listener) {
           controlsRef.current.removeEventListener('end', listener);
@@ -126,3 +168,4 @@ export function useThreeOrbitControls({
 
   return { controlsRef, isControlsReady };
 }
+

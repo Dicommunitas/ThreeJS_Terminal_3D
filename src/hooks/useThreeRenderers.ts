@@ -1,15 +1,68 @@
 
 /**
- * @fileOverview Custom hook for setting up Three.js renderers and post-processing.
+ * @fileOverview Hook customizado para configurar os renderizadores Three.js e o pipeline de pós-processamento.
  *
- * Responsibilities:
- * - Initialize `THREE.WebGLRenderer` and configure its properties (size, pixelRatio, background, fog).
- * - Initialize `THREE.CSS2DRenderer` for HTML-based labels and configure its properties.
- * - Initialize `EffectComposer` and add `RenderPass` and `OutlinePass` for post-processing effects.
- * - Append renderer DOM elements to the provided mount point.
- * - Handle WebGL context lost and restored events for the `WebGLRenderer`.
+ * @module hooks/useThreeRenderers
  *
- * Returns refs to the renderers, composer, outline pass, and a flag indicating their readiness.
+ * @description
+ * Este hook é responsável por inicializar e configurar:
+ * -   `THREE.WebGLRenderer`: Para a renderização principal da cena 3D.
+ * -   `THREE.CSS2DRenderer`: Para renderizar elementos HTML (como rótulos/pins) sobrepostos à cena.
+ * -   `THREE.EffectComposer`: Para gerenciar passes de pós-processamento.
+ * -   `THREE.RenderPass`: O passe base que renderiza a cena.
+ * -   `THREE.OutlinePass`: Para adicionar efeitos de contorno a objetos selecionados.
+ *
+ * O hook também gerencia a anexação dos elementos DOM dos renderizadores ao ponto de montagem fornecido
+ * e lida com eventos de contexto WebGL (perda e restauração).
+ *
+ * @returns Refs para os renderizadores, composer, outline pass, e uma flag indicando sua prontidão.
+ *
+ * @example
+ * // Diagrama de Componentes Criados por useThreeRenderers
+ * // mermaid
+ * // graph TD
+ * //     useThreeRenderers["useThreeRenderers (Hook)"]
+ * //     Props["UseThreeRenderersProps"]
+ * //     Return["UseThreeRenderersReturn"]
+ * //
+ * //     subgraph "Objetos Three.js Gerenciados"
+ * //         WebGLRenderer["THREE.WebGLRenderer"]
+ * //         CSS2DRenderer["THREE.CSS2DRenderer"]
+ * //         EffectComposer["THREE.EffectComposer"]
+ * //         RenderPass["THREE.RenderPass"]
+ * //         OutlinePass["THREE.OutlinePass"]
+ * //     end
+ * //
+ * //     Props -- define --> PExistingSceneRef["sceneRef (existente)"]
+ * //     Props -- define --> PExistingCameraRef["cameraRef (existente)"]
+ * //     Props -- define --> PMountRef["mountRef (DOM)"]
+ * //
+ * //     useThreeRenderers -- usa --> PExistingSceneRef
+ * //     useThreeRenderers -- usa --> PExistingCameraRef
+ * //     useThreeRenderers -- anexa ao --> PMountRef
+ * //
+ * //     useThreeRenderers -- cria e configura --> WebGLRenderer
+ * //     useThreeRenderers -- cria e configura --> CSS2DRenderer
+ * //     useThreeRenderers -- cria e configura --> EffectComposer
+ * //     EffectComposer -- contém --> RenderPass
+ * //     EffectComposer -- contém --> OutlinePass
+ * //
+ * //     Return -- contém ref para --> WebGLRenderer
+ * //     Return -- contém ref para --> CSS2DRenderer
+ * //     Return -- contém ref para --> EffectComposer
+ * //     Return -- contém ref para --> OutlinePass
+ * //     Return -- contém --> FAreRenderersReady["areRenderersReady (flag)"]
+ * //
+ * //     classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
+ * //     classDef type fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
+ * //     classDef obj3d fill:#lightgreen,stroke:#333,stroke-width:2px;
+ * //     classDef dom fill:#lightcoral,stroke:#333,stroke-width:2px;
+ * //     classDef flag fill:#lightpink,stroke:#333,stroke-width:2px;
+ * //
+ * //     class useThreeRenderers hook;
+ * //     class Props,Return,PExistingSceneRef,PExistingCameraRef,PMountRef type;
+ * //     class WebGLRenderer,CSS2DRenderer,EffectComposer,RenderPass,OutlinePass obj3d;
+ * //     class FAreRenderersReady flag;
  */
 import { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
@@ -18,12 +71,28 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
 
+/**
+ * Props para o hook `useThreeRenderers`.
+ * @interface UseThreeRenderersProps
+ * @property {React.RefObject<HTMLDivElement | null>} mountRef - Ref para o elemento DOM onde os renderizadores serão montados.
+ * @property {React.RefObject<THREE.Scene | null>} sceneRef - Ref para a cena Three.js existente.
+ * @property {React.RefObject<THREE.PerspectiveCamera | null>} cameraRef - Ref para a câmera perspectiva existente.
+ */
 export interface UseThreeRenderersProps {
   mountRef: React.RefObject<HTMLDivElement | null>;
   sceneRef: React.RefObject<THREE.Scene | null>;
   cameraRef: React.RefObject<THREE.PerspectiveCamera | null>;
 }
 
+/**
+ * Valor de retorno do hook `useThreeRenderers`.
+ * @interface UseThreeRenderersReturn
+ * @property {React.RefObject<THREE.WebGLRenderer | null>} rendererRef - Ref para o `WebGLRenderer`.
+ * @property {React.RefObject<CSS2DRenderer | null>} labelRendererRef - Ref para o `CSS2DRenderer`.
+ * @property {React.RefObject<EffectComposer | null>} composerRef - Ref para o `EffectComposer`.
+ * @property {React.RefObject<OutlinePass | null>} outlinePassRef - Ref para o `OutlinePass`.
+ * @property {boolean} areRenderersReady - Flag que indica se todos os renderizadores e o composer foram inicializados com sucesso.
+ */
 export interface UseThreeRenderersReturn {
   rendererRef: React.RefObject<THREE.WebGLRenderer | null>;
   labelRendererRef: React.RefObject<CSS2DRenderer | null>;
@@ -33,10 +102,10 @@ export interface UseThreeRenderersReturn {
 }
 
 /**
- * Sets up Three.js renderers (WebGL, CSS2D) and post-processing pipeline (EffectComposer, OutlinePass).
- * Handles DOM attachment and WebGL context events.
- * @param {UseThreeRenderersProps} props - Properties for renderer setup.
- * @returns {UseThreeRenderersReturn} Refs to renderers, composer, outline pass, and readiness flag.
+ * Configura os renderizadores Three.js (WebGL, CSS2D) e o pipeline de pós-processamento (EffectComposer, OutlinePass).
+ * Gerencia a anexação ao DOM e eventos de contexto WebGL.
+ * @param {UseThreeRenderersProps} props - Propriedades para a configuração dos renderizadores.
+ * @returns {UseThreeRenderersReturn} Refs para os renderizadores, composer, outline pass, e flag de prontidão.
  */
 export function useThreeRenderers({ mountRef, sceneRef, cameraRef }: UseThreeRenderersProps): UseThreeRenderersReturn {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
@@ -46,17 +115,14 @@ export function useThreeRenderers({ mountRef, sceneRef, cameraRef }: UseThreeRen
   const [areRenderersReady, setAreRenderersReady] = useState(false);
 
   useEffect(() => {
-    // console.log('[useThreeRenderers] useEffect triggered.');
     const currentMount = mountRef.current;
     const currentScene = sceneRef.current;
     const currentCamera = cameraRef.current;
 
     if (!currentMount || !currentScene || !currentCamera) {
-      // console.warn('[useThreeRenderers] Skipping setup: mount, scene, or camera not ready.');
       setAreRenderersReady(false);
       return;
     }
-    // console.log('[useThreeRenderers] All refs present, proceeding with setup.');
 
     const initialWidth = Math.max(1, currentMount.clientWidth);
     const initialHeight = Math.max(1, currentMount.clientHeight);
@@ -69,7 +135,6 @@ export function useThreeRenderers({ mountRef, sceneRef, cameraRef }: UseThreeRen
     currentScene.background = new THREE.Color(0xA9C1D1);
     currentScene.fog = new THREE.Fog(0xA9C1D1, 200, 1000);
     rendererRef.current = renderer;
-    // console.log('[useThreeRenderers] WebGLRenderer initialized.');
 
     // CSS2D Renderer
     const labelRenderer = new CSS2DRenderer();
@@ -79,14 +144,13 @@ export function useThreeRenderers({ mountRef, sceneRef, cameraRef }: UseThreeRen
     labelRenderer.domElement.style.left = '0px';
     labelRenderer.domElement.style.pointerEvents = 'none';
     labelRendererRef.current = labelRenderer;
-    // console.log('[useThreeRenderers] CSS2DRenderer initialized.');
 
     // EffectComposer
     const composer = new EffectComposer(renderer);
     const renderPass = new RenderPass(currentScene, currentCamera);
     composer.addPass(renderPass);
     const outlinePass = new OutlinePass(new THREE.Vector2(initialWidth, initialHeight), currentScene, currentCamera);
-    outlinePass.edgeStrength = 0; // Initial state
+    outlinePass.edgeStrength = 0; 
     outlinePass.edgeGlow = 0.0;
     outlinePass.edgeThickness = 1.0;
     outlinePass.visibleEdgeColor.set('#ffffff');
@@ -95,23 +159,18 @@ export function useThreeRenderers({ mountRef, sceneRef, cameraRef }: UseThreeRen
     composer.addPass(outlinePass);
     composerRef.current = composer;
     outlinePassRef.current = outlinePass;
-    // console.log('[useThreeRenderers] EffectComposer and OutlinePass initialized.');
 
     currentMount.appendChild(renderer.domElement);
     currentMount.appendChild(labelRenderer.domElement);
-    // console.log('[useThreeRenderers] Renderers DOM elements appended.');
 
-    const handleContextLost = (event: Event) => { event.preventDefault(); /* console.error('[useThreeRenderers] WebGL context lost.'); */ };
-    const handleContextRestored = () => { /* console.log('[useThreeRenderers] WebGL context restored.'); */ renderer.compile(currentScene, currentCamera); };
+    const handleContextLost = (event: Event) => { event.preventDefault(); };
+    const handleContextRestored = () => { renderer.compile(currentScene, currentCamera); };
     renderer.domElement.addEventListener('webglcontextlost', handleContextLost, false);
     renderer.domElement.addEventListener('webglcontextrestored', handleContextRestored, false);
-    // console.log('[useThreeRenderers] WebGL context event listeners added.');
 
     setAreRenderersReady(true);
-    // console.log('[useThreeRenderers] areRenderersReady set to true.');
 
     return () => {
-      // console.log('[useThreeRenderers] Cleanup started.');
       renderer.domElement.removeEventListener('webglcontextlost', handleContextLost, false);
       renderer.domElement.removeEventListener('webglcontextrestored', handleContextRestored, false);
       
@@ -131,9 +190,8 @@ export function useThreeRenderers({ mountRef, sceneRef, cameraRef }: UseThreeRen
       composerRef.current = null;
       outlinePassRef.current = null;
       setAreRenderersReady(false);
-      // console.log('[useThreeRenderers] Cleanup finished.');
     };
-  }, [mountRef, sceneRef, cameraRef]); // Dependencies ensure re-run if these fundamental refs change.
+  }, [mountRef, sceneRef, cameraRef]); 
 
   return { rendererRef, labelRendererRef, composerRef, outlinePassRef, areRenderersReady };
 }

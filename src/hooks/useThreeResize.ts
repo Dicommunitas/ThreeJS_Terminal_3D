@@ -1,17 +1,79 @@
 
 /**
- * @fileOverview Custom hook to handle resize events for a Three.js scene.
+ * @fileOverview Hook customizado para lidar com eventos de redimensionamento para uma cena Three.js.
  *
- * Responsibilities:
- * - Set up a `ResizeObserver` to monitor changes in the size of the mount element.
- * - When a resize event occurs, update:
- *   - The aspect ratio of the `THREE.PerspectiveCamera`.
- *   - The size of the `THREE.WebGLRenderer`.
- *   - The size of the `CSS2DRenderer`.
- *   - The size of the `EffectComposer`.
- *   - The resolution of the `OutlinePass`.
- * - Perform an initial resize call to set correct dimensions on mount.
- * - Clean up by disconnecting the `ResizeObserver` when the component unmounts or dependencies change.
+ * @module hooks/useThreeResize
+ *
+ * @description
+ * Este hook é responsável por:
+ * -   Configurar um `ResizeObserver` para monitorar mudanças nas dimensões do elemento DOM de montagem da cena.
+ * -   Quando um evento de redimensionamento ocorre (e todos os componentes necessários estão prontos),
+ *     ele atualiza as seguintes propriedades para manter a responsividade:
+ *     -   A razão de aspecto (`aspect`) da `THREE.PerspectiveCamera` e chama `updateProjectionMatrix()`.
+ *     -   O tamanho (`setSize`) do `THREE.WebGLRenderer`.
+ *     -   O tamanho (`setSize`) do `CSS2DRenderer`.
+ *     -   O tamanho (`setSize`) do `THREE.EffectComposer`.
+ *     -   A resolução (`resolution.set`) do `THREE.OutlinePass`.
+ * -   Realizar uma chamada inicial de redimensionamento para garantir que as dimensões corretas
+ *     sejam aplicadas assim que os componentes estiverem prontos.
+ * -   Limpar (desconectar) o `ResizeObserver` quando o componente é desmontado ou as dependências mudam,
+ *     para evitar vazamentos de memória e chamadas desnecessárias.
+ *
+ * @param props - Objeto contendo refs para os elementos Three.js que precisam ser redimensionados e uma flag de prontidão.
+ *
+ * @example
+ * // Diagrama de Funcionalidade do useThreeResize
+ * // mermaid
+ * // graph TD
+ * //     useThreeResize["useThreeResize (Hook)"]
+ * //     Props["UseThreeResizeProps"]
+ * //     MountElement["Elemento DOM (mountRef)"]
+ * //     ResizeObserver["ResizeObserver API"]
+ * //     Camera["Câmera (cameraRef)"]
+ * //     Renderer["WebGLRenderer (rendererRef)"]
+ * //     LabelRenderer["CSS2DRenderer (labelRendererRef)"]
+ * //     Composer["EffectComposer (composerRef)"]
+ * //     OutlinePass["OutlinePass (outlinePassRef)"]
+ * //     ReadyFlag["ready (flag)"]
+ * //
+ * //     Props -- define --> MountElement
+ * //     Props -- define --> Camera
+ * //     Props -- define --> Renderer
+ * //     Props -- define --> LabelRenderer
+ * //     Props -- define --> Composer
+ * //     Props -- define --> OutlinePass
+ * //     Props -- define --> ReadyFlag
+ * //     Props --> useThreeResize
+ * //
+ * //     useThreeResize -- verifica --> ReadyFlag
+ * //     useThreeResize -- observa --> MountElement
+ * //     MountElement -- dispara evento de redimensionamento --> ResizeObserver
+ * //     ResizeObserver -- chama callback --> useThreeResize
+ * //
+ * //     subgraph "Callback de Redimensionamento (handleResize)"
+ * //         direction LR
+ * //         Callback["handleResize"] -- atualiza --> Camera
+ * //         Callback -- atualiza --> Renderer
+ * //         Callback -- atualiza --> LabelRenderer
+ * //         Callback -- atualiza --> Composer
+ * //         Callback -- atualiza --> OutlinePass
+ * //     end
+ * //
+ * //     useThreeResize -- executa na montagem e quando 'ready' muda --> Callback
+ * //
+ * //     classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
+ * //     classDef type fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
+ * //     classDef obj3d fill:#lightgreen,stroke:#333,stroke-width:2px;
+ * //     classDef dom fill:#lightcoral,stroke:#333,stroke-width:2px;
+ * //     classDef api fill:#lightsalmon,stroke:#333,stroke-width:2px;
+ * //     classDef flag fill:#lightpink,stroke:#333,stroke-width:2px;
+ * //
+ * //     class useThreeResize hook;
+ * //     class Props type;
+ * //     class Camera,Renderer,LabelRenderer,Composer,OutlinePass obj3d;
+ * //     class MountElement dom;
+ * //     class ResizeObserver api;
+ * //     class ReadyFlag flag;
  */
 import { useEffect, useCallback } from 'react';
 import type * as THREE from 'three';
@@ -19,6 +81,17 @@ import type { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.j
 import type { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import type { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
 
+/**
+ * Props para o hook `useThreeResize`.
+ * @interface UseThreeResizeProps
+ * @property {React.RefObject<HTMLDivElement | null>} mountRef - Ref para o elemento DOM contêiner da cena.
+ * @property {React.RefObject<THREE.PerspectiveCamera | null>} cameraRef - Ref para a câmera perspectiva.
+ * @property {React.RefObject<THREE.WebGLRenderer | null>} rendererRef - Ref para o renderizador WebGL.
+ * @property {React.RefObject<CSS2DRenderer | null>} labelRendererRef - Ref para o renderizador CSS2D.
+ * @property {React.RefObject<EffectComposer | null>} composerRef - Ref para o EffectComposer.
+ * @property {React.RefObject<OutlinePass | null>} outlinePassRef - Ref para o OutlinePass.
+ * @property {boolean} ready - Flag que indica se todos os componentes que precisam ser redimensionados estão prontos.
+ */
 export interface UseThreeResizeProps {
   mountRef: React.RefObject<HTMLDivElement | null>;
   cameraRef: React.RefObject<THREE.PerspectiveCamera | null>;
@@ -26,12 +99,12 @@ export interface UseThreeResizeProps {
   labelRendererRef: React.RefObject<CSS2DRenderer | null>;
   composerRef: React.RefObject<EffectComposer | null>;
   outlinePassRef: React.RefObject<OutlinePass | null>;
-  ready: boolean; // Combined readiness flag for all components that need resizing
+  ready: boolean; 
 }
 
 /**
- * Handles resize events for the Three.js scene, updating camera and renderers.
- * @param {UseThreeResizeProps} props - Refs to elements that need resizing and a readiness flag.
+ * Lida com eventos de redimensionamento para a cena Three.js, atualizando câmera e renderizadores.
+ * @param {UseThreeResizeProps} props - Refs para elementos que precisam ser redimensionados e uma flag de prontidão.
  */
 export function useThreeResize({
   mountRef,
@@ -40,10 +113,9 @@ export function useThreeResize({
   labelRendererRef,
   composerRef,
   outlinePassRef,
-  ready, // This flag ensures all refs are populated before attempting to resize
+  ready, 
 }: UseThreeResizeProps): void {
   const handleResize = useCallback(() => {
-    // console.log('[useThreeResize] handleResize called.');
     if (
       !mountRef.current ||
       !cameraRef.current ||
@@ -52,7 +124,6 @@ export function useThreeResize({
       !composerRef.current ||
       !outlinePassRef.current
     ) {
-      // console.warn('[useThreeResize] One or more refs are null, skipping resize logic.');
       return;
     }
 
@@ -66,28 +137,23 @@ export function useThreeResize({
     labelRendererRef.current.setSize(width, height);
     composerRef.current.setSize(width, height);
     outlinePassRef.current.resolution.set(width, height);
-    // console.log(`[useThreeResize] Resized components to ${width}x${height}.`);
   }, [mountRef, cameraRef, rendererRef, labelRendererRef, composerRef, outlinePassRef]);
 
   useEffect(() => {
-    // console.log(`[useThreeResize] useEffect triggered. ready: ${ready}`);
     if (!ready || !mountRef.current) {
-      // console.warn('[useThreeResize] Skipping ResizeObserver setup: not ready or mountRef missing.');
       return;
     }
-    // console.log('[useThreeResize] Attaching ResizeObserver.');
     const resizeObserver = new ResizeObserver(handleResize);
     resizeObserver.observe(mountRef.current);
     
-    handleResize(); // Perform an initial resize calculation
+    handleResize(); 
 
     return () => {
-      // console.log('[useThreeResize] Detaching ResizeObserver.');
       if (mountRef.current) { 
         resizeObserver.unobserve(mountRef.current);
       }
       resizeObserver.disconnect();
     };
-  }, [ready, mountRef, handleResize]); // handleResize is memoized
+  }, [ready, mountRef, handleResize]); 
 }
 

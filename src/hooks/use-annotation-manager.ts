@@ -1,4 +1,63 @@
 
+/**
+ * @fileOverview Hook customizado para gerenciar o estado e a lógica das anotações textuais dos equipamentos,
+ *               atuando como uma fachada para o `annotationRepository`.
+ *
+ * @module hooks/useAnnotationManager
+ * @see {@link module:core/repository/memory-repository~annotationRepository} Para a fonte de dados das anotações.
+ * @see {@link module:core/repository/memory-repository~equipmentRepository} Para obter dados de equipamentos (e.g., nome para toasts).
+ * @see {@link module:lib/types~Annotation} Para a interface de Anotação.
+ * @see {@link module:lib/types~Equipment} Para a interface de Equipamento.
+ *
+ * @description
+ * Este hook é responsável por:
+ * -   Obter e manter uma cópia local (estado React) das anotações a partir do `annotationRepository`.
+ * -   Gerenciar o estado do diálogo de adição/edição de anotações (`isAnnotationDialogOpen`, `editingAnnotation`, `annotationTargetEquipment`).
+ * -   Fornecer uma API (funções `handleOpenAnnotationDialog`, `handleSaveAnnotation`, `handleDeleteAnnotation`, `getAnnotationForEquipment`)
+ *     para criar, ler, atualizar e excluir anotações. Estas operações persistem as mudanças no `annotationRepository`.
+ * -   Após cada modificação no repositório, o estado local de anotações do hook é atualizado para
+ *     refletir os dados mais recentes, garantindo a reatividade da UI.
+ * -   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações de anotação.
+ *
+ * @param props - Propriedades de configuração para o hook (atualmente, `initialAnnotations` é opcional e usado para uma potencial inicialização única do repositório, embora o repositório seja auto-inicializável).
+ * @returns Objeto contendo o estado das anotações, o estado do diálogo e funções para manipular anotações.
+ *
+ * @example
+ * // Diagrama de Interação do useAnnotationManager
+ * // mermaid
+ * // graph TD
+ * //     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOpenAnnotationDialog)
+ * //     B -- define estados --> DialogState["isAnnotationDialogOpen, editingAnnotation, annotationTargetEquipment"]
+ * //
+ * //     C[Componente UI (ex: AnnotationDialog)] -- no submit --> D(handleSaveAnnotation)
+ * //
+ * //     subgraph useAnnotationManager [Hook useAnnotationManager]
+ * //         direction LR
+ * //         D -- chama --> E[annotationRepository.addOrUpdateAnnotation]
+ * //         E -- retorna --> D{Anotação Salva}
+ * //         D -- chama --> F[refreshAnnotationsFromRepo]
+ * //         F -- chama --> G[annotationRepository.getAllAnnotations]
+ * //         G -- retorna --> H[setAnnotationsState (Estado React)]
+ * //         H -- atualiza --> I[annotations (Estado React)]
+ * //         D -- chama --> J[toast]
+ * //         DialogState
+ * //     end
+ * //
+ * //     I -- usado por --> A
+ * //     DialogState -- usado por --> C
+ * //
+ * //    classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
+ * //    classDef state fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
+ * //    classDef func fill:#lightgreen,stroke:#333,stroke-width:2px;
+ * //    classDef repo fill:#lightcoral,stroke:#333,stroke-width:2px;
+ * //    classDef ui fill:#peachpuff,stroke:#333,stroke-width:2px;
+ * //
+ * //    class A,C ui;
+ * //    class B,D,F,J func;
+ * //    class E,G repo;
+ * //    class DialogState,H,I state;
+ * //    class useAnnotationManager hook;
+ */
 "use client";
 
 import { useState, useCallback, useEffect } from 'react';
@@ -6,11 +65,30 @@ import type { Annotation, Equipment } from '@/lib/types';
 import { annotationRepository, equipmentRepository } from '@/core/repository/memory-repository';
 import { useToast } from '@/hooks/use-toast';
 
+/**
+ * Props para o hook `useAnnotationManager`.
+ * @interface UseAnnotationManagerProps
+ * @property {Annotation[]} [initialAnnotations] - Lista inicial opcional de anotações. Pode ser usada para uma
+ *                                                  inicialização única do repositório se ele estiver vazio e este array contiver dados.
+ *                                                  No entanto, o `annotationRepository` é geralmente auto-inicializável.
+ */
 export interface UseAnnotationManagerProps {
-  initialAnnotations?: Annotation[]; // Mantido para consistência, pode ser usado para uma inicialização única.
-  // equipmentData agora é obtido do repositório, não mais como prop direta para este hook.
+  initialAnnotations?: Annotation[]; 
 }
 
+/**
+ * Retorno do hook `useAnnotationManager`.
+ * @interface UseAnnotationManagerReturn
+ * @property {Annotation[]} annotations - A lista atual de todas as anotações (cópia local do estado do repositório).
+ * @property {boolean} isAnnotationDialogOpen - Indica se o diálogo de anotação está aberto.
+ * @property {Equipment | null} annotationTargetEquipment - O equipamento que é o alvo atual para adicionar/editar uma anotação.
+ * @property {Annotation | null} editingAnnotation - A anotação que está atualmente em edição no diálogo (null se for uma nova anotação).
+ * @property {(equipment: Equipment | null) => void} handleOpenAnnotationDialog - Abre o diálogo de anotação para o equipamento fornecido.
+ * @property {(text: string) => void} handleSaveAnnotation - Salva (cria ou atualiza) a anotação para o `annotationTargetEquipment`.
+ * @property {(equipmentTag: string) => void} handleDeleteAnnotation - Exclui a anotação associada à tag do equipamento fornecida.
+ * @property {(equipmentTag: string | null) => Annotation | null} getAnnotationForEquipment - Retorna a anotação para a tag do equipamento fornecida, ou null se não existir.
+ * @property {React.Dispatch<React.SetStateAction<boolean>>} setIsAnnotationDialogOpen - Função para definir o estado de abertura/fechamento do diálogo.
+ */
 export interface UseAnnotationManagerReturn {
   annotations: Annotation[];
   isAnnotationDialogOpen: boolean;
@@ -21,9 +99,15 @@ export interface UseAnnotationManagerReturn {
   handleDeleteAnnotation: (equipmentTag: string) => void;
   getAnnotationForEquipment: (equipmentTag: string | null) => Annotation | null;
   setIsAnnotationDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  // setAnnotations não é mais exposto, pois as modificações devem passar pelo repositório.
 }
 
+/**
+ * Hook customizado para gerenciar anotações textuais associadas a equipamentos.
+ * Atua como uma fachada para o `annotationRepository`, gerenciando o estado do diálogo de edição
+ * e sincronizando o estado local de anotações com o repositório.
+ * @param {UseAnnotationManagerProps} props - Propriedades de configuração para o hook.
+ * @returns {UseAnnotationManagerReturn} Um objeto contendo o estado das anotações e funções para manipulá-las.
+ */
 export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationManagerProps): UseAnnotationManagerReturn {
   const [annotations, setAnnotationsState] = useState<Annotation[]>(() => annotationRepository.getAllAnnotations());
   const [isAnnotationDialogOpen, setIsAnnotationDialogOpen] = useState(false);
@@ -32,19 +116,29 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
   const { toast } = useToast();
 
   useEffect(() => {
-    // O repositório é auto-inicializável. Este efeito garante que o estado do hook
-    // esteja em sincronia com o repositório quando o componente é montado.
-    // Atualizações subsequentes ao repositório (por exemplo, via addOrUpdateAnnotation)
-    // irão acionar refreshAnnotationsFromRepo, que chama setAnnotationsState.
-    setAnnotationsState(annotationRepository.getAllAnnotations());
-    // console.log('[useAnnotationManager] Synced annotations from repository on mount.');
-  }, []); // Array de dependências vazio: executa apenas na montagem para obter o estado inicial do repo
+    // Se o repositório estiver vazio e initialAnnotations tiver dados, inicializa o repositório.
+    // Caso contrário, apenas sincroniza o estado local com o repositório.
+    const currentRepoAnnotations = annotationRepository.getAllAnnotations();
+    if (currentRepoAnnotations.length === 0 && initialAnnotations.length > 0) {
+      annotationRepository.initializeAnnotations(initialAnnotations);
+      setAnnotationsState(annotationRepository.getAllAnnotations());
+    } else {
+      setAnnotationsState(currentRepoAnnotations);
+    }
+  }, []); // Dependência vazia para executar apenas na montagem.
 
+  /**
+   * Atualiza o estado local de anotações buscando os dados mais recentes do `annotationRepository`.
+   */
   const refreshAnnotationsFromRepo = useCallback(() => {
     setAnnotationsState(annotationRepository.getAllAnnotations());
-    // console.log('[useAnnotationManager] Annotations refreshed from repository.');
   }, []);
 
+  /**
+   * Abre o diálogo de anotação para um equipamento específico.
+   * Se o equipamento já possui uma anotação, preenche o diálogo para edição.
+   * @param {Equipment | null} equipment - O equipamento para o qual a anotação será gerenciada.
+   */
   const handleOpenAnnotationDialog = useCallback((equipment: Equipment | null) => {
     if (equipment) {
       const existing = annotationRepository.getAnnotationByEquipmentTag(equipment.tag);
@@ -58,6 +152,11 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
     }
   }, [toast]);
 
+  /**
+   * Salva uma anotação (nova ou existente) para o `annotationTargetEquipment`.
+   * Atualiza a data de criação/modificação, persiste no repositório e atualiza o estado local.
+   * @param {string} text - O texto da anotação a ser salvo.
+   */
   const handleSaveAnnotation = useCallback((text: string) => {
     if (!annotationTargetEquipment) return;
 
@@ -71,7 +170,7 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
     };
 
     annotationRepository.addOrUpdateAnnotation(annotationToSave);
-    refreshAnnotationsFromRepo(); // Atualiza o estado local
+    refreshAnnotationsFromRepo(); 
 
     const toastDescriptionMessage = editingAnnotation
         ? `Anotação para ${equipmentName} atualizada.`
@@ -86,8 +185,13 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
     setAnnotationTargetEquipment(null);
   }, [annotationTargetEquipment, editingAnnotation, toast, refreshAnnotationsFromRepo]);
 
+  /**
+   * Exclui a anotação de um equipamento específico.
+   * Remove do repositório e atualiza o estado local.
+   * @param {string} equipmentTag - A tag do equipamento cuja anotação será excluída.
+   */
   const handleDeleteAnnotation = useCallback((equipmentTag: string) => {
-    const equipment = equipmentRepository.getEquipmentByTag(equipmentTag); // Busca do repo de equipamentos
+    const equipment = equipmentRepository.getEquipmentByTag(equipmentTag); 
     if (!equipment) return; 
 
     const success = annotationRepository.deleteAnnotation(equipmentTag);
@@ -97,7 +201,7 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
     let toastVariantValue: "default" | "destructive" | undefined = undefined;
 
     if (success) {
-      refreshAnnotationsFromRepo(); // Atualiza o estado local
+      refreshAnnotationsFromRepo(); 
       toastTitleMessage = "Anotação Excluída";
       toastDescriptionMessage = `Anotação para ${equipment.name} foi excluída.`;
       if (annotationTargetEquipment?.tag === equipmentTag) {
@@ -116,6 +220,11 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
     }, 0);
   }, [toast, annotationTargetEquipment, refreshAnnotationsFromRepo]);
 
+  /**
+   * Obtém a anotação para um equipamento específico diretamente do repositório.
+   * @param {string | null} equipmentTag - A tag do equipamento. Se null, retorna null.
+   * @returns {Annotation | null} A anotação encontrada (uma cópia), ou null se não existir.
+   */
   const getAnnotationForEquipment = useCallback((equipmentTag: string | null): Annotation | null => {
     if (!equipmentTag) return null;
     return annotationRepository.getAnnotationByEquipmentTag(equipmentTag) || null;
@@ -133,3 +242,4 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
     getAnnotationForEquipment,
   };
 }
+

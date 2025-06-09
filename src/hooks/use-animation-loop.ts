@@ -1,45 +1,47 @@
 
 /**
- * Custom hook para gerenciar o loop de animação de uma cena Three.js.
+ * @fileOverview Hook customizado para gerenciar o loop de animação de uma cena Three.js.
  *
- * Principal Responsabilidade:
- * Encapsular a lógica de `requestAnimationFrame` para renderizar a cena Three.js continuamente.
- * Isso inclui atualizar controles de órbita, renderizar o `EffectComposer` (para pós-processamento)
- * e o `CSS2DRenderer` (para rótulos HTML), garantindo que a animação só comece quando a cena
- * e todos os seus componentes necessários estiverem prontos.
- * ```mermaid
- *   classDiagram
- *     class UseAnimationLoopProps {
- *       +isSceneReady: boolean // Representa a prontidão combinada da cena e dos controles
- *       +sceneRef: RefObject_Scene_
- *       +cameraRef: RefObject_PerspectiveCamera_
- *       +controlsRef: RefObject_OrbitControls_
- *       +composerRef: RefObject_EffectComposer_
- *       +labelRendererRef: RefObject_CSS2DRenderer_
- *       +onFrameUpdate?: () => void
- *     }
- *     class RefObject_Scene_ {
- *       current: Scene | null
- *     }
- *     class RefObject_PerspectiveCamera_ {
- *       current: PerspectiveCamera | null
- *     }
- *     class RefObject_OrbitControls_ {
- *       current: OrbitControls | null
- *     }
- *     class RefObject_EffectComposer_ {
- *       current: EffectComposer | null
- *     }
- *     class RefObject_CSS2DRenderer_ {
- *       current: CSS2DRenderer | null
- *     }
- *     UseAnimationLoopProps --> RefObject_Scene_
- *     UseAnimationLoopProps --> RefObject_PerspectiveCamera_
- *     UseAnimationLoopProps --> RefObject_OrbitControls_
- *     UseAnimationLoopProps --> RefObject_EffectComposer_
- *     UseAnimationLoopProps --> RefObject_CSS2DRenderer_
- * ```
+ * @module hooks/useAnimationLoop
  *
+ * @description
+ * Este hook é responsável por encapsular a lógica de `requestAnimationFrame`
+ * para renderizar continuamente uma cena Three.js. Ele lida com:
+ * -   Atualização dos controles de órbita (`OrbitControls`).
+ * -   Renderização do `EffectComposer` (para efeitos de pós-processamento).
+ * -   Renderização do `CSS2DRenderer` (para rótulos HTML sobrepostos à cena).
+ * -   Execução de uma callback opcional (`onFrameUpdate`) a cada quadro de animação,
+ *     permitindo lógicas personalizadas de atualização por frame (e.g., animações de câmera).
+ *
+ * O loop de animação só é iniciado quando a flag `isSceneReady` (fornecida como prop)
+ * é verdadeira, indicando que todos os componentes necessários da cena (câmera, renderizadores, controles)
+ * foram inicializados e estão prontos.
+ *
+ * @param props - Propriedades para configurar o loop de animação.
+ *
+ * @example
+ * // Diagrama de Fluxo do useAnimationLoop
+ * // mermaid
+ * // sequenceDiagram
+ * //     participant ComponentePai as Comp. (ex: ThreeScene)
+ * //     participant useAnimationLoop as Hook
+ * //     participant Navegador
+ * //     participant OrbitControls
+ * //     participant EffectComposer
+ * //     participant CSS2DRenderer
+ * //
+ * //     ComponentePai ->>+ useAnimationLoop: Chama com refs e isSceneReady=true
+ * //     useAnimationLoop ->> Navegador: requestAnimationFrame(animate)
+ * //     Navegador -->> useAnimationLoop: Chama animate()
+ * //     loop Cada Frame
+ * //         useAnimationLoop ->> OrbitControls: controls.update() (se habilitado)
+ * //         useAnimationLoop ->> ComponentePai: onFrameUpdate() (callback opcional)
+ * //         useAnimationLoop ->> EffectComposer: composer.render()
+ * //         useAnimationLoop ->> CSS2DRenderer: labelRenderer.render()
+ * //         useAnimationLoop ->> Navegador: requestAnimationFrame(animate)
+ * //     end
+ * //     Note right of ComponentePai: Quando desmontado ou isSceneReady=false
+ * //     useAnimationLoop ->> Navegador: cancelAnimationFrame()
  */
 import type * as THREE from 'three';
 import { useEffect, type RefObject } from 'react';
@@ -48,7 +50,17 @@ import type { EffectComposer } from 'three/examples/jsm/postprocessing/EffectCom
 import type { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 
 /**
- * Props para o hook useAnimationLoop.
+ * Props para o hook `useAnimationLoop`.
+ * @interface UseAnimationLoopProps
+ * @property {boolean} isSceneReady - Flag que indica se a cena e todos os seus componentes dependentes
+ *                                   (câmera, renderizadores, controles) estão prontos para iniciar o loop de animação.
+ * @property {RefObject<THREE.Scene | null>} sceneRef - Ref para o objeto da cena Three.js.
+ * @property {RefObject<THREE.PerspectiveCamera | null>} cameraRef - Ref para o objeto da câmera perspectiva.
+ * @property {RefObject<OrbitControls | null>} controlsRef - Ref para os `OrbitControls`.
+ * @property {RefObject<EffectComposer | null>} composerRef - Ref para o `EffectComposer` (usado para pós-processamento).
+ * @property {RefObject<CSS2DRenderer | null>} labelRendererRef - Ref para o `CSS2DRenderer` (usado para rótulos HTML).
+ * @property {() => void} [onFrameUpdate] - Callback opcional executado a cada quadro de animação,
+ *                                          útil para lógicas de atualização personalizadas (e.g., animações de câmera).
  */
 export interface UseAnimationLoopProps {
   isSceneReady: boolean;
@@ -57,14 +69,14 @@ export interface UseAnimationLoopProps {
   controlsRef: RefObject<OrbitControls | null>;
   composerRef: RefObject<EffectComposer | null>;
   labelRendererRef: RefObject<CSS2DRenderer | null>;
-  onFrameUpdate?: () => void; // Callback opcional para atualizações por frame
+  onFrameUpdate?: () => void; 
 }
 
 /**
  * Hook customizado para gerenciar o loop de animação de uma cena Three.js.
  * Ele configura e executa o `requestAnimationFrame` para renderizar a cena
  * e atualizar os controles, o composer e o renderizador de rótulos.
- * O loop só é iniciado quando `isSceneReady` e todos os refs necessários estão populados.
+ * O loop só é iniciado quando `isSceneReady` é verdadeiro e todos os refs necessários estão populados.
  *
  * @param {UseAnimationLoopProps} props - As props necessárias para o loop de animação.
  */
@@ -78,35 +90,14 @@ export function useAnimationLoop({
   onFrameUpdate,
 }: UseAnimationLoopProps): void {
   useEffect(() => {
-    console.log(`[useAnimationLoop] useEffect triggered. isSceneReady: ${isSceneReady}`);
-
-    if (!isSceneReady) {
-      console.log('[useAnimationLoop] Skipping: Combined readiness (isSceneReady prop) is false.');
+    if (!isSceneReady || 
+        !sceneRef.current || 
+        !cameraRef.current || 
+        !controlsRef.current || 
+        !composerRef.current || 
+        !labelRendererRef.current) {
       return;
     }
-    // Validação adicional para garantir que os refs não são null.
-    if (!sceneRef.current) {
-      console.log('[useAnimationLoop] Skipping: sceneRef.current is null.');
-      return;
-    }
-    if (!cameraRef.current) {
-      console.log('[useAnimationLoop] Skipping: cameraRef.current is null.');
-      return;
-    }
-    if (!controlsRef.current) {
-      console.log('[useAnimationLoop] Skipping: controlsRef.current is null.'); // Log original
-      return;
-    }
-    if (!composerRef.current) {
-      console.log('[useAnimationLoop] Skipping: composerRef.current is null.');
-      return;
-    }
-    if (!labelRendererRef.current) {
-      console.log('[useAnimationLoop] Skipping: labelRendererRef.current is null.');
-      return;
-    }
-    console.log('[useAnimationLoop] All refs and readiness flags are set, proceeding to start animation loop.');
-
 
     const scene = sceneRef.current;
     const camera = cameraRef.current;
@@ -117,46 +108,25 @@ export function useAnimationLoop({
     let animationFrameId: number;
 
     const animate = () => {
-      // console.log('[AnimationLoop] animate() CALLED.'); 
       animationFrameId = requestAnimationFrame(animate);
 
       if (onFrameUpdate) {
         onFrameUpdate();
       }
-
-      // Só atualiza os OrbitControls se eles estiverem habilitados.
-      // Isso evita que o damping ou o zoom do scroll interfiram na animação personalizada.
-      if (controls.enabled) {
+      
+      if (controls.enabled) { // Só atualiza OrbitControls se estiverem habilitados
         controls.update();
       }
-
-      if (cameraRef.current && sceneRef.current && controlsRef.current) {
-        // Removido log repetitivo para evitar poluição do console em cada frame.
-        // Pode ser reativado para depuração específica, se necessário.
-        // console.log(`[AnimationLoop] Rendering. Camera Pos: ${cameraRef.current.position.x.toFixed(2)},${cameraRef.current.position.y.toFixed(2)},${cameraRef.current.position.z.toFixed(2)}. Target: ${controlsRef.current.target.x.toFixed(2)},${controlsRef.current.target.y.toFixed(2)},${controlsRef.current.target.z.toFixed(2)}. Zoom: ${cameraRef.current.zoom.toFixed(2)}. Scene children: ${sceneRef.current.children.length}`);
-      } else {
-        // console.log('[AnimationLoop] Rendering details skipped: camera, scene or controls ref not current during log.');
-      }
-
-      if (composerRef.current && sceneRef.current && cameraRef.current) {
-        composer.render();
-      } else {
-        // console.warn('[AnimationLoop] Composer render skipped: refs not current.');
-      }
-
-      if (labelRendererRef.current && sceneRef.current && cameraRef.current) {
-        labelRenderer.render(scene, camera);
-      } else {
-        // console.warn('[AnimationLoop] LabelRenderer render skipped: refs not current.');
-      }
+      
+      composer.render();
+      labelRenderer.render(scene, camera);
     };
 
-    console.log('[useAnimationLoop] Starting animation loop by calling animate() for the first time.');
     animate();
 
     return () => {
-      console.log('[useAnimationLoop] Cleanup: Cancelling animation frame ID:', animationFrameId);
       cancelAnimationFrame(animationFrameId);
     };
   }, [isSceneReady, sceneRef, cameraRef, controlsRef, composerRef, labelRendererRef, onFrameUpdate]);
 }
+

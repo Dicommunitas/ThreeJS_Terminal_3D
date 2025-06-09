@@ -1,19 +1,98 @@
 
 /**
- * @fileOverview Orchestrator hook for setting up a complete Three.js scene.
+ * @fileOverview Hook orquestrador para a configuração completa de uma cena Three.js.
  *
- * Responsibilities:
- * - Composes specialized hooks to initialize different parts of the Three.js environment:
- *   - `useThreeCore`: Initializes `THREE.Scene` and `THREE.PerspectiveCamera`.
- *   - `useThreeRenderers`: Sets up `WebGLRenderer`, `CSS2DRenderer`, `EffectComposer`, and `OutlinePass`.
- *   - `useThreeOrbitControls`: Configures `OrbitControls` for camera manipulation.
- *   - `useThreeSceneElements`: Adds lighting and a ground plane to the scene.
- *   - `useThreeResize`: Handles responsive resizing of the camera and renderers.
- * - Aggregates and returns refs to all major Three.js components created by these hooks.
- * - Manages and returns overall scene readiness flags (`isSceneReady`, `isControlsReady`).
+ * @module hooks/use-scene-setup
+ * @see {@link module:hooks/useThreeCore~useThreeCore} Para inicialização da cena e câmera.
+ * @see {@link module:hooks/useThreeRenderers~useThreeRenderers} Para configuração dos renderizadores e pós-processamento.
+ * @see {@link module:hooks/useThreeOrbitControls~useThreeOrbitControls} Para configuração dos controles de órbita.
+ * @see {@link module:hooks/useThreeSceneElements~useThreeSceneElements} Para configuração de iluminação e plano de chão.
+ * @see {@link module:hooks/useThreeResize~useThreeResize} Para manipulação de redimensionamento.
  *
- * This hook aims to simplify scene setup in the main `ThreeScene` component by delegating
- * specific initialization tasks to more focused hooks, adhering to the Single Responsibility Principle.
+ * @description
+ * Este hook atua como um orquestrador, compondo vários hooks especializados para inicializar
+ * todos os aspectos de um ambiente Three.js. Ele gerencia a sequência de setup,
+ * as dependências entre os diferentes componentes da cena e retorna referências (refs)
+ * para os principais objetos Three.js, além de flags indicando a prontidão da cena.
+ *
+ * Responsabilidades Principais:
+ * -   **Composição de Hooks:** Importa e utiliza hooks especializados para cada parte da configuração da cena:
+ *     -   `useThreeCore`: Para `THREE.Scene` e `THREE.PerspectiveCamera`.
+ *     -   `useThreeRenderers`: Para `WebGLRenderer`, `CSS2DRenderer`, `EffectComposer`, e `OutlinePass`.
+ *     -   `useThreeOrbitControls`: Para `OrbitControls`.
+ *     -   `useThreeSceneElements`: Para iluminação e plano de chão.
+ *     -   `useThreeResize`: Para responsividade da cena.
+ * -   **Orquestração da Inicialização:** Garante que os hooks sejam chamados na ordem correta,
+ *     respeitando as dependências (e.g., renderizadores precisam estar prontos antes dos controles).
+ * -   **Agregação de Refs e Estado:** Coleta e retorna as refs para os objetos Three.js criados
+ *     (e.g., `sceneRef`, `cameraRef`, `rendererRef`) e as flags de estado de prontidão
+ *     (`isSceneReady`, `isControlsReady`).
+ *
+ * @example
+ * // Diagrama de Composição do useSceneSetup
+ * // mermaid
+ * // graph TD
+ * //     useSceneSetup_Orchestrator["useSceneSetup (Orquestrador)"]
+ * //
+ * //     subgraph "Hooks Especializados de Setup"
+ * //         direction LR
+ * //         H_Core["useThreeCore"]
+ * //         H_Renderers["useThreeRenderers"]
+ * //         H_Controls["useThreeOrbitControls"]
+ * //         H_Elements["useThreeSceneElements"]
+ * //         H_Resize["useThreeResize"]
+ * //     end
+ * //
+ * //     useSceneSetup_Orchestrator -- compõe --> H_Core
+ * //     useSceneSetup_Orchestrator -- compõe --> H_Renderers
+ * //     useSceneSetup_Orchestrator -- compõe --> H_Controls
+ * //     useSceneSetup_Orchestrator -- compõe --> H_Elements
+ * //     useSceneSetup_Orchestrator -- compõe --> H_Resize
+ * //
+ * //     H_Core --> R_Scene["sceneRef"]
+ * //     H_Core --> R_Camera["cameraRef"]
+ * //
+ * //     H_Renderers -- usa --> R_Scene
+ * //     H_Renderers -- usa --> R_Camera
+ * //     H_Renderers --> R_Renderer["rendererRef"]
+ * //     H_Renderers --> R_LabelRenderer["labelRendererRef"]
+ * //     H_Renderers --> R_Composer["composerRef"]
+ * //     H_Renderers --> R_OutlinePass["outlinePassRef"]
+ * //     H_Renderers --> F_RenderersReady["areRenderersReady (flag)"]
+ * //
+ * //     H_Controls -- usa --> R_Camera
+ * //     H_Controls -- usa --> R_Renderer
+ * //     H_Controls --> R_OrbitControls["controlsRef"]
+ * //     H_Controls --> F_ControlsReady["isControlsReady (flag)"]
+ * //
+ * //     H_Elements -- usa --> R_Scene
+ * //     H_Elements --> R_GroundMesh["groundMeshRef"]
+ * //
+ * //     H_Resize -- usa --> R_Camera
+ * //     H_Resize -- usa --> R_Renderer
+ * //     H_Resize -- usa --> R_LabelRenderer
+ * //     H_Resize -- usa --> R_Composer
+ * //     H_Resize -- usa --> R_OutlinePass
+ * //
+ * //     useSceneSetup_Orchestrator -- retorna --> R_Scene
+ * //     useSceneSetup_Orchestrator -- retorna --> R_Camera
+ * //     useSceneSetup_Orchestrator -- retorna --> R_Renderer
+ * //     useSceneSetup_Orchestrator -- retorna --> R_LabelRenderer
+ * //     useSceneSetup_Orchestrator -- retorna --> R_OrbitControls
+ * //     useSceneSetup_Orchestrator -- retorna --> R_Composer
+ * //     useSceneSetup_Orchestrator -- retorna --> R_OutlinePass
+ * //     useSceneSetup_Orchestrator -- retorna --> R_GroundMesh
+ * //     useSceneSetup_Orchestrator -- retorna --> F_SceneReady["isSceneReady (flag combinada)"]
+ * //     useSceneSetup_Orchestrator -- retorna --> F_ControlsReady
+ * //
+ * //     classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
+ * //     classDef ref fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
+ * //     classDef flag fill:#lightpink,stroke:#333,stroke-width:2px;
+ * //
+ * //     class useSceneSetup_Orchestrator hook;
+ * //     class H_Core,H_Renderers,H_Controls,H_Elements,H_Resize hook;
+ * //     class R_Scene,R_Camera,R_Renderer,R_LabelRenderer,R_OrbitControls,R_Composer,R_OutlinePass,R_GroundMesh ref;
+ * //     class F_RenderersReady,F_ControlsReady,F_SceneReady flag;
  */
 import type * as THREE from 'three';
 import type { OrbitControls as OrbitControlsType } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -29,12 +108,12 @@ import { useThreeSceneElements } from './useThreeSceneElements';
 import { useThreeResize } from './useThreeResize';
 
 /**
- * Props for the main scene setup orchestrator hook.
- * @interface UseSceneOrchestratorProps
- * @property {React.RefObject<HTMLDivElement>} mountRef - Ref to the container element for the scene.
- * @property {{ x: number; y: number; z: number }} initialCameraPosition - Initial position of the camera.
- * @property {{ x: number; y: number; z: number }} initialCameraLookAt - Initial point the camera is looking at.
- * @property {(cameraState: CameraState, actionDescription?: string) => void} onCameraChange - Callback for when camera state changes.
+ * Props para o hook orquestrador da configuração da cena.
+ * @interface UseSceneSetupProps
+ * @property {React.RefObject<HTMLDivElement>} mountRef - Ref para o elemento DOM contêiner da cena.
+ * @property {{ x: number; y: number; z: number }} initialCameraPosition - Posição inicial da câmera.
+ * @property {{ x: number; y: number; z: number }} initialCameraLookAt - Ponto de observação (lookAt) inicial da câmera.
+ * @property {(cameraState: CameraState, actionDescription?: string) => void} onCameraChange - Callback para quando o estado da câmera muda.
  */
 export interface UseSceneSetupProps {
   mountRef: React.RefObject<HTMLDivElement>;
@@ -44,19 +123,19 @@ export interface UseSceneSetupProps {
 }
 
 /**
- * Return value of the main scene setup orchestrator hook.
- * Aggregates refs and readiness flags from specialized setup hooks.
+ * Valor de retorno do hook orquestrador da configuração da cena.
+ * Agrega refs e flags de prontidão dos hooks especializados.
  * @interface UseSceneSetupReturn
- * @property {React.RefObject<THREE.Scene | null>} sceneRef
- * @property {React.RefObject<THREE.PerspectiveCamera | null>} cameraRef
- * @property {React.RefObject<THREE.WebGLRenderer | null>} rendererRef
- * @property {React.RefObject<CSS2DRenderer | null>} labelRendererRef
- * @property {React.RefObject<OrbitControlsType | null>} controlsRef
- * @property {React.RefObject<EffectComposer | null>} composerRef
- * @property {React.RefObject<OutlinePass | null>} outlinePassRef
- * @property {React.RefObject<THREE.Mesh | null>} groundMeshRef
- * @property {boolean} isSceneReady - True if core, renderers, and elements are ready.
- * @property {boolean} isControlsReady - True if OrbitControls are ready.
+ * @property {React.RefObject<THREE.Scene | null>} sceneRef - Ref para a cena Three.js.
+ * @property {React.RefObject<THREE.PerspectiveCamera | null>} cameraRef - Ref para a câmera perspectiva.
+ * @property {React.RefObject<THREE.WebGLRenderer | null>} rendererRef - Ref para o renderizador WebGL.
+ * @property {React.RefObject<CSS2DRenderer | null>} labelRendererRef - Ref para o renderizador CSS2D (para rótulos).
+ * @property {React.RefObject<OrbitControlsType | null>} controlsRef - Ref para os OrbitControls.
+ * @property {React.RefObject<EffectComposer | null>} composerRef - Ref para o EffectComposer (pós-processamento).
+ * @property {React.RefObject<OutlinePass | null>} outlinePassRef - Ref para o OutlinePass (efeito de contorno).
+ * @property {React.RefObject<THREE.Mesh | null>} groundMeshRef - Ref para a malha do plano de chão.
+ * @property {boolean} isSceneReady - Flag que indica se os componentes principais da cena (núcleo, renderizadores, elementos) estão prontos.
+ * @property {boolean} isControlsReady - Flag que indica se os OrbitControls estão prontos (carregamento dinâmico).
  */
 export interface UseSceneSetupReturn {
   sceneRef: React.RefObject<THREE.Scene | null>;
@@ -72,48 +151,47 @@ export interface UseSceneSetupReturn {
 }
 
 /**
- * Orchestrates the setup of a Three.js scene by composing specialized setup hooks.
- * This hook is responsible for initializing the core scene, renderers, controls,
- * basic scene elements (lighting, ground), and handling resize events.
- * It provides refs to all major Three.js components and flags indicating their readiness.
+ * Orquestra a configuração de uma cena Three.js compondo hooks especializados.
+ * Este hook é responsável por inicializar o núcleo da cena, renderizadores, controles,
+ * elementos básicos da cena (iluminação, chão) e manipulação de redimensionamento.
+ * Ele fornece refs para todos os principais componentes Three.js e flags indicando sua prontidão.
  *
- * @param {UseSceneSetupProps} props - Configuration properties for the scene setup.
- * @returns {UseSceneSetupReturn} Refs to scene components and readiness flags.
+ * @param {UseSceneSetupProps} props - Propriedades de configuração para a montagem da cena.
+ * @returns {UseSceneSetupReturn} Refs para os componentes da cena e flags de prontidão.
  */
 export function useSceneSetup(props: UseSceneSetupProps): UseSceneSetupReturn {
   const { mountRef, initialCameraPosition, initialCameraLookAt, onCameraChange } = props;
-  // console.log('[useSceneSetup Orchestrator] Hook initialized.');
 
-  // 1. Core (Scene, Camera)
+  // 1. Núcleo (Cena, Câmera)
   const { sceneRef, cameraRef } = useThreeCore({ initialCameraPosition, mountRef });
-  const coreReady = !!(mountRef.current && sceneRef.current && cameraRef.current); // Core ready if mount, scene and camera are up.
+  const coreReady = !!(mountRef.current && sceneRef.current && cameraRef.current);
 
-  // 2. Renderers (WebGL, CSS2D, Composer, OutlinePass)
+  // 2. Renderizadores (WebGL, CSS2D, Composer, OutlinePass)
   const { 
     rendererRef, 
     labelRendererRef, 
     composerRef, 
     outlinePassRef, 
     areRenderersReady 
-  } = useThreeRenderers({ mountRef, sceneRef, cameraRef }); // Depends on coreReady implicitly via refs
+  } = useThreeRenderers({ mountRef, sceneRef, cameraRef }); 
 
-  // 3. OrbitControls - Depends on renderers being ready (for rendererRef.current.domElement)
+  // 3. OrbitControls - Depende dos renderizadores estarem prontos (para rendererRef.current.domElement)
   const { controlsRef, isControlsReady } = useThreeOrbitControls({
     cameraRef,
-    rendererRef: rendererRef, // Pass the WebGLRenderer ref
+    rendererRef,
     initialCameraLookAt,
     onCameraChange,
-    renderersReady: areRenderersReady,
+    renderersReady: areRenderersReady, // Passa a flag de prontidão dos renderizadores
   });
 
-  // 4. Scene Elements (Lighting, Ground Plane) - Depends on coreReady
+  // 4. Elementos da Cena (Iluminação, Plano de Chão) - Depende do núcleo estar pronto
   const { groundMeshRef } = useThreeSceneElements({ sceneRef, coreReady });
-  const elementsReady = coreReady && !!groundMeshRef.current; // Elements ready if core is ready and ground mesh is created
+  const elementsReady = coreReady && !!groundMeshRef.current; 
 
-  // 5. Combined readiness for the base scene (everything except controls which are async)
+  // 5. Prontidão combinada para a base da cena (tudo exceto controles, que são assíncronos)
   const baseSceneComponentsReady = coreReady && areRenderersReady && elementsReady;
 
-  // 6. Resize Handling - Depends on all visual components being ready
+  // 6. Manipulação de Redimensionamento - Depende de todos os componentes visuais estarem prontos
   useThreeResize({
     mountRef,
     cameraRef,
@@ -121,11 +199,9 @@ export function useSceneSetup(props: UseSceneSetupProps): UseSceneSetupReturn {
     labelRendererRef,
     composerRef,
     outlinePassRef,
-    ready: baseSceneComponentsReady,
+    ready: baseSceneComponentsReady, // Passa a flag de prontidão dos componentes base
   });
   
-  // console.log(`[useSceneSetup Orchestrator] Final readiness: baseSceneComponentsReady: ${baseSceneComponentsReady}, isControlsReady: ${isControlsReady}`);
-
   return {
     sceneRef,
     cameraRef,
@@ -135,7 +211,8 @@ export function useSceneSetup(props: UseSceneSetupProps): UseSceneSetupReturn {
     composerRef,
     outlinePassRef,
     groundMeshRef,
-    isSceneReady: baseSceneComponentsReady, // Overall scene elements readiness
-    isControlsReady,                      // OrbitControls specific readiness
+    isSceneReady: baseSceneComponentsReady, 
+    isControlsReady,                      
   };
 }
+
