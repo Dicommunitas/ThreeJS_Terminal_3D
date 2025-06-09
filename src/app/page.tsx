@@ -23,16 +23,16 @@
  * 6.  Passagem de Props e Callbacks: Conecta os hooks de estado aos componentes da UI,
  *     fornecendo os dados necessários e as funções de callback para manipulação de eventos.
  *
- * @see {@link /documentation/api/components/main-scene-area/README.md} Para a área principal da cena.
- * @see {@link /documentation/api/components/ui/sidebar/README.md} Para a barra lateral de controles.
- * @see {@link /documentation/api/components/annotation-dialog/README.md} Para o diálogo de anotações.
- * @see {@link /documentation/api/hooks/use-command-history/README.md} Para o gerenciamento de histórico de comandos.
- * @see {@link /documentation/api/hooks/use-equipment-data-manager/README.md} Para o gerenciamento de dados de equipamentos.
- * @see {@link /documentation/api/hooks/use-camera-manager/README.md} Para o gerenciamento da câmera.
- * @see {@link /documentation/api/hooks/use-filter-manager/README.md} Para o gerenciamento de filtros.
- * @see {@link /documentation/api/hooks/use-annotation-manager/README.md} Para o gerenciamento de anotações.
- * @see {@link /documentation/api/hooks/use-equipment-selection-manager/README.md} Para o gerenciamento de seleção de equipamentos.
- * @see {@link /documentation/api/hooks/use-layer-manager/README.md} Para o gerenciamento de camadas.
+ * @see {@link documentation/api/components/main-scene-area/README.md} Para a área principal da cena.
+ * @see {@link documentation/api/components/ui/sidebar/README.md} Para a barra lateral de controles.
+ * @see {@link documentation/api/components/annotation-dialog/README.md} Para o diálogo de anotações.
+ * @see {@link documentation/api/hooks/use-command-history/README.md} Para o gerenciamento de histórico de comandos.
+ * @see {@link documentation/api/hooks/use-equipment-data-manager/README.md} Para o gerenciamento de dados de equipamentos.
+ * @see {@link documentation/api/hooks/use-camera-manager/README.md} Para o gerenciamento da câmera.
+ * @see {@link documentation/api/hooks/use-filter-manager/README.md} Para o gerenciamento de filtros.
+ * @see {@link documentation/api/hooks/use-annotation-manager/README.md} Para o gerenciamento de anotações.
+ * @see {@link documentation/api/hooks/use-equipment-selection-manager/README.md} Para o gerenciamento de seleção de equipamentos.
+ * @see {@link documentation/api/hooks/use-layer-manager/README.md} Para o gerenciamento de camadas.
  *
  * Diagrama de Interação de Alto Nível da Terminal3DPage:
  * ```mermaid
@@ -343,3 +343,4 @@ export default function Terminal3DPage(): JSX.Element {
     </SidebarProvider>
   );
 }
+

@@ -8,10 +8,10 @@
  * luzes (ambiente, hemisférica, direcional) e uma malha (mesh) para o plano de chão.
  * A execução depende da prontidão do núcleo da cena (objeto `THREE.Scene`).
  *
- * @see {@link /documentation/api/core/three/scene-elements-setup/README.md#setupLighting} Para a função de configuração da iluminação.
- * @see {@link /documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane} Para a função de configuração do plano de chão.
+ * @see {@link documentation/api/core/three/scene-elements-setup/README.md#setupLighting} Para a função de configuração da iluminação.
+ * @see {@link documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane} Para a função de configuração do plano de chão.
  *
- * @example Diagrama de Funcionalidade do useThreeSceneElements:
+ * Diagrama de Funcionalidade do useThreeSceneElements:
  * ```mermaid
  * graph TD
  *     useThreeSceneElements["useThreeSceneElements (Hook)"]

@@ -1,4 +1,5 @@
 
+
 /**
  * @module components/three-scene
  * Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
@@ -30,14 +31,14 @@
  * -   **Fornecimento do Ponto de Montagem:** Renderiza o `div` que serve como contêiner para
  *     os renderizadores Three.js.
  *
- * @see {@link /documentation/api/hooks/use-scene-setup/README.md} Para a orquestração da configuração da cena.
- * @see {@link /documentation/api/hooks/use-equipment-renderer/README.md} Para a renderização de equipamentos.
- * @see {@link /documentation/api/hooks/use-annotation-pin-renderer/README.md} Para a renderização de pins de anotação.
- * @see {@link /documentation/api/hooks/use-mouse-interaction/README.md} Para interações do mouse.
- * @see {@link /documentation/api/hooks/use-scene-outline/README.md} Para o efeito de contorno.
- * @see {@link /documentation/api/hooks/useAnimationLoop/README.md} Para o loop de animação.
+ * @see {@link documentation/api/hooks/use-scene-setup/README.md} Para a orquestração da configuração da cena.
+ * @see {@link documentation/api/hooks/use-equipment-renderer/README.md} Para a renderização de equipamentos.
+ * @see {@link documentation/api/hooks/use-annotation-pin-renderer/README.md} Para a renderização de pins de anotação.
+ * @see {@link documentation/api/hooks/use-mouse-interaction/README.md} Para interações do mouse.
+ * @see {@link documentation/api/hooks/use-scene-outline/README.md} Para o efeito de contorno.
+ * @see {@link documentation/api/hooks/useAnimationLoop/README.md} Para o loop de animação.
  *
- * @example Diagrama de Composição do ThreeScene e seus Hooks:
+ * Diagrama de Composição do ThreeScene e seus Hooks:
  * ```mermaid
  * graph TD
  *     ThreeScene_Comp["ThreeScene (Componente React)"]

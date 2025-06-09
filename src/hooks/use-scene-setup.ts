@@ -21,13 +21,13 @@
  *     (e.g., `sceneRef`, `cameraRef`, `rendererRef`) e as flags de estado de prontidão
  *     (`isSceneReady`, `isControlsReady`).
  *
- * @see {@link /documentation/api/hooks/useThreeCore/README.md} Para inicialização da cena e câmera.
- * @see {@link /documentation/api/hooks/useThreeRenderers/README.md} Para configuração dos renderizadores e pós-processamento.
- * @see {@link /documentation/api/hooks/useThreeOrbitControls/README.md} Para configuração dos controles de órbita.
- * @see {@link /documentation/api/hooks/useThreeSceneElements/README.md} Para configuração de iluminação e plano de chão.
- * @see {@link /documentation/api/hooks/useThreeResize/README.md} Para manipulação de redimensionamento.
+ * @see {@link documentation/api/hooks/useThreeCore/README.md} Para inicialização da cena e câmera.
+ * @see {@link documentation/api/hooks/useThreeRenderers/README.md} Para configuração dos renderizadores e pós-processamento.
+ * @see {@link documentation/api/hooks/useThreeOrbitControls/README.md} Para configuração dos controles de órbita.
+ * @see {@link documentation/api/hooks/useThreeSceneElements/README.md} Para configuração de iluminação e plano de chão.
+ * @see {@link documentation/api/hooks/useThreeResize/README.md} Para manipulação de redimensionamento.
  *
- * @example Diagrama de Composição do useSceneSetup:
+ * Diagrama de Composição do useSceneSetup:
  * ```mermaid
  * graph TD
  *     useSceneSetup_Orchestrator["useSceneSetup (Orquestrador)"]

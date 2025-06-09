@@ -13,14 +13,14 @@
  *     refletir os dados mais recentes, garantindo a reatividade da UI.
  * -   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações de anotação.
  *
- * @see {@link /documentation/api/core/repository/memory-repository/README.md#annotationrepository} Para a fonte de dados das anotações.
- * @see {@link /documentation/api/core/repository/memory-repository/README.md#equipmentrepository} Para obter dados de equipamentos (e.g., nome para toasts).
- * @see {@link /documentation/api/lib/types/README.md#Annotation} Para a interface de Anotação.
- * @see {@link /documentation/api/lib/types/README.md#Equipment} Para a interface de Equipamento.
+ * @see {@link documentation/api/core/repository/memory-repository/README.md#annotationrepository} Para a fonte de dados das anotações.
+ * @see {@link documentation/api/core/repository/memory-repository/README.md#equipmentrepository} Para obter dados de equipamentos (e.g., nome para toasts).
+ * @see {@link documentation/api/lib/types/README.md#Annotation} Para a interface de Anotação.
+ * @see {@link documentation/api/lib/types/README.md#Equipment} Para a interface de Equipamento.
  * @param props - Propriedades de configuração para o hook (atualmente, `initialAnnotations` é opcional e usado para uma potencial inicialização única do repositório, embora o repositório seja auto-inicializável).
  * @returns Objeto contendo o estado das anotações, o estado do diálogo e funções para manipular anotações.
  *
- * @example Diagrama de Interação do useAnnotationManager:
+ * Diagrama de Interação do useAnnotationManager:
  * ```mermaid
  * graph TD
  *     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOpenAnnotationDialog)

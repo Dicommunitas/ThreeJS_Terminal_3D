@@ -12,11 +12,11 @@
  * Funções de obtenção (get/getAll) retornam cópias dos objetos para promover a imutabilidade
  * e evitar modificações acidentais do estado interno do repositório por referências externas.
  *
- * @see {@link /documentation/api/core/data/initial-data/README.md} Para os dados iniciais de equipamentos e camadas.
- * @see {@link /documentation/api/lib/types/README.md#Equipment} Para a interface de Equipamento.
- * @see {@link /documentation/api/lib/types/README.md#Annotation} Para a interface de Anotação.
+ * @see {@link documentation/api/core/data/initial-data/README.md} Para os dados iniciais de equipamentos e camadas.
+ * @see {@link documentation/api/lib/types/README.md#Equipment} Para a interface de Equipamento.
+ * @see {@link documentation/api/lib/types/README.md#Annotation} Para a interface de Anotação.
  *
- * @example Diagrama de Estrutura do Repositório em Memória:
+ * Diagrama de Estrutura do Repositório em Memória:
  * ```mermaid
  * classDiagram
  *     class RepositorioMemoria {

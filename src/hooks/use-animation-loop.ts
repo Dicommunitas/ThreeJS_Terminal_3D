@@ -17,7 +17,7 @@
  *
  * @param props - Propriedades para configurar o loop de animação.
  *
- * @example Diagrama de Fluxo do useAnimationLoop:
+ * Diagrama de Fluxo do useAnimationLoop:
  * ```mermaid
  * sequenceDiagram
  *     participant ComponentePai as Comp. (ex: ThreeScene)

@@ -17,26 +17,20 @@ export const THEMES = { light: "", dark: ".dark" } as const
  * Configuração para os gráficos, permitindo a definição de rótulos, ícones e cores
  * para cada item de dados do gráfico. As cores podem ser definidas diretamente ou
  * através de um objeto de tema para suportar diferentes temas (claro/escuro).
- * @example
- * ```ts
- * const chartConfig = {
- *   visitors: {
- *     label: "Visitantes",
- *     color: "hsl(var(--chart-1))",
- *   },
- *   chrome: {
- *     label: "Chrome",
- *     color: "hsl(var(--chart-2))",
- *     icon: ChromeIcon, // Exemplo de ícone
- *   },
- *   safari: {
- *     label: "Safari",
- *     theme: { // Exemplo de cores baseadas em tema
- *       light: "hsl(var(--chart-3))",
- *       dark: "hsl(var(--chart-5))",
+ *
+ * ```mermaid
+ *   classDiagram
+ *     class ChartConfig {
+ *       +label?: React.ReactNode
+ *       +icon?: React.ComponentType
+ *       +color?: string
+ *       +theme?: object
  *     }
- *   },
- * } satisfies ChartConfig;
+ *     class THEMES_Object {
+ *       +light: string
+ *       +dark: string
+ *     }
+ *     ChartConfig --> THEMES_Object : theme
  * ```
  */
 export type ChartConfig = {
