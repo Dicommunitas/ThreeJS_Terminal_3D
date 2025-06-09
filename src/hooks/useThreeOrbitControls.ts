@@ -63,8 +63,9 @@ export function useThreeOrbitControls({
 
     import('three/examples/jsm/controls/OrbitControls.js')
       .then(module => {
-        if (!isEffectMounted || !cameraRef.current || !domElementRef.current) {
-          // console.log("[useThreeOrbitControls] Effect unmounted or refs changed before OrbitControls module loaded.");
+        if (!isEffectMounted || !cameraRef.current || !domElementRef.current) { // Added check for domElementRef.current here
+          // console.log("[useThreeOrbitControls] Effect unmounted or refs (camera/domElement) changed/missing before OrbitControls module loaded or instantiated.");
+          if (isEffectMounted) setIsControlsReady(false);
           return;
         }
         // console.log("[useThreeOrbitControls] OrbitControls module loaded successfully.");
@@ -92,6 +93,8 @@ export function useThreeOrbitControls({
             onCameraChangeRef.current(newCameraState, 'Câmera movida pelo usuário (OrbitControls)');
           }
         };
+        // Store listener to remove it correctly in cleanup
+        (localControlsInstance as any).__private_handleControlsChangeEndListener = handleControlsChangeEnd;
         localControlsInstance.addEventListener('end', handleControlsChangeEnd);
         
         if (isEffectMounted) {
@@ -111,7 +114,10 @@ export function useThreeOrbitControls({
       // console.log('[useThreeOrbitControls] Cleanup function running.');
       if (controlsRef.current) { // Use controlsRef.current which holds the successfully created instance
         // console.log('[useThreeOrbitControls] Disposing OrbitControls.');
-        controlsRef.current.removeEventListener('end', (controlsRef.current as any).__private_handleControlsChangeEndListener); // Access the stored listener if needed, or ensure listener is correctly removed.
+        const listener = (controlsRef.current as any).__private_handleControlsChangeEndListener;
+        if (listener) {
+          controlsRef.current.removeEventListener('end', listener);
+        }
         controlsRef.current.dispose();
         controlsRef.current = null;
       }
