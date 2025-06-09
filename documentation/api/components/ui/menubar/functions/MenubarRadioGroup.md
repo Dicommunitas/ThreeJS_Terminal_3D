@@ -8,7 +8,7 @@
 
 > **MenubarRadioGroup**(`__namedParameters`): `Element`
 
-Defined in: [src/components/ui/menubar.tsx:27](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/components/ui/menubar.tsx#L27)
+Defined in: [src/components/ui/menubar.tsx:27](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/components/ui/menubar.tsx#L27)
 
 ## Parameters
 

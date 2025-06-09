@@ -6,6 +6,26 @@
 
 # core/three/postprocessing-utils
 
+## Example
+
+// Diagrama de Retorno da Função `setupPostProcessing`:
+```mermaid
+  classDiagram
+    class setupPostProcessing_return {
+      +composer: EffectComposer
+      +outlinePass: OutlinePass
+    }
+    class setupPostProcessing {
+
+    }
+    setupPostProcessing ..> setupPostProcessing_return : returns
+```
+
+Exporta:
+- `setupPostProcessing`: Configura o pipeline inicial de pós-processamento.
+- `updatePostProcessingSize`: Atualiza o tamanho do composer e do outline pass.
+- `updateOutlineEffect`: Atualiza quais objetos são contornados e com qual estilo.
+
 ## Functions
 
 - [setupPostProcessing](functions/setupPostProcessing.md)

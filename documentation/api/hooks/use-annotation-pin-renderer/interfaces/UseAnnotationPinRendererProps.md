@@ -6,7 +6,7 @@
 
 # Interface: UseAnnotationPinRendererProps
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:62](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/hooks/use-annotation-pin-renderer.ts#L62)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:62](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/hooks/use-annotation-pin-renderer.ts#L62)
 
 Custom hook para gerenciar a renderização de pins de anotação na cena 3D.
 
@@ -142,7 +142,7 @@ classDiagram
 
 > **allEquipmentData**: [`Equipment`](../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/hooks/use-annotation-pin-renderer.ts#L67)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/hooks/use-annotation-pin-renderer.ts#L67)
 
 ***
 
@@ -150,7 +150,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:67](https://github.com/Dic
 
 > **annotations**: [`Annotation`](../../../lib/types/interfaces/Annotation.md)[]
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:66](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/hooks/use-annotation-pin-renderer.ts#L66)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:66](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/hooks/use-annotation-pin-renderer.ts#L66)
 
 ***
 
@@ -158,7 +158,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:66](https://github.com/Dic
 
 > **isSceneReady**: `boolean`
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:65](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/hooks/use-annotation-pin-renderer.ts#L65)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:65](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/hooks/use-annotation-pin-renderer.ts#L65)
 
 ***
 
@@ -166,7 +166,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:65](https://github.com/Dic
 
 > **labelRendererRef**: `RefObject`\<`null` \| `CSS2DRenderer`\>
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:64](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/hooks/use-annotation-pin-renderer.ts#L64)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:64](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/hooks/use-annotation-pin-renderer.ts#L64)
 
 ***
 
@@ -174,7 +174,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:64](https://github.com/Dic
 
 > **layers**: [`Layer`](../../../lib/types/interfaces/Layer.md)[]
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:69](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/hooks/use-annotation-pin-renderer.ts#L69)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:69](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/hooks/use-annotation-pin-renderer.ts#L69)
 
 ***
 
@@ -182,7 +182,7 @@ Defined in: [src/hooks/use-annotation-pin-renderer.ts:69](https://github.com/Dic
 
 > **sceneRef**: `RefObject`\<`null` \| `Scene`\>
 
-Defined in: [src/hooks/use-annotation-pin-renderer.ts:63](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/hooks/use-annotation-pin-renderer.ts#L63)
+Defined in: [src/hooks/use-annotation-pin-renderer.ts:63](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/hooks/use-annotation-pin-renderer.ts#L63)
 <style>
 :root.mermaid-enabled .mermaid-block > pre {
   display: none;

@@ -2,11 +2,11 @@
 
 ***
 
-[3D Terminal System API Documentation](../../../README.md) / [hooks/useEquipmentDataManager](../README-1.md) / UseEquipmentDataManagerReturn
+[3D Terminal System API Documentation](../../../README.md) / [hooks/use-equipment-data-manager](../README.md) / UseEquipmentDataManagerReturn
 
 # Interface: UseEquipmentDataManagerReturn
 
-Defined in: [src/hooks/useEquipmentDataManager.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/hooks/useEquipmentDataManager.ts#L67)
+Defined in: [src/hooks/use-equipment-data-manager.ts:68](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/hooks/use-equipment-data-manager.ts#L68)
 
 Retorno do hook `useEquipmentDataManager`.
  UseEquipmentDataManagerReturn
@@ -17,7 +17,7 @@ Retorno do hook `useEquipmentDataManager`.
 
 > **equipmentData**: [`Equipment`](../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/hooks/useEquipmentDataManager.ts:68](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/hooks/useEquipmentDataManager.ts#L68)
+Defined in: [src/hooks/use-equipment-data-manager.ts:69](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/hooks/use-equipment-data-manager.ts#L69)
 
 A lista atual de todos os equipamentos (cópia local do estado do repositório).
 
@@ -27,7 +27,7 @@ A lista atual de todos os equipamentos (cópia local do estado do repositório).
 
 > **handleOperationalStateChange**: (`equipmentTag`, `newState`) => `void`
 
-Defined in: [src/hooks/useEquipmentDataManager.ts:69](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/hooks/useEquipmentDataManager.ts#L69)
+Defined in: [src/hooks/use-equipment-data-manager.ts:70](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/hooks/use-equipment-data-manager.ts#L70)
 
 Função para modificar
                                                                                             o estado operacional
@@ -53,7 +53,7 @@ Função para modificar
 
 > **handleProductChange**: (`equipmentTag`, `newProduct`) => `void`
 
-Defined in: [src/hooks/useEquipmentDataManager.ts:70](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/hooks/useEquipmentDataManager.ts#L70)
+Defined in: [src/hooks/use-equipment-data-manager.ts:71](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/hooks/use-equipment-data-manager.ts#L71)
 
 Função para modificar o produto
                                                                                      associado a um equipamento específico.
@@ -78,7 +78,7 @@ Função para modificar o produto
 
 > **refreshEquipmentData**: () => `void`
 
-Defined in: [src/hooks/useEquipmentDataManager.ts:71](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/hooks/useEquipmentDataManager.ts#L71)
+Defined in: [src/hooks/use-equipment-data-manager.ts:72](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/hooks/use-equipment-data-manager.ts#L72)
 
 Função para recarregar os dados do repositório para o estado local do hook.
 

@@ -6,6 +6,52 @@
 
 # hooks/use-filter-manager
 
+## Example
+
+// Diagrama de Estrutura do Hook e suas Dependências:
+```mermaid
+  classDiagram
+    class UseFilterManagerProps {
+      +allEquipment: Equipment[]
+    }
+    class UseFilterManagerReturn {
+      +searchTerm: string
+      +setSearchTerm(value: string): void
+      +selectedSistema: string
+      +setSelectedSistema(value: string): void
+      +selectedArea: string
+      +setSelectedArea(value: string): void
+      +availableSistemas: string[]
+      +availableAreas: string[]
+      +filteredEquipment: Equipment[]
+    }
+    class Equipment {
+      +tag: string
+      +name: string
+      +type: string
+      +sistema?: string
+      +area?: string
+    }
+    class equipment_filter_module {
+      +getFilteredEquipment(allEquipment: Equipment[], criteria: EquipmentFilterCriteria): Equipment[]
+    }
+    class EquipmentFilterCriteria {
+    }
+    UseFilterManagerProps ..> Equipment
+    UseFilterManagerReturn ..> Equipment
+    class useFilterManager {
+      -searchTerm: string
+      -selectedSistema: string
+      -selectedArea: string
+      +setSearchTerm()
+      +setSelectedSistema()
+      +setSelectedArea()
+    }
+    useFilterManager --|> UseFilterManagerReturn : returns
+    useFilterManager ..> equipment_filter_module : uses getFilteredEquipment
+    equipment_filter_module ..> EquipmentFilterCriteria : uses
+```
+
 ## Interfaces
 
 - [UseFilterManagerProps](interfaces/UseFilterManagerProps.md)

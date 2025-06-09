@@ -6,24 +6,12 @@
 
 # hooks/useAnnotationManager
 
-Hook customizado para gerenciar o estado e a lógica das anotações textuais dos equipamentos,
-atuando como uma fachada para o `annotationRepository`.
-
-Este hook é responsável por:
--   Obter e manter uma cópia local (estado React) das anotações a partir do `annotationRepository`.
--   Gerenciar o estado do diálogo de adição/edição de anotações (`isAnnotationDialogOpen`, `editingAnnotation`, `annotationTargetEquipment`).
--   Fornecer uma API (funções `handleOpenAnnotationDialog`, `handleSaveAnnotation`, `handleDeleteAnnotation`, `getAnnotationForEquipment`)
-    para criar, ler, atualizar e excluir anotações. Estas operações persistem as mudanças no `annotationRepository`.
--   Após cada modificação no repositório, o estado local de anotações do hook é atualizado para
-    refletir os dados mais recentes, garantindo a reatividade da UI.
--   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações de anotação.
-
 ## See
 
- - /docs/core/repository/memory-repository.md#annotationRepository Para a fonte de dados das anotações.
- - /docs/core/repository/memory-repository.md#equipmentRepository Para obter dados de equipamentos (e.g., nome para toasts).
- - /docs/lib/types.md#Annotation Para a interface de Anotação.
- - /docs/lib/types.md#Equipment Para a interface de Equipamento.
+ - ../../core/repository/memory-repository/README.md#annotationRepository Para a fonte de dados das anotações.
+ - ../../core/repository/memory-repository/README.md#equipmentRepository Para obter dados de equipamentos (e.g., nome para toasts).
+ - ../../lib/types/README.md#Annotation Para a interface de Anotação.
+ - ../../lib/types/README.md#Equipment Para a interface de Equipamento.
 
 ## Param
 

@@ -6,118 +6,52 @@
 
 # Interface: UpdateEquipmentMeshesParams
 
-Defined in: [src/core/three/scene-elements-setup.ts:224](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/core/three/scene-elements-setup.ts#L224)
+Defined in: [src/core/three/scene-elements-setup.ts:214](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/core/three/scene-elements-setup.ts#L214)
 
 Interface para os parâmetros da função `updateEquipmentMeshesInScene`.
-<div class="mermaid-block"><div class="mermaid dark">%%{init:{"theme":"dark"}}%%
-classDiagram
-    class UpdateEquipmentMeshesParams {
-      +scene: THREE.Scene
-      +equipmentMeshesRef: React.MutableRefObject_Object3D_Array_
-      +newEquipmentData: Equipment[]
-      +layers: Layer[]
-      +colorMode: ColorMode
-      +createSingleEquipmentMesh(item: Equipment): THREE.Object3D
-      +groundMeshRef: React.MutableRefObject_Mesh_
-    }
-    class Equipment {
-    }
-    class Layer {
-    }
-    class ColorMode {
-    }
-    class THREE_Object3D {
-    }
-    class THREE_Mesh {
-    }
-    class THREE_Scene {
-    }
-    class React_MutableRefObject {
-    }
-
-    UpdateEquipmentMeshesParams --&gt; THREE_Scene : scene
-    UpdateEquipmentMeshesParams --&gt; React_MutableRefObject : equipmentMeshesRef
-    UpdateEquipmentMeshesParams --&gt; React_MutableRefObject : groundMeshRef
-    React_MutableRefObject --&gt; THREE_Object3D : (array for equipment)
-    React_MutableRefObject --&gt; THREE_Mesh : (for ground)
-    UpdateEquipmentMeshesParams --&gt; Equipment : newEquipmentData (array)
-    UpdateEquipmentMeshesParams --&gt; Layer : layers (array)
-    UpdateEquipmentMeshesParams --&gt; ColorMode : colorMode
-
-    style UpdateEquipmentMeshesParams fill:#DCDCDC,stroke:#333,stroke-width:2px,color:black
-    style Equipment,Layer,ColorMode,THREE_Object3D,THREE_Mesh,THREE_Scene,React_MutableRefObject fill:#FFFFE0,stroke:#333,stroke-width:2px,color:black</div><div class="mermaid light">%%{init:{"theme":"default"}}%%
-classDiagram
-    class UpdateEquipmentMeshesParams {
-      +scene: THREE.Scene
-      +equipmentMeshesRef: React.MutableRefObject_Object3D_Array_
-      +newEquipmentData: Equipment[]
-      +layers: Layer[]
-      +colorMode: ColorMode
-      +createSingleEquipmentMesh(item: Equipment): THREE.Object3D
-      +groundMeshRef: React.MutableRefObject_Mesh_
-    }
-    class Equipment {
-    }
-    class Layer {
-    }
-    class ColorMode {
-    }
-    class THREE_Object3D {
-    }
-    class THREE_Mesh {
-    }
-    class THREE_Scene {
-    }
-    class React_MutableRefObject {
-    }
-
-    UpdateEquipmentMeshesParams --&gt; THREE_Scene : scene
-    UpdateEquipmentMeshesParams --&gt; React_MutableRefObject : equipmentMeshesRef
-    UpdateEquipmentMeshesParams --&gt; React_MutableRefObject : groundMeshRef
-    React_MutableRefObject --&gt; THREE_Object3D : (array for equipment)
-    React_MutableRefObject --&gt; THREE_Mesh : (for ground)
-    UpdateEquipmentMeshesParams --&gt; Equipment : newEquipmentData (array)
-    UpdateEquipmentMeshesParams --&gt; Layer : layers (array)
-    UpdateEquipmentMeshesParams --&gt; ColorMode : colorMode
-
-    style UpdateEquipmentMeshesParams fill:#DCDCDC,stroke:#333,stroke-width:2px,color:black
-    style Equipment,Layer,ColorMode,THREE_Object3D,THREE_Mesh,THREE_Scene,React_MutableRefObject fill:#FFFFE0,stroke:#333,stroke-width:2px,color:black</div><pre><code class="language-mermaid">classDiagram
-    class UpdateEquipmentMeshesParams {
-      +scene: THREE.Scene
-      +equipmentMeshesRef: React.MutableRefObject_Object3D_Array_
-      +newEquipmentData: Equipment[]
-      +layers: Layer[]
-      +colorMode: ColorMode
-      +createSingleEquipmentMesh(item: Equipment): THREE.Object3D
-      +groundMeshRef: React.MutableRefObject_Mesh_
-    }
-    class Equipment {
-    }
-    class Layer {
-    }
-    class ColorMode {
-    }
-    class THREE_Object3D {
-    }
-    class THREE_Mesh {
-    }
-    class THREE_Scene {
-    }
-    class React_MutableRefObject {
-    }
-
-    UpdateEquipmentMeshesParams --&gt; THREE_Scene : scene
-    UpdateEquipmentMeshesParams --&gt; React_MutableRefObject : equipmentMeshesRef
-    UpdateEquipmentMeshesParams --&gt; React_MutableRefObject : groundMeshRef
-    React_MutableRefObject --&gt; THREE_Object3D : (array for equipment)
-    React_MutableRefObject --&gt; THREE_Mesh : (for ground)
-    UpdateEquipmentMeshesParams --&gt; Equipment : newEquipmentData (array)
-    UpdateEquipmentMeshesParams --&gt; Layer : layers (array)
-    UpdateEquipmentMeshesParams --&gt; ColorMode : colorMode
-
-    style UpdateEquipmentMeshesParams fill:#DCDCDC,stroke:#333,stroke-width:2px,color:black
-    style Equipment,Layer,ColorMode,THREE_Object3D,THREE_Mesh,THREE_Scene,React_MutableRefObject fill:#FFFFE0,stroke:#333,stroke-width:2px,color:black</code></pre></div>
  UpdateEquipmentMeshesParams
+
+## Example
+
+// Representação da interface:
+```mermaid
+classDiagram
+    class UpdateEquipmentMeshesParams {
+      +scene: THREE.Scene
+      +equipmentMeshesRef: React.MutableRefObject_Object3D_Array_
+      +newEquipmentData: Equipment[]
+      +layers: Layer[]
+      +colorMode: ColorMode
+      +createSingleEquipmentMesh(item: Equipment): THREE.Object3D
+      +groundMeshRef: React.MutableRefObject_Mesh_
+    }
+    class Equipment {
+    }
+    class Layer {
+    }
+    class ColorMode {
+    }
+    class THREE_Object3D {
+    }
+    class THREE_Mesh {
+    }
+    class THREE_Scene {
+    }
+    class React_MutableRefObject {
+    }
+
+    UpdateEquipmentMeshesParams --> THREE_Scene : scene
+    UpdateEquipmentMeshesParams --> React_MutableRefObject : equipmentMeshesRef
+    UpdateEquipmentMeshesParams --> React_MutableRefObject : groundMeshRef
+    React_MutableRefObject --> THREE_Object3D : (array for equipment)
+    React_MutableRefObject --> THREE_Mesh : (for ground)
+    UpdateEquipmentMeshesParams --> Equipment : newEquipmentData (array)
+    UpdateEquipmentMeshesParams --> Layer : layers (array)
+    UpdateEquipmentMeshesParams --> ColorMode : colorMode
+
+    style UpdateEquipmentMeshesParams fill:#DCDCDC,stroke:#333,stroke-width:2px,color:black
+    style Equipment,Layer,ColorMode,THREE_Object3D,THREE_Mesh,THREE_Scene,React_MutableRefObject fill:#FFFFE0,stroke:#333,stroke-width:2px,color:black
+```
 
 ## Properties
 
@@ -125,7 +59,7 @@ classDiagram
 
 > **colorMode**: [`ColorMode`](../../../../lib/types/type-aliases/ColorMode.md)
 
-Defined in: [src/core/three/scene-elements-setup.ts:229](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/core/three/scene-elements-setup.ts#L229)
+Defined in: [src/core/three/scene-elements-setup.ts:219](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/core/three/scene-elements-setup.ts#L219)
 
 O modo de colorização atual para os equipamentos.
 
@@ -135,7 +69,7 @@ O modo de colorização atual para os equipamentos.
 
 > **createSingleEquipmentMesh**: (`item`) => `Object3D`
 
-Defined in: [src/core/three/scene-elements-setup.ts:230](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/core/three/scene-elements-setup.ts#L230)
+Defined in: [src/core/three/scene-elements-setup.ts:220](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/core/three/scene-elements-setup.ts#L220)
 
 Função callback para criar um mesh de equipamento individual.
 
@@ -155,7 +89,7 @@ Função callback para criar um mesh de equipamento individual.
 
 > **equipmentMeshesRef**: `MutableRefObject`\<`Object3D`\<`Object3DEventMap`\>[]\>
 
-Defined in: [src/core/three/scene-elements-setup.ts:226](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/core/three/scene-elements-setup.ts#L226)
+Defined in: [src/core/three/scene-elements-setup.ts:216](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/core/three/scene-elements-setup.ts#L216)
 
 Ref para o array de meshes de equipamentos existentes na cena.
 
@@ -165,7 +99,7 @@ Ref para o array de meshes de equipamentos existentes na cena.
 
 > **groundMeshRef**: `MutableRefObject`\<`null` \| `Mesh`\<`BufferGeometry`\<`NormalBufferAttributes`\>, `Material` \| `Material`[], `Object3DEventMap`\>\>
 
-Defined in: [src/core/three/scene-elements-setup.ts:231](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/core/three/scene-elements-setup.ts#L231)
+Defined in: [src/core/three/scene-elements-setup.ts:221](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/core/three/scene-elements-setup.ts#L221)
 
 Ref para o mesh do plano de chão, para controle de visibilidade.
 
@@ -175,7 +109,7 @@ Ref para o mesh do plano de chão, para controle de visibilidade.
 
 > **layers**: [`Layer`](../../../../lib/types/interfaces/Layer.md)[]
 
-Defined in: [src/core/three/scene-elements-setup.ts:228](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/core/three/scene-elements-setup.ts#L228)
+Defined in: [src/core/three/scene-elements-setup.ts:218](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/core/three/scene-elements-setup.ts#L218)
 
 A lista de camadas para determinar a visibilidade por tipo de equipamento e do terreno.
 
@@ -185,7 +119,7 @@ A lista de camadas para determinar a visibilidade por tipo de equipamento e do t
 
 > **newEquipmentData**: [`Equipment`](../../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/core/three/scene-elements-setup.ts:227](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/core/three/scene-elements-setup.ts#L227)
+Defined in: [src/core/three/scene-elements-setup.ts:217](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/core/three/scene-elements-setup.ts#L217)
 
 A nova lista de equipamentos a serem renderizados (já filtrada).
 
@@ -195,69 +129,6 @@ A nova lista de equipamentos a serem renderizados (já filtrada).
 
 > **scene**: `Scene`
 
-Defined in: [src/core/three/scene-elements-setup.ts:225](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/core/three/scene-elements-setup.ts#L225)
+Defined in: [src/core/three/scene-elements-setup.ts:215](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/core/three/scene-elements-setup.ts#L215)
 
 A cena Three.js.
-<style>
-:root.mermaid-enabled .mermaid-block > pre {
-  display: none;
-}
-:root:not(.mermaid-enabled) .mermaid-block > .mermaid {
-  display: none !important;
-}
-
-.mermaid-block > .mermaid[data-inserted].dark {
-  display: var(--mermaid-dark-display);
-}
-.mermaid-block > .mermaid[data-inserted].light {
-  display: var(--mermaid-light-display);
-}
-
-:root {
-  --mermaid-dark-display: none;
-  --mermaid-light-display: block;
-}
-@media (prefers-color-scheme: light) {
-  :root {
-    --mermaid-dark-display: none;
-    --mermaid-light-display: block;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --mermaid-dark-display: block;
-    --mermaid-light-display: none;
-  }
-}
-body.light, :root[data-theme="light"] {
-  --mermaid-dark-display: none;
-  --mermaid-light-display: block;
-}
-body.dark, :root[data-theme="dark"] {
-  --mermaid-dark-display: block;
-  --mermaid-light-display: none;
-}
-</style>
-
-<script type="module">
-import mermaid from "https://unpkg.com/mermaid@latest/dist/mermaid.esm.min.mjs";
-
-document.documentElement.classList.add("mermaid-enabled");
-
-mermaid.initialize({startOnLoad:true});
-
-requestAnimationFrame(function check() {
-  let some = false;
-  document.querySelectorAll("div.mermaid:not([data-inserted])").forEach(div => {
-    some = true;
-    if (div.querySelector("svg")) {
-      div.dataset.inserted = true;
-    }
-  });
-
-  if (some) {
-    requestAnimationFrame(check);
-  }
-});
-</script>
-

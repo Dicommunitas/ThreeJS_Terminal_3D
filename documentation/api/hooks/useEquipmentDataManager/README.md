@@ -6,21 +6,10 @@
 
 # hooks/useEquipmentDataManager
 
-Hook customizado para gerenciar os dados dos equipamentos, atuando como uma fachada para o repositório em memória.
-
-Este hook é responsável por:
--   Obter e manter uma cópia local (estado React) dos dados de todos os equipamentos
-    a partir do `equipmentRepository`.
--   Fornecer funções para modificar propriedades específicas dos equipamentos, como
-    estado operacional e produto. Essas modificações são persistidas no `equipmentRepository`.
--   Após cada modificação no repositório, o estado local do hook é atualizado para
-    refletir os dados mais recentes, garantindo a reatividade da UI.
--   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações.
-
 ## See
 
- - /docs/core/repository/memory-repository.md#equipmentRepository Para a fonte de dados.
- - /docs/lib/types.md#Equipment Para a interface de Equipamento.
+ - ../../core/repository/memory-repository/README.md#equipmentRepository Para a fonte de dados.
+ - ../../lib/types/README.md#Equipment Para a interface de Equipamento.
 
 ## Example
 

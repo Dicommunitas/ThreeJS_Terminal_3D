@@ -8,7 +8,7 @@
 
 > **SidebarContentLayout**(`props`): `Element`
 
-Defined in: [src/components/sidebar-content-layout.tsx:136](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7212b5be68c3f7954d775adb9932e64d901692b4/src/components/sidebar-content-layout.tsx#L136)
+Defined in: [src/components/sidebar-content-layout.tsx:136](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/components/sidebar-content-layout.tsx#L136)
 
 Renderiza o layout do conteúdo da sidebar, incluindo filtros, painéis de controle e link para documentação.
 Utiliza uma ScrollArea para permitir a rolagem do conteúdo se ele exceder a altura da sidebar.
