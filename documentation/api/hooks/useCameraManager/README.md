@@ -6,16 +6,6 @@
 
 # hooks/useCameraManager
 
-## See
-
- - documentation/api/lib/types/README.md#CameraState Para a interface do estado da câmera.
- - documentation/api/lib/types/README.md#Command Para a interface de comando (usada com `executeCommand`).
- - documentation/api/lib/types/README.md#TargetSystemInfo Para a interface de informações do sistema alvo.
-
-## Param
-
-Propriedades para o hook, incluindo `executeCommand` para integração com histórico.
-
 ## Interfaces
 
 - [UseCameraManagerProps](interfaces/UseCameraManagerProps.md)

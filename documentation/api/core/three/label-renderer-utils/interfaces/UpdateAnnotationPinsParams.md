@@ -6,7 +6,7 @@
 
 # Interface: UpdateAnnotationPinsParams
 
-Defined in: [src/core/three/label-renderer-utils.ts:91](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/core/three/label-renderer-utils.ts#L91)
+Defined in: [src/core/three/label-renderer-utils.ts:91](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/core/three/label-renderer-utils.ts#L91)
 
 Parâmetros para a função `updateAnnotationPins`.
  UpdateAnnotationPinsParams
@@ -17,7 +17,7 @@ Parâmetros para a função `updateAnnotationPins`.
 
 > **annotations**: [`Annotation`](../../../../lib/types/interfaces/Annotation.md)[]
 
-Defined in: [src/core/three/label-renderer-utils.ts:94](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/core/three/label-renderer-utils.ts#L94)
+Defined in: [src/core/three/label-renderer-utils.ts:94](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/core/three/label-renderer-utils.ts#L94)
 
 A lista atual de todas as anotações.
 
@@ -27,7 +27,7 @@ A lista atual de todas as anotações.
 
 > **equipmentData**: [`Equipment`](../../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/core/three/label-renderer-utils.ts:95](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/core/three/label-renderer-utils.ts#L95)
+Defined in: [src/core/three/label-renderer-utils.ts:95](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/core/three/label-renderer-utils.ts#L95)
 
 A lista completa de equipamentos, usada para encontrar posições e dimensões dos alvos das anotações.
 
@@ -37,7 +37,7 @@ A lista completa de equipamentos, usada para encontrar posições e dimensões d
 
 > **existingPinsRef**: `MutableRefObject`\<`CSS2DObject`[]\>
 
-Defined in: [src/core/three/label-renderer-utils.ts:97](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/core/three/label-renderer-utils.ts#L97)
+Defined in: [src/core/three/label-renderer-utils.ts:97](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/core/three/label-renderer-utils.ts#L97)
 
 Ref para o array de objetos CSS2DObject (pins) atualmente na cena.
 
@@ -47,7 +47,7 @@ Ref para o array de objetos CSS2DObject (pins) atualmente na cena.
 
 > **labelRenderer**: `null` \| `CSS2DRenderer`
 
-Defined in: [src/core/three/label-renderer-utils.ts:93](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/core/three/label-renderer-utils.ts#L93)
+Defined in: [src/core/three/label-renderer-utils.ts:93](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/core/three/label-renderer-utils.ts#L93)
 
 O renderizador CSS2D responsável por exibir os pins.
 
@@ -57,7 +57,7 @@ O renderizador CSS2D responsável por exibir os pins.
 
 > **layers**: [`Layer`](../../../../lib/types/interfaces/Layer.md)[]
 
-Defined in: [src/core/three/label-renderer-utils.ts:96](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/core/three/label-renderer-utils.ts#L96)
+Defined in: [src/core/three/label-renderer-utils.ts:96](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/core/three/label-renderer-utils.ts#L96)
 
 A lista de camadas, usada para verificar a visibilidade da camada de "Annotations".
 
@@ -67,6 +67,6 @@ A lista de camadas, usada para verificar a visibilidade da camada de "Annotation
 
 > **scene**: `null` \| `Scene`
 
-Defined in: [src/core/three/label-renderer-utils.ts:92](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/core/three/label-renderer-utils.ts#L92)
+Defined in: [src/core/three/label-renderer-utils.ts:92](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/core/three/label-renderer-utils.ts#L92)
 
 A cena Three.js onde os pins serão adicionados/removidos.

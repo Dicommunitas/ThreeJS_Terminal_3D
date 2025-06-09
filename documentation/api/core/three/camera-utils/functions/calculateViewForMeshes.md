@@ -8,7 +8,7 @@
 
 > **calculateViewForMeshes**(`meshes`, `camera`): `null` \| [`SystemViewOptions`](../../../../lib/types/interfaces/SystemViewOptions.md)
 
-Defined in: [src/core/three/camera-utils.ts:45](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/core/three/camera-utils.ts#L45)
+Defined in: [src/core/three/camera-utils.ts:45](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/core/three/camera-utils.ts#L45)
 
 Calcula múltiplas opções de visualização (padrão, de cima, isométrica) para a câmera
 de forma a enquadrar um conjunto de meshes fornecidos.

@@ -8,7 +8,7 @@
 
 > **useFilterManager**(`props`): [`UseFilterManagerReturn`](../interfaces/UseFilterManagerReturn.md)
 
-Defined in: [src/hooks/use-filter-manager.ts:105](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/hooks/use-filter-manager.ts#L105)
+Defined in: [src/hooks/use-filter-manager.ts:105](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/hooks/use-filter-manager.ts#L105)
 
 Hook customizado para gerenciar a lógica de filtragem de equipamentos.
 Encapsula os estados dos filtros (termo de busca, sistema, área),

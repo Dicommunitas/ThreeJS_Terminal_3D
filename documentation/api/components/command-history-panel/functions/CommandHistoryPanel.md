@@ -8,7 +8,7 @@
 
 > **CommandHistoryPanel**(`props`): `Element`
 
-Defined in: [src/components/command-history-panel.tsx:72](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/command-history-panel.tsx#L72)
+Defined in: [src/components/command-history-panel.tsx:72](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/command-history-panel.tsx#L72)
 
 Renderiza um painel com botões de Undo e Redo.
 A habilitação dos botões é controlada pelas props `canUndo` e `canRedo`.

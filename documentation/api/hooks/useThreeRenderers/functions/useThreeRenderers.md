@@ -8,7 +8,7 @@
 
 > **useThreeRenderers**(`props`): [`UseThreeRenderersReturn`](../interfaces/UseThreeRenderersReturn.md)
 
-Defined in: [src/hooks/useThreeRenderers.ts:108](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/hooks/useThreeRenderers.ts#L108)
+Defined in: [src/hooks/useThreeRenderers.ts:108](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/hooks/useThreeRenderers.ts#L108)
 
 Configura os renderizadores Three.js (WebGL, CSS2D) e o pipeline de pós-processamento (EffectComposer, OutlinePass).
 Gerencia a anexação ao DOM e eventos de contexto WebGL.

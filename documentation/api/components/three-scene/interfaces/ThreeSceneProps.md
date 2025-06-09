@@ -6,7 +6,7 @@
 
 # Interface: ThreeSceneProps
 
-Defined in: [src/components/three-scene.tsx:138](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L138)
+Defined in: [src/components/three-scene.tsx:138](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L138)
 
 Props para o componente ThreeScene.
  ThreeSceneProps
@@ -17,7 +17,7 @@ Props para o componente ThreeScene.
 
 > **allEquipmentData**: [`Equipment`](../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/components/three-scene.tsx:140](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L140)
+Defined in: [src/components/three-scene.tsx:140](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L140)
 
 Lista completa de todos os equipamentos, para contexto (e.g., anotações).
 
@@ -27,7 +27,7 @@ Lista completa de todos os equipamentos, para contexto (e.g., anotações).
 
 > **annotations**: [`Annotation`](../../../lib/types/interfaces/Annotation.md)[]
 
-Defined in: [src/components/three-scene.tsx:142](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L142)
+Defined in: [src/components/three-scene.tsx:142](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L142)
 
 Lista de anotações a serem exibidas.
 
@@ -37,7 +37,7 @@ Lista de anotações a serem exibidas.
 
 > **cameraState**: `undefined` \| [`CameraState`](../../../lib/types/interfaces/CameraState.md)
 
-Defined in: [src/components/three-scene.tsx:147](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L147)
+Defined in: [src/components/three-scene.tsx:147](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L147)
 
 O estado atual da câmera (posição, lookAt) gerenciado externamente. Pode ser indefinido durante a inicialização.
 
@@ -47,7 +47,7 @@ O estado atual da câmera (posição, lookAt) gerenciado externamente. Pode ser 
 
 > **colorMode**: [`ColorMode`](../../../lib/types/type-aliases/ColorMode.md)
 
-Defined in: [src/components/three-scene.tsx:151](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L151)
+Defined in: [src/components/three-scene.tsx:151](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L151)
 
 O modo de colorização atual para os equipamentos.
 
@@ -57,7 +57,7 @@ O modo de colorização atual para os equipamentos.
 
 > **equipment**: [`Equipment`](../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/components/three-scene.tsx:139](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L139)
+Defined in: [src/components/three-scene.tsx:139](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L139)
 
 Lista de equipamentos filtrados a serem renderizados na cena.
 
@@ -67,7 +67,7 @@ Lista de equipamentos filtrados a serem renderizados na cena.
 
 > **hoveredEquipmentTag**: `undefined` \| `null` \| `string`
 
-Defined in: [src/components/three-scene.tsx:145](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L145)
+Defined in: [src/components/three-scene.tsx:145](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L145)
 
 Tag do equipamento atualmente sob o cursor.
 
@@ -77,7 +77,7 @@ Tag do equipamento atualmente sob o cursor.
 
 > **initialCameraLookAt**: `object`
 
-Defined in: [src/components/three-scene.tsx:150](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L150)
+Defined in: [src/components/three-scene.tsx:150](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L150)
 
 Ponto de observação (lookAt) inicial da câmera.
 
@@ -99,7 +99,7 @@ Ponto de observação (lookAt) inicial da câmera.
 
 > **initialCameraPosition**: `object`
 
-Defined in: [src/components/three-scene.tsx:149](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L149)
+Defined in: [src/components/three-scene.tsx:149](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L149)
 
 Posição inicial da câmera.
 
@@ -121,7 +121,7 @@ Posição inicial da câmera.
 
 > **layers**: [`Layer`](../../../lib/types/interfaces/Layer.md)[]
 
-Defined in: [src/components/three-scene.tsx:141](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L141)
+Defined in: [src/components/three-scene.tsx:141](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L141)
 
 Configuração das camadas de visibilidade.
 
@@ -131,7 +131,7 @@ Configuração das camadas de visibilidade.
 
 > **onCameraChange**: (`cameraState`, `actionDescription?`) => `void`
 
-Defined in: [src/components/three-scene.tsx:148](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L148)
+Defined in: [src/components/three-scene.tsx:148](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L148)
 
 Callback para quando o estado da câmera muda, com uma descrição opcional da ação.
 
@@ -155,7 +155,7 @@ Callback para quando o estado da câmera muda, com uma descrição opcional da a
 
 > **onSelectEquipment**: (`tag`, `isMultiSelectModifierPressed`) => `void`
 
-Defined in: [src/components/three-scene.tsx:144](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L144)
+Defined in: [src/components/three-scene.tsx:144](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L144)
 
 Callback para quando um equipamento é selecionado/deselecionado.
 
@@ -179,7 +179,7 @@ Callback para quando um equipamento é selecionado/deselecionado.
 
 > **onSystemFramed**: () => `void`
 
-Defined in: [src/components/three-scene.tsx:153](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L153)
+Defined in: [src/components/three-scene.tsx:153](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L153)
 
 Callback chamado após a câmera terminar de enquadrar um sistema.
 
@@ -193,7 +193,7 @@ Callback chamado após a câmera terminar de enquadrar um sistema.
 
 > **selectedEquipmentTags**: `undefined` \| `string`[]
 
-Defined in: [src/components/three-scene.tsx:143](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L143)
+Defined in: [src/components/three-scene.tsx:143](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L143)
 
 Tags dos equipamentos atualmente selecionados.
 
@@ -203,7 +203,7 @@ Tags dos equipamentos atualmente selecionados.
 
 > **setHoveredEquipmentTag**: (`tag`) => `void`
 
-Defined in: [src/components/three-scene.tsx:146](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L146)
+Defined in: [src/components/three-scene.tsx:146](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L146)
 
 Callback para definir o equipamento em hover.
 
@@ -223,6 +223,6 @@ Callback para definir o equipamento em hover.
 
 > **targetSystemToFrame**: `null` \| [`TargetSystemInfo`](../../../lib/types/interfaces/TargetSystemInfo.md)
 
-Defined in: [src/components/three-scene.tsx:152](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/three-scene.tsx#L152)
+Defined in: [src/components/three-scene.tsx:152](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/three-scene.tsx#L152)
 
 O sistema que deve ser enquadrado pela câmera (se houver), incluindo o índice da visão.

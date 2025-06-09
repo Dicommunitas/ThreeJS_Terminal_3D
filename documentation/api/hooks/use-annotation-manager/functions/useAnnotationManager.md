@@ -8,7 +8,7 @@
 
 > **useAnnotationManager**(`props`): [`UseAnnotationManagerReturn`](../interfaces/UseAnnotationManagerReturn.md)
 
-Defined in: [src/hooks/use-annotation-manager.ts:110](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/hooks/use-annotation-manager.ts#L110)
+Defined in: [src/hooks/use-annotation-manager.ts:110](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/hooks/use-annotation-manager.ts#L110)
 
 Hook customizado para gerenciar anotações textuais associadas a equipamentos.
 Atua como uma fachada para o `annotationRepository`, gerenciando o estado do diálogo de edição

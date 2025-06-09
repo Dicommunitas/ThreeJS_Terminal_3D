@@ -3276,16 +3276,29 @@ Returns **[UseSceneSetupReturn][339]** Refs para os componentes da cena e flags 
 
 ##
 
-*   **See**: [documentation/api/core/repository/memory-repository/README.md#annotationrepository][433] Para a fonte de dados das anotações.
-*   **See**: [documentation/api/core/repository/memory-repository/README.md#equipmentrepository][434] Para obter dados de equipamentos (e.g., nome para toasts).
-*   **See**: [documentation/api/lib/types/README.md#Annotation][417] Para a interface de Anotação.
-*   **See**: [documentation/api/lib/types/README.md#Equipment][416] Para a interface de Equipamento.
+*   **See**: [/documentation/api/core/repository/memory-repository/README.md#annotationrepository][433] Para a fonte de dados das anotações.
+*   **See**: [/documentation/api/core/repository/memory-repository/README.md#equipmentrepository][434] Para obter dados de equipamentos (e.g., nome para toasts).
+*   **See**: [/documentation/api/lib/types/README.md#annotation][435] Para a interface de Anotação.
+*   **See**: [/documentation/api/lib/types/README.md#equipment][436] Para a interface de Equipamento.
+
+Hook customizado para gerenciar o estado e a lógica das anotações textuais dos equipamentos,
+atuando como uma fachada para o `annotationRepository`.
+
+Este hook é responsável por:
+
+*   Obter e manter uma cópia local (estado React) das anotações a partir do `annotationRepository`.
+*   Gerenciar o estado do diálogo de adição/edição de anotações (`isAnnotationDialogOpen`, `editingAnnotation`, `annotationTargetEquipment`).
+*   Fornecer uma API (funções `handleOpenAnnotationDialog`, `handleSaveAnnotation`, `handleDeleteAnnotation`, `getAnnotationForEquipment`)
+    para criar, ler, atualizar e excluir anotações. Estas operações persistem as mudanças no `annotationRepository`.
+*   Após cada modificação no repositório, o estado local de anotações do hook é atualizado para
+    refletir os dados mais recentes, garantindo a reatividade da UI.
+*   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações de anotação.
 
 ### Parameters
 
 *   `props`  Propriedades de configuração para o hook (atualmente, `initialAnnotations` é opcional e usado para uma potencial inicialização única do repositório, embora o repositório seja auto-inicializável).
 
-Returns **any** Objeto contendo o estado das anotações, o estado do diálogo e funções para manipular anotações.Diagrama de Interação do useAnnotationManager:```mermaid
+Returns **any** Objeto contendo o estado das anotações, o estado do diálogo e funções para manipular anotações.```mermaid
 graph TD
     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOpenAnnotationDialog)
     B -- define estados --> DialogState["isAnnotationDialogOpen, editingAnnotation, annotationTargetEquipment"]
@@ -3322,15 +3335,31 @@ graph TD
 
 ##
 
-*   **See**: [documentation/api/lib/types/README.md#CameraState][435] Para a interface do estado da câmera.
-*   **See**: [documentation/api/lib/types/README.md#Command][436] Para a interface de comando (usada com `executeCommand`).
-*   **See**: [documentation/api/lib/types/README.md#TargetSystemInfo][437] Para a interface de informações do sistema alvo.
+*   **See**: [/documentation/api/lib/types/README.md#camerastate][437] Para a interface do estado da câmera.
+*   **See**: [/documentation/api/lib/types/README.md#command][438] Para a interface de comando (usada com `executeCommand`).
+*   **See**: [/documentation/api/lib/types/README.md#targetsysteminfo][439] Para a interface de informações do sistema alvo.
+
+Hook customizado para gerenciar o estado e as interações da câmera 3D.
+
+Este hook é responsável por:
+
+*   Manter o estado atual da câmera (posição e ponto de observação - `lookAt`).
+*   Gerenciar a lógica para focar a câmera em sistemas específicos de equipamentos,
+    incluindo a ciclagem entre diferentes visualizações (padrão, de cima, isométrica) para o mesmo sistema.
+*   Integrar os movimentos de câmera (tanto os iniciados pelo usuário via `OrbitControls`
+    quanto os programáticos como o foco em sistema) com o sistema de histórico de comandos,
+    permitindo operações de Undo/Redo.
+*   Expor o estado da câmera e funções para interagir com ela e responder a eventos.
+
+O estado da câmera (`currentCameraState`) é um estado React, garantindo que as atualizações
+sejam propagadas para os componentes que o utilizam (e.g., `ThreeScene` para aplicar
+o estado à câmera Three.js).
 
 ### Parameters
 
 *   `props`  Propriedades para o hook, incluindo `executeCommand` para integração com histórico.
 
-Returns **any** Objeto contendo o estado da câmera, informações de foco, e funções para interagir com a câmera.Diagrama de Interação e Estado do useCameraManager:```mermaid
+Returns **any** Objeto contendo o estado da câmera, informações de foco, e funções para interagir com a câmera.```mermaid
 graph LR
     A[Terminal3DPage] -- chama --> B(handleSetCameraViewForSystem)
     B -- atualiza --> C{targetSystemToFrame};
@@ -3375,10 +3404,22 @@ graph LR
 
 ##
 
-*   **See**: [documentation/api/core/repository/memory-repository/README.md#equipmentRepository][438] Para a fonte de dados.
-*   **See**: [documentation/api/lib/types/README.md#Equipment][416] Para a interface de Equipamento.
+*   **See**: [/documentation/api/core/repository/memory-repository/README.md#equipmentrepository][434] Para a fonte de dados.
+*   **See**: [/documentation/api/lib/types/README.md#equipment][436] Para a interface de Equipamento.
 
-Returns **any** Objeto contendo os dados dos equipamentos e funções para modificá-los e atualizá-los.Diagrama de Interação do useEquipmentDataManager:```mermaid
+Hook customizado para gerenciar os dados dos equipamentos, atuando como uma fachada para o repositório em memória.
+
+Este hook é responsável por:
+
+*   Obter e manter uma cópia local (estado React) dos dados de todos os equipamentos
+    a partir do `equipmentRepository`.
+*   Fornecer funções para modificar propriedades específicas dos equipamentos, como
+    estado operacional e produto. Essas modificações são persistidas no `equipmentRepository`.
+*   Após cada modificação no repositório, o estado local do hook é atualizado para
+    refletir os dados mais recentes, garantindo a reatividade da UI.
+*   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações.
+
+Returns **any** Objeto contendo os dados dos equipamentos e funções para modificá-los e atualizá-los.```mermaid
 graph TD
     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOperationalStateChange)
 
@@ -3538,8 +3579,8 @@ Returns **any** Refs para os renderizadores, composer, outline pass, e uma flag 
 
 ## useRef
 
-*   **See**: [documentation/api/core/three/scene-elements-setup/README.md#setupLighting][439] Para a função de configuração da iluminação.
-*   **See**: [documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane][440] Para a função de configuração do plano de chão.
+*   **See**: [documentation/api/core/three/scene-elements-setup/README.md#setupLighting][440] Para a função de configuração da iluminação.
+*   **See**: [documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane][441] Para a função de configuração do plano de chão.
 
     Diagrama de Funcionalidade do useThreeSceneElements:
 
@@ -4679,18 +4720,20 @@ Type: (`"Produto"` | `"Estado Operacional"` | `"Equipamento"`)
 
 [432]: https://developer.mozilla.org/docs/Web/API/HTMLDivElement
 
-[433]: documentation/api/core/repository/memory-repository/README.md#annotationrepository
+[433]: /documentation/api/core/repository/memory-repository/README.md#annotationrepository
 
-[434]: documentation/api/core/repository/memory-repository/README.md#equipmentrepository
+[434]: /documentation/api/core/repository/memory-repository/README.md#equipmentrepository
 
-[435]: documentation/api/lib/types/README.md#CameraState
+[435]: /documentation/api/lib/types/README.md#annotation
 
-[436]: documentation/api/lib/types/README.md#Command
+[436]: /documentation/api/lib/types/README.md#equipment
 
-[437]: documentation/api/lib/types/README.md#TargetSystemInfo
+[437]: /documentation/api/lib/types/README.md#camerastate
 
-[438]: documentation/api/core/repository/memory-repository/README.md#equipmentRepository
+[438]: /documentation/api/lib/types/README.md#command
 
-[439]: documentation/api/core/three/scene-elements-setup/README.md#setupLighting
+[439]: /documentation/api/lib/types/README.md#targetsysteminfo
 
-[440]: documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane
+[440]: documentation/api/core/three/scene-elements-setup/README.md#setupLighting
+
+[441]: documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane

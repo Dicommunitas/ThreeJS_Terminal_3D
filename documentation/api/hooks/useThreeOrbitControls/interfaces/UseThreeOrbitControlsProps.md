@@ -6,7 +6,7 @@
 
 # Interface: UseThreeOrbitControlsProps
 
-Defined in: [src/hooks/useThreeOrbitControls.ts:60](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/hooks/useThreeOrbitControls.ts#L60)
+Defined in: [src/hooks/useThreeOrbitControls.ts:60](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/hooks/useThreeOrbitControls.ts#L60)
 
 Props para o hook `useThreeOrbitControls`.
  UseThreeOrbitControlsProps
@@ -17,7 +17,7 @@ Props para o hook `useThreeOrbitControls`.
 
 > **cameraRef**: `RefObject`\<`null` \| `PerspectiveCamera`\>
 
-Defined in: [src/hooks/useThreeOrbitControls.ts:61](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/hooks/useThreeOrbitControls.ts#L61)
+Defined in: [src/hooks/useThreeOrbitControls.ts:61](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/hooks/useThreeOrbitControls.ts#L61)
 
 Ref para a câmera perspectiva.
 
@@ -27,7 +27,7 @@ Ref para a câmera perspectiva.
 
 > **initialCameraLookAt**: `object`
 
-Defined in: [src/hooks/useThreeOrbitControls.ts:63](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/hooks/useThreeOrbitControls.ts#L63)
+Defined in: [src/hooks/useThreeOrbitControls.ts:63](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/hooks/useThreeOrbitControls.ts#L63)
 
 O ponto inicial para onde a câmera (e os controles) deve olhar.
 
@@ -49,7 +49,7 @@ O ponto inicial para onde a câmera (e os controles) deve olhar.
 
 > **onCameraChange**: (`cameraState`, `actionDescription?`) => `void`
 
-Defined in: [src/hooks/useThreeOrbitControls.ts:64](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/hooks/useThreeOrbitControls.ts#L64)
+Defined in: [src/hooks/useThreeOrbitControls.ts:64](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/hooks/useThreeOrbitControls.ts#L64)
 
 Callback acionado quando o usuário finaliza uma interação com a câmera.
 
@@ -73,7 +73,7 @@ Callback acionado quando o usuário finaliza uma interação com a câmera.
 
 > **rendererRef**: `RefObject`\<`null` \| `WebGLRenderer`\>
 
-Defined in: [src/hooks/useThreeOrbitControls.ts:62](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/hooks/useThreeOrbitControls.ts#L62)
+Defined in: [src/hooks/useThreeOrbitControls.ts:62](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/hooks/useThreeOrbitControls.ts#L62)
 
 Ref para o renderizador WebGL (necessário para o `domElement`).
 
@@ -83,6 +83,6 @@ Ref para o renderizador WebGL (necessário para o `domElement`).
 
 > **renderersReady**: `boolean`
 
-Defined in: [src/hooks/useThreeOrbitControls.ts:65](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/hooks/useThreeOrbitControls.ts#L65)
+Defined in: [src/hooks/useThreeOrbitControls.ts:65](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/hooks/useThreeOrbitControls.ts#L65)
 
 Flag que indica se os renderizadores (especialmente o `domElement` do WebGLRenderer) estão prontos.

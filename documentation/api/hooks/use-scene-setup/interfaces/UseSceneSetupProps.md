@@ -6,7 +6,7 @@
 
 # Interface: UseSceneSetupProps
 
-Defined in: [src/hooks/use-scene-setup.ts:117](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/hooks/use-scene-setup.ts#L117)
+Defined in: [src/hooks/use-scene-setup.ts:117](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/hooks/use-scene-setup.ts#L117)
 
 Props para o hook orquestrador da configuração da cena.
  UseSceneSetupProps
@@ -17,7 +17,7 @@ Props para o hook orquestrador da configuração da cena.
 
 > **initialCameraLookAt**: `object`
 
-Defined in: [src/hooks/use-scene-setup.ts:120](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/hooks/use-scene-setup.ts#L120)
+Defined in: [src/hooks/use-scene-setup.ts:120](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/hooks/use-scene-setup.ts#L120)
 
 Ponto de observação (lookAt) inicial da câmera.
 
@@ -39,7 +39,7 @@ Ponto de observação (lookAt) inicial da câmera.
 
 > **initialCameraPosition**: `object`
 
-Defined in: [src/hooks/use-scene-setup.ts:119](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/hooks/use-scene-setup.ts#L119)
+Defined in: [src/hooks/use-scene-setup.ts:119](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/hooks/use-scene-setup.ts#L119)
 
 Posição inicial da câmera.
 
@@ -61,7 +61,7 @@ Posição inicial da câmera.
 
 > **mountRef**: `RefObject`\<`HTMLDivElement`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:118](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/hooks/use-scene-setup.ts#L118)
+Defined in: [src/hooks/use-scene-setup.ts:118](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/hooks/use-scene-setup.ts#L118)
 
 Ref para o elemento DOM contêiner da cena.
 
@@ -71,7 +71,7 @@ Ref para o elemento DOM contêiner da cena.
 
 > **onCameraChange**: (`cameraState`, `actionDescription?`) => `void`
 
-Defined in: [src/hooks/use-scene-setup.ts:121](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/hooks/use-scene-setup.ts#L121)
+Defined in: [src/hooks/use-scene-setup.ts:121](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/hooks/use-scene-setup.ts#L121)
 
 Callback para quando o estado da câmera muda.
 

@@ -6,7 +6,7 @@
 
 # Interface: Annotation
 
-Defined in: [src/lib/types.ts:147](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L147)
+Defined in: [src/lib/types.ts:147](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/lib/types.ts#L147)
 
 Representa uma anotação textual associada a um equipamento específico.
 Cada equipamento pode ter no máximo uma anotação.
@@ -19,7 +19,7 @@ Cada equipamento pode ter no máximo uma anotação.
 
 > **createdAt**: `string`
 
-Defined in: [src/lib/types.ts:150](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L150)
+Defined in: [src/lib/types.ts:150](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/lib/types.ts#L150)
 
 Data e hora em formato string ISO 8601 (e.g., "2023-10-27T10:30:00.000Z")
                                indicando quando a anotação foi criada ou atualizada pela última vez.
@@ -30,7 +30,7 @@ Data e hora em formato string ISO 8601 (e.g., "2023-10-27T10:30:00.000Z")
 
 > **equipmentTag**: `string`
 
-Defined in: [src/lib/types.ts:148](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L148)
+Defined in: [src/lib/types.ts:148](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/lib/types.ts#L148)
 
 A tag do equipamento ao qual esta anotação está vinculada.
                                  Serve como chave estrangeira para o objeto `Equipment`.
@@ -41,6 +41,6 @@ A tag do equipamento ao qual esta anotação está vinculada.
 
 > **text**: `string`
 
-Defined in: [src/lib/types.ts:149](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L149)
+Defined in: [src/lib/types.ts:149](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/lib/types.ts#L149)
 
 O conteúdo textual da anotação.

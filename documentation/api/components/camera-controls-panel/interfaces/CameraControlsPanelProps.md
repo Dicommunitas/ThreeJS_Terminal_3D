@@ -6,7 +6,7 @@
 
 # Interface: CameraControlsPanelProps
 
-Defined in: [src/components/camera-controls-panel.tsx:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/camera-controls-panel.tsx#L46)
+Defined in: [src/components/camera-controls-panel.tsx:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/camera-controls-panel.tsx#L46)
 
 Props para o componente CameraControlsPanel.
  CameraControlsPanelProps
@@ -17,7 +17,7 @@ Props para o componente CameraControlsPanel.
 
 > **onSetView**: (`systemName`) => `void`
 
-Defined in: [src/components/camera-controls-panel.tsx:48](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/camera-controls-panel.tsx#L48)
+Defined in: [src/components/camera-controls-panel.tsx:48](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/camera-controls-panel.tsx#L48)
 
 Callback chamado quando um sistema é selecionado para foco.
 
@@ -37,6 +37,6 @@ Callback chamado quando um sistema é selecionado para foco.
 
 > **systems**: `string`[]
 
-Defined in: [src/components/camera-controls-panel.tsx:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/camera-controls-panel.tsx#L47)
+Defined in: [src/components/camera-controls-panel.tsx:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6861c3fedb296b50971bbc544df59a09f35d0238/src/components/camera-controls-panel.tsx#L47)
 
 Lista de nomes dos sistemas disponíveis para foco.
