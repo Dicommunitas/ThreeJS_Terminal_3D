@@ -8,10 +8,10 @@
 
 ## See
 
- - ../core/repository/memory-repository/README.md#annotationRepository Para a fonte de dados das anotações.
- - ../core/repository/memory-repository/README.md#equipmentRepository Para obter dados de equipamentos (e.g., nome para toasts).
- - ../lib/types/README.md#Annotation Para a interface de Anotação.
- - ../lib/types/README.md#Equipment Para a interface de Equipamento.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository Para a fonte de dados das anotações.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository Para obter dados de equipamentos (e.g., nome para toasts).
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Annotation Para a interface de Anotação.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment Para a interface de Equipamento.
 
 ## Param
 

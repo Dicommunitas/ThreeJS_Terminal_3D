@@ -8,7 +8,7 @@
 
 > **SidebarContext** = `object`
 
-Defined in: [src/components/ui/sidebar.tsx:79](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/components/ui/sidebar.tsx#L79)
+Defined in: [src/components/ui/sidebar.tsx:79](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/components/ui/sidebar.tsx#L79)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/components/ui/sidebar.tsx:79](https://github.com/Dicommunitas/T
 
 > **isMobile**: `boolean`
 
-Defined in: [src/components/ui/sidebar.tsx:85](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/components/ui/sidebar.tsx#L85)
+Defined in: [src/components/ui/sidebar.tsx:85](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/components/ui/sidebar.tsx#L85)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [src/components/ui/sidebar.tsx:85](https://github.com/Dicommunitas/T
 
 > **open**: `boolean`
 
-Defined in: [src/components/ui/sidebar.tsx:81](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/components/ui/sidebar.tsx#L81)
+Defined in: [src/components/ui/sidebar.tsx:81](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/components/ui/sidebar.tsx#L81)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [src/components/ui/sidebar.tsx:81](https://github.com/Dicommunitas/T
 
 > **openMobile**: `boolean`
 
-Defined in: [src/components/ui/sidebar.tsx:83](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/components/ui/sidebar.tsx#L83)
+Defined in: [src/components/ui/sidebar.tsx:83](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/components/ui/sidebar.tsx#L83)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [src/components/ui/sidebar.tsx:83](https://github.com/Dicommunitas/T
 
 > **setOpen**: (`open`) => `void`
 
-Defined in: [src/components/ui/sidebar.tsx:82](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/components/ui/sidebar.tsx#L82)
+Defined in: [src/components/ui/sidebar.tsx:82](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/components/ui/sidebar.tsx#L82)
 
 #### Parameters
 
@@ -58,7 +58,7 @@ Defined in: [src/components/ui/sidebar.tsx:82](https://github.com/Dicommunitas/T
 
 > **setOpenMobile**: (`open`) => `void`
 
-Defined in: [src/components/ui/sidebar.tsx:84](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/components/ui/sidebar.tsx#L84)
+Defined in: [src/components/ui/sidebar.tsx:84](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/components/ui/sidebar.tsx#L84)
 
 #### Parameters
 
@@ -76,7 +76,7 @@ Defined in: [src/components/ui/sidebar.tsx:84](https://github.com/Dicommunitas/T
 
 > **state**: `"expanded"` \| `"collapsed"`
 
-Defined in: [src/components/ui/sidebar.tsx:80](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/components/ui/sidebar.tsx#L80)
+Defined in: [src/components/ui/sidebar.tsx:80](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/components/ui/sidebar.tsx#L80)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/components/ui/sidebar.tsx:80](https://github.com/Dicommunitas/T
 
 > **toggleSidebar**: () => `void`
 
-Defined in: [src/components/ui/sidebar.tsx:86](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/components/ui/sidebar.tsx#L86)
+Defined in: [src/components/ui/sidebar.tsx:86](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/components/ui/sidebar.tsx#L86)
 
 #### Returns
 

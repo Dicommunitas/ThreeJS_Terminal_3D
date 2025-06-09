@@ -8,9 +8,9 @@
 
 ## See
 
- - ../lib/types/README.md#CameraState Para a interface do estado da câmera.
- - ../lib/types/README.md#Command Para a interface de comando (usada com `executeCommand`).
- - ../lib/types/README.md#TargetSystemInfo Para a interface de informações do sistema alvo.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#CameraState Para a interface do estado da câmera.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Command Para a interface de comando (usada com `executeCommand`).
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#TargetSystemInfo Para a interface de informações do sistema alvo.
 
 ## Param
 

@@ -10,26 +10,26 @@
  *
  * Responsabilidades Principais:
  * -   **Composição de Hooks:** Importa e utiliza hooks especializados para cada parte da configuração da cena:
- *     -   `useThreeCore`: Para `THREE.Scene` e `THREE.PerspectiveCamera`.
- *     -   `useThreeRenderers`: Para `WebGLRenderer`, `CSS2DRenderer`, `EffectComposer`, e `OutlinePass`.
- *     -   `useThreeOrbitControls`: Para `OrbitControls`.
- *     -   `useThreeSceneElements`: Para iluminação e plano de chão.
- *     -   `useThreeResize`: Para responsividade da cena.
+ *     -   {@link hooks/useThreeCore.useThreeCore}: Para `THREE.Scene` e `THREE.PerspectiveCamera`.
+ *     -   {@link hooks/useThreeRenderers.useThreeRenderers}: Para `WebGLRenderer`, `CSS2DRenderer`, `EffectComposer`, e `OutlinePass`.
+ *     -   {@link hooks/useThreeOrbitControls.useThreeOrbitControls}: Para `OrbitControls`.
+ *     -   {@link hooks/useThreeSceneElements.useThreeSceneElements}: Para iluminação e plano de chão.
+ *     -   {@link hooks/useThreeResize.useThreeResize}: Para responsividade da cena.
  * -   **Orquestração da Inicialização:** Garante que os hooks sejam chamados na ordem correta,
  *     respeitando as dependências (e.g., renderizadores precisam estar prontos antes dos controles).
  * -   **Agregação de Refs e Estado:** Coleta e retorna as refs para os objetos Three.js criados
  *     (e.g., `sceneRef`, `cameraRef`, `rendererRef`) e as flags de estado de prontidão
  *     (`isSceneReady`, `isControlsReady`).
  *
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeCore/README.md Para inicialização da cena e câmera.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeRenderers/README.md Para configuração dos renderizadores e pós-processamento.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeOrbitControls/README.md Para configuração dos controles de órbita.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeSceneElements/README.md Para configuração de iluminação e plano de chão.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeResize/README.md Para manipulação de redimensionamento.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeCore/README.md} Para inicialização da cena e câmera.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeRenderers/README.md} Para configuração dos renderizadores e pós-processamento.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeOrbitControls/README.md} Para configuração dos controles de órbita.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeSceneElements/README.md} Para configuração de iluminação e plano de chão.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeResize/README.md} Para manipulação de redimensionamento.
  *
  * @example
  * // Diagrama de Composição do useSceneSetup:
- * ```mermaid
+ * \`\`\`mermaid
  * graph TD
  *     useSceneSetup_Orchestrator["useSceneSetup (Orquestrador)"]
  *
@@ -92,7 +92,7 @@
  *     class H_Core,H_Renderers,H_Controls,H_Elements,H_Resize hook;
  *     class R_Scene,R_Camera,R_Renderer,R_LabelRenderer,R_OrbitControls,R_Composer,R_OutlinePass,R_GroundMesh ref;
  *     class F_RenderersReady,F_ControlsReady,F_SceneReady flag;
- * ```
+ * \`\`\`
  */
 import type * as THREE from 'three';
 import type { OrbitControls as OrbitControlsType } from 'three/examples/jsm/controls/OrbitControls.js';

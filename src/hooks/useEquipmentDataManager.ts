@@ -12,13 +12,12 @@
  *     refletir os dados mais recentes, garantindo a reatividade da UI.
  * -   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações.
  *
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository Para a fonte de dados.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment Para a interface de Equipamento.
- * @returns Objeto contendo os dados dos equipamentos e funções para modificá-los e atualizá-los.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository} Para a fonte de dados.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment} Para a interface de Equipamento.
  *
  * @example
  * // Diagrama de Interação do useEquipmentDataManager:
- * ```mermaid
+ * \`\`\`mermaid
  * graph TD
  *     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOperationalStateChange)
  *
@@ -45,7 +44,7 @@
  *    class C,D repo;
  *    class E,F state;
  *    class useEquipmentDataManager hook;
- * ```
+ * \`\`\`
  */
 "use client";
 

@@ -6,7 +6,7 @@
 
 # Interface: UseThreeSceneElementsProps
 
-Defined in: [src/hooks/useThreeSceneElements.ts:64](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeSceneElements.ts#L64)
+Defined in: [src/hooks/useThreeSceneElements.ts:64](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeSceneElements.ts#L64)
 
 Props para o hook `useThreeSceneElements`.
  UseThreeSceneElementsProps
@@ -17,7 +17,7 @@ Props para o hook `useThreeSceneElements`.
 
 > **coreReady**: `boolean`
 
-Defined in: [src/hooks/useThreeSceneElements.ts:66](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeSceneElements.ts#L66)
+Defined in: [src/hooks/useThreeSceneElements.ts:66](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeSceneElements.ts#L66)
 
 Flag que indica se o núcleo da cena (incluindo `sceneRef.current`) está pronto.
 
@@ -27,6 +27,6 @@ Flag que indica se o núcleo da cena (incluindo `sceneRef.current`) está pronto
 
 > **sceneRef**: `RefObject`\<`null` \| `Scene`\>
 
-Defined in: [src/hooks/useThreeSceneElements.ts:65](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeSceneElements.ts#L65)
+Defined in: [src/hooks/useThreeSceneElements.ts:65](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeSceneElements.ts#L65)
 
 Ref para o objeto `THREE.Scene` onde os elementos serão adicionados.

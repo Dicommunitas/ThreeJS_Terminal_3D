@@ -8,16 +8,16 @@
 
 ## See
 
- - ../components/main-scene-area/README.md Para a área principal da cena.
- - ../components/ui/sidebar/README.md Para a barra lateral de controles.
- - ../components/annotation-dialog/README.md Para o diálogo de anotações.
- - ../hooks/use-command-history/README.md Para o gerenciamento de histórico de comandos.
- - ../hooks/use-equipment-data-manager/README.md Para o gerenciamento de dados de equipamentos.
- - ../hooks/use-camera-manager/README.md Para o gerenciamento da câmera.
- - ../hooks/use-filter-manager/README.md Para o gerenciamento de filtros.
- - ../hooks/use-annotation-manager/README.md Para o gerenciamento de anotações.
- - ../hooks/use-equipment-selection-manager/README.md Para o gerenciamento de seleção de equipamentos.
- - ../hooks/use-layer-manager/README.md Para o gerenciamento de camadas.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/main-scene-area/README.md Para a área principal da cena.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/ui/sidebar/README.md Para a barra lateral de controles.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/annotation-dialog/README.md Para o diálogo de anotações.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-command-history/README.md Para o gerenciamento de histórico de comandos.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-data-manager/README.md Para o gerenciamento de dados de equipamentos.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-camera-manager/README.md Para o gerenciamento da câmera.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-filter-manager/README.md Para o gerenciamento de filtros.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-manager/README.md Para o gerenciamento de anotações.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-selection-manager/README.md Para o gerenciamento de seleção de equipamentos.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-layer-manager/README.md Para o gerenciamento de camadas.
 
 ## Example
 

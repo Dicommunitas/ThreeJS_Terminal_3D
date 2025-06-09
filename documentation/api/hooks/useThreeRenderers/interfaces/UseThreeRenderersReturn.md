@@ -6,7 +6,7 @@
 
 # Interface: UseThreeRenderersReturn
 
-Defined in: [src/hooks/useThreeRenderers.ts:95](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeRenderers.ts#L95)
+Defined in: [src/hooks/useThreeRenderers.ts:95](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeRenderers.ts#L95)
 
 Valor de retorno do hook `useThreeRenderers`.
  UseThreeRenderersReturn
@@ -17,7 +17,7 @@ Valor de retorno do hook `useThreeRenderers`.
 
 > **areRenderersReady**: `boolean`
 
-Defined in: [src/hooks/useThreeRenderers.ts:100](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeRenderers.ts#L100)
+Defined in: [src/hooks/useThreeRenderers.ts:100](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeRenderers.ts#L100)
 
 Flag que indica se todos os renderizadores e o composer foram inicializados com sucesso.
 
@@ -27,7 +27,7 @@ Flag que indica se todos os renderizadores e o composer foram inicializados com 
 
 > **composerRef**: `RefObject`\<`null` \| `EffectComposer`\>
 
-Defined in: [src/hooks/useThreeRenderers.ts:98](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeRenderers.ts#L98)
+Defined in: [src/hooks/useThreeRenderers.ts:98](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeRenderers.ts#L98)
 
 Ref para o `EffectComposer`.
 
@@ -37,7 +37,7 @@ Ref para o `EffectComposer`.
 
 > **labelRendererRef**: `RefObject`\<`null` \| `CSS2DRenderer`\>
 
-Defined in: [src/hooks/useThreeRenderers.ts:97](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeRenderers.ts#L97)
+Defined in: [src/hooks/useThreeRenderers.ts:97](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeRenderers.ts#L97)
 
 Ref para o `CSS2DRenderer`.
 
@@ -47,7 +47,7 @@ Ref para o `CSS2DRenderer`.
 
 > **outlinePassRef**: `RefObject`\<`null` \| `OutlinePass`\>
 
-Defined in: [src/hooks/useThreeRenderers.ts:99](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeRenderers.ts#L99)
+Defined in: [src/hooks/useThreeRenderers.ts:99](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeRenderers.ts#L99)
 
 Ref para o `OutlinePass`.
 
@@ -57,6 +57,6 @@ Ref para o `OutlinePass`.
 
 > **rendererRef**: `RefObject`\<`null` \| `WebGLRenderer`\>
 
-Defined in: [src/hooks/useThreeRenderers.ts:96](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeRenderers.ts#L96)
+Defined in: [src/hooks/useThreeRenderers.ts:96](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeRenderers.ts#L96)
 
 Ref para o `WebGLRenderer`.

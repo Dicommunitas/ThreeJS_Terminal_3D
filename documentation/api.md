@@ -409,16 +409,16 @@
 
 ##
 
-*   **See**: [../components/main-scene-area/README.md][405] Para a área principal da cena.
-*   **See**: [../components/ui/sidebar/README.md][406] Para a barra lateral de controles.
-*   **See**: [../components/annotation-dialog/README.md][407] Para o diálogo de anotações.
-*   **See**: [../hooks/use-command-history/README.md][408] Para o gerenciamento de histórico de comandos.
-*   **See**: [../hooks/use-equipment-data-manager/README.md][409] Para o gerenciamento de dados de equipamentos.
-*   **See**: [../hooks/use-camera-manager/README.md][410] Para o gerenciamento da câmera.
-*   **See**: [../hooks/use-filter-manager/README.md][411] Para o gerenciamento de filtros.
-*   **See**: [../hooks/use-annotation-manager/README.md][412] Para o gerenciamento de anotações.
-*   **See**: [../hooks/use-equipment-selection-manager/README.md][413] Para o gerenciamento de seleção de equipamentos.
-*   **See**: [../hooks/use-layer-manager/README.md][414] Para o gerenciamento de camadas.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/components/main-scene-area/README.md][405] Para a área principal da cena.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/components/ui/sidebar/README.md][406] Para a barra lateral de controles.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/components/annotation-dialog/README.md][407] Para o diálogo de anotações.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-command-history/README.md][408] Para o gerenciamento de histórico de comandos.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-equipment-data-manager/README.md][409] Para o gerenciamento de dados de equipamentos.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-camera-manager/README.md][410] Para o gerenciamento da câmera.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-filter-manager/README.md][411] Para o gerenciamento de filtros.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-annotation-manager/README.md][412] Para o gerenciamento de anotações.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-equipment-selection-manager/README.md][413] Para o gerenciamento de seleção de equipamentos.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-layer-manager/README.md][414] Para o gerenciamento de camadas.
 
 ### Examples
 
@@ -1247,12 +1247,12 @@ Returns **JSX.Element** O componente SiteHeader.
 
 ##
 
-*   **See**: [../../hooks/use-scene-setup/README.md][419] Para a orquestração da configuração da cena.
-*   **See**: [../../hooks/use-equipment-renderer/README.md][420] Para a renderização de equipamentos.
-*   **See**: [../../hooks/use-annotation-pin-renderer/README.md][421] Para a renderização de pins de anotação.
-*   **See**: [../../hooks/use-mouse-interaction/README.md][422] Para interações do mouse.
-*   **See**: [../../hooks/use-scene-outline/README.md][423] Para o efeito de contorno.
-*   **See**: [../../hooks/use-animation-loop/README.md][424] Para o loop de animação.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-scene-setup/README.md][419] Para a orquestração da configuração da cena.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-equipment-renderer/README.md][420] Para a renderização de equipamentos.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-annotation-pin-renderer/README.md][421] Para a renderização de pins de anotação.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-mouse-interaction/README.md][422] Para interações do mouse.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-scene-outline/README.md][423] Para o efeito de contorno.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useAnimationLoop/README.md][424] Para o loop de animação.
 
 ### Examples
 
@@ -1713,9 +1713,9 @@ Exporta:
 
 ## Equipment
 
-*   **See**: [../data/initial-data/README.md][426] Para os dados iniciais de equipamentos e camadas.
-*   **See**: [../../lib/types/README.md#Equipment][427] Para a interface de Equipamento.
-*   **See**: [../../lib/types/README.md#Annotation][428] Para a interface de Anotação.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/data/initial-data/README.md][426] Para os dados iniciais de equipamentos e camadas.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment][427] Para a interface de Equipamento.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Annotation][428] Para a interface de Anotação.
 
 ### Examples
 
@@ -2005,11 +2005,11 @@ sequenceDiagram
 
 ## THREE
 
-*   **See**: [./useThreeCore.ts][430] Para inicialização da cena e câmera.
-*   **See**: [./useThreeRenderers.ts][431] Para configuração dos renderizadores e pós-processamento.
-*   **See**: [./useThreeOrbitControls.ts][432] Para configuração dos controles de órbita.
-*   **See**: [./useThreeSceneElements.ts][433] Para configuração de iluminação e plano de chão.
-*   **See**: [./useThreeResize.ts][434] Para manipulação de redimensionamento.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeCore/README.md][430] Para inicialização da cena e câmera.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeRenderers/README.md][431] Para configuração dos renderizadores e pós-processamento.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeOrbitControls/README.md][432] Para configuração dos controles de órbita.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeSceneElements/README.md][433] Para configuração de iluminação e plano de chão.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeResize/README.md][434] Para manipulação de redimensionamento.
 
 ### Examples
 
@@ -2536,8 +2536,8 @@ Returns **void**&#x20;
 
 *   **See**: [../../core/repository/memory-repository/README.md#annotationRepository][436] Para a fonte de dados das anotações.
 *   **See**: [../../core/repository/memory-repository/README.md#equipmentRepository][437] Para obter dados de equipamentos (e.g., nome para toasts).
-*   **See**: [../../lib/types/README.md#Annotation][428] Para a interface de Anotação.
-*   **See**: [../../lib/types/README.md#Equipment][427] Para a interface de Equipamento.
+*   **See**: [../../lib/types/README.md#Annotation][438] Para a interface de Anotação.
+*   **See**: [../../lib/types/README.md#Equipment][439] Para a interface de Equipamento.
 
 ### Parameters
 
@@ -2812,9 +2812,9 @@ Returns **void**&#x20;
 
 ##
 
-*   **See**: [../../lib/types/README.md#CameraState][438] Para a interface do estado da câmera.
-*   **See**: [../../lib/types/README.md#Command][439] Para a interface de comando (usada com `executeCommand`).
-*   **See**: [../../lib/types/README.md#TargetSystemInfo][440] Para a interface de informações do sistema alvo.
+*   **See**: [../../lib/types/README.md#CameraState][440] Para a interface do estado da câmera.
+*   **See**: [../../lib/types/README.md#Command][441] Para a interface de comando (usada com `executeCommand`).
+*   **See**: [../../lib/types/README.md#TargetSystemInfo][442] Para a interface de informações do sistema alvo.
 
 ### Parameters
 
@@ -3095,7 +3095,7 @@ Chama a função `execute()` do comando a ser refeito.
 ##
 
 *   **See**: [../../core/repository/memory-repository/README.md#equipmentRepository][437] Para a fonte de dados.
-*   **See**: [../../lib/types/README.md#Equipment][427] Para a interface de Equipamento.
+*   **See**: [../../lib/types/README.md#Equipment][439] Para a interface de Equipamento.
 
 ### Examples
 
@@ -3712,7 +3712,7 @@ Props para o hook orquestrador da configuração da cena.
 
 ### Properties
 
-*   `mountRef` **React.RefObject<[HTMLDivElement][441]>** Ref para o elemento DOM contêiner da cena.
+*   `mountRef` **React.RefObject<[HTMLDivElement][443]>** Ref para o elemento DOM contêiner da cena.
 
 ## UseSceneSetupReturn
 
@@ -3747,10 +3747,10 @@ Returns **[UseSceneSetupReturn][346]** Refs para os componentes da cena e flags 
 
 ##
 
-*   **See**: [../core/repository/memory-repository/README.md#annotationRepository][442] Para a fonte de dados das anotações.
-*   **See**: [../core/repository/memory-repository/README.md#equipmentRepository][443] Para obter dados de equipamentos (e.g., nome para toasts).
-*   **See**: [../lib/types/README.md#Annotation][444] Para a interface de Anotação.
-*   **See**: [../lib/types/README.md#Equipment][445] Para a interface de Equipamento.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository][444] Para a fonte de dados das anotações.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository][445] Para obter dados de equipamentos (e.g., nome para toasts).
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Annotation][428] Para a interface de Anotação.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment][427] Para a interface de Equipamento.
 
 ### Parameters
 
@@ -3800,9 +3800,9 @@ Returns **any** Objeto contendo o estado das anotações, o estado do diálogo e
 
 ##
 
-*   **See**: [../lib/types/README.md#CameraState][446] Para a interface do estado da câmera.
-*   **See**: [../lib/types/README.md#Command][447] Para a interface de comando (usada com `executeCommand`).
-*   **See**: [../lib/types/README.md#TargetSystemInfo][448] Para a interface de informações do sistema alvo.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#CameraState][446] Para a interface do estado da câmera.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Command][447] Para a interface de comando (usada com `executeCommand`).
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#TargetSystemInfo][448] Para a interface de informações do sistema alvo.
 
 ### Parameters
 
@@ -3860,8 +3860,8 @@ Returns **any** Objeto contendo o estado da câmera, informações de foco, e fu
 
 ##
 
-*   **See**: [../core/repository/memory-repository/README.md#equipmentRepository][443] Para a fonte de dados.
-*   **See**: [../lib/types/README.md#Equipment][445] Para a interface de Equipamento.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository][445] Para a fonte de dados.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment][427] Para a interface de Equipamento.
 
 ### Examples
 
@@ -4030,8 +4030,8 @@ Returns **any** Refs para os renderizadores, composer, outline pass, e uma flag 
 
 ## useRef
 
-*   **See**: [../core/three/scene-elements-setup/README.md#setupLighting][449] Para a função de configuração da iluminação.
-*   **See**: [../core/three/scene-elements-setup/README.md#setupGroundPlane][450] Para a função de configuração do plano de chão.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting][449] Para a função de configuração da iluminação.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane][450] Para a função de configuração do plano de chão.
 
 ### Examples
 
@@ -4083,7 +4083,7 @@ Props para o hook `useThreeCore`.
 
 ### Properties
 
-*   `mountRef` **React.RefObject<([HTMLDivElement][441] | null)>** Ref para o elemento DOM contêiner da cena,
+*   `mountRef` **React.RefObject<([HTMLDivElement][443] | null)>** Ref para o elemento DOM contêiner da cena,
     usado para calcular a razão de aspecto inicial da câmera.
 
 ## UseThreeCoreReturn
@@ -4150,7 +4150,7 @@ Props para o hook `useThreeRenderers`.
 
 ### Properties
 
-*   `mountRef` **React.RefObject<([HTMLDivElement][441] | null)>** Ref para o elemento DOM onde os renderizadores serão montados.
+*   `mountRef` **React.RefObject<([HTMLDivElement][443] | null)>** Ref para o elemento DOM onde os renderizadores serão montados.
 *   `sceneRef` **React.RefObject<(THREE.Scene | null)>** Ref para a cena Three.js existente.
 *   `cameraRef` **React.RefObject<(THREE.PerspectiveCamera | null)>** Ref para a câmera perspectiva existente.
 
@@ -4187,7 +4187,7 @@ Props para o hook `useThreeResize`.
 
 ### Properties
 
-*   `mountRef` **React.RefObject<([HTMLDivElement][441] | null)>** Ref para o elemento DOM contêiner da cena.
+*   `mountRef` **React.RefObject<([HTMLDivElement][443] | null)>** Ref para o elemento DOM contêiner da cena.
 *   `cameraRef` **React.RefObject<(THREE.PerspectiveCamera | null)>** Ref para a câmera perspectiva.
 *   `rendererRef` **React.RefObject<(THREE.WebGLRenderer | null)>** Ref para o renderizador WebGL.
 *   `labelRendererRef` **React.RefObject<(CSS2DRenderer | null)>** Ref para o renderizador CSS2D.
@@ -5120,25 +5120,25 @@ Type: (`"Produto"` | `"Estado Operacional"` | `"Equipamento"`)
 
 [404]: #colormode
 
-[405]: ../components/main-scene-area/README.md
+[405]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/main-scene-area/README.md
 
-[406]: ../components/ui/sidebar/README.md
+[406]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/ui/sidebar/README.md
 
-[407]: ../components/annotation-dialog/README.md
+[407]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/annotation-dialog/README.md
 
-[408]: ../hooks/use-command-history/README.md
+[408]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-command-history/README.md
 
-[409]: ../hooks/use-equipment-data-manager/README.md
+[409]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-data-manager/README.md
 
-[410]: ../hooks/use-camera-manager/README.md
+[410]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-camera-manager/README.md
 
-[411]: ../hooks/use-filter-manager/README.md
+[411]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-filter-manager/README.md
 
-[412]: ../hooks/use-annotation-manager/README.md
+[412]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-manager/README.md
 
-[413]: ../hooks/use-equipment-selection-manager/README.md
+[413]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-selection-manager/README.md
 
-[414]: ../hooks/use-layer-manager/README.md
+[414]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-layer-manager/README.md
 
 [415]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
@@ -5148,37 +5148,37 @@ Type: (`"Produto"` | `"Estado Operacional"` | `"Equipamento"`)
 
 [418]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined
 
-[419]: ../../hooks/use-scene-setup/README.md
+[419]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-setup/README.md
 
-[420]: ../../hooks/use-equipment-renderer/README.md
+[420]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-renderer/README.md
 
-[421]: ../../hooks/use-annotation-pin-renderer/README.md
+[421]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-pin-renderer/README.md
 
-[422]: ../../hooks/use-mouse-interaction/README.md
+[422]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-mouse-interaction/README.md
 
-[423]: ../../hooks/use-scene-outline/README.md
+[423]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-outline/README.md
 
-[424]: ../../hooks/use-animation-loop/README.md
+[424]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useAnimationLoop/README.md
 
 [425]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
 
-[426]: ../data/initial-data/README.md
+[426]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/data/initial-data/README.md
 
-[427]: ../../lib/types/README.md#Equipment
+[427]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment
 
-[428]: ../../lib/types/README.md#Annotation
+[428]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Annotation
 
 [429]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[430]: ./useThreeCore.ts
+[430]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeCore/README.md
 
-[431]: ./useThreeRenderers.ts
+[431]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeRenderers/README.md
 
-[432]: ./useThreeOrbitControls.ts
+[432]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeOrbitControls/README.md
 
-[433]: ./useThreeSceneElements.ts
+[433]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeSceneElements/README.md
 
-[434]: ./useThreeResize.ts
+[434]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeResize/README.md
 
 [435]: https://developer.mozilla.org/docs/Web/HTML/Element
 
@@ -5186,28 +5186,28 @@ Type: (`"Produto"` | `"Estado Operacional"` | `"Equipamento"`)
 
 [437]: ../../core/repository/memory-repository/README.md#equipmentRepository
 
-[438]: ../../lib/types/README.md#CameraState
+[438]: ../../lib/types/README.md#Annotation
 
-[439]: ../../lib/types/README.md#Command
+[439]: ../../lib/types/README.md#Equipment
 
-[440]: ../../lib/types/README.md#TargetSystemInfo
+[440]: ../../lib/types/README.md#CameraState
 
-[441]: https://developer.mozilla.org/docs/Web/API/HTMLDivElement
+[441]: ../../lib/types/README.md#Command
 
-[442]: ../core/repository/memory-repository/README.md#annotationRepository
+[442]: ../../lib/types/README.md#TargetSystemInfo
 
-[443]: ../core/repository/memory-repository/README.md#equipmentRepository
+[443]: https://developer.mozilla.org/docs/Web/API/HTMLDivElement
 
-[444]: ../lib/types/README.md#Annotation
+[444]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository
 
-[445]: ../lib/types/README.md#Equipment
+[445]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository
 
-[446]: ../lib/types/README.md#CameraState
+[446]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#CameraState
 
-[447]: ../lib/types/README.md#Command
+[447]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Command
 
-[448]: ../lib/types/README.md#TargetSystemInfo
+[448]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#TargetSystemInfo
 
-[449]: ../core/three/scene-elements-setup/README.md#setupLighting
+[449]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting
 
-[450]: ../core/three/scene-elements-setup/README.md#setupGroundPlane
+[450]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane

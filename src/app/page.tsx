@@ -22,20 +22,20 @@
  * 6.  Passagem de Props e Callbacks: Conecta os hooks de estado aos componentes da UI,
  *     fornecendo os dados necessários e as funções de callback para manipulação de eventos.
  *
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/main-scene-area/README.md Para a área principal da cena.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/ui/sidebar/README.md Para a barra lateral de controles.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/annotation-dialog/README.md Para o diálogo de anotações.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-command-history/README.md Para o gerenciamento de histórico de comandos.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-data-manager/README.md Para o gerenciamento de dados de equipamentos.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-camera-manager/README.md Para o gerenciamento da câmera.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-filter-manager/README.md Para o gerenciamento de filtros.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-manager/README.md Para o gerenciamento de anotações.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-selection-manager/README.md Para o gerenciamento de seleção de equipamentos.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-layer-manager/README.md Para o gerenciamento de camadas.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/main-scene-area/README.md} Para a área principal da cena.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/ui/sidebar/README.md} Para a barra lateral de controles.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/annotation-dialog/README.md} Para o diálogo de anotações.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-command-history/README.md} Para o gerenciamento de histórico de comandos.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-data-manager/README.md} Para o gerenciamento de dados de equipamentos.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-camera-manager/README.md} Para o gerenciamento da câmera.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-filter-manager/README.md} Para o gerenciamento de filtros.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-manager/README.md} Para o gerenciamento de anotações.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-selection-manager/README.md} Para o gerenciamento de seleção de equipamentos.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-layer-manager/README.md} Para o gerenciamento de camadas.
  *
  * @example
  * // Diagrama de Interação de Alto Nível da Terminal3DPage:
- * ```mermaid
+ * \`\`\`mermaid
  * graph LR
  *     Terminal3DPage["Terminal3DPage (Página Principal)"] --> H_CmdHistory["useCommandHistory (Hook Histórico)"];
  *     Terminal3DPage --> H_EquipData["useEquipmentDataManager (Hook Dados Equip.)"];
@@ -71,7 +71,7 @@
  *       ThreeScene_Comp;
  *       SidebarContentLayout_Comp;
  *     end
- * ```
+ * \`\`\`
  */
 "use client";
 

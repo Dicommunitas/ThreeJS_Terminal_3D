@@ -6,7 +6,7 @@
 
 # Interface: UseEquipmentRendererProps
 
-Defined in: [src/hooks/use-equipment-renderer.ts:70](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/use-equipment-renderer.ts#L70)
+Defined in: [src/hooks/use-equipment-renderer.ts:70](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/use-equipment-renderer.ts#L70)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:70](https://github.com/Dicommun
 
 > **cameraRef**: `RefObject`\<`null` \| `PerspectiveCamera`\>
 
-Defined in: [src/hooks/use-equipment-renderer.ts:72](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/use-equipment-renderer.ts#L72)
+Defined in: [src/hooks/use-equipment-renderer.ts:72](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/use-equipment-renderer.ts#L72)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:72](https://github.com/Dicommun
 
 > **colorMode**: [`ColorMode`](../../../lib/types/type-aliases/ColorMode.md)
 
-Defined in: [src/hooks/use-equipment-renderer.ts:78](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/use-equipment-renderer.ts#L78)
+Defined in: [src/hooks/use-equipment-renderer.ts:78](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/use-equipment-renderer.ts#L78)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:78](https://github.com/Dicommun
 
 > **controlsRef**: `RefObject`\<`null` \| `OrbitControls`\>
 
-Defined in: [src/hooks/use-equipment-renderer.ts:73](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/use-equipment-renderer.ts#L73)
+Defined in: [src/hooks/use-equipment-renderer.ts:73](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/use-equipment-renderer.ts#L73)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:73](https://github.com/Dicommun
 
 > **createSingleEquipmentMesh**: (`item`) => `Object3D`
 
-Defined in: [src/hooks/use-equipment-renderer.ts:79](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/use-equipment-renderer.ts#L79)
+Defined in: [src/hooks/use-equipment-renderer.ts:79](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/use-equipment-renderer.ts#L79)
 
 #### Parameters
 
@@ -56,7 +56,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:79](https://github.com/Dicommun
 
 > **equipmentData**: [`Equipment`](../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/hooks/use-equipment-renderer.ts:76](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/use-equipment-renderer.ts#L76)
+Defined in: [src/hooks/use-equipment-renderer.ts:76](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/use-equipment-renderer.ts#L76)
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:76](https://github.com/Dicommun
 
 > **groundMeshRef**: `RefObject`\<`null` \| `Mesh`\<`BufferGeometry`\<`NormalBufferAttributes`\>, `Material` \| `Material`[], `Object3DEventMap`\>\>
 
-Defined in: [src/hooks/use-equipment-renderer.ts:80](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/use-equipment-renderer.ts#L80)
+Defined in: [src/hooks/use-equipment-renderer.ts:80](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/use-equipment-renderer.ts#L80)
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:80](https://github.com/Dicommun
 
 > **isControlsReady**: `boolean`
 
-Defined in: [src/hooks/use-equipment-renderer.ts:75](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/use-equipment-renderer.ts#L75)
+Defined in: [src/hooks/use-equipment-renderer.ts:75](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/use-equipment-renderer.ts#L75)
 
 ***
 
@@ -80,7 +80,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:75](https://github.com/Dicommun
 
 > **isSceneReady**: `boolean`
 
-Defined in: [src/hooks/use-equipment-renderer.ts:74](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/use-equipment-renderer.ts#L74)
+Defined in: [src/hooks/use-equipment-renderer.ts:74](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/use-equipment-renderer.ts#L74)
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [src/hooks/use-equipment-renderer.ts:74](https://github.com/Dicommun
 
 > **layers**: [`Layer`](../../../lib/types/interfaces/Layer.md)[]
 
-Defined in: [src/hooks/use-equipment-renderer.ts:77](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/use-equipment-renderer.ts#L77)
+Defined in: [src/hooks/use-equipment-renderer.ts:77](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/use-equipment-renderer.ts#L77)
 
 ***
 
@@ -96,4 +96,4 @@ Defined in: [src/hooks/use-equipment-renderer.ts:77](https://github.com/Dicommun
 
 > **sceneRef**: `RefObject`\<`null` \| `Scene`\>
 
-Defined in: [src/hooks/use-equipment-renderer.ts:71](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/use-equipment-renderer.ts#L71)
+Defined in: [src/hooks/use-equipment-renderer.ts:71](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/use-equipment-renderer.ts#L71)

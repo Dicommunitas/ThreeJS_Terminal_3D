@@ -8,7 +8,7 @@
 
 > **setupRenderPipeline**(`mountElement`, `scene`, `camera`): `null` \| \{ `composer`: `EffectComposer`; `labelRenderer`: `CSS2DRenderer`; `outlinePass`: `OutlinePass`; `renderer`: `WebGLRenderer`; \}
 
-Defined in: [src/core/three/scene-elements-setup.ts:105](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/core/three/scene-elements-setup.ts#L105)
+Defined in: [src/core/three/scene-elements-setup.ts:105](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/core/three/scene-elements-setup.ts#L105)
 
 Configura os renderizadores principais (WebGL, CSS2D) e o pipeline de pós-processamento.
 Centraliza a criação do WebGLRenderer, CSS2DRenderer, EffectComposer e OutlinePass.

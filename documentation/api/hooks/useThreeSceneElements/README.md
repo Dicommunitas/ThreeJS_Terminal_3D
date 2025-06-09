@@ -8,8 +8,8 @@
 
 ## See
 
- - ../core/three/scene-elements-setup/README.md#setupLighting Para a função de configuração da iluminação.
- - ../core/three/scene-elements-setup/README.md#setupGroundPlane Para a função de configuração do plano de chão.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting Para a função de configuração da iluminação.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane Para a função de configuração do plano de chão.
 
 ## Example
 

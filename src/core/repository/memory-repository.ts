@@ -12,13 +12,13 @@
  * Funções de obtenção (get/getAll) retornam cópias dos objetos para promover a imutabilidade
  * e evitar modificações acidentais do estado interno do repositório por referências externas.
  *
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/data/initial-data/README.md Para os dados iniciais de equipamentos e camadas.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment Para a interface de Equipamento.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Annotation Para a interface de Anotação.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/data/initial-data/README.md} Para os dados iniciais de equipamentos e camadas.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment} Para a interface de Equipamento.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Annotation} Para a interface de Anotação.
  *
  * @example
  * // Diagrama de Estrutura do Repositório em Memória:
- * ```mermaid
+ * \`\`\`mermaid
  * classDiagram
  *     class RepositorioMemoria {
  *         -equipmentStore: Map_string_Equipment_
@@ -53,7 +53,7 @@
  *     note for RepositorioMemoria "Módulo auto-inicializável."
  *     note for RepositorioEquipamentos "Gerencia o CRUD de Equipamentos."
  *     note for RepositorioAnotacoes "Gerencia o CRUD de Anotações."
- * ```
+ * \`\`\`
  */
 import type { Equipment, Annotation } from '@/lib/types';
 import { initialEquipment, initialAnnotations as defaultInitialAnnotations } from '@/core/data/initial-data';

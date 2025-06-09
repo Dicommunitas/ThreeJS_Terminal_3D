@@ -30,16 +30,16 @@
  * -   **Fornecimento do Ponto de Montagem:** Renderiza o `div` que serve como contêiner para
  *     os renderizadores Three.js.
  *
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-setup/README.md Para a orquestração da configuração da cena.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-renderer/README.md Para a renderização de equipamentos.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-pin-renderer/README.md Para a renderização de pins de anotação.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-mouse-interaction/README.md Para interações do mouse.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-outline/README.md Para o efeito de contorno.
- * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useAnimationLoop/README.md Para o loop de animação.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-setup/README.md} Para a orquestração da configuração da cena.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-renderer/README.md} Para a renderização de equipamentos.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-pin-renderer/README.md} Para a renderização de pins de anotação.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-mouse-interaction/README.md} Para interações do mouse.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-outline/README.md} Para o efeito de contorno.
+ * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-animation-loop/README.md} Para o loop de animação.
  *
  * @example
  * // Diagrama de Composição do ThreeScene e seus Hooks:
- * ```mermaid
+ * \`\`\`mermaid
  * graph TD
  *     ThreeScene_Comp["ThreeScene (Componente React)"]
  *     MountPoint["<div ref={mountRef}> (Ponto de Montagem DOM)"]
@@ -95,7 +95,7 @@
  *     class H_SceneSetup,H_EquipRenderer,H_AnnotPinRenderer,H_MouseInt,H_Outline,H_AnimLoop hook;
  *     class R_Scene,R_Camera,R_Renderer,R_LabelRenderer,R_Controls,R_Composer,R_OutlinePass ref;
  *     class F_IsSceneReady,F_IsControlsReady flag;
- * ```
+ * \`\`\`
  */
 "use client";
 

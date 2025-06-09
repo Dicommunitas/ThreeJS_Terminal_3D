@@ -6,7 +6,7 @@
 
 # Interface: UseThreeResizeProps
 
-Defined in: [src/hooks/useThreeResize.ts:94](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeResize.ts#L94)
+Defined in: [src/hooks/useThreeResize.ts:94](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeResize.ts#L94)
 
 Props para o hook `useThreeResize`.
  UseThreeResizeProps
@@ -17,7 +17,7 @@ Props para o hook `useThreeResize`.
 
 > **cameraRef**: `RefObject`\<`null` \| `PerspectiveCamera`\>
 
-Defined in: [src/hooks/useThreeResize.ts:96](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeResize.ts#L96)
+Defined in: [src/hooks/useThreeResize.ts:96](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeResize.ts#L96)
 
 Ref para a câmera perspectiva.
 
@@ -27,7 +27,7 @@ Ref para a câmera perspectiva.
 
 > **composerRef**: `RefObject`\<`null` \| `EffectComposer`\>
 
-Defined in: [src/hooks/useThreeResize.ts:99](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeResize.ts#L99)
+Defined in: [src/hooks/useThreeResize.ts:99](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeResize.ts#L99)
 
 Ref para o EffectComposer.
 
@@ -37,7 +37,7 @@ Ref para o EffectComposer.
 
 > **labelRendererRef**: `RefObject`\<`null` \| `CSS2DRenderer`\>
 
-Defined in: [src/hooks/useThreeResize.ts:98](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeResize.ts#L98)
+Defined in: [src/hooks/useThreeResize.ts:98](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeResize.ts#L98)
 
 Ref para o renderizador CSS2D.
 
@@ -47,7 +47,7 @@ Ref para o renderizador CSS2D.
 
 > **mountRef**: `RefObject`\<`null` \| `HTMLDivElement`\>
 
-Defined in: [src/hooks/useThreeResize.ts:95](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeResize.ts#L95)
+Defined in: [src/hooks/useThreeResize.ts:95](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeResize.ts#L95)
 
 Ref para o elemento DOM contêiner da cena.
 
@@ -57,7 +57,7 @@ Ref para o elemento DOM contêiner da cena.
 
 > **outlinePassRef**: `RefObject`\<`null` \| `OutlinePass`\>
 
-Defined in: [src/hooks/useThreeResize.ts:100](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeResize.ts#L100)
+Defined in: [src/hooks/useThreeResize.ts:100](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeResize.ts#L100)
 
 Ref para o OutlinePass.
 
@@ -67,7 +67,7 @@ Ref para o OutlinePass.
 
 > **ready**: `boolean`
 
-Defined in: [src/hooks/useThreeResize.ts:101](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeResize.ts#L101)
+Defined in: [src/hooks/useThreeResize.ts:101](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeResize.ts#L101)
 
 Flag que indica se todos os componentes que precisam ser redimensionados estão prontos.
 
@@ -77,6 +77,6 @@ Flag que indica se todos os componentes que precisam ser redimensionados estão 
 
 > **rendererRef**: `RefObject`\<`null` \| `WebGLRenderer`\>
 
-Defined in: [src/hooks/useThreeResize.ts:97](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/useThreeResize.ts#L97)
+Defined in: [src/hooks/useThreeResize.ts:97](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeResize.ts#L97)
 
 Ref para o renderizador WebGL.

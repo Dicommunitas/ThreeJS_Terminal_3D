@@ -10,7 +10,6 @@ import { cn } from "@/lib/utils"
 /**
  * Define os seletores CSS para os temas claro e escuro.
  * Usado internamente pelo ChartStyle para aplicar cores específicas do tema.
- * @constant THEMES
  */
 export const THEMES = { light: "", dark: ".dark" } as const
 

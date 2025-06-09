@@ -8,12 +8,12 @@
 
 ## See
 
- - ../../hooks/use-scene-setup/README.md Para a orquestração da configuração da cena.
- - ../../hooks/use-equipment-renderer/README.md Para a renderização de equipamentos.
- - ../../hooks/use-annotation-pin-renderer/README.md Para a renderização de pins de anotação.
- - ../../hooks/use-mouse-interaction/README.md Para interações do mouse.
- - ../../hooks/use-scene-outline/README.md Para o efeito de contorno.
- - ../../hooks/use-animation-loop/README.md Para o loop de animação.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-setup/README.md Para a orquestração da configuração da cena.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-renderer/README.md Para a renderização de equipamentos.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-pin-renderer/README.md Para a renderização de pins de anotação.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-mouse-interaction/README.md Para interações do mouse.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-outline/README.md Para o efeito de contorno.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useAnimationLoop/README.md Para o loop de animação.
 
 ## Example
 

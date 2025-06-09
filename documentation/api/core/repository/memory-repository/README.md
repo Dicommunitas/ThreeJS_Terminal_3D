@@ -8,9 +8,9 @@
 
 ## See
 
- - ../data/initial-data/README.md Para os dados iniciais de equipamentos e camadas.
- - ../../lib/types/README.md#Equipment Para a interface de Equipamento.
- - ../../lib/types/README.md#Annotation Para a interface de Anotação.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/data/initial-data/README.md Para os dados iniciais de equipamentos e camadas.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment Para a interface de Equipamento.
+ - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Annotation Para a interface de Anotação.
 
 ## Example
 
