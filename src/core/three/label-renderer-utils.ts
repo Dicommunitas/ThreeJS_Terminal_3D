@@ -1,5 +1,6 @@
 
 /**
+ * @module core/three/label-renderer-utils
  * Utilitários para gerenciar a exibição de rótulos HTML (pins de anotação)
  * sobrepostos à cena Three.js.
  *
@@ -9,6 +10,8 @@
  * com base na camada de anotações e fornecer uma função para atualizar o tamanho do
  * `CSS2DRenderer` em caso de redimensionamento da viewport.
  * 
+ * @example
+ * // Diagrama de Interação para `updateAnnotationPins`:
  * ```mermaid
  *   classDiagram
  *     class UpdateAnnotationPinsParams {
@@ -124,9 +127,8 @@ export function updateAnnotationPins({
   existingPinsRef.current = [];
 
   const annotationsLayer = layers.find(l => l.id === 'layer-annotations');
-  const areAnnotationsVisibleByLayer = annotationsLayer?.isVisible ?? true; // Assume visível se a camada não for encontrada (improvável)
+  const areAnnotationsVisibleByLayer = annotationsLayer?.isVisible ?? true; 
 
-  // Controla a visibilidade de todos os pins de uma vez pelo display do renderer
   labelRenderer.domElement.style.display = areAnnotationsVisibleByLayer ? '' : 'none';
 
   if (areAnnotationsVisibleByLayer) {
@@ -134,29 +136,24 @@ export function updateAnnotationPins({
       const equipmentForItem = equipmentData.find(e => e.tag === anno.equipmentTag);
       if (equipmentForItem) {
         const pinDiv = document.createElement('div');
-        // Ícone de pin SVG amarelo com sombra
         pinDiv.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FFD700" style="opacity: 0.9; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.5));"><path d="M12 2C8.13 2 5 5.13 5 9c0 4.17 4.42 9.92 6.24 12.11.4.48 1.13.48 1.53 0C14.58 18.92 19 13.17 19 9c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>`;
-        pinDiv.style.pointerEvents = 'none'; // Pins não devem interceptar eventos do mouse
+        pinDiv.style.pointerEvents = 'none'; 
         pinDiv.style.width = '24px';
         pinDiv.style.height = '24px';
 
         const pinLabel = new CSS2DObject(pinDiv);
 
-        // Calcula o deslocamento Y para posicionar o pin acima do equipamento
         let yOffset = 0;
         const defaultSize = { width: 1, height: 1, depth: 1 };
         const itemSize = equipmentForItem.size || defaultSize;
-        // Usa 'height' se for um cilindro/tubo (Tank, Pipe, Crane), senão 'size.height'
         const itemHeight = equipmentForItem.height !== undefined ? equipmentForItem.height : itemSize.height;
 
-        // Lógica de deslocamento Y específica para cada tipo de equipamento
         if (equipmentForItem.type === 'Tank' || equipmentForItem.type === 'Pipe' || equipmentForItem.type === 'Crane') {
-          yOffset = (itemHeight || 0) / 2 + 0.8; // Metade da altura + um pouco acima
+          yOffset = (itemHeight || 0) / 2 + 0.8; 
         } else if (equipmentForItem.type === 'Valve' || equipmentForItem.type === 'Building' ) {
-            // Para Válvulas (esferas) ou Prédios (caixas)
-            yOffset = (itemSize.height || equipmentForItem.radius || 0.3) /2 + 0.8; // Metade da altura/raio + um pouco acima
+            yOffset = (itemSize.height || equipmentForItem.radius || 0.3) /2 + 0.8; 
         } else {
-           yOffset = (itemSize.height || 0.5) + 0.8; // Padrão: altura + um pouco acima
+           yOffset = (itemSize.height || 0.5) + 0.8; 
         }
         pinLabel.position.set(equipmentForItem.position.x, equipmentForItem.position.y + yOffset, equipmentForItem.position.z);
 

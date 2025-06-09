@@ -1,5 +1,6 @@
 
 /**
+ * @module hooks/useAnimationLoop
  * Hook customizado para gerenciar o loop de animação de uma cena Three.js.
  *
  * Este hook é responsável por encapsular a lógica de `requestAnimationFrame`
@@ -14,32 +15,32 @@
  * é verdadeira, indicando que todos os componentes necessários da cena (câmera, renderizadores, controles)
  * foram inicializados e estão prontos.
  *
- * @module hooks/useAnimationLoop
  * @param props - Propriedades para configurar o loop de animação.
  *
  * @example
- * // Diagrama de Fluxo do useAnimationLoop
- * // mermaid
- * // sequenceDiagram
- * //     participant ComponentePai as Comp. (ex: ThreeScene)
- * //     participant useAnimationLoop as Hook
- * //     participant Navegador
- * //     participant OrbitControls
- * //     participant EffectComposer
- * //     participant CSS2DRenderer
- * //
- * //     ComponentePai ->>+ useAnimationLoop: Chama com refs e isSceneReady=true
- * //     useAnimationLoop ->> Navegador: requestAnimationFrame(animate)
- * //     Navegador -->> useAnimationLoop: Chama animate()
- * //     loop Cada Quadro
- * //         useAnimationLoop ->> OrbitControls: controls.update() (se habilitado)
- * //         useAnimationLoop ->> ComponentePai: onFrameUpdate() (callback opcional)
- * //         useAnimationLoop ->> EffectComposer: composer.render()
- * //         useAnimationLoop ->> CSS2DRenderer: labelRenderer.render()
- * //         useAnimationLoop ->> Navegador: requestAnimationFrame(animate)
- * //     end
- * //     Note right of ComponentePai: Quando desmontado ou isSceneReady=false
- * //     useAnimationLoop ->> Navegador: cancelAnimationFrame()
+ * // Diagrama de Fluxo do useAnimationLoop:
+ * ```mermaid
+ * sequenceDiagram
+ *     participant ComponentePai as Comp. (ex: ThreeScene)
+ *     participant useAnimationLoop as Hook
+ *     participant Navegador
+ *     participant OrbitControls
+ *     participant EffectComposer
+ *     participant CSS2DRenderer
+ *
+ *     ComponentePai ->>+ useAnimationLoop: Chama com refs e isSceneReady=true
+ *     useAnimationLoop ->> Navegador: requestAnimationFrame(animate)
+ *     Navegador -->> useAnimationLoop: Chama animate()
+ *     loop Cada Quadro
+ *         useAnimationLoop ->> OrbitControls: controls.update() (se habilitado)
+ *         useAnimationLoop ->> ComponentePai: onFrameUpdate() (callback opcional)
+ *         useAnimationLoop ->> EffectComposer: composer.render()
+ *         useAnimationLoop ->> CSS2DRenderer: labelRenderer.render()
+ *         useAnimationLoop ->> Navegador: requestAnimationFrame(animate)
+ *     end
+ *     Note right of ComponentePai: Quando desmontado ou isSceneReady=false
+ *     useAnimationLoop ->> Navegador: cancelAnimationFrame()
+ * ```
  */
 import type * as THREE from 'three';
 import { useEffect, type RefObject } from 'react';

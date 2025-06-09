@@ -1,5 +1,6 @@
 
 /**
+ * @module hooks/useFilterManager
  * Custom hook para gerenciar os estados de filtragem e a lógica de filtragem de equipamentos.
  *
  * Principal Responsabilidade:
@@ -7,6 +8,8 @@
  * de opções de filtro disponíveis (sistemas, áreas) e calcular a lista de
  * equipamentos que correspondem aos filtros atuais, utilizando `getFilteredEquipment`.
  * 
+ * @example
+ * // Diagrama de Estrutura do Hook e suas Dependências:
  * ```mermaid
  *   classDiagram
  *     class UseFilterManagerProps {
@@ -24,19 +27,31 @@
  *       +filteredEquipment: Equipment[]
  *     }
  *     class Equipment {
- *
+ *       +tag: string
+ *       +name: string
+ *       +type: string
+ *       +sistema?: string
+ *       +area?: string
  *     }
- *     class equipment_filter {
- *
+ *     class equipment_filter_module {
+ *       +getFilteredEquipment(allEquipment: Equipment[], criteria: EquipmentFilterCriteria): Equipment[]
+ *     }
+ *     class EquipmentFilterCriteria {
  *     }
  *     UseFilterManagerProps ..> Equipment
  *     UseFilterManagerReturn ..> Equipment
  *     class useFilterManager {
- *
+ *       -searchTerm: string
+ *       -selectedSistema: string
+ *       -selectedArea: string
+ *       +setSearchTerm()
+ *       +setSelectedSistema()
+ *       +setSelectedArea()
  *     }
- *     useFilterManager ..> equipment_filter : uses getFilteredEquipment
+ *     useFilterManager --|> UseFilterManagerReturn : returns
+ *     useFilterManager ..> equipment_filter_module : uses getFilteredEquipment
+ *     equipment_filter_module ..> EquipmentFilterCriteria : uses
  * ```
- * 
  */
 'use client';
 
@@ -90,8 +105,8 @@ export interface UseFilterManagerReturn {
  */
 export function useFilterManager({ allEquipment }: UseFilterManagerProps): UseFilterManagerReturn {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedSistema, setSelectedSistema] = useState('All'); // "All" indica sem filtro por sistema
-  const [selectedArea, setSelectedArea] = useState('All');     // "All" indica sem filtro por área
+  const [selectedSistema, setSelectedSistema] = useState('All'); 
+  const [selectedArea, setSelectedArea] = useState('All');     
 
   /**
    * Lista de sistemas únicos disponíveis, derivada de `allEquipment`.
@@ -99,7 +114,7 @@ export function useFilterManager({ allEquipment }: UseFilterManagerProps): UseFi
    * Memoizada para otimizar performance, recalculando apenas se `allEquipment` mudar.
    */
   const availableSistemas = useMemo(() => {
-    const sistemas = new Set<string>(['All']); // Inicia com "All"
+    const sistemas = new Set<string>(['All']); 
     allEquipment.forEach(equip => {
       if (equip.sistema) sistemas.add(equip.sistema);
     });
@@ -112,7 +127,7 @@ export function useFilterManager({ allEquipment }: UseFilterManagerProps): UseFi
    * Memoizada para otimizar performance.
    */
   const availableAreas = useMemo(() => {
-    const areas = new Set<string>(['All']); // Inicia com "All"
+    const areas = new Set<string>(['All']); 
     allEquipment.forEach(equip => {
       if (equip.area) areas.add(equip.area);
     });
@@ -130,7 +145,6 @@ export function useFilterManager({ allEquipment }: UseFilterManagerProps): UseFi
       selectedSistema,
       selectedArea,
     };
-    // Garante que allEquipment seja um array antes de filtrar
     return getFilteredEquipment(Array.isArray(allEquipment) ? allEquipment : [], criteria);
   }, [allEquipment, searchTerm, selectedSistema, selectedArea]);
 

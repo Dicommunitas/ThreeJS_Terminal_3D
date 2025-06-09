@@ -1,5 +1,15 @@
 
 /**
+ * @module core/three/camera-utils
+ * Utilitários para cálculos relacionados à câmera na cena Three.js.
+ *
+ * Principal Responsabilidade:
+ * Fornecer funções para calcular posições e alvos de câmera ideais
+ * para enquadrar um conjunto específico de objetos (meshes) na cena,
+ * oferecendo diferentes perspectivas como padrão, de cima e isométrica.
+ *
+ * @example
+ * // Diagrama de Funcionalidade do calculateViewForMeshes:
  * ```mermaid
  *   classDiagram
  *     class calculateViewForMeshes_params {
@@ -20,7 +30,6 @@
  *     calculateViewForMeshes ..> calculateViewForMeshes_params : receives
  *     calculateViewForMeshes ..> calculateViewForMeshes_return : returns or null
  * ```
- * 
  */
 import * as THREE from 'three';
 import type { SystemViewOptions, SystemView } from '@/lib/types';
@@ -92,8 +101,7 @@ export function calculateViewForMeshes(
   };
 
   // Visão Isométrica (Simulada para Câmera Perspectiva)
-  // Um ângulo comum é deslocar igualmente em X, Y, Z
-  const isoOffset = cameraDistance * 0.707; // Aproximadamente 1/sqrt(2) para manter distância similar
+  const isoOffset = cameraDistance * 0.707; 
   const isometricView: SystemView = {
     position: {
       x: center.x + isoOffset,

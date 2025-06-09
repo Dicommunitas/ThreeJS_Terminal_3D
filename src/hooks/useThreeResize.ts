@@ -1,5 +1,6 @@
 
 /**
+ * @module hooks/useThreeResize
  * Hook customizado para lidar com eventos de redimensionamento para uma cena Three.js.
  *
  * Este hook é responsável por:
@@ -16,62 +17,62 @@
  * -   Limpar (desconectar) o `ResizeObserver` quando o componente é desmontado ou as dependências mudam,
  *     para evitar vazamentos de memória e chamadas desnecessárias.
  *
- * @module hooks/useThreeResize
  * @param props - Objeto contendo refs para os elementos Three.js que precisam ser redimensionados e uma flag de prontidão.
  *
  * @example
- * // Diagrama de Funcionalidade do useThreeResize
- * // mermaid
- * // graph TD
- * //     useThreeResize["useThreeResize (Hook)"]
- * //     Props["UseThreeResizeProps"]
- * //     MountElement["Elemento DOM (mountRef)"]
- * //     ResizeObserver_API["ResizeObserver API"]
- * //     Camera["Câmera (cameraRef)"]
- * //     Renderer["WebGLRenderer (rendererRef)"]
- * //     LabelRenderer["CSS2DRenderer (labelRendererRef)"]
- * //     Composer["EffectComposer (composerRef)"]
- * //     OutlinePass["OutlinePass (outlinePassRef)"]
- * //     ReadyFlag["ready (flag)"]
- * //
- * //     Props -- define --> MountElement
- * //     Props -- define --> Camera
- * //     Props -- define --> Renderer
- * //     Props -- define --> LabelRenderer
- * //     Props -- define --> Composer
- * //     Props -- define --> OutlinePass
- * //     Props -- define --> ReadyFlag
- * //     Props --> useThreeResize
- * //
- * //     useThreeResize -- verifica --> ReadyFlag
- * //     useThreeResize -- observa --> MountElement
- * //     MountElement -- dispara evento de redimensionamento --> ResizeObserver_API
- * //     ResizeObserver_API -- chama callback --> useThreeResize
- * //
- * //     subgraph "Callback de Redimensionamento (handleResize)"
- * //         direction LR
- * //         Callback["handleResize"] -- atualiza --> Camera
- * //         Callback -- atualiza --> Renderer
- * //         Callback -- atualiza --> LabelRenderer
- * //         Callback -- atualiza --> Composer
- * //         Callback -- atualiza --> OutlinePass
- * //     end
- * //
- * //     useThreeResize -- executa na montagem e quando 'ready' muda --> Callback
- * //
- * //     classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
- * //     classDef type fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
- * //     classDef obj3d fill:#lightgreen,stroke:#333,stroke-width:2px;
- * //     classDef dom fill:#lightcoral,stroke:#333,stroke-width:2px;
- * //     classDef api fill:#lightsalmon,stroke:#333,stroke-width:2px;
- * //     classDef flag fill:#lightpink,stroke:#333,stroke-width:2px;
- * //
- * //     class useThreeResize hook;
- * //     class Props type;
- * //     class Camera,Renderer,LabelRenderer,Composer,OutlinePass obj3d;
- * //     class MountElement dom;
- * //     class ResizeObserver_API api;
- * //     class ReadyFlag flag;
+ * // Diagrama de Funcionalidade do useThreeResize:
+ * ```mermaid
+ * graph TD
+ *     useThreeResize["useThreeResize (Hook)"]
+ *     Props["UseThreeResizeProps"]
+ *     MountElement["Elemento DOM (mountRef)"]
+ *     ResizeObserver_API["ResizeObserver API"]
+ *     Camera["Câmera (cameraRef)"]
+ *     Renderer["WebGLRenderer (rendererRef)"]
+ *     LabelRenderer["CSS2DRenderer (labelRendererRef)"]
+ *     Composer["EffectComposer (composerRef)"]
+ *     OutlinePass["OutlinePass (outlinePassRef)"]
+ *     ReadyFlag["ready (flag)"]
+ *
+ *     Props -- define --> MountElement
+ *     Props -- define --> Camera
+ *     Props -- define --> Renderer
+ *     Props -- define --> LabelRenderer
+ *     Props -- define --> Composer
+ *     Props -- define --> OutlinePass
+ *     Props -- define --> ReadyFlag
+ *     Props --> useThreeResize
+ *
+ *     useThreeResize -- verifica --> ReadyFlag
+ *     useThreeResize -- observa --> MountElement
+ *     MountElement -- dispara evento de redimensionamento --> ResizeObserver_API
+ *     ResizeObserver_API -- chama callback --> useThreeResize
+ *
+ *     subgraph "Callback de Redimensionamento (handleResize)"
+ *         direction LR
+ *         Callback["handleResize"] -- atualiza --> Camera
+ *         Callback -- atualiza --> Renderer
+ *         Callback -- atualiza --> LabelRenderer
+ *         Callback -- atualiza --> Composer
+ *         Callback -- atualiza --> OutlinePass
+ *     end
+ *
+ *     useThreeResize -- executa na montagem e quando 'ready' muda --> Callback
+ *
+ *     classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
+ *     classDef type fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
+ *     classDef obj3d fill:#lightgreen,stroke:#333,stroke-width:2px;
+ *     classDef dom fill:#lightcoral,stroke:#333,stroke-width:2px;
+ *     classDef api fill:#lightsalmon,stroke:#333,stroke-width:2px;
+ *     classDef flag fill:#lightpink,stroke:#333,stroke-width:2px;
+ *
+ *     class useThreeResize hook;
+ *     class Props type;
+ *     class Camera,Renderer,LabelRenderer,Composer,OutlinePass obj3d;
+ *     class MountElement dom;
+ *     class ResizeObserver_API api;
+ *     class ReadyFlag flag;
+ * ```
  */
 import { useEffect, useCallback } from 'react';
 import type * as THREE from 'three';

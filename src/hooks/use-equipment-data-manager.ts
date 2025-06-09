@@ -1,5 +1,6 @@
 
 /**
+ * @module hooks/useEquipmentDataManager
  * Hook customizado para gerenciar os dados dos equipamentos, atuando como uma fachada para o repositório em memória.
  *
  * Este hook é responsável por:
@@ -11,40 +12,40 @@
  *     refletir os dados mais recentes, garantindo a reatividade da UI.
  * -   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações.
  *
- * @module hooks/useEquipmentDataManager
- * @see {@link /docs/core/repository/memory-repository.md#equipmentRepository} Para a fonte de dados.
- * @see {@link /docs/lib/types.md#Equipment} Para a interface de Equipamento.
+ * @see {@link ../../core/repository/memory-repository/README.md#equipmentRepository} Para a fonte de dados.
+ * @see {@link ../../lib/types/README.md#Equipment} Para a interface de Equipamento.
  * @returns Objeto contendo os dados dos equipamentos e funções para modificá-los e atualizá-los.
  *
  * @example
- * // Diagrama de Interação do useEquipmentDataManager
- * // mermaid
- * // graph TD
- * //     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOperationalStateChange)
- * //
- * //     subgraph useEquipmentDataManager [Hook useEquipmentDataManager]
- * //         direction LR
- * //         B -- chama --> C[equipmentRepository.updateEquipment]
- * //         C -- retorna --> B{Equipamento Atualizado}
- * //         B -- chama --> D[equipmentRepository.getAllEquipment]
- * //         D -- retorna --> E[setEquipmentData (Estado React)]
- * //         E -- atualiza --> F[equipmentData (Estado React)]
- * //         B -- chama --> G[toast]
- * //     end
- * //
- * //     F -- usado por --> A
- * //
- * //    classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
- * //    classDef state fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
- * //    classDef func fill:#lightgreen,stroke:#333,stroke-width:2px;
- * //    classDef repo fill:#lightcoral,stroke:#333,stroke-width:2px;
- * //    classDef ui fill:#peachpuff,stroke:#333,stroke-width:2px;
- * //
- * //    class A ui;
- * //    class B,G func;
- * //    class C,D repo;
- * //    class E,F state;
- * //    class useEquipmentDataManager hook;
+ * // Diagrama de Interação do useEquipmentDataManager:
+ * ```mermaid
+ * graph TD
+ *     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOperationalStateChange)
+ *
+ *     subgraph useEquipmentDataManager [Hook useEquipmentDataManager]
+ *         direction LR
+ *         B -- chama --> C[equipmentRepository.updateEquipment]
+ *         C -- retorna --> B{Equipamento Atualizado}
+ *         B -- chama --> D[equipmentRepository.getAllEquipment]
+ *         D -- retorna --> E[setEquipmentData (Estado React)]
+ *         E -- atualiza --> F[equipmentData (Estado React)]
+ *         B -- chama --> G[toast]
+ *     end
+ *
+ *     F -- usado por --> A
+ *
+ *    classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
+ *    classDef state fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
+ *    classDef func fill:#lightgreen,stroke:#333,stroke-width:2px;
+ *    classDef repo fill:#lightcoral,stroke:#333,stroke-width:2px;
+ *    classDef ui fill:#peachpuff,stroke:#333,stroke-width:2px;
+ *
+ *    class A ui;
+ *    class B,G func;
+ *    class C,D repo;
+ *    class E,F state;
+ *    class useEquipmentDataManager hook;
+ * ```
  */
 "use client";
 

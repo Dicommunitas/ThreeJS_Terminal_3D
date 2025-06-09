@@ -1,5 +1,6 @@
 
 /**
+ * @module hooks/useSceneOutline
  * Custom hook para gerenciar o efeito de contorno (OutlinePass) na cena 3D.
  *
  * Principal Responsabilidade:
@@ -9,6 +10,8 @@
  * `postprocessing-utils.ts` para aplicar os estilos de contorno corretos.
  * O efeito só é aplicado quando a cena (`isSceneReady`) e os refs necessários estão prontos.
  * 
+ * @example
+ * // Diagrama de Composição e Dependências:
  * ```mermaid
  *   classDiagram
  *     class UseSceneOutlineProps {
@@ -27,14 +30,13 @@
  *     class useSceneOutline {
  *
  *     }
- *     class postprocessing_utils {
- *
+ *     class postprocessing_utils_module {
+ *       +updateOutlineEffect()
  *     }
- *     useSceneOutline ..> postprocessing_utils : uses updateOutlineEffect
+ *     useSceneOutline ..> postprocessing_utils_module : uses updateOutlineEffect
  *     UseSceneOutlineProps --> RefObject_OutlinePass_
  *     UseSceneOutlineProps --> RefObject_Object3D_Array_
  * ```
- * 
  */
 "use client";
 
@@ -76,13 +78,11 @@ export function useSceneOutline({
   useEffect(() => {
     if (!isSceneReady || !outlinePassRef.current || !equipmentMeshesRef.current) {
       if(outlinePassRef.current) {
-        // Ensure outline is off if we skip
         updateOutlineEffect(outlinePassRef.current, [], [], null);
       }
       return;
     }
 
-    // Trata casos onde props podem ser undefined inicialmente
     const effectiveSelectedTags = selectedEquipmentTags ?? [];
     const effectiveHoveredTag = hoveredEquipmentTag === undefined ? null : hoveredEquipmentTag;
 

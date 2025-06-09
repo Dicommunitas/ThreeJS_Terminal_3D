@@ -1,5 +1,6 @@
 
 /**
+ * @module hooks/useLayerManager
  * Custom hook para gerenciar o estado das camadas (layers) de visibilidade na cena 3D
  * e a lógica para alternar sua visibilidade.
  *
@@ -9,6 +10,8 @@
  * Esta ação de alternância é integrada com o sistema de histórico de comandos (`useCommandHistory`)
  * para permitir undo/redo.
  * 
+ * @example
+ * // Diagrama de Estrutura do Hook e suas Dependências:
  * ```mermaid
  *   classDiagram
  *     class UseLayerManagerProps {
@@ -19,25 +22,36 @@
  *       +handleToggleLayer(layerId: string): void
  *     }
  *     class Command {
- *
+ *       +id: string
+ *       +type: string
+ *       +description: string
+ *       +execute(): void
+ *       +undo(): void
  *     }
  *     class Layer {
- *
+ *       +id: string
+ *       +name: string
+ *       +equipmentType: string
+ *       +isVisible: boolean
  *     }
  *     UseLayerManagerProps ..> Command
  *     UseLayerManagerReturn ..> Layer
  *     class useLayerManager {
- *
+ *       -layers: Layer[]
+ *       +handleToggleLayer()
  *     }
+ *     useLayerManager --|> UseLayerManagerReturn : returns
  *     useLayerManager ..> Command : uses (via executeCommand)
+ *     useLayerManager ..> initialLayers_data : initializes with
+ *     class initialLayers_data {
+ *     }
  * ```
- * 
  */
 "use client";
 
 import { useState, useCallback } from 'react';
 import type { Layer, Command } from '@/lib/types';
-import { initialLayers } from '@/core/data/initial-data'; // Dados iniciais para as camadas
+import { initialLayers } from '@/core/data/initial-data'; 
 
 /**
  * Props para o hook `useLayerManager`.
@@ -86,12 +100,10 @@ export function useLayerManager({ executeCommand }: UseLayerManagerProps): UseLa
   const handleToggleLayer = useCallback((layerId: string) => {
     const layerIndex = layers.findIndex(l => l.id === layerId);
     if (layerIndex === -1) {
-      console.warn(`[useLayerManager] Tentativa de alternar camada com ID inválido: ${layerId}`);
-      return; // Camada não encontrada
+      return; 
     }
 
-    // Cria snapshots dos estados antigo e novo para o comando de undo/redo
-    const oldLayersState = layers.map(l => ({ ...l })); // Cópia profunda superficial
+    const oldLayersState = layers.map(l => ({ ...l })); 
     const newLayersState = layers.map(l =>
       l.id === layerId ? { ...l, isVisible: !l.isVisible } : { ...l }
     );

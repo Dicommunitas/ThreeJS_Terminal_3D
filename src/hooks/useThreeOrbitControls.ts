@@ -1,5 +1,6 @@
 
 /**
+ * @module hooks/useThreeOrbitControls
  * Hook customizado para configurar e gerenciar os `OrbitControls` do Three.js.
  *
  * Este hook é responsável por:
@@ -14,34 +15,34 @@
  * -   Lidar com a limpeza (dispose) dos controles e remoção do ouvinte de evento quando o componente
  *     é desmontado ou as dependências do hook mudam.
  *
- * @module hooks/useThreeOrbitControls
  * @returns Ref para a instância de `OrbitControls` e uma flag indicando sua prontidão.
  *
  * @example
- * // Diagrama de Fluxo do useThreeOrbitControls
- * // mermaid
- * // sequenceDiagram
- * //     participant Usuário
- * //     participant ThreeScene as Componente React
- * //     participant useThreeOrbitControls as Hook
- * //     participant OrbitControls as Módulo Three.js
- * //
- * //     ThreeScene ->>+ useThreeOrbitControls: Chama com cameraRef, rendererRef, etc.
- * //     Note right of useThreeOrbitControls: renderersReady = true?
- * //     useThreeOrbitControls ->>+ OrbitControls: import('OrbitControls.js')
- * //     OrbitControls -->>- useThreeOrbitControls: Módulo carregado
- * //     useThreeOrbitControls -->> OrbitControls: new OrbitControls(camera, renderer.domElement)
- * //     useThreeOrbitControls -->> OrbitControls: Configura (enableDamping, target, mouseButtons)
- * //     useThreeOrbitControls -->> OrbitControls: addEventListener('end', handleEnd)
- * //     useThreeOrbitControls -->> ThreeScene: Retorna controlsRef, isControlsReady = true
- * //     activate Usuário
- * //     Usuário ->> OrbitControls: Interage com a câmera (arrasta mouse)
- * //     OrbitControls -->> OrbitControls: Atualiza posição/rotação da câmera
- * //     Usuário ->> OrbitControls: Solta o botão do mouse
- * //     deactivate Usuário
- * //     OrbitControls -->> useThreeOrbitControls: Dispara evento 'end'
- * //     useThreeOrbitControls ->> ThreeScene: Chama onCameraChange(novoEstado)
- * //     Note right of ThreeScene: Atualiza estado da câmera da aplicação
+ * // Diagrama de Fluxo do useThreeOrbitControls:
+ * ```mermaid
+ * sequenceDiagram
+ *     participant Usuário
+ *     participant ThreeScene as Componente React
+ *     participant useThreeOrbitControls as Hook
+ *     participant OrbitControls as Módulo Three.js
+ *
+ *     ThreeScene ->>+ useThreeOrbitControls: Chama com cameraRef, rendererRef, etc.
+ *     Note right of useThreeOrbitControls: renderersReady = true?
+ *     useThreeOrbitControls ->>+ OrbitControls: import('OrbitControls.js')
+ *     OrbitControls -->>- useThreeOrbitControls: Módulo carregado
+ *     useThreeOrbitControls -->> OrbitControls: new OrbitControls(camera, renderer.domElement)
+ *     useThreeOrbitControls -->> OrbitControls: Configura (enableDamping, target, mouseButtons)
+ *     useThreeOrbitControls -->> OrbitControls: addEventListener('end', handleEnd)
+ *     useThreeOrbitControls -->> ThreeScene: Retorna controlsRef, isControlsReady = true
+ *     activate Usuário
+ *     Usuário ->> OrbitControls: Interage com a câmera (arrasta mouse)
+ *     OrbitControls -->> OrbitControls: Atualiza posição/rotação da câmera
+ *     Usuário ->> OrbitControls: Solta o botão do mouse
+ *     deactivate Usuário
+ *     OrbitControls -->> useThreeOrbitControls: Dispara evento 'end'
+ *     useThreeOrbitControls ->> ThreeScene: Chama onCameraChange(novoEstado)
+ *     Note right of ThreeScene: Atualiza estado da câmera da aplicação
+ * ```
  */
 import { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three'; 
@@ -104,20 +105,19 @@ export function useThreeOrbitControls({
     }
 
     const currentCamera = cameraRef.current;
-    const currentRendererInstance = rendererRef.current; // Ref para a instância do renderer
-    const currentDomElement = currentRendererInstance.domElement; // Elemento DOM do renderer
+    const currentRendererDOMElement = rendererRef.current.domElement; 
     
     let localControlsInstance: OrbitControlsType | null = null;
     let isEffectMounted = true;
 
     import('three/examples/jsm/controls/OrbitControls.js')
       .then(module => {
-        if (!isEffectMounted || !currentCamera || !currentDomElement) { // Verifica currentDomElement
+        if (!isEffectMounted || !currentCamera || !currentRendererDOMElement) { 
           if (isEffectMounted) setIsControlsReady(false);
           return;
         }
         const OrbitControls = module.OrbitControls;
-        localControlsInstance = new OrbitControls(currentCamera, currentDomElement); // Usa currentDomElement
+        localControlsInstance = new OrbitControls(currentCamera, currentRendererDOMElement); 
         controlsRef.current = localControlsInstance;
 
         localControlsInstance.enableDamping = true;

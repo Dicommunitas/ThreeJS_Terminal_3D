@@ -3,6 +3,8 @@
  * @module app/page
  * Componente principal da página da aplicação Terminal 3D.
  *
+ * @fileOverview Componente principal da página da aplicação Terminal 3D.
+ *
  * Responsabilidades:
  * 1.  **Orquestração de Hooks de Estado:** Inicializa e coordena os principais hooks customizados
  *     que gerenciam diferentes aspectos do estado da aplicação (e.g., `useCommandHistory`,
@@ -34,44 +36,44 @@
  * @see {@link ../../hooks/use-layer-manager/README.md} Para o gerenciamento de camadas.
  *
  * @example
- * // Diagrama de Interação de Alto Nível da Terminal3DPage
- * // mermaid
- * // graph LR
- * //     Terminal3DPage["Terminal3DPage (Página Principal)"] --> H_CmdHistory["useCommandHistory (Hook Histórico)"];
- * //     Terminal3DPage --> H_EquipData["useEquipmentDataManager (Hook Dados Equip.)"];
- * //     Terminal3DPage --> H_CameraMgr["useCameraManager (Hook Câmera)"];
- * //     Terminal3DPage --> H_FilterMgr["useFilterManager (Hook Filtros)"];
- * //     Terminal3DPage --> H_AnnotMgr["useAnnotationManager (Hook Anotações)"];
- * //     Terminal3DPage --> H_EquipSelectMgr["useEquipmentSelectionManager (Hook Seleção)"];
- * //     Terminal3DPage --> H_LayerMgr["useLayerManager (Hook Camadas)"];
- * //
- * //     Terminal3DPage --> MainSceneArea_Comp["MainSceneArea (Comp. Área da Cena)"];
- * //     Terminal3DPage --> Sidebar_Comp["Sidebar (Comp. Barra Lateral)"];
- * //     Terminal3DPage --> AnnotationDialog_Comp["AnnotationDialog (Comp. Diálogo Anotação)"];
- * //
- * //     MainSceneArea_Comp --> ThreeScene_Comp["ThreeScene (Comp. Cena 3D)"];
- * //     MainSceneArea_Comp --> InfoPanel_Comp["InfoPanel (Comp. Painel Info)"];
- * //     Sidebar_Comp --> SidebarContentLayout_Comp["SidebarContentLayout (Comp. Conteúdo Sidebar)"];
- * //
- * //     subgraph "Hooks de Gerenciamento de Estado da Aplicação"
- * //       H_CmdHistory;
- * //       H_EquipData;
- * //       H_CameraMgr;
- * //       H_FilterMgr;
- * //       H_AnnotMgr;
- * //       H_EquipSelectMgr;
- * //       H_LayerMgr;
- * //     end
- * //
- * //     subgraph "Componentes de UI Principais"
- * //       MainSceneArea_Comp;
- * //       Sidebar_Comp;
- * //       AnnotationDialog_Comp;
- * //       InfoPanel_Comp;
- * //       ThreeScene_Comp;
- * //       SidebarContentLayout_Comp;
- * //     end
- * //
+ * // Diagrama de Interação de Alto Nível da Terminal3DPage:
+ * ```mermaid
+ * graph LR
+ *     Terminal3DPage["Terminal3DPage (Página Principal)"] --> H_CmdHistory["useCommandHistory (Hook Histórico)"];
+ *     Terminal3DPage --> H_EquipData["useEquipmentDataManager (Hook Dados Equip.)"];
+ *     Terminal3DPage --> H_CameraMgr["useCameraManager (Hook Câmera)"];
+ *     Terminal3DPage --> H_FilterMgr["useFilterManager (Hook Filtros)"];
+ *     Terminal3DPage --> H_AnnotMgr["useAnnotationManager (Hook Anotações)"];
+ *     Terminal3DPage --> H_EquipSelectMgr["useEquipmentSelectionManager (Hook Seleção)"];
+ *     Terminal3DPage --> H_LayerMgr["useLayerManager (Hook Camadas)"];
+ *
+ *     Terminal3DPage --> MainSceneArea_Comp["MainSceneArea (Comp. Área da Cena)"];
+ *     Terminal3DPage --> Sidebar_Comp["Sidebar (Comp. Barra Lateral)"];
+ *     Terminal3DPage --> AnnotationDialog_Comp["AnnotationDialog (Comp. Diálogo Anotação)"];
+ *
+ *     MainSceneArea_Comp --> ThreeScene_Comp["ThreeScene (Comp. Cena 3D)"];
+ *     MainSceneArea_Comp --> InfoPanel_Comp["InfoPanel (Comp. Painel Info)"];
+ *     Sidebar_Comp --> SidebarContentLayout_Comp["SidebarContentLayout (Comp. Conteúdo Sidebar)"];
+ *
+ *     subgraph "Hooks de Gerenciamento de Estado da Aplicação"
+ *       H_CmdHistory;
+ *       H_EquipData;
+ *       H_CameraMgr;
+ *       H_FilterMgr;
+ *       H_AnnotMgr;
+ *       H_EquipSelectMgr;
+ *       H_LayerMgr;
+ *     end
+ *
+ *     subgraph "Componentes de UI Principais"
+ *       MainSceneArea_Comp;
+ *       Sidebar_Comp;
+ *       AnnotationDialog_Comp;
+ *       InfoPanel_Comp;
+ *       ThreeScene_Comp;
+ *       SidebarContentLayout_Comp;
+ *     end
+ * ```
  */
 "use client";
 
@@ -147,7 +149,7 @@ export default function Terminal3DPage(): JSX.Element {
     handleDeleteAnnotation,
     getAnnotationForEquipment,
     setIsAnnotationDialogOpen,
-  } = useAnnotationManager({}); // Não precisa mais de initialAnnotations aqui, o repo cuida disso
+  } = useAnnotationManager({}); 
 
   // Hook para gerenciar seleção de equipamentos
   const {
@@ -182,11 +184,11 @@ export default function Terminal3DPage(): JSX.Element {
       return;
     }
     isFocusingRef.current = true;
-    handleSetCameraViewForSystem(systemName); // Define o sistema alvo para a câmera
+    handleSetCameraViewForSystem(systemName); 
     const equipmentInSystem = equipmentData
       .filter(equip => equip.sistema === systemName)
       .map(equip => equip.tag);
-    selectTagsBatch(equipmentInSystem, `Focado e selecionado sistema ${systemName}.`); // Seleciona os equipamentos
+    selectTagsBatch(equipmentInSystem, `Focado e selecionado sistema ${systemName}.`); 
 
     if (focusTimeoutRef.current) {
       clearTimeout(focusTimeoutRef.current);
@@ -343,5 +345,3 @@ export default function Terminal3DPage(): JSX.Element {
     </SidebarProvider>
   );
 }
-
-    

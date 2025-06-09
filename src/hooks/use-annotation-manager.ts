@@ -1,5 +1,6 @@
 
 /**
+ * @module hooks/useAnnotationManager
  * Hook customizado para gerenciar o estado e a lógica das anotações textuais dos equipamentos,
  * atuando como uma fachada para o `annotationRepository`.
  *
@@ -12,49 +13,49 @@
  *     refletir os dados mais recentes, garantindo a reatividade da UI.
  * -   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações de anotação.
  *
- * @module hooks/useAnnotationManager
- * @see {@link /docs/core/repository/memory-repository.md#annotationRepository} Para a fonte de dados das anotações.
- * @see {@link /docs/core/repository/memory-repository.md#equipmentRepository} Para obter dados de equipamentos (e.g., nome para toasts).
- * @see {@link /docs/lib/types.md#Annotation} Para a interface de Anotação.
- * @see {@link /docs/lib/types.md#Equipment} Para a interface de Equipamento.
+ * @see {@link ../../core/repository/memory-repository/README.md#annotationRepository} Para a fonte de dados das anotações.
+ * @see {@link ../../core/repository/memory-repository/README.md#equipmentRepository} Para obter dados de equipamentos (e.g., nome para toasts).
+ * @see {@link ../../lib/types/README.md#Annotation} Para a interface de Anotação.
+ * @see {@link ../../lib/types/README.md#Equipment} Para a interface de Equipamento.
  * @param props - Propriedades de configuração para o hook (atualmente, `initialAnnotations` é opcional e usado para uma potencial inicialização única do repositório, embora o repositório seja auto-inicializável).
  * @returns Objeto contendo o estado das anotações, o estado do diálogo e funções para manipular anotações.
  *
  * @example
- * // Diagrama de Interação do useAnnotationManager
- * // mermaid
- * // graph TD
- * //     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOpenAnnotationDialog)
- * //     B -- define estados --> DialogState["isAnnotationDialogOpen, editingAnnotation, annotationTargetEquipment"]
- * //
- * //     C[Componente UI (ex: AnnotationDialog)] -- no submit --> D(handleSaveAnnotation)
- * //
- * //     subgraph useAnnotationManager [Hook useAnnotationManager]
- * //         direction LR
- * //         D -- chama --> E[annotationRepository.addOrUpdateAnnotation]
- * //         E -- retorna --> D{Anotação Salva}
- * //         D -- chama --> F[refreshAnnotationsFromRepo]
- * //         F -- chama --> G[annotationRepository.getAllAnnotations]
- * //         G -- retorna --> H[setAnnotationsState (Estado React)]
- * //         H -- atualiza --> I[annotations (Estado React)]
- * //         D -- chama --> J[toast]
- * //         DialogState
- * //     end
- * //
- * //     I -- usado por --> A
- * //     DialogState -- usado por --> C
- * //
- * //    classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
- * //    classDef state fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
- * //    classDef func fill:#lightgreen,stroke:#333,stroke-width:2px;
- * //    classDef repo fill:#lightcoral,stroke:#333,stroke-width:2px;
- * //    classDef ui fill:#peachpuff,stroke:#333,stroke-width:2px;
- * //
- * //    class A,C ui;
- * //    class B,D,F,J func;
- * //    class E,G repo;
- * //    class DialogState,H,I state;
- * //    class useAnnotationManager hook;
+ * // Diagrama de Interação do useAnnotationManager:
+ * ```mermaid
+ * graph TD
+ *     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOpenAnnotationDialog)
+ *     B -- define estados --> DialogState["isAnnotationDialogOpen, editingAnnotation, annotationTargetEquipment"]
+ *
+ *     C[Componente UI (ex: AnnotationDialog)] -- no submit --> D(handleSaveAnnotation)
+ *
+ *     subgraph useAnnotationManager [Hook useAnnotationManager]
+ *         direction LR
+ *         D -- chama --> E[annotationRepository.addOrUpdateAnnotation]
+ *         E -- retorna --> D{Anotação Salva}
+ *         D -- chama --> F[refreshAnnotationsFromRepo]
+ *         F -- chama --> G[annotationRepository.getAllAnnotations]
+ *         G -- retorna --> H[setAnnotationsState (Estado React)]
+ *         H -- atualiza --> I[annotations (Estado React)]
+ *         D -- chama --> J[toast]
+ *         DialogState
+ *     end
+ *
+ *     I -- usado por --> A
+ *     DialogState -- usado por --> C
+ *
+ *    classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
+ *    classDef state fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
+ *    classDef func fill:#lightgreen,stroke:#333,stroke-width:2px;
+ *    classDef repo fill:#lightcoral,stroke:#333,stroke-width:2px;
+ *    classDef ui fill:#peachpuff,stroke:#333,stroke-width:2px;
+ *
+ *    class A,C ui;
+ *    class B,D,F,J func;
+ *    class E,G repo;
+ *    class DialogState,H,I state;
+ *    class useAnnotationManager hook;
+ * ```
  */
 "use client";
 
@@ -114,21 +115,17 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
   const { toast } = useToast();
 
   useEffect(() => {
-    // Sincroniza o estado local com o repositório na montagem.
-    // O annotationRepository já é auto-inicializável com initialAnnotations de initial-data.ts
-    // A prop initialAnnotations aqui seria mais para um override em cenários específicos,
-    // mas a lógica atual prioriza o estado do repositório.
     const currentRepoAnnotations = annotationRepository.getAllAnnotations();
-    if (currentRepoAnnotations.length === 0 && initialAnnotations.length > 0 && !sessionStorage.getItem('annotationRepoInitialized')) {
-      // Este bloco é para um caso de borda: se o repositório está vazio MAS o hook recebeu initialAnnotations
-      // e não inicializamos antes nesta sessão (para evitar múltiplos "initializations" se o hook for usado em vários lugares)
+    if (currentRepoAnnotations.length === 0 && initialAnnotations.length > 0 && !sessionStorage.getItem('annotationRepoInitializedHook')) {
       annotationRepository.initializeAnnotations(initialAnnotations);
       setAnnotationsState(annotationRepository.getAllAnnotations());
-      sessionStorage.setItem('annotationRepoInitialized', 'true'); // Previne reinicialização
+      sessionStorage.setItem('annotationRepoInitializedHook', 'true'); 
     } else {
       setAnnotationsState(currentRepoAnnotations);
     }
-  }, []); // Executa apenas na montagem
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Intencionalmente vazio para rodar apenas uma vez na montagem do hook.
+
 
   /**
    * Atualiza o estado local de anotações buscando os dados mais recentes do `annotationRepository`.

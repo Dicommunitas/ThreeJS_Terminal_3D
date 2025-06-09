@@ -1,5 +1,6 @@
 
 /**
+ * @module hooks/useCommandHistory
  * Custom hook que fornece funcionalidade para gerenciar um histórico de comandos,
  * permitindo operações de desfazer (undo) e refazer (redo).
  *
@@ -8,6 +9,8 @@
  * e fornecer a capacidade de navegar para frente (redo) e para trás (undo)
  * nesse histórico, chamando as funções `execute()` e `undo()` dos respectivos comandos.
  * 
+ * @example
+ * // Diagrama de Estrutura do Hook e seus Retornos:
  * ```mermaid
  *   classDiagram
  *     class UseCommandHistoryReturn {
@@ -19,11 +22,21 @@
  *       +commandHistory: Command[]
  *     }
  *     class Command {
- *
+ *       +id: string
+ *       +type: string
+ *       +description: string
+ *       +execute(): void
+ *       +undo(): void
  *     }
- *     UseCommandHistoryReturn ..> Command
+ *     UseCommandHistoryReturn ..> Command : manages array of
+ *     class useCommandHistory {
+ *       -state: CommandHistoryState
+ *       +executeCommand()
+ *       +undo()
+ *       +redo()
+ *     }
+ *     useCommandHistory --|> UseCommandHistoryReturn : returns
  * ```
- * 
  */
 import type { Command } from '@/lib/types';
 import { useState, useCallback } from 'react';
@@ -81,14 +94,13 @@ export function useCommandHistory(initialState?: CommandHistoryState): UseComman
    * @param {Command} command O comando a ser executado. A função `command.execute()` é chamada.
    */
   const executeCommand = useCallback((command: Command) => {
-    command.execute(); // Executa a ação do comando
+    command.execute(); 
     setState((prevState) => {
-      // Remove qualquer comando futuro se estivermos desfazendo e então executando um novo comando
       const newHistory = prevState.history.slice(0, prevState.currentIndex + 1);
       newHistory.push(command);
       return {
         history: newHistory,
-        currentIndex: newHistory.length - 1, // O novo comando é agora o último
+        currentIndex: newHistory.length - 1, 
       };
     });
   }, []);
@@ -101,13 +113,13 @@ export function useCommandHistory(initialState?: CommandHistoryState): UseComman
   const undo = useCallback(() => {
     setState((prevState) => {
       if (prevState.currentIndex < 0) {
-        return prevState; // Não há nada para desfazer
+        return prevState; 
       }
       const commandToUndo = prevState.history[prevState.currentIndex];
-      commandToUndo.undo(); // Executa a ação de desfazer do comando
+      commandToUndo.undo(); 
       return {
         ...prevState,
-        currentIndex: prevState.currentIndex - 1, // Move o ponteiro para o comando anterior
+        currentIndex: prevState.currentIndex - 1, 
       };
     });
   }, []);
@@ -120,13 +132,13 @@ export function useCommandHistory(initialState?: CommandHistoryState): UseComman
   const redo = useCallback(() => {
     setState((prevState) => {
       if (prevState.currentIndex >= prevState.history.length - 1) {
-        return prevState; // Não há nada para refazer
+        return prevState; 
       }
       const commandToRedo = prevState.history[prevState.currentIndex + 1];
-      commandToRedo.execute(); // Executa (refaz) a ação do comando
+      commandToRedo.execute(); 
       return {
         ...prevState,
-        currentIndex: prevState.currentIndex + 1, // Move o ponteiro para o comando refeito
+        currentIndex: prevState.currentIndex + 1, 
       };
     });
   }, []);

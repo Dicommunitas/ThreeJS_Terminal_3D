@@ -1,5 +1,6 @@
 
 /**
+ * @module core/three/postprocessing-utils
  * Utilitários para configurar e gerenciar o pipeline de pós-processamento
  * para a cena Three.js.
  *
@@ -8,6 +9,8 @@
  * funções para atualizar dinamicamente o efeito de contorno (quais objetos destacar
  * e com qual estilo) e para redimensionar os passes de pós-processamento.
  * 
+ * @example
+ * // Diagrama de Retorno da Função `setupPostProcessing`:
  * ```mermaid
  *   classDiagram
  *     class setupPostProcessing_return {
@@ -46,26 +49,23 @@ function setOutlinePassObjects(outlinePass: OutlinePass, objectsToOutline: THREE
  * @param {'selected' | 'hover' | 'none'} styleType O tipo de estilo a ser aplicado.
  */
 function applyOutlinePassStyle(outlinePass: OutlinePass, styleType: 'selected' | 'hover' | 'none'): void {
-  outlinePass.pulsePeriod = 0; // Garante que não haja pulsação indesejada
+  outlinePass.pulsePeriod = 0; 
 
   switch (styleType) {
     case 'selected':
-      // console.log('[applyOutlinePassStyle] Applying SELECTED style');
-      outlinePass.visibleEdgeColor.set('#0000FF'); // Azul forte
+      outlinePass.visibleEdgeColor.set('#0000FF'); 
       outlinePass.edgeStrength = 10.0;
       outlinePass.edgeThickness = 2.0;
       outlinePass.edgeGlow = 0.7;
       break;
     case 'hover':
-      // console.log('[applyOutlinePassStyle] Applying HOVER style');
-      outlinePass.visibleEdgeColor.set('#87CEFA'); // LightSkyBlue
+      outlinePass.visibleEdgeColor.set('#87CEFA'); 
       outlinePass.edgeStrength = 7.0;
       outlinePass.edgeThickness = 1.5;
       outlinePass.edgeGlow = 0.5;
       break;
     case 'none':
     default:
-      // console.log('[applyOutlinePassStyle] Applying NONE style');
       outlinePass.edgeStrength = 0;
       outlinePass.edgeGlow = 0;
       outlinePass.edgeThickness = 0;
@@ -95,12 +95,12 @@ export function setupPostProcessing(
   composer.addPass(renderPass);
 
   const outlinePass = new OutlinePass(new THREE.Vector2(initialWidth, initialHeight), scene, camera);
-  outlinePass.edgeStrength = 0; // Inicialmente desligado
+  outlinePass.edgeStrength = 0; 
   outlinePass.edgeGlow = 0.0;
   outlinePass.edgeThickness = 1.0;
-  outlinePass.visibleEdgeColor.set('#ffffff'); // Cor padrão, será sobrescrita
-  outlinePass.hiddenEdgeColor.set('#190a05'); // Cor para bordas ocultas (geralmente não visível com força 0)
-  outlinePass.pulsePeriod = 0; // Sem pulsação por padrão
+  outlinePass.visibleEdgeColor.set('#ffffff'); 
+  outlinePass.hiddenEdgeColor.set('#190a05'); 
+  outlinePass.pulsePeriod = 0; 
   composer.addPass(outlinePass);
 
   return { composer, outlinePass };
@@ -143,7 +143,6 @@ export function updateOutlineEffect(
   hoveredTag: string | null
 ): void {
   if (!outlinePass) {
-    // console.log('[updateOutlineEffect] OutlinePass is null, returning.');
     return;
   }
 
@@ -151,14 +150,11 @@ export function updateOutlineEffect(
   const meshesToConsider = allMeshes.filter(mesh => mesh.visible);
   let styleType: 'selected' | 'hover' | 'none' = 'none';
 
-  // console.log(`[updateOutlineEffect] Input: selectedTags=${JSON.stringify(selectedTags)}, hoveredTag=${hoveredTag}`);
-
   if (Array.isArray(selectedTags) && selectedTags.length > 0) {
     selectedTags.forEach(tag => {
       const selectedMesh = meshesToConsider.find(mesh => mesh.userData.tag === tag);
       if (selectedMesh) {
         objectsToOutline.push(selectedMesh);
-        // console.log(`[updateOutlineEffect] Adding selected mesh to outline: ${tag}`);
       }
     });
     if (objectsToOutline.length > 0) {
@@ -166,46 +162,28 @@ export function updateOutlineEffect(
     }
   }
 
-  // Adiciona o item em hover APENAS se ele não estiver já selecionado para o contorno principal
-  // E se não houver seleção múltipla (pois o hover em um item não selecionado quando há outros selecionados
-  // pode ser confuso se ambos tiverem auras).
-  // Por simplicidade, o hover só se aplica se não houver seleção, ou se o hover for no item já selecionado.
   if (hoveredTag) {
     const isHoveredAlreadyInOutline = objectsToOutline.some(obj => obj.userData.tag === hoveredTag);
     if (!isHoveredAlreadyInOutline) {
         const hoveredMesh = meshesToConsider.find(mesh => mesh.userData.tag === hoveredTag);
         if (hoveredMesh) {
             objectsToOutline.push(hoveredMesh);
-            // console.log(`[updateOutlineEffect] Adding hovered mesh to outline: ${hoveredTag}`);
-            if (styleType !== 'selected') { // Só aplica estilo de hover se não for sobrepor o de seleção
+            if (styleType !== 'selected') { 
                 styleType = 'hover';
             }
         }
-    } else if (styleType === 'selected') {
-        // Se o item em hover já está selecionado, mantém o estilo de seleção.
-    }
+    } 
   }
 
 
   if (objectsToOutline.length === 0) {
     styleType = 'none';
-  }
-
-  // Se há seleção, o estilo de seleção prevalece mesmo que o mouse esteja sobre um deles.
-  // Se não há seleção e há hover, aplica estilo de hover.
-  // Senão, nenhum estilo.
-  if (Array.isArray(selectedTags) && selectedTags.length > 0) {
+  } else if (Array.isArray(selectedTags) && selectedTags.length > 0) {
     styleType = 'selected';
   } else if (hoveredTag && objectsToOutline.some(obj => obj.userData.tag === hoveredTag)) {
     styleType = 'hover';
-  } else {
-    styleType = 'none';
   }
-
-
-  // console.log(`[updateOutlineEffect] Style: ${styleType}. Outlining: ${objectsToOutline.map(o => o.userData.tag).join(', ') || 'None'}`);
 
   setOutlinePassObjects(outlinePass, objectsToOutline);
   applyOutlinePassStyle(outlinePass, styleType);
-  // console.log(`[updateOutlineEffect] OutlinePass strength: ${outlinePass.edgeStrength}`);
 }

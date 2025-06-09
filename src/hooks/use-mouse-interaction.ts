@@ -5,6 +5,7 @@ import { useRef, useEffect, useCallback } from 'react';
 import * as THREE from 'three';
 
 /**
+ * @module hooks/useMouseInteractionManager
  * Custom hook para gerenciar interações do mouse (clique e movimento)
  * com objetos 3D em uma cena Three.js, especificamente para seleção e hover de equipamentos.
  * Anteriormente parte de `core/three/mouse-interaction-manager.ts`, agora encapsulado como hook.
@@ -15,6 +16,8 @@ import * as THREE from 'three';
  * com base nessas interações. Adiciona e remove os ouvintes de eventos de mouse
  * do elemento de montagem da cena.
  * 
+ * @example
+ * // Diagrama de Composição e Dependências:
  * ```mermaid
  *   classDiagram
  *     class UseMouseInteractionManagerProps {
@@ -32,23 +35,18 @@ import * as THREE from 'three';
  *
  *     }
  *     class RefObject_HTMLDivElement_ {
- *
  *     }
  *     class RefObject_PerspectiveCamera_ {
- *
  *     }
  *     class RefObject_Object3D_Array_ {
- *
  *     }
  *     useMouseInteractionManager --|> ReactFCHook
  *     UseMouseInteractionManagerProps ..> RefObject_HTMLDivElement_
  *     UseMouseInteractionManagerProps ..> RefObject_PerspectiveCamera_
  *     UseMouseInteractionManagerProps ..> RefObject_Object3D_Array_
  * ```
- * 
  */
 
-// Instâncias reutilizáveis para raycasting para otimizar performance.
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
@@ -76,7 +74,6 @@ export function useMouseInteractionManager({
   setHoveredEquipmentTag,
 }: UseMouseInteractionManagerProps): void {
 
-  // Refs para os callbacks para garantir que as versões mais recentes sejam usadas nos event listeners
   const onSelectEquipmentRef = useRef(onSelectEquipment);
   const setHoveredEquipmentTagRef = useRef(setHoveredEquipmentTag);
 
@@ -98,7 +95,6 @@ export function useMouseInteractionManager({
     mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
     raycaster.setFromCamera(mouse, currentCamera);
-    // Considera apenas meshes visíveis e que estão no array `currentMeshes`
     const visibleMeshes = currentMeshes.filter(m => m.visible);
     const intersects = raycaster.intersectObjects(visibleMeshes, true);
 
@@ -107,9 +103,8 @@ export function useMouseInteractionManager({
 
     if (intersects.length > 0) {
       let selectedObject = intersects[0].object;
-      // Navega para cima na hierarquia até encontrar o objeto com userData.tag
       while (selectedObject.parent && !selectedObject.userData.tag) {
-        if (selectedObject.parent instanceof THREE.Scene) break; // Evita ir além da cena
+        if (selectedObject.parent instanceof THREE.Scene) break; 
         selectedObject = selectedObject.parent;
       }
       if (selectedObject.userData.tag) {
@@ -159,13 +154,13 @@ export function useMouseInteractionManager({
       event,
       mountRef.current,
       cameraRef.current,
-      equipmentMeshesRef.current, // Passa o array de meshes
+      equipmentMeshesRef.current, 
       setHoveredEquipmentTagRef.current
     );
   }, [isSceneReady, mountRef, cameraRef, equipmentMeshesRef, processSceneMouseMoveInternal]);
 
   const handleClick = useCallback((event: MouseEvent) => {
-    if (event.button !== 0) return; // Processa apenas cliques com o botão esquerdo
+    if (event.button !== 0) return; 
     if (!isSceneReady || !mountRef.current || !cameraRef.current || !equipmentMeshesRef.current) {
       return;
     }
@@ -173,7 +168,7 @@ export function useMouseInteractionManager({
       event,
       mountRef.current,
       cameraRef.current,
-      equipmentMeshesRef.current, // Passa o array de meshes
+      equipmentMeshesRef.current, 
       onSelectEquipmentRef.current
     );
   }, [isSceneReady, mountRef, cameraRef, equipmentMeshesRef, processSceneClickInternal]);
@@ -181,18 +176,14 @@ export function useMouseInteractionManager({
   useEffect(() => {
     const currentMount = mountRef.current;
     if (currentMount && isSceneReady) {
-      // console.log('[useMouseInteractionManager] Adding event listeners.');
       currentMount.addEventListener('click', handleClick);
       currentMount.addEventListener('mousemove', handleMouseMove);
       return () => {
-        // console.log('[useMouseInteractionManager] Removing event listeners.');
         currentMount.removeEventListener('click', handleClick);
         currentMount.removeEventListener('mousemove', handleMouseMove);
       };
     }
-    // Cleanup if isSceneReady becomes false or mountRef changes before listeners are added
     return () => {
-        // console.log('[useMouseInteractionManager] Cleanup (no listeners active or scene not ready).');
         currentMount?.removeEventListener('click', handleClick);
         currentMount?.removeEventListener('mousemove', handleMouseMove);
     };

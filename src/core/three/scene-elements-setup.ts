@@ -1,5 +1,6 @@
 
 /**
+ * @module core/three/scene-elements-setup
  * Utilitários para configurar elementos básicos e gerenciar meshes de equipamentos em uma cena Three.js.
  *
  * Principal Responsabilidade:
@@ -8,6 +9,8 @@
  * (WebGL e CSS2D), pipeline de pós-processamento (EffectComposer, OutlinePass), e a
  * sincronização dinâmica dos meshes de equipamentos com os dados da aplicação.
  *
+ * @example
+ * // Diagrama de Estrutura e Interdependências:
  * ```mermaid
  *   graph TD;
  *     A[setupRenderPipeline] --> B{renderer: WebGLRenderer};
@@ -54,17 +57,14 @@ import type { Equipment, Layer, ColorMode } from '@/lib/types';
 export function setupLighting(scene: THREE.Scene): void {
   const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
   scene.add(ambientLight);
-  // console.log("[SceneElementsSetup.ts setupLighting] AmbientLight added.");
 
-  const hemisphereLight = new THREE.HemisphereLight(0xADD8E6, 0x495436, 0.8); // Céu azul claro, chão tom de terra
+  const hemisphereLight = new THREE.HemisphereLight(0xADD8E6, 0x495436, 0.8); 
   scene.add(hemisphereLight);
-  // console.log("[SceneElementsSetup.ts setupLighting] HemisphereLight added.");
 
   const directionalLight = new THREE.DirectionalLight(0xffffff, 3.0);
   directionalLight.position.set(10, 15, 10);
-  directionalLight.castShadow = false; // Sombras desabilitadas para performance
+  directionalLight.castShadow = false; 
   scene.add(directionalLight);
-  // console.log("[SceneElementsSetup.ts setupLighting] DirectionalLight added.");
 }
 
 /**
@@ -77,7 +77,7 @@ export function setupLighting(scene: THREE.Scene): void {
 export function setupGroundPlane(scene: THREE.Scene): THREE.Mesh {
   const groundGeometry = new THREE.PlaneGeometry(100, 100);
   const groundMaterial = new THREE.MeshStandardMaterial({
-    color: 0xE6D8B0, // Cor de areia
+    color: 0xE6D8B0, 
     side: THREE.DoubleSide,
     metalness: 0.1,
     roughness: 0.8,
@@ -87,10 +87,9 @@ export function setupGroundPlane(scene: THREE.Scene): THREE.Mesh {
   const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
   groundMesh.rotation.x = -Math.PI / 2;
   groundMesh.position.y = 0;
-  groundMesh.receiveShadow = false; // Sombras desabilitadas para performance
+  groundMesh.receiveShadow = false; 
   groundMesh.userData = { tag: 'terrain-ground-plane' };
   scene.add(groundMesh);
-  // console.log("[SceneElementsSetup.ts setupGroundPlane] Ground plane added to scene.");
   return groundMesh;
 }
 
@@ -113,16 +112,12 @@ export function setupRenderPipeline(
   composer: EffectComposer;
   outlinePass: OutlinePass;
 } | null {
-  // console.log('[setupRenderPipeline] Starting setup...');
   if (!mountElement) {
-    // console.error('[setupRenderPipeline] mountElement is null. Aborting.');
     return null;
   }
   const initialWidth = Math.max(1, mountElement.clientWidth);
   const initialHeight = Math.max(1, mountElement.clientHeight);
-  // console.log(`[setupRenderPipeline] Initial dimensions: ${initialWidth}x${initialHeight}`);
 
-  // WebGL Renderer
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
     preserveDrawingBuffer: true,
@@ -130,22 +125,17 @@ export function setupRenderPipeline(
   });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(initialWidth, initialHeight);
-  renderer.shadowMap.enabled = false; // Sombras desabilitadas para performance
-  scene.background = new THREE.Color(0xA9C1D1); // Cor de fundo azulada/cinza claro
+  renderer.shadowMap.enabled = false; 
+  scene.background = new THREE.Color(0xA9C1D1); 
   scene.fog = new THREE.Fog(0xA9C1D1, 200, 1000);
-  // console.log("[setupRenderPipeline] WebGLRenderer created.");
 
-
-  // CSS2D Renderer para rótulos HTML
   const labelRenderer = new CSS2DRenderer();
   labelRenderer.setSize(initialWidth, initialHeight);
   labelRenderer.domElement.style.position = 'absolute';
   labelRenderer.domElement.style.top = '0px';
   labelRenderer.domElement.style.left = '0px';
   labelRenderer.domElement.style.pointerEvents = 'none';
-  // console.log("[setupRenderPipeline] CSS2DRenderer created.");
 
-  // EffectComposer e Passes para Pós-Processamento
   const composer = new EffectComposer(renderer);
   const renderPass = new RenderPass(scene, camera);
   composer.addPass(renderPass);
@@ -158,15 +148,12 @@ export function setupRenderPipeline(
   outlinePass.hiddenEdgeColor.set('#190a05');
   outlinePass.pulsePeriod = 0;
   composer.addPass(outlinePass);
-  // console.log("[setupRenderPipeline] EffectComposer with RenderPass and OutlinePass created.");
 
   if (!renderer.domElement.parentNode) {
     mountElement.appendChild(renderer.domElement);
-    // console.log("[setupRenderPipeline] WebGLRenderer DOM element appended.");
   }
   if (!labelRenderer.domElement.parentNode) {
     mountElement.appendChild(labelRenderer.domElement);
-    // console.log("[setupRenderPipeline] CSS2DRenderer DOM element appended.");
   }
 
   return { renderer, labelRenderer, composer, outlinePass };
@@ -174,8 +161,19 @@ export function setupRenderPipeline(
 
 /**
  * Interface para os parâmetros da função `updateEquipmentMeshesInScene`.
+ * @interface UpdateEquipmentMeshesParams
+ * @property scene - A cena Three.js.
+ * @property equipmentMeshesRef - Ref para o array de meshes de equipamentos existentes na cena.
+ * @property newEquipmentData - A nova lista de equipamentos a serem renderizados (já filtrada).
+ * @property layers - A lista de camadas para determinar a visibilidade por tipo de equipamento e do terreno.
+ * @property colorMode - O modo de colorização atual para os equipamentos.
+ * @property createSingleEquipmentMesh - Função callback para criar um mesh de equipamento individual.
+ * @property groundMeshRef - Ref para o mesh do plano de chão, para controle de visibilidade.
+ *
+ * @example
+ * // Representação da interface:
  * ```mermaid
- *   classDiagram
+ * classDiagram
  *     class UpdateEquipmentMeshesParams {
  *       +scene: THREE.Scene
  *       +equipmentMeshesRef: React.MutableRefObject_Object3D_Array_
@@ -212,14 +210,6 @@ export function setupRenderPipeline(
  *     style UpdateEquipmentMeshesParams fill:#DCDCDC,stroke:#333,stroke-width:2px,color:black
  *     style Equipment,Layer,ColorMode,THREE_Object3D,THREE_Mesh,THREE_Scene,React_MutableRefObject fill:#FFFFE0,stroke:#333,stroke-width:2px,color:black
  * ```
- * @interface UpdateEquipmentMeshesParams
- * @property scene - A cena Three.js.
- * @property equipmentMeshesRef - Ref para o array de meshes de equipamentos existentes na cena.
- * @property newEquipmentData - A nova lista de equipamentos a serem renderizados (já filtrada).
- * @property layers - A lista de camadas para determinar a visibilidade por tipo de equipamento e do terreno.
- * @property colorMode - O modo de colorização atual para os equipamentos.
- * @property createSingleEquipmentMesh - Função callback para criar um mesh de equipamento individual.
- * @property groundMeshRef - Ref para o mesh do plano de chão, para controle de visibilidade.
  */
 export interface UpdateEquipmentMeshesParams {
   scene: THREE.Scene;
@@ -249,14 +239,10 @@ export function updateEquipmentMeshesInScene({
   createSingleEquipmentMesh,
   groundMeshRef,
 }: UpdateEquipmentMeshesParams): void {
-  console.log(`[updateEquipmentMeshesInScene] START. newEquipmentData count: ${newEquipmentData.length}, Layers: ${JSON.stringify(layers.map(l => ({ id: l.id, type: l.equipmentType, visible: l.isVisible })))}`);
-
   if (!scene) {
-    console.warn("[updateEquipmentMeshesInScene] Scene is null. Aborting.");
     return;
   }
   if (!equipmentMeshesRef || equipmentMeshesRef.current === undefined || equipmentMeshesRef.current === null) {
-    console.warn("[updateEquipmentMeshesInScene] equipmentMeshesRef is invalid. Aborting.");
     return;
   }
 
@@ -270,7 +256,6 @@ export function updateEquipmentMeshesInScene({
   const tagsInNewData = new Set(newEquipmentData.map(e => e.tag));
   const newVisibleMeshesList: THREE.Object3D[] = [];
 
-  // 1. Remover meshes que não estão nos novos dados ou cuja camada os tornou invisíveis
   equipmentMeshesRef.current.forEach(mesh => {
     const itemTag = mesh.userData.tag;
     const itemInNewData = newEquipmentData.find(e => e.tag === itemTag);
@@ -278,7 +263,6 @@ export function updateEquipmentMeshesInScene({
     const isVisibleByLayer = layerForItem?.isVisible ?? (itemInNewData ? true : false);
 
     if (!tagsInNewData.has(itemTag) || (itemInNewData && !isVisibleByLayer)) {
-      // console.log(`[updateEquipmentMeshesInScene] Removing mesh: ${itemTag}. InNewData: ${tagsInNewData.has(itemTag)}, VisibleByLayer: ${isVisibleByLayer}`);
       scene.remove(mesh);
       if (mesh instanceof THREE.Mesh) {
         mesh.geometry?.dispose();
@@ -292,21 +276,17 @@ export function updateEquipmentMeshesInScene({
     }
   });
 
-  // 2. Adicionar novos ou atualizar existentes (aqui, recriamos para garantir material/cor)
   newEquipmentData.forEach(item => {
     const layerForItem = layers.find(l => l.equipmentType === item.type);
     const isVisibleByLayer = layerForItem?.isVisible ?? true;
-    console.log(`[updateEquipmentMeshesInScene] Processing item: ${item.tag}, Type: ${item.type}, Layer found: ${!!layerForItem}, Layer ID: ${layerForItem?.id}, isVisibleByLayer: ${isVisibleByLayer}`);
 
     if (!isVisibleByLayer) {
-      console.log(`[updateEquipmentMeshesInScene] Item ${item.tag} SKIPPED (layer not visible).`);
       return;
     }
 
     let existingMesh = currentMeshesByTag.get(item.tag);
 
     if (existingMesh) {
-        // console.log(`[updateEquipmentMeshesInScene] Removing existing mesh to update: ${item.tag}`);
         scene.remove(existingMesh);
         if (existingMesh instanceof THREE.Mesh) {
             existingMesh.geometry?.dispose();
@@ -319,43 +299,23 @@ export function updateEquipmentMeshesInScene({
     }
 
     const newOrUpdatedMesh = createSingleEquipmentMesh(item);
-    newOrUpdatedMesh.visible = isVisibleByLayer; // Garante que a visibilidade inicial está correta
-
-    // LOG ADICIONADO para verificar as propriedades do mesh antes de adicionar à cena
-    const meshWorldPosition = new THREE.Vector3();
-    newOrUpdatedMesh.getWorldPosition(meshWorldPosition);
-    const meshBoundingBox = new THREE.Box3().setFromObject(newOrUpdatedMesh);
-    const meshSize = new THREE.Vector3();
-    meshBoundingBox.getSize(meshSize);
-
-    console.log(`[updateEquipmentMeshesInScene] Mesh for ${item.tag} PRE-ADD. Visible: ${newOrUpdatedMesh.visible}, Position (world): ${meshWorldPosition.x.toFixed(2)},${meshWorldPosition.y.toFixed(2)},${meshWorldPosition.z.toFixed(2)}, Size: ${meshSize.x.toFixed(2)},${meshSize.y.toFixed(2)},${meshSize.z.toFixed(2)}`);
-
-
+    newOrUpdatedMesh.visible = isVisibleByLayer; 
     scene.add(newOrUpdatedMesh);
     newVisibleMeshesList.push(newOrUpdatedMesh);
-    console.log(`[updateEquipmentMeshesInScene] Mesh for ${item.tag} ADDED to scene. final mesh.visible: ${newOrUpdatedMesh.visible}`);
   });
 
   equipmentMeshesRef.current = newVisibleMeshesList;
-  // console.log(`[updateEquipmentMeshesInScene] Finished. Meshes in sceneRef: ${newVisibleMeshesList.length}`);
 
-
-  // 3. Gerenciar visibilidade do plano de chão
   const terrainLayer = layers.find(l => l.id === 'layer-terrain');
   if (terrainLayer && groundMeshRef && groundMeshRef.current) {
     const isGroundInScene = scene.children.some(child => child.uuid === groundMeshRef.current?.uuid);
     const groundShouldBeVisible = terrainLayer.isVisible;
-    console.log(`[updateEquipmentMeshesInScene] Ground plane: layer.isVisible=${groundShouldBeVisible}, isGroundInScene=${isGroundInScene}, currentMeshVisibleState: ${groundMeshRef.current.visible}`);
 
     if (groundShouldBeVisible && !isGroundInScene) {
       scene.add(groundMeshRef.current);
-      console.log("[updateEquipmentMeshesInScene] Added ground plane to scene.");
     } else if (!groundShouldBeVisible && isGroundInScene) {
       scene.remove(groundMeshRef.current);
-      console.log("[updateEquipmentMeshesInScene] Removed ground plane from scene.");
     }
     groundMeshRef.current.visible = groundShouldBeVisible;
-    console.log(`[updateEquipmentMeshesInScene] Ground plane final visibility set to: ${groundMeshRef.current.visible}`);
   }
-  console.log(`[updateEquipmentMeshesInScene] END. Meshes in sceneRef.current after update: ${equipmentMeshesRef.current.length}`);
 }

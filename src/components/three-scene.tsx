@@ -2,6 +2,7 @@
 /**
  * @module components/three-scene
  * Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
+ *
  * Este componente atua como um orquestrador para a visualização 3D.
  * Ele delega responsabilidades específicas de configuração e gerenciamento da cena
  * para hooks customizados especializados, e então renderiza o elemento DOM
@@ -37,63 +38,64 @@
  * @see {@link ../../hooks/useAnimationLoop/README.md} Para o loop de animação.
  *
  * @example
- * // Diagrama de Composição do ThreeScene e seus Hooks
- * // mermaid
- * // graph TD
- * //     ThreeScene_Comp["ThreeScene (Componente React)"]
- * //     MountPoint["<div ref={mountRef}> (Ponto de Montagem DOM)"]
- * //
- * //     ThreeScene_Comp -- renderiza --> MountPoint
- * //
- * //     subgraph "Hooks Utilizados por ThreeScene"
- * //         direction LR
- * //         H_SceneSetup["useSceneSetup (Orquestrador de Setup)"]
- * //         H_EquipRenderer["useEquipmentRenderer"]
- * //         H_AnnotPinRenderer["useAnnotationPinRenderer"]
- * //         H_MouseInt["useMouseInteractionManager"]
- * //         H_Outline["useSceneOutline"]
- * //         H_AnimLoop["useAnimationLoop"]
- * //     end
- * //
- * //     ThreeScene_Comp -- usa --> H_SceneSetup
- * //     ThreeScene_Comp -- usa --> H_EquipRenderer
- * //     ThreeScene_Comp -- usa --> H_AnnotPinRenderer
- * //     ThreeScene_Comp -- usa --> H_MouseInt
- * //     ThreeScene_Comp -- usa --> H_Outline
- * //     ThreeScene_Comp -- usa --> H_AnimLoop
- * //
- * //     H_SceneSetup --> R_Scene["sceneRef"]
- * //     H_SceneSetup --> R_Camera["cameraRef"]
- * //     H_SceneSetup --> R_Renderer["rendererRef"]
- * //     H_SceneSetup --> R_LabelRenderer["labelRendererRef"]
- * //     H_SceneSetup --> R_Controls["controlsRef"]
- * //     H_SceneSetup --> R_Composer["composerRef"]
- * //     H_SceneSetup --> R_OutlinePass["outlinePassRef"]
- * //     H_SceneSetup --> F_IsSceneReady["isSceneReady (flag)"]
- * //     H_SceneSetup --> F_IsControlsReady["isControlsReady (flag)"]
- * //
- * //     H_EquipRenderer -- usa --> R_Scene
- * //     H_AnnotPinRenderer -- usa --> R_Scene
- * //     H_AnnotPinRenderer -- usa --> R_LabelRenderer
- * //     H_MouseInt -- usa --> MountPoint
- * //     H_MouseInt -- usa --> R_Camera
- * //     H_Outline -- usa --> R_OutlinePass
- * //     H_AnimLoop -- usa --> R_Scene
- * //     H_AnimLoop -- usa --> R_Camera
- * //     H_AnimLoop -- usa --> R_Controls
- * //     H_AnimLoop -- usa --> R_Composer
- * //     H_AnimLoop -- usa --> R_LabelRenderer
- * //
- * //     classDef comp fill:#lightcoral,stroke:#333,stroke-width:2px;
- * //     classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
- * //     classDef ref fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
- * //     classDef flag fill:#lightpink,stroke:#333,stroke-width:2px;
- * //
- * //     class ThreeScene_Comp comp;
- * //     class MountPoint comp;
- * //     class H_SceneSetup,H_EquipRenderer,H_AnnotPinRenderer,H_MouseInt,H_Outline,H_AnimLoop hook;
- * //     class R_Scene,R_Camera,R_Renderer,R_LabelRenderer,R_Controls,R_Composer,R_OutlinePass ref;
- * //     class F_IsSceneReady,F_IsControlsReady flag;
+ * // Diagrama de Composição do ThreeScene e seus Hooks:
+ * ```mermaid
+ * graph TD
+ *     ThreeScene_Comp["ThreeScene (Componente React)"]
+ *     MountPoint["<div ref={mountRef}> (Ponto de Montagem DOM)"]
+ *
+ *     ThreeScene_Comp -- renderiza --> MountPoint
+ *
+ *     subgraph "Hooks Utilizados por ThreeScene"
+ *         direction LR
+ *         H_SceneSetup["useSceneSetup (Orquestrador de Setup)"]
+ *         H_EquipRenderer["useEquipmentRenderer"]
+ *         H_AnnotPinRenderer["useAnnotationPinRenderer"]
+ *         H_MouseInt["useMouseInteractionManager"]
+ *         H_Outline["useSceneOutline"]
+ *         H_AnimLoop["useAnimationLoop"]
+ *     end
+ *
+ *     ThreeScene_Comp -- usa --> H_SceneSetup
+ *     ThreeScene_Comp -- usa --> H_EquipRenderer
+ *     ThreeScene_Comp -- usa --> H_AnnotPinRenderer
+ *     ThreeScene_Comp -- usa --> H_MouseInt
+ *     ThreeScene_Comp -- usa --> H_Outline
+ *     ThreeScene_Comp -- usa --> H_AnimLoop
+ *
+ *     H_SceneSetup --> R_Scene["sceneRef"]
+ *     H_SceneSetup --> R_Camera["cameraRef"]
+ *     H_SceneSetup --> R_Renderer["rendererRef"]
+ *     H_SceneSetup --> R_LabelRenderer["labelRendererRef"]
+ *     H_SceneSetup --> R_Controls["controlsRef"]
+ *     H_SceneSetup --> R_Composer["composerRef"]
+ *     H_SceneSetup --> R_OutlinePass["outlinePassRef"]
+ *     H_SceneSetup --> F_IsSceneReady["isSceneReady (flag)"]
+ *     H_SceneSetup --> F_IsControlsReady["isControlsReady (flag)"]
+ *
+ *     H_EquipRenderer -- usa --> R_Scene
+ *     H_AnnotPinRenderer -- usa --> R_Scene
+ *     H_AnnotPinRenderer -- usa --> R_LabelRenderer
+ *     H_MouseInt -- usa --> MountPoint
+ *     H_MouseInt -- usa --> R_Camera
+ *     H_Outline -- usa --> R_OutlinePass
+ *     H_AnimLoop -- usa --> R_Scene
+ *     H_AnimLoop -- usa --> R_Camera
+ *     H_AnimLoop -- usa --> R_Controls
+ *     H_AnimLoop -- usa --> R_Composer
+ *     H_AnimLoop -- usa --> R_LabelRenderer
+ *
+ *     classDef comp fill:#lightcoral,stroke:#333,stroke-width:2px;
+ *     classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
+ *     classDef ref fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
+ *     classDef flag fill:#lightpink,stroke:#333,stroke-width:2px;
+ *
+ *     class ThreeScene_Comp comp;
+ *     class MountPoint comp;
+ *     class H_SceneSetup,H_EquipRenderer,H_AnnotPinRenderer,H_MouseInt,H_Outline,H_AnimLoop hook;
+ *     class R_Scene,R_Camera,R_Renderer,R_LabelRenderer,R_Controls,R_Composer,R_OutlinePass ref;
+ *     class F_IsSceneReady,F_IsControlsReady flag;
+ * ```
  */
 "use client";
 
@@ -142,7 +144,7 @@ export interface ThreeSceneProps {
   onSelectEquipment: (tag: string | null, isMultiSelectModifierPressed: boolean) => void;
   hoveredEquipmentTag: string | null | undefined;
   setHoveredEquipmentTag: (tag: string | null) => void;
-  cameraState: CameraState | undefined;
+  cameraState: CameraState | undefined; // Corrigido para aceitar undefined
   onCameraChange: (cameraState: CameraState, actionDescription?: string) => void;
   initialCameraPosition: { x: number; y: number; z: number };
   initialCameraLookAt: { x: number; y: number; z: number };
@@ -275,11 +277,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
   });
 
   const startCameraAnimation = useCallback((targetPos: THREE.Vector3, targetLookAt: THREE.Vector3, onComplete?: () => void) => {
-    // console.log("[ThreeScene] startCameraAnimation. Current Camera - Pos: ", cameraRef.current?.position, " Target: ", controlsRef.current?.target);
-    // console.log("[ThreeScene] startCameraAnimation. Animation Target - Pos: ", targetPos, " LookAt: ", targetLookAt);
-
     if (!cameraRef.current || !controlsRef.current) {
-      // console.warn("[ThreeScene] startCameraAnimation: Camera or Controls not ready. Calling onComplete if exists.");
       onComplete?.();
       return;
     }
@@ -292,7 +290,6 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     animationOnCompleteCallbackRef.current = onComplete || null;
     if (controlsRef.current) {
         controlsRef.current.enabled = false;
-        // console.log("[ThreeScene] OrbitControls disabled for animation. controls.enabled:", controlsRef.current.enabled);
     }
   }, [cameraRef, controlsRef]);
 
@@ -303,27 +300,19 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
       const isAlreadyAtTarget = positionEqualsWithTolerance(cameraRef.current.position, targetPosition) && positionEqualsWithTolerance(controlsRef.current.target, targetLookAt);
       
       if (!isAlreadyAtTarget && !isAnimatingRef.current) {
-        // console.log("[ThreeScene] Programmatic camera state change detected AND camera is not already at target. Starting animation.", programmaticCameraState);
-        startCameraAnimation(targetPosition, targetLookAt); // Não registrar no histórico aqui, pois isso é uma REAÇÃO a uma mudança de estado já comandada
-      } else if (isAlreadyAtTarget) {
-        // console.log("[ThreeScene] Programmatic camera state change detected BUT camera is already at target. No animation needed.", programmaticCameraState);
-      } else if (isAnimatingRef.current) {
-        // console.log("[ThreeScene] Programmatic camera state change detected BUT animation is already in progress. Ignoring new state for now.", programmaticCameraState);
-      }
+        startCameraAnimation(targetPosition, targetLookAt); 
+      } 
     }
   }, [programmaticCameraState, isSceneReady, isControlsReady, startCameraAnimation, cameraRef, controlsRef]);
 
   useEffect(() => {
     if (!targetSystemToFrame) return;
-    // console.log(`[ThreeScene] targetSystemToFrame changed: ${targetSystemToFrame.systemName}, viewIndex: ${targetSystemToFrame.viewIndex}`);
     if (!sceneRef.current || !cameraRef.current || !controlsRef.current || !isSceneReady || !isControlsReady) {
-      // console.warn("[ThreeScene] Cannot frame system: Scene or controls not ready.");
       onSystemFramedRef.current?.();
       return;
     }
     const equipmentMeshesToConsider = equipmentMeshesRef.current;
     if (!equipmentMeshesToConsider || (equipmentMeshesToConsider.length === 0 && targetSystemToFrame.systemName !== 'INITIAL_LOAD_NO_SYSTEM')) {
-      // console.warn("[ThreeScene] Cannot frame system: No equipment meshes available for the system or no meshes at all (and not initial load).");
       onSystemFramedRef.current?.();
       return;
     }
@@ -331,17 +320,14 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     if (targetSystemToFrame.systemName !== 'INITIAL_LOAD_NO_SYSTEM') {
       systemMeshes = equipmentMeshesToConsider.filter(mesh => mesh.userData.sistema === targetSystemToFrame.systemName && mesh.visible);
       if (systemMeshes.length === 0) {
-        // console.warn(`[ThreeScene] No visible meshes found for system: ${targetSystemToFrame.systemName}. Cannot frame.`);
         onSystemFramedRef.current?.();
         return;
       }
     } else {
-      // console.log("[ThreeScene] targetSystemToFrame is INITIAL_LOAD_NO_SYSTEM. Calling onSystemFramed and returning.");
       onSystemFramedRef.current?.();
       return;
     }
     const viewOptions: SystemViewOptions | null = calculateViewForMeshes(systemMeshes, cameraRef.current);
-    // console.log("[ThreeScene] Calculated view for system:", targetSystemToFrame.systemName, "View Index:", targetSystemToFrame.viewIndex, "Selected View:", viewOptions);
     if (viewOptions) {
       let selectedView: SystemView;
       switch (targetSystemToFrame.viewIndex) {
@@ -353,19 +339,16 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
       const targetLookAtVec = new THREE.Vector3(selectedView.lookAt.x, selectedView.lookAt.y, selectedView.lookAt.z);
       
       startCameraAnimation(targetPositionVec, targetLookAtVec, () => {
-        // console.log("[ThreeScene] Animation to focus system completed.");
         if (cameraRef.current && controlsRef.current && onCameraChangeRef.current) {
           const finalStateAfterFocus: CameraState = {
             position: cameraRef.current.position.clone(),
             lookAt: controlsRef.current.target.clone(),
           };
-          // console.log("[ThreeScene] Calling onCameraChange with final state after focus animation.");
           onCameraChangeRef.current(finalStateAfterFocus, `Foco no sistema ${targetSystemToFrame.systemName} (visão ${targetSystemToFrame.viewIndex})`);
         }
         onSystemFramedRef.current?.();
       });
     } else {
-      // console.warn("[ThreeScene] Could not calculate view options for system focus. Calling onSystemFramed.");
       onSystemFramedRef.current?.();
     }
   }, [targetSystemToFrame, isSceneReady, isControlsReady, equipmentMeshesRef, sceneRef, cameraRef, controlsRef, startCameraAnimation]);
@@ -382,7 +365,6 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
         isAnimatingRef.current = false;
         if (controlsRef.current) {
             controlsRef.current.enabled = true;
-            // console.log("[ThreeScene] Animation ended, OrbitControls re-enabled. controls.enabled:", controlsRef.current.enabled);
         }
         animationOnCompleteCallbackRef.current?.();
         animationOnCompleteCallbackRef.current = null;
@@ -394,10 +376,9 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     const currentMount = mountRef.current;
     const handleWheel = (event: WheelEvent) => {
       if (isAnimatingRef.current) {
-        // console.log("[ThreeScene] Wheel event during animation. Stopping animation and re-enabling controls.");
         isAnimatingRef.current = false;
         if (controlsRef.current) controlsRef.current.enabled = true;
-        animationOnCompleteCallbackRef.current?.(); // Call completion if animation was interrupted
+        animationOnCompleteCallbackRef.current?.(); 
         animationOnCompleteCallbackRef.current = null;
       }
     };
@@ -423,5 +404,3 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 };
 
 export default ThreeScene;
-
-    
