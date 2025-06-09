@@ -1,114 +1,40 @@
 
 /**
- * Hook customizado para a configuração inicial de uma cena Three.js.
+ * @fileOverview Orchestrator hook for setting up a complete Three.js scene.
  *
- * Principal Responsabilidade:
- * Encapsular a criação e inicialização dos principais componentes de uma cena Three.js.
- * Suas responsabilidades incluem:
- * 1.  **Criação da Cena:** Inicializa o objeto `THREE.Scene`.
- * 2.  **Configuração da Câmera:** Cria e configura `THREE.PerspectiveCamera`.
- * 3.  **Configuração do WebGL Renderer:** Inicializa `THREE.WebGLRenderer` e anexa ao DOM.
- * 4.  **Configuração do CSS2D Renderer:** Inicializa `CSS2DRenderer` para rótulos HTML e anexa ao DOM.
- * 5.  **Configuração dos OrbitControls:** Importa e inicializa `OrbitControls`, configurando interações do mouse (esquerdo/meio para rotação, direito para pan) e amortecimento.
- * 6.  **Configuração do EffectComposer e Pós-Processamento:** Inicializa `EffectComposer`, `RenderPass` e `OutlinePass`.
- * 7.  **Configuração da Iluminação:** Adiciona luzes ambiente, hemisférica e direcional.
- * 8.  **Configuração do Plano de Chão:** Cria e adiciona um plano de chão.
- * 9.  **Gerenciamento de Redimensionamento:** Atualiza câmera e renderizadores ao redimensionar.
- * 10. **Gerenciamento de Estado de Prontidão:** Controla as flags `isSceneReady` e `isControlsReady`.
- * 11. **Callback de Mudança de Câmera:** Escuta o evento 'end' dos `OrbitControls` para notificar mudanças de câmera.
- * 12. **Limpeza de Recursos:** Libera recursos Three.js e remove ouvintes de eventos no desmonte.
- * 13. **Tratamento de Contexto WebGL:** Adiciona ouvintes para perda e restauração do contexto WebGL.
+ * Responsibilities:
+ * - Composes specialized hooks to initialize different parts of the Three.js environment:
+ *   - `useThreeCore`: Initializes `THREE.Scene` and `THREE.PerspectiveCamera`.
+ *   - `useThreeRenderers`: Sets up `WebGLRenderer`, `CSS2DRenderer`, `EffectComposer`, and `OutlinePass`.
+ *   - `useThreeOrbitControls`: Configures `OrbitControls` for camera manipulation.
+ *   - `useThreeSceneElements`: Adds lighting and a ground plane to the scene.
+ *   - `useThreeResize`: Handles responsive resizing of the camera and renderers.
+ * - Aggregates and returns refs to all major Three.js components created by these hooks.
+ * - Manages and returns overall scene readiness flags (`isSceneReady`, `isControlsReady`).
  *
- * ```mermaid
- *   classDiagram
- *     class UseSceneSetupProps {
- *       +mountRef: RefObject_HTMLDivElement_
- *       +initialCameraPosition: Point3D
- *       +initialCameraLookAt: Point3D
- *       +onCameraChange(cameraState: CameraState, actionDescription?: string): void
- *     }
- *     class UseSceneSetupReturn {
- *       +sceneRef: RefObject_Scene_
- *       +cameraRef: RefObject_PerspectiveCamera_
- *       +rendererRef: RefObject_WebGLRenderer_
- *       +labelRendererRef: RefObject_CSS2DRenderer_
- *       +controlsRef: RefObject_OrbitControls_
- *       +composerRef: RefObject_EffectComposer_
- *       +outlinePassRef: RefObject_OutlinePass_
- *       +groundMeshRef: RefObject_Mesh_
- *       +isSceneReady: boolean
- *       +isControlsReady: boolean
- *     }
- *     class Point3D {
- *       +x: number
- *       +y: number
- *       +z: number
- *     }
- *     class CameraState {
- *        +position: Point3D
- *        +lookAt: Point3D
- *     }
- *     class RefObject_HTMLDivElement_ {
- *     }
- *     class RefObject_Scene_ {
- *     }
- *     class RefObject_PerspectiveCamera_ {
- *     }
- *     class RefObject_WebGLRenderer_ {
- *     }
- *     class RefObject_CSS2DRenderer_ {
- *     }
- *     class RefObject_OrbitControls_ {
- *     }
- *     class RefObject_EffectComposer_ {
- *     }
- *     class RefObject_OutlinePass_ {
- *     }
- *     class RefObject_Mesh_ {
- *     }
- *
- *     UseSceneSetupProps ..> Point3D
- *     UseSceneSetupProps ..> CameraState
- *     UseSceneSetupReturn ..> Point3D
- *     UseSceneSetupReturn ..> CameraState
- *     class useSceneSetup {
- *     }
- *     class scene_elements_setup {
- *     }
- *     useSceneSetup ..> scene_elements_setup : uses setupRenderPipeline, setupLighting, setupGroundPlane
- *     UseSceneSetupProps --> RefObject_HTMLDivElement_ : mountRef
- *     UseSceneSetupReturn --> RefObject_Scene_ : sceneRef
- *     UseSceneSetupReturn --> RefObject_PerspectiveCamera_ : cameraRef
- *     UseSceneSetupReturn --> RefObject_WebGLRenderer_ : rendererRef
- *     UseSceneSetupReturn --> RefObject_CSS2DRenderer_ : labelRendererRef
- *     UseSceneSetupReturn --> RefObject_OrbitControls_ : controlsRef
- *     UseSceneSetupReturn --> RefObject_EffectComposer_ : composerRef
- *     UseSceneSetupReturn --> RefObject_OutlinePass_ : outlinePassRef
- *     UseSceneSetupReturn --> RefObject_Mesh_ : groundMeshRef
- *
- *     style UseSceneSetupProps,UseSceneSetupReturn fill:#DCDCDC,stroke:#333,stroke-width:2px,color:black
- *     style Point3D,CameraState,RefObject_HTMLDivElement_,RefObject_Scene_,RefObject_PerspectiveCamera_,RefObject_WebGLRenderer_,RefObject_CSS2DRenderer_,RefObject_OrbitControls_,RefObject_EffectComposer_,RefObject_OutlinePass_,RefObject_Mesh_ fill:#FFFFE0,stroke:#333,stroke-width:2px,color:black
- *     style useSceneSetup,scene_elements_setup fill:#ADD8E6,stroke:#333,stroke-width:2px,color:black
- * ```
- *
+ * This hook aims to simplify scene setup in the main `ThreeScene` component by delegating
+ * specific initialization tasks to more focused hooks, adhering to the Single Responsibility Principle.
  */
-import { useRef, useEffect, useState, useCallback } from 'react';
-import * as THREE from 'three';
+import type * as THREE from 'three';
 import type { OrbitControls as OrbitControlsType } from 'three/examples/jsm/controls/OrbitControls.js';
 import type { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import type { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import type { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
-
-import { setupLighting, setupGroundPlane, setupRenderPipeline } from '@/core/three/scene-elements-setup';
 import type { CameraState } from '@/lib/types';
 
+import { useThreeCore } from './useThreeCore';
+import { useThreeRenderers } from './useThreeRenderers';
+import { useThreeOrbitControls } from './useThreeOrbitControls';
+import { useThreeSceneElements } from './useThreeSceneElements';
+import { useThreeResize } from './useThreeResize';
+
 /**
- * Props for the useSceneSetup hook.
- * @interface UseSceneSetupProps
- * @property {React.RefObject<HTMLDivElement>} mountRef - Ref para o elemento contêiner da cena.
- * @property {{ x: number; y: number; z: number }} initialCameraPosition - Posição inicial da câmera.
- * @property {{ x: number; y: number; z: number }} initialCameraLookAt - Ponto inicial para o qual a câmera está olhando.
- * @property {(cameraState: CameraState, actionDescription?: string) => void} onCameraChange - Callback para quando a câmera muda.
+ * Props for the main scene setup orchestrator hook.
+ * @interface UseSceneOrchestratorProps
+ * @property {React.RefObject<HTMLDivElement>} mountRef - Ref to the container element for the scene.
+ * @property {{ x: number; y: number; z: number }} initialCameraPosition - Initial position of the camera.
+ * @property {{ x: number; y: number; z: number }} initialCameraLookAt - Initial point the camera is looking at.
+ * @property {(cameraState: CameraState, actionDescription?: string) => void} onCameraChange - Callback for when camera state changes.
  */
 export interface UseSceneSetupProps {
   mountRef: React.RefObject<HTMLDivElement>;
@@ -118,18 +44,19 @@ export interface UseSceneSetupProps {
 }
 
 /**
- * Return value of the useSceneSetup hook.
+ * Return value of the main scene setup orchestrator hook.
+ * Aggregates refs and readiness flags from specialized setup hooks.
  * @interface UseSceneSetupReturn
- * @property {React.RefObject<THREE.Scene | null>} sceneRef - Ref para a cena Three.js.
- * @property {React.RefObject<THREE.PerspectiveCamera | null>} cameraRef - Ref para a câmera Three.js.
- * @property {React.RefObject<THREE.WebGLRenderer | null>} rendererRef - Ref para o WebGLRenderer.
- * @property {React.RefObject<CSS2DRenderer | null>} labelRendererRef - Ref para o CSS2DRenderer.
- * @property {React.RefObject<OrbitControlsType | null>} controlsRef - Ref para os OrbitControls.
- * @property {React.RefObject<EffectComposer | null>} composerRef - Ref para o EffectComposer.
- * @property {React.RefObject<OutlinePass | null>} outlinePassRef - Ref para o OutlinePass.
- * @property {React.RefObject<THREE.Mesh | null>} groundMeshRef - Ref para a malha do plano de chão.
- * @property {boolean} isSceneReady - Estado indicando se a configuração da cena está completa.
- * @property {boolean} isControlsReady - Estado indicando se os controles da cena estão prontos.
+ * @property {React.RefObject<THREE.Scene | null>} sceneRef
+ * @property {React.RefObject<THREE.PerspectiveCamera | null>} cameraRef
+ * @property {React.RefObject<THREE.WebGLRenderer | null>} rendererRef
+ * @property {React.RefObject<CSS2DRenderer | null>} labelRendererRef
+ * @property {React.RefObject<OrbitControlsType | null>} controlsRef
+ * @property {React.RefObject<EffectComposer | null>} composerRef
+ * @property {React.RefObject<OutlinePass | null>} outlinePassRef
+ * @property {React.RefObject<THREE.Mesh | null>} groundMeshRef
+ * @property {boolean} isSceneReady - True if core, renderers, and elements are ready.
+ * @property {boolean} isControlsReady - True if OrbitControls are ready.
  */
 export interface UseSceneSetupReturn {
   sceneRef: React.RefObject<THREE.Scene | null>;
@@ -145,261 +72,59 @@ export interface UseSceneSetupReturn {
 }
 
 /**
- * A custom hook for handling the initial setup of a Three.js scene.
- * Encapsulates the creation of the scene, camera, renderers, controls, lighting, and ground plane.
- * Also manages the scene's readiness state and handles window resizing.
- * OrbitControls are configured for Left/Middle mouse to rotate, Right to pan.
+ * Orchestrates the setup of a Three.js scene by composing specialized setup hooks.
+ * This hook is responsible for initializing the core scene, renderers, controls,
+ * basic scene elements (lighting, ground), and handling resize events.
+ * It provides refs to all major Three.js components and flags indicating their readiness.
  *
- * @param {UseSceneSetupProps} props - The properties for the hook.
- * @returns {UseSceneSetupReturn} An object containing refs to the core scene elements and the readiness state.
+ * @param {UseSceneSetupProps} props - Configuration properties for the scene setup.
+ * @returns {UseSceneSetupReturn} Refs to scene components and readiness flags.
  */
-export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn => {
+export function useSceneSetup(props: UseSceneSetupProps): UseSceneSetupReturn {
   const { mountRef, initialCameraPosition, initialCameraLookAt, onCameraChange } = props;
-  // console.log('[useSceneSetup] Hook initialized.');
+  // console.log('[useSceneSetup Orchestrator] Hook initialized.');
 
-  const sceneRef = useRef<THREE.Scene | null>(null);
-  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
-  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-  const labelRendererRef = useRef<CSS2DRenderer | null>(null);
-  const controlsRef = useRef<OrbitControlsType | null>(null);
-  const composerRef = useRef<EffectComposer | null>(null);
-  const outlinePassRef = useRef<OutlinePass | null>(null);
-  const groundMeshRef = useRef<THREE.Mesh | null>(null);
+  // 1. Core (Scene, Camera)
+  const { sceneRef, cameraRef } = useThreeCore({ initialCameraPosition, mountRef });
+  const coreReady = !!(mountRef.current && sceneRef.current && cameraRef.current); // Core ready if mount, scene and camera are up.
 
-  const [isSceneReady, setIsSceneReady] = useState(false);
-  const [isControlsReady, setIsControlsReady] = useState(false);
+  // 2. Renderers (WebGL, CSS2D, Composer, OutlinePass)
+  const { 
+    rendererRef, 
+    labelRendererRef, 
+    composerRef, 
+    outlinePassRef, 
+    areRenderersReady 
+  } = useThreeRenderers({ mountRef, sceneRef, cameraRef }); // Depends on coreReady implicitly via refs
 
-  const onCameraChangeRef = useRef(onCameraChange);
-  useEffect(() => { onCameraChangeRef.current = onCameraChange; }, [onCameraChange]);
+  // 3. OrbitControls - Depends on renderers being ready (for rendererRef.current.domElement)
+  const { controlsRef, isControlsReady } = useThreeOrbitControls({
+    cameraRef,
+    domElementRef: rendererRef, // Pass the WebGLRenderer's DOM element
+    initialCameraLookAt,
+    onCameraChange,
+    renderersReady: areRenderersReady,
+  });
 
-  /**
-   * Handles the resizing of the container and updates the camera and renderers.
-   */
-  const handleResize = useCallback(() => {
-    if (mountRef.current && cameraRef.current && rendererRef.current) {
-      const width = Math.max(1, mountRef.current.clientWidth);
-      const height = Math.max(1, mountRef.current.clientHeight);
-      // console.log(`[useSceneSetup] handleResize called. New dimensions: ${width}x${height}`);
+  // 4. Scene Elements (Lighting, Ground Plane) - Depends on coreReady
+  const { groundMeshRef } = useThreeSceneElements({ sceneRef, coreReady });
+  const elementsReady = coreReady && !!groundMeshRef.current; // Elements ready if core is ready and ground mesh is created
 
-      cameraRef.current.aspect = width / height;
-      cameraRef.current.updateProjectionMatrix();
+  // 5. Combined readiness for the base scene (everything except controls which are async)
+  const baseSceneComponentsReady = coreReady && areRenderersReady && elementsReady;
 
-      rendererRef.current.setSize(width, height);
-      labelRendererRef.current?.setSize(width, height);
-      composerRef.current?.setSize(width, height);
-      outlinePassRef.current?.resolution.set(width, height);
-    } else {
-      // console.warn('[useSceneSetup] handleResize called, but refs are not ready.');
-    }
-  }, [mountRef]);
-
-  useEffect(() => {
-    // console.log('[useSceneSetup] Main useEffect for scene setup START.');
-    const currentMount = mountRef.current;
-    if (!currentMount) {
-      // console.warn('[useSceneSetup] mountRef.current is null. Aborting setup.');
-      return;
-    }
-
-    // console.log('[useSceneSetup] Initializing Scene and Camera...');
-    sceneRef.current = new THREE.Scene();
-    cameraRef.current = new THREE.PerspectiveCamera(75, Math.max(1, currentMount.clientWidth) / Math.max(1, currentMount.clientHeight), 0.1, 2000);
-    cameraRef.current.position.set(initialCameraPosition.x, initialCameraPosition.y, initialCameraPosition.z);
-    // console.log('[useSceneSetup] Scene and Camera initialized.');
-
-    // console.log('[useSceneSetup] Setting up Render Pipeline...');
-    const pipeline = setupRenderPipeline(currentMount, sceneRef.current, cameraRef.current);
-    if (!pipeline) {
-      // console.error("[useSceneSetup] Failed to setup render pipeline. Aborting setup.");
-      return;
-    }
-    rendererRef.current = pipeline.renderer;
-    labelRendererRef.current = pipeline.labelRenderer;
-    composerRef.current = pipeline.composer;
-    outlinePassRef.current = pipeline.outlinePass;
-    // console.log('[useSceneSetup] Render Pipeline setup complete.');
-
-    setIsSceneReady(true);
-    // console.log('[useSceneSetup] isSceneReady set to true (after basic pipeline).');
-    handleResize();
-
-    const handleContextLost = (event: Event) => {
-      event.preventDefault();
-      // console.error("[useSceneSetup] WebGL context lost. Application may need to reinitialize resources.");
-    };
-    const handleContextRestored = () => {
-      // console.log("[useSceneSetup] WebGL context restored. Reinitializing scene if necessary.");
-      if (sceneRef.current && cameraRef.current && rendererRef.current) {
-         rendererRef.current.compile(sceneRef.current, cameraRef.current);
-        //  console.log("[useSceneSetup] Attempted to recompile shaders on context restore.");
-      }
-    };
-
-    if (rendererRef.current) {
-      rendererRef.current.domElement.addEventListener('webglcontextlost', handleContextLost, false);
-      rendererRef.current.domElement.addEventListener('webglcontextrestored', handleContextRestored, false);
-      // console.log("[useSceneSetup] WebGL context event listeners added.");
-    }
-
-    if (sceneRef.current) {
-      // console.log("[useSceneSetup] Setting up Lighting and Ground Plane...");
-      setupLighting(sceneRef.current);
-      groundMeshRef.current = setupGroundPlane(sceneRef.current);
-      // console.log("[useSceneSetup] Lighting and Ground Plane setup complete.");
-    }
-
-    let localControls: OrbitControlsType | null = null;
-
-    // console.log("[useSceneSetup] Importing OrbitControls...");
-    import('three/examples/jsm/controls/OrbitControls.js')
-      .then(module => {
-        // console.log("[useSceneSetup] OrbitControls module loaded.");
-        const OrbitControls = module.OrbitControls;
-        if (!cameraRef.current || !rendererRef.current?.domElement) {
-          // console.error("[useSceneSetup] Failed to initialize OrbitControls: Camera or Renderer domElement not ready.");
-          setIsControlsReady(false);
-          return;
-        }
-
-        localControls = new OrbitControls(cameraRef.current, rendererRef.current.domElement);
-        controlsRef.current = localControls;
-        // console.log("[useSceneSetup] OrbitControls initialized.");
-
-        localControls.enableDamping = true;
-
-        if (initialCameraLookAt) {
-          localControls.target.set(initialCameraLookAt.x, initialCameraLookAt.y, initialCameraLookAt.z);
-        } else {
-          // console.warn("[useSceneSetup] initialLookAt is undefined during OrbitControls setup. Using default target (0,0,0).");
-          localControls.target.set(0, 0, 0);
-        }
-
-        localControls.mouseButtons = {
-          LEFT: THREE.MOUSE.ROTATE,
-          MIDDLE: THREE.MOUSE.ROTATE, // Default é DOLLY, mudamos para ROTATE
-          RIGHT: THREE.MOUSE.PAN
-        };
-        localControls.update();
-        // console.log("[useSceneSetup] OrbitControls configured and updated.");
-
-        localControls.addEventListener('end', handleControlsChangeEnd);
-        setIsControlsReady(true);
-        // console.log("[useSceneSetup] isControlsReady set to true.");
-      })
-      .catch(err => {
-        // console.error("[useSceneSetup] Failed to load OrbitControls", err);
-        setIsControlsReady(false);
-      });
-
-    /**
-     * Callback for when OrbitControls finishes a change (e.g., user stops dragging).
-     * Notifies the parent component about the camera state change.
-     */
-    const handleControlsChangeEnd = () => {
-        if (cameraRef.current && controlsRef.current && onCameraChangeRef.current) {
-            // console.log("[useSceneSetup] OrbitControls 'end' event triggered.");
-            const newCameraState: CameraState = {
-            position: cameraRef.current.position.clone(), // Use clone() para evitar problemas de referência
-            lookAt: controlsRef.current.target.clone(),   // Use clone()
-            };
-            // O terceiro argumento (descrição) é omitido aqui, pois é um movimento manual.
-            // A descrição padrão "Câmera movida pelo usuário" será usada em useCameraManager.
-            onCameraChangeRef.current(newCameraState);
-        }
-    };
-
-    const resizeObserver = new ResizeObserver(() => handleResize());
-    if (currentMount) {
-        resizeObserver.observe(currentMount);
-        // console.log("[useSceneSetup] ResizeObserver attached.");
-    }
-
-
-    /**
-     * Cleanup function for the effect. Disposes of Three.js objects and removes event listeners.
-     */
-    return () => {
-      // console.log('[useSceneSetup] Main useEffect CLEANUP running.');
-
-      if (currentMount) {
-        resizeObserver.unobserve(currentMount);
-        // console.log("[useSceneSetup] ResizeObserver detached.");
-      }
-
-      if (rendererRef.current) {
-        rendererRef.current.domElement.removeEventListener('webglcontextlost', handleContextLost, false);
-        rendererRef.current.domElement.removeEventListener('webglcontextrestored', handleContextRestored, false);
-        // console.log("[useSceneSetup] WebGL context event listeners removed.");
-      }
-
-      if (localControls) {
-        localControls.removeEventListener('end', handleControlsChangeEnd);
-        localControls.dispose();
-        // console.log("[useSceneSetup] OrbitControls disposed.");
-      }
-      controlsRef.current = null;
-
-      if (groundMeshRef.current) {
-        groundMeshRef.current.geometry?.dispose();
-        if (groundMeshRef.current.material instanceof THREE.Material) {
-           (groundMeshRef.current.material as THREE.Material).dispose();
-        }
-        sceneRef.current?.remove(groundMeshRef.current);
-        groundMeshRef.current = null;
-        // console.log("[useSceneSetup] Ground plane resources disposed.");
-      }
-
-       composerRef.current?.passes.forEach(pass => {
-            // Adiciona verificação se o pass e a função dispose existem
-            if (pass && (pass as any).dispose && typeof (pass as any).dispose === 'function') {
-                (pass as any).dispose();
-            }
-       });
-       composerRef.current = null;
-       outlinePassRef.current = null;
-      //  console.log("[useSceneSetup] Composer passes disposed.");
-
-      if (rendererRef.current) {
-         // Garante que o elemento DOM ainda existe antes de tentar removê-lo
-         if (rendererRef.current.domElement.parentNode === currentMount) {
-             currentMount.removeChild(rendererRef.current.domElement);
-         }
-         rendererRef.current.dispose();
-         rendererRef.current = null;
-        //  console.log("[useSceneSetup] WebGLRenderer disposed.");
-      }
-
-      if (labelRendererRef.current) {
-         // Garante que o elemento DOM ainda existe antes de tentar removê-lo
-         if (labelRendererRef.current.domElement.parentNode === currentMount) {
-             currentMount.removeChild(labelRendererRef.current.domElement);
-         }
-         // CSS2DRenderer não tem um método dispose(), apenas removemos do DOM
-         labelRendererRef.current = null;
-        //  console.log("[useSceneSetup] CSS2DRenderer cleaned up.");
-      }
-
-      // Limpa a cena de todos os seus filhos, que também devem ser disposed se necessário
-      // (geometry, material). Isso é mais robusto se outros objetos foram adicionados à cena.
-      sceneRef.current?.traverse((object) => {
-        if (object instanceof THREE.Mesh) {
-          object.geometry?.dispose();
-          if (Array.isArray(object.material)) {
-            object.material.forEach(material => material.dispose());
-          } else if (object.material) {
-            object.material.dispose();
-          }
-        }
-      });
-      sceneRef.current = null;
-      cameraRef.current = null;
-
-      setIsSceneReady(false);
-      setIsControlsReady(false);
-      // console.log('[useSceneSetup] Main useEffect CLEANUP finished. Scene and Controls set to NOT READY.');
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mountRef]); // initialCameraPosition, initialCameraLookAt, onCameraChange, handleResize são estáveis ou memoizados
+  // 6. Resize Handling - Depends on all visual components being ready
+  useThreeResize({
+    mountRef,
+    cameraRef,
+    rendererRef,
+    labelRendererRef,
+    composerRef,
+    outlinePassRef,
+    ready: baseSceneComponentsReady,
+  });
+  
+  // console.log(`[useSceneSetup Orchestrator] Final readiness: baseSceneComponentsReady: ${baseSceneComponentsReady}, isControlsReady: ${isControlsReady}`);
 
   return {
     sceneRef,
@@ -410,7 +135,8 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
     composerRef,
     outlinePassRef,
     groundMeshRef,
-    isSceneReady,
-    isControlsReady,
+    isSceneReady: baseSceneComponentsReady, // Overall scene elements readiness
+    isControlsReady,                      // OrbitControls specific readiness
   };
-};
+}
+
