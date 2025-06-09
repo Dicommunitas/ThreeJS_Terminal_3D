@@ -8,7 +8,7 @@
 
 > **default**(): `Element`
 
-Defined in: [src/app/page.tsx:104](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/app/page.tsx#L104)
+Defined in: [src/app/page.tsx:104](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/4466777f13a6776beed134cf281b05ece637d113/src/app/page.tsx#L104)
 
 Componente principal da página Terminal 3D (Terminal3DPage).
 Orquestra os diversos hooks de gerenciamento de estado da aplicação e renderiza a UI principal.

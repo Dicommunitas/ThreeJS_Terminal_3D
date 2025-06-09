@@ -8,4 +8,4 @@
 
 > `const` **AlertDialogCancel**: `ForwardRefExoticComponent`\<`Omit`\<`AlertDialogCancelProps` & `RefAttributes`\<`HTMLButtonElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLButtonElement`\>\>
 
-Defined in: [src/components/ui/alert-dialog.tsx:113](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/components/ui/alert-dialog.tsx#L113)
+Defined in: [src/components/ui/alert-dialog.tsx:113](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/4466777f13a6776beed134cf281b05ece637d113/src/components/ui/alert-dialog.tsx#L113)

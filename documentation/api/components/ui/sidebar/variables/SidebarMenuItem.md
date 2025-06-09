@@ -8,6 +8,6 @@
 
 > `const` **SidebarMenuItem**: `ForwardRefExoticComponent`\<`Omit`\<`DetailedHTMLProps`\<`LiHTMLAttributes`\<`HTMLLIElement`\>, `HTMLLIElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLLIElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:666](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/components/ui/sidebar.tsx#L666)
+Defined in: [src/components/ui/sidebar.tsx:666](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/4466777f13a6776beed134cf281b05ece637d113/src/components/ui/sidebar.tsx#L666)
 
 Item `<li>` de um `SidebarMenu`.

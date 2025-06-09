@@ -8,17 +8,14 @@
 
 ## See
 
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository Para a fonte de dados das anotações.
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository Para obter dados de equipamentos (e.g., nome para toasts).
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Annotation Para a interface de Anotação.
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment Para a interface de Equipamento.
-
-## Param
-
-Propriedades de configuração para o hook (atualmente, `initialAnnotations` é opcional e usado para uma potencial inicialização única do repositório, embora o repositório seja auto-inicializável).
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository) Para a fonte de dados das anotações.
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository) Para obter dados de equipamentos (e.g., nome para toasts).
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Annotation](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Annotation) Para a interface de Anotação.
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment) Para a interface de Equipamento.
 
 ## Example
 
+```ts
 // Diagrama de Interação do useAnnotationManager:
 ```mermaid
 graph TD
@@ -53,6 +50,7 @@ graph TD
    class E,G repo;
    class DialogState,H,I state;
    class useAnnotationManager hook;
+```
 ```
 
 ## Interfaces

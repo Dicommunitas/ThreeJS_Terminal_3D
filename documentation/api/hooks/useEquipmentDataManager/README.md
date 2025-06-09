@@ -8,11 +8,12 @@
 
 ## See
 
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository Para a fonte de dados.
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment Para a interface de Equipamento.
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository) Para a fonte de dados.
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment) Para a interface de Equipamento.
 
 ## Example
 
+```ts
 // Diagrama de Interação do useEquipmentDataManager:
 ```mermaid
 graph TD
@@ -41,6 +42,7 @@ graph TD
    class C,D repo;
    class E,F state;
    class useEquipmentDataManager hook;
+```
 ```
 
 ## Interfaces

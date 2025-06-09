@@ -16,9 +16,9 @@
  * sejam propagadas para os componentes que o utilizam (e.g., `ThreeScene` para aplicar
  * o estado à câmera Three.js).
  *
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#CameraState} Para a interface do estado da câmera.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Command} Para a interface de comando (usada com `executeCommand`).
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#TargetSystemInfo} Para a interface de informações do sistema alvo.
+ * @see {@link lib/types.CameraState} Para a interface do estado da câmera.
+ * @see {@link lib/types.Command} Para a interface de comando (usada com `executeCommand`).
+ * @see {@link lib/types.TargetSystemInfo} Para a interface de informações do sistema alvo.
  *
  * @example
  * // Diagrama de Interação e Estado do useCameraManager:
@@ -102,7 +102,7 @@ export interface UseCameraManagerProps {
  * @property {{ x: number; y: number; z: number }} defaultInitialCameraLookAt - Exporta o ponto de observação inicial padrão da câmera.
  */
 export interface UseCameraManagerReturn {
-  currentCameraState: CameraState; 
+  currentCameraState: CameraState;
   targetSystemToFrame: TargetSystemInfo | null;
   focusedSystemNameUI: string | null;
   currentViewIndexUI: number;
@@ -207,9 +207,5 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
     defaultInitialCameraLookAt,
   };
 }
-
-    
-
-    
 
     

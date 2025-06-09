@@ -8,16 +8,13 @@
 
 ## See
 
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#CameraState Para a interface do estado da câmera.
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Command Para a interface de comando (usada com `executeCommand`).
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#TargetSystemInfo Para a interface de informações do sistema alvo.
-
-## Param
-
-Propriedades para o hook, incluindo `executeCommand` para integração com histórico.
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#CameraState](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#CameraState) Para a interface do estado da câmera.
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Command](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Command) Para a interface de comando (usada com `executeCommand`).
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#TargetSystemInfo](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#TargetSystemInfo) Para a interface de informações do sistema alvo.
 
 ## Example
 
+```ts
 // Diagrama de Interação e Estado do useCameraManager:
 ```mermaid
 graph LR
@@ -60,6 +57,7 @@ graph LR
    class B,G,H,J,M func;
    class C,D,E,K,L,I state;
    class useCameraManager hook;
+```
 ```
 
 ## Interfaces

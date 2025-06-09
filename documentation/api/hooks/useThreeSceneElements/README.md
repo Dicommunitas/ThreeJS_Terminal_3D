@@ -8,11 +8,12 @@
 
 ## See
 
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting Para a função de configuração da iluminação.
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane Para a função de configuração do plano de chão.
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting) Para a função de configuração da iluminação.
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane) Para a função de configuração do plano de chão.
 
 ## Example
 
+```ts
 // Diagrama de Funcionalidade do useThreeSceneElements:
 ```mermaid
 graph TD
@@ -49,6 +50,7 @@ graph TD
     class CoreReady_Flag flag;
     class Lighting_Elements,GroundPlane_Mesh obj3d;
     class Utils_Module util;
+```
 ```
 
 ## Interfaces

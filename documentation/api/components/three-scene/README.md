@@ -8,15 +8,16 @@
 
 ## See
 
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-setup/README.md Para a orquestração da configuração da cena.
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-renderer/README.md Para a renderização de equipamentos.
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-pin-renderer/README.md Para a renderização de pins de anotação.
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-mouse-interaction/README.md Para interações do mouse.
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-outline/README.md Para o efeito de contorno.
- - https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useAnimationLoop/README.md Para o loop de animação.
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-scene-setup/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-setup/README.md) Para a orquestração da configuração da cena.
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-equipment-renderer/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-renderer/README.md) Para a renderização de equipamentos.
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-annotation-pin-renderer/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-pin-renderer/README.md) Para a renderização de pins de anotação.
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-mouse-interaction/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-mouse-interaction/README.md) Para interações do mouse.
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-scene-outline/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-outline/README.md) Para o efeito de contorno.
+ - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-animation-loop/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-animation-loop/README.md) Para o loop de animação.
 
 ## Example
 
+```ts
 // Diagrama de Composição do ThreeScene e seus Hooks:
 ```mermaid
 graph TD
@@ -74,6 +75,7 @@ graph TD
     class H_SceneSetup,H_EquipRenderer,H_AnnotPinRenderer,H_MouseInt,H_Outline,H_AnimLoop hook;
     class R_Scene,R_Camera,R_Renderer,R_LabelRenderer,R_Controls,R_Composer,R_OutlinePass ref;
     class F_IsSceneReady,F_IsControlsReady flag;
+```
 ```
 
 ## Interfaces

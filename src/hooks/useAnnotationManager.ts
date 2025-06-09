@@ -13,14 +13,14 @@
  *     refletir os dados mais recentes, garantindo a reatividade da UI.
  * -   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações de anotação.
  *
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository} Para a fonte de dados das anotações.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository} Para obter dados de equipamentos (e.g., nome para toasts).
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Annotation} Para a interface de Anotação.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment} Para a interface de Equipamento.
+ * @see {@link core/repository/memory-repository.annotationRepository} Para a fonte de dados das anotações.
+ * @see {@link core/repository/memory-repository.equipmentRepository} Para obter dados de equipamentos (e.g., nome para toasts).
+ * @see {@link lib/types.Annotation} Para a interface de Anotação.
+ * @see {@link lib/types.Equipment} Para a interface de Equipamento.
  *
  * @example
  * // Diagrama de Interação do useAnnotationManager:
- * \`\`\`mermaid
+ * ```mermaid
  * graph TD
  *     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOpenAnnotationDialog)
  *     B -- define estados --> DialogState["isAnnotationDialogOpen, editingAnnotation, annotationTargetEquipment"]
@@ -53,7 +53,7 @@
  *    class E,G repo;
  *    class DialogState,H,I state;
  *    class useAnnotationManager hook;
- * \`\`\`
+ * ```
  */
 "use client";
 
@@ -70,7 +70,7 @@ import { useToast } from '@/hooks/use-toast';
  *                                                  No entanto, o `annotationRepository` é geralmente auto-inicializável.
  */
 export interface UseAnnotationManagerProps {
-  initialAnnotations?: Annotation[]; 
+  initialAnnotations?: Annotation[];
 }
 
 /**
@@ -117,12 +117,12 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
     if (currentRepoAnnotations.length === 0 && initialAnnotations.length > 0 && !sessionStorage.getItem('annotationRepoInitializedHook')) {
       annotationRepository.initializeAnnotations(initialAnnotations);
       setAnnotationsState(annotationRepository.getAllAnnotations());
-      sessionStorage.setItem('annotationRepoInitializedHook', 'true'); 
+      sessionStorage.setItem('annotationRepoInitializedHook', 'true');
     } else {
       setAnnotationsState(currentRepoAnnotations);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); 
+  }, []);
 
 
   /**
@@ -160,7 +160,7 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
 
     const equipmentName = annotationTargetEquipment.name;
     const currentDate = new Date().toISOString();
-    
+
     const annotationToSave: Annotation = {
       equipmentTag: annotationTargetEquipment.tag,
       text,
@@ -168,12 +168,12 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
     };
 
     annotationRepository.addOrUpdateAnnotation(annotationToSave);
-    refreshAnnotationsFromRepo(); 
+    refreshAnnotationsFromRepo();
 
     const toastDescriptionMessage = editingAnnotation
         ? `Anotação para ${equipmentName} atualizada.`
         : `Anotação para ${equipmentName} adicionada.`;
-    
+
     setTimeout(() => {
       toast({ title: "Anotação Salva", description: toastDescriptionMessage });
     }, 0);
@@ -189,17 +189,17 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
    * @param {string} equipmentTag - A tag do equipamento cuja anotação será excluída.
    */
   const handleDeleteAnnotation = useCallback((equipmentTag: string) => {
-    const equipment = equipmentRepository.getEquipmentByTag(equipmentTag); 
-    if (!equipment) return; 
+    const equipment = equipmentRepository.getEquipmentByTag(equipmentTag);
+    if (!equipment) return;
 
     const success = annotationRepository.deleteAnnotation(equipmentTag);
-    
+
     let toastTitleMessage = "";
     let toastDescriptionMessage = "";
     let toastVariantValue: "default" | "destructive" | undefined = undefined;
 
     if (success) {
-      refreshAnnotationsFromRepo(); 
+      refreshAnnotationsFromRepo();
       toastTitleMessage = "Anotação Excluída";
       toastDescriptionMessage = `Anotação para ${equipment.name} foi excluída.`;
       if (annotationTargetEquipment?.tag === equipmentTag) {
@@ -212,7 +212,7 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
       toastDescriptionMessage = `Nenhuma anotação encontrada para ${equipment.name} para excluir.`;
       toastVariantValue = "destructive";
     }
-    
+
     setTimeout(() => {
       toast({ title: toastTitleMessage, description: toastDescriptionMessage, variant: toastVariantValue });
     }, 0);
@@ -240,8 +240,5 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
     getAnnotationForEquipment,
   };
 }
-
-
-    
 
     

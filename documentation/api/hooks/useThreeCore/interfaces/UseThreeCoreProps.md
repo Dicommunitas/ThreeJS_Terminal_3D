@@ -6,7 +6,7 @@
 
 # Interface: UseThreeCoreProps
 
-Defined in: [src/hooks/useThreeCore.ts:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeCore.ts#L55)
+Defined in: [src/hooks/useThreeCore.ts:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/4466777f13a6776beed134cf281b05ece637d113/src/hooks/useThreeCore.ts#L55)
 
 Props para o hook `useThreeCore`.
  UseThreeCoreProps
@@ -17,7 +17,7 @@ Props para o hook `useThreeCore`.
 
 > **initialCameraPosition**: `object`
 
-Defined in: [src/hooks/useThreeCore.ts:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeCore.ts#L56)
+Defined in: [src/hooks/useThreeCore.ts:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/4466777f13a6776beed134cf281b05ece637d113/src/hooks/useThreeCore.ts#L56)
 
 A posição inicial da câmera.
 
@@ -39,7 +39,7 @@ A posição inicial da câmera.
 
 > **mountRef**: `RefObject`\<`null` \| `HTMLDivElement`\>
 
-Defined in: [src/hooks/useThreeCore.ts:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/6f042d4d64a35f8821f49bdbe82798f7999e9e5c/src/hooks/useThreeCore.ts#L57)
+Defined in: [src/hooks/useThreeCore.ts:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/4466777f13a6776beed134cf281b05ece637d113/src/hooks/useThreeCore.ts#L57)
 
 Ref para o elemento DOM contêiner da cena,
                                                               usado para calcular a razão de aspecto inicial da câmera.

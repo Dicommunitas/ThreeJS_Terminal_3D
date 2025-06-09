@@ -352,12 +352,12 @@
 *   [useSceneSetup][348]
     *   [Parameters][349]
 *   [][350]
-    *   [Parameters][351]
-    *   [Examples][352]
-*   [][353]
-    *   [Parameters][354]
+    *   [Examples][351]
+*   [][352]
+    *   [Examples][353]
+*   [][354]
     *   [Examples][355]
-*   [][356]
+*   [useRef][356]
     *   [Examples][357]
 *   [useRef][358]
     *   [Examples][359]
@@ -365,66 +365,64 @@
     *   [Examples][361]
 *   [useRef][362]
     *   [Examples][363]
-*   [useRef][364]
-    *   [Examples][365]
-*   [UseThreeCoreProps][366]
+*   [UseThreeCoreProps][364]
+    *   [Properties][365]
+*   [UseThreeCoreReturn][366]
     *   [Properties][367]
-*   [UseThreeCoreReturn][368]
-    *   [Properties][369]
-*   [useThreeCore][370]
-    *   [Parameters][371]
-*   [UseThreeOrbitControlsProps][372]
+*   [useThreeCore][368]
+    *   [Parameters][369]
+*   [UseThreeOrbitControlsProps][370]
+    *   [Properties][371]
+*   [UseThreeOrbitControlsReturn][372]
     *   [Properties][373]
-*   [UseThreeOrbitControlsReturn][374]
-    *   [Properties][375]
-*   [useThreeOrbitControls][376]
-    *   [Parameters][377]
-*   [UseThreeRenderersProps][378]
+*   [useThreeOrbitControls][374]
+    *   [Parameters][375]
+*   [UseThreeRenderersProps][376]
+    *   [Properties][377]
+*   [UseThreeRenderersReturn][378]
     *   [Properties][379]
-*   [UseThreeRenderersReturn][380]
-    *   [Properties][381]
-*   [useThreeRenderers][382]
-    *   [Parameters][383]
-*   [UseThreeResizeProps][384]
-    *   [Properties][385]
-*   [useThreeResize][386]
-    *   [Parameters][387]
-*   [UseThreeSceneElementsProps][388]
+*   [useThreeRenderers][380]
+    *   [Parameters][381]
+*   [UseThreeResizeProps][382]
+    *   [Properties][383]
+*   [useThreeResize][384]
+    *   [Parameters][385]
+*   [UseThreeSceneElementsProps][386]
+    *   [Properties][387]
+*   [UseThreeSceneElementsReturn][388]
     *   [Properties][389]
-*   [UseThreeSceneElementsReturn][390]
-    *   [Properties][391]
-*   [useThreeSceneElements][392]
-    *   [Parameters][393]
-*   [Layer][394]
-    *   [Properties][395]
-*   [CameraState][396]
-*   [SystemView][397]
-*   [SystemViewOptions][398]
+*   [useThreeSceneElements][390]
+    *   [Parameters][391]
+*   [Layer][392]
+    *   [Properties][393]
+*   [CameraState][394]
+*   [SystemView][395]
+*   [SystemViewOptions][396]
+    *   [Properties][397]
+*   [TargetSystemInfo][398]
     *   [Properties][399]
-*   [TargetSystemInfo][400]
+*   [Annotation][400]
     *   [Properties][401]
-*   [Annotation][402]
-    *   [Properties][403]
-*   [ColorMode][404]
+*   [ColorMode][402]
 
 ##
 
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/components/main-scene-area/README.md][405] Para a área principal da cena.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/components/ui/sidebar/README.md][406] Para a barra lateral de controles.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/components/annotation-dialog/README.md][407] Para o diálogo de anotações.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-command-history/README.md][408] Para o gerenciamento de histórico de comandos.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-equipment-data-manager/README.md][409] Para o gerenciamento de dados de equipamentos.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-camera-manager/README.md][410] Para o gerenciamento da câmera.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-filter-manager/README.md][411] Para o gerenciamento de filtros.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-annotation-manager/README.md][412] Para o gerenciamento de anotações.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-equipment-selection-manager/README.md][413] Para o gerenciamento de seleção de equipamentos.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-layer-manager/README.md][414] Para o gerenciamento de camadas.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/components/main-scene-area/README.md][403] Para a área principal da cena.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/components/ui/sidebar/README.md][404] Para a barra lateral de controles.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/components/annotation-dialog/README.md][405] Para o diálogo de anotações.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-command-history/README.md][406] Para o gerenciamento de histórico de comandos.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-equipment-data-manager/README.md][407] Para o gerenciamento de dados de equipamentos.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-camera-manager/README.md][408] Para o gerenciamento da câmera.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-filter-manager/README.md][409] Para o gerenciamento de filtros.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-annotation-manager/README.md][410] Para o gerenciamento de anotações.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-equipment-selection-manager/README.md][411] Para o gerenciamento de seleção de equipamentos.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-layer-manager/README.md][412] Para o gerenciamento de camadas.
 
 ### Examples
 
-````javascript
+```javascript
 // Diagrama de Interação de Alto Nível da Terminal3DPage:
-```mermaid
+\`\`\`mermaid
 graph LR
     Terminal3DPage["Terminal3DPage (Página Principal)"] --> H_CmdHistory["useCommandHistory (Hook Histórico)"];
     Terminal3DPage --> H_EquipData["useEquipmentDataManager (Hook Dados Equip.)"];
@@ -460,8 +458,8 @@ graph LR
       ThreeScene_Comp;
       SidebarContentLayout_Comp;
     end
+\`\`\`
 ```
-````
 
 ## Terminal3DPage
 
@@ -476,7 +474,7 @@ Manipula a ação de focar a câmera em um sistema e selecionar todos os equipam
 
 ### Parameters
 
-*   `systemName` **[string][415]** O nome do sistema para focar e selecionar.
+*   `systemName` **[string][413]** O nome do sistema para focar e selecionar.
 
 ##
 
@@ -514,9 +512,9 @@ Props para o componente AnnotationDialog.
 
 ### Properties
 
-*   `isOpen` **[boolean][416]** Controla se o diálogo está aberto ou fechado.
+*   `isOpen` **[boolean][414]** Controla se o diálogo está aberto ou fechado.
 *   `currentAnnotation` **([Annotation][34] | null)** A anotação atual sendo editada, ou null se for uma nova anotação.
-*   `equipmentName` **[string][415]** O nome do equipamento ao qual a anotação se refere, para exibição no diálogo.
+*   `equipmentName` **[string][413]** O nome do equipamento ao qual a anotação se refere, para exibição no diálogo.
 
 ## AnnotationDialog
 
@@ -646,7 +644,7 @@ Props para o componente CameraControlsPanel.
 
 ### Properties
 
-*   `systems` **[Array][417]<[string][415]>** Lista de nomes dos sistemas disponíveis para foco.
+*   `systems` **[Array][415]<[string][413]>** Lista de nomes dos sistemas disponíveis para foco.
 
 ## CameraControlsPanel
 
@@ -707,7 +705,7 @@ Props para o componente ColorModeSelector.
 
 ### Properties
 
-*   `colorMode` **[ColorMode][404]** O modo de colorização atualmente selecionado.
+*   `colorMode` **[ColorMode][402]** O modo de colorização atualmente selecionado.
 
 ## ColorModeSelector
 
@@ -771,8 +769,8 @@ Props para o componente CommandHistoryPanel.
 
 ### Properties
 
-*   `canUndo` **[boolean][416]** Indica se a ação de desfazer está disponível.
-*   `canRedo` **[boolean][416]** Indica se a ação de refazer está disponível.
+*   `canUndo` **[boolean][414]** Indica se a ação de desfazer está disponível.
+*   `canRedo` **[boolean][414]** Indica se a ação de refazer está disponível.
 
 ## CommandHistoryPanel
 
@@ -867,31 +865,31 @@ Type: function (): void
 
 Callback para excluir a anotação do equipamento especificado.
 
-Type: function (equipmentTag: [string][415]): void
+Type: function (equipmentTag: [string][413]): void
 
 ### onOperationalStateChange
 
 Callback para alterar o estado operacional de um equipamento.
 
-Type: function (equipmentTag: [string][415], newState: [string][415]): void
+Type: function (equipmentTag: [string][413], newState: [string][413]): void
 
 ### availableOperationalStatesList
 
 Lista de estados operacionais disponíveis para seleção no dropdown.
 
-Type: [Array][417]<[string][415]>
+Type: [Array][415]<[string][413]>
 
 ### onProductChange
 
 Callback para alterar o produto de um equipamento.
 
-Type: function (equipmentTag: [string][415], newProduct: [string][415]): void
+Type: function (equipmentTag: [string][413], newProduct: [string][413]): void
 
 ### availableProductsList
 
 Lista de produtos disponíveis para seleção no dropdown.
 
-Type: [Array][417]<[string][415]>
+Type: [Array][415]<[string][413]>
 
 ## InfoPanel
 
@@ -923,7 +921,7 @@ Manipula o clique no botão de excluir anotação.
 
 Formata a data de criação/modificação da anotação para exibição.
 
-Type: ([string][415] | null)
+Type: ([string][413] | null)
 
 ##
 
@@ -970,7 +968,7 @@ Props para o componente LayerManager.
 
 ### Properties
 
-*   `layers` **[Array][417]<[Layer][394]>** A lista de camadas disponíveis e seus estados de visibilidade.
+*   `layers` **[Array][415]<[Layer][392]>** A lista de camadas disponíveis e seus estados de visibilidade.
 
 ## LayerManager
 
@@ -1061,19 +1059,19 @@ Estas props são, em grande parte, repassadas para `ThreeScene` e `InfoPanel`.
 
 ### Properties
 
-*   `equipment` **[Array][417]<[Equipment][33]>** Lista de equipamentos filtrados a serem renderizados na cena.
-*   `allEquipmentData` **[Array][417]<[Equipment][33]>** Lista completa de todos os equipamentos, para contexto (e.g., anotações no `ThreeScene`).
-*   `layers` **[Array][417]<[Layer][394]>** Configuração das camadas de visibilidade.
-*   `annotations` **[Array][417]<[Annotation][34]>** Lista de anotações a serem exibidas.
-*   `selectedEquipmentTags` **[Array][417]<[string][415]>** Tags dos equipamentos atualmente selecionados.
-*   `hoveredEquipmentTag` **([string][415] | null)** Tag do equipamento atualmente sob o cursor.
-*   `cameraState` **([CameraState][396] | [undefined][418])** O estado atual da câmera (posição, lookAt).
-*   `colorMode` **[ColorMode][404]** O modo de colorização atual para os equipamentos.
-*   `targetSystemToFrame` **([TargetSystemInfo][400] | null)** Informações sobre o sistema e visão a serem enquadrados pela câmera (se houver).
+*   `equipment` **[Array][415]<[Equipment][33]>** Lista de equipamentos filtrados a serem renderizados na cena.
+*   `allEquipmentData` **[Array][415]<[Equipment][33]>** Lista completa de todos os equipamentos, para contexto (e.g., anotações no `ThreeScene`).
+*   `layers` **[Array][415]<[Layer][392]>** Configuração das camadas de visibilidade.
+*   `annotations` **[Array][415]<[Annotation][34]>** Lista de anotações a serem exibidas.
+*   `selectedEquipmentTags` **[Array][415]<[string][413]>** Tags dos equipamentos atualmente selecionados.
+*   `hoveredEquipmentTag` **([string][413] | null)** Tag do equipamento atualmente sob o cursor.
+*   `cameraState` **([CameraState][394] | [undefined][416])** O estado atual da câmera (posição, lookAt).
+*   `colorMode` **[ColorMode][402]** O modo de colorização atual para os equipamentos.
+*   `targetSystemToFrame` **([TargetSystemInfo][398] | null)** Informações sobre o sistema e visão a serem enquadrados pela câmera (se houver).
 *   `selectedEquipmentDetails` **([Equipment][33] | null)** Detalhes do equipamento único selecionado (para InfoPanel).
 *   `equipmentAnnotation` **([Annotation][34] | null)** Anotação do equipamento único selecionado (para InfoPanel).
-*   `availableOperationalStatesList` **[Array][417]<[string][415]>** Lista de estados operacionais disponíveis.
-*   `availableProductsList` **[Array][417]<[string][415]>** Lista de produtos disponíveis.
+*   `availableOperationalStatesList` **[Array][415]<[string][413]>** Lista de estados operacionais disponíveis.
+*   `availableProductsList` **[Array][415]<[string][413]>** Lista de produtos disponíveis.
 
 ## MainSceneArea
 
@@ -1195,14 +1193,14 @@ Props para o componente SidebarContentLayout.
 
 ### Properties
 
-*   `searchTerm` **[string][415]** O termo de busca textual atual.
-*   `selectedSistema` **[string][415]** O sistema selecionado para filtro.
-*   `availableSistemas` **[Array][417]<[string][415]>** Lista de sistemas disponíveis para filtro.
-*   `selectedArea` **[string][415]** A área selecionada para filtro.
-*   `availableAreas` **[Array][417]<[string][415]>** Lista de áreas disponíveis para filtro.
-*   `colorMode` **[ColorMode][404]** O modo de colorização atual.
-*   `layers` **[Array][417]<[Layer][394]>** Lista de camadas para o LayerManager.
-*   `cameraViewSystems` **[Array][417]<[string][415]>** Lista de nomes de sistemas para o CameraControlsPanel.
+*   `searchTerm` **[string][413]** O termo de busca textual atual.
+*   `selectedSistema` **[string][413]** O sistema selecionado para filtro.
+*   `availableSistemas` **[Array][415]<[string][413]>** Lista de sistemas disponíveis para filtro.
+*   `selectedArea` **[string][413]** A área selecionada para filtro.
+*   `availableAreas` **[Array][415]<[string][413]>** Lista de áreas disponíveis para filtro.
+*   `colorMode` **[ColorMode][402]** O modo de colorização atual.
+*   `layers` **[Array][415]<[Layer][392]>** Lista de camadas para o LayerManager.
+*   `cameraViewSystems` **[Array][415]<[string][413]>** Lista de nomes de sistemas para o CameraControlsPanel.
 
 ## SidebarContentLayout
 
@@ -1247,18 +1245,18 @@ Returns **JSX.Element** O componente SiteHeader.
 
 ##
 
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-scene-setup/README.md][419] Para a orquestração da configuração da cena.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-equipment-renderer/README.md][420] Para a renderização de equipamentos.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-annotation-pin-renderer/README.md][421] Para a renderização de pins de anotação.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-mouse-interaction/README.md][422] Para interações do mouse.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-scene-outline/README.md][423] Para o efeito de contorno.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useAnimationLoop/README.md][424] Para o loop de animação.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-scene-setup/README.md][417] Para a orquestração da configuração da cena.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-equipment-renderer/README.md][418] Para a renderização de equipamentos.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-annotation-pin-renderer/README.md][419] Para a renderização de pins de anotação.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-mouse-interaction/README.md][420] Para interações do mouse.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-scene-outline/README.md][421] Para o efeito de contorno.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-animation-loop/README.md][422] Para o loop de animação.
 
 ### Examples
 
-````javascript
+```javascript
 // Diagrama de Composição do ThreeScene e seus Hooks:
-```mermaid
+\`\`\`mermaid
 graph TD
     ThreeScene_Comp["ThreeScene (Componente React)"]
     MountPoint["<div ref={mountRef}> (Ponto de Montagem DOM)"]
@@ -1314,8 +1312,8 @@ graph TD
     class H_SceneSetup,H_EquipRenderer,H_AnnotPinRenderer,H_MouseInt,H_Outline,H_AnimLoop hook;
     class R_Scene,R_Camera,R_Renderer,R_LabelRenderer,R_Controls,R_Composer,R_OutlinePass ref;
     class F_IsSceneReady,F_IsControlsReady flag;
+\`\`\`
 ```
-````
 
 ## ThreeSceneProps
 
@@ -1323,15 +1321,15 @@ Props para o componente ThreeScene.
 
 ### Properties
 
-*   `equipment` **[Array][417]<[Equipment][33]>** Lista de equipamentos filtrados a serem renderizados na cena.
-*   `allEquipmentData` **[Array][417]<[Equipment][33]>** Lista completa de todos os equipamentos, para contexto (e.g., anotações).
-*   `layers` **[Array][417]<[Layer][394]>** Configuração das camadas de visibilidade.
-*   `annotations` **[Array][417]<[Annotation][34]>** Lista de anotações a serem exibidas.
-*   `selectedEquipmentTags` **([Array][417]<[string][415]> | [undefined][418])** Tags dos equipamentos atualmente selecionados.
-*   `hoveredEquipmentTag` **([string][415] | null | [undefined][418])** Tag do equipamento atualmente sob o cursor.
-*   `cameraState` **([CameraState][396] | [undefined][418])** O estado atual da câmera (posição, lookAt) gerenciado externamente. Pode ser indefinido durante a inicialização.
-*   `colorMode` **[ColorMode][404]** O modo de colorização atual para os equipamentos.
-*   `targetSystemToFrame` **([TargetSystemInfo][400] | null)** O sistema que deve ser enquadrado pela câmera (se houver), incluindo o índice da visão.
+*   `equipment` **[Array][415]<[Equipment][33]>** Lista de equipamentos filtrados a serem renderizados na cena.
+*   `allEquipmentData` **[Array][415]<[Equipment][33]>** Lista completa de todos os equipamentos, para contexto (e.g., anotações).
+*   `layers` **[Array][415]<[Layer][392]>** Configuração das camadas de visibilidade.
+*   `annotations` **[Array][415]<[Annotation][34]>** Lista de anotações a serem exibidas.
+*   `selectedEquipmentTags` **([Array][415]<[string][413]> | [undefined][416])** Tags dos equipamentos atualmente selecionados.
+*   `hoveredEquipmentTag` **([string][413] | null | [undefined][416])** Tag do equipamento atualmente sob o cursor.
+*   `cameraState` **([CameraState][394] | [undefined][416])** O estado atual da câmera (posição, lookAt) gerenciado externamente. Pode ser indefinido durante a inicialização.
+*   `colorMode` **[ColorMode][402]** O modo de colorização atual para os equipamentos.
+*   `targetSystemToFrame` **([TargetSystemInfo][398] | null)** O sistema que deve ser enquadrado pela câmera (se houver), incluindo o índice da visão.
 
 ## ThreeScene
 
@@ -1387,7 +1385,7 @@ const chartConfig = {
 ## Form
 
 Componente provedor que propaga os métodos `useForm` para todos os componentes filhos
-através da API de Contexto do React. Para ser usado com `useFormContext`.
+através da API de Contexto do React. Para ser usado com \`useFormContext\`.
 
 ### Parameters
 
@@ -1395,8 +1393,8 @@ através da API de Contexto do React. Para ser usado com `useFormContext`.
 
 ### Examples
 
-````javascript
-```tsx
+```javascript
+\`\`\`tsx
 function App() {
   const methods = useForm();
   const onSubmit = data => console.log(data);
@@ -1412,11 +1410,11 @@ function App() {
 }
 
  function NestedInput() {
-  const { register } = `useFormContext`(); // retrieve all hook methods
+  const { register } = useFormContext(); // retrieve all hook methods
   return <input {...register("test")} />;
 }
+\`\`\`
 ```
-````
 
 Returns **JSX.Element**&#x20;
 
@@ -1476,7 +1474,7 @@ graph LR
 Hook para acessar o contexto da Sidebar.
 Deve ser usado dentro de um `SidebarProvider`.
 
-*   Throws **[Error][425]** Se usado fora de um `SidebarProvider`.
+*   Throws **[Error][423]** Se usado fora de um `SidebarProvider`.
 
 Returns **SidebarContext** O contexto da sidebar.
 
@@ -1490,19 +1488,19 @@ e o estado colapsado/expandido.
 
 Estado de abertura padrão da sidebar no desktop. Padrão: `true`.
 
-Type: [boolean][416]
+Type: [boolean][414]
 
 ### open
 
 Controla o estado de abertura da sidebar no desktop externamente.
 
-Type: [boolean][416]
+Type: [boolean][414]
 
 ### onOpenChange
 
 Callback para quando o estado de abertura da sidebar no desktop muda.
 
-Type: function (open: [boolean][416]): void
+Type: function (open: [boolean][414]): void
 
 ## Sidebar
 
@@ -1607,13 +1605,13 @@ Suporta um tooltip opcional que aparece quando a sidebar está em modo "icon".
 
 Indica se o item de menu está ativo.
 
-Type: [boolean][416]
+Type: [boolean][414]
 
 ### tooltip
 
 Conteúdo do tooltip a ser exibido no modo "icon", ou um objeto de props para `TooltipContent`.
 
-Type: ([string][415] | React.ComponentProps\<any>)
+Type: ([string][413] | React.ComponentProps\<any>)
 
 ## SidebarMenuAction
 
@@ -1625,7 +1623,7 @@ Pode ser configurado para aparecer apenas no hover.
 
 Se true, a ação só aparece quando o mouse está sobre o item de menu.
 
-Type: [boolean][416]
+Type: [boolean][414]
 
 ## SidebarMenuBadge
 
@@ -1641,7 +1639,7 @@ Componente de esqueleto de carregamento para itens de menu.
 
 Se true, mostra um esqueleto de ícone.
 
-Type: [boolean][416]
+Type: [boolean][414]
 
 ## SidebarMenuSub
 
@@ -1666,7 +1664,7 @@ Type: (`"sm"` | `"md"`)
 
 Indica se o item de submenu está ativo.
 
-Type: [boolean][416]
+Type: [boolean][414]
 
 ## Equipment
 
@@ -1713,15 +1711,15 @@ Exporta:
 
 ## Equipment
 
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/data/initial-data/README.md][426] Para os dados iniciais de equipamentos e camadas.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment][427] Para a interface de Equipamento.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Annotation][428] Para a interface de Anotação.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/data/initial-data/README.md][424] Para os dados iniciais de equipamentos e camadas.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment][425] Para a interface de Equipamento.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Annotation][426] Para a interface de Anotação.
 
 ### Examples
 
-````javascript
+```javascript
 // Diagrama de Estrutura do Repositório em Memória:
-```mermaid
+\`\`\`mermaid
 classDiagram
     class RepositorioMemoria {
         -equipmentStore: Map_string_Equipment_
@@ -1756,8 +1754,8 @@ classDiagram
     note for RepositorioMemoria "Módulo auto-inicializável."
     note for RepositorioEquipamentos "Gerencia o CRUD de Equipamentos."
     note for RepositorioAnotacoes "Gerencia o CRUD de Anotações."
+\`\`\`
 ```
-````
 
 ## Equipment
 
@@ -1774,20 +1772,20 @@ necessárias para sua renderização, identificação e manipulação de estado.
 
 ### Properties
 
-*   `tag` **[string][415]** Identificador único e imutável do equipamento (e.g., "bldg-01", "tank-alpha"). Usado como chave.
-*   `name` **[string][415]** Nome legível do equipamento para exibição na UI (e.g., "Main Office", "Storage Tank Alpha").
+*   `tag` **[string][413]** Identificador único e imutável do equipamento (e.g., "bldg-01", "tank-alpha"). Usado como chave.
+*   `name` **[string][413]** Nome legível do equipamento para exibição na UI (e.g., "Main Office", "Storage Tank Alpha").
 *   `type` **(`"Building"` | `"Crane"` | `"Tank"` | `"Terrain"` | `"Pipe"` | `"Valve"`)** Categoria do equipamento, influencia sua geometria e interações.
     'Terrain' é um tipo especial para o plano de chão.
-*   `sistema` **[string][415]?** O sistema operacional ou funcional ao qual o equipamento pertence (e.g., "GA", "ODB"). Opcional.
-*   `area` **[string][415]?** A área física ou lógica onde o equipamento está localizado (e.g., "Área 31", "Área de Processo"). Opcional.
-*   `operationalState` **[string][415]?** Estado operacional atual do equipamento (e.g., 'operando', 'manutenção', 'em falha', 'não operando', 'Não aplicável').
+*   `sistema` **[string][413]?** O sistema operacional ou funcional ao qual o equipamento pertence (e.g., "GA", "ODB"). Opcional.
+*   `area` **[string][413]?** A área física ou lógica onde o equipamento está localizado (e.g., "Área 31", "Área de Processo"). Opcional.
+*   `operationalState` **[string][413]?** Estado operacional atual do equipamento (e.g., 'operando', 'manutenção', 'em falha', 'não operando', 'Não aplicável').
     Usado para colorização e informação. Opcional.
-*   `product` **[string][415]?** Produto atualmente associado ou processado pelo equipamento (e.g., "70H", "660", "Não aplicável").
+*   `product` **[string][413]?** Produto atualmente associado ou processado pelo equipamento (e.g., "70H", "660", "Não aplicável").
     Usado para colorização e informação. Opcional.
-*   `radius` **[number][429]?** Raio para equipamentos com geometria cilíndrica (e.g., 'Tank', 'Pipe') ou esférica (e.g., 'Valve'). Opcional se `size` for usado.
-*   `height` **[number][429]?** Altura para equipamentos com geometria cilíndrica (e.g., 'Tank', 'Crane'). Para 'Pipe', representa o comprimento. Opcional se `size` for usado.
-*   `color` **[string][415]** Cor base do equipamento em formato hexadecimal (e.g., '#78909C'). Usada no modo de colorização 'Equipamento'.
-*   `details` **[string][415]?** Detalhes textuais adicionais sobre o equipamento. Exibido no `InfoPanel`. Opcional.
+*   `radius` **[number][427]?** Raio para equipamentos com geometria cilíndrica (e.g., 'Tank', 'Pipe') ou esférica (e.g., 'Valve'). Opcional se `size` for usado.
+*   `height` **[number][427]?** Altura para equipamentos com geometria cilíndrica (e.g., 'Tank', 'Crane'). Para 'Pipe', representa o comprimento. Opcional se `size` for usado.
+*   `color` **[string][413]** Cor base do equipamento em formato hexadecimal (e.g., '#78909C'). Usada no modo de colorização 'Equipamento'.
+*   `details` **[string][413]?** Detalhes textuais adicionais sobre o equipamento. Exibido no `InfoPanel`. Opcional.
 
 ## initialEquipment
 
@@ -1795,7 +1793,7 @@ Lista inicial de equipamentos para a cena 3D.
 Cada equipamento possui propriedades como tag, nome, tipo, sistema, área, estado operacional,
 produto, posição, dimensões (ou raio/altura), cor, detalhes e categoria.
 
-Type: [Array][417]<[Equipment][33]>
+Type: [Array][415]<[Equipment][33]>
 
 ## initialLayers
 
@@ -1803,14 +1801,14 @@ Lista inicial de camadas para controle de visibilidade na interface.
 Cada camada define um nome, o tipo de equipamento que ela controla (ou 'Annotations' para pins de anotação, 'Terrain' para o chão),
 e seu estado de visibilidade inicial.
 
-Type: [Array][417]<[Layer][394]>
+Type: [Array][415]<[Layer][392]>
 
 ## initialAnnotations
 
 Lista inicial de anotações. Geralmente vazia para começar,
 a menos que queira popular com dados de exemplo.
 
-Type: [Array][417]<[Annotation][34]>
+Type: [Array][415]<[Annotation][34]>
 
 ## THREE
 
@@ -2005,17 +2003,17 @@ sequenceDiagram
 
 ## THREE
 
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeCore/README.md][430] Para inicialização da cena e câmera.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeRenderers/README.md][431] Para configuração dos renderizadores e pós-processamento.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeOrbitControls/README.md][432] Para configuração dos controles de órbita.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeSceneElements/README.md][433] Para configuração de iluminação e plano de chão.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeResize/README.md][434] Para manipulação de redimensionamento.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeCore/README.md][428] Para inicialização da cena e câmera.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeRenderers/README.md][429] Para configuração dos renderizadores e pós-processamento.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeOrbitControls/README.md][430] Para configuração dos controles de órbita.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeSceneElements/README.md][431] Para configuração de iluminação e plano de chão.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeResize/README.md][432] Para manipulação de redimensionamento.
 
 ### Examples
 
-````javascript
+```javascript
 // Diagrama de Composição do useSceneSetup:
-```mermaid
+\`\`\`mermaid
 graph TD
     useSceneSetup_Orchestrator["useSceneSetup (Orquestrador)"]
 
@@ -2078,8 +2076,8 @@ graph TD
     class H_Core,H_Renderers,H_Controls,H_Elements,H_Resize hook;
     class R_Scene,R_Camera,R_Renderer,R_LabelRenderer,R_OrbitControls,R_Composer,R_OutlinePass,R_GroundMesh ref;
     class F_RenderersReady,F_ControlsReady,F_SceneReady flag;
+\`\`\`
 ```
-````
 
 ## getCharNumericValue
 
@@ -2091,9 +2089,9 @@ Esta função é usada para gerar componentes de cor (R, G, B) a partir de códi
 
 ### Parameters
 
-*   `char` **[string][415]** O caractere a ser convertido.
+*   `char` **[string][413]** O caractere a ser convertido.
 
-Returns **[number][429]** O valor numérico correspondente (0-35), ou 0 para caracteres inválidos.
+Returns **[number][427]** O valor numérico correspondente (0-35), ou 0 para caracteres inválidos.
 
 ## getEquipmentColor
 
@@ -2102,7 +2100,7 @@ Determina a cor final de um equipamento com base no modo de colorização e seus
 ### Parameters
 
 *   `item` **[Equipment][33]** O equipamento para o qual a cor será determinada.
-*   `colorMode` **[ColorMode][404]** O modo de colorização selecionado ('Equipamento', 'Estado Operacional', 'Produto').
+*   `colorMode` **[ColorMode][402]** O modo de colorização selecionado ('Equipamento', 'Estado Operacional', 'Produto').
 
 Returns **THREE.Color** A cor calculada para o equipamento, como uma instância de `THREE.Color`.
 
@@ -2112,9 +2110,9 @@ Define os critérios de filtro aplicáveis aos equipamentos.
 
 ### Properties
 
-*   `searchTerm` **[string][415]** Termo de busca textual. Múltiplos termos separados por espaço são tratados com lógica "E".
-*   `selectedSistema` **[string][415]** Sistema selecionado para filtro (ou "All" para não filtrar por sistema).
-*   `selectedArea` **[string][415]** Área selecionada para filtro (ou "All" para não filtrar por área).
+*   `searchTerm` **[string][413]** Termo de busca textual. Múltiplos termos separados por espaço são tratados com lógica "E".
+*   `selectedSistema` **[string][413]** Sistema selecionado para filtro (ou "All" para não filtrar por sistema).
+*   `selectedArea` **[string][413]** Área selecionada para filtro (ou "All" para não filtrar por área).
 
 ## getFilteredEquipment
 
@@ -2125,10 +2123,10 @@ Os filtros de sistema e área são aplicados se não forem "All".
 
 ### Parameters
 
-*   `allEquipment` **[Array][417]<[Equipment][33]>** A lista completa de equipamentos a serem filtrados.
+*   `allEquipment` **[Array][415]<[Equipment][33]>** A lista completa de equipamentos a serem filtrados.
 *   `criteria` **[EquipmentFilterCriteria][141]** Os critérios de filtro a serem aplicados.
 
-Returns **[Array][417]<[Equipment][33]>** A lista de equipamentos filtrada.
+Returns **[Array][415]<[Equipment][33]>** A lista de equipamentos filtrada.
 
 ## equipmentRepository
 
@@ -2140,15 +2138,15 @@ Obtém um equipamento pela sua tag.
 
 #### Parameters
 
-*   `tag` **[string][415]** A tag do equipamento.
+*   `tag` **[string][413]** A tag do equipamento.
 
-Returns **([Equipment][33] | [undefined][418])** O objeto do equipamento (uma cópia), ou undefined se não encontrado.
+Returns **([Equipment][33] | [undefined][416])** O objeto do equipamento (uma cópia), ou undefined se não encontrado.
 
 ### getAllEquipment
 
 Obtém todos os equipamentos.
 
-Returns **[Array][417]<[Equipment][33]>** Um array com todos os equipamentos (cópias).
+Returns **[Array][415]<[Equipment][33]>** Um array com todos os equipamentos (cópias).
 
 ### addEquipment
 
@@ -2167,11 +2165,11 @@ Atualiza um equipamento existente.
 
 #### Parameters
 
-*   `tag` **[string][415]** A tag do equipamento a ser atualizado.
+*   `tag` **[string][413]** A tag do equipamento a ser atualizado.
 *   `updates` **Partial<[Equipment][33]>** Um objeto com as propriedades do equipamento a serem atualizadas.
     A propriedade `tag` não pode ser alterada por este método.
 
-Returns **([Equipment][33] | [undefined][418])** O equipamento atualizado (uma cópia), ou undefined se não encontrado.
+Returns **([Equipment][33] | [undefined][416])** O equipamento atualizado (uma cópia), ou undefined se não encontrado.
 
 ### deleteEquipment
 
@@ -2179,9 +2177,9 @@ Exclui um equipamento pela sua tag.
 
 #### Parameters
 
-*   `tag` **[string][415]** A tag do equipamento a ser excluído.
+*   `tag` **[string][413]** A tag do equipamento a ser excluído.
 
-Returns **[boolean][416]** True se o equipamento foi excluído com sucesso, false caso contrário.
+Returns **[boolean][414]** True se o equipamento foi excluído com sucesso, false caso contrário.
 
 ## annotationRepository
 
@@ -2193,15 +2191,15 @@ Obtém uma anotação pela tag do equipamento associado.
 
 #### Parameters
 
-*   `equipmentTag` **[string][415]** A tag do equipamento.
+*   `equipmentTag` **[string][413]** A tag do equipamento.
 
-Returns **([Annotation][34] | [undefined][418])** A anotação (uma cópia), ou undefined se não encontrada.
+Returns **([Annotation][34] | [undefined][416])** A anotação (uma cópia), ou undefined se não encontrada.
 
 ### getAllAnnotations
 
 Obtém todas as anotações.
 
-Returns **[Array][417]<[Annotation][34]>** Um array com todas as anotações (cópias).
+Returns **[Array][415]<[Annotation][34]>** Um array com todas as anotações (cópias).
 
 ### addOrUpdateAnnotation
 
@@ -2219,9 +2217,9 @@ Exclui uma anotação pela tag do equipamento associado.
 
 #### Parameters
 
-*   `equipmentTag` **[string][415]** A tag do equipamento cuja anotação será excluída.
+*   `equipmentTag` **[string][413]** A tag do equipamento cuja anotação será excluída.
 
-Returns **[boolean][416]** True se a anotação foi excluída com sucesso, false caso contrário.
+Returns **[boolean][414]** True se a anotação foi excluída com sucesso, false caso contrário.
 
 ### initializeAnnotations
 
@@ -2230,7 +2228,7 @@ Limpa quaisquer anotações existentes e popula com as fornecidas.
 
 #### Parameters
 
-*   `annotations` **[Array][417]<[Annotation][34]>** Um array de anotações para inicializar o repositório.
+*   `annotations` **[Array][415]<[Annotation][34]>** Um array de anotações para inicializar o repositório.
 
 ## calculateViewForMeshes
 
@@ -2239,10 +2237,10 @@ de forma a enquadrar um conjunto de meshes fornecidos.
 
 ### Parameters
 
-*   `meshes` **[Array][417]\<THREE.Object3D>** Um array de meshes 3D a serem enquadrados.
+*   `meshes` **[Array][415]\<THREE.Object3D>** Um array de meshes 3D a serem enquadrados.
 *   `camera` **THREE.PerspectiveCamera** A câmera de perspectiva da cena.
 
-Returns **([SystemViewOptions][398] | null)** Um objeto contendo as diferentes visualizações calculadas
+Returns **([SystemViewOptions][396] | null)** Um objeto contendo as diferentes visualizações calculadas
 ou null se não for possível calcular (e.g., nenhum mesh fornecido).
 
 ## createGeometryForItem
@@ -2267,8 +2265,8 @@ para garantir que os rótulos sejam dimensionados e posicionados corretamente.
 ### Parameters
 
 *   `labelRenderer` **(CSS2DRenderer | null)** A instância do CSS2DRenderer a ser atualizada.
-*   `width` **[number][429]** A nova largura para o renderizador de rótulos.
-*   `height` **[number][429]** A nova altura para o renderizador de rótulos.
+*   `width` **[number][427]** A nova largura para o renderizador de rótulos.
+*   `height` **[number][427]** A nova altura para o renderizador de rótulos.
 
 Returns **void**&#x20;
 
@@ -2280,10 +2278,10 @@ Parâmetros para a função `updateAnnotationPins`.
 
 *   `scene` **(THREE.Scene | null)** A cena Three.js onde os pins serão adicionados/removidos.
 *   `labelRenderer` **(CSS2DRenderer | null)** O renderizador CSS2D responsável por exibir os pins.
-*   `annotations` **[Array][417]<[Annotation][34]>** A lista atual de todas as anotações.
-*   `equipmentData` **[Array][417]<[Equipment][33]>** A lista completa de equipamentos, usada para encontrar posições e dimensões dos alvos das anotações.
-*   `layers` **[Array][417]<[Layer][394]>** A lista de camadas, usada para verificar a visibilidade da camada de "Annotations".
-*   `existingPinsRef` **React.MutableRefObject<[Array][417]\<CSS2DObject>>** Ref para o array de objetos CSS2DObject (pins) atualmente na cena.
+*   `annotations` **[Array][415]<[Annotation][34]>** A lista atual de todas as anotações.
+*   `equipmentData` **[Array][415]<[Equipment][33]>** A lista completa de equipamentos, usada para encontrar posições e dimensões dos alvos das anotações.
+*   `layers` **[Array][415]<[Layer][392]>** A lista de camadas, usada para verificar a visibilidade da camada de "Annotations".
+*   `existingPinsRef` **React.MutableRefObject<[Array][415]\<CSS2DObject>>** Ref para o array de objetos CSS2DObject (pins) atualmente na cena.
 
 ## updateAnnotationPins
 
@@ -2331,7 +2329,7 @@ Define os objetos que devem ser contornados pelo OutlinePass.
 ### Parameters
 
 *   `outlinePass` **OutlinePass** A instância do OutlinePass.
-*   `objectsToOutline` **[Array][417]\<THREE.Object3D>** Um array de objetos 3D a serem contornados.
+*   `objectsToOutline` **[Array][415]\<THREE.Object3D>** Um array de objetos 3D a serem contornados.
 
 Returns **void**&#x20;
 
@@ -2357,8 +2355,8 @@ Esta função é chamada uma vez durante o setup inicial da cena.
 *   `renderer` **THREE.WebGLRenderer** O renderizador WebGL principal.
 *   `scene` **THREE.Scene** A cena 3D.
 *   `camera` **THREE.PerspectiveCamera** A câmera da cena.
-*   `initialWidth` **[number][429]** A largura inicial do canvas de renderização.
-*   `initialHeight` **[number][429]** A altura inicial do canvas de renderização.
+*   `initialWidth` **[number][427]** A largura inicial do canvas de renderização.
+*   `initialHeight` **[number][427]** A altura inicial do canvas de renderização.
 
 Returns **{composer: EffectComposer, outlinePass: OutlinePass}** Um objeto contendo o EffectComposer e o OutlinePass configurados.
 
@@ -2371,8 +2369,8 @@ Deve ser chamado quando o contêiner de renderização é redimensionado.
 
 *   `composer` **(EffectComposer | null)** O EffectComposer a ser atualizado.
 *   `outlinePass` **(OutlinePass | null)** O OutlinePass a ser atualizado.
-*   `width` **[number][429]** A nova largura.
-*   `height` **[number][429]** A nova altura.
+*   `width` **[number][427]** A nova largura.
+*   `height` **[number][427]** A nova altura.
 
 Returns **void**&#x20;
 
@@ -2384,9 +2382,9 @@ Determina quais objetos contornar e qual estilo aplicar.
 ### Parameters
 
 *   `outlinePass` **(OutlinePass | null)** A instância do OutlinePass.
-*   `allMeshes` **[Array][417]\<THREE.Object3D>** A lista de todos os meshes de equipamentos na cena.
-*   `selectedTags` **[Array][417]<[string][415]>** As tags dos equipamentos atualmente selecionados.
-*   `hoveredTag` **([string][415] | null)** A tag do equipamento atualmente sob o cursor.
+*   `allMeshes` **[Array][415]\<THREE.Object3D>** A lista de todos os meshes de equipamentos na cena.
+*   `selectedTags` **[Array][415]<[string][413]>** As tags dos equipamentos atualmente selecionados.
+*   `hoveredTag` **([string][413] | null)** A tag do equipamento atualmente sob o cursor.
 
 Returns **void**&#x20;
 
@@ -2421,7 +2419,7 @@ Centraliza a criação do WebGLRenderer, CSS2DRenderer, EffectComposer e Outline
 
 ### Parameters
 
-*   `mountElement` **[HTMLElement][435]** O elemento DOM onde o canvas WebGL e o renderer de labels serão montados.
+*   `mountElement` **[HTMLElement][433]** O elemento DOM onde o canvas WebGL e o renderer de labels serão montados.
 *   `scene` **THREE.Scene** A cena Three.js.
 *   `camera` **THREE.PerspectiveCamera** A câmera da cena.
 
@@ -2503,7 +2501,7 @@ Props para o hook `useAnimationLoop`.
 
 ### Properties
 
-*   `isSceneReady` **[boolean][416]** Flag que indica se a cena e todos os seus componentes dependentes
+*   `isSceneReady` **[boolean][414]** Flag que indica se a cena e todos os seus componentes dependentes
     (câmera, renderizadores, controles) estão prontos para iniciar o loop de animação.
 *   `sceneRef` **RefObject<(THREE.Scene | null)>** Ref para o objeto da cena Three.js.
 *   `cameraRef` **RefObject<(THREE.PerspectiveCamera | null)>** Ref para o objeto da câmera perspectiva.
@@ -2534,10 +2532,10 @@ Returns **void**&#x20;
 
 ##
 
-*   **See**: [../../core/repository/memory-repository/README.md#annotationRepository][436] Para a fonte de dados das anotações.
-*   **See**: [../../core/repository/memory-repository/README.md#equipmentRepository][437] Para obter dados de equipamentos (e.g., nome para toasts).
-*   **See**: [../../lib/types/README.md#Annotation][438] Para a interface de Anotação.
-*   **See**: [../../lib/types/README.md#Equipment][439] Para a interface de Equipamento.
+*   **See**: [../../core/repository/memory-repository/README.md#annotationRepository][434] Para a fonte de dados das anotações.
+*   **See**: [../../core/repository/memory-repository/README.md#equipmentRepository][435] Para obter dados de equipamentos (e.g., nome para toasts).
+*   **See**: [../../lib/types/README.md#Annotation][436] Para a interface de Anotação.
+*   **See**: [../../lib/types/README.md#Equipment][437] Para a interface de Equipamento.
 
 ### Parameters
 
@@ -2591,7 +2589,7 @@ Props para o hook `useAnnotationManager`.
 
 ### Properties
 
-*   `initialAnnotations` **[Array][417]<[Annotation][34]>?** Lista inicial opcional de anotações. Pode ser usada para uma
+*   `initialAnnotations` **[Array][415]<[Annotation][34]>?** Lista inicial opcional de anotações. Pode ser usada para uma
     inicialização única do repositório se ele estiver vazio e este array contiver dados.
     No entanto, o `annotationRepository` é geralmente auto-inicializável.
 
@@ -2601,7 +2599,7 @@ Props para o hook `useAnnotationManager`.
 
 ### Properties
 
-*   `initialAnnotations` **[Array][417]<[Annotation][34]>?** Lista inicial opcional de anotações. Pode ser usada para uma
+*   `initialAnnotations` **[Array][415]<[Annotation][34]>?** Lista inicial opcional de anotações. Pode ser usada para uma
     inicialização única do repositório se ele estiver vazio e este array contiver dados.
     No entanto, o `annotationRepository` é geralmente auto-inicializável.
 
@@ -2611,11 +2609,11 @@ Retorno do hook `useAnnotationManager`.
 
 ### Properties
 
-*   `annotations` **[Array][417]<[Annotation][34]>** A lista atual de todas as anotações (cópia local do estado do repositório).
-*   `isAnnotationDialogOpen` **[boolean][416]** Indica se o diálogo de anotação está aberto.
+*   `annotations` **[Array][415]<[Annotation][34]>** A lista atual de todas as anotações (cópia local do estado do repositório).
+*   `isAnnotationDialogOpen` **[boolean][414]** Indica se o diálogo de anotação está aberto.
 *   `annotationTargetEquipment` **([Equipment][33] | null)** O equipamento que é o alvo atual para adicionar/editar uma anotação.
 *   `editingAnnotation` **([Annotation][34] | null)** A anotação que está atualmente em edição no diálogo (null se for uma nova anotação).
-*   `setIsAnnotationDialogOpen` **React.Dispatch\<React.SetStateAction<[boolean][416]>>** Função para definir o estado de abertura/fechamento do diálogo.
+*   `setIsAnnotationDialogOpen` **React.Dispatch\<React.SetStateAction<[boolean][414]>>** Função para definir o estado de abertura/fechamento do diálogo.
 
 ## UseAnnotationManagerReturn
 
@@ -2623,11 +2621,11 @@ Retorno do hook `useAnnotationManager`.
 
 ### Properties
 
-*   `annotations` **[Array][417]<[Annotation][34]>** A lista atual de todas as anotações (cópia local do estado do repositório).
-*   `isAnnotationDialogOpen` **[boolean][416]** Indica se o diálogo de anotação está aberto.
+*   `annotations` **[Array][415]<[Annotation][34]>** A lista atual de todas as anotações (cópia local do estado do repositório).
+*   `isAnnotationDialogOpen` **[boolean][414]** Indica se o diálogo de anotação está aberto.
 *   `annotationTargetEquipment` **([Equipment][33] | null)** O equipamento que é o alvo atual para adicionar/editar uma anotação.
 *   `editingAnnotation` **([Annotation][34] | null)** A anotação que está atualmente em edição no diálogo (null se for uma nova anotação).
-*   `setIsAnnotationDialogOpen` **React.Dispatch\<React.SetStateAction<[boolean][416]>>** Função para definir o estado de abertura/fechamento do diálogo.
+*   `setIsAnnotationDialogOpen` **React.Dispatch\<React.SetStateAction<[boolean][414]>>** Função para definir o estado de abertura/fechamento do diálogo.
 
 ## useAnnotationManager
 
@@ -2690,7 +2688,7 @@ Atualiza a data de criação/modificação, persiste no repositório e atualiza 
 
 ### Parameters
 
-*   `text` **[string][415]** O texto da anotação a ser salvo.
+*   `text` **[string][413]** O texto da anotação a ser salvo.
 
 ## handleSaveAnnotation
 
@@ -2699,7 +2697,7 @@ Atualiza a data de criação/modificação, persiste no repositório e atualiza 
 
 ### Parameters
 
-*   `text` **[string][415]** O texto da anotação a ser salvo.
+*   `text` **[string][413]** O texto da anotação a ser salvo.
 
 ## handleDeleteAnnotation
 
@@ -2708,7 +2706,7 @@ Remove do repositório e atualiza o estado local.
 
 ### Parameters
 
-*   `equipmentTag` **[string][415]** A tag do equipamento cuja anotação será excluída.
+*   `equipmentTag` **[string][413]** A tag do equipamento cuja anotação será excluída.
 
 ## handleDeleteAnnotation
 
@@ -2717,7 +2715,7 @@ Remove do repositório e atualiza o estado local.
 
 ### Parameters
 
-*   `equipmentTag` **[string][415]** A tag do equipamento cuja anotação será excluída.
+*   `equipmentTag` **[string][413]** A tag do equipamento cuja anotação será excluída.
 
 ## getAnnotationForEquipment
 
@@ -2725,7 +2723,7 @@ Obtém a anotação para um equipamento específico diretamente do repositório.
 
 ### Parameters
 
-*   `equipmentTag` **([string][415] | null)** A tag do equipamento. Se null, retorna null.
+*   `equipmentTag` **([string][413] | null)** A tag do equipamento. Se null, retorna null.
 
 Returns **([Annotation][34] | null)** A anotação encontrada (uma cópia), ou null se não existir.
 
@@ -2735,7 +2733,7 @@ Obtém a anotação para um equipamento específico diretamente do repositório.
 
 ### Parameters
 
-*   `equipmentTag` **([string][415] | null)** A tag do equipamento. Se null, retorna null.
+*   `equipmentTag` **([string][413] | null)** A tag do equipamento. Se null, retorna null.
 
 Returns **([Annotation][34] | null)** A anotação encontrada (uma cópia), ou null se não existir.
 
@@ -2812,9 +2810,9 @@ Returns **void**&#x20;
 
 ##
 
-*   **See**: [../../lib/types/README.md#CameraState][440] Para a interface do estado da câmera.
-*   **See**: [../../lib/types/README.md#Command][441] Para a interface de comando (usada com `executeCommand`).
-*   **See**: [../../lib/types/README.md#TargetSystemInfo][442] Para a interface de informações do sistema alvo.
+*   **See**: [../../lib/types/README.md#CameraState][438] Para a interface do estado da câmera.
+*   **See**: [../../lib/types/README.md#Command][439] Para a interface de comando (usada com `executeCommand`).
+*   **See**: [../../lib/types/README.md#TargetSystemInfo][440] Para a interface de informações do sistema alvo.
 
 ### Parameters
 
@@ -2900,10 +2898,10 @@ Retorno do hook `useCameraManager`.
 
 ### Properties
 
-*   `currentCameraState` **[CameraState][396]** O estado atual da câmera (posição e ponto de observação).
-*   `targetSystemToFrame` **([TargetSystemInfo][400] | null)** O sistema alvo e o índice da visão para a câmera enquadrar. Null se nenhum foco ativo.
-*   `focusedSystemNameUI` **([string][415] | null)** O nome do sistema atualmente focado (para UI, pode persistir mesmo após `targetSystemToFrame` ser limpo).
-*   `currentViewIndexUI` **[number][429]** O índice da visão atual para o sistema focado (para UI).
+*   `currentCameraState` **[CameraState][394]** O estado atual da câmera (posição e ponto de observação).
+*   `targetSystemToFrame` **([TargetSystemInfo][398] | null)** O sistema alvo e o índice da visão para a câmera enquadrar. Null se nenhum foco ativo.
+*   `focusedSystemNameUI` **([string][413] | null)** O nome do sistema atualmente focado (para UI, pode persistir mesmo após `targetSystemToFrame` ser limpo).
+*   `currentViewIndexUI` **[number][427]** O índice da visão atual para o sistema focado (para UI).
 
 ## UseCameraManagerReturn
 
@@ -2911,10 +2909,10 @@ Retorno do hook `useCameraManager`.
 
 ### Properties
 
-*   `currentCameraState` **[CameraState][396]** O estado atual da câmera (posição e ponto de observação).
-*   `targetSystemToFrame` **([TargetSystemInfo][400] | null)** O sistema alvo e o índice da visão para a câmera enquadrar. Null se nenhum foco ativo.
-*   `focusedSystemNameUI` **([string][415] | null)** O nome do sistema atualmente focado (para UI, pode persistir mesmo após `targetSystemToFrame` ser limpo).
-*   `currentViewIndexUI` **[number][429]** O índice da visão atual para o sistema focado (para UI).
+*   `currentCameraState` **[CameraState][394]** O estado atual da câmera (posição e ponto de observação).
+*   `targetSystemToFrame` **([TargetSystemInfo][398] | null)** O sistema alvo e o índice da visão para a câmera enquadrar. Null se nenhum foco ativo.
+*   `focusedSystemNameUI` **([string][413] | null)** O nome do sistema atualmente focado (para UI, pode persistir mesmo após `targetSystemToFrame` ser limpo).
+*   `currentViewIndexUI` **[number][427]** O índice da visão atual para o sistema focado (para UI).
 
 ## useCameraManager
 
@@ -2949,7 +2947,7 @@ Se o mesmo sistema é clicado repetidamente, cicla entre as visualizações disp
 
 ### Parameters
 
-*   `systemName` **[string][415]** O nome do sistema para focar.
+*   `systemName` **[string][413]** O nome do sistema para focar.
 
 ## handleSetCameraViewForSystem
 
@@ -2958,7 +2956,7 @@ Se o mesmo sistema é clicado repetidamente, cicla entre as visualizações disp
 
 ### Parameters
 
-*   `systemName` **[string][415]** O nome do sistema para focar.
+*   `systemName` **[string][413]** O nome do sistema para focar.
 
 ## handleCameraChangeFromScene
 
@@ -2967,8 +2965,8 @@ ou de animações programáticas concluídas. Registra a mudança no histórico 
 
 ### Parameters
 
-*   `newSceneCameraState` **[CameraState][396]** O novo estado da câmera.
-*   `actionDescription` **[string][415]?** Descrição opcional da ação para o histórico (e.g., "Foco no sistema X").
+*   `newSceneCameraState` **[CameraState][394]** O novo estado da câmera.
+*   `actionDescription` **[string][413]?** Descrição opcional da ação para o histórico (e.g., "Foco no sistema X").
 
 ## handleCameraChangeFromScene
 
@@ -2977,8 +2975,8 @@ ou de animações programáticas concluídas. Registra a mudança no histórico 
 
 ### Parameters
 
-*   `newSceneCameraState` **[CameraState][396]** O novo estado da câmera.
-*   `actionDescription` **[string][415]?** Descrição opcional da ação para o histórico (e.g., "Foco no sistema X").
+*   `newSceneCameraState` **[CameraState][394]** O novo estado da câmera.
+*   `actionDescription` **[string][413]?** Descrição opcional da ação para o histórico (e.g., "Foco no sistema X").
 
 ## onSystemFramed
 
@@ -3032,9 +3030,9 @@ selecionar equipamento) deve ser encapsulada como um `Command`.
 
 ### Properties
 
-*   `id` **[string][415]** Identificador único do comando, geralmente incluindo um timestamp para unicidade.
+*   `id` **[string][413]** Identificador único do comando, geralmente incluindo um timestamp para unicidade.
 *   `type` **(`"CAMERA_MOVE"` | `"LAYER_VISIBILITY"` | `"EQUIPMENT_SELECT"`)** Tipo do comando, para categorização.
-*   `description` **[string][415]** Descrição textual do comando, usada para logging ou exibição na UI (e.g., em toasts de undo/redo).
+*   `description` **[string][413]** Descrição textual do comando, usada para logging ou exibição na UI (e.g., em toasts de undo/redo).
 
 ## CommandHistoryState
 
@@ -3042,8 +3040,8 @@ Interface para o estado interno do histórico de comandos.
 
 ### Properties
 
-*   `history` **[Array][417]<[Command][263]>** Array de objetos de comando que foram executados.
-*   `currentIndex` **[number][429]** Índice do comando atual no array `history`.
+*   `history` **[Array][415]<[Command][263]>** Array de objetos de comando que foram executados.
+*   `currentIndex` **[number][427]** Índice do comando atual no array `history`.
     -1 se o histórico estiver vazio ou todos os comandos foram desfeitos.
 
 ## UseCommandHistoryReturn
@@ -3052,9 +3050,9 @@ Retorno do hook `useCommandHistory`.
 
 ### Properties
 
-*   `canUndo` **[boolean][416]** Verdadeiro se há comandos para desfazer, falso caso contrário.
-*   `canRedo` **[boolean][416]** Verdadeiro se há comandos para refazer, falso caso contrário.
-*   `commandHistory` **[Array][417]<[Command][263]>** O array completo do histórico de comandos, principalmente para depuração.
+*   `canUndo` **[boolean][414]** Verdadeiro se há comandos para desfazer, falso caso contrário.
+*   `canRedo` **[boolean][414]** Verdadeiro se há comandos para refazer, falso caso contrário.
+*   `commandHistory` **[Array][415]<[Command][263]>** O array completo do histórico de comandos, principalmente para depuração.
 
 ## useCommandHistory
 
@@ -3094,8 +3092,8 @@ Chama a função `execute()` do comando a ser refeito.
 
 ##
 
-*   **See**: [../../core/repository/memory-repository/README.md#equipmentRepository][437] Para a fonte de dados.
-*   **See**: [../../lib/types/README.md#Equipment][439] Para a interface de Equipamento.
+*   **See**: [../../core/repository/memory-repository/README.md#equipmentRepository][435] Para a fonte de dados.
+*   **See**: [../../lib/types/README.md#Equipment][437] Para a interface de Equipamento.
 
 ### Examples
 
@@ -3139,7 +3137,7 @@ Retorno do hook `useEquipmentDataManager`.
 
 ### Properties
 
-*   `equipmentData` **[Array][417]<[Equipment][33]>** A lista atual de todos os equipamentos (cópia local do estado do repositório).
+*   `equipmentData` **[Array][415]<[Equipment][33]>** A lista atual de todos os equipamentos (cópia local do estado do repositório).
 
 ## UseEquipmentDataManagerReturn
 
@@ -3147,7 +3145,7 @@ Retorno do hook `useEquipmentDataManager`.
 
 ### Properties
 
-*   `equipmentData` **[Array][417]<[Equipment][33]>** A lista atual de todos os equipamentos (cópia local do estado do repositório).
+*   `equipmentData` **[Array][415]<[Equipment][33]>** A lista atual de todos os equipamentos (cópia local do estado do repositório).
 
 ## useEquipmentDataManager
 
@@ -3182,8 +3180,8 @@ Atualiza o repositório e, em seguida, o estado local do hook.
 
 ### Parameters
 
-*   `equipmentTag` **[string][415]** A tag do equipamento a ser modificado.
-*   `newState` **[string][415]** O novo estado operacional para o equipamento.
+*   `equipmentTag` **[string][413]** A tag do equipamento a ser modificado.
+*   `newState` **[string][413]** O novo estado operacional para o equipamento.
 
 ## handleOperationalStateChange
 
@@ -3192,8 +3190,8 @@ Atualiza o repositório e, em seguida, o estado local do hook.
 
 ### Parameters
 
-*   `equipmentTag` **[string][415]** A tag do equipamento a ser modificado.
-*   `newState` **[string][415]** O novo estado operacional para o equipamento.
+*   `equipmentTag` **[string][413]** A tag do equipamento a ser modificado.
+*   `newState` **[string][413]** O novo estado operacional para o equipamento.
 
 ## handleProductChange
 
@@ -3202,8 +3200,8 @@ Atualiza o repositório e, em seguida, o estado local do hook.
 
 ### Parameters
 
-*   `equipmentTag` **[string][415]** A tag do equipamento a ser modificado.
-*   `newProduct` **[string][415]** O novo produto para o equipamento.
+*   `equipmentTag` **[string][413]** A tag do equipamento a ser modificado.
+*   `newProduct` **[string][413]** O novo produto para o equipamento.
 
 ## handleProductChange
 
@@ -3212,8 +3210,8 @@ Atualiza o repositório e, em seguida, o estado local do hook.
 
 ### Parameters
 
-*   `equipmentTag` **[string][415]** A tag do equipamento a ser modificado.
-*   `newProduct` **[string][415]** O novo produto para o equipamento.
+*   `equipmentTag` **[string][413]** A tag do equipamento a ser modificado.
+*   `newProduct` **[string][413]** O novo produto para o equipamento.
 
 ## UseEquipmentRendererProps
 
@@ -3289,7 +3287,7 @@ dos meshes de equipamentos na cena Three.js.
     *   `props.createSingleEquipmentMesh` &#x20;
     *   `props.groundMeshRef` &#x20;
 
-Returns **React.RefObject<[Array][417]\<THREE.Object3D>>** Ref para a lista de meshes de equipamentos atualmente na cena.
+Returns **React.RefObject<[Array][415]\<THREE.Object3D>>** Ref para a lista de meshes de equipamentos atualmente na cena.
 Este ref é gerenciado internamente pelo hook mas retornado para que outros hooks
 (e.g., para raycasting) possam acessá-lo.
 
@@ -3336,7 +3334,7 @@ Props para o hook `useEquipmentSelectionManager`.
 
 ### Properties
 
-*   `equipmentData` **[Array][417]<[Equipment][33]>** Lista completa de todos os equipamentos. Usada para buscar nomes
+*   `equipmentData` **[Array][415]<[Equipment][33]>** Lista completa de todos os equipamentos. Usada para buscar nomes
     de equipamentos para mensagens de feedback (toasts).
 
 ## UseEquipmentSelectionManagerReturn
@@ -3345,8 +3343,8 @@ Retorno do hook `useEquipmentSelectionManager`.
 
 ### Properties
 
-*   `selectedEquipmentTags` **[Array][417]<[string][415]>** Array das tags dos equipamentos atualmente selecionados.
-*   `hoveredEquipmentTag` **([string][415] | null)** Tag do equipamento atualmente sob o cursor do mouse, ou null.
+*   `selectedEquipmentTags` **[Array][415]<[string][413]>** Array das tags dos equipamentos atualmente selecionados.
+*   `hoveredEquipmentTag` **([string][413] | null)** Tag do equipamento atualmente sob o cursor do mouse, ou null.
 
 ## useEquipmentSelectionManager
 
@@ -3370,8 +3368,8 @@ Cria e executa um comando para o histórico de Undo/Redo.
 
 ### Parameters
 
-*   `tag` **([string][415] | null)** A tag do equipamento clicado, ou null se o clique foi em espaço vazio.
-*   `isMultiSelectModifierPressed` **[boolean][416]** True se Ctrl/Cmd (ou Meta) foi pressionado durante o clique.
+*   `tag` **([string][413] | null)** A tag do equipamento clicado, ou null se o clique foi em espaço vazio.
+*   `isMultiSelectModifierPressed` **[boolean][414]** True se Ctrl/Cmd (ou Meta) foi pressionado durante o clique.
 
 ## handleSetHoveredEquipmentTag
 
@@ -3380,7 +3378,7 @@ Esta função é geralmente chamada em resposta a eventos de mousemove na cena 3
 
 ### Parameters
 
-*   `tag` **([string][415] | null)** A tag do equipamento, ou null se nenhum estiver sob o cursor.
+*   `tag` **([string][413] | null)** A tag do equipamento, ou null se nenhum estiver sob o cursor.
 
 ## selectTagsBatch
 
@@ -3390,8 +3388,8 @@ Cria e executa um comando para o histórico de Undo/Redo.
 
 ### Parameters
 
-*   `tagsToSelect` **[Array][417]<[string][415]>** Array de tags de equipamento a serem selecionadas.
-*   `operationDescription` **[string][415]?** Descrição opcional para o comando no histórico (e para o toast).
+*   `tagsToSelect` **[Array][415]<[string][413]>** Array de tags de equipamento a serem selecionadas.
+*   `operationDescription` **[string][413]?** Descrição opcional para o comando no histórico (e para o toast).
     Padrão: "Selecionados X equipamentos em lote."
 
 ##
@@ -3450,7 +3448,7 @@ Props para o hook `useFilterManager`.
 
 ### Properties
 
-*   `allEquipment` **[Array][417]<[Equipment][33]>** A lista completa de todos os equipamentos que podem ser filtrados.
+*   `allEquipment` **[Array][415]<[Equipment][33]>** A lista completa de todos os equipamentos que podem ser filtrados.
 
 ## UseFilterManagerReturn
 
@@ -3458,15 +3456,15 @@ Retorno do hook `useFilterManager`.
 
 ### Properties
 
-*   `searchTerm` **[string][415]** O termo de busca textual atualmente aplicado.
-*   `setSearchTerm` **Dispatch\<SetStateAction<[string][415]>>** Função para atualizar o `searchTerm`.
-*   `selectedSistema` **[string][415]** O sistema atualmente selecionado para filtro (e.g., "GA", "All").
-*   `setSelectedSistema` **Dispatch\<SetStateAction<[string][415]>>** Função para atualizar o `selectedSistema`.
-*   `selectedArea` **[string][415]** A área atualmente selecionada para filtro (e.g., "Área 31", "All").
-*   `setSelectedArea` **Dispatch\<SetStateAction<[string][415]>>** Função para atualizar o `selectedArea`.
-*   `availableSistemas` **[Array][417]<[string][415]>** Lista ordenada de sistemas únicos disponíveis para seleção no filtro, incluindo "All".
-*   `availableAreas` **[Array][417]<[string][415]>** Lista ordenada de áreas únicas disponíveis para seleção no filtro, incluindo "All".
-*   `filteredEquipment` **[Array][417]<[Equipment][33]>** A lista de equipamentos resultante após a aplicação de todos os filtros ativos.
+*   `searchTerm` **[string][413]** O termo de busca textual atualmente aplicado.
+*   `setSearchTerm` **Dispatch\<SetStateAction<[string][413]>>** Função para atualizar o `searchTerm`.
+*   `selectedSistema` **[string][413]** O sistema atualmente selecionado para filtro (e.g., "GA", "All").
+*   `setSelectedSistema` **Dispatch\<SetStateAction<[string][413]>>** Função para atualizar o `selectedSistema`.
+*   `selectedArea` **[string][413]** A área atualmente selecionada para filtro (e.g., "Área 31", "All").
+*   `setSelectedArea` **Dispatch\<SetStateAction<[string][413]>>** Função para atualizar o `selectedArea`.
+*   `availableSistemas` **[Array][415]<[string][413]>** Lista ordenada de sistemas únicos disponíveis para seleção no filtro, incluindo "All".
+*   `availableAreas` **[Array][415]<[string][413]>** Lista ordenada de áreas únicas disponíveis para seleção no filtro, incluindo "All".
+*   `filteredEquipment` **[Array][415]<[Equipment][33]>** A lista de equipamentos resultante após a aplicação de todos os filtros ativos.
 
 ## useFilterManager
 
@@ -3554,7 +3552,7 @@ Retorno do hook `useLayerManager`.
 
 ### Properties
 
-*   `layers` **[Array][417]<[Layer][394]>** A lista atual de todas as camadas e seus respectivos estados de visibilidade.
+*   `layers` **[Array][415]<[Layer][392]>** A lista atual de todas as camadas e seus respectivos estados de visibilidade.
 
 ## useLayerManager
 
@@ -3581,7 +3579,7 @@ que aplicará essa mudança (e permitirá revertê-la).
 
 ### Parameters
 
-*   `layerId` **[string][415]** O ID da camada cuja visibilidade deve ser alternada.
+*   `layerId` **[string][413]** O ID da camada cuja visibilidade deve ser alternada.
 
 ## raycaster
 
@@ -3684,10 +3682,10 @@ Props para o hook useSceneOutline.
 ### Properties
 
 *   `outlinePassRef` **React.RefObject<(OutlinePass | null)>** Ref para a instância do OutlinePass.
-*   `equipmentMeshesRef` **React.RefObject<[Array][417]\<THREE.Object3D>>** Ref para o array de meshes de equipamentos na cena.
-*   `selectedEquipmentTags` **([Array][417]<[string][415]> | [undefined][418])** Array de tags dos equipamentos selecionados.
-*   `hoveredEquipmentTag` **([string][415] | null | [undefined][418])** Tag do equipamento atualmente em hover.
-*   `isSceneReady` **[boolean][416]** Flag indicando se a cena 3D está pronta.
+*   `equipmentMeshesRef` **React.RefObject<[Array][415]\<THREE.Object3D>>** Ref para o array de meshes de equipamentos na cena.
+*   `selectedEquipmentTags` **([Array][415]<[string][413]> | [undefined][416])** Array de tags dos equipamentos selecionados.
+*   `hoveredEquipmentTag` **([string][413] | null | [undefined][416])** Tag do equipamento atualmente em hover.
+*   `isSceneReady` **[boolean][414]** Flag indicando se a cena 3D está pronta.
 
 ## useSceneOutline
 
@@ -3712,7 +3710,7 @@ Props para o hook orquestrador da configuração da cena.
 
 ### Properties
 
-*   `mountRef` **React.RefObject<[HTMLDivElement][443]>** Ref para o elemento DOM contêiner da cena.
+*   `mountRef` **React.RefObject<[HTMLDivElement][441]>** Ref para o elemento DOM contêiner da cena.
 
 ## UseSceneSetupReturn
 
@@ -3729,8 +3727,8 @@ Agrega refs e flags de prontidão dos hooks especializados.
 *   `composerRef` **React.RefObject<(EffectComposer | null)>** Ref para o EffectComposer (pós-processamento).
 *   `outlinePassRef` **React.RefObject<(OutlinePass | null)>** Ref para o OutlinePass (efeito de contorno).
 *   `groundMeshRef` **React.RefObject<(THREE.Mesh | null)>** Ref para a malha do plano de chão.
-*   `isSceneReady` **[boolean][416]** Flag que indica se os componentes principais da cena (núcleo, renderizadores, elementos) estão prontos.
-*   `isControlsReady` **[boolean][416]** Flag que indica se os OrbitControls estão prontos (carregamento dinâmico).
+*   `isSceneReady` **[boolean][414]** Flag que indica se os componentes principais da cena (núcleo, renderizadores, elementos) estão prontos.
+*   `isControlsReady` **[boolean][414]** Flag que indica se os OrbitControls estão prontos (carregamento dinâmico).
 
 ## useSceneSetup
 
@@ -3747,20 +3745,16 @@ Returns **[UseSceneSetupReturn][346]** Refs para os componentes da cena e flags 
 
 ##
 
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository][444] Para a fonte de dados das anotações.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository][445] Para obter dados de equipamentos (e.g., nome para toasts).
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Annotation][428] Para a interface de Anotação.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment][427] Para a interface de Equipamento.
-
-### Parameters
-
-*   `props`  Propriedades de configuração para o hook (atualmente, `initialAnnotations` é opcional e usado para uma potencial inicialização única do repositório, embora o repositório seja auto-inicializável).
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository][442] Para a fonte de dados das anotações.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository][443] Para obter dados de equipamentos (e.g., nome para toasts).
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Annotation][426] Para a interface de Anotação.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment][425] Para a interface de Equipamento.
 
 ### Examples
 
-````javascript
+```javascript
 // Diagrama de Interação do useAnnotationManager:
-```mermaid
+\`\`\`mermaid
 graph TD
     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOpenAnnotationDialog)
     B -- define estados --> DialogState["isAnnotationDialogOpen, editingAnnotation, annotationTargetEquipment"]
@@ -3793,26 +3787,20 @@ graph TD
    class E,G repo;
    class DialogState,H,I state;
    class useAnnotationManager hook;
+\`\`\`
 ```
-````
-
-Returns **any** Objeto contendo o estado das anotações, o estado do diálogo e funções para manipular anotações.
 
 ##
 
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#CameraState][446] Para a interface do estado da câmera.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Command][447] Para a interface de comando (usada com `executeCommand`).
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#TargetSystemInfo][448] Para a interface de informações do sistema alvo.
-
-### Parameters
-
-*   `props`  Propriedades para o hook, incluindo `executeCommand` para integração com histórico.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#CameraState][444] Para a interface do estado da câmera.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Command][445] Para a interface de comando (usada com `executeCommand`).
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#TargetSystemInfo][446] Para a interface de informações do sistema alvo.
 
 ### Examples
 
-````javascript
+```javascript
 // Diagrama de Interação e Estado do useCameraManager:
-```mermaid
+\`\`\`mermaid
 graph LR
     A[Terminal3DPage] -- chama --> B(handleSetCameraViewForSystem)
     B -- atualiza --> C{targetSystemToFrame};
@@ -3853,21 +3841,19 @@ graph LR
    class B,G,H,J,M func;
    class C,D,E,K,L,I state;
    class useCameraManager hook;
+\`\`\`
 ```
-````
-
-Returns **any** Objeto contendo o estado da câmera, informações de foco, e funções para interagir com a câmera.
 
 ##
 
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository][445] Para a fonte de dados.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment][427] Para a interface de Equipamento.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository][443] Para a fonte de dados.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/lib/types/README.md#Equipment][425] Para a interface de Equipamento.
 
 ### Examples
 
-````javascript
+```javascript
 // Diagrama de Interação do useEquipmentDataManager:
-```mermaid
+\`\`\`mermaid
 graph TD
     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOperationalStateChange)
 
@@ -3894,10 +3880,8 @@ graph TD
    class C,D repo;
    class E,F state;
    class useEquipmentDataManager hook;
+\`\`\`
 ```
-````
-
-Returns **any** Objeto contendo os dados dos equipamentos e funções para modificá-los e atualizá-los.
 
 ## useRef
 
@@ -4030,14 +4014,14 @@ Returns **any** Refs para os renderizadores, composer, outline pass, e uma flag 
 
 ## useRef
 
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting][449] Para a função de configuração da iluminação.
-*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane][450] Para a função de configuração do plano de chão.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting][447] Para a função de configuração da iluminação.
+*   **See**: [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane][448] Para a função de configuração do plano de chão.
 
 ### Examples
 
-````javascript
+```javascript
 // Diagrama de Funcionalidade do useThreeSceneElements:
-```mermaid
+\`\`\`mermaid
 graph TD
     useThreeSceneElements["useThreeSceneElements (Hook)"]
     Props["UseThreeSceneElementsProps"]
@@ -4072,10 +4056,8 @@ graph TD
     class CoreReady_Flag flag;
     class Lighting_Elements,GroundPlane_Mesh obj3d;
     class Utils_Module util;
+\`\`\`
 ```
-````
-
-Returns **any** Ref para a malha do plano de chão criada.
 
 ## UseThreeCoreProps
 
@@ -4083,7 +4065,7 @@ Props para o hook `useThreeCore`.
 
 ### Properties
 
-*   `mountRef` **React.RefObject<([HTMLDivElement][443] | null)>** Ref para o elemento DOM contêiner da cena,
+*   `mountRef` **React.RefObject<([HTMLDivElement][441] | null)>** Ref para o elemento DOM contêiner da cena,
     usado para calcular a razão de aspecto inicial da câmera.
 
 ## UseThreeCoreReturn
@@ -4101,12 +4083,12 @@ Inicializa o núcleo da cena Three.js (cena e câmera perspectiva).
 
 ### Parameters
 
-*   `props` **[UseThreeCoreProps][366]** Propriedades para a configuração do núcleo.
+*   `props` **[UseThreeCoreProps][364]** Propriedades para a configuração do núcleo.
 
     *   `props.initialCameraPosition` &#x20;
     *   `props.mountRef` &#x20;
 
-Returns **[UseThreeCoreReturn][368]** Refs para a cena e a câmera.
+Returns **[UseThreeCoreReturn][366]** Refs para a cena e a câmera.
 
 ## UseThreeOrbitControlsProps
 
@@ -4116,7 +4098,7 @@ Props para o hook `useThreeOrbitControls`.
 
 *   `cameraRef` **React.RefObject<(THREE.PerspectiveCamera | null)>** Ref para a câmera perspectiva.
 *   `rendererRef` **React.RefObject<(THREE.WebGLRenderer | null)>** Ref para o renderizador WebGL (necessário para o `domElement`).
-*   `renderersReady` **[boolean][416]** Flag que indica se os renderizadores (especialmente o `domElement` do WebGLRenderer) estão prontos.
+*   `renderersReady` **[boolean][414]** Flag que indica se os renderizadores (especialmente o `domElement` do WebGLRenderer) estão prontos.
 
 ## UseThreeOrbitControlsReturn
 
@@ -4125,7 +4107,7 @@ Valor de retorno do hook `useThreeOrbitControls`.
 ### Properties
 
 *   `controlsRef` **React.RefObject<(OrbitControlsType | null)>** Ref para a instância de `OrbitControls`.
-*   `isControlsReady` **[boolean][416]** Flag que indica se os `OrbitControls` foram carregados e inicializados com sucesso.
+*   `isControlsReady` **[boolean][414]** Flag que indica se os `OrbitControls` foram carregados e inicializados com sucesso.
 
 ## useThreeOrbitControls
 
@@ -4134,7 +4116,7 @@ Lida com importação dinâmica, configuração e ouvintes de eventos para mudan
 
 ### Parameters
 
-*   `props` **[UseThreeOrbitControlsProps][372]** Propriedades para a configuração dos OrbitControls.
+*   `props` **[UseThreeOrbitControlsProps][370]** Propriedades para a configuração dos OrbitControls.
 
     *   `props.cameraRef` &#x20;
     *   `props.rendererRef` &#x20;
@@ -4142,7 +4124,7 @@ Lida com importação dinâmica, configuração e ouvintes de eventos para mudan
     *   `props.onCameraChange` &#x20;
     *   `props.renderersReady` &#x20;
 
-Returns **[UseThreeOrbitControlsReturn][374]** Ref para os OrbitControls e flag de prontidão.
+Returns **[UseThreeOrbitControlsReturn][372]** Ref para os OrbitControls e flag de prontidão.
 
 ## UseThreeRenderersProps
 
@@ -4150,7 +4132,7 @@ Props para o hook `useThreeRenderers`.
 
 ### Properties
 
-*   `mountRef` **React.RefObject<([HTMLDivElement][443] | null)>** Ref para o elemento DOM onde os renderizadores serão montados.
+*   `mountRef` **React.RefObject<([HTMLDivElement][441] | null)>** Ref para o elemento DOM onde os renderizadores serão montados.
 *   `sceneRef` **React.RefObject<(THREE.Scene | null)>** Ref para a cena Three.js existente.
 *   `cameraRef` **React.RefObject<(THREE.PerspectiveCamera | null)>** Ref para a câmera perspectiva existente.
 
@@ -4164,7 +4146,7 @@ Valor de retorno do hook `useThreeRenderers`.
 *   `labelRendererRef` **React.RefObject<(CSS2DRenderer | null)>** Ref para o `CSS2DRenderer`.
 *   `composerRef` **React.RefObject<(EffectComposer | null)>** Ref para o `EffectComposer`.
 *   `outlinePassRef` **React.RefObject<(OutlinePass | null)>** Ref para o `OutlinePass`.
-*   `areRenderersReady` **[boolean][416]** Flag que indica se todos os renderizadores e o composer foram inicializados com sucesso.
+*   `areRenderersReady` **[boolean][414]** Flag que indica se todos os renderizadores e o composer foram inicializados com sucesso.
 
 ## useThreeRenderers
 
@@ -4173,13 +4155,13 @@ Gerencia a anexação ao DOM e eventos de contexto WebGL.
 
 ### Parameters
 
-*   `props` **[UseThreeRenderersProps][378]** Propriedades para a configuração dos renderizadores.
+*   `props` **[UseThreeRenderersProps][376]** Propriedades para a configuração dos renderizadores.
 
     *   `props.mountRef` &#x20;
     *   `props.sceneRef` &#x20;
     *   `props.cameraRef` &#x20;
 
-Returns **[UseThreeRenderersReturn][380]** Refs para os renderizadores, composer, outline pass, e flag de prontidão.
+Returns **[UseThreeRenderersReturn][378]** Refs para os renderizadores, composer, outline pass, e flag de prontidão.
 
 ## UseThreeResizeProps
 
@@ -4187,13 +4169,13 @@ Props para o hook `useThreeResize`.
 
 ### Properties
 
-*   `mountRef` **React.RefObject<([HTMLDivElement][443] | null)>** Ref para o elemento DOM contêiner da cena.
+*   `mountRef` **React.RefObject<([HTMLDivElement][441] | null)>** Ref para o elemento DOM contêiner da cena.
 *   `cameraRef` **React.RefObject<(THREE.PerspectiveCamera | null)>** Ref para a câmera perspectiva.
 *   `rendererRef` **React.RefObject<(THREE.WebGLRenderer | null)>** Ref para o renderizador WebGL.
 *   `labelRendererRef` **React.RefObject<(CSS2DRenderer | null)>** Ref para o renderizador CSS2D.
 *   `composerRef` **React.RefObject<(EffectComposer | null)>** Ref para o EffectComposer.
 *   `outlinePassRef` **React.RefObject<(OutlinePass | null)>** Ref para o OutlinePass.
-*   `ready` **[boolean][416]** Flag que indica se todos os componentes que precisam ser redimensionados estão prontos.
+*   `ready` **[boolean][414]** Flag que indica se todos os componentes que precisam ser redimensionados estão prontos.
 
 ## useThreeResize
 
@@ -4201,7 +4183,7 @@ Lida com eventos de redimensionamento para a cena Three.js, atualizando câmera 
 
 ### Parameters
 
-*   `props` **[UseThreeResizeProps][384]** Refs para elementos que precisam ser redimensionados e uma flag de prontidão.
+*   `props` **[UseThreeResizeProps][382]** Refs para elementos que precisam ser redimensionados e uma flag de prontidão.
 
     *   `props.mountRef` &#x20;
     *   `props.cameraRef` &#x20;
@@ -4220,7 +4202,7 @@ Props para o hook `useThreeSceneElements`.
 ### Properties
 
 *   `sceneRef` **React.RefObject<(THREE.Scene | null)>** Ref para o objeto `THREE.Scene` onde os elementos serão adicionados.
-*   `coreReady` **[boolean][416]** Flag que indica se o núcleo da cena (incluindo `sceneRef.current`) está pronto.
+*   `coreReady` **[boolean][414]** Flag que indica se o núcleo da cena (incluindo `sceneRef.current`) está pronto.
 
 ## UseThreeSceneElementsReturn
 
@@ -4236,12 +4218,12 @@ Configura elementos básicos da cena, como iluminação e plano de chão.
 
 ### Parameters
 
-*   `props` **[UseThreeSceneElementsProps][388]** Propriedades para a configuração dos elementos da cena.
+*   `props` **[UseThreeSceneElementsProps][386]** Propriedades para a configuração dos elementos da cena.
 
     *   `props.sceneRef` &#x20;
     *   `props.coreReady` &#x20;
 
-Returns **[UseThreeSceneElementsReturn][390]** Ref para a malha do plano de chão.
+Returns **[UseThreeSceneElementsReturn][388]** Ref para a malha do plano de chão.
 
 ## Layer
 
@@ -4251,9 +4233,9 @@ ou outros elementos da cena (como anotações ou o terreno).
 
 ### Properties
 
-*   `id` **[string][415]** Identificador único da camada (e.g., 'layer-tanks', 'layer-annotations').
-*   `name` **[string][415]** Nome legível da camada para exibição na UI (e.g., "Tanques", "Anotações").
-*   `isVisible` **[boolean][416]** Indica se a camada (e os elementos que ela controla) está atualmente visível.
+*   `id` **[string][413]** Identificador único da camada (e.g., 'layer-tanks', 'layer-annotations').
+*   `name` **[string][413]** Nome legível da camada para exibição na UI (e.g., "Tanques", "Anotações").
+*   `isVisible` **[boolean][414]** Indica se a camada (e os elementos que ela controla) está atualmente visível.
 
 ## CameraState
 
@@ -4263,7 +4245,7 @@ Representa o estado da câmera 3D, definido por sua posição e o ponto para o q
 
 Alias para CameraState, usado para clareza ao descrever uma visão específica do sistema.
 
-Type: [CameraState][396]
+Type: [CameraState][394]
 
 ## SystemViewOptions
 
@@ -4271,9 +4253,9 @@ Define as diferentes opções de visualização para um sistema focado.
 
 ### Properties
 
-*   `default` **[SystemView][397]** A visão padrão calculada.
-*   `topDown` **[SystemView][397]?** Uma visão de cima para baixo.
-*   `isometric` **[SystemView][397]?** Uma visão isométrica simulada.
+*   `default` **[SystemView][395]** A visão padrão calculada.
+*   `topDown` **[SystemView][395]?** Uma visão de cima para baixo.
+*   `isometric` **[SystemView][395]?** Uma visão isométrica simulada.
 
 ## TargetSystemInfo
 
@@ -4282,8 +4264,8 @@ incluindo o índice da visão desejada.
 
 ### Properties
 
-*   `systemName` **[string][415]** O nome do sistema a ser focado.
-*   `viewIndex` **[number][429]** O índice da visualização desejada (0 para padrão, 1 para top-down, etc.).
+*   `systemName` **[string][413]** O nome do sistema a ser focado.
+*   `viewIndex` **[number][427]** O índice da visualização desejada (0 para padrão, 1 para top-down, etc.).
 
 ## Annotation
 
@@ -4292,10 +4274,10 @@ Cada equipamento pode ter no máximo uma anotação.
 
 ### Properties
 
-*   `equipmentTag` **[string][415]** A tag do equipamento ao qual esta anotação está vinculada.
+*   `equipmentTag` **[string][413]** A tag do equipamento ao qual esta anotação está vinculada.
     Serve como chave estrangeira para o objeto `Equipment`.
-*   `text` **[string][415]** O conteúdo textual da anotação.
-*   `createdAt` **[string][415]** Data e hora em formato string ISO 8601 (e.g., "2023-10-27T10:30:00.000Z")
+*   `text` **[string][413]** O conteúdo textual da anotação.
+*   `createdAt` **[string][413]** Data e hora em formato string ISO 8601 (e.g., "2023-10-27T10:30:00.000Z")
     indicando quando a anotação foi criada ou atualizada pela última vez.
 
 ## ColorMode
@@ -5012,202 +4994,198 @@ Type: (`"Produto"` | `"Estado Operacional"` | `"Equipamento"`)
 
 [350]: #-19
 
-[351]: #parameters-74
+[351]: #examples-22
 
-[352]: #examples-22
+[352]: #-20
 
-[353]: #-20
+[353]: #examples-23
 
-[354]: #parameters-75
+[354]: #-21
 
-[355]: #examples-23
+[355]: #examples-24
 
-[356]: #-21
+[356]: #useref
 
-[357]: #examples-24
+[357]: #examples-25
 
-[358]: #useref
+[358]: #useref-1
 
-[359]: #examples-25
+[359]: #examples-26
 
-[360]: #useref-1
+[360]: #useref-2
 
-[361]: #examples-26
+[361]: #examples-27
 
-[362]: #useref-2
+[362]: #useref-3
 
-[363]: #examples-27
+[363]: #examples-28
 
-[364]: #useref-3
+[364]: #usethreecoreprops
 
-[365]: #examples-28
+[365]: #properties-31
 
-[366]: #usethreecoreprops
+[366]: #usethreecorereturn
 
-[367]: #properties-31
+[367]: #properties-32
 
-[368]: #usethreecorereturn
+[368]: #usethreecore
 
-[369]: #properties-32
+[369]: #parameters-74
 
-[370]: #usethreecore
+[370]: #usethreeorbitcontrolsprops
 
-[371]: #parameters-76
+[371]: #properties-33
 
-[372]: #usethreeorbitcontrolsprops
+[372]: #usethreeorbitcontrolsreturn
 
-[373]: #properties-33
+[373]: #properties-34
 
-[374]: #usethreeorbitcontrolsreturn
+[374]: #usethreeorbitcontrols
 
-[375]: #properties-34
+[375]: #parameters-75
 
-[376]: #usethreeorbitcontrols
+[376]: #usethreerenderersprops
 
-[377]: #parameters-77
+[377]: #properties-35
 
-[378]: #usethreerenderersprops
+[378]: #usethreerenderersreturn
 
-[379]: #properties-35
+[379]: #properties-36
 
-[380]: #usethreerenderersreturn
+[380]: #usethreerenderers
 
-[381]: #properties-36
+[381]: #parameters-76
 
-[382]: #usethreerenderers
+[382]: #usethreeresizeprops
 
-[383]: #parameters-78
+[383]: #properties-37
 
-[384]: #usethreeresizeprops
+[384]: #usethreeresize
 
-[385]: #properties-37
+[385]: #parameters-77
 
-[386]: #usethreeresize
+[386]: #usethreesceneelementsprops
 
-[387]: #parameters-79
+[387]: #properties-38
 
-[388]: #usethreesceneelementsprops
+[388]: #usethreesceneelementsreturn
 
-[389]: #properties-38
+[389]: #properties-39
 
-[390]: #usethreesceneelementsreturn
+[390]: #usethreesceneelements
 
-[391]: #properties-39
+[391]: #parameters-78
 
-[392]: #usethreesceneelements
+[392]: #layer
 
-[393]: #parameters-80
+[393]: #properties-40
 
-[394]: #layer
+[394]: #camerastate
 
-[395]: #properties-40
+[395]: #systemview
 
-[396]: #camerastate
+[396]: #systemviewoptions
 
-[397]: #systemview
+[397]: #properties-41
 
-[398]: #systemviewoptions
+[398]: #targetsysteminfo
 
-[399]: #properties-41
+[399]: #properties-42
 
-[400]: #targetsysteminfo
+[400]: #annotation-1
 
-[401]: #properties-42
+[401]: #properties-43
 
-[402]: #annotation-1
+[402]: #colormode
 
-[403]: #properties-43
+[403]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/main-scene-area/README.md
 
-[404]: #colormode
+[404]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/ui/sidebar/README.md
 
-[405]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/main-scene-area/README.md
+[405]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/annotation-dialog/README.md
 
-[406]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/ui/sidebar/README.md
+[406]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-command-history/README.md
 
-[407]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/annotation-dialog/README.md
+[407]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-data-manager/README.md
 
-[408]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-command-history/README.md
+[408]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-camera-manager/README.md
 
-[409]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-data-manager/README.md
+[409]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-filter-manager/README.md
 
-[410]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-camera-manager/README.md
+[410]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-manager/README.md
 
-[411]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-filter-manager/README.md
+[411]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-selection-manager/README.md
 
-[412]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-manager/README.md
+[412]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-layer-manager/README.md
 
-[413]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-selection-manager/README.md
+[413]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[414]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-layer-manager/README.md
+[414]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
-[415]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[415]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[416]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[416]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined
 
-[417]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[417]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-setup/README.md
 
-[418]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined
+[418]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-renderer/README.md
 
-[419]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-setup/README.md
+[419]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-pin-renderer/README.md
 
-[420]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-renderer/README.md
+[420]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-mouse-interaction/README.md
 
-[421]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-pin-renderer/README.md
+[421]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-outline/README.md
 
-[422]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-mouse-interaction/README.md
+[422]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-animation-loop/README.md
 
-[423]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-outline/README.md
+[423]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
 
-[424]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useAnimationLoop/README.md
+[424]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/data/initial-data/README.md
 
-[425]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
+[425]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment
 
-[426]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/data/initial-data/README.md
+[426]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Annotation
 
-[427]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment
+[427]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[428]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Annotation
+[428]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeCore/README.md
 
-[429]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[429]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeRenderers/README.md
 
-[430]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeCore/README.md
+[430]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeOrbitControls/README.md
 
-[431]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeRenderers/README.md
+[431]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeSceneElements/README.md
 
-[432]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeOrbitControls/README.md
+[432]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeResize/README.md
 
-[433]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeSceneElements/README.md
+[433]: https://developer.mozilla.org/docs/Web/HTML/Element
 
-[434]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeResize/README.md
+[434]: ../../core/repository/memory-repository/README.md#annotationRepository
 
-[435]: https://developer.mozilla.org/docs/Web/HTML/Element
+[435]: ../../core/repository/memory-repository/README.md#equipmentRepository
 
-[436]: ../../core/repository/memory-repository/README.md#annotationRepository
+[436]: ../../lib/types/README.md#Annotation
 
-[437]: ../../core/repository/memory-repository/README.md#equipmentRepository
+[437]: ../../lib/types/README.md#Equipment
 
-[438]: ../../lib/types/README.md#Annotation
+[438]: ../../lib/types/README.md#CameraState
 
-[439]: ../../lib/types/README.md#Equipment
+[439]: ../../lib/types/README.md#Command
 
-[440]: ../../lib/types/README.md#CameraState
+[440]: ../../lib/types/README.md#TargetSystemInfo
 
-[441]: ../../lib/types/README.md#Command
+[441]: https://developer.mozilla.org/docs/Web/API/HTMLDivElement
 
-[442]: ../../lib/types/README.md#TargetSystemInfo
+[442]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository
 
-[443]: https://developer.mozilla.org/docs/Web/API/HTMLDivElement
+[443]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository
 
-[444]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository
+[444]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#CameraState
 
-[445]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository
+[445]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Command
 
-[446]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#CameraState
+[446]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#TargetSystemInfo
 
-[447]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Command
+[447]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting
 
-[448]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#TargetSystemInfo
-
-[449]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting
-
-[450]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane
+[448]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane
