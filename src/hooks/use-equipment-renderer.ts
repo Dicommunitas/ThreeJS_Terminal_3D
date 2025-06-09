@@ -5,6 +5,7 @@ import type * as THREE from 'three';
 import { useEffect, useRef } from 'react';
 import type { Equipment, Layer, ColorMode } from '@/lib/types';
 import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup';
+import type { OrbitControls as OrbitControlsType } from 'three/examples/jsm/controls/OrbitControls.js'; // Importação correta
 
 /**
  * Custom hook to manage the rendering of equipment meshes in the 3D scene.
@@ -72,9 +73,9 @@ import { updateEquipmentMeshesInScene } from '@/core/three/scene-elements-setup'
 export interface UseEquipmentRendererProps {
   sceneRef: React.RefObject<THREE.Scene | null>;
   cameraRef: React.RefObject<THREE.PerspectiveCamera | null>;
-  controlsRef: React.RefObject<THREE.OrbitControls | null>;
+  controlsRef: React.RefObject<OrbitControlsType | null>; // Corrigido para OrbitControlsType
   isSceneReady: boolean;
-  isControlsReady: boolean; // Adicionado
+  isControlsReady: boolean; 
   equipmentData: Equipment[];
   layers: Layer[];
   colorMode: ColorMode;
@@ -96,7 +97,7 @@ export function useEquipmentRenderer({
   cameraRef,
   controlsRef,
   isSceneReady,
-  isControlsReady, // Adicionado
+  isControlsReady, 
   equipmentData,
   layers,
   colorMode,

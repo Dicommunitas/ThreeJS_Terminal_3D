@@ -127,7 +127,7 @@ import { calculateViewForMeshes } from '@/core/three/camera-utils';
  * @property {(tag: string | null, isMultiSelectModifierPressed: boolean) => void} onSelectEquipment - Callback para quando um equipamento é selecionado/deselecionado.
  * @property {string | null | undefined} hoveredEquipmentTag - Tag do equipamento atualmente sob o cursor.
  * @property {(tag: string | null) => void} setHoveredEquipmentTag - Callback para definir o equipamento em hover.
- * @property {CameraState} cameraState - O estado atual da câmera (posição, lookAt) gerenciado externamente.
+ * @property {CameraState | undefined} cameraState - O estado atual da câmera (posição, lookAt) gerenciado externamente. Pode ser indefinido durante a inicialização.
  * @property {(cameraState: CameraState, actionDescription?: string) => void} onCameraChange - Callback para quando o estado da câmera muda, com uma descrição opcional da ação.
  * @property {{ x: number; y: number; z: number }} initialCameraPosition - Posição inicial da câmera.
  * @property {{ x: number; y: number; z: number }} initialCameraLookAt - Ponto de observação (lookAt) inicial da câmera.
@@ -144,7 +144,7 @@ export interface ThreeSceneProps {
   onSelectEquipment: (tag: string | null, isMultiSelectModifierPressed: boolean) => void;
   hoveredEquipmentTag: string | null | undefined;
   setHoveredEquipmentTag: (tag: string | null) => void;
-  cameraState: CameraState;
+  cameraState: CameraState | undefined; // Modificado para aceitar undefined
   onCameraChange: (cameraState: CameraState, actionDescription?: string) => void;
   initialCameraPosition: { x: number; y: number; z: number };
   initialCameraLookAt: { x: number; y: number; z: number };
