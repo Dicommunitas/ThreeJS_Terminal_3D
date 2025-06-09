@@ -1,10 +1,7 @@
 
 /**
- * @fileOverview Hook customizado para lidar com eventos de redimensionamento para uma cena Three.js.
+ * Hook customizado para lidar com eventos de redimensionamento para uma cena Three.js.
  *
- * @module hooks/useThreeResize
- *
- * @description
  * Este hook é responsável por:
  * -   Configurar um `ResizeObserver` para monitorar mudanças nas dimensões do elemento DOM de montagem da cena.
  * -   Quando um evento de redimensionamento ocorre (e todos os componentes necessários estão prontos),
@@ -19,6 +16,7 @@
  * -   Limpar (desconectar) o `ResizeObserver` quando o componente é desmontado ou as dependências mudam,
  *     para evitar vazamentos de memória e chamadas desnecessárias.
  *
+ * @module hooks/useThreeResize
  * @param props - Objeto contendo refs para os elementos Three.js que precisam ser redimensionados e uma flag de prontidão.
  *
  * @example
@@ -28,7 +26,7 @@
  * //     useThreeResize["useThreeResize (Hook)"]
  * //     Props["UseThreeResizeProps"]
  * //     MountElement["Elemento DOM (mountRef)"]
- * //     ResizeObserver["ResizeObserver API"]
+ * //     ResizeObserver_API["ResizeObserver API"]
  * //     Camera["Câmera (cameraRef)"]
  * //     Renderer["WebGLRenderer (rendererRef)"]
  * //     LabelRenderer["CSS2DRenderer (labelRendererRef)"]
@@ -47,8 +45,8 @@
  * //
  * //     useThreeResize -- verifica --> ReadyFlag
  * //     useThreeResize -- observa --> MountElement
- * //     MountElement -- dispara evento de redimensionamento --> ResizeObserver
- * //     ResizeObserver -- chama callback --> useThreeResize
+ * //     MountElement -- dispara evento de redimensionamento --> ResizeObserver_API
+ * //     ResizeObserver_API -- chama callback --> useThreeResize
  * //
  * //     subgraph "Callback de Redimensionamento (handleResize)"
  * //         direction LR
@@ -72,7 +70,7 @@
  * //     class Props type;
  * //     class Camera,Renderer,LabelRenderer,Composer,OutlinePass obj3d;
  * //     class MountElement dom;
- * //     class ResizeObserver api;
+ * //     class ResizeObserver_API api;
  * //     class ReadyFlag flag;
  */
 import { useEffect, useCallback } from 'react';
@@ -156,4 +154,3 @@ export function useThreeResize({
     };
   }, [ready, mountRef, handleResize]); 
 }
-

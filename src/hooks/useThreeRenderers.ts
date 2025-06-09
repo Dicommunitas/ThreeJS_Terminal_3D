@@ -1,10 +1,7 @@
 
 /**
- * @fileOverview Hook customizado para configurar os renderizadores Three.js e o pipeline de pós-processamento.
+ * Hook customizado para configurar os renderizadores Three.js e o pipeline de pós-processamento.
  *
- * @module hooks/useThreeRenderers
- *
- * @description
  * Este hook é responsável por inicializar e configurar:
  * -   `THREE.WebGLRenderer`: Para a renderização principal da cena 3D.
  * -   `THREE.CSS2DRenderer`: Para renderizar elementos HTML (como rótulos/pins) sobrepostos à cena.
@@ -15,6 +12,7 @@
  * O hook também gerencia a anexação dos elementos DOM dos renderizadores ao ponto de montagem fornecido
  * e lida com eventos de contexto WebGL (perda e restauração).
  *
+ * @module hooks/useThreeRenderers
  * @returns Refs para os renderizadores, composer, outline pass, e uma flag indicando sua prontidão.
  *
  * @example
@@ -195,4 +193,3 @@ export function useThreeRenderers({ mountRef, sceneRef, cameraRef }: UseThreeRen
 
   return { rendererRef, labelRendererRef, composerRef, outlinePassRef, areRenderersReady };
 }
-

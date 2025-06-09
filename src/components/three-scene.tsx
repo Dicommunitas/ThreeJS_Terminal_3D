@@ -1,16 +1,6 @@
 
 /**
- * @fileOverview Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
- *
- * @module components/three-scene
- * @see {@link module:hooks/use-scene-setup~useSceneSetup} Para a orquestração da configuração da cena.
- * @see {@link module:hooks/use-equipment-renderer~useEquipmentRenderer} Para a renderização de equipamentos.
- * @see {@link module:hooks/use-annotation-pin-renderer~useAnnotationPinRenderer} Para a renderização de pins de anotação.
- * @see {@link module:hooks/use-mouse-interaction~useMouseInteractionManager} Para interações do mouse.
- * @see {@link module:hooks/use-scene-outline~useSceneOutline} Para o efeito de contorno.
- * @see {@link module:hooks/use-animation-loop~useAnimationLoop} Para o loop de animação.
- *
- * @description
+ * Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
  * Este componente atua como um orquestrador para a visualização 3D.
  * Ele delega responsabilidades específicas de configuração e gerenciamento da cena
  * para hooks customizados especializados, e então renderiza o elemento DOM
@@ -37,6 +27,14 @@
  *     que ocorrem devido à interação do usuário ou animações programáticas.
  * -   **Fornecimento do Ponto de Montagem:** Renderiza o `div` que serve como contêiner para
  *     os renderizadores Three.js.
+ *
+ * @module components/three-scene
+ * @see {@link /docs/hooks/use-scene-setup.md} Para a orquestração da configuração da cena.
+ * @see {@link /docs/hooks/use-equipment-renderer.md} Para a renderização de equipamentos.
+ * @see {@link /docs/hooks/use-annotation-pin-renderer.md} Para a renderização de pins de anotação.
+ * @see {@link /docs/hooks/use-mouse-interaction.md} Para interações do mouse.
+ * @see {@link /docs/hooks/use-scene-outline.md} Para o efeito de contorno.
+ * @see {@link /docs/hooks/useAnimationLoop.md} Para o loop de animação.
  *
  * @example
  * // Diagrama de Composição do ThreeScene e seus Hooks
@@ -144,7 +142,7 @@ export interface ThreeSceneProps {
   onSelectEquipment: (tag: string | null, isMultiSelectModifierPressed: boolean) => void;
   hoveredEquipmentTag: string | null | undefined;
   setHoveredEquipmentTag: (tag: string | null) => void;
-  cameraState: CameraState | undefined; // Modificado para aceitar undefined
+  cameraState: CameraState | undefined;
   onCameraChange: (cameraState: CameraState, actionDescription?: string) => void;
   initialCameraPosition: { x: number; y: number; z: number };
   initialCameraLookAt: { x: number; y: number; z: number };
@@ -425,4 +423,3 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 };
 
 export default ThreeScene;
-

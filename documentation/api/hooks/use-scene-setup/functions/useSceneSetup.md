@@ -8,12 +8,12 @@
 
 > **useSceneSetup**(`props`): [`UseSceneSetupReturn`](../interfaces/UseSceneSetupReturn.md)
 
-Defined in: [src/hooks/use-scene-setup.ts:138](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-setup.ts#L138)
+Defined in: [src/hooks/use-scene-setup.ts:162](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/use-scene-setup.ts#L162)
 
-A custom hook for handling the initial setup of a Three.js scene.
-Encapsulates the creation of the scene, camera, renderers, controls, lighting, and ground plane.
-Also manages the scene's readiness state and handles window resizing.
-OrbitControls are configured by default for Left and Middle mouse buttons to rotate, and Right mouse button to pan.
+Orquestra a configuração de uma cena Three.js compondo hooks especializados.
+Este hook é responsável por inicializar o núcleo da cena, renderizadores, controles,
+elementos básicos da cena (iluminação, chão) e manipulação de redimensionamento.
+Ele fornece refs para todos os principais componentes Three.js e flags indicando sua prontidão.
 
 ## Parameters
 
@@ -21,10 +21,10 @@ OrbitControls are configured by default for Left and Middle mouse buttons to rot
 
 [`UseSceneSetupProps`](../interfaces/UseSceneSetupProps.md)
 
-The properties for the hook.
+Propriedades de configuração para a montagem da cena.
 
 ## Returns
 
 [`UseSceneSetupReturn`](../interfaces/UseSceneSetupReturn.md)
 
-An object containing refs to the core scene elements and the readiness state.
+Refs para os componentes da cena e flags de prontidão.

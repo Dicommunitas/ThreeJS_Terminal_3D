@@ -6,13 +6,12 @@
 
 # Function: calculateViewForMeshes()
 
-> **calculateViewForMeshes**(`meshes`, `camera`): `null` \| \{ `lookAt`: `Vector3`; `position`: `Vector3`; \}
+> **calculateViewForMeshes**(`meshes`, `camera`): `null` \| [`SystemViewOptions`](../../../../lib/types/interfaces/SystemViewOptions.md)
 
-Defined in: [src/core/three/camera-utils.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/core/three/camera-utils.ts#L42)
+Defined in: [src/core/three/camera-utils.ts:37](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/core/three/camera-utils.ts#L37)
 
-Calcula uma posição e um ponto de observação (lookAt) para a câmera
+Calcula múltiplas opções de visualização (padrão, de cima, isométrica) para a câmera
 de forma a enquadrar um conjunto de meshes fornecidos.
-Tenta encontrar uma posição que mostre todos os meshes de forma clara.
 
 ## Parameters
 
@@ -30,8 +29,7 @@ A câmera de perspectiva da cena.
 
 ## Returns
 
-`null` \| \{ `lookAt`: `Vector3`; `position`: `Vector3`; \}
+`null` \| [`SystemViewOptions`](../../../../lib/types/interfaces/SystemViewOptions.md)
 
-Um objeto contendo a nova posição
-         e o ponto de observação da câmera, ou null se não for possível calcular
-         (e.g., nenhum mesh fornecido ou meshes sem geometria).
+Um objeto contendo as diferentes visualizações calculadas
+         ou null se não for possível calcular (e.g., nenhum mesh fornecido).

@@ -1,12 +1,7 @@
 
 /**
- * @fileOverview Hook customizado para gerenciar os dados dos equipamentos, atuando como uma fachada para o repositório em memória.
+ * Hook customizado para gerenciar os dados dos equipamentos, atuando como uma fachada para o repositório em memória.
  *
- * @module hooks/useEquipmentDataManager
- * @see {@link module:core/repository/memory-repository~equipmentRepository} Para a fonte de dados.
- * @see {@link module:lib/types~Equipment} Para a interface de Equipamento.
- *
- * @description
  * Este hook é responsável por:
  * -   Obter e manter uma cópia local (estado React) dos dados de todos os equipamentos
  *     a partir do `equipmentRepository`.
@@ -16,6 +11,9 @@
  *     refletir os dados mais recentes, garantindo a reatividade da UI.
  * -   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações.
  *
+ * @module hooks/useEquipmentDataManager
+ * @see {@link /docs/core/repository/memory-repository.md#equipmentRepository} Para a fonte de dados.
+ * @see {@link /docs/lib/types.md#Equipment} Para a interface de Equipamento.
  * @returns Objeto contendo os dados dos equipamentos e funções para modificá-los e atualizá-los.
  *
  * @example
@@ -135,5 +133,3 @@ export function useEquipmentDataManager(): UseEquipmentDataManagerReturn {
     refreshEquipmentData,
   };
 }
-
-    

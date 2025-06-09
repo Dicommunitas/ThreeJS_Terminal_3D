@@ -13,7 +13,10 @@
 - [Command](interfaces/Command.md)
 - [Equipment](interfaces/Equipment.md)
 - [Layer](interfaces/Layer.md)
+- [SystemViewOptions](interfaces/SystemViewOptions.md)
+- [TargetSystemInfo](interfaces/TargetSystemInfo.md)
 
 ## Type Aliases
 
 - [ColorMode](type-aliases/ColorMode.md)
+- [SystemView](type-aliases/SystemView.md)

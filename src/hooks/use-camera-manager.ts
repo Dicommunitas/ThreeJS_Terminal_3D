@@ -1,13 +1,7 @@
 
 /**
- * @fileOverview Hook customizado para gerenciar o estado e as interações da câmera 3D.
+ * Hook customizado para gerenciar o estado e as interações da câmera 3D.
  *
- * @module hooks/useCameraManager
- * @see {@link module:lib/types~CameraState} Para a interface do estado da câmera.
- * @see {@link module:lib/types~Command} Para a interface de comando (usada com `executeCommand`).
- * @see {@link module:lib/types~TargetSystemInfo} Para a interface de informações do sistema alvo.
- *
- * @description
  * Este hook é responsável por:
  * -   Manter o estado atual da câmera (posição e ponto de observação - `lookAt`).
  * -   Gerenciar a lógica para focar a câmera em sistemas específicos de equipamentos,
@@ -21,6 +15,10 @@
  * sejam propagadas para os componentes que o utilizam (e.g., `ThreeScene` para aplicar
  * o estado à câmera Three.js).
  *
+ * @module hooks/useCameraManager
+ * @see {@link /docs/lib/types.md#CameraState} Para a interface do estado da câmera.
+ * @see {@link /docs/lib/types.md#Command} Para a interface de comando (usada com `executeCommand`).
+ * @see {@link /docs/lib/types.md#TargetSystemInfo} Para a interface de informações do sistema alvo.
  * @param props - Propriedades para o hook, incluindo `executeCommand` para integração com histórico.
  * @returns Objeto contendo o estado da câmera, informações de foco, e funções para interagir com a câmera.
  *
@@ -38,7 +36,7 @@
  * //     G -- limpa --> C;
  * //     F -- em interações manuais, chama --> H(handleCameraChangeFromScene)
  * //
- * //     H -- cria comando --> I{Command}
+ * //     H -- cria comando --> I{Comando}
  * //     H -- chama --> J(executeCommand)
  * //     J -- executa e salva --> I
  * //
@@ -50,7 +48,7 @@
  * //         C
  * //         D
  * //         E
- * //         K[currentCameraState (React State)]
+ * //         K[currentCameraState (Estado React)]
  * //         L[lastCommittedCameraStateForUndoRef (Ref)]
  * //     end
  * //
@@ -70,7 +68,7 @@
  */
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import type { CameraState, Command, TargetSystemInfo } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 
@@ -210,4 +208,3 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
     defaultInitialCameraLookAt,
   };
 }
-

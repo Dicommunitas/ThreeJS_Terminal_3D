@@ -1,15 +1,8 @@
 
 /**
- * @fileOverview Hook customizado para gerenciar o estado e a lógica das anotações textuais dos equipamentos,
- *               atuando como uma fachada para o `annotationRepository`.
+ * Hook customizado para gerenciar o estado e a lógica das anotações textuais dos equipamentos,
+ * atuando como uma fachada para o `annotationRepository`.
  *
- * @module hooks/useAnnotationManager
- * @see {@link module:core/repository/memory-repository~annotationRepository} Para a fonte de dados das anotações.
- * @see {@link module:core/repository/memory-repository~equipmentRepository} Para obter dados de equipamentos (e.g., nome para toasts).
- * @see {@link module:lib/types~Annotation} Para a interface de Anotação.
- * @see {@link module:lib/types~Equipment} Para a interface de Equipamento.
- *
- * @description
  * Este hook é responsável por:
  * -   Obter e manter uma cópia local (estado React) das anotações a partir do `annotationRepository`.
  * -   Gerenciar o estado do diálogo de adição/edição de anotações (`isAnnotationDialogOpen`, `editingAnnotation`, `annotationTargetEquipment`).
@@ -19,6 +12,11 @@
  *     refletir os dados mais recentes, garantindo a reatividade da UI.
  * -   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações de anotação.
  *
+ * @module hooks/useAnnotationManager
+ * @see {@link /docs/core/repository/memory-repository.md#annotationRepository} Para a fonte de dados das anotações.
+ * @see {@link /docs/core/repository/memory-repository.md#equipmentRepository} Para obter dados de equipamentos (e.g., nome para toasts).
+ * @see {@link /docs/lib/types.md#Annotation} Para a interface de Anotação.
+ * @see {@link /docs/lib/types.md#Equipment} Para a interface de Equipamento.
  * @param props - Propriedades de configuração para o hook (atualmente, `initialAnnotations` é opcional e usado para uma potencial inicialização única do repositório, embora o repositório seja auto-inicializável).
  * @returns Objeto contendo o estado das anotações, o estado do diálogo e funções para manipular anotações.
  *
@@ -116,16 +114,21 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
   const { toast } = useToast();
 
   useEffect(() => {
-    // Se o repositório estiver vazio e initialAnnotations tiver dados, inicializa o repositório.
-    // Caso contrário, apenas sincroniza o estado local com o repositório.
+    // Sincroniza o estado local com o repositório na montagem.
+    // O annotationRepository já é auto-inicializável com initialAnnotations de initial-data.ts
+    // A prop initialAnnotations aqui seria mais para um override em cenários específicos,
+    // mas a lógica atual prioriza o estado do repositório.
     const currentRepoAnnotations = annotationRepository.getAllAnnotations();
-    if (currentRepoAnnotations.length === 0 && initialAnnotations.length > 0) {
+    if (currentRepoAnnotations.length === 0 && initialAnnotations.length > 0 && !sessionStorage.getItem('annotationRepoInitialized')) {
+      // Este bloco é para um caso de borda: se o repositório está vazio MAS o hook recebeu initialAnnotations
+      // e não inicializamos antes nesta sessão (para evitar múltiplos "initializations" se o hook for usado em vários lugares)
       annotationRepository.initializeAnnotations(initialAnnotations);
       setAnnotationsState(annotationRepository.getAllAnnotations());
+      sessionStorage.setItem('annotationRepoInitialized', 'true'); // Previne reinicialização
     } else {
       setAnnotationsState(currentRepoAnnotations);
     }
-  }, []); // Dependência vazia para executar apenas na montagem.
+  }, []); // Executa apenas na montagem
 
   /**
    * Atualiza o estado local de anotações buscando os dados mais recentes do `annotationRepository`.
@@ -242,4 +245,3 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
     getAnnotationForEquipment,
   };
 }
-

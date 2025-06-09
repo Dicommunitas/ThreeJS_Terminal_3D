@@ -8,5 +8,6 @@
 
 ## Variables
 
+- [initialAnnotations](variables/initialAnnotations.md)
 - [initialEquipment](variables/initialEquipment.md)
 - [initialLayers](variables/initialLayers.md)

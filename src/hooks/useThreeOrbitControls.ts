@@ -1,10 +1,7 @@
 
 /**
- * @fileOverview Hook customizado para configurar e gerenciar os `OrbitControls` do Three.js.
+ * Hook customizado para configurar e gerenciar os `OrbitControls` do Three.js.
  *
- * @module hooks/useThreeOrbitControls
- *
- * @description
  * Este hook é responsável por:
  * -   Importar dinamicamente o módulo `OrbitControls` dos exemplos do Three.js.
  * -   Inicializar os `OrbitControls` com a câmera e o elemento DOM do renderizador fornecidos.
@@ -17,6 +14,7 @@
  * -   Lidar com a limpeza (dispose) dos controles e remoção do ouvinte de evento quando o componente
  *     é desmontado ou as dependências do hook mudam.
  *
+ * @module hooks/useThreeOrbitControls
  * @returns Ref para a instância de `OrbitControls` e uma flag indicando sua prontidão.
  *
  * @example
@@ -28,11 +26,11 @@
  * //     participant useThreeOrbitControls as Hook
  * //     participant OrbitControls as Módulo Three.js
  * //
- * //     ThreeScene ->>+ useThreeOrbitControls: Chama com cameraRef, rendererRef.domElement, etc.
+ * //     ThreeScene ->>+ useThreeOrbitControls: Chama com cameraRef, rendererRef, etc.
  * //     Note right of useThreeOrbitControls: renderersReady = true?
  * //     useThreeOrbitControls ->>+ OrbitControls: import('OrbitControls.js')
  * //     OrbitControls -->>- useThreeOrbitControls: Módulo carregado
- * //     useThreeOrbitControls -->> OrbitControls: new OrbitControls(camera, domElement)
+ * //     useThreeOrbitControls -->> OrbitControls: new OrbitControls(camera, renderer.domElement)
  * //     useThreeOrbitControls -->> OrbitControls: Configura (enableDamping, target, mouseButtons)
  * //     useThreeOrbitControls -->> OrbitControls: addEventListener('end', handleEnd)
  * //     useThreeOrbitControls -->> ThreeScene: Retorna controlsRef, isControlsReady = true
@@ -106,18 +104,20 @@ export function useThreeOrbitControls({
     }
 
     const currentCamera = cameraRef.current;
-    const currentDomElement = rendererRef.current.domElement;
+    const currentRendererInstance = rendererRef.current; // Ref para a instância do renderer
+    const currentDomElement = currentRendererInstance.domElement; // Elemento DOM do renderer
+    
     let localControlsInstance: OrbitControlsType | null = null;
     let isEffectMounted = true;
 
     import('three/examples/jsm/controls/OrbitControls.js')
       .then(module => {
-        if (!isEffectMounted || !currentCamera || !currentDomElement) {
+        if (!isEffectMounted || !currentCamera || !currentDomElement) { // Verifica currentDomElement
           if (isEffectMounted) setIsControlsReady(false);
           return;
         }
         const OrbitControls = module.OrbitControls;
-        localControlsInstance = new OrbitControls(currentCamera, currentDomElement);
+        localControlsInstance = new OrbitControls(currentCamera, currentDomElement); // Usa currentDomElement
         controlsRef.current = localControlsInstance;
 
         localControlsInstance.enableDamping = true;
@@ -168,4 +168,3 @@ export function useThreeOrbitControls({
 
   return { controlsRef, isControlsReady };
 }
-

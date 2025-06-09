@@ -6,9 +6,10 @@
 
 # Interface: UseSceneSetupReturn
 
-Defined in: [src/hooks/use-scene-setup.ts:117](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-setup.ts#L117)
+Defined in: [src/hooks/use-scene-setup.ts:140](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/use-scene-setup.ts#L140)
 
-Return value of the useSceneSetup hook.
+Valor de retorno do hook orquestrador da configuração da cena.
+Agrega refs e flags de prontidão dos hooks especializados.
  UseSceneSetupReturn
 
 ## Properties
@@ -17,9 +18,9 @@ Return value of the useSceneSetup hook.
 
 > **cameraRef**: `RefObject`\<`null` \| `PerspectiveCamera`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:119](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-setup.ts#L119)
+Defined in: [src/hooks/use-scene-setup.ts:142](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/use-scene-setup.ts#L142)
 
-Ref to the Three.js Camera.
+Ref para a câmera perspectiva.
 
 ***
 
@@ -27,9 +28,9 @@ Ref to the Three.js Camera.
 
 > **composerRef**: `RefObject`\<`null` \| `EffectComposer`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:123](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-setup.ts#L123)
+Defined in: [src/hooks/use-scene-setup.ts:146](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/use-scene-setup.ts#L146)
 
-Ref to the EffectComposer.
+Ref para o EffectComposer (pós-processamento).
 
 ***
 
@@ -37,10 +38,9 @@ Ref to the EffectComposer.
 
 > **controlsRef**: `RefObject`\<`null` \| `OrbitControls`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:122](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-setup.ts#L122)
+Defined in: [src/hooks/use-scene-setup.ts:145](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/use-scene-setup.ts#L145)
 
-Ref to the OrbitControls.
-          Configured for Left and Middle mouse buttons to rotate, and Right mouse button to pan.
+Ref para os OrbitControls.
 
 ***
 
@@ -48,9 +48,19 @@ Ref to the OrbitControls.
 
 > **groundMeshRef**: `RefObject`\<`null` \| `Mesh`\<`BufferGeometry`\<`NormalBufferAttributes`\>, `Material` \| `Material`[], `Object3DEventMap`\>\>
 
-Defined in: [src/hooks/use-scene-setup.ts:125](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-setup.ts#L125)
+Defined in: [src/hooks/use-scene-setup.ts:148](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/use-scene-setup.ts#L148)
 
-Ref to the ground plane mesh.
+Ref para a malha do plano de chão.
+
+***
+
+### isControlsReady
+
+> **isControlsReady**: `boolean`
+
+Defined in: [src/hooks/use-scene-setup.ts:150](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/use-scene-setup.ts#L150)
+
+Flag que indica se os OrbitControls estão prontos (carregamento dinâmico).
 
 ***
 
@@ -58,9 +68,9 @@ Ref to the ground plane mesh.
 
 > **isSceneReady**: `boolean`
 
-Defined in: [src/hooks/use-scene-setup.ts:126](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-setup.ts#L126)
+Defined in: [src/hooks/use-scene-setup.ts:149](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/use-scene-setup.ts#L149)
 
-State indicating if the scene setup is complete.
+Flag que indica se os componentes principais da cena (núcleo, renderizadores, elementos) estão prontos.
 
 ***
 
@@ -68,9 +78,9 @@ State indicating if the scene setup is complete.
 
 > **labelRendererRef**: `RefObject`\<`null` \| `CSS2DRenderer`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:121](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-setup.ts#L121)
+Defined in: [src/hooks/use-scene-setup.ts:144](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/use-scene-setup.ts#L144)
 
-Ref to the CSS2DRenderer.
+Ref para o renderizador CSS2D (para rótulos).
 
 ***
 
@@ -78,9 +88,9 @@ Ref to the CSS2DRenderer.
 
 > **outlinePassRef**: `RefObject`\<`null` \| `OutlinePass`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:124](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-setup.ts#L124)
+Defined in: [src/hooks/use-scene-setup.ts:147](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/use-scene-setup.ts#L147)
 
-Ref to the OutlinePass.
+Ref para o OutlinePass (efeito de contorno).
 
 ***
 
@@ -88,9 +98,9 @@ Ref to the OutlinePass.
 
 > **rendererRef**: `RefObject`\<`null` \| `WebGLRenderer`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:120](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-setup.ts#L120)
+Defined in: [src/hooks/use-scene-setup.ts:143](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/use-scene-setup.ts#L143)
 
-Ref to the WebGLRenderer.
+Ref para o renderizador WebGL.
 
 ***
 
@@ -98,6 +108,6 @@ Ref to the WebGLRenderer.
 
 > **sceneRef**: `RefObject`\<`null` \| `Scene`\>
 
-Defined in: [src/hooks/use-scene-setup.ts:118](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/fa305a5866f8e322e02a0c9af5d13b645eb5703c/src/hooks/use-scene-setup.ts#L118)
+Defined in: [src/hooks/use-scene-setup.ts:141](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/use-scene-setup.ts#L141)
 
-Ref to the Three.js Scene.
+Ref para a cena Three.js.

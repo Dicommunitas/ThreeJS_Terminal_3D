@@ -1,15 +1,7 @@
 
 /**
- * @fileOverview Hook orquestrador para a configuração completa de uma cena Three.js.
+ * Hook orquestrador para a configuração completa de uma cena Three.js.
  *
- * @module hooks/use-scene-setup
- * @see {@link module:hooks/useThreeCore~useThreeCore} Para inicialização da cena e câmera.
- * @see {@link module:hooks/useThreeRenderers~useThreeRenderers} Para configuração dos renderizadores e pós-processamento.
- * @see {@link module:hooks/useThreeOrbitControls~useThreeOrbitControls} Para configuração dos controles de órbita.
- * @see {@link module:hooks/useThreeSceneElements~useThreeSceneElements} Para configuração de iluminação e plano de chão.
- * @see {@link module:hooks/useThreeResize~useThreeResize} Para manipulação de redimensionamento.
- *
- * @description
  * Este hook atua como um orquestrador, compondo vários hooks especializados para inicializar
  * todos os aspectos de um ambiente Three.js. Ele gerencia a sequência de setup,
  * as dependências entre os diferentes componentes da cena e retorna referências (refs)
@@ -27,6 +19,13 @@
  * -   **Agregação de Refs e Estado:** Coleta e retorna as refs para os objetos Three.js criados
  *     (e.g., `sceneRef`, `cameraRef`, `rendererRef`) e as flags de estado de prontidão
  *     (`isSceneReady`, `isControlsReady`).
+ *
+ * @module hooks/use-scene-setup
+ * @see {@link /docs/hooks/useThreeCore.md} Para inicialização da cena e câmera.
+ * @see {@link /docs/hooks/useThreeRenderers.md} Para configuração dos renderizadores e pós-processamento.
+ * @see {@link /docs/hooks/useThreeOrbitControls.md} Para configuração dos controles de órbita.
+ * @see {@link /docs/hooks/useThreeSceneElements.md} Para configuração de iluminação e plano de chão.
+ * @see {@link /docs/hooks/useThreeResize.md} Para manipulação de redimensionamento.
  *
  * @example
  * // Diagrama de Composição do useSceneSetup
@@ -215,4 +214,3 @@ export function useSceneSetup(props: UseSceneSetupProps): UseSceneSetupReturn {
     isControlsReady,                      
   };
 }
-
