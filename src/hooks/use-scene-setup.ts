@@ -3,12 +3,21 @@
  * Hook customizado para a configuração inicial de uma cena Three.js.
  *
  * Principal Responsabilidade:
- * Encapsular a criação e inicialização dos principais componentes de uma cena Three.js,
- * incluindo a cena em si, câmera, renderizadores (WebGL e CSS2D para labels),
- * controles de órbita (com configuração específica para botões do mouse: esquerdo e meio para rotacionar, direito para pan),
- * pipeline de pós-processamento (EffectComposer, OutlinePass),
- * iluminação básica e um plano de chão. Gerencia também o estado de "prontidão" da cena
- * e o tratamento de redimensionamento da janela/contêiner.
+ * Encapsular a criação e inicialização dos principais componentes de uma cena Three.js.
+ * Suas responsabilidades incluem:
+ * 1.  **Criação da Cena:** Inicializa o objeto `THREE.Scene`.
+ * 2.  **Configuração da Câmera:** Cria e configura `THREE.PerspectiveCamera`.
+ * 3.  **Configuração do WebGL Renderer:** Inicializa `THREE.WebGLRenderer` e anexa ao DOM.
+ * 4.  **Configuração do CSS2D Renderer:** Inicializa `CSS2DRenderer` para rótulos HTML e anexa ao DOM.
+ * 5.  **Configuração dos OrbitControls:** Importa e inicializa `OrbitControls`, configurando interações do mouse (esquerdo/meio para rotação, direito para pan) e amortecimento.
+ * 6.  **Configuração do EffectComposer e Pós-Processamento:** Inicializa `EffectComposer`, `RenderPass` e `OutlinePass`.
+ * 7.  **Configuração da Iluminação:** Adiciona luzes ambiente, hemisférica e direcional.
+ * 8.  **Configuração do Plano de Chão:** Cria e adiciona um plano de chão.
+ * 9.  **Gerenciamento de Redimensionamento:** Atualiza câmera e renderizadores ao redimensionar.
+ * 10. **Gerenciamento de Estado de Prontidão:** Controla as flags `isSceneReady` e `isControlsReady`.
+ * 11. **Callback de Mudança de Câmera:** Escuta o evento 'end' dos `OrbitControls` para notificar mudanças de câmera.
+ * 12. **Limpeza de Recursos:** Libera recursos Three.js e remove ouvintes de eventos no desmonte.
+ * 13. **Tratamento de Contexto WebGL:** Adiciona ouvintes para perda e restauração do contexto WebGL.
  *
  * ```mermaid
  *   classDiagram
@@ -95,6 +104,11 @@ import type { CameraState } from '@/lib/types';
 
 /**
  * Props for the useSceneSetup hook.
+ * @interface UseSceneSetupProps
+ * @property {React.RefObject<HTMLDivElement>} mountRef - Ref para o elemento contêiner da cena.
+ * @property {{ x: number; y: number; z: number }} initialCameraPosition - Posição inicial da câmera.
+ * @property {{ x: number; y: number; z: number }} initialCameraLookAt - Ponto inicial para o qual a câmera está olhando.
+ * @property {(cameraState: CameraState, actionDescription?: string) => void} onCameraChange - Callback para quando a câmera muda.
  */
 export interface UseSceneSetupProps {
   mountRef: React.RefObject<HTMLDivElement>;
@@ -105,6 +119,17 @@ export interface UseSceneSetupProps {
 
 /**
  * Return value of the useSceneSetup hook.
+ * @interface UseSceneSetupReturn
+ * @property {React.RefObject<THREE.Scene | null>} sceneRef - Ref para a cena Three.js.
+ * @property {React.RefObject<THREE.PerspectiveCamera | null>} cameraRef - Ref para a câmera Three.js.
+ * @property {React.RefObject<THREE.WebGLRenderer | null>} rendererRef - Ref para o WebGLRenderer.
+ * @property {React.RefObject<CSS2DRenderer | null>} labelRendererRef - Ref para o CSS2DRenderer.
+ * @property {React.RefObject<OrbitControlsType | null>} controlsRef - Ref para os OrbitControls.
+ * @property {React.RefObject<EffectComposer | null>} composerRef - Ref para o EffectComposer.
+ * @property {React.RefObject<OutlinePass | null>} outlinePassRef - Ref para o OutlinePass.
+ * @property {React.RefObject<THREE.Mesh | null>} groundMeshRef - Ref para a malha do plano de chão.
+ * @property {boolean} isSceneReady - Estado indicando se a configuração da cena está completa.
+ * @property {boolean} isControlsReady - Estado indicando se os controles da cena estão prontos.
  */
 export interface UseSceneSetupReturn {
   sceneRef: React.RefObject<THREE.Scene | null>;
@@ -125,8 +150,8 @@ export interface UseSceneSetupReturn {
  * Also manages the scene's readiness state and handles window resizing.
  * OrbitControls are configured for Left/Middle mouse to rotate, Right to pan.
  *
- * @param props - The properties for the hook.
- * @returns An object containing refs to the core scene elements and the readiness state.
+ * @param {UseSceneSetupProps} props - The properties for the hook.
+ * @returns {UseSceneSetupReturn} An object containing refs to the core scene elements and the readiness state.
  */
 export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn => {
   const { mountRef, initialCameraPosition, initialCameraLookAt, onCameraChange } = props;
@@ -147,6 +172,9 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
   const onCameraChangeRef = useRef(onCameraChange);
   useEffect(() => { onCameraChangeRef.current = onCameraChange; }, [onCameraChange]);
 
+  /**
+   * Handles the resizing of the container and updates the camera and renderers.
+   */
   const handleResize = useCallback(() => {
     if (mountRef.current && cameraRef.current && rendererRef.current) {
       const width = Math.max(1, mountRef.current.clientWidth);
@@ -248,7 +276,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
 
         localControls.mouseButtons = {
           LEFT: THREE.MOUSE.ROTATE,
-          MIDDLE: THREE.MOUSE.ROTATE,
+          MIDDLE: THREE.MOUSE.ROTATE, // Default é DOLLY, mudamos para ROTATE
           RIGHT: THREE.MOUSE.PAN
         };
         localControls.update();
@@ -263,12 +291,16 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
         setIsControlsReady(false);
       });
 
+    /**
+     * Callback for when OrbitControls finishes a change (e.g., user stops dragging).
+     * Notifies the parent component about the camera state change.
+     */
     const handleControlsChangeEnd = () => {
         if (cameraRef.current && controlsRef.current && onCameraChangeRef.current) {
             // console.log("[useSceneSetup] OrbitControls 'end' event triggered.");
             const newCameraState: CameraState = {
-            position: cameraRef.current.position.clone(),
-            lookAt: controlsRef.current.target.clone(),
+            position: cameraRef.current.position.clone(), // Use clone() para evitar problemas de referência
+            lookAt: controlsRef.current.target.clone(),   // Use clone()
             };
             // O terceiro argumento (descrição) é omitido aqui, pois é um movimento manual.
             // A descrição padrão "Câmera movida pelo usuário" será usada em useCameraManager.
@@ -283,6 +315,9 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
     }
 
 
+    /**
+     * Cleanup function for the effect. Disposes of Three.js objects and removes event listeners.
+     */
     return () => {
       // console.log('[useSceneSetup] Main useEffect CLEANUP running.');
 
@@ -315,6 +350,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
       }
 
        composerRef.current?.passes.forEach(pass => {
+            // Adiciona verificação se o pass e a função dispose existem
             if (pass && (pass as any).dispose && typeof (pass as any).dispose === 'function') {
                 (pass as any).dispose();
             }
@@ -324,6 +360,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
       //  console.log("[useSceneSetup] Composer passes disposed.");
 
       if (rendererRef.current) {
+         // Garante que o elemento DOM ainda existe antes de tentar removê-lo
          if (rendererRef.current.domElement.parentNode === currentMount) {
              currentMount.removeChild(rendererRef.current.domElement);
          }
@@ -333,13 +370,27 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
       }
 
       if (labelRendererRef.current) {
+         // Garante que o elemento DOM ainda existe antes de tentar removê-lo
          if (labelRendererRef.current.domElement.parentNode === currentMount) {
              currentMount.removeChild(labelRendererRef.current.domElement);
          }
+         // CSS2DRenderer não tem um método dispose(), apenas removemos do DOM
          labelRendererRef.current = null;
         //  console.log("[useSceneSetup] CSS2DRenderer cleaned up.");
       }
 
+      // Limpa a cena de todos os seus filhos, que também devem ser disposed se necessário
+      // (geometry, material). Isso é mais robusto se outros objetos foram adicionados à cena.
+      sceneRef.current?.traverse((object) => {
+        if (object instanceof THREE.Mesh) {
+          object.geometry?.dispose();
+          if (Array.isArray(object.material)) {
+            object.material.forEach(material => material.dispose());
+          } else if (object.material) {
+            object.material.dispose();
+          }
+        }
+      });
       sceneRef.current = null;
       cameraRef.current = null;
 
@@ -348,7 +399,7 @@ export const useSceneSetup = (props: UseSceneSetupProps): UseSceneSetupReturn =>
       // console.log('[useSceneSetup] Main useEffect CLEANUP finished. Scene and Controls set to NOT READY.');
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mountRef]);
+  }, [mountRef]); // initialCameraPosition, initialCameraLookAt, onCameraChange, handleResize são estáveis ou memoizados
 
   return {
     sceneRef,
