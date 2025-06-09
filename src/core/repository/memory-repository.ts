@@ -12,9 +12,9 @@
  * Funções de obtenção (get/getAll) retornam cópias dos objetos para promover a imutabilidade
  * e evitar modificações acidentais do estado interno do repositório por referências externas.
  *
- * @see {@link ../data/initial-data/README.md} Para os dados iniciais de equipamentos e camadas.
- * @see {@link ../../lib/types/README.md#Equipment} Para a interface de Equipamento.
- * @see {@link ../../lib/types/README.md#Annotation} Para a interface de Anotação.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/data/initial-data/README.md Para os dados iniciais de equipamentos e camadas.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment Para a interface de Equipamento.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Annotation Para a interface de Anotação.
  *
  * @example
  * // Diagrama de Estrutura do Repositório em Memória:
@@ -216,5 +216,7 @@ export const annotationRepository = {
   }
 };
 
+
+    
 
     

@@ -8,8 +8,8 @@
 
 ## See
 
- - ../../core/three/scene-elements-setup/README.md#setupLighting Para a função de configuração da iluminação.
- - ../../core/three/scene-elements-setup/README.md#setupGroundPlane Para a função de configuração do plano de chão.
+ - ../core/three/scene-elements-setup/README.md#setupLighting Para a função de configuração da iluminação.
+ - ../core/three/scene-elements-setup/README.md#setupGroundPlane Para a função de configuração do plano de chão.
 
 ## Example
 

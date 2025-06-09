@@ -16,9 +16,9 @@
  * sejam propagadas para os componentes que o utilizam (e.g., `ThreeScene` para aplicar
  * o estado à câmera Three.js).
  *
- * @see {@link ../lib/types/README.md#CameraState} Para a interface do estado da câmera.
- * @see {@link ../lib/types/README.md#Command} Para a interface de comando (usada com `executeCommand`).
- * @see {@link ../lib/types/README.md#TargetSystemInfo} Para a interface de informações do sistema alvo.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#CameraState Para a interface do estado da câmera.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Command Para a interface de comando (usada com `executeCommand`).
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#TargetSystemInfo Para a interface de informações do sistema alvo.
  * @param props - Propriedades para o hook, incluindo `executeCommand` para integração com histórico.
  * @returns Objeto contendo o estado da câmera, informações de foco, e funções para interagir com a câmera.
  *
@@ -209,6 +209,8 @@ export function useCameraManager({ executeCommand }: UseCameraManagerProps): Use
     defaultInitialCameraLookAt,
   };
 }
+
+    
 
     
 

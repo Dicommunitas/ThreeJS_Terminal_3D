@@ -13,7 +13,7 @@
  - ../../hooks/use-annotation-pin-renderer/README.md Para a renderização de pins de anotação.
  - ../../hooks/use-mouse-interaction/README.md Para interações do mouse.
  - ../../hooks/use-scene-outline/README.md Para o efeito de contorno.
- - ../../hooks/useAnimationLoop/README.md Para o loop de animação.
+ - ../../hooks/use-animation-loop/README.md Para o loop de animação.
 
 ## Example
 

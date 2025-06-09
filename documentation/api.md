@@ -409,16 +409,16 @@
 
 ##
 
-*   **See**: [../../components/main-scene-area/README.md][405] Para a área principal da cena.
-*   **See**: [../../components/ui/sidebar/README.md][406] Para a barra lateral de controles.
-*   **See**: [../../components/annotation-dialog/README.md][407] Para o diálogo de anotações.
-*   **See**: [../../hooks/use-command-history/README.md][408] Para o gerenciamento de histórico de comandos.
-*   **See**: [../../hooks/use-equipment-data-manager/README.md][409] Para o gerenciamento de dados de equipamentos.
-*   **See**: [../../hooks/use-camera-manager/README.md][410] Para o gerenciamento da câmera.
-*   **See**: [../../hooks/use-filter-manager/README.md][411] Para o gerenciamento de filtros.
-*   **See**: [../../hooks/use-annotation-manager/README.md][412] Para o gerenciamento de anotações.
-*   **See**: [../../hooks/use-equipment-selection-manager/README.md][413] Para o gerenciamento de seleção de equipamentos.
-*   **See**: [../../hooks/use-layer-manager/README.md][414] Para o gerenciamento de camadas.
+*   **See**: [../components/main-scene-area/README.md][405] Para a área principal da cena.
+*   **See**: [../components/ui/sidebar/README.md][406] Para a barra lateral de controles.
+*   **See**: [../components/annotation-dialog/README.md][407] Para o diálogo de anotações.
+*   **See**: [../hooks/use-command-history/README.md][408] Para o gerenciamento de histórico de comandos.
+*   **See**: [../hooks/use-equipment-data-manager/README.md][409] Para o gerenciamento de dados de equipamentos.
+*   **See**: [../hooks/use-camera-manager/README.md][410] Para o gerenciamento da câmera.
+*   **See**: [../hooks/use-filter-manager/README.md][411] Para o gerenciamento de filtros.
+*   **See**: [../hooks/use-annotation-manager/README.md][412] Para o gerenciamento de anotações.
+*   **See**: [../hooks/use-equipment-selection-manager/README.md][413] Para o gerenciamento de seleção de equipamentos.
+*   **See**: [../hooks/use-layer-manager/README.md][414] Para o gerenciamento de camadas.
 
 ### Examples
 
@@ -1252,7 +1252,7 @@ Returns **JSX.Element** O componente SiteHeader.
 *   **See**: [../../hooks/use-annotation-pin-renderer/README.md][421] Para a renderização de pins de anotação.
 *   **See**: [../../hooks/use-mouse-interaction/README.md][422] Para interações do mouse.
 *   **See**: [../../hooks/use-scene-outline/README.md][423] Para o efeito de contorno.
-*   **See**: [../../hooks/useAnimationLoop/README.md][424] Para o loop de animação.
+*   **See**: [../../hooks/use-animation-loop/README.md][424] Para o loop de animação.
 
 ### Examples
 
@@ -1713,7 +1713,7 @@ Exporta:
 
 ## Equipment
 
-*   **See**: [../../core/data/initial-data/README.md][426] Para os dados iniciais de equipamentos e camadas.
+*   **See**: [../data/initial-data/README.md][426] Para os dados iniciais de equipamentos e camadas.
 *   **See**: [../../lib/types/README.md#Equipment][427] Para a interface de Equipamento.
 *   **See**: [../../lib/types/README.md#Annotation][428] Para a interface de Anotação.
 
@@ -2005,11 +2005,11 @@ sequenceDiagram
 
 ## THREE
 
-*   **See**: [../../hooks/useThreeCore/README.md][430] Para inicialização da cena e câmera.
-*   **See**: [../../hooks/useThreeRenderers/README.md][431] Para configuração dos renderizadores e pós-processamento.
-*   **See**: [../../hooks/useThreeOrbitControls/README.md][432] Para configuração dos controles de órbita.
-*   **See**: [../../hooks/useThreeSceneElements/README.md][433] Para configuração de iluminação e plano de chão.
-*   **See**: [../../hooks/useThreeResize/README.md][434] Para manipulação de redimensionamento.
+*   **See**: [./useThreeCore.ts][430] Para inicialização da cena e câmera.
+*   **See**: [./useThreeRenderers.ts][431] Para configuração dos renderizadores e pós-processamento.
+*   **See**: [./useThreeOrbitControls.ts][432] Para configuração dos controles de órbita.
+*   **See**: [./useThreeSceneElements.ts][433] Para configuração de iluminação e plano de chão.
+*   **See**: [./useThreeResize.ts][434] Para manipulação de redimensionamento.
 
 ### Examples
 
@@ -3747,10 +3747,10 @@ Returns **[UseSceneSetupReturn][346]** Refs para os componentes da cena e flags 
 
 ##
 
-*   **See**: [../../core/repository/memory-repository/README.md#annotationRepository][436] Para a fonte de dados das anotações.
-*   **See**: [../../core/repository/memory-repository/README.md#equipmentRepository][437] Para obter dados de equipamentos (e.g., nome para toasts).
-*   **See**: [../../lib/types/README.md#Annotation][428] Para a interface de Anotação.
-*   **See**: [../../lib/types/README.md#Equipment][427] Para a interface de Equipamento.
+*   **See**: [../core/repository/memory-repository/README.md#annotationRepository][442] Para a fonte de dados das anotações.
+*   **See**: [../core/repository/memory-repository/README.md#equipmentRepository][443] Para obter dados de equipamentos (e.g., nome para toasts).
+*   **See**: [../lib/types/README.md#Annotation][444] Para a interface de Anotação.
+*   **See**: [../lib/types/README.md#Equipment][445] Para a interface de Equipamento.
 
 ### Parameters
 
@@ -3758,50 +3758,51 @@ Returns **[UseSceneSetupReturn][346]** Refs para os componentes da cena e flags 
 
 ### Examples
 
-```javascript
-// Diagrama de Interação do useAnnotationManager
-// mermaid
-// graph TD
-//     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOpenAnnotationDialog)
-//     B -- define estados --> DialogState["isAnnotationDialogOpen, editingAnnotation, annotationTargetEquipment"]
-//
-//     C[Componente UI (ex: AnnotationDialog)] -- no submit --> D(handleSaveAnnotation)
-//
-//     subgraph useAnnotationManager [Hook useAnnotationManager]
-//         direction LR
-//         D -- chama --> E[annotationRepository.addOrUpdateAnnotation]
-//         E -- retorna --> D{Anotação Salva}
-//         D -- chama --> F[refreshAnnotationsFromRepo]
-//         F -- chama --> G[annotationRepository.getAllAnnotations]
-//         G -- retorna --> H[setAnnotationsState (Estado React)]
-//         H -- atualiza --> I[annotations (Estado React)]
-//         D -- chama --> J[toast]
-//         DialogState
-//     end
-//
-//     I -- usado por --> A
-//     DialogState -- usado por --> C
-//
-//    classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
-//    classDef state fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
-//    classDef func fill:#lightgreen,stroke:#333,stroke-width:2px;
-//    classDef repo fill:#lightcoral,stroke:#333,stroke-width:2px;
-//    classDef ui fill:#peachpuff,stroke:#333,stroke-width:2px;
-//
-//    class A,C ui;
-//    class B,D,F,J func;
-//    class E,G repo;
-//    class DialogState,H,I state;
-//    class useAnnotationManager hook;
+````javascript
+// Diagrama de Interação do useAnnotationManager:
+```mermaid
+graph TD
+    A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOpenAnnotationDialog)
+    B -- define estados --> DialogState["isAnnotationDialogOpen, editingAnnotation, annotationTargetEquipment"]
+
+    C[Componente UI (ex: AnnotationDialog)] -- no submit --> D(handleSaveAnnotation)
+
+    subgraph useAnnotationManager [Hook useAnnotationManager]
+        direction LR
+        D -- chama --> E[annotationRepository.addOrUpdateAnnotation]
+        E -- retorna --> D{Anotação Salva}
+        D -- chama --> F[refreshAnnotationsFromRepo]
+        F -- chama --> G[annotationRepository.getAllAnnotations]
+        G -- retorna --> H[setAnnotationsState (Estado React)]
+        H -- atualiza --> I[annotations (Estado React)]
+        D -- chama --> J[toast]
+        DialogState
+    end
+
+    I -- usado por --> A
+    DialogState -- usado por --> C
+
+   classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
+   classDef state fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
+   classDef func fill:#lightgreen,stroke:#333,stroke-width:2px;
+   classDef repo fill:#lightcoral,stroke:#333,stroke-width:2px;
+   classDef ui fill:#peachpuff,stroke:#333,stroke-width:2px;
+
+   class A,C ui;
+   class B,D,F,J func;
+   class E,G repo;
+   class DialogState,H,I state;
+   class useAnnotationManager hook;
 ```
+````
 
 Returns **any** Objeto contendo o estado das anotações, o estado do diálogo e funções para manipular anotações.
 
 ##
 
-*   **See**: [../../lib/types/README.md#CameraState][438] Para a interface do estado da câmera.
-*   **See**: [../../lib/types/README.md#Command][439] Para a interface de comando (usada com `executeCommand`).
-*   **See**: [../../lib/types/README.md#TargetSystemInfo][440] Para a interface de informações do sistema alvo.
+*   **See**: [../lib/types/README.md#CameraState][446] Para a interface do estado da câmera.
+*   **See**: [../lib/types/README.md#Command][447] Para a interface de comando (usada com `executeCommand`).
+*   **See**: [../lib/types/README.md#TargetSystemInfo][448] Para a interface de informações do sistema alvo.
 
 ### Parameters
 
@@ -3809,90 +3810,92 @@ Returns **any** Objeto contendo o estado das anotações, o estado do diálogo e
 
 ### Examples
 
-```javascript
-// Diagrama de Interação e Estado do useCameraManager
-// mermaid
-// graph LR
-//     A[Terminal3DPage] -- chama --> B(handleSetCameraViewForSystem)
-//     B -- atualiza --> C{targetSystemToFrame};
-//     C -- atualiza --> D{focusedSystemNameUI};
-//     C -- atualiza --> E{currentViewIndexUI};
-//     A -- passa targetSystemToFrame --> F[ThreeScene]
-//
-//     F -- anima câmera e ao final chama --> G(onSystemFramed)
-//     G -- limpa --> C;
-//     F -- em interações manuais, chama --> H(handleCameraChangeFromScene)
-//
-//     H -- cria comando --> I{Comando}
-//     H -- chama --> J(executeCommand)
-//     J -- executa e salva --> I
-//
-//     subgraph useCameraManager [Hook useCameraManager]
-//         direction LR
-//         B
-//         G
-//         H
-//         C
-//         D
-//         E
-//         K[currentCameraState (Estado React)]
-//         L[lastCommittedCameraStateForUndoRef (Ref)]
-//     end
-//
-//     I -- no execute/undo --> M{setCurrentCameraState}
-//     M -- atualiza --> K
-//     K -- usado por --> F
-//
-//    classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
-//    classDef state fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
-//    classDef func fill:#lightgreen,stroke:#333,stroke-width:2px;
-//    classDef comp fill:#lightcoral,stroke:#333,stroke-width:2px;
-//
-//    class A,F comp;
-//    class B,G,H,J,M func;
-//    class C,D,E,K,L,I state;
-//    class useCameraManager hook;
+````javascript
+// Diagrama de Interação e Estado do useCameraManager:
+```mermaid
+graph LR
+    A[Terminal3DPage] -- chama --> B(handleSetCameraViewForSystem)
+    B -- atualiza --> C{targetSystemToFrame};
+    C -- atualiza --> D{focusedSystemNameUI};
+    C -- atualiza --> E{currentViewIndexUI};
+    A -- passa targetSystemToFrame --> F[ThreeScene]
+
+    F -- anima câmera e ao final chama --> G(onSystemFramed)
+    G -- limpa --> C;
+    F -- em interações manuais, chama --> H(handleCameraChangeFromScene)
+
+    H -- cria comando --> I{Comando}
+    H -- chama --> J(executeCommand)
+    J -- executa e salva --> I
+
+    subgraph useCameraManager [Hook useCameraManager]
+        direction LR
+        B
+        G
+        H
+        C
+        D
+        E
+        K[currentCameraState (Estado React)]
+        L[lastCommittedCameraStateForUndoRef (Ref)]
+    end
+
+    I -- no execute/undo --> M{setCurrentCameraState}
+    M -- atualiza --> K
+    K -- usado por --> F
+
+   classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
+   classDef state fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
+   classDef func fill:#lightgreen,stroke:#333,stroke-width:2px;
+   classDef comp fill:#lightcoral,stroke:#333,stroke-width:2px;
+
+   class A,F comp;
+   class B,G,H,J,M func;
+   class C,D,E,K,L,I state;
+   class useCameraManager hook;
 ```
+````
 
 Returns **any** Objeto contendo o estado da câmera, informações de foco, e funções para interagir com a câmera.
 
 ##
 
-*   **See**: [../../core/repository/memory-repository/README.md#equipmentRepository][437] Para a fonte de dados.
-*   **See**: [../../lib/types/README.md#Equipment][427] Para a interface de Equipamento.
+*   **See**: [../core/repository/memory-repository/README.md#equipmentRepository][443] Para a fonte de dados.
+*   **See**: [../lib/types/README.md#Equipment][445] Para a interface de Equipamento.
 
 ### Examples
 
-```javascript
-// Diagrama de Interação do useEquipmentDataManager
-// mermaid
-// graph TD
-//     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOperationalStateChange)
-//
-//     subgraph useEquipmentDataManager [Hook useEquipmentDataManager]
-//         direction LR
-//         B -- chama --> C[equipmentRepository.updateEquipment]
-//         C -- retorna --> B{Equipamento Atualizado}
-//         B -- chama --> D[equipmentRepository.getAllEquipment]
-//         D -- retorna --> E[setEquipmentData (Estado React)]
-//         E -- atualiza --> F[equipmentData (Estado React)]
-//         B -- chama --> G[toast]
-//     end
-//
-//     F -- usado por --> A
-//
-//    classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
-//    classDef state fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
-//    classDef func fill:#lightgreen,stroke:#333,stroke-width:2px;
-//    classDef repo fill:#lightcoral,stroke:#333,stroke-width:2px;
-//    classDef ui fill:#peachpuff,stroke:#333,stroke-width:2px;
-//
-//    class A ui;
-//    class B,G func;
-//    class C,D repo;
-//    class E,F state;
-//    class useEquipmentDataManager hook;
+````javascript
+// Diagrama de Interação do useEquipmentDataManager:
+```mermaid
+graph TD
+    A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOperationalStateChange)
+
+    subgraph useEquipmentDataManager [Hook useEquipmentDataManager]
+        direction LR
+        B -- chama --> C[equipmentRepository.updateEquipment]
+        C -- retorna --> B{Equipamento Atualizado}
+        B -- chama --> D[equipmentRepository.getAllEquipment]
+        D -- retorna --> E[setEquipmentData (Estado React)]
+        E -- atualiza --> F[equipmentData (Estado React)]
+        B -- chama --> G[toast]
+    end
+
+    F -- usado por --> A
+
+   classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
+   classDef state fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
+   classDef func fill:#lightgreen,stroke:#333,stroke-width:2px;
+   classDef repo fill:#lightcoral,stroke:#333,stroke-width:2px;
+   classDef ui fill:#peachpuff,stroke:#333,stroke-width:2px;
+
+   class A ui;
+   class B,G func;
+   class C,D repo;
+   class E,F state;
+   class useEquipmentDataManager hook;
 ```
+````
 
 Returns **any** Objeto contendo os dados dos equipamentos e funções para modificá-los e atualizá-los.
 
@@ -4027,8 +4030,8 @@ Returns **any** Refs para os renderizadores, composer, outline pass, e uma flag 
 
 ## useRef
 
-*   **See**: [../../core/three/scene-elements-setup/README.md#setupLighting][442] Para a função de configuração da iluminação.
-*   **See**: [../../core/three/scene-elements-setup/README.md#setupGroundPlane][443] Para a função de configuração do plano de chão.
+*   **See**: [../core/three/scene-elements-setup/README.md#setupLighting][449] Para a função de configuração da iluminação.
+*   **See**: [../core/three/scene-elements-setup/README.md#setupGroundPlane][450] Para a função de configuração do plano de chão.
 
 ### Examples
 
@@ -5117,25 +5120,25 @@ Type: (`"Produto"` | `"Estado Operacional"` | `"Equipamento"`)
 
 [404]: #colormode
 
-[405]: ../../components/main-scene-area/README.md
+[405]: ../components/main-scene-area/README.md
 
-[406]: ../../components/ui/sidebar/README.md
+[406]: ../components/ui/sidebar/README.md
 
-[407]: ../../components/annotation-dialog/README.md
+[407]: ../components/annotation-dialog/README.md
 
-[408]: ../../hooks/use-command-history/README.md
+[408]: ../hooks/use-command-history/README.md
 
-[409]: ../../hooks/use-equipment-data-manager/README.md
+[409]: ../hooks/use-equipment-data-manager/README.md
 
-[410]: ../../hooks/use-camera-manager/README.md
+[410]: ../hooks/use-camera-manager/README.md
 
-[411]: ../../hooks/use-filter-manager/README.md
+[411]: ../hooks/use-filter-manager/README.md
 
-[412]: ../../hooks/use-annotation-manager/README.md
+[412]: ../hooks/use-annotation-manager/README.md
 
-[413]: ../../hooks/use-equipment-selection-manager/README.md
+[413]: ../hooks/use-equipment-selection-manager/README.md
 
-[414]: ../../hooks/use-layer-manager/README.md
+[414]: ../hooks/use-layer-manager/README.md
 
 [415]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
@@ -5155,11 +5158,11 @@ Type: (`"Produto"` | `"Estado Operacional"` | `"Equipamento"`)
 
 [423]: ../../hooks/use-scene-outline/README.md
 
-[424]: ../../hooks/useAnimationLoop/README.md
+[424]: ../../hooks/use-animation-loop/README.md
 
 [425]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
 
-[426]: ../../core/data/initial-data/README.md
+[426]: ../data/initial-data/README.md
 
 [427]: ../../lib/types/README.md#Equipment
 
@@ -5167,15 +5170,15 @@ Type: (`"Produto"` | `"Estado Operacional"` | `"Equipamento"`)
 
 [429]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[430]: ../../hooks/useThreeCore/README.md
+[430]: ./useThreeCore.ts
 
-[431]: ../../hooks/useThreeRenderers/README.md
+[431]: ./useThreeRenderers.ts
 
-[432]: ../../hooks/useThreeOrbitControls/README.md
+[432]: ./useThreeOrbitControls.ts
 
-[433]: ../../hooks/useThreeSceneElements/README.md
+[433]: ./useThreeSceneElements.ts
 
-[434]: ../../hooks/useThreeResize/README.md
+[434]: ./useThreeResize.ts
 
 [435]: https://developer.mozilla.org/docs/Web/HTML/Element
 
@@ -5191,6 +5194,20 @@ Type: (`"Produto"` | `"Estado Operacional"` | `"Equipamento"`)
 
 [441]: https://developer.mozilla.org/docs/Web/API/HTMLDivElement
 
-[442]: ../../core/three/scene-elements-setup/README.md#setupLighting
+[442]: ../core/repository/memory-repository/README.md#annotationRepository
 
-[443]: ../../core/three/scene-elements-setup/README.md#setupGroundPlane
+[443]: ../core/repository/memory-repository/README.md#equipmentRepository
+
+[444]: ../lib/types/README.md#Annotation
+
+[445]: ../lib/types/README.md#Equipment
+
+[446]: ../lib/types/README.md#CameraState
+
+[447]: ../lib/types/README.md#Command
+
+[448]: ../lib/types/README.md#TargetSystemInfo
+
+[449]: ../core/three/scene-elements-setup/README.md#setupLighting
+
+[450]: ../core/three/scene-elements-setup/README.md#setupGroundPlane

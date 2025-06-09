@@ -8,7 +8,7 @@
 
 > **ToasterToast** = [`ToastProps`](../../../components/ui/toast/type-aliases/ToastProps.md) & `object`
 
-Defined in: [src/hooks/use-toast.ts:15](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/hooks/use-toast.ts#L15)
+Defined in: [src/hooks/use-toast.ts:15](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/hooks/use-toast.ts#L15)
 
 ## Type declaration
 

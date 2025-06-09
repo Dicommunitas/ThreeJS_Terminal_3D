@@ -12,8 +12,8 @@
  *     refletir os dados mais recentes, garantindo a reatividade da UI.
  * -   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações.
  *
- * @see {@link ../core/repository/memory-repository/README.md#equipmentRepository} Para a fonte de dados.
- * @see {@link ../lib/types/README.md#Equipment} Para a interface de Equipamento.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository Para a fonte de dados.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment Para a interface de Equipamento.
  * @returns Objeto contendo os dados dos equipamentos e funções para modificá-los e atualizá-los.
  *
  * @example
@@ -134,6 +134,8 @@ export function useEquipmentDataManager(): UseEquipmentDataManagerReturn {
     refreshEquipmentData,
   };
 }
+
+    
 
     
 

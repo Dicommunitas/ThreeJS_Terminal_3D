@@ -8,11 +8,11 @@
 
 ## See
 
- - ../../hooks/useThreeCore/README.md Para inicialização da cena e câmera.
- - ../../hooks/useThreeRenderers/README.md Para configuração dos renderizadores e pós-processamento.
- - ../../hooks/useThreeOrbitControls/README.md Para configuração dos controles de órbita.
- - ../../hooks/useThreeSceneElements/README.md Para configuração de iluminação e plano de chão.
- - ../../hooks/useThreeResize/README.md Para manipulação de redimensionamento.
+ - ./useThreeCore.ts Para inicialização da cena e câmera.
+ - ./useThreeRenderers.ts Para configuração dos renderizadores e pós-processamento.
+ - ./useThreeOrbitControls.ts Para configuração dos controles de órbita.
+ - ./useThreeSceneElements.ts Para configuração de iluminação e plano de chão.
+ - ./useThreeResize.ts Para manipulação de redimensionamento.
 
 ## Example
 

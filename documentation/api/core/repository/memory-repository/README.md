@@ -8,7 +8,7 @@
 
 ## See
 
- - ../../core/data/initial-data/README.md Para os dados iniciais de equipamentos e camadas.
+ - ../data/initial-data/README.md Para os dados iniciais de equipamentos e camadas.
  - ../../lib/types/README.md#Equipment Para a interface de Equipamento.
  - ../../lib/types/README.md#Annotation Para a interface de Anotação.
 

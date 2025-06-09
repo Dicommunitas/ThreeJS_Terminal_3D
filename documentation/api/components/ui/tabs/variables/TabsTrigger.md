@@ -8,4 +8,4 @@
 
 > `const` **TabsTrigger**: `ForwardRefExoticComponent`\<`Omit`\<`TabsTriggerProps` & `RefAttributes`\<`HTMLButtonElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLButtonElement`\>\>
 
-Defined in: [src/components/ui/tabs.tsx:25](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/components/ui/tabs.tsx#L25)
+Defined in: [src/components/ui/tabs.tsx:25](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/components/ui/tabs.tsx#L25)

@@ -21,11 +21,11 @@
  *     (e.g., `sceneRef`, `cameraRef`, `rendererRef`) e as flags de estado de prontidão
  *     (`isSceneReady`, `isControlsReady`).
  *
- * @see {@link ./useThreeCore.ts} Para inicialização da cena e câmera.
- * @see {@link ./useThreeRenderers.ts} Para configuração dos renderizadores e pós-processamento.
- * @see {@link ./useThreeOrbitControls.ts} Para configuração dos controles de órbita.
- * @see {@link ./useThreeSceneElements.ts} Para configuração de iluminação e plano de chão.
- * @see {@link ./useThreeResize.ts} Para manipulação de redimensionamento.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeCore/README.md Para inicialização da cena e câmera.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeRenderers/README.md Para configuração dos renderizadores e pós-processamento.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeOrbitControls/README.md Para configuração dos controles de órbita.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeSceneElements/README.md Para configuração de iluminação e plano de chão.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeResize/README.md Para manipulação de redimensionamento.
  *
  * @example
  * // Diagrama de Composição do useSceneSetup:
@@ -216,5 +216,7 @@ export function useSceneSetup(props: UseSceneSetupProps): UseSceneSetupReturn {
   };
 }
 
+
+    
 
     

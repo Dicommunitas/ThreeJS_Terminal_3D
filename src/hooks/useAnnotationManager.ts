@@ -13,10 +13,10 @@
  *     refletir os dados mais recentes, garantindo a reatividade da UI.
  * -   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações de anotação.
  *
- * @see {@link ../core/repository/memory-repository/README.md#annotationRepository} Para a fonte de dados das anotações.
- * @see {@link ../core/repository/memory-repository/README.md#equipmentRepository} Para obter dados de equipamentos (e.g., nome para toasts).
- * @see {@link ../lib/types/README.md#Annotation} Para a interface de Anotação.
- * @see {@link ../lib/types/README.md#Equipment} Para a interface de Equipamento.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#annotationRepository Para a fonte de dados das anotações.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/repository/memory-repository/README.md#equipmentRepository Para obter dados de equipamentos (e.g., nome para toasts).
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Annotation Para a interface de Anotação.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment Para a interface de Equipamento.
  * @param props - Propriedades de configuração para o hook (atualmente, `initialAnnotations` é opcional e usado para uma potencial inicialização única do repositório, embora o repositório seja auto-inicializável).
  * @returns Objeto contendo o estado das anotações, o estado do diálogo e funções para manipular anotações.
  *
@@ -243,5 +243,7 @@ export function useAnnotationManager({ initialAnnotations = [] }: UseAnnotationM
   };
 }
 
+
+    
 
     

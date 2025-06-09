@@ -8,6 +8,6 @@
 
 > `const` **SidebarSeparator**: `ForwardRefExoticComponent`\<`Omit`\<`Omit`\<`SeparatorProps` & `RefAttributes`\<`HTMLDivElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:526](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/components/ui/sidebar.tsx#L526)
+Defined in: [src/components/ui/sidebar.tsx:526](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/components/ui/sidebar.tsx#L526)
 
 Componente Separator estilizado para uso dentro da Sidebar.

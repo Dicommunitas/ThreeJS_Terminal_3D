@@ -30,12 +30,12 @@
  * -   **Fornecimento do Ponto de Montagem:** Renderiza o `div` que serve como contêiner para
  *     os renderizadores Three.js.
  *
- * @see {@link ../../hooks/use-scene-setup/README.md} Para a orquestração da configuração da cena.
- * @see {@link ../../hooks/use-equipment-renderer/README.md} Para a renderização de equipamentos.
- * @see {@link ../../hooks/use-annotation-pin-renderer/README.md} Para a renderização de pins de anotação.
- * @see {@link ../../hooks/use-mouse-interaction/README.md} Para interações do mouse.
- * @see {@link ../../hooks/use-scene-outline/README.md} Para o efeito de contorno.
- * @see {@link ../../hooks/use-animation-loop/README.md} Para o loop de animação.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-setup/README.md Para a orquestração da configuração da cena.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-renderer/README.md Para a renderização de equipamentos.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-pin-renderer/README.md Para a renderização de pins de anotação.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-mouse-interaction/README.md Para interações do mouse.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-outline/README.md Para o efeito de contorno.
+ * @see https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useAnimationLoop/README.md Para o loop de animação.
  *
  * @example
  * // Diagrama de Composição do ThreeScene e seus Hooks:
@@ -405,5 +405,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
 export default ThreeScene;
 
+
+    
 
     

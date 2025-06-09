@@ -6,7 +6,7 @@
 
 # Interface: CameraState
 
-Defined in: [src/lib/types.ts:79](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/lib/types.ts#L79)
+Defined in: [src/lib/types.ts:79](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/lib/types.ts#L79)
 
 Representa o estado da câmera 3D, definido por sua posição e o ponto para o qual está olhando.
  CameraState
@@ -17,7 +17,7 @@ Representa o estado da câmera 3D, definido por sua posição e o ponto para o q
 
 > **lookAt**: `object`
 
-Defined in: [src/lib/types.ts:81](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/lib/types.ts#L81)
+Defined in: [src/lib/types.ts:81](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/lib/types.ts#L81)
 
 As coordenadas (x, y, z) do ponto no espaço para o qual a câmera está direcionada.
 
@@ -39,7 +39,7 @@ As coordenadas (x, y, z) do ponto no espaço para o qual a câmera está direcio
 
 > **position**: `object`
 
-Defined in: [src/lib/types.ts:80](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7fd8b10cda6dfa2ead7725805530e34c65402bbf/src/lib/types.ts#L80)
+Defined in: [src/lib/types.ts:80](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/20cf40967bd739fbee6d804c3e821483cc482c65/src/lib/types.ts#L80)
 
 As coordenadas (x, y, z) da posição da câmera no espaço da cena.
 
