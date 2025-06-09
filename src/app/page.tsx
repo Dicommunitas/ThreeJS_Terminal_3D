@@ -3,8 +3,6 @@
  * @module app/page
  * Componente principal da página da aplicação Terminal 3D.
  *
- * @fileOverview Componente principal da página da aplicação Terminal 3D.
- *
  * Responsabilidades:
  * 1.  **Orquestração de Hooks de Estado:** Inicializa e coordena os principais hooks customizados
  *     que gerenciam diferentes aspectos do estado da aplicação (e.g., `useCommandHistory`,
@@ -24,16 +22,16 @@
  * 6.  **Passagem de Props e Callbacks:** Conecta os hooks de estado aos componentes da UI,
  *     fornecendo os dados necessários e as funções de callback para manipulação de eventos.
  *
- * @see {@link ../../components/main-scene-area/README.md} Para a área principal da cena.
- * @see {@link ../../components/ui/sidebar/README.md} Para a barra lateral de controles.
- * @see {@link ../../components/annotation-dialog/README.md} Para o diálogo de anotações.
- * @see {@link ../../hooks/use-command-history/README.md} Para o gerenciamento de histórico de comandos.
- * @see {@link ../../hooks/use-equipment-data-manager/README.md} Para o gerenciamento de dados de equipamentos.
- * @see {@link ../../hooks/use-camera-manager/README.md} Para o gerenciamento da câmera.
- * @see {@link ../../hooks/use-filter-manager/README.md} Para o gerenciamento de filtros.
- * @see {@link ../../hooks/use-annotation-manager/README.md} Para o gerenciamento de anotações.
- * @see {@link ../../hooks/use-equipment-selection-manager/README.md} Para o gerenciamento de seleção de equipamentos.
- * @see {@link ../../hooks/use-layer-manager/README.md} Para o gerenciamento de camadas.
+ * @see {@link ../components/main-scene-area/README.md} Para a área principal da cena.
+ * @see {@link ../components/ui/sidebar/README.md} Para a barra lateral de controles.
+ * @see {@link ../components/annotation-dialog/README.md} Para o diálogo de anotações.
+ * @see {@link ../hooks/use-command-history/README.md} Para o gerenciamento de histórico de comandos.
+ * @see {@link ../hooks/use-equipment-data-manager/README.md} Para o gerenciamento de dados de equipamentos.
+ * @see {@link ../hooks/use-camera-manager/README.md} Para o gerenciamento da câmera.
+ * @see {@link ../hooks/use-filter-manager/README.md} Para o gerenciamento de filtros.
+ * @see {@link ../hooks/use-annotation-manager/README.md} Para o gerenciamento de anotações.
+ * @see {@link ../hooks/use-equipment-selection-manager/README.md} Para o gerenciamento de seleção de equipamentos.
+ * @see {@link ../hooks/use-layer-manager/README.md} Para o gerenciamento de camadas.
  *
  * @example
  * // Diagrama de Interação de Alto Nível da Terminal3DPage:
@@ -345,3 +343,6 @@ export default function Terminal3DPage(): JSX.Element {
     </SidebarProvider>
   );
 }
+
+
+    

@@ -8,8 +8,8 @@
  * luzes (ambiente, hemisférica, direcional) e uma malha (mesh) para o plano de chão.
  * A execução depende da prontidão do núcleo da cena (objeto `THREE.Scene`).
  *
- * @see {@link ../../core/three/scene-elements-setup/README.md#setupLighting} Para a função de configuração da iluminação.
- * @see {@link ../../core/three/scene-elements-setup/README.md#setupGroundPlane} Para a função de configuração do plano de chão.
+ * @see {@link ../core/three/scene-elements-setup/README.md#setupLighting} Para a função de configuração da iluminação.
+ * @see {@link ../core/three/scene-elements-setup/README.md#setupGroundPlane} Para a função de configuração do plano de chão.
  * @returns Ref para a malha do plano de chão criada.
  *
  * @example
@@ -110,3 +110,6 @@ export function useThreeSceneElements({ sceneRef, coreReady }: UseThreeSceneElem
 
   return { groundMeshRef };
 }
+
+
+    

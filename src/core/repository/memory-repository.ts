@@ -12,7 +12,7 @@
  * Funções de obtenção (get/getAll) retornam cópias dos objetos para promover a imutabilidade
  * e evitar modificações acidentais do estado interno do repositório por referências externas.
  *
- * @see {@link ../../core/data/initial-data/README.md} Para os dados iniciais de equipamentos e camadas.
+ * @see {@link ../data/initial-data/README.md} Para os dados iniciais de equipamentos e camadas.
  * @see {@link ../../lib/types/README.md#Equipment} Para a interface de Equipamento.
  * @see {@link ../../lib/types/README.md#Annotation} Para a interface de Anotação.
  *
@@ -215,3 +215,6 @@ export const annotationRepository = {
     annotations.forEach(an => annotationStore.set(an.equipmentTag, { ...an })); 
   }
 };
+
+
+    

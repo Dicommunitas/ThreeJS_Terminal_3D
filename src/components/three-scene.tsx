@@ -35,7 +35,7 @@
  * @see {@link ../../hooks/use-annotation-pin-renderer/README.md} Para a renderização de pins de anotação.
  * @see {@link ../../hooks/use-mouse-interaction/README.md} Para interações do mouse.
  * @see {@link ../../hooks/use-scene-outline/README.md} Para o efeito de contorno.
- * @see {@link ../../hooks/useAnimationLoop/README.md} Para o loop de animação.
+ * @see {@link ../../hooks/use-animation-loop/README.md} Para o loop de animação.
  *
  * @example
  * // Diagrama de Composição do ThreeScene e seus Hooks:
@@ -144,7 +144,7 @@ export interface ThreeSceneProps {
   onSelectEquipment: (tag: string | null, isMultiSelectModifierPressed: boolean) => void;
   hoveredEquipmentTag: string | null | undefined;
   setHoveredEquipmentTag: (tag: string | null) => void;
-  cameraState: CameraState | undefined; // Corrigido para aceitar undefined
+  cameraState: CameraState | undefined; 
   onCameraChange: (cameraState: CameraState, actionDescription?: string) => void;
   initialCameraPosition: { x: number; y: number; z: number };
   initialCameraLookAt: { x: number; y: number; z: number };
@@ -404,3 +404,6 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 };
 
 export default ThreeScene;
+
+
+    

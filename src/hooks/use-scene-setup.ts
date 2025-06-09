@@ -21,11 +21,11 @@
  *     (e.g., `sceneRef`, `cameraRef`, `rendererRef`) e as flags de estado de prontidão
  *     (`isSceneReady`, `isControlsReady`).
  *
- * @see {@link ../../hooks/useThreeCore/README.md} Para inicialização da cena e câmera.
- * @see {@link ../../hooks/useThreeRenderers/README.md} Para configuração dos renderizadores e pós-processamento.
- * @see {@link ../../hooks/useThreeOrbitControls/README.md} Para configuração dos controles de órbita.
- * @see {@link ../../hooks/useThreeSceneElements/README.md} Para configuração de iluminação e plano de chão.
- * @see {@link ../../hooks/useThreeResize/README.md} Para manipulação de redimensionamento.
+ * @see {@link ./useThreeCore.ts} Para inicialização da cena e câmera.
+ * @see {@link ./useThreeRenderers.ts} Para configuração dos renderizadores e pós-processamento.
+ * @see {@link ./useThreeOrbitControls.ts} Para configuração dos controles de órbita.
+ * @see {@link ./useThreeSceneElements.ts} Para configuração de iluminação e plano de chão.
+ * @see {@link ./useThreeResize.ts} Para manipulação de redimensionamento.
  *
  * @example
  * // Diagrama de Composição do useSceneSetup:
@@ -215,3 +215,6 @@ export function useSceneSetup(props: UseSceneSetupProps): UseSceneSetupReturn {
     isControlsReady,                      
   };
 }
+
+
+    
