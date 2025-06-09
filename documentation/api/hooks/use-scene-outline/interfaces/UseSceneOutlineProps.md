@@ -6,7 +6,7 @@
 
 # Interface: UseSceneOutlineProps
 
-Defined in: [src/hooks/use-scene-outline.ts:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/use-scene-outline.ts#L56)
+Defined in: [src/hooks/use-scene-outline.ts:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/use-scene-outline.ts#L56)
 
 Props para o hook useSceneOutline.
  UseSceneOutlineProps
@@ -17,7 +17,7 @@ Props para o hook useSceneOutline.
 
 > **equipmentMeshesRef**: `RefObject`\<`Object3D`\<`Object3DEventMap`\>[]\>
 
-Defined in: [src/hooks/use-scene-outline.ts:58](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/use-scene-outline.ts#L58)
+Defined in: [src/hooks/use-scene-outline.ts:58](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/use-scene-outline.ts#L58)
 
 Ref para o array de meshes de equipamentos na cena.
 
@@ -27,7 +27,7 @@ Ref para o array de meshes de equipamentos na cena.
 
 > **hoveredEquipmentTag**: `undefined` \| `null` \| `string`
 
-Defined in: [src/hooks/use-scene-outline.ts:60](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/use-scene-outline.ts#L60)
+Defined in: [src/hooks/use-scene-outline.ts:60](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/use-scene-outline.ts#L60)
 
 Tag do equipamento atualmente em hover.
 
@@ -37,7 +37,7 @@ Tag do equipamento atualmente em hover.
 
 > **isSceneReady**: `boolean`
 
-Defined in: [src/hooks/use-scene-outline.ts:61](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/use-scene-outline.ts#L61)
+Defined in: [src/hooks/use-scene-outline.ts:61](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/use-scene-outline.ts#L61)
 
 Flag indicando se a cena 3D está pronta.
 
@@ -47,7 +47,7 @@ Flag indicando se a cena 3D está pronta.
 
 > **outlinePassRef**: `RefObject`\<`null` \| `OutlinePass`\>
 
-Defined in: [src/hooks/use-scene-outline.ts:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/use-scene-outline.ts#L57)
+Defined in: [src/hooks/use-scene-outline.ts:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/use-scene-outline.ts#L57)
 
 Ref para a instância do OutlinePass.
 
@@ -57,6 +57,6 @@ Ref para a instância do OutlinePass.
 
 > **selectedEquipmentTags**: `undefined` \| `string`[]
 
-Defined in: [src/hooks/use-scene-outline.ts:59](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/use-scene-outline.ts#L59)
+Defined in: [src/hooks/use-scene-outline.ts:59](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/use-scene-outline.ts#L59)
 
 Array de tags dos equipamentos selecionados.

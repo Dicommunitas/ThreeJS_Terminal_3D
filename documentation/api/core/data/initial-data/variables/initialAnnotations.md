@@ -8,7 +8,7 @@
 
 > `const` **initialAnnotations**: [`Annotation`](../../../../lib/types/interfaces/Annotation.md)[] = `[]`
 
-Defined in: [src/core/data/initial-data.ts:64](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/core/data/initial-data.ts#L64)
+Defined in: [src/core/data/initial-data.ts:64](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/core/data/initial-data.ts#L64)
 
 Lista inicial de anotações. Geralmente vazia para começar,
 a menos que queira popular com dados de exemplo.

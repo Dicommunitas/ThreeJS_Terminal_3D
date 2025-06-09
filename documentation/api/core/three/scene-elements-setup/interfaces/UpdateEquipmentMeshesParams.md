@@ -6,7 +6,7 @@
 
 # Interface: UpdateEquipmentMeshesParams
 
-Defined in: [src/core/three/scene-elements-setup.ts:212](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/core/three/scene-elements-setup.ts#L212)
+Defined in: [src/core/three/scene-elements-setup.ts:212](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/core/three/scene-elements-setup.ts#L212)
 
 Interface para os parâmetros da função `updateEquipmentMeshesInScene`.
  UpdateEquipmentMeshesParams
@@ -58,7 +58,7 @@ classDiagram
 
 > **colorMode**: [`ColorMode`](../../../../lib/types/type-aliases/ColorMode.md)
 
-Defined in: [src/core/three/scene-elements-setup.ts:217](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/core/three/scene-elements-setup.ts#L217)
+Defined in: [src/core/three/scene-elements-setup.ts:217](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/core/three/scene-elements-setup.ts#L217)
 
 O modo de colorização atual para os equipamentos.
 
@@ -68,7 +68,7 @@ O modo de colorização atual para os equipamentos.
 
 > **createSingleEquipmentMesh**: (`item`) => `Object3D`
 
-Defined in: [src/core/three/scene-elements-setup.ts:218](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/core/three/scene-elements-setup.ts#L218)
+Defined in: [src/core/three/scene-elements-setup.ts:218](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/core/three/scene-elements-setup.ts#L218)
 
 Função callback para criar um mesh de equipamento individual.
 
@@ -88,7 +88,7 @@ Função callback para criar um mesh de equipamento individual.
 
 > **equipmentMeshesRef**: `MutableRefObject`\<`Object3D`\<`Object3DEventMap`\>[]\>
 
-Defined in: [src/core/three/scene-elements-setup.ts:214](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/core/three/scene-elements-setup.ts#L214)
+Defined in: [src/core/three/scene-elements-setup.ts:214](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/core/three/scene-elements-setup.ts#L214)
 
 Ref para o array de meshes de equipamentos existentes na cena.
 
@@ -98,7 +98,7 @@ Ref para o array de meshes de equipamentos existentes na cena.
 
 > **groundMeshRef**: `MutableRefObject`\<`null` \| `Mesh`\<`BufferGeometry`\<`NormalBufferAttributes`\>, `Material` \| `Material`[], `Object3DEventMap`\>\>
 
-Defined in: [src/core/three/scene-elements-setup.ts:219](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/core/three/scene-elements-setup.ts#L219)
+Defined in: [src/core/three/scene-elements-setup.ts:219](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/core/three/scene-elements-setup.ts#L219)
 
 Ref para o mesh do plano de chão, para controle de visibilidade.
 
@@ -108,7 +108,7 @@ Ref para o mesh do plano de chão, para controle de visibilidade.
 
 > **layers**: [`Layer`](../../../../lib/types/interfaces/Layer.md)[]
 
-Defined in: [src/core/three/scene-elements-setup.ts:216](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/core/three/scene-elements-setup.ts#L216)
+Defined in: [src/core/three/scene-elements-setup.ts:216](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/core/three/scene-elements-setup.ts#L216)
 
 A lista de camadas para determinar a visibilidade por tipo de equipamento e do terreno.
 
@@ -118,7 +118,7 @@ A lista de camadas para determinar a visibilidade por tipo de equipamento e do t
 
 > **newEquipmentData**: [`Equipment`](../../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/core/three/scene-elements-setup.ts:215](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/core/three/scene-elements-setup.ts#L215)
+Defined in: [src/core/three/scene-elements-setup.ts:215](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/core/three/scene-elements-setup.ts#L215)
 
 A nova lista de equipamentos a serem renderizados (já filtrada).
 
@@ -128,6 +128,6 @@ A nova lista de equipamentos a serem renderizados (já filtrada).
 
 > **scene**: `Scene`
 
-Defined in: [src/core/three/scene-elements-setup.ts:213](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/core/three/scene-elements-setup.ts#L213)
+Defined in: [src/core/three/scene-elements-setup.ts:213](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/core/three/scene-elements-setup.ts#L213)
 
 A cena Three.js.

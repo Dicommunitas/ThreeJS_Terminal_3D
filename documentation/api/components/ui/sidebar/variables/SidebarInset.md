@@ -8,7 +8,7 @@
 
 > `const` **SidebarInset**: `ForwardRefExoticComponent`\<`Omit`\<`DetailedHTMLProps`\<`HTMLAttributes`\<`HTMLElement`\>, `HTMLElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:449](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/ui/sidebar.tsx#L449)
+Defined in: [src/components/ui/sidebar.tsx:449](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/components/ui/sidebar.tsx#L449)
 
 Componente para envolver o conteúdo principal da página.
 Ajusta sua margem e aparência com base no estado e variante da sidebar,

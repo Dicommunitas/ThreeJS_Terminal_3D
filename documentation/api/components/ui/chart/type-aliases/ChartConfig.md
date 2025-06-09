@@ -8,7 +8,7 @@
 
 > **ChartConfig** = \{ \[k in string\]: \{ icon?: React.ComponentType; label?: React.ReactNode \} & (\{ color?: string; theme?: never \} \| \{ color?: never; theme: Record\<keyof typeof THEMES, string\> \}) \}
 
-Defined in: [src/components/ui/chart.tsx:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/ui/chart.tsx#L42)
+Defined in: [src/components/ui/chart.tsx:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/components/ui/chart.tsx#L42)
 
 Configuração para os gráficos, permitindo a definição de rótulos, ícones e cores
 para cada item de dados do gráfico. As cores podem ser definidas diretamente ou

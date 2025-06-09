@@ -6,7 +6,7 @@
 
 # Interface: UseThreeCoreReturn
 
-Defined in: [src/hooks/useThreeCore.ts:65](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useThreeCore.ts#L65)
+Defined in: [src/hooks/useThreeCore.ts:65](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/useThreeCore.ts#L65)
 
 Valor de retorno do hook `useThreeCore`.
  UseThreeCoreReturn
@@ -17,7 +17,7 @@ Valor de retorno do hook `useThreeCore`.
 
 > **cameraRef**: `RefObject`\<`null` \| `PerspectiveCamera`\>
 
-Defined in: [src/hooks/useThreeCore.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useThreeCore.ts#L67)
+Defined in: [src/hooks/useThreeCore.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/useThreeCore.ts#L67)
 
 Ref para o objeto `THREE.PerspectiveCamera` criado.
 
@@ -27,6 +27,6 @@ Ref para o objeto `THREE.PerspectiveCamera` criado.
 
 > **sceneRef**: `RefObject`\<`null` \| `Scene`\>
 
-Defined in: [src/hooks/useThreeCore.ts:66](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useThreeCore.ts#L66)
+Defined in: [src/hooks/useThreeCore.ts:66](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/useThreeCore.ts#L66)
 
 Ref para o objeto `THREE.Scene` criado.

@@ -8,7 +8,7 @@
 
 > **useSceneSetup**(`props`): [`UseSceneSetupReturn`](../interfaces/UseSceneSetupReturn.md)
 
-Defined in: [src/hooks/use-scene-setup.ts:161](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/use-scene-setup.ts#L161)
+Defined in: [src/hooks/use-scene-setup.ts:161](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/use-scene-setup.ts#L161)
 
 Orquestra a configuração de uma cena Three.js compondo hooks especializados.
 Este hook é responsável por inicializar o núcleo da cena, renderizadores, controles,

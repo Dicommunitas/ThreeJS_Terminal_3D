@@ -6,7 +6,7 @@
 
 # Interface: UseThreeSceneElementsReturn
 
-Defined in: [src/hooks/useThreeSceneElements.ts:72](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useThreeSceneElements.ts#L72)
+Defined in: [src/hooks/useThreeSceneElements.ts:72](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/useThreeSceneElements.ts#L72)
 
 Valor de retorno do hook `useThreeSceneElements`.
  UseThreeSceneElementsReturn
@@ -17,6 +17,6 @@ Valor de retorno do hook `useThreeSceneElements`.
 
 > **groundMeshRef**: `RefObject`\<`null` \| `Mesh`\<`BufferGeometry`\<`NormalBufferAttributes`\>, `Material` \| `Material`[], `Object3DEventMap`\>\>
 
-Defined in: [src/hooks/useThreeSceneElements.ts:73](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useThreeSceneElements.ts#L73)
+Defined in: [src/hooks/useThreeSceneElements.ts:73](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/useThreeSceneElements.ts#L73)
 
 Ref para a malha (mesh) do plano de chão criada.

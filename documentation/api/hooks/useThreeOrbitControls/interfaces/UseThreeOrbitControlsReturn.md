@@ -6,7 +6,7 @@
 
 # Interface: UseThreeOrbitControlsReturn
 
-Defined in: [src/hooks/useThreeOrbitControls.ts:74](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useThreeOrbitControls.ts#L74)
+Defined in: [src/hooks/useThreeOrbitControls.ts:74](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/useThreeOrbitControls.ts#L74)
 
 Valor de retorno do hook `useThreeOrbitControls`.
  UseThreeOrbitControlsReturn
@@ -17,7 +17,7 @@ Valor de retorno do hook `useThreeOrbitControls`.
 
 > **controlsRef**: `RefObject`\<`null` \| `OrbitControls`\>
 
-Defined in: [src/hooks/useThreeOrbitControls.ts:75](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useThreeOrbitControls.ts#L75)
+Defined in: [src/hooks/useThreeOrbitControls.ts:75](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/useThreeOrbitControls.ts#L75)
 
 Ref para a instância de `OrbitControls`.
 
@@ -27,6 +27,6 @@ Ref para a instância de `OrbitControls`.
 
 > **isControlsReady**: `boolean`
 
-Defined in: [src/hooks/useThreeOrbitControls.ts:76](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useThreeOrbitControls.ts#L76)
+Defined in: [src/hooks/useThreeOrbitControls.ts:76](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/hooks/useThreeOrbitControls.ts#L76)
 
 Flag que indica se os `OrbitControls` foram carregados e inicializados com sucesso.

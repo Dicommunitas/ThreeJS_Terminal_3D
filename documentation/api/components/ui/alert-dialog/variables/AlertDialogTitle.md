@@ -8,4 +8,4 @@
 
 > `const` **AlertDialogTitle**: `ForwardRefExoticComponent`\<`Omit`\<`AlertDialogTitleProps` & `RefAttributes`\<`HTMLHeadingElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLHeadingElement`\>\>
 
-Defined in: [src/components/ui/alert-dialog.tsx:76](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/ui/alert-dialog.tsx#L76)
+Defined in: [src/components/ui/alert-dialog.tsx:76](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/components/ui/alert-dialog.tsx#L76)

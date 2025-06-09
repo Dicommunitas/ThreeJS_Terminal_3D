@@ -34,7 +34,7 @@
  * @see {@link /documentation/api/hooks/use-equipment-selection-manager/README.md} Para o gerenciamento de seleção de equipamentos.
  * @see {@link /documentation/api/hooks/use-layer-manager/README.md} Para o gerenciamento de camadas.
  *
- * @example Diagrama de Interação de Alto Nível da Terminal3DPage:
+ * Diagrama de Interação de Alto Nível da Terminal3DPage:
  * ```mermaid
  * graph LR
  *     Terminal3DPage["Terminal3DPage (Página Principal)"] --> H_CmdHistory["useCommandHistory (Hook Histórico)"];
