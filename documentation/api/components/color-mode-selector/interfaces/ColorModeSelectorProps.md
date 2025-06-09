@@ -6,7 +6,7 @@
 
 # Interface: ColorModeSelectorProps
 
-Defined in: [src/components/color-mode-selector.tsx:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/color-mode-selector.tsx#L55)
+Defined in: [src/components/color-mode-selector.tsx:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/color-mode-selector.tsx#L56)
 
 Props para o componente ColorModeSelector.
  ColorModeSelectorProps
@@ -17,7 +17,7 @@ Props para o componente ColorModeSelector.
 
 > **colorMode**: [`ColorMode`](../../../lib/types/type-aliases/ColorMode.md)
 
-Defined in: [src/components/color-mode-selector.tsx:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/color-mode-selector.tsx#L56)
+Defined in: [src/components/color-mode-selector.tsx:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/color-mode-selector.tsx#L57)
 
 O modo de colorização atualmente selecionado.
 
@@ -27,7 +27,7 @@ O modo de colorização atualmente selecionado.
 
 > **onColorModeChange**: (`mode`) => `void`
 
-Defined in: [src/components/color-mode-selector.tsx:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/color-mode-selector.tsx#L57)
+Defined in: [src/components/color-mode-selector.tsx:58](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/color-mode-selector.tsx#L58)
 
 Callback para quando o modo de colorização é alterado.
 

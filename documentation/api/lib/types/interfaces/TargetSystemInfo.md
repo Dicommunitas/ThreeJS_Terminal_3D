@@ -6,7 +6,7 @@
 
 # Interface: TargetSystemInfo
 
-Defined in: [src/lib/types.ts:110](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/lib/types.ts#L110)
+Defined in: [src/lib/types.ts:110](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/lib/types.ts#L110)
 
 Informações sobre o sistema alvo para o qual a câmera deve ser enquadrada,
 incluindo o índice da visão desejada.
@@ -18,7 +18,7 @@ incluindo o índice da visão desejada.
 
 > **systemName**: `string`
 
-Defined in: [src/lib/types.ts:111](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/lib/types.ts#L111)
+Defined in: [src/lib/types.ts:111](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/lib/types.ts#L111)
 
 O nome do sistema a ser focado.
 
@@ -28,6 +28,6 @@ O nome do sistema a ser focado.
 
 > **viewIndex**: `number`
 
-Defined in: [src/lib/types.ts:112](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/lib/types.ts#L112)
+Defined in: [src/lib/types.ts:112](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/lib/types.ts#L112)
 
 O índice da visualização desejada (0 para padrão, 1 para top-down, etc.).

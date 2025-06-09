@@ -8,7 +8,7 @@
 
 > `const` **equipmentRepository**: `object`
 
-Defined in: [src/core/repository/memory-repository.ts:91](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/core/repository/memory-repository.ts#L91)
+Defined in: [src/core/repository/memory-repository.ts:90](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/core/repository/memory-repository.ts#L90)
 
 Objeto repositório para gerenciar dados de `Equipment`.
 

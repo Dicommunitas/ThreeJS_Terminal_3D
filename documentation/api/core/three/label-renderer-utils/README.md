@@ -8,7 +8,6 @@
 
 ## Example
 
-// Diagrama de Interação para `updateAnnotationPins`:
 ```mermaid
   classDiagram
     class UpdateAnnotationPinsParams {

@@ -8,7 +8,6 @@
 
 ## Example
 
-// Diagrama de Estrutura do Hook e suas Dependências:
 ```mermaid
   classDiagram
     class UseFilterManagerProps {

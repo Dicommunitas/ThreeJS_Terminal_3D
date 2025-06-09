@@ -8,7 +8,6 @@
 
 ## Example
 
-// Diagrama de Funcionalidade do calculateViewForMeshes:
 ```mermaid
   classDiagram
     class calculateViewForMeshes_params {

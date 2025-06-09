@@ -6,7 +6,7 @@
 
 # Interface: InfoPanelProps
 
-Defined in: [src/components/info-panel.tsx:60](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/info-panel.tsx#L60)
+Defined in: [src/components/info-panel.tsx:61](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/info-panel.tsx#L61)
 
 Props para o componente InfoPanel.
 
@@ -16,7 +16,7 @@ Props para o componente InfoPanel.
 
 > **annotation**: `null` \| [`Annotation`](../../../lib/types/interfaces/Annotation.md)
 
-Defined in: [src/components/info-panel.tsx:64](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/info-panel.tsx#L64)
+Defined in: [src/components/info-panel.tsx:65](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/info-panel.tsx#L65)
 
 A anotação associada ao equipamento selecionado. Null se não houver anotação.
 
@@ -26,7 +26,7 @@ A anotação associada ao equipamento selecionado. Null se não houver anotaçã
 
 > **availableOperationalStatesList**: `string`[]
 
-Defined in: [src/components/info-panel.tsx:74](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/info-panel.tsx#L74)
+Defined in: [src/components/info-panel.tsx:75](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/info-panel.tsx#L75)
 
 Lista de estados operacionais disponíveis para seleção no dropdown.
 
@@ -36,7 +36,7 @@ Lista de estados operacionais disponíveis para seleção no dropdown.
 
 > **availableProductsList**: `string`[]
 
-Defined in: [src/components/info-panel.tsx:78](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/info-panel.tsx#L78)
+Defined in: [src/components/info-panel.tsx:79](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/info-panel.tsx#L79)
 
 Lista de produtos disponíveis para seleção no dropdown.
 
@@ -46,7 +46,7 @@ Lista de produtos disponíveis para seleção no dropdown.
 
 > **equipment**: `null` \| [`Equipment`](../../../lib/types/interfaces/Equipment.md)
 
-Defined in: [src/components/info-panel.tsx:62](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/info-panel.tsx#L62)
+Defined in: [src/components/info-panel.tsx:63](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/info-panel.tsx#L63)
 
 O equipamento selecionado para exibir detalhes. Null se nenhum equipamento único estiver selecionado.
 
@@ -56,7 +56,7 @@ O equipamento selecionado para exibir detalhes. Null se nenhum equipamento únic
 
 > **onClose**: () => `void`
 
-Defined in: [src/components/info-panel.tsx:66](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/info-panel.tsx#L66)
+Defined in: [src/components/info-panel.tsx:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/info-panel.tsx#L67)
 
 Callback para fechar o painel de informações (geralmente deseleciona o equipamento).
 
@@ -70,7 +70,7 @@ Callback para fechar o painel de informações (geralmente deseleciona o equipam
 
 > **onDeleteAnnotation**: (`equipmentTag`) => `void`
 
-Defined in: [src/components/info-panel.tsx:70](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/info-panel.tsx#L70)
+Defined in: [src/components/info-panel.tsx:71](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/info-panel.tsx#L71)
 
 Callback para excluir a anotação do equipamento especificado.
 
@@ -90,7 +90,7 @@ Callback para excluir a anotação do equipamento especificado.
 
 > **onOpenAnnotationDialog**: () => `void`
 
-Defined in: [src/components/info-panel.tsx:68](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/info-panel.tsx#L68)
+Defined in: [src/components/info-panel.tsx:69](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/info-panel.tsx#L69)
 
 Callback para abrir o diálogo de adição/edição de anotação.
 
@@ -104,7 +104,7 @@ Callback para abrir o diálogo de adição/edição de anotação.
 
 > **onOperationalStateChange**: (`equipmentTag`, `newState`) => `void`
 
-Defined in: [src/components/info-panel.tsx:72](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/info-panel.tsx#L72)
+Defined in: [src/components/info-panel.tsx:73](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/info-panel.tsx#L73)
 
 Callback para alterar o estado operacional de um equipamento.
 
@@ -128,7 +128,7 @@ Callback para alterar o estado operacional de um equipamento.
 
 > **onProductChange**: (`equipmentTag`, `newProduct`) => `void`
 
-Defined in: [src/components/info-panel.tsx:76](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/info-panel.tsx#L76)
+Defined in: [src/components/info-panel.tsx:77](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/info-panel.tsx#L77)
 
 Callback para alterar o produto de um equipamento.
 

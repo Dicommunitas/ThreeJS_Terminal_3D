@@ -8,7 +8,7 @@
 
 > `const` **SidebarProvider**: `ForwardRefExoticComponent`\<`Omit`\<`ClassAttributes`\<`HTMLDivElement`\> & `HTMLAttributes`\<`HTMLDivElement`\> & `object`, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:111](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/ui/sidebar.tsx#L111)
+Defined in: [src/components/ui/sidebar.tsx:112](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/ui/sidebar.tsx#L112)
 
 Provedor de contexto para o estado da sidebar.
 Gerencia se a sidebar está aberta/fechada, tanto no desktop quanto no mobile,

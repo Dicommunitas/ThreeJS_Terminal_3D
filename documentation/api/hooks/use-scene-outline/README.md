@@ -8,7 +8,6 @@
 
 ## Example
 
-// Diagrama de Composição e Dependências:
 ```mermaid
   classDiagram
     class UseSceneOutlineProps {

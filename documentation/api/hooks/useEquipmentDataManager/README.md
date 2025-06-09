@@ -8,13 +8,12 @@
 
 ## See
 
- - ../../documentation/api/core/repository/memory-repository/README.md#equipmentrepository Para a fonte de dados.
- - ../../documentation/api/lib/types/README.md#Equipment Para a interface de Equipamento.
+ - /documentation/api/core/repository/memory-repository/README.md#equipmentrepository Para a fonte de dados.
+ - /documentation/api/lib/types/README.md#Equipment Para a interface de Equipamento.
 
 ## Example
 
-// Diagrama de Interação do useEquipmentDataManager:
-* ```mermaid
+```mermaid
 graph TD
     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOperationalStateChange)
 
@@ -41,7 +40,7 @@ graph TD
    class C,D repo;
    class E,F state;
    class useEquipmentDataManager hook;
-* ```
+```
 
 ## Interfaces
 

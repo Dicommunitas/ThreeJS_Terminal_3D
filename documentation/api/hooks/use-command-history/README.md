@@ -8,7 +8,6 @@
 
 ## Example
 
-// Diagrama de Estrutura do Hook e seus Retornos:
 ```mermaid
   classDiagram
     class UseCommandHistoryReturn {

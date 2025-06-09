@@ -8,7 +8,6 @@
 
 ## Example
 
-// Diagrama de Componentes Criados por useThreeRenderers:
 ```mermaid
 graph TD
     useThreeRenderers["useThreeRenderers (Hook)"]

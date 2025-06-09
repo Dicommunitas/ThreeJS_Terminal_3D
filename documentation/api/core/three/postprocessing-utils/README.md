@@ -8,7 +8,6 @@
 
 ## Example
 
-// Diagrama de Retorno da Função `setupPostProcessing`:
 ```mermaid
   classDiagram
     class setupPostProcessing_return {

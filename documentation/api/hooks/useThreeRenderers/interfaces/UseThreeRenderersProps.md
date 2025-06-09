@@ -6,7 +6,7 @@
 
 # Interface: UseThreeRenderersProps
 
-Defined in: [src/hooks/useThreeRenderers.ts:80](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/useThreeRenderers.ts#L80)
+Defined in: [src/hooks/useThreeRenderers.ts:79](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useThreeRenderers.ts#L79)
 
 Props para o hook `useThreeRenderers`.
  UseThreeRenderersProps
@@ -17,7 +17,7 @@ Props para o hook `useThreeRenderers`.
 
 > **cameraRef**: `RefObject`\<`null` \| `PerspectiveCamera`\>
 
-Defined in: [src/hooks/useThreeRenderers.ts:83](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/useThreeRenderers.ts#L83)
+Defined in: [src/hooks/useThreeRenderers.ts:82](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useThreeRenderers.ts#L82)
 
 Ref para a câmera perspectiva existente.
 
@@ -27,7 +27,7 @@ Ref para a câmera perspectiva existente.
 
 > **mountRef**: `RefObject`\<`null` \| `HTMLDivElement`\>
 
-Defined in: [src/hooks/useThreeRenderers.ts:81](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/useThreeRenderers.ts#L81)
+Defined in: [src/hooks/useThreeRenderers.ts:80](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useThreeRenderers.ts#L80)
 
 Ref para o elemento DOM onde os renderizadores serão montados.
 
@@ -37,6 +37,6 @@ Ref para o elemento DOM onde os renderizadores serão montados.
 
 > **sceneRef**: `RefObject`\<`null` \| `Scene`\>
 
-Defined in: [src/hooks/useThreeRenderers.ts:82](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/useThreeRenderers.ts#L82)
+Defined in: [src/hooks/useThreeRenderers.ts:81](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useThreeRenderers.ts#L81)
 
 Ref para a cena Three.js existente.

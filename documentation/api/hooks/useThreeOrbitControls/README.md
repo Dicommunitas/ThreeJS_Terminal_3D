@@ -8,7 +8,6 @@
 
 ## Example
 
-// Diagrama de Fluxo do useThreeOrbitControls:
 ```mermaid
 sequenceDiagram
     participant Usuário

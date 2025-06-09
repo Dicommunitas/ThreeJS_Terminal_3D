@@ -6,7 +6,7 @@
 
 # Interface: SystemViewOptions
 
-Defined in: [src/lib/types.ts:97](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/lib/types.ts#L97)
+Defined in: [src/lib/types.ts:97](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/lib/types.ts#L97)
 
 Define as diferentes opções de visualização para um sistema focado.
  SystemViewOptions
@@ -17,7 +17,7 @@ Define as diferentes opções de visualização para um sistema focado.
 
 > **default**: [`CameraState`](CameraState.md)
 
-Defined in: [src/lib/types.ts:98](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/lib/types.ts#L98)
+Defined in: [src/lib/types.ts:98](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/lib/types.ts#L98)
 
 A visão padrão calculada.
 
@@ -27,7 +27,7 @@ A visão padrão calculada.
 
 > **isometric**: [`CameraState`](CameraState.md)
 
-Defined in: [src/lib/types.ts:100](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/lib/types.ts#L100)
+Defined in: [src/lib/types.ts:100](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/lib/types.ts#L100)
 
 Uma visão isométrica simulada.
 
@@ -37,6 +37,6 @@ Uma visão isométrica simulada.
 
 > **topDown**: [`CameraState`](CameraState.md)
 
-Defined in: [src/lib/types.ts:99](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/lib/types.ts#L99)
+Defined in: [src/lib/types.ts:99](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/lib/types.ts#L99)
 
 Uma visão de cima para baixo.

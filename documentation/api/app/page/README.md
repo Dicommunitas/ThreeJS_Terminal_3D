@@ -8,21 +8,19 @@
 
 ## See
 
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/components/main-scene-area/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/main-scene-area/README.md) Para a área principal da cena.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/components/ui/sidebar/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/ui/sidebar/README.md) Para a barra lateral de controles.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/components/annotation-dialog/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/components/annotation-dialog/README.md) Para o diálogo de anotações.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-command-history/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-command-history/README.md) Para o gerenciamento de histórico de comandos.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-equipment-data-manager/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-data-manager/README.md) Para o gerenciamento de dados de equipamentos.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-camera-manager/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-camera-manager/README.md) Para o gerenciamento da câmera.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-filter-manager/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-filter-manager/README.md) Para o gerenciamento de filtros.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-annotation-manager/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-manager/README.md) Para o gerenciamento de anotações.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-equipment-selection-manager/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-selection-manager/README.md) Para o gerenciamento de seleção de equipamentos.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/use-layer-manager/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-layer-manager/README.md) Para o gerenciamento de camadas.
+ - /documentation/api/components/main-scene-area/README.md Para a área principal da cena.
+ - /documentation/api/components/ui/sidebar/README.md Para a barra lateral de controles.
+ - /documentation/api/components/annotation-dialog/README.md Para o diálogo de anotações.
+ - /documentation/api/hooks/use-command-history/README.md Para o gerenciamento de histórico de comandos.
+ - /documentation/api/hooks/use-equipment-data-manager/README.md Para o gerenciamento de dados de equipamentos.
+ - /documentation/api/hooks/use-camera-manager/README.md Para o gerenciamento da câmera.
+ - /documentation/api/hooks/use-filter-manager/README.md Para o gerenciamento de filtros.
+ - /documentation/api/hooks/use-annotation-manager/README.md Para o gerenciamento de anotações.
+ - /documentation/api/hooks/use-equipment-selection-manager/README.md Para o gerenciamento de seleção de equipamentos.
+ - /documentation/api/hooks/use-layer-manager/README.md Para o gerenciamento de camadas.
 
 ## Example
 
-```ts
-// Diagrama de Interação de Alto Nível da Terminal3DPage:
 ```mermaid
 graph LR
     Terminal3DPage["Terminal3DPage (Página Principal)"] --> H_CmdHistory["useCommandHistory (Hook Histórico)"];
@@ -59,7 +57,6 @@ graph LR
       ThreeScene_Comp;
       SidebarContentLayout_Comp;
     end
-```
 ```
 
 ## Functions

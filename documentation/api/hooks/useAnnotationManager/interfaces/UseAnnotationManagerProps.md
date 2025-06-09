@@ -6,7 +6,7 @@
 
 # Interface: UseAnnotationManagerProps
 
-Defined in: [src/hooks/useAnnotationManager.ts:72](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/useAnnotationManager.ts#L72)
+Defined in: [src/hooks/useAnnotationManager.ts:73](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useAnnotationManager.ts#L73)
 
 Props para o hook `useAnnotationManager`.
  UseAnnotationManagerProps
@@ -17,7 +17,7 @@ Props para o hook `useAnnotationManager`.
 
 > `optional` **initialAnnotations**: [`Annotation`](../../../lib/types/interfaces/Annotation.md)[]
 
-Defined in: [src/hooks/useAnnotationManager.ts:73](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/useAnnotationManager.ts#L73)
+Defined in: [src/hooks/useAnnotationManager.ts:74](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useAnnotationManager.ts#L74)
 
 Lista inicial opcional de anotações. Pode ser usada para uma
                                                  inicialização única do repositório se ele estiver vazio e este array contiver dados.

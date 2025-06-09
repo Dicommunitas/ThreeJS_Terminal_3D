@@ -6,7 +6,7 @@
 
 # Interface: State
 
-Defined in: [src/hooks/use-toast.ts:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/use-toast.ts#L56)
+Defined in: [src/hooks/use-toast.ts:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/use-toast.ts#L56)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/hooks/use-toast.ts:56](https://github.com/Dicommunitas/ThreeJS_
 
 > **toasts**: [`ToasterToast`](../type-aliases/ToasterToast.md)[]
 
-Defined in: [src/hooks/use-toast.ts:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/use-toast.ts#L57)
+Defined in: [src/hooks/use-toast.ts:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/use-toast.ts#L57)

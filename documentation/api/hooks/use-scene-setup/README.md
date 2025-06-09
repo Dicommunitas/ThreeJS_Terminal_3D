@@ -8,16 +8,14 @@
 
 ## See
 
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeCore/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeCore/README.md) Para inicialização da cena e câmera.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeRenderers/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeRenderers/README.md) Para configuração dos renderizadores e pós-processamento.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeOrbitControls/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeOrbitControls/README.md) Para configuração dos controles de órbita.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeSceneElements/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeSceneElements/README.md) Para configuração de iluminação e plano de chão.
- - [https://github.com/Dicommunitas/ThreeJS\_Terminal\_3D/blob/main/documentation/api/hooks/useThreeResize/README.md](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeResize/README.md) Para manipulação de redimensionamento.
+ - /documentation/api/hooks/useThreeCore/README.md Para inicialização da cena e câmera.
+ - /documentation/api/hooks/useThreeRenderers/README.md Para configuração dos renderizadores e pós-processamento.
+ - /documentation/api/hooks/useThreeOrbitControls/README.md Para configuração dos controles de órbita.
+ - /documentation/api/hooks/useThreeSceneElements/README.md Para configuração de iluminação e plano de chão.
+ - /documentation/api/hooks/useThreeResize/README.md Para manipulação de redimensionamento.
 
 ## Example
 
-```ts
-// Diagrama de Composição do useSceneSetup:
 ```mermaid
 graph TD
     useSceneSetup_Orchestrator["useSceneSetup (Orquestrador)"]
@@ -81,7 +79,6 @@ graph TD
     class H_Core,H_Renderers,H_Controls,H_Elements,H_Resize hook;
     class R_Scene,R_Camera,R_Renderer,R_LabelRenderer,R_OrbitControls,R_Composer,R_OutlinePass,R_GroundMesh ref;
     class F_RenderersReady,F_ControlsReady,F_SceneReady flag;
-```
 ```
 
 ## Interfaces

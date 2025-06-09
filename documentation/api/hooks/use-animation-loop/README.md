@@ -12,7 +12,6 @@ Propriedades para configurar o loop de animação.
 
 ## Example
 
-// Diagrama de Fluxo do useAnimationLoop:
 ```mermaid
 sequenceDiagram
     participant ComponentePai as Comp. (ex: ThreeScene)

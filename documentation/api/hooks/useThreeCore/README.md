@@ -8,7 +8,6 @@
 
 ## Example
 
-// Diagrama de Responsabilidade do useThreeCore:
 ```mermaid
 graph TD
     useThreeCore["useThreeCore (Hook)"]

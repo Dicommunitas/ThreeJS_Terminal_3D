@@ -12,7 +12,6 @@ Objeto contendo refs para os elementos Three.js que precisam ser redimensionados
 
 ## Example
 
-// Diagrama de Funcionalidade do useThreeResize:
 ```mermaid
 graph TD
     useThreeResize["useThreeResize (Hook)"]

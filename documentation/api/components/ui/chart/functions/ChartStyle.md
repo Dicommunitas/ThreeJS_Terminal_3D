@@ -8,7 +8,7 @@
 
 > **ChartStyle**(`__namedParameters`): `null` \| `Element`
 
-Defined in: [src/components/ui/chart.tsx:101](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/ui/chart.tsx#L101)
+Defined in: [src/components/ui/chart.tsx:101](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/ui/chart.tsx#L101)
 
 ## Parameters
 

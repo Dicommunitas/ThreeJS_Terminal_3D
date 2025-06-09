@@ -8,7 +8,7 @@
 
 > **MainSceneArea**(`props`): `Element`
 
-Defined in: [src/components/main-scene-area.tsx:137](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/main-scene-area.tsx#L137)
+Defined in: [src/components/main-scene-area.tsx:149](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/components/main-scene-area.tsx#L149)
 
 Renderiza a área principal da cena 3D e o InfoPanel sobreposto.
 Passa todas as props necessárias para os componentes filhos `ThreeScene` e `InfoPanel`.

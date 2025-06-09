@@ -8,7 +8,7 @@
 
 > **useCameraManager**(`props`): [`UseCameraManagerReturn`](../interfaces/UseCameraManagerReturn.md)
 
-Defined in: [src/hooks/useCameraManager.ts:122](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/useCameraManager.ts#L122)
+Defined in: [src/hooks/useCameraManager.ts:123](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/useCameraManager.ts#L123)
 
 Hook customizado para gerenciar o estado e as interações da câmera 3D.
 Responsável pelo estado da câmera, foco em sistemas e integração com o histórico de comandos.

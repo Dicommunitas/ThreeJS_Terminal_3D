@@ -8,7 +8,7 @@
 
 > **ColorMode** = `"Produto"` \| `"Estado Operacional"` \| `"Equipamento"`
 
-Defined in: [src/lib/types.ts:165](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/lib/types.ts#L165)
+Defined in: [src/lib/types.ts:165](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/lib/types.ts#L165)
 
 Define os modos de colorização disponíveis para os equipamentos na cena 3D.
 O usuário pode selecionar um desses modos para alterar a forma como os equipamentos são coloridos.

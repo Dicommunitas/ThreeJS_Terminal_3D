@@ -8,7 +8,6 @@
 
 ## Example
 
-// Diagrama de Estrutura e Interdependências:
 ```mermaid
   graph TD;
     A[setupRenderPipeline] --> B{renderer: WebGLRenderer};

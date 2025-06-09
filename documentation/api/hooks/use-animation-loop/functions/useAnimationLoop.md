@@ -8,7 +8,7 @@
 
 > **useAnimationLoop**(`props`): `void`
 
-Defined in: [src/hooks/use-animation-loop.ts:82](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/use-animation-loop.ts#L82)
+Defined in: [src/hooks/use-animation-loop.ts:81](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/824631c882bd29351bc730ad23d22c22cce24127/src/hooks/use-animation-loop.ts#L81)
 
 Hook customizado para gerenciar o loop de animação de uma cena Three.js.
 Ele configura e executa o `requestAnimationFrame` para renderizar a cena
