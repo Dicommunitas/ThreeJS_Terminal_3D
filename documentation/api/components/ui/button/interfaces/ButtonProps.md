@@ -6,7 +6,7 @@
 
 # Interface: ButtonProps
 
-Defined in: [src/components/ui/button.tsx:36](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/components/ui/button.tsx#L36)
+Defined in: [src/components/ui/button.tsx:36](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/ui/button.tsx#L36)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/components/ui/button.tsx:36](https://github.com/Dicommunitas/Th
 
 > `optional` **asChild**: `boolean`
 
-Defined in: [src/components/ui/button.tsx:39](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/components/ui/button.tsx#L39)
+Defined in: [src/components/ui/button.tsx:39](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/ui/button.tsx#L39)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/components/ui/button.tsx:39](https://github.com/Dicommunitas/Th
 
 > `optional` **size**: `null` \| `"default"` \| `"sm"` \| `"lg"` \| `"icon"`
 
-Defined in: [src/components/ui/button.tsx:22](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/components/ui/button.tsx#L22)
+Defined in: [src/components/ui/button.tsx:22](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/ui/button.tsx#L22)
 
 #### Inherited from
 
@@ -38,7 +38,7 @@ Defined in: [src/components/ui/button.tsx:22](https://github.com/Dicommunitas/Th
 
 > `optional` **variant**: `null` \| `"link"` \| `"default"` \| `"destructive"` \| `"outline"` \| `"secondary"` \| `"ghost"`
 
-Defined in: [src/components/ui/button.tsx:11](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/components/ui/button.tsx#L11)
+Defined in: [src/components/ui/button.tsx:11](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/ui/button.tsx#L11)
 
 #### Inherited from
 

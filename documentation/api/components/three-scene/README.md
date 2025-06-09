@@ -8,15 +8,14 @@
 
 ## See
 
- - /documentation/api/hooks/use-scene-setup/README.md Para a orquestração da configuração da cena.
- - /documentation/api/hooks/use-equipment-renderer/README.md Para a renderização de equipamentos.
- - /documentation/api/hooks/use-annotation-pin-renderer/README.md Para a renderização de pins de anotação.
- - /documentation/api/hooks/use-mouse-interaction/README.md Para interações do mouse.
- - /documentation/api/hooks/use-scene-outline/README.md Para o efeito de contorno.
- - /documentation/api/hooks/useAnimationLoop/README.md Para o loop de animação.
+ - documentation/api/hooks/use-scene-setup/README.md Para a orquestração da configuração da cena.
+ - documentation/api/hooks/use-equipment-renderer/README.md Para a renderização de equipamentos.
+ - documentation/api/hooks/use-annotation-pin-renderer/README.md Para a renderização de pins de anotação.
+ - documentation/api/hooks/use-mouse-interaction/README.md Para interações do mouse.
+ - documentation/api/hooks/use-scene-outline/README.md Para o efeito de contorno.
+ - documentation/api/hooks/useAnimationLoop/README.md Para o loop de animação.
 
-## Example
-
+Diagrama de Composição do ThreeScene e seus Hooks:
 ```mermaid
 graph TD
     ThreeScene_Comp["ThreeScene (Componente React)"]

@@ -8,11 +8,10 @@
 
 ## See
 
- - /documentation/api/core/three/scene-elements-setup/README.md#setupLighting Para a função de configuração da iluminação.
- - /documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane Para a função de configuração do plano de chão.
+ - documentation/api/core/three/scene-elements-setup/README.md#setupLighting Para a função de configuração da iluminação.
+ - documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane Para a função de configuração do plano de chão.
 
-## Example
-
+Diagrama de Funcionalidade do useThreeSceneElements:
 ```mermaid
 graph TD
     useThreeSceneElements["useThreeSceneElements (Hook)"]

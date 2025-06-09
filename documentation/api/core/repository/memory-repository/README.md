@@ -8,12 +8,11 @@
 
 ## See
 
- - /documentation/api/core/data/initial-data/README.md Para os dados iniciais de equipamentos e camadas.
- - /documentation/api/lib/types/README.md#Equipment Para a interface de Equipamento.
- - /documentation/api/lib/types/README.md#Annotation Para a interface de Anotação.
+ - documentation/api/core/data/initial-data/README.md Para os dados iniciais de equipamentos e camadas.
+ - documentation/api/lib/types/README.md#Equipment Para a interface de Equipamento.
+ - documentation/api/lib/types/README.md#Annotation Para a interface de Anotação.
 
-## Example
-
+Diagrama de Estrutura do Repositório em Memória:
 ```mermaid
 classDiagram
     class RepositorioMemoria {

@@ -8,14 +8,13 @@
 
 ## See
 
- - /documentation/api/hooks/useThreeCore/README.md Para inicialização da cena e câmera.
- - /documentation/api/hooks/useThreeRenderers/README.md Para configuração dos renderizadores e pós-processamento.
- - /documentation/api/hooks/useThreeOrbitControls/README.md Para configuração dos controles de órbita.
- - /documentation/api/hooks/useThreeSceneElements/README.md Para configuração de iluminação e plano de chão.
- - /documentation/api/hooks/useThreeResize/README.md Para manipulação de redimensionamento.
+ - documentation/api/hooks/useThreeCore/README.md Para inicialização da cena e câmera.
+ - documentation/api/hooks/useThreeRenderers/README.md Para configuração dos renderizadores e pós-processamento.
+ - documentation/api/hooks/useThreeOrbitControls/README.md Para configuração dos controles de órbita.
+ - documentation/api/hooks/useThreeSceneElements/README.md Para configuração de iluminação e plano de chão.
+ - documentation/api/hooks/useThreeResize/README.md Para manipulação de redimensionamento.
 
-## Example
-
+Diagrama de Composição do useSceneSetup:
 ```mermaid
 graph TD
     useSceneSetup_Orchestrator["useSceneSetup (Orquestrador)"]

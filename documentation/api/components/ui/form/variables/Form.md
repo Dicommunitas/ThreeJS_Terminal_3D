@@ -8,7 +8,7 @@
 
 > `const` **Form**: \<`TFieldValues`, `TContext`, `TTransformedValues`\>(`props`) => `Element` = `FormProvider`
 
-Defined in: [src/components/ui/form.tsx:52](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/components/ui/form.tsx#L52)
+Defined in: [src/components/ui/form.tsx:53](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/ui/form.tsx#L53)
 
 Componente provedor que propaga os métodos `useForm` para todos os componentes filhos
 através da API de Contexto do React. Para ser usado com `useFormContext`.
@@ -90,9 +90,8 @@ Todos os métodos de `useForm`.
 
 [API](https://react-hook-form.com/docs/useformcontext) • [Demo](https://codesandbox.io/s/react-hook-form-v7-form-context-ytudi)
 
-## Example
-
-* ```tsx
+Exemplo de Uso:
+```tsx
 function App() {
   const methods = useForm();
   const onSubmit = data => console.log(data);
@@ -108,7 +107,7 @@ function App() {
 }
 
  function NestedInput() {
-  const { register } = useFormContext(); // retrieve all hook methods
+  const { register } = `useFormContext`(); // retrieve all hook methods
   return <input {...register("test")} />;
 }
-* ```
+```

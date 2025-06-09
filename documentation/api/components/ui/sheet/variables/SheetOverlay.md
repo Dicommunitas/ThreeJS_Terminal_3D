@@ -8,4 +8,4 @@
 
 > `const` **SheetOverlay**: `ForwardRefExoticComponent`\<`Omit`\<`DialogOverlayProps` & `RefAttributes`\<`HTMLDivElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLDivElement`\>\>
 
-Defined in: [src/components/ui/sheet.tsx:18](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/components/ui/sheet.tsx#L18)
+Defined in: [src/components/ui/sheet.tsx:18](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/components/ui/sheet.tsx#L18)

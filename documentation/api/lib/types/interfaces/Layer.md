@@ -6,7 +6,7 @@
 
 # Interface: Layer
 
-Defined in: [src/lib/types.ts:66](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L66)
+Defined in: [src/lib/types.ts:66](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L66)
 
 Representa uma camada de visualização na interface do usuário.
 Camadas permitem ao usuário controlar a visibilidade de grupos de equipamentos
@@ -20,7 +20,7 @@ ou outros elementos da cena (como anotações ou o terreno).
 
 > **equipmentType**: `"Building"` \| `"Crane"` \| `"Tank"` \| `"Terrain"` \| `"Pipe"` \| `"Valve"` \| `"All"` \| `"Annotations"`
 
-Defined in: [src/lib/types.ts:69](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L69)
+Defined in: [src/lib/types.ts:69](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L69)
 
 O tipo de elemento que esta camada controla.
           - `Equipment['type']`: Controla equipamentos de um tipo específico (e.g., 'Building', 'Tank').
@@ -34,7 +34,7 @@ O tipo de elemento que esta camada controla.
 
 > **id**: `string`
 
-Defined in: [src/lib/types.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L67)
+Defined in: [src/lib/types.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L67)
 
 Identificador único da camada (e.g., 'layer-tanks', 'layer-annotations').
 
@@ -44,7 +44,7 @@ Identificador único da camada (e.g., 'layer-tanks', 'layer-annotations').
 
 > **isVisible**: `boolean`
 
-Defined in: [src/lib/types.ts:70](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L70)
+Defined in: [src/lib/types.ts:70](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L70)
 
 Indica se a camada (e os elementos que ela controla) está atualmente visível.
 
@@ -54,6 +54,6 @@ Indica se a camada (e os elementos que ela controla) está atualmente visível.
 
 > **name**: `string`
 
-Defined in: [src/lib/types.ts:68](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L68)
+Defined in: [src/lib/types.ts:68](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L68)
 
 Nome legível da camada para exibição na UI (e.g., "Tanques", "Anotações").

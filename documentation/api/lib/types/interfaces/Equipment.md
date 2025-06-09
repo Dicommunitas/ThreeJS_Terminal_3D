@@ -6,7 +6,7 @@
 
 # Interface: Equipment
 
-Defined in: [src/lib/types.ts:33](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L33)
+Defined in: [src/lib/types.ts:33](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L33)
 
 Representa um equipamento na cena 3D. Contém todas as propriedades
 necessárias para sua renderização, identificação e manipulação de estado.
@@ -19,7 +19,7 @@ necessárias para sua renderização, identificação e manipulação de estado.
 
 > `optional` **area**: `string`
 
-Defined in: [src/lib/types.ts:38](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L38)
+Defined in: [src/lib/types.ts:38](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L38)
 
 A área física ou lógica onde o equipamento está localizado (e.g., "Área 31", "Área de Processo"). Opcional.
 
@@ -29,7 +29,7 @@ A área física ou lógica onde o equipamento está localizado (e.g., "Área 31"
 
 > **color**: `string`
 
-Defined in: [src/lib/types.ts:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L46)
+Defined in: [src/lib/types.ts:46](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L46)
 
 Cor base do equipamento em formato hexadecimal (e.g., '#78909C'). Usada no modo de colorização 'Equipamento'.
 
@@ -39,7 +39,7 @@ Cor base do equipamento em formato hexadecimal (e.g., '#78909C'). Usada no modo 
 
 > `optional` **details**: `string`
 
-Defined in: [src/lib/types.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L47)
+Defined in: [src/lib/types.ts:47](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L47)
 
 Detalhes textuais adicionais sobre o equipamento. Exibido no `InfoPanel`. Opcional.
 
@@ -49,7 +49,7 @@ Detalhes textuais adicionais sobre o equipamento. Exibido no `InfoPanel`. Opcion
 
 > `optional` **height**: `number`
 
-Defined in: [src/lib/types.ts:45](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L45)
+Defined in: [src/lib/types.ts:45](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L45)
 
 Altura para equipamentos com geometria cilíndrica (e.g., 'Tank', 'Crane'). Para 'Pipe', representa o comprimento. Opcional se `size` for usado.
 
@@ -59,7 +59,7 @@ Altura para equipamentos com geometria cilíndrica (e.g., 'Tank', 'Crane'). Para
 
 > **name**: `string`
 
-Defined in: [src/lib/types.ts:35](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L35)
+Defined in: [src/lib/types.ts:35](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L35)
 
 Nome legível do equipamento para exibição na UI (e.g., "Main Office", "Storage Tank Alpha").
 
@@ -69,7 +69,7 @@ Nome legível do equipamento para exibição na UI (e.g., "Main Office", "Storag
 
 > `optional` **operationalState**: `string`
 
-Defined in: [src/lib/types.ts:39](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L39)
+Defined in: [src/lib/types.ts:39](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L39)
 
 Estado operacional atual do equipamento (e.g., 'operando', 'manutenção', 'em falha', 'não operando', 'Não aplicável').
                                        Usado para colorização e informação. Opcional.
@@ -80,7 +80,7 @@ Estado operacional atual do equipamento (e.g., 'operando', 'manutenção', 'em f
 
 > **position**: `object`
 
-Defined in: [src/lib/types.ts:41](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L41)
+Defined in: [src/lib/types.ts:41](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L41)
 
 Coordenadas (x, y, z) do centro geométrico do equipamento no espaço da cena.
 
@@ -102,7 +102,7 @@ Coordenadas (x, y, z) do centro geométrico do equipamento no espaço da cena.
 
 > `optional` **product**: `string`
 
-Defined in: [src/lib/types.ts:40](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L40)
+Defined in: [src/lib/types.ts:40](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L40)
 
 Produto atualmente associado ou processado pelo equipamento (e.g., "70H", "660", "Não aplicável").
                               Usado para colorização e informação. Opcional.
@@ -113,7 +113,7 @@ Produto atualmente associado ou processado pelo equipamento (e.g., "70H", "660",
 
 > `optional` **radius**: `number`
 
-Defined in: [src/lib/types.ts:44](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L44)
+Defined in: [src/lib/types.ts:44](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L44)
 
 Raio para equipamentos com geometria cilíndrica (e.g., 'Tank', 'Pipe') ou esférica (e.g., 'Valve'). Opcional se `size` for usado.
 
@@ -123,7 +123,7 @@ Raio para equipamentos com geometria cilíndrica (e.g., 'Tank', 'Pipe') ou esfé
 
 > `optional` **rotation**: `object`
 
-Defined in: [src/lib/types.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L42)
+Defined in: [src/lib/types.ts:42](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L42)
 
 Rotação do equipamento em radianos nos eixos x, y, z. Opcional.
 
@@ -145,7 +145,7 @@ Rotação do equipamento em radianos nos eixos x, y, z. Opcional.
 
 > `optional` **sistema**: `string`
 
-Defined in: [src/lib/types.ts:37](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L37)
+Defined in: [src/lib/types.ts:37](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L37)
 
 O sistema operacional ou funcional ao qual o equipamento pertence (e.g., "GA", "ODB"). Opcional.
 
@@ -155,7 +155,7 @@ O sistema operacional ou funcional ao qual o equipamento pertence (e.g., "GA", "
 
 > `optional` **size**: `object`
 
-Defined in: [src/lib/types.ts:43](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L43)
+Defined in: [src/lib/types.ts:43](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L43)
 
 Dimensões (largura, altura, profundidade) para equipamentos com geometria de caixa (e.g., 'Building', 'Crane'). Opcional se `radius` e `height` forem usados.
 
@@ -177,7 +177,7 @@ Dimensões (largura, altura, profundidade) para equipamentos com geometria de ca
 
 > **tag**: `string`
 
-Defined in: [src/lib/types.ts:34](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L34)
+Defined in: [src/lib/types.ts:34](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L34)
 
 Identificador único e imutável do equipamento (e.g., "bldg-01", "tank-alpha"). Usado como chave.
 
@@ -187,7 +187,7 @@ Identificador único e imutável do equipamento (e.g., "bldg-01", "tank-alpha").
 
 > **type**: `"Building"` \| `"Crane"` \| `"Tank"` \| `"Terrain"` \| `"Pipe"` \| `"Valve"`
 
-Defined in: [src/lib/types.ts:36](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/1e74b7c848780edcc8caac62c0023b31b5be34f5/src/lib/types.ts#L36)
+Defined in: [src/lib/types.ts:36](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/d3a4c6e46069e0806d20629a3dc62ea6a87d736c/src/lib/types.ts#L36)
 
 Categoria do equipamento, influencia sua geometria e interações.
           'Terrain' é um tipo especial para o plano de chão.
