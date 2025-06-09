@@ -100,7 +100,7 @@ export function useSceneSetup(props: UseSceneSetupProps): UseSceneSetupReturn {
   // 3. OrbitControls - Depends on renderers being ready (for rendererRef.current.domElement)
   const { controlsRef, isControlsReady } = useThreeOrbitControls({
     cameraRef,
-    domElementRef: rendererRef, // Pass the WebGLRenderer's DOM element
+    rendererRef: rendererRef, // Pass the WebGLRenderer ref
     initialCameraLookAt,
     onCameraChange,
     renderersReady: areRenderersReady,
@@ -139,4 +139,3 @@ export function useSceneSetup(props: UseSceneSetupProps): UseSceneSetupReturn {
     isControlsReady,                      // OrbitControls specific readiness
   };
 }
-

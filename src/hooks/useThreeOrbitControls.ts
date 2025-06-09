@@ -17,7 +17,7 @@ import type { CameraState } from '@/lib/types';
 
 export interface UseThreeOrbitControlsProps {
   cameraRef: React.RefObject<THREE.PerspectiveCamera | null>;
-  domElementRef: React.RefObject<HTMLElement | null>; // Typically renderer.domElement
+  rendererRef: React.RefObject<THREE.WebGLRenderer | null>; // Changed from domElementRef
   initialCameraLookAt: { x: number; y: number; z: number };
   onCameraChange: (cameraState: CameraState, actionDescription?: string) => void;
   renderersReady: boolean; // Prerequisite: DOM element from renderer must be available
@@ -36,7 +36,7 @@ export interface UseThreeOrbitControlsReturn {
  */
 export function useThreeOrbitControls({
   cameraRef,
-  domElementRef,
+  rendererRef, // Changed from domElementRef
   initialCameraLookAt,
   onCameraChange,
   renderersReady, // Used to gate the effect until the DOM element is ready
@@ -51,8 +51,8 @@ export function useThreeOrbitControls({
 
   useEffect(() => {
     // console.log(`[useThreeOrbitControls] useEffect triggered. renderersReady: ${renderersReady}`);
-    if (!renderersReady || !cameraRef.current || !domElementRef.current) {
-      // console.warn('[useThreeOrbitControls] Skipping setup: renderers not ready or camera/domElement ref missing.');
+    if (!renderersReady || !cameraRef.current || !rendererRef.current || !rendererRef.current.domElement) {
+      // console.warn('[useThreeOrbitControls] Skipping setup: renderers not ready or camera/rendererRef/rendererRef.domElement missing.');
       setIsControlsReady(false); // Ensure controls are not marked ready if prerequisites fail
       return;
     }
@@ -63,14 +63,14 @@ export function useThreeOrbitControls({
 
     import('three/examples/jsm/controls/OrbitControls.js')
       .then(module => {
-        if (!isEffectMounted || !cameraRef.current || !domElementRef.current) { // Added check for domElementRef.current here
-          // console.log("[useThreeOrbitControls] Effect unmounted or refs (camera/domElement) changed/missing before OrbitControls module loaded or instantiated.");
+        if (!isEffectMounted || !cameraRef.current || !rendererRef.current || !rendererRef.current.domElement) {
+          // console.log("[useThreeOrbitControls] Effect unmounted or refs (camera/renderer/renderer.domElement) changed/missing before OrbitControls module loaded or instantiated.");
           if (isEffectMounted) setIsControlsReady(false);
           return;
         }
         // console.log("[useThreeOrbitControls] OrbitControls module loaded successfully.");
         const OrbitControls = module.OrbitControls;
-        localControlsInstance = new OrbitControls(cameraRef.current, domElementRef.current);
+        localControlsInstance = new OrbitControls(cameraRef.current, rendererRef.current.domElement);
         controlsRef.current = localControlsInstance;
 
         localControlsInstance.enableDamping = true;
@@ -123,8 +123,7 @@ export function useThreeOrbitControls({
       }
       setIsControlsReady(false); // Ensure readiness is false on cleanup
     };
-  }, [cameraRef, domElementRef, initialCameraLookAt, renderersReady]); // onCameraChangeRef is stable
+  }, [cameraRef, rendererRef, initialCameraLookAt, renderersReady]); // onCameraChangeRef is stable
 
   return { controlsRef, isControlsReady };
 }
-
