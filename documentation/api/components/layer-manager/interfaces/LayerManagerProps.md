@@ -6,7 +6,7 @@
 
 # Interface: LayerManagerProps
 
-Defined in: [src/components/layer-manager.tsx:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99674efc74a324fa412d902012012a3688e22f0e/src/components/layer-manager.tsx#L55)
+Defined in: [src/components/layer-manager.tsx:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99a29fe17cab393c4120b6b5906a4ebb1fb3c239/src/components/layer-manager.tsx#L55)
 
 Props para o componente LayerManager.
  LayerManagerProps
@@ -17,7 +17,7 @@ Props para o componente LayerManager.
 
 > **layers**: [`Layer`](../../../lib/types/interfaces/Layer.md)[]
 
-Defined in: [src/components/layer-manager.tsx:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99674efc74a324fa412d902012012a3688e22f0e/src/components/layer-manager.tsx#L56)
+Defined in: [src/components/layer-manager.tsx:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99a29fe17cab393c4120b6b5906a4ebb1fb3c239/src/components/layer-manager.tsx#L56)
 
 A lista de camadas disponíveis e seus estados de visibilidade.
 
@@ -27,7 +27,7 @@ A lista de camadas disponíveis e seus estados de visibilidade.
 
 > **onToggleLayer**: (`layerId`) => `void`
 
-Defined in: [src/components/layer-manager.tsx:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99674efc74a324fa412d902012012a3688e22f0e/src/components/layer-manager.tsx#L57)
+Defined in: [src/components/layer-manager.tsx:57](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99a29fe17cab393c4120b6b5906a4ebb1fb3c239/src/components/layer-manager.tsx#L57)
 
 Callback para quando a visibilidade de uma camada é alternada.
 

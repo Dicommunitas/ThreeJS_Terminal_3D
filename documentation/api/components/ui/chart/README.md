@@ -17,6 +17,7 @@
 - [ChartLegendContent](variables/ChartLegendContent.md)
 - [ChartTooltip](variables/ChartTooltip.md)
 - [ChartTooltipContent](variables/ChartTooltipContent.md)
+- [THEMES](variables/THEMES.md)
 
 ## Functions
 

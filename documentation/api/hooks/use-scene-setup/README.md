@@ -6,33 +6,13 @@
 
 # hooks/use-scene-setup
 
-Hook orquestrador para a configuração completa de uma cena Three.js.
-
-Este hook atua como um orquestrador, compondo vários hooks especializados para inicializar
-todos os aspectos de um ambiente Three.js. Ele gerencia a sequência de setup,
-as dependências entre os diferentes componentes da cena e retorna referências (refs)
-para os principais objetos Three.js, além de flags indicando a prontidão da cena.
-
-Responsabilidades Principais:
--   **Composição de Hooks:** Importa e utiliza hooks especializados para cada parte da configuração da cena:
-    -   `useThreeCore`: Para `THREE.Scene` e `THREE.PerspectiveCamera`.
-    -   `useThreeRenderers`: Para `WebGLRenderer`, `CSS2DRenderer`, `EffectComposer`, e `OutlinePass`.
-    -   `useThreeOrbitControls`: Para `OrbitControls`.
-    -   `useThreeSceneElements`: Para iluminação e plano de chão.
-    -   `useThreeResize`: Para responsividade da cena.
--   **Orquestração da Inicialização:** Garante que os hooks sejam chamados na ordem correta,
-    respeitando as dependências (e.g., renderizadores precisam estar prontos antes dos controles).
--   **Agregação de Refs e Estado:** Coleta e retorna as refs para os objetos Three.js criados
-    (e.g., `sceneRef`, `cameraRef`, `rendererRef`) e as flags de estado de prontidão
-    (`isSceneReady`, `isControlsReady`).
-
 ## See
 
- - /docs/hooks/useThreeCore.md Para inicialização da cena e câmera.
- - /docs/hooks/useThreeRenderers.md Para configuração dos renderizadores e pós-processamento.
- - /docs/hooks/useThreeOrbitControls.md Para configuração dos controles de órbita.
- - /docs/hooks/useThreeSceneElements.md Para configuração de iluminação e plano de chão.
- - /docs/hooks/useThreeResize.md Para manipulação de redimensionamento.
+ - ../../hooks/useThreeCore/README.md Para inicialização da cena e câmera.
+ - ../../hooks/useThreeRenderers/README.md Para configuração dos renderizadores e pós-processamento.
+ - ../../hooks/useThreeOrbitControls/README.md Para configuração dos controles de órbita.
+ - ../../hooks/useThreeSceneElements/README.md Para configuração de iluminação e plano de chão.
+ - ../../hooks/useThreeResize/README.md Para manipulação de redimensionamento.
 
 ## Example
 

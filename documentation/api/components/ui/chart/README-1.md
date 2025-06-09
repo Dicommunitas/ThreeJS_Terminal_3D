@@ -47,3 +47,9 @@ Re-exports [ChartTooltip](variables/ChartTooltip.md)
 ### ChartTooltipContent
 
 Re-exports [ChartTooltipContent](variables/ChartTooltipContent.md)
+
+***
+
+### THEMES
+
+Re-exports [THEMES](variables/THEMES.md)

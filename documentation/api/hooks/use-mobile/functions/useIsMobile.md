@@ -8,7 +8,7 @@
 
 > **useIsMobile**(): `boolean`
 
-Defined in: [src/hooks/use-mobile.tsx:5](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99674efc74a324fa412d902012012a3688e22f0e/src/hooks/use-mobile.tsx#L5)
+Defined in: [src/hooks/use-mobile.tsx:5](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99a29fe17cab393c4120b6b5906a4ebb1fb3c239/src/hooks/use-mobile.tsx#L5)
 
 ## Returns
 

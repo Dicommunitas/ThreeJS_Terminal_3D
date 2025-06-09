@@ -6,42 +6,14 @@
 
 # components/three-scene
 
-Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
-Este componente atua como um orquestrador para a visualização 3D.
-Ele delega responsabilidades específicas de configuração e gerenciamento da cena
-para hooks customizados especializados, e então renderiza o elemento DOM
-onde a cena Three.js será montada.
-
-Responsabilidades Principais:
--   **Orquestração de Hooks da Cena:** Utiliza `useSceneSetup` como um hook orquestrador
-    para obter refs para os componentes centrais da cena Three.js (cena, câmera, renderizadores, etc.)
-    e flags que indicam a prontidão desses componentes.
--   **Renderização de Elementos da Cena:** Utiliza hooks especializados para gerenciar a
-    renderização de diferentes tipos de objetos na cena:
-    -   `useEquipmentRenderer`: Para os meshes dos equipamentos.
-    -   `useAnnotationPinRenderer`: Para os pins (marcadores) de anotações HTML.
--   **Gerenciamento de Interação:** Utiliza `useMouseInteractionManager` para processar
-    cliques e movimentos do mouse, permitindo a seleção e o hover em equipamentos.
--   **Efeitos Visuais:** Utiliza `useSceneOutline` para aplicar um efeito de contorno
-    visual aos equipamentos selecionados ou sob o cursor.
--   **Loop de Animação:** Utiliza `useAnimationLoop` para gerenciar o ciclo de renderização
-    contínua da cena (`requestAnimationFrame`).
--   **Controle de Câmera Programático:** Implementa a lógica para animar a câmera para
-    visualizações específicas (e.g., focar em um sistema), observando a prop `targetSystemToFrame`
-    e utilizando uma animação de interpolação suave.
--   **Comunicação de Estado da Câmera:** Propaga mudanças no estado da câmera (via `onCameraChange`)
-    que ocorrem devido à interação do usuário ou animações programáticas.
--   **Fornecimento do Ponto de Montagem:** Renderiza o `div` que serve como contêiner para
-    os renderizadores Three.js.
-
 ## See
 
- - /docs/hooks/use-scene-setup.md Para a orquestração da configuração da cena.
- - /docs/hooks/use-equipment-renderer.md Para a renderização de equipamentos.
- - /docs/hooks/use-annotation-pin-renderer.md Para a renderização de pins de anotação.
- - /docs/hooks/use-mouse-interaction.md Para interações do mouse.
- - /docs/hooks/use-scene-outline.md Para o efeito de contorno.
- - /docs/hooks/useAnimationLoop.md Para o loop de animação.
+ - ../../hooks/use-scene-setup/README.md Para a orquestração da configuração da cena.
+ - ../../hooks/use-equipment-renderer/README.md Para a renderização de equipamentos.
+ - ../../hooks/use-annotation-pin-renderer/README.md Para a renderização de pins de anotação.
+ - ../../hooks/use-mouse-interaction/README.md Para interações do mouse.
+ - ../../hooks/use-scene-outline/README.md Para o efeito de contorno.
+ - ../../hooks/useAnimationLoop/README.md Para o loop de animação.
 
 ## Example
 

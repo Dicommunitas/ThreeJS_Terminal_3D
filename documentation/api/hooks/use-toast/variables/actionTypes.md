@@ -8,7 +8,7 @@
 
 > `const` **actionTypes**: `object`
 
-Defined in: [src/hooks/use-toast.ts:22](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99674efc74a324fa412d902012012a3688e22f0e/src/hooks/use-toast.ts#L22)
+Defined in: [src/hooks/use-toast.ts:22](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99a29fe17cab393c4120b6b5906a4ebb1fb3c239/src/hooks/use-toast.ts#L22)
 
 ## Type declaration
 

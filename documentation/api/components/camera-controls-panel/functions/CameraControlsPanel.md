@@ -8,7 +8,7 @@
 
 > **CameraControlsPanel**(`props`): `Element`
 
-Defined in: [src/components/camera-controls-panel.tsx:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99674efc74a324fa412d902012012a3688e22f0e/src/components/camera-controls-panel.tsx#L56)
+Defined in: [src/components/camera-controls-panel.tsx:56](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99a29fe17cab393c4120b6b5906a4ebb1fb3c239/src/components/camera-controls-panel.tsx#L56)
 
 Renderiza um painel com botões para focar a câmera em sistemas específicos.
 Cada botão representa um sistema; ao clicar, a câmera enquadra os equipamentos desse sistema.
