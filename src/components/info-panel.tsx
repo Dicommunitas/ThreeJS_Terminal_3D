@@ -1,5 +1,6 @@
 
 /**
+ * @module components/info-panel
  * Componente para exibir o painel de informações detalhadas de um equipamento selecionado.
  * Renderiza apenas se um único equipamento estiver selecionado na cena 3D.
  *
@@ -41,7 +42,7 @@
  *     InfoPanelProps ..> Equipment : uses
  *     InfoPanelProps ..> Annotation : uses
  * ```
- * 
+ *
  */
 "use client";
 

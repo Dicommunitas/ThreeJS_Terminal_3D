@@ -9,9 +9,8 @@
  * e fornecer uma função para alternar a visibilidade de uma camada específica.
  * Esta ação de alternância é integrada com o sistema de histórico de comandos (`useCommandHistory`)
  * para permitir undo/redo.
- * 
- * @example
- * // Diagrama de Estrutura do Hook e suas Dependências:
+ *
+ * @example Diagrama de Estrutura do Hook e suas Dependências:
  * ```mermaid
  *   classDiagram
  *     class UseLayerManagerProps {
@@ -51,7 +50,7 @@
 
 import { useState, useCallback } from 'react';
 import type { Layer, Command } from '@/lib/types';
-import { initialLayers } from '@/core/data/initial-data'; 
+import { initialLayers } from '@/core/data/initial-data';
 
 /**
  * Props para o hook `useLayerManager`.
@@ -100,10 +99,10 @@ export function useLayerManager({ executeCommand }: UseLayerManagerProps): UseLa
   const handleToggleLayer = useCallback((layerId: string) => {
     const layerIndex = layers.findIndex(l => l.id === layerId);
     if (layerIndex === -1) {
-      return; 
+      return;
     }
 
-    const oldLayersState = layers.map(l => ({ ...l })); 
+    const oldLayersState = layers.map(l => ({ ...l }));
     const newLayersState = layers.map(l =>
       l.id === layerId ? { ...l, isVisible: !l.isVisible } : { ...l }
     );

@@ -9,9 +9,8 @@
  * na cena, utilizando `CSS2DRenderer`. Isso inclui lidar com a visibilidade dos pins
  * com base na camada de anotações e fornecer uma função para atualizar o tamanho do
  * `CSS2DRenderer` em caso de redimensionamento da viewport.
- * 
- * @example
- * // Diagrama de Interação para `updateAnnotationPins`:
+ *
+ * @example Diagrama de Interação para `updateAnnotationPins`:
  * ```mermaid
  *   classDiagram
  *     class UpdateAnnotationPinsParams {
@@ -51,7 +50,7 @@
  *     }
  *     updateAnnotationPins ..> UpdateAnnotationPinsParams : receives
  * ```
- * 
+ *
  * Exporta:
  * - `updateLabelRendererSize`: Atualiza o tamanho do CSS2DRenderer.
  * - `updateAnnotationPins`: Gerencia os pins de anotação na cena.
@@ -127,7 +126,7 @@ export function updateAnnotationPins({
   existingPinsRef.current = [];
 
   const annotationsLayer = layers.find(l => l.id === 'layer-annotations');
-  const areAnnotationsVisibleByLayer = annotationsLayer?.isVisible ?? true; 
+  const areAnnotationsVisibleByLayer = annotationsLayer?.isVisible ?? true;
 
   labelRenderer.domElement.style.display = areAnnotationsVisibleByLayer ? '' : 'none';
 
@@ -137,7 +136,7 @@ export function updateAnnotationPins({
       if (equipmentForItem) {
         const pinDiv = document.createElement('div');
         pinDiv.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FFD700" style="opacity: 0.9; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.5));"><path d="M12 2C8.13 2 5 5.13 5 9c0 4.17 4.42 9.92 6.24 12.11.4.48 1.13.48 1.53 0C14.58 18.92 19 13.17 19 9c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>`;
-        pinDiv.style.pointerEvents = 'none'; 
+        pinDiv.style.pointerEvents = 'none';
         pinDiv.style.width = '24px';
         pinDiv.style.height = '24px';
 
@@ -149,11 +148,11 @@ export function updateAnnotationPins({
         const itemHeight = equipmentForItem.height !== undefined ? equipmentForItem.height : itemSize.height;
 
         if (equipmentForItem.type === 'Tank' || equipmentForItem.type === 'Pipe' || equipmentForItem.type === 'Crane') {
-          yOffset = (itemHeight || 0) / 2 + 0.8; 
+          yOffset = (itemHeight || 0) / 2 + 0.8;
         } else if (equipmentForItem.type === 'Valve' || equipmentForItem.type === 'Building' ) {
-            yOffset = (itemSize.height || equipmentForItem.radius || 0.3) /2 + 0.8; 
+            yOffset = (itemSize.height || equipmentForItem.radius || 0.3) /2 + 0.8;
         } else {
-           yOffset = (itemSize.height || 0.5) + 0.8; 
+           yOffset = (itemSize.height || 0.5) + 0.8;
         }
         pinLabel.position.set(equipmentForItem.position.x, equipmentForItem.position.y + yOffset, equipmentForItem.position.z);
 

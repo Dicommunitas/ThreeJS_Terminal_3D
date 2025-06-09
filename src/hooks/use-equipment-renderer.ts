@@ -18,8 +18,7 @@ import type { OrbitControls as OrbitControlsType } from 'three/examples/jsm/cont
  * Utiliza `updateEquipmentMeshesInScene` de `scene-elements-setup.ts` para a lógica de sincronização
  * dos meshes e do plano de chão com base na visibilidade das camadas.
  *
- * @example
- * // Diagrama de Composição e Dependências:
+ * @example Diagrama de Composição e Dependências:
  * ```mermaid
  *   classDiagram
  *     class UseEquipmentRendererProps {
@@ -70,9 +69,9 @@ import type { OrbitControls as OrbitControlsType } from 'three/examples/jsm/cont
 export interface UseEquipmentRendererProps {
   sceneRef: React.RefObject<THREE.Scene | null>;
   cameraRef: React.RefObject<THREE.PerspectiveCamera | null>;
-  controlsRef: React.RefObject<OrbitControlsType | null>; 
+  controlsRef: React.RefObject<OrbitControlsType | null>;
   isSceneReady: boolean;
-  isControlsReady: boolean; 
+  isControlsReady: boolean;
   equipmentData: Equipment[];
   layers: Layer[];
   colorMode: ColorMode;
@@ -94,7 +93,7 @@ export function useEquipmentRenderer({
   cameraRef,
   controlsRef,
   isSceneReady,
-  isControlsReady, 
+  isControlsReady,
   equipmentData,
   layers,
   colorMode,
@@ -109,7 +108,7 @@ export function useEquipmentRenderer({
          updateEquipmentMeshesInScene({
             scene: sceneRef.current,
             equipmentMeshesRef: equipmentMeshesRef,
-            newEquipmentData: [], 
+            newEquipmentData: [],
             layers,
             colorMode,
             createSingleEquipmentMesh,
@@ -118,7 +117,7 @@ export function useEquipmentRenderer({
       }
       return;
     }
-    
+
     updateEquipmentMeshesInScene({
       scene: sceneRef.current,
       equipmentMeshesRef: equipmentMeshesRef,

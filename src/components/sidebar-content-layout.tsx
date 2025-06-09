@@ -1,5 +1,6 @@
 
 /**
+ * @module components/sidebar-content-layout
  * Componente para renderizar o conteúdo principal da sidebar.
  *
  * Principal Responsabilidade:
@@ -12,7 +13,7 @@
  * - Seletor de modo de colorização.
  * - Gerenciador de camadas de visibilidade.
  * - Link para a documentação externa do projeto.
- * 
+ *
  * ```mermaid
  *   classDiagram
  *     class SidebarContentLayoutProps {
@@ -75,7 +76,7 @@
  *     SidebarContentLayout ..> Button : uses
  *     SidebarContentLayout ..> ScrollArea : uses
  * ```
- * 
+ *
  */
 "use client";
 

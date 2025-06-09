@@ -8,7 +8,7 @@
 
 > **updateEquipmentMeshesInScene**(`params`): `void`
 
-Defined in: [src/core/three/scene-elements-setup.ts:233](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/core/three/scene-elements-setup.ts#L233)
+Defined in: [src/core/three/scene-elements-setup.ts:233](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/core/three/scene-elements-setup.ts#L233)
 
 Atualiza a lista de meshes de equipamentos na cena com base nos novos dados.
 Remove meshes antigos, atualiza existentes (recriando-os para garantir consistência de material/cor)

@@ -6,7 +6,7 @@
 
 # Interface: CommandHistoryPanelProps
 
-Defined in: [src/components/command-history-panel.tsx:58](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/components/command-history-panel.tsx#L58)
+Defined in: [src/components/command-history-panel.tsx:58](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/command-history-panel.tsx#L58)
 
 Props para o componente CommandHistoryPanel.
  CommandHistoryPanelProps
@@ -17,7 +17,7 @@ Props para o componente CommandHistoryPanel.
 
 > **canRedo**: `boolean`
 
-Defined in: [src/components/command-history-panel.tsx:60](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/components/command-history-panel.tsx#L60)
+Defined in: [src/components/command-history-panel.tsx:60](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/command-history-panel.tsx#L60)
 
 Indica se a ação de refazer está disponível.
 
@@ -27,7 +27,7 @@ Indica se a ação de refazer está disponível.
 
 > **canUndo**: `boolean`
 
-Defined in: [src/components/command-history-panel.tsx:59](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/components/command-history-panel.tsx#L59)
+Defined in: [src/components/command-history-panel.tsx:59](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/command-history-panel.tsx#L59)
 
 Indica se a ação de desfazer está disponível.
 
@@ -37,7 +37,7 @@ Indica se a ação de desfazer está disponível.
 
 > **onRedo**: () => `void`
 
-Defined in: [src/components/command-history-panel.tsx:62](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/components/command-history-panel.tsx#L62)
+Defined in: [src/components/command-history-panel.tsx:62](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/command-history-panel.tsx#L62)
 
 Callback chamado quando o botão "Redo" é clicado.
 
@@ -51,7 +51,7 @@ Callback chamado quando o botão "Redo" é clicado.
 
 > **onUndo**: () => `void`
 
-Defined in: [src/components/command-history-panel.tsx:61](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/components/command-history-panel.tsx#L61)
+Defined in: [src/components/command-history-panel.tsx:61](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/components/command-history-panel.tsx#L61)
 
 Callback chamado quando o botão "Undo" é clicado.
 

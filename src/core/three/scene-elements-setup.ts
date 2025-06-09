@@ -9,8 +9,7 @@
  * (WebGL e CSS2D), pipeline de pós-processamento (EffectComposer, OutlinePass), e a
  * sincronização dinâmica dos meshes de equipamentos com os dados da aplicação.
  *
- * @example
- * // Diagrama de Estrutura e Interdependências:
+ * @example Diagrama de Estrutura e Interdependências:
  * ```mermaid
  *   graph TD;
  *     A[setupRenderPipeline] --> B{renderer: WebGLRenderer};
@@ -58,12 +57,12 @@ export function setupLighting(scene: THREE.Scene): void {
   const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
   scene.add(ambientLight);
 
-  const hemisphereLight = new THREE.HemisphereLight(0xADD8E6, 0x495436, 0.8); 
+  const hemisphereLight = new THREE.HemisphereLight(0xADD8E6, 0x495436, 0.8);
   scene.add(hemisphereLight);
 
   const directionalLight = new THREE.DirectionalLight(0xffffff, 3.0);
   directionalLight.position.set(10, 15, 10);
-  directionalLight.castShadow = false; 
+  directionalLight.castShadow = false;
   scene.add(directionalLight);
 }
 
@@ -77,7 +76,7 @@ export function setupLighting(scene: THREE.Scene): void {
 export function setupGroundPlane(scene: THREE.Scene): THREE.Mesh {
   const groundGeometry = new THREE.PlaneGeometry(100, 100);
   const groundMaterial = new THREE.MeshStandardMaterial({
-    color: 0xE6D8B0, 
+    color: 0xE6D8B0,
     side: THREE.DoubleSide,
     metalness: 0.1,
     roughness: 0.8,
@@ -87,7 +86,7 @@ export function setupGroundPlane(scene: THREE.Scene): THREE.Mesh {
   const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
   groundMesh.rotation.x = -Math.PI / 2;
   groundMesh.position.y = 0;
-  groundMesh.receiveShadow = false; 
+  groundMesh.receiveShadow = false;
   groundMesh.userData = { tag: 'terrain-ground-plane' };
   scene.add(groundMesh);
   return groundMesh;
@@ -125,8 +124,8 @@ export function setupRenderPipeline(
   });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(initialWidth, initialHeight);
-  renderer.shadowMap.enabled = false; 
-  scene.background = new THREE.Color(0xA9C1D1); 
+  renderer.shadowMap.enabled = false;
+  scene.background = new THREE.Color(0xA9C1D1);
   scene.fog = new THREE.Fog(0xA9C1D1, 200, 1000);
 
   const labelRenderer = new CSS2DRenderer();
@@ -170,8 +169,7 @@ export function setupRenderPipeline(
  * @property createSingleEquipmentMesh - Função callback para criar um mesh de equipamento individual.
  * @property groundMeshRef - Ref para o mesh do plano de chão, para controle de visibilidade.
  *
- * @example
- * // Representação da interface:
+ * @example Representação da interface:
  * ```mermaid
  * classDiagram
  *     class UpdateEquipmentMeshesParams {
@@ -299,7 +297,7 @@ export function updateEquipmentMeshesInScene({
     }
 
     const newOrUpdatedMesh = createSingleEquipmentMesh(item);
-    newOrUpdatedMesh.visible = isVisibleByLayer; 
+    newOrUpdatedMesh.visible = isVisibleByLayer;
     scene.add(newOrUpdatedMesh);
     newVisibleMeshesList.push(newOrUpdatedMesh);
   });

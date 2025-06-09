@@ -8,7 +8,7 @@
 
 > **useEquipmentSelectionManager**(`props`): [`UseEquipmentSelectionManagerReturn`](../interfaces/UseEquipmentSelectionManagerReturn.md)
 
-Defined in: [src/hooks/use-equipment-selection-manager.ts:83](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/hooks/use-equipment-selection-manager.ts#L83)
+Defined in: [src/hooks/use-equipment-selection-manager.ts:83](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/use-equipment-selection-manager.ts#L83)
 
 Hook customizado para gerenciar a seleção e o estado de hover dos equipamentos.
 Encapsula a lógica de seleção única/múltipla, hover, seleção em lote e integração com o histórico de comandos.

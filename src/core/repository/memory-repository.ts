@@ -12,13 +12,12 @@
  * Funções de obtenção (get/getAll) retornam cópias dos objetos para promover a imutabilidade
  * e evitar modificações acidentais do estado interno do repositório por referências externas.
  *
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/data/initial-data/README.md} Para os dados iniciais de equipamentos e camadas.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Equipment} Para a interface de Equipamento.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/lib/types/README.md#Annotation} Para a interface de Anotação.
+ * @see {@link /documentation/api/core/data/initial-data/README.md} Para os dados iniciais de equipamentos e camadas.
+ * @see {@link /documentation/api/lib/types/README.md#Equipment} Para a interface de Equipamento.
+ * @see {@link /documentation/api/lib/types/README.md#Annotation} Para a interface de Anotação.
  *
- * @example
- * // Diagrama de Estrutura do Repositório em Memória:
- * \`\`\`mermaid
+ * @example Diagrama de Estrutura do Repositório em Memória:
+ * ```mermaid
  * classDiagram
  *     class RepositorioMemoria {
  *         -equipmentStore: Map_string_Equipment_
@@ -53,7 +52,7 @@
  *     note for RepositorioMemoria "Módulo auto-inicializável."
  *     note for RepositorioEquipamentos "Gerencia o CRUD de Equipamentos."
  *     note for RepositorioAnotacoes "Gerencia o CRUD de Anotações."
- * \`\`\`
+ * ```
  */
 import type { Equipment, Annotation } from '@/lib/types';
 import { initialEquipment, initialAnnotations as defaultInitialAnnotations } from '@/core/data/initial-data';
@@ -74,11 +73,11 @@ function initializeRepository() {
   if (isInitialized) return;
 
   equipmentStore.clear();
-  initialEquipment.forEach(eq => equipmentStore.set(eq.tag, { ...eq })); 
+  initialEquipment.forEach(eq => equipmentStore.set(eq.tag, { ...eq }));
 
   annotationStore.clear();
-  defaultInitialAnnotations.forEach(an => annotationStore.set(an.equipmentTag, { ...an })); 
-  
+  defaultInitialAnnotations.forEach(an => annotationStore.set(an.equipmentTag, { ...an }));
+
   isInitialized = true;
 }
 
@@ -96,7 +95,7 @@ export const equipmentRepository = {
    */
   getEquipmentByTag: (tag: string): Equipment | undefined => {
     const equipment = equipmentStore.get(tag);
-    return equipment ? { ...equipment } : undefined; 
+    return equipment ? { ...equipment } : undefined;
   },
 
   /**
@@ -104,7 +103,7 @@ export const equipmentRepository = {
    * @returns {Equipment[]} Um array com todos os equipamentos (cópias).
    */
   getAllEquipment: (): Equipment[] => {
-    return Array.from(equipmentStore.values()).map(eq => ({ ...eq })); 
+    return Array.from(equipmentStore.values()).map(eq => ({ ...eq }));
   },
 
   /**
@@ -117,9 +116,9 @@ export const equipmentRepository = {
     if (equipmentStore.has(equipment.tag)) {
       return equipmentRepository.updateEquipment(equipment.tag, equipment)!;
     }
-    const newEquipment = { ...equipment }; 
+    const newEquipment = { ...equipment };
     equipmentStore.set(equipment.tag, newEquipment);
-    return { ...newEquipment }; 
+    return { ...newEquipment };
   },
 
   /**
@@ -135,10 +134,10 @@ export const equipmentRepository = {
       return undefined;
     }
     const { tag: _tag, ...restOfUpdates } = updates;
-    const updatedEquipment = { ...existingEquipment, ...restOfUpdates, tag: existingEquipment.tag }; 
-    
+    const updatedEquipment = { ...existingEquipment, ...restOfUpdates, tag: existingEquipment.tag };
+
     equipmentStore.set(tag, updatedEquipment);
-    return { ...updatedEquipment }; 
+    return { ...updatedEquipment };
   },
 
   /**
@@ -157,7 +156,7 @@ export const equipmentRepository = {
    * @private
    */
   _resetAndLoadInitialData: () => {
-    isInitialized = false; 
+    isInitialized = false;
     initializeRepository();
   }
 };
@@ -173,7 +172,7 @@ export const annotationRepository = {
    */
   getAnnotationByEquipmentTag: (equipmentTag: string): Annotation | undefined => {
     const annotation = annotationStore.get(equipmentTag);
-    return annotation ? { ...annotation } : undefined; 
+    return annotation ? { ...annotation } : undefined;
   },
 
   /**
@@ -181,7 +180,7 @@ export const annotationRepository = {
    * @returns {Annotation[]} Um array com todas as anotações (cópias).
    */
   getAllAnnotations: (): Annotation[] => {
-    return Array.from(annotationStore.values()).map(an => ({ ...an })); 
+    return Array.from(annotationStore.values()).map(an => ({ ...an }));
   },
 
   /**
@@ -190,9 +189,9 @@ export const annotationRepository = {
    * @returns {Annotation} A anotação adicionada/atualizada (uma cópia).
    */
   addOrUpdateAnnotation: (annotation: Annotation): Annotation => {
-    const newAnnotation = { ...annotation }; 
+    const newAnnotation = { ...annotation };
     annotationStore.set(annotation.equipmentTag, newAnnotation);
-    return { ...newAnnotation }; 
+    return { ...newAnnotation };
   },
 
   /**
@@ -212,11 +211,6 @@ export const annotationRepository = {
    */
   initializeAnnotations: (annotations: Annotation[]) => {
     annotationStore.clear();
-    annotations.forEach(an => annotationStore.set(an.equipmentTag, { ...an })); 
+    annotations.forEach(an => annotationStore.set(an.equipmentTag, { ...an }));
   }
 };
-
-
-    
-
-    

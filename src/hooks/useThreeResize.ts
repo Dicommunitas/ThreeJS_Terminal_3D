@@ -19,8 +19,7 @@
  *
  * @param props - Objeto contendo refs para os elementos Three.js que precisam ser redimensionados e uma flag de prontidão.
  *
- * @example
- * // Diagrama de Funcionalidade do useThreeResize:
+ * @example Diagrama de Funcionalidade do useThreeResize:
  * ```mermaid
  * graph TD
  *     useThreeResize["useThreeResize (Hook)"]
@@ -98,7 +97,7 @@ export interface UseThreeResizeProps {
   labelRendererRef: React.RefObject<CSS2DRenderer | null>;
   composerRef: React.RefObject<EffectComposer | null>;
   outlinePassRef: React.RefObject<OutlinePass | null>;
-  ready: boolean; 
+  ready: boolean;
 }
 
 /**
@@ -112,7 +111,7 @@ export function useThreeResize({
   labelRendererRef,
   composerRef,
   outlinePassRef,
-  ready, 
+  ready,
 }: UseThreeResizeProps): void {
   const handleResize = useCallback(() => {
     if (
@@ -144,14 +143,14 @@ export function useThreeResize({
     }
     const resizeObserver = new ResizeObserver(handleResize);
     resizeObserver.observe(mountRef.current);
-    
-    handleResize(); 
+
+    handleResize();
 
     return () => {
-      if (mountRef.current) { 
+      if (mountRef.current) {
         resizeObserver.unobserve(mountRef.current);
       }
       resizeObserver.disconnect();
     };
-  }, [ready, mountRef, handleResize]); 
+  }, [ready, mountRef, handleResize]);
 }

@@ -1,5 +1,6 @@
 
 /**
+ * @module components/annotation-dialog
  * Componente de diálogo modal para adicionar ou editar anotações textuais
  * associadas a um equipamento. Utiliza um Textarea para permitir anotações de texto longo.
  *
@@ -27,7 +28,7 @@
  *     AnnotationDialogProps ..> Annotation : uses (via currentAnnotation)
  *     AnnotationDialogProps --> AnnotationDialog : (implicitamente usado por)
  * ```
- * 
+ *
  */
 "use client";
 

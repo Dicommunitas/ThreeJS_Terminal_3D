@@ -7,9 +7,8 @@
  * Manter os critérios de filtro (termo de busca, sistema, área), derivar listas
  * de opções de filtro disponíveis (sistemas, áreas) e calcular a lista de
  * equipamentos que correspondem aos filtros atuais, utilizando `getFilteredEquipment`.
- * 
- * @example
- * // Diagrama de Estrutura do Hook e suas Dependências:
+ *
+ * @example Diagrama de Estrutura do Hook e suas Dependências:
  * ```mermaid
  *   classDiagram
  *     class UseFilterManagerProps {
@@ -105,8 +104,8 @@ export interface UseFilterManagerReturn {
  */
 export function useFilterManager({ allEquipment }: UseFilterManagerProps): UseFilterManagerReturn {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedSistema, setSelectedSistema] = useState('All'); 
-  const [selectedArea, setSelectedArea] = useState('All');     
+  const [selectedSistema, setSelectedSistema] = useState('All');
+  const [selectedArea, setSelectedArea] = useState('All');
 
   /**
    * Lista de sistemas únicos disponíveis, derivada de `allEquipment`.
@@ -114,7 +113,7 @@ export function useFilterManager({ allEquipment }: UseFilterManagerProps): UseFi
    * Memoizada para otimizar performance, recalculando apenas se `allEquipment` mudar.
    */
   const availableSistemas = useMemo(() => {
-    const sistemas = new Set<string>(['All']); 
+    const sistemas = new Set<string>(['All']);
     allEquipment.forEach(equip => {
       if (equip.sistema) sistemas.add(equip.sistema);
     });
@@ -127,7 +126,7 @@ export function useFilterManager({ allEquipment }: UseFilterManagerProps): UseFi
    * Memoizada para otimizar performance.
    */
   const availableAreas = useMemo(() => {
-    const areas = new Set<string>(['All']); 
+    const areas = new Set<string>(['All']);
     allEquipment.forEach(equip => {
       if (equip.area) areas.add(equip.area);
     });

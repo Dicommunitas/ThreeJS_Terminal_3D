@@ -17,8 +17,7 @@
  *
  * @param props - Propriedades para configurar o loop de animação.
  *
- * @example
- * // Diagrama de Fluxo do useAnimationLoop:
+ * @example Diagrama de Fluxo do useAnimationLoop:
  * ```mermaid
  * sequenceDiagram
  *     participant ComponentePai as Comp. (ex: ThreeScene)
@@ -68,7 +67,7 @@ export interface UseAnimationLoopProps {
   controlsRef: RefObject<OrbitControls | null>;
   composerRef: RefObject<EffectComposer | null>;
   labelRendererRef: RefObject<CSS2DRenderer | null>;
-  onFrameUpdate?: () => void; 
+  onFrameUpdate?: () => void;
 }
 
 /**
@@ -89,11 +88,11 @@ export function useAnimationLoop({
   onFrameUpdate,
 }: UseAnimationLoopProps): void {
   useEffect(() => {
-    if (!isSceneReady || 
-        !sceneRef.current || 
-        !cameraRef.current || 
-        !controlsRef.current || 
-        !composerRef.current || 
+    if (!isSceneReady ||
+        !sceneRef.current ||
+        !cameraRef.current ||
+        !controlsRef.current ||
+        !composerRef.current ||
         !labelRendererRef.current) {
       return;
     }
@@ -112,11 +111,11 @@ export function useAnimationLoop({
       if (onFrameUpdate) {
         onFrameUpdate();
       }
-      
+
       if (controls.enabled) { // Só atualiza OrbitControls se estiverem habilitados
         controls.update();
       }
-      
+
       composer.render();
       labelRenderer.render(scene, camera);
     };

@@ -1,5 +1,17 @@
 
 /**
+ * @module components/main-scene-area
+ * Componente que encapsula a área principal da cena 3D e o painel de informações (InfoPanel).
+ *
+ * Responsabilidades Principais:
+ * -   **Layout:** Estrutura o layout que contém o `ThreeScene` e o `InfoPanel`,
+ *     posicionando o `InfoPanel` de forma flutuante sobre a cena.
+ * -   **Delegação de Props:** Recebe um grande conjunto de props da `Terminal3DPage`
+ *     (dados de equipamentos, estado da câmera, callbacks de interação, etc.)
+ *     e as repassa de forma apropriada para os componentes filhos `ThreeScene` e `InfoPanel`.
+ *     Isso simplifica a lógica na `Terminal3DPage`, concentrando a passagem de props
+ *     relevantes para a visualização 3D e o painel de detalhes neste componente.
+ *
  * ```mermaid
  *   classDiagram
  *     class MainSceneAreaProps {
@@ -65,7 +77,7 @@
  *     MainSceneArea ..> ThreeScene : uses
  *     MainSceneArea ..> InfoPanel : uses
  * ```
- * 
+ *
  */
 "use client";
 
@@ -136,7 +148,7 @@ export interface MainSceneAreaProps {
  */
 export function MainSceneArea({
   equipment,
-  allEquipmentData, 
+  allEquipmentData,
   layers,
   annotations,
   selectedEquipmentTags,
@@ -162,8 +174,8 @@ export function MainSceneArea({
   return (
     <div className="flex-1 relative w-full bg-muted/20 min-w-0"> {/* min-w-0 é importante para flexbox */}
       <ThreeScene
-        equipment={equipment} 
-        allEquipmentData={allEquipmentData} 
+        equipment={equipment}
+        allEquipmentData={allEquipmentData}
         layers={layers}
         annotations={annotations}
         selectedEquipmentTags={selectedEquipmentTags}
@@ -181,7 +193,7 @@ export function MainSceneArea({
       <InfoPanel
         equipment={selectedEquipmentDetails}
         annotation={equipmentAnnotation}
-        onClose={() => onSelectEquipment(null, false)} 
+        onClose={() => onSelectEquipment(null, false)}
         onOpenAnnotationDialog={onOpenAnnotationDialog}
         onDeleteAnnotation={onDeleteAnnotation}
         onOperationalStateChange={onOperationalStateChange}

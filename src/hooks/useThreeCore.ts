@@ -9,8 +9,7 @@
  *
  * @returns Refs para os objetos de cena e câmera criados.
  *
- * @example
- * // Diagrama de Responsabilidade do useThreeCore:
+ * @example Diagrama de Responsabilidade do useThreeCore:
  * ```mermaid
  * graph TD
  *     useThreeCore["useThreeCore (Hook)"]
@@ -54,7 +53,7 @@ import * as THREE from 'three';
  */
 export interface UseThreeCoreProps {
   initialCameraPosition: { x: number; y: number; z: number };
-  mountRef: React.RefObject<HTMLDivElement | null>; 
+  mountRef: React.RefObject<HTMLDivElement | null>;
 }
 
 /**
@@ -80,7 +79,7 @@ export function useThreeCore({ initialCameraPosition, mountRef }: UseThreeCorePr
   useEffect(() => {
     const currentMount = mountRef.current;
     if (!currentMount) {
-      return; 
+      return;
     }
 
     sceneRef.current = new THREE.Scene();
@@ -92,7 +91,7 @@ export function useThreeCore({ initialCameraPosition, mountRef }: UseThreeCorePr
       sceneRef.current = null;
       cameraRef.current = null;
     };
-  }, [initialCameraPosition, mountRef]); 
+  }, [initialCameraPosition, mountRef]);
 
   return { sceneRef, cameraRef };
 }

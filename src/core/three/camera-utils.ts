@@ -8,8 +8,7 @@
  * para enquadrar um conjunto específico de objetos (meshes) na cena,
  * oferecendo diferentes perspectivas como padrão, de cima e isométrica.
  *
- * @example
- * // Diagrama de Funcionalidade do calculateViewForMeshes:
+ * @example Diagrama de Funcionalidade do calculateViewForMeshes:
  * ```mermaid
  *   classDiagram
  *     class calculateViewForMeshes_params {
@@ -101,7 +100,7 @@ export function calculateViewForMeshes(
   };
 
   // Visão Isométrica (Simulada para Câmera Perspectiva)
-  const isoOffset = cameraDistance * 0.707; 
+  const isoOffset = cameraDistance * 0.707;
   const isometricView: SystemView = {
     position: {
       x: center.x + isoOffset,

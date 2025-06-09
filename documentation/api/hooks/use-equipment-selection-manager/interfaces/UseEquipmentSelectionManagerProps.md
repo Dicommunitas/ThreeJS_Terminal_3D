@@ -6,7 +6,7 @@
 
 # Interface: UseEquipmentSelectionManagerProps
 
-Defined in: [src/hooks/use-equipment-selection-manager.ts:53](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/hooks/use-equipment-selection-manager.ts#L53)
+Defined in: [src/hooks/use-equipment-selection-manager.ts:53](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/use-equipment-selection-manager.ts#L53)
 
 Props para o hook `useEquipmentSelectionManager`.
  UseEquipmentSelectionManagerProps
@@ -17,7 +17,7 @@ Props para o hook `useEquipmentSelectionManager`.
 
 > **equipmentData**: [`Equipment`](../../../lib/types/interfaces/Equipment.md)[]
 
-Defined in: [src/hooks/use-equipment-selection-manager.ts:54](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/hooks/use-equipment-selection-manager.ts#L54)
+Defined in: [src/hooks/use-equipment-selection-manager.ts:54](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/use-equipment-selection-manager.ts#L54)
 
 Lista completa de todos os equipamentos. Usada para buscar nomes
                                       de equipamentos para mensagens de feedback (toasts).
@@ -28,7 +28,7 @@ Lista completa de todos os equipamentos. Usada para buscar nomes
 
 > **executeCommand**: (`command`) => `void`
 
-Defined in: [src/hooks/use-equipment-selection-manager.ts:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/hooks/use-equipment-selection-manager.ts#L55)
+Defined in: [src/hooks/use-equipment-selection-manager.ts:55](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/use-equipment-selection-manager.ts#L55)
 
 Função para executar comandos (e.g., seleção de equipamento)
                                                        e adicioná-los ao histórico de undo/redo.

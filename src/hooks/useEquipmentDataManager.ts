@@ -12,12 +12,12 @@
  *     refletir os dados mais recentes, garantindo a reatividade da UI.
  * -   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações.
  *
- * @see {@link ../../documentation/api/core/repository/memory-repository/README.md#equipmentrepository} Para a fonte de dados.
- * @see {@link ../../documentation/api/lib/types/README.md#Equipment} Para a interface de Equipamento.
+ * @see {@link /documentation/api/core/repository/memory-repository/README.md#equipmentrepository} Para a fonte de dados.
+ * @see {@link /documentation/api/lib/types/README.md#Equipment} Para a interface de Equipamento.
+ * @returns Objeto contendo os dados dos equipamentos e funções para modificá-los e atualizá-los.
  *
- * @example
- * // Diagrama de Interação do useEquipmentDataManager:
- * * ```mermaid
+ * @example Diagrama de Interação do useEquipmentDataManager:
+ * ```mermaid
  * graph TD
  *     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOperationalStateChange)
  *
@@ -44,7 +44,7 @@
  *    class C,D repo;
  *    class E,F state;
  *    class useEquipmentDataManager hook;
- * * ```
+ * ```
  */
 "use client";
 
@@ -133,5 +133,3 @@ export function useEquipmentDataManager(): UseEquipmentDataManagerReturn {
     refreshEquipmentData,
   };
 }
-
-    

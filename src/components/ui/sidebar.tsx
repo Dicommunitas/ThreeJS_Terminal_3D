@@ -1,5 +1,6 @@
 
 /**
+ * @module components/ui/sidebar
  * Componente de Sidebar reutilizável e altamente configurável.
  *
  * Principal Responsabilidade:
@@ -21,32 +22,32 @@
  * - `SidebarInput`, `SidebarSeparator`: Elementos de UI utilitários para a sidebar.
  *
  * Utiliza cookies para persistir o estado da sidebar entre as sessões (desktop) e atalhos de teclado.
- * 
+ *
  * ```mermaid
  * graph LR
  *   App --> SidebarProvider_Context["SidebarProvider (Context)"]
  *   SidebarProvider_Context --> Sidebar_Comp["Sidebar"]
  *   SidebarProvider_Context --> SidebarInset_Comp["SidebarInset (Main Content Wrapper)"]
  *   App --> SidebarTrigger_Button["SidebarTrigger (Button)"]
- * 
+ *
  *   Sidebar_Comp --> SidebarHeader_Sec["SidebarHeader"]
  *   Sidebar_Comp --> SidebarContent_Sec["SidebarContent (Scrollable)"]
  *   Sidebar_Comp --> SidebarFooter_Sec["SidebarFooter"]
- * 
+ *
  *   SidebarContent_Sec --> SidebarGroup_Container["SidebarGroup"]
  *   SidebarGroup_Container --> SidebarGroupLabel_Text["SidebarGroupLabel"]
  *   SidebarGroup_Container --> SidebarMenu_List["SidebarMenu (ul)"]
- * 
+ *
  *   SidebarMenu_List --> SidebarMenuItem_Item["SidebarMenuItem (li)"]
  *   SidebarMenuItem_Item --> SidebarMenuButton_Action["SidebarMenuButton (Button/Link)"]
  *   SidebarMenuItem_Item --> SidebarMenuAction_Opt["SidebarMenuAction (Optional Button)"]
  *   SidebarMenuItem_Item --> SidebarMenuBadge_Info["SidebarMenuBadge (Optional Info)"]
- * 
+ *
  *   SidebarMenuButton_Action --> SidebarMenuSub_SubList["SidebarMenuSub (ul for dropdowns)"]
  *   SidebarMenuSub_SubList --> SidebarMenuSubItem_SubItem["SidebarMenuSubItem (li)"]
  *   SidebarMenuSubItem_SubItem --> SidebarMenuSubButton_SubAction["SidebarMenuSubButton (Button/Link)"]
  * ```
- * 
+ *
  */
 "use client"
 
@@ -60,7 +61,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
-import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet" 
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet"
 import { Skeleton } from "@/components/ui/skeleton"
 import {
   Tooltip,
@@ -86,7 +87,7 @@ export type SidebarContext = {
   toggleSidebar: () => void
 }
 
-const _SidebarContext = React.createContext<SidebarContext | null>(null) 
+const _SidebarContext = React.createContext<SidebarContext | null>(null)
 
 /**
  * Hook para acessar o contexto da Sidebar.
@@ -94,8 +95,8 @@ const _SidebarContext = React.createContext<SidebarContext | null>(null)
  * @returns {SidebarContext} O contexto da sidebar.
  * @throws {Error} Se usado fora de um `SidebarProvider`.
  */
-export function useSidebar() { 
-  const context = React.useContext(_SidebarContext) 
+export function useSidebar() {
+  const context = React.useContext(_SidebarContext)
   if (!context) {
     throw new Error("useSidebar must be used within a SidebarProvider.")
   }
@@ -962,4 +963,3 @@ export {
 }
 // Já exportado como type mais acima
 // export type { SidebarContext };
-

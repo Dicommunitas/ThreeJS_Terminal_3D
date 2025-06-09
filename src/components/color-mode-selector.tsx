@@ -1,11 +1,12 @@
 
 /**
+ * @module components/color-mode-selector
  * Componente para selecionar o modo de colorização dos equipamentos na cena 3D.
  *
  * Principal Responsabilidade:
  * Permitir ao usuário escolher como os equipamentos serão coloridos (por cor base,
  * estado operacional ou produto) através de um menu dropdown (Select).
- * 
+ *
  * ```mermaid
  *   classDiagram
  *     class ColorModeSelectorProps {
@@ -36,7 +37,7 @@
  *     ColorModeSelector ..> Select : uses
  *     ColorModeSelector ..> Label : uses
  * ```
- * 
+ *
  */
 "use client";
 

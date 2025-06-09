@@ -15,8 +15,7 @@
  *
  * @returns Refs para os renderizadores, composer, outline pass, e uma flag indicando sua prontidão.
  *
- * @example
- * // Diagrama de Componentes Criados por useThreeRenderers:
+ * @example Diagrama de Componentes Criados por useThreeRenderers:
  * ```mermaid
  * graph TD
  *     useThreeRenderers["useThreeRenderers (Hook)"]
@@ -149,7 +148,7 @@ export function useThreeRenderers({ mountRef, sceneRef, cameraRef }: UseThreeRen
     const renderPass = new RenderPass(currentScene, currentCamera);
     composer.addPass(renderPass);
     const outlinePass = new OutlinePass(new THREE.Vector2(initialWidth, initialHeight), currentScene, currentCamera);
-    outlinePass.edgeStrength = 0; 
+    outlinePass.edgeStrength = 0;
     outlinePass.edgeGlow = 0.0;
     outlinePass.edgeThickness = 1.0;
     outlinePass.visibleEdgeColor.set('#ffffff');
@@ -172,25 +171,25 @@ export function useThreeRenderers({ mountRef, sceneRef, cameraRef }: UseThreeRen
     return () => {
       renderer.domElement.removeEventListener('webglcontextlost', handleContextLost, false);
       renderer.domElement.removeEventListener('webglcontextrestored', handleContextRestored, false);
-      
+
       composerRef.current?.passes.forEach(pass => { if ((pass as any).dispose) (pass as any).dispose(); });
-      
+
       if (rendererRef.current && rendererRef.current.domElement.parentNode === currentMount) {
         currentMount.removeChild(rendererRef.current.domElement);
       }
       rendererRef.current?.dispose();
-      
+
       if (labelRendererRef.current && labelRendererRef.current.domElement.parentNode === currentMount) {
         currentMount.removeChild(labelRendererRef.current.domElement);
       }
-      
+
       rendererRef.current = null;
       labelRendererRef.current = null;
       composerRef.current = null;
       outlinePassRef.current = null;
       setAreRenderersReady(false);
     };
-  }, [mountRef, sceneRef, cameraRef]); 
+  }, [mountRef, sceneRef, cameraRef]);
 
   return { rendererRef, labelRendererRef, composerRef, outlinePassRef, areRenderersReady };
 }

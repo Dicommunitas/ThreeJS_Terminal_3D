@@ -9,9 +9,8 @@
  * os objetos 3D correspondentes na cena. Utiliza `updateOutlineEffect` de
  * `postprocessing-utils.ts` para aplicar os estilos de contorno corretos.
  * O efeito só é aplicado quando a cena (`isSceneReady`) e os refs necessários estão prontos.
- * 
- * @example
- * // Diagrama de Composição e Dependências:
+ *
+ * @example Diagrama de Composição e Dependências:
  * ```mermaid
  *   classDiagram
  *     class UseSceneOutlineProps {

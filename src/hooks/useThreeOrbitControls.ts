@@ -17,8 +17,7 @@
  *
  * @returns Ref para a instância de `OrbitControls` e uma flag indicando sua prontidão.
  *
- * @example
- * // Diagrama de Fluxo do useThreeOrbitControls:
+ * @example Diagrama de Fluxo do useThreeOrbitControls:
  * ```mermaid
  * sequenceDiagram
  *     participant Usuário
@@ -45,7 +44,7 @@
  * ```
  */
 import { useRef, useEffect, useState } from 'react';
-import * as THREE from 'three'; 
+import * as THREE from 'three';
 import type { OrbitControls as OrbitControlsType } from 'three/examples/jsm/controls/OrbitControls.js';
 import type { CameraState } from '@/lib/types';
 
@@ -63,7 +62,7 @@ export interface UseThreeOrbitControlsProps {
   rendererRef: React.RefObject<THREE.WebGLRenderer | null>;
   initialCameraLookAt: { x: number; y: number; z: number };
   onCameraChange: (cameraState: CameraState, actionDescription?: string) => void;
-  renderersReady: boolean; 
+  renderersReady: boolean;
 }
 
 /**
@@ -105,29 +104,29 @@ export function useThreeOrbitControls({
     }
 
     const currentCamera = cameraRef.current;
-    const currentRendererDOMElement = rendererRef.current.domElement; 
-    
+    const currentRendererDOMElement = rendererRef.current.domElement;
+
     let localControlsInstance: OrbitControlsType | null = null;
     let isEffectMounted = true;
 
     import('three/examples/jsm/controls/OrbitControls.js')
       .then(module => {
-        if (!isEffectMounted || !currentCamera || !currentRendererDOMElement) { 
+        if (!isEffectMounted || !currentCamera || !currentRendererDOMElement) {
           if (isEffectMounted) setIsControlsReady(false);
           return;
         }
         const OrbitControls = module.OrbitControls;
-        localControlsInstance = new OrbitControls(currentCamera, currentRendererDOMElement); 
+        localControlsInstance = new OrbitControls(currentCamera, currentRendererDOMElement);
         controlsRef.current = localControlsInstance;
 
         localControlsInstance.enableDamping = true;
         localControlsInstance.target.set(initialCameraLookAt.x, initialCameraLookAt.y, initialCameraLookAt.z);
         localControlsInstance.mouseButtons = {
           LEFT: THREE.MOUSE.ROTATE,
-          MIDDLE: THREE.MOUSE.ROTATE, 
+          MIDDLE: THREE.MOUSE.ROTATE,
           RIGHT: THREE.MOUSE.PAN
         };
-        localControlsInstance.update(); 
+        localControlsInstance.update();
 
         const handleControlsChangeEnd = () => {
           if (cameraRef.current && controlsRef.current && onCameraChangeRef.current) {
@@ -140,7 +139,7 @@ export function useThreeOrbitControls({
         };
         (localControlsInstance as any).__private_handleControlsChangeEndListener = handleControlsChangeEnd;
         localControlsInstance.addEventListener('end', handleControlsChangeEnd);
-        
+
         if (isEffectMounted) {
           setIsControlsReady(true);
         }
@@ -151,10 +150,10 @@ export function useThreeOrbitControls({
           setIsControlsReady(false);
         }
       });
-      
+
     return () => {
       isEffectMounted = false;
-      if (controlsRef.current) { 
+      if (controlsRef.current) {
         const listener = (controlsRef.current as any).__private_handleControlsChangeEndListener;
         if (listener) {
           controlsRef.current.removeEventListener('end', listener);
@@ -162,7 +161,7 @@ export function useThreeOrbitControls({
         controlsRef.current.dispose();
         controlsRef.current = null;
       }
-      setIsControlsReady(false); 
+      setIsControlsReady(false);
     };
   }, [cameraRef, rendererRef, initialCameraLookAt, renderersReady]);
 

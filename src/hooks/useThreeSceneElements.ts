@@ -8,12 +8,11 @@
  * luzes (ambiente, hemisférica, direcional) e uma malha (mesh) para o plano de chão.
  * A execução depende da prontidão do núcleo da cena (objeto `THREE.Scene`).
  *
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting} Para a função de configuração da iluminação.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane} Para a função de configuração do plano de chão.
+ * @see {@link /documentation/api/core/three/scene-elements-setup/README.md#setupLighting} Para a função de configuração da iluminação.
+ * @see {@link /documentation/api/core/three/scene-elements-setup/README.md#setupGroundPlane} Para a função de configuração do plano de chão.
  *
- * @example
- * // Diagrama de Funcionalidade do useThreeSceneElements:
- * \`\`\`mermaid
+ * @example Diagrama de Funcionalidade do useThreeSceneElements:
+ * ```mermaid
  * graph TD
  *     useThreeSceneElements["useThreeSceneElements (Hook)"]
  *     Props["UseThreeSceneElementsProps"]
@@ -48,11 +47,11 @@
  *     class CoreReady_Flag flag;
  *     class Lighting_Elements,GroundPlane_Mesh obj3d;
  *     class Utils_Module util;
- * \`\`\`
+ * ```
  */
 import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
-import { setupLighting, setupGroundPlane } from '@/core/three/scene-elements-setup'; 
+import { setupLighting, setupGroundPlane } from '@/core/three/scene-elements-setup';
 
 /**
  * Props para o hook `useThreeSceneElements`.
@@ -62,7 +61,7 @@ import { setupLighting, setupGroundPlane } from '@/core/three/scene-elements-set
  */
 export interface UseThreeSceneElementsProps {
   sceneRef: React.RefObject<THREE.Scene | null>;
-  coreReady: boolean; 
+  coreReady: boolean;
 }
 
 /**
@@ -94,7 +93,7 @@ export function useThreeSceneElements({ sceneRef, coreReady }: UseThreeSceneElem
     return () => {
       // A limpeza da iluminação é geralmente tratada pela remoção da cena ou descarte do renderizador.
       // O plano de chão é explicitamente removido e seus recursos liberados.
-      if (groundMeshRef.current && currentScene) { 
+      if (groundMeshRef.current && currentScene) {
         currentScene.remove(groundMeshRef.current);
         groundMeshRef.current.geometry?.dispose();
         if (groundMeshRef.current.material instanceof THREE.Material) {
@@ -105,12 +104,7 @@ export function useThreeSceneElements({ sceneRef, coreReady }: UseThreeSceneElem
         groundMeshRef.current = null;
       }
     };
-  }, [sceneRef, coreReady]); 
+  }, [sceneRef, coreReady]);
 
   return { groundMeshRef };
 }
-
-
-    
-
-    

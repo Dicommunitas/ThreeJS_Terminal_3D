@@ -8,9 +8,8 @@
  * Manter uma pilha de comandos executados, permitir a execução de novos comandos,
  * e fornecer a capacidade de navegar para frente (redo) e para trás (undo)
  * nesse histórico, chamando as funções `execute()` e `undo()` dos respectivos comandos.
- * 
- * @example
- * // Diagrama de Estrutura do Hook e seus Retornos:
+ *
+ * @example Diagrama de Estrutura do Hook e seus Retornos:
  * ```mermaid
  *   classDiagram
  *     class UseCommandHistoryReturn {
@@ -94,13 +93,13 @@ export function useCommandHistory(initialState?: CommandHistoryState): UseComman
    * @param {Command} command O comando a ser executado. A função `command.execute()` é chamada.
    */
   const executeCommand = useCallback((command: Command) => {
-    command.execute(); 
+    command.execute();
     setState((prevState) => {
       const newHistory = prevState.history.slice(0, prevState.currentIndex + 1);
       newHistory.push(command);
       return {
         history: newHistory,
-        currentIndex: newHistory.length - 1, 
+        currentIndex: newHistory.length - 1,
       };
     });
   }, []);
@@ -113,13 +112,13 @@ export function useCommandHistory(initialState?: CommandHistoryState): UseComman
   const undo = useCallback(() => {
     setState((prevState) => {
       if (prevState.currentIndex < 0) {
-        return prevState; 
+        return prevState;
       }
       const commandToUndo = prevState.history[prevState.currentIndex];
-      commandToUndo.undo(); 
+      commandToUndo.undo();
       return {
         ...prevState,
-        currentIndex: prevState.currentIndex - 1, 
+        currentIndex: prevState.currentIndex - 1,
       };
     });
   }, []);
@@ -132,13 +131,13 @@ export function useCommandHistory(initialState?: CommandHistoryState): UseComman
   const redo = useCallback(() => {
     setState((prevState) => {
       if (prevState.currentIndex >= prevState.history.length - 1) {
-        return prevState; 
+        return prevState;
       }
       const commandToRedo = prevState.history[prevState.currentIndex + 1];
-      commandToRedo.execute(); 
+      commandToRedo.execute();
       return {
         ...prevState,
-        currentIndex: prevState.currentIndex + 1, 
+        currentIndex: prevState.currentIndex + 1,
       };
     });
   }, []);

@@ -1,11 +1,12 @@
 
 /**
+ * @module components/camera-controls-panel
  * Componente de painel para controles de câmera, especificamente para focar em sistemas.
  *
  * Principal Responsabilidade:
  * Renderizar botões para cada sistema disponível, permitindo ao usuário focar a câmera
  * e selecionar todos os equipamentos pertencentes àquele sistema ao clicar em um botão.
- * 
+ *
  * ```mermaid
  *   classDiagram
  *     class CameraControlsPanelProps {
@@ -28,7 +29,7 @@
  *     CameraControlsPanel ..> Button : uses
  *     CameraControlsPanel ..> Card : uses
  * ```
- * 
+ *
  */
 "use client";
 

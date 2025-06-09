@@ -8,15 +8,15 @@
 
 ## See
 
- - [core/repository/memory-repository.annotationRepository](../../core/repository/memory-repository/variables/annotationRepository.md) Para a fonte de dados das anotações.
- - [core/repository/memory-repository.equipmentRepository](../../core/repository/memory-repository/variables/equipmentRepository.md) Para obter dados de equipamentos (e.g., nome para toasts).
- - [lib/types.Annotation](../../lib/types/interfaces/Annotation.md) Para a interface de Anotação.
- - [lib/types.Equipment](../../lib/types/interfaces/Equipment.md) Para a interface de Equipamento.
+ - ../../documentation/api/core/repository/memory-repository/README.md#annotationrepository Para a fonte de dados das anotações.
+ - ../../documentation/api/core/repository/memory-repository/README.md#equipmentrepository Para obter dados de equipamentos (e.g., nome para toasts).
+ - ../../documentation/api/lib/types/README.md#Annotation Para a interface de Anotação.
+ - ../../documentation/api/lib/types/README.md#Equipment Para a interface de Equipamento.
 
 ## Example
 
 // Diagrama de Interação do useAnnotationManager:
-```mermaid
+* ```mermaid
 graph TD
     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOpenAnnotationDialog)
     B -- define estados --> DialogState["isAnnotationDialogOpen, editingAnnotation, annotationTargetEquipment"]
@@ -49,7 +49,7 @@ graph TD
    class E,G repo;
    class DialogState,H,I state;
    class useAnnotationManager hook;
-```
+* ```
 
 ## Interfaces
 

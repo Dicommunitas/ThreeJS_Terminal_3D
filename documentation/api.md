@@ -1394,7 +1394,7 @@ através da API de Contexto do React. Para ser usado com \`useFormContext\`.
 ### Examples
 
 ```javascript
-\`\`\`tsx
+* \`\`\`tsx
 function App() {
   const methods = useForm();
   const onSubmit = data => console.log(data);
@@ -1413,7 +1413,7 @@ function App() {
   const { register } = useFormContext(); // retrieve all hook methods
   return <input {...register("test")} />;
 }
-\`\`\`
+* \`\`\`
 ```
 
 Returns **JSX.Element**&#x20;
@@ -3745,16 +3745,16 @@ Returns **[UseSceneSetupReturn][346]** Refs para os componentes da cena e flags 
 
 ##
 
-*   **See**: [core/repository/memory-repository.annotationRepository][442] Para a fonte de dados das anotações.
-*   **See**: [core/repository/memory-repository.equipmentRepository][443] Para obter dados de equipamentos (e.g., nome para toasts).
-*   **See**: [lib/types.Annotation][444] Para a interface de Anotação.
-*   **See**: [lib/types.Equipment][445] Para a interface de Equipamento.
+*   **See**: [../../documentation/api/core/repository/memory-repository/README.md#annotationrepository][442] Para a fonte de dados das anotações.
+*   **See**: [../../documentation/api/core/repository/memory-repository/README.md#equipmentrepository][443] Para obter dados de equipamentos (e.g., nome para toasts).
+*   **See**: [../../documentation/api/lib/types/README.md#Annotation][444] Para a interface de Anotação.
+*   **See**: [../../documentation/api/lib/types/README.md#Equipment][445] Para a interface de Equipamento.
 
 ### Examples
 
 ````javascript
 // Diagrama de Interação do useAnnotationManager:
-```mermaid
+* ```mermaid
 graph TD
     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOpenAnnotationDialog)
     B -- define estados --> DialogState["isAnnotationDialogOpen, editingAnnotation, annotationTargetEquipment"]
@@ -3787,20 +3787,20 @@ graph TD
    class E,G repo;
    class DialogState,H,I state;
    class useAnnotationManager hook;
-```
+* ```
 ````
 
 ##
 
-*   **See**: [lib/types.CameraState][446] Para a interface do estado da câmera.
-*   **See**: [lib/types.Command][447] Para a interface de comando (usada com `executeCommand`).
-*   **See**: [lib/types.TargetSystemInfo][448] Para a interface de informações do sistema alvo.
+*   **See**: [../../documentation/api/lib/types/README.md#CameraState][446] Para a interface do estado da câmera.
+*   **See**: [../../documentation/api/lib/types/README.md#Command][447] Para a interface de comando (usada com `executeCommand`).
+*   **See**: [../../documentation/api/lib/types/README.md#TargetSystemInfo][448] Para a interface de informações do sistema alvo.
 
 ### Examples
 
-```javascript
+````javascript
 // Diagrama de Interação e Estado do useCameraManager:
-\`\`\`mermaid
+* ```mermaid
 graph LR
     A[Terminal3DPage] -- chama --> B(handleSetCameraViewForSystem)
     B -- atualiza --> C{targetSystemToFrame};
@@ -3841,19 +3841,19 @@ graph LR
    class B,G,H,J,M func;
    class C,D,E,K,L,I state;
    class useCameraManager hook;
-\`\`\`
-```
+* ```
+````
 
 ##
 
-*   **See**: [core/repository/memory-repository.equipmentRepository][443] Para a fonte de dados.
-*   **See**: [lib/types.Equipment][445] Para a interface de Equipamento.
+*   **See**: [../../documentation/api/core/repository/memory-repository/README.md#equipmentrepository][443] Para a fonte de dados.
+*   **See**: [../../documentation/api/lib/types/README.md#Equipment][445] Para a interface de Equipamento.
 
 ### Examples
 
-```javascript
+````javascript
 // Diagrama de Interação do useEquipmentDataManager:
-\`\`\`mermaid
+* ```mermaid
 graph TD
     A[Componente UI (ex: InfoPanel)] -- chama --> B(handleOperationalStateChange)
 
@@ -3880,8 +3880,8 @@ graph TD
    class C,D repo;
    class E,F state;
    class useEquipmentDataManager hook;
-\`\`\`
-```
+* ```
+````
 
 ## useRef
 
@@ -5176,19 +5176,19 @@ Type: (`"Produto"` | `"Estado Operacional"` | `"Equipamento"`)
 
 [441]: https://developer.mozilla.org/docs/Web/API/HTMLDivElement
 
-[442]: core/repository/memory-repository.annotationRepository
+[442]: ../../documentation/api/core/repository/memory-repository/README.md#annotationrepository
 
-[443]: core/repository/memory-repository.equipmentRepository
+[443]: ../../documentation/api/core/repository/memory-repository/README.md#equipmentrepository
 
-[444]: lib/types.Annotation
+[444]: ../../documentation/api/lib/types/README.md#Annotation
 
-[445]: lib/types.Equipment
+[445]: ../../documentation/api/lib/types/README.md#Equipment
 
-[446]: lib/types.CameraState
+[446]: ../../documentation/api/lib/types/README.md#CameraState
 
-[447]: lib/types.Command
+[447]: ../../documentation/api/lib/types/README.md#Command
 
-[448]: lib/types.TargetSystemInfo
+[448]: ../../documentation/api/lib/types/README.md#TargetSystemInfo
 
 [449]: https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/core/three/scene-elements-setup/README.md#setupLighting
 

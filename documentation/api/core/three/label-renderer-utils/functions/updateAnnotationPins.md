@@ -8,7 +8,7 @@
 
 > **updateAnnotationPins**(`params`): `void`
 
-Defined in: [src/core/three/label-renderer-utils.ts:108](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/core/three/label-renderer-utils.ts#L108)
+Defined in: [src/core/three/label-renderer-utils.ts:108](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/core/three/label-renderer-utils.ts#L108)
 
 Atualiza os pins de anotação visíveis na cena 3D.
 Remove pins antigos e cria/atualiza novos com base nos dados atuais e na visibilidade da camada de anotações.

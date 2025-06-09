@@ -30,16 +30,15 @@
  * -   **Fornecimento do Ponto de Montagem:** Renderiza o `div` que serve como contêiner para
  *     os renderizadores Three.js.
  *
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-setup/README.md} Para a orquestração da configuração da cena.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-equipment-renderer/README.md} Para a renderização de equipamentos.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-annotation-pin-renderer/README.md} Para a renderização de pins de anotação.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-mouse-interaction/README.md} Para interações do mouse.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-scene-outline/README.md} Para o efeito de contorno.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/use-animation-loop/README.md} Para o loop de animação.
+ * @see {@link /documentation/api/hooks/use-scene-setup/README.md} Para a orquestração da configuração da cena.
+ * @see {@link /documentation/api/hooks/use-equipment-renderer/README.md} Para a renderização de equipamentos.
+ * @see {@link /documentation/api/hooks/use-annotation-pin-renderer/README.md} Para a renderização de pins de anotação.
+ * @see {@link /documentation/api/hooks/use-mouse-interaction/README.md} Para interações do mouse.
+ * @see {@link /documentation/api/hooks/use-scene-outline/README.md} Para o efeito de contorno.
+ * @see {@link /documentation/api/hooks/useAnimationLoop/README.md} Para o loop de animação.
  *
- * @example
- * // Diagrama de Composição do ThreeScene e seus Hooks:
- * \`\`\`mermaid
+ * @example Diagrama de Composição do ThreeScene e seus Hooks:
+ * ```mermaid
  * graph TD
  *     ThreeScene_Comp["ThreeScene (Componente React)"]
  *     MountPoint["<div ref={mountRef}> (Ponto de Montagem DOM)"]
@@ -95,7 +94,7 @@
  *     class H_SceneSetup,H_EquipRenderer,H_AnnotPinRenderer,H_MouseInt,H_Outline,H_AnimLoop hook;
  *     class R_Scene,R_Camera,R_Renderer,R_LabelRenderer,R_Controls,R_Composer,R_OutlinePass ref;
  *     class F_IsSceneReady,F_IsControlsReady flag;
- * \`\`\`
+ * ```
  */
 "use client";
 
@@ -144,7 +143,7 @@ export interface ThreeSceneProps {
   onSelectEquipment: (tag: string | null, isMultiSelectModifierPressed: boolean) => void;
   hoveredEquipmentTag: string | null | undefined;
   setHoveredEquipmentTag: (tag: string | null) => void;
-  cameraState: CameraState | undefined; 
+  cameraState: CameraState | undefined;
   onCameraChange: (cameraState: CameraState, actionDescription?: string) => void;
   initialCameraPosition: { x: number; y: number; z: number };
   initialCameraLookAt: { x: number; y: number; z: number };
@@ -193,15 +192,15 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
   const {
     sceneRef,
     cameraRef,
-    rendererRef, 
+    rendererRef,
     labelRendererRef,
     controlsRef,
     composerRef,
     outlinePassRef,
     groundMeshRef,
-    isSceneReady,      
-    isControlsReady,   
-  }: UseSceneSetupReturn = useSceneSetup({ 
+    isSceneReady,
+    isControlsReady,
+  }: UseSceneSetupReturn = useSceneSetup({
     mountRef,
     initialCameraPosition,
     initialCameraLookAt,
@@ -239,10 +238,10 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 
   const equipmentMeshesRef = useEquipmentRenderer({
     sceneRef,
-    cameraRef, 
-    controlsRef, 
-    isSceneReady, 
-    isControlsReady, 
+    cameraRef,
+    controlsRef,
+    isSceneReady,
+    isControlsReady,
     equipmentData: equipment,
     layers,
     colorMode,
@@ -253,7 +252,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
   useAnnotationPinRenderer({
     sceneRef,
     labelRendererRef,
-    isSceneReady, 
+    isSceneReady,
     annotations,
     allEquipmentData,
     layers,
@@ -263,7 +262,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     mountRef,
     cameraRef,
     equipmentMeshesRef,
-    isSceneReady: isSceneReady && isControlsReady, 
+    isSceneReady: isSceneReady && isControlsReady,
     onSelectEquipment,
     setHoveredEquipmentTag,
   });
@@ -273,7 +272,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     equipmentMeshesRef,
     selectedEquipmentTags,
     hoveredEquipmentTag,
-    isSceneReady, 
+    isSceneReady,
   });
 
   const startCameraAnimation = useCallback((targetPos: THREE.Vector3, targetLookAt: THREE.Vector3, onComplete?: () => void) => {
@@ -298,10 +297,10 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
       const targetPosition = new THREE.Vector3(programmaticCameraState.position.x, programmaticCameraState.position.y, programmaticCameraState.position.z);
       const targetLookAt = new THREE.Vector3(programmaticCameraState.lookAt.x, programmaticCameraState.lookAt.y, programmaticCameraState.lookAt.z);
       const isAlreadyAtTarget = positionEqualsWithTolerance(cameraRef.current.position, targetPosition) && positionEqualsWithTolerance(controlsRef.current.target, targetLookAt);
-      
+
       if (!isAlreadyAtTarget && !isAnimatingRef.current) {
-        startCameraAnimation(targetPosition, targetLookAt); 
-      } 
+        startCameraAnimation(targetPosition, targetLookAt);
+      }
     }
   }, [programmaticCameraState, isSceneReady, isControlsReady, startCameraAnimation, cameraRef, controlsRef]);
 
@@ -337,7 +336,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
       }
       const targetPositionVec = new THREE.Vector3(selectedView.position.x, selectedView.position.y, selectedView.position.z);
       const targetLookAtVec = new THREE.Vector3(selectedView.lookAt.x, selectedView.lookAt.y, selectedView.lookAt.z);
-      
+
       startCameraAnimation(targetPositionVec, targetLookAtVec, () => {
         if (cameraRef.current && controlsRef.current && onCameraChangeRef.current) {
           const finalStateAfterFocus: CameraState = {
@@ -378,20 +377,20 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
       if (isAnimatingRef.current) {
         isAnimatingRef.current = false;
         if (controlsRef.current) controlsRef.current.enabled = true;
-        animationOnCompleteCallbackRef.current?.(); 
+        animationOnCompleteCallbackRef.current?.();
         animationOnCompleteCallbackRef.current = null;
       }
     };
-    if (currentMount && (isSceneReady && isControlsReady)) { 
+    if (currentMount && (isSceneReady && isControlsReady)) {
       currentMount.addEventListener('wheel', handleWheel, { passive: true });
       return () => currentMount.removeEventListener('wheel', handleWheel);
     }
-  }, [isSceneReady, isControlsReady, controlsRef, mountRef]); 
+  }, [isSceneReady, isControlsReady, controlsRef, mountRef]);
 
   const overallReadyForAnimation = isSceneReady && isControlsReady;
 
   useAnimationLoop({
-    isSceneReady: overallReadyForAnimation, 
+    isSceneReady: overallReadyForAnimation,
     sceneRef,
     cameraRef,
     controlsRef,
@@ -404,8 +403,3 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 };
 
 export default ThreeScene;
-
-
-    
-
-    

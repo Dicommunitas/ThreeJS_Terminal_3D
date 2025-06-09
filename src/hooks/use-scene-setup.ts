@@ -10,26 +10,25 @@
  *
  * Responsabilidades Principais:
  * -   **Composição de Hooks:** Importa e utiliza hooks especializados para cada parte da configuração da cena:
- *     -   {@link hooks/useThreeCore.useThreeCore}: Para `THREE.Scene` e `THREE.PerspectiveCamera`.
- *     -   {@link hooks/useThreeRenderers.useThreeRenderers}: Para `WebGLRenderer`, `CSS2DRenderer`, `EffectComposer`, e `OutlinePass`.
- *     -   {@link hooks/useThreeOrbitControls.useThreeOrbitControls}: Para `OrbitControls`.
- *     -   {@link hooks/useThreeSceneElements.useThreeSceneElements}: Para iluminação e plano de chão.
- *     -   {@link hooks/useThreeResize.useThreeResize}: Para responsividade da cena.
+ *     -   `useThreeCore`: Para `THREE.Scene` e `THREE.PerspectiveCamera`.
+ *     -   `useThreeRenderers`: Para `WebGLRenderer`, `CSS2DRenderer`, `EffectComposer`, e `OutlinePass`.
+ *     -   `useThreeOrbitControls`: Para `OrbitControls`.
+ *     -   `useThreeSceneElements`: Para iluminação e plano de chão.
+ *     -   `useThreeResize`: Para responsividade da cena.
  * -   **Orquestração da Inicialização:** Garante que os hooks sejam chamados na ordem correta,
  *     respeitando as dependências (e.g., renderizadores precisam estar prontos antes dos controles).
  * -   **Agregação de Refs e Estado:** Coleta e retorna as refs para os objetos Three.js criados
  *     (e.g., `sceneRef`, `cameraRef`, `rendererRef`) e as flags de estado de prontidão
  *     (`isSceneReady`, `isControlsReady`).
  *
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeCore/README.md} Para inicialização da cena e câmera.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeRenderers/README.md} Para configuração dos renderizadores e pós-processamento.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeOrbitControls/README.md} Para configuração dos controles de órbita.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeSceneElements/README.md} Para configuração de iluminação e plano de chão.
- * @see {@link https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/main/documentation/api/hooks/useThreeResize/README.md} Para manipulação de redimensionamento.
+ * @see {@link /documentation/api/hooks/useThreeCore/README.md} Para inicialização da cena e câmera.
+ * @see {@link /documentation/api/hooks/useThreeRenderers/README.md} Para configuração dos renderizadores e pós-processamento.
+ * @see {@link /documentation/api/hooks/useThreeOrbitControls/README.md} Para configuração dos controles de órbita.
+ * @see {@link /documentation/api/hooks/useThreeSceneElements/README.md} Para configuração de iluminação e plano de chão.
+ * @see {@link /documentation/api/hooks/useThreeResize/README.md} Para manipulação de redimensionamento.
  *
- * @example
- * // Diagrama de Composição do useSceneSetup:
- * \`\`\`mermaid
+ * @example Diagrama de Composição do useSceneSetup:
+ * ```mermaid
  * graph TD
  *     useSceneSetup_Orchestrator["useSceneSetup (Orquestrador)"]
  *
@@ -92,7 +91,7 @@
  *     class H_Core,H_Renderers,H_Controls,H_Elements,H_Resize hook;
  *     class R_Scene,R_Camera,R_Renderer,R_LabelRenderer,R_OrbitControls,R_Composer,R_OutlinePass,R_GroundMesh ref;
  *     class F_RenderersReady,F_ControlsReady,F_SceneReady flag;
- * \`\`\`
+ * ```
  */
 import type * as THREE from 'three';
 import type { OrbitControls as OrbitControlsType } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -167,26 +166,26 @@ export function useSceneSetup(props: UseSceneSetupProps): UseSceneSetupReturn {
   const coreReady = !!(mountRef.current && sceneRef.current && cameraRef.current);
 
   // 2. Renderizadores (WebGL, CSS2D, Composer, OutlinePass)
-  const { 
-    rendererRef, 
-    labelRendererRef, 
-    composerRef, 
-    outlinePassRef, 
-    areRenderersReady 
-  } = useThreeRenderers({ mountRef, sceneRef, cameraRef }); 
+  const {
+    rendererRef,
+    labelRendererRef,
+    composerRef,
+    outlinePassRef,
+    areRenderersReady
+  } = useThreeRenderers({ mountRef, sceneRef, cameraRef });
 
   // 3. OrbitControls - Depende dos renderizadores estarem prontos (para rendererRef.current.domElement)
   const { controlsRef, isControlsReady } = useThreeOrbitControls({
     cameraRef,
-    rendererRef, 
+    rendererRef,
     initialCameraLookAt,
     onCameraChange,
-    renderersReady: areRenderersReady, 
+    renderersReady: areRenderersReady,
   });
 
   // 4. Elementos da Cena (Iluminação, Plano de Chão) - Depende do núcleo estar pronto
   const { groundMeshRef } = useThreeSceneElements({ sceneRef, coreReady });
-  const elementsReady = coreReady && !!groundMeshRef.current; 
+  const elementsReady = coreReady && !!groundMeshRef.current;
 
   // 5. Prontidão combinada para a base da cena (tudo exceto controles, que são assíncronos)
   const baseSceneComponentsReady = coreReady && areRenderersReady && elementsReady;
@@ -199,9 +198,9 @@ export function useSceneSetup(props: UseSceneSetupProps): UseSceneSetupReturn {
     labelRendererRef,
     composerRef,
     outlinePassRef,
-    ready: baseSceneComponentsReady, 
+    ready: baseSceneComponentsReady,
   });
-  
+
   return {
     sceneRef,
     cameraRef,
@@ -211,12 +210,7 @@ export function useSceneSetup(props: UseSceneSetupProps): UseSceneSetupReturn {
     composerRef,
     outlinePassRef,
     groundMeshRef,
-    isSceneReady: baseSceneComponentsReady, 
-    isControlsReady,                      
+    isSceneReady: baseSceneComponentsReady,
+    isControlsReady,
   };
 }
-
-
-    
-
-    

@@ -6,7 +6,7 @@
 
 # Interface: UseCommandHistoryReturn
 
-Defined in: [src/hooks/use-command-history.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/hooks/use-command-history.ts#L67)
+Defined in: [src/hooks/use-command-history.ts:67](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/use-command-history.ts#L67)
 
 Retorno do hook `useCommandHistory`.
  UseCommandHistoryReturn
@@ -17,7 +17,7 @@ Retorno do hook `useCommandHistory`.
 
 > **canRedo**: `boolean`
 
-Defined in: [src/hooks/use-command-history.ts:72](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/hooks/use-command-history.ts#L72)
+Defined in: [src/hooks/use-command-history.ts:72](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/use-command-history.ts#L72)
 
 Verdadeiro se há comandos para refazer, falso caso contrário.
 
@@ -27,7 +27,7 @@ Verdadeiro se há comandos para refazer, falso caso contrário.
 
 > **canUndo**: `boolean`
 
-Defined in: [src/hooks/use-command-history.ts:71](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/hooks/use-command-history.ts#L71)
+Defined in: [src/hooks/use-command-history.ts:71](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/use-command-history.ts#L71)
 
 Verdadeiro se há comandos para desfazer, falso caso contrário.
 
@@ -37,7 +37,7 @@ Verdadeiro se há comandos para desfazer, falso caso contrário.
 
 > **commandHistory**: [`Command`](../../../lib/types/interfaces/Command.md)[]
 
-Defined in: [src/hooks/use-command-history.ts:73](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/hooks/use-command-history.ts#L73)
+Defined in: [src/hooks/use-command-history.ts:73](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/use-command-history.ts#L73)
 
 O array completo do histórico de comandos, principalmente para depuração.
 
@@ -47,7 +47,7 @@ O array completo do histórico de comandos, principalmente para depuração.
 
 > **executeCommand**: (`command`) => `void`
 
-Defined in: [src/hooks/use-command-history.ts:68](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/hooks/use-command-history.ts#L68)
+Defined in: [src/hooks/use-command-history.ts:68](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/use-command-history.ts#L68)
 
 Executa um novo comando e o adiciona ao histórico.
                                                        Limpa o histórico de "redo" futuro.
@@ -68,7 +68,7 @@ Executa um novo comando e o adiciona ao histórico.
 
 > **redo**: () => `void`
 
-Defined in: [src/hooks/use-command-history.ts:70](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/hooks/use-command-history.ts#L70)
+Defined in: [src/hooks/use-command-history.ts:70](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/use-command-history.ts#L70)
 
 Refaz o último comando desfeito, se houver.
 
@@ -82,7 +82,7 @@ Refaz o último comando desfeito, se houver.
 
 > **undo**: () => `void`
 
-Defined in: [src/hooks/use-command-history.ts:69](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/5b477f54175762d5c4c643839351148d429f45bb/src/hooks/use-command-history.ts#L69)
+Defined in: [src/hooks/use-command-history.ts:69](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/7f008de5f667c67ad17e0952a263ff2bb1038f7c/src/hooks/use-command-history.ts#L69)
 
 Desfaz o último comando executado, se houver.
 
