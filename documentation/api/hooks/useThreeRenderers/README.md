@@ -6,11 +6,7 @@
 
 # hooks/useThreeRenderers
 
-## File Overview
-
 Hook customizado para configurar os renderizadores Three.js e o pipeline de pós-processamento.
-
-## Description
 
 Este hook é responsável por inicializar e configurar:
 -   `THREE.WebGLRenderer`: Para a renderização principal da cena 3D.

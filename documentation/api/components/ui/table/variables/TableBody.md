@@ -8,4 +8,4 @@
 
 > `const` **TableBody**: `ForwardRefExoticComponent`\<`HTMLAttributes`\<`HTMLTableSectionElement`\> & `RefAttributes`\<`HTMLTableSectionElement`\>\>
 
-Defined in: [src/components/ui/table.tsx:27](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/components/ui/table.tsx#L27)
+Defined in: [src/components/ui/table.tsx:27](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99674efc74a324fa412d902012012a3688e22f0e/src/components/ui/table.tsx#L27)

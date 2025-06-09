@@ -6,21 +6,7 @@
 
 # components/three-scene
 
-## File Overview
-
 Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
-
-## See
-
- - module:hooks/use-scene-setup~useSceneSetup Para a orquestração da configuração da cena.
- - module:hooks/use-equipment-renderer~useEquipmentRenderer Para a renderização de equipamentos.
- - module:hooks/use-annotation-pin-renderer~useAnnotationPinRenderer Para a renderização de pins de anotação.
- - module:hooks/use-mouse-interaction~useMouseInteractionManager Para interações do mouse.
- - module:hooks/use-scene-outline~useSceneOutline Para o efeito de contorno.
- - module:hooks/use-animation-loop~useAnimationLoop Para o loop de animação.
-
-## Description
-
 Este componente atua como um orquestrador para a visualização 3D.
 Ele delega responsabilidades específicas de configuração e gerenciamento da cena
 para hooks customizados especializados, e então renderiza o elemento DOM
@@ -47,6 +33,15 @@ Responsabilidades Principais:
     que ocorrem devido à interação do usuário ou animações programáticas.
 -   **Fornecimento do Ponto de Montagem:** Renderiza o `div` que serve como contêiner para
     os renderizadores Three.js.
+
+## See
+
+ - /docs/hooks/use-scene-setup.md Para a orquestração da configuração da cena.
+ - /docs/hooks/use-equipment-renderer.md Para a renderização de equipamentos.
+ - /docs/hooks/use-annotation-pin-renderer.md Para a renderização de pins de anotação.
+ - /docs/hooks/use-mouse-interaction.md Para interações do mouse.
+ - /docs/hooks/use-scene-outline.md Para o efeito de contorno.
+ - /docs/hooks/useAnimationLoop.md Para o loop de animação.
 
 ## Example
 

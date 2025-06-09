@@ -6,11 +6,7 @@
 
 # hooks/useThreeCore
 
-## File Overview
-
 Hook customizado para inicializar o núcleo de uma cena Three.js: a Cena (`THREE.Scene`) e a Câmera Perspectiva (`THREE.PerspectiveCamera`).
-
-## Description
 
 Este hook é responsável pela criação fundamental da cena e da câmera.
 A câmera é configurada com uma posição inicial e uma razão de aspecto derivada

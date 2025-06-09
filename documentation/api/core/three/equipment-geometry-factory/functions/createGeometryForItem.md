@@ -8,7 +8,7 @@
 
 > **createGeometryForItem**(`item`): `BufferGeometry`
 
-Defined in: [src/core/three/equipment-geometry-factory.ts:26](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/core/three/equipment-geometry-factory.ts#L26)
+Defined in: [src/core/three/equipment-geometry-factory.ts:26](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99674efc74a324fa412d902012012a3688e22f0e/src/core/three/equipment-geometry-factory.ts#L26)
 
 Cria e retorna uma `THREE.BufferGeometry` apropriada para o tipo de equipamento.
 Seleciona a geometria correta (Box, Cylinder, Sphere) com base no `item.type`

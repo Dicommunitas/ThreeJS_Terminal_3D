@@ -6,19 +6,8 @@
 
 # hooks/useAnnotationManager
 
-## File Overview
-
 Hook customizado para gerenciar o estado e a lógica das anotações textuais dos equipamentos,
-              atuando como uma fachada para o `annotationRepository`.
-
-## See
-
- - module:core/repository/memory-repository~annotationRepository Para a fonte de dados das anotações.
- - module:core/repository/memory-repository~equipmentRepository Para obter dados de equipamentos (e.g., nome para toasts).
- - module:lib/types~Annotation Para a interface de Anotação.
- - module:lib/types~Equipment Para a interface de Equipamento.
-
-## Description
+atuando como uma fachada para o `annotationRepository`.
 
 Este hook é responsável por:
 -   Obter e manter uma cópia local (estado React) das anotações a partir do `annotationRepository`.
@@ -28,6 +17,13 @@ Este hook é responsável por:
 -   Após cada modificação no repositório, o estado local de anotações do hook é atualizado para
     refletir os dados mais recentes, garantindo a reatividade da UI.
 -   Utilizar `useToast` para fornecer feedback visual ao usuário sobre as operações de anotação.
+
+## See
+
+ - /docs/core/repository/memory-repository.md#annotationRepository Para a fonte de dados das anotações.
+ - /docs/core/repository/memory-repository.md#equipmentRepository Para obter dados de equipamentos (e.g., nome para toasts).
+ - /docs/lib/types.md#Annotation Para a interface de Anotação.
+ - /docs/lib/types.md#Equipment Para a interface de Equipamento.
 
 ## Param
 

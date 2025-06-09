@@ -6,17 +6,7 @@
 
 # hooks/useCameraManager
 
-## File Overview
-
 Hook customizado para gerenciar o estado e as interações da câmera 3D.
-
-## See
-
- - module:lib/types~CameraState Para a interface do estado da câmera.
- - module:lib/types~Command Para a interface de comando (usada com `executeCommand`).
- - module:lib/types~TargetSystemInfo Para a interface de informações do sistema alvo.
-
-## Description
 
 Este hook é responsável por:
 -   Manter o estado atual da câmera (posição e ponto de observação - `lookAt`).
@@ -30,6 +20,12 @@ Este hook é responsável por:
 O estado da câmera (`currentCameraState`) é um estado React, garantindo que as atualizações
 sejam propagadas para os componentes que o utilizam (e.g., `ThreeScene` para aplicar
 o estado à câmera Three.js).
+
+## See
+
+ - /docs/lib/types.md#CameraState Para a interface do estado da câmera.
+ - /docs/lib/types.md#Command Para a interface de comando (usada com `executeCommand`).
+ - /docs/lib/types.md#TargetSystemInfo Para a interface de informações do sistema alvo.
 
 ## Param
 
@@ -51,7 +47,7 @@ Propriedades para o hook, incluindo `executeCommand` para integração com hist�
 //     G -- limpa --> C;
 //     F -- em interações manuais, chama --> H(handleCameraChangeFromScene)
 //
-//     H -- cria comando --> I{Command}
+//     H -- cria comando --> I{Comando}
 //     H -- chama --> J(executeCommand)
 //     J -- executa e salva --> I
 //
@@ -63,7 +59,7 @@ Propriedades para o hook, incluindo `executeCommand` para integração com hist�
 //         C
 //         D
 //         E
-//         K[currentCameraState (React State)]
+//         K[currentCameraState (Estado React)]
 //         L[lastCommittedCameraStateForUndoRef (Ref)]
 //     end
 //

@@ -8,7 +8,7 @@
 
 > `const` **default**: `React.FC`\<[`ThreeSceneProps`](../interfaces/ThreeSceneProps.md)\>
 
-Defined in: [src/components/three-scene.tsx:172](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/components/three-scene.tsx#L172)
+Defined in: [src/components/three-scene.tsx:170](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99674efc74a324fa412d902012012a3688e22f0e/src/components/three-scene.tsx#L170)
 
 Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
 Atua como um orquestrador de hooks especializados que gerenciam diferentes aspectos da cena.

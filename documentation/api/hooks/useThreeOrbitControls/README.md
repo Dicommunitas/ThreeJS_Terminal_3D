@@ -6,11 +6,7 @@
 
 # hooks/useThreeOrbitControls
 
-## File Overview
-
 Hook customizado para configurar e gerenciar os `OrbitControls` do Three.js.
-
-## Description
 
 Este hook é responsável por:
 -   Importar dinamicamente o módulo `OrbitControls` dos exemplos do Three.js.
@@ -35,11 +31,11 @@ Este hook é responsável por:
 //     participant useThreeOrbitControls as Hook
 //     participant OrbitControls as Módulo Three.js
 //
-//     ThreeScene ->>+ useThreeOrbitControls: Chama com cameraRef, rendererRef.domElement, etc.
+//     ThreeScene ->>+ useThreeOrbitControls: Chama com cameraRef, rendererRef, etc.
 //     Note right of useThreeOrbitControls: renderersReady = true?
 //     useThreeOrbitControls ->>+ OrbitControls: import('OrbitControls.js')
 //     OrbitControls -->>- useThreeOrbitControls: Módulo carregado
-//     useThreeOrbitControls -->> OrbitControls: new OrbitControls(camera, domElement)
+//     useThreeOrbitControls -->> OrbitControls: new OrbitControls(camera, renderer.domElement)
 //     useThreeOrbitControls -->> OrbitControls: Configura (enableDamping, target, mouseButtons)
 //     useThreeOrbitControls -->> OrbitControls: addEventListener('end', handleEnd)
 //     useThreeOrbitControls -->> ThreeScene: Retorna controlsRef, isControlsReady = true

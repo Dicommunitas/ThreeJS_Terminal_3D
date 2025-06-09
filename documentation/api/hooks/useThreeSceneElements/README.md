@@ -6,21 +6,17 @@
 
 # hooks/useThreeSceneElements
 
-## File Overview
-
 Hook customizado para configurar elementos básicos da cena Three.js, como iluminação e plano de chão.
-
-## See
-
- - module:core/three/scene-elements-setup~setupLighting Para a função de configuração da iluminação.
- - module:core/three/scene-elements-setup~setupGroundPlane Para a função de configuração do plano de chão.
-
-## Description
 
 Este hook é responsável por adicionar elementos visuais e de ambiente fundamentais à cena.
 Ele utiliza funções de utilidade (`setupLighting`, `setupGroundPlane`) para criar e adicionar
 luzes (ambiente, hemisférica, direcional) e uma malha (mesh) para o plano de chão.
 A execução depende da prontidão do núcleo da cena (objeto `THREE.Scene`).
+
+## See
+
+ - /docs/core/three/scene-elements-setup.md#setupLighting Para a função de configuração da iluminação.
+ - /docs/core/three/scene-elements-setup.md#setupGroundPlane Para a função de configuração do plano de chão.
 
 ## Example
 
@@ -31,24 +27,24 @@ A execução depende da prontidão do núcleo da cena (objeto `THREE.Scene`).
 //     useThreeSceneElements["useThreeSceneElements (Hook)"]
 //     Props["UseThreeSceneElementsProps"]
 //     Return["UseThreeSceneElementsReturn"]
-//     SceneRef["sceneRef (da Cena Principal)"]
-//     CoreReady["coreReady (flag)"]
-//     Utils["scene-elements-setup Utilities"]
-//     Lighting["Iluminação (Ambient, Hemisphere, Directional)"]
-//     GroundPlane["Plano de Chão (THREE.Mesh)"]
+//     SceneRef_Prop["sceneRef (da Cena Principal)"]
+//     CoreReady_Flag["coreReady (flag)"]
+//     Utils_Module["scene-elements-setup Utilities"]
+//     Lighting_Elements["Iluminação (Ambient, Hemisphere, Directional)"]
+//     GroundPlane_Mesh["Plano de Chão (THREE.Mesh)"]
 //
-//     Props -- define --> SceneRef
-//     Props -- define --> CoreReady
+//     Props -- define --> SceneRef_Prop
+//     Props -- define --> CoreReady_Flag
 //     Props --> useThreeSceneElements
 //
-//     useThreeSceneElements -- verifica --> CoreReady
-//     useThreeSceneElements -- usa --> SceneRef
-//     useThreeSceneElements -- chama --> Utils
-//     Utils -- adiciona à cena --> Lighting
-//     Utils -- cria e adiciona à cena --> GroundPlane
+//     useThreeSceneElements -- verifica --> CoreReady_Flag
+//     useThreeSceneElements -- usa --> SceneRef_Prop
+//     useThreeSceneElements -- chama --> Utils_Module
+//     Utils_Module -- adiciona à cena --> Lighting_Elements
+//     Utils_Module -- cria e adiciona à cena --> GroundPlane_Mesh
 //
 //     useThreeSceneElements -- retorna ref para --> Return
-//     Return -- contém ref para --> GroundPlane
+//     Return -- contém ref para --> GroundPlane_Mesh
 //
 //     classDef hook fill:#lightblue,stroke:#333,stroke-width:2px;
 //     classDef type fill:#lightgoldenrodyellow,stroke:#333,stroke-width:2px;
@@ -57,10 +53,10 @@ A execução depende da prontidão do núcleo da cena (objeto `THREE.Scene`).
 //     classDef flag fill:#lightpink,stroke:#333,stroke-width:2px;
 //
 //     class useThreeSceneElements hook;
-//     class Props,Return,SceneRef type;
-//     class CoreReady flag;
-//     class Lighting,GroundPlane obj3d;
-//     class Utils util;
+//     class Props,Return,SceneRef_Prop type;
+//     class CoreReady_Flag flag;
+//     class Lighting_Elements,GroundPlane_Mesh obj3d;
+//     class Utils_Module util;
 ```
 
 ## Interfaces

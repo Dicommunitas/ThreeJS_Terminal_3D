@@ -6,19 +6,7 @@
 
 # hooks/use-scene-setup
 
-## File Overview
-
 Hook orquestrador para a configuração completa de uma cena Three.js.
-
-## See
-
- - module:hooks/useThreeCore~useThreeCore Para inicialização da cena e câmera.
- - module:hooks/useThreeRenderers~useThreeRenderers Para configuração dos renderizadores e pós-processamento.
- - module:hooks/useThreeOrbitControls~useThreeOrbitControls Para configuração dos controles de órbita.
- - module:hooks/useThreeSceneElements~useThreeSceneElements Para configuração de iluminação e plano de chão.
- - module:hooks/useThreeResize~useThreeResize Para manipulação de redimensionamento.
-
-## Description
 
 Este hook atua como um orquestrador, compondo vários hooks especializados para inicializar
 todos os aspectos de um ambiente Three.js. Ele gerencia a sequência de setup,
@@ -37,6 +25,14 @@ Responsabilidades Principais:
 -   **Agregação de Refs e Estado:** Coleta e retorna as refs para os objetos Three.js criados
     (e.g., `sceneRef`, `cameraRef`, `rendererRef`) e as flags de estado de prontidão
     (`isSceneReady`, `isControlsReady`).
+
+## See
+
+ - /docs/hooks/useThreeCore.md Para inicialização da cena e câmera.
+ - /docs/hooks/useThreeRenderers.md Para configuração dos renderizadores e pós-processamento.
+ - /docs/hooks/useThreeOrbitControls.md Para configuração dos controles de órbita.
+ - /docs/hooks/useThreeSceneElements.md Para configuração de iluminação e plano de chão.
+ - /docs/hooks/useThreeResize.md Para manipulação de redimensionamento.
 
 ## Example
 

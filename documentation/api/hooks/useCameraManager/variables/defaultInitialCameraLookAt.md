@@ -8,7 +8,7 @@
 
 > `const` **defaultInitialCameraLookAt**: `object`
 
-Defined in: [src/hooks/use-camera-manager.ts:83](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/use-camera-manager.ts#L83)
+Defined in: [src/hooks/use-camera-manager.ts:81](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99674efc74a324fa412d902012012a3688e22f0e/src/hooks/use-camera-manager.ts#L81)
 
 Ponto de observação (lookAt) inicial padrão da câmera: { x: 0, y: 2, z: 0 }.
 

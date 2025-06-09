@@ -1,5 +1,6 @@
 
 /**
+ * @module app/page
  * Componente principal da página da aplicação Terminal 3D.
  *
  * Responsabilidades:
@@ -21,37 +22,36 @@
  * 6.  **Passagem de Props e Callbacks:** Conecta os hooks de estado aos componentes da UI,
  *     fornecendo os dados necessários e as funções de callback para manipulação de eventos.
  *
- * @module app/page
- * @see {@link /docs/components/main-scene-area/README.md} Para a área principal da cena.
- * @see {@link /docs/components/ui/sidebar/README.md} Para a barra lateral de controles.
- * @see {@link /docs/components/annotation-dialog/README.md} Para o diálogo de anotações.
- * @see {@link /docs/hooks/use-command-history.md} Para o gerenciamento de histórico de comandos.
- * @see {@link /docs/hooks/use-equipment-data-manager.md} Para o gerenciamento de dados de equipamentos.
- * @see {@link /docs/hooks/use-camera-manager.md} Para o gerenciamento da câmera.
- * @see {@link /docs/hooks/use-filter-manager.md} Para o gerenciamento de filtros.
- * @see {@link /docs/hooks/use-annotation-manager.md} Para o gerenciamento de anotações.
- * @see {@link /docs/hooks/use-equipment-selection-manager.md} Para o gerenciamento de seleção de equipamentos.
- * @see {@link /docs/hooks/use-layer-manager.md} Para o gerenciamento de camadas.
+ * @see {@link ../../components/main-scene-area/README.md} Para a área principal da cena.
+ * @see {@link ../../components/ui/sidebar/README.md} Para a barra lateral de controles.
+ * @see {@link ../../components/annotation-dialog/README.md} Para o diálogo de anotações.
+ * @see {@link ../../hooks/use-command-history/README.md} Para o gerenciamento de histórico de comandos.
+ * @see {@link ../../hooks/use-equipment-data-manager/README.md} Para o gerenciamento de dados de equipamentos.
+ * @see {@link ../../hooks/use-camera-manager/README.md} Para o gerenciamento da câmera.
+ * @see {@link ../../hooks/use-filter-manager/README.md} Para o gerenciamento de filtros.
+ * @see {@link ../../hooks/use-annotation-manager/README.md} Para o gerenciamento de anotações.
+ * @see {@link ../../hooks/use-equipment-selection-manager/README.md} Para o gerenciamento de seleção de equipamentos.
+ * @see {@link ../../hooks/use-layer-manager/README.md} Para o gerenciamento de camadas.
  *
  * @example
  * // Diagrama de Interação de Alto Nível da Terminal3DPage
  * // mermaid
  * // graph LR
- * //     Terminal3DPage["Terminal3DPage (Página Principal)"] --> H_CmdHistory["useCommandHistory"];
- * //     Terminal3DPage --> H_EquipData["useEquipmentDataManager"];
- * //     Terminal3DPage --> H_CameraMgr["useCameraManager"];
- * //     Terminal3DPage --> H_FilterMgr["useFilterManager"];
- * //     Terminal3DPage --> H_AnnotMgr["useAnnotationManager"];
- * //     Terminal3DPage --> H_EquipSelectMgr["useEquipmentSelectionManager"];
- * //     Terminal3DPage --> H_LayerMgr["useLayerManager"];
+ * //     Terminal3DPage["Terminal3DPage (Página Principal)"] --> H_CmdHistory["useCommandHistory (Hook Histórico)"];
+ * //     Terminal3DPage --> H_EquipData["useEquipmentDataManager (Hook Dados Equip.)"];
+ * //     Terminal3DPage --> H_CameraMgr["useCameraManager (Hook Câmera)"];
+ * //     Terminal3DPage --> H_FilterMgr["useFilterManager (Hook Filtros)"];
+ * //     Terminal3DPage --> H_AnnotMgr["useAnnotationManager (Hook Anotações)"];
+ * //     Terminal3DPage --> H_EquipSelectMgr["useEquipmentSelectionManager (Hook Seleção)"];
+ * //     Terminal3DPage --> H_LayerMgr["useLayerManager (Hook Camadas)"];
  * //
- * //     Terminal3DPage --> MainSceneArea_Comp["MainSceneArea (Área da Cena)"];
- * //     Terminal3DPage --> Sidebar_Comp["Sidebar (Barra Lateral)"];
- * //     Terminal3DPage --> AnnotationDialog_Comp["AnnotationDialog (Diálogo de Anotação)"];
+ * //     Terminal3DPage --> MainSceneArea_Comp["MainSceneArea (Comp. Área da Cena)"];
+ * //     Terminal3DPage --> Sidebar_Comp["Sidebar (Comp. Barra Lateral)"];
+ * //     Terminal3DPage --> AnnotationDialog_Comp["AnnotationDialog (Comp. Diálogo Anotação)"];
  * //
- * //     MainSceneArea_Comp --> ThreeScene_Comp["ThreeScene (Renderizador 3D)"];
- * //     MainSceneArea_Comp --> InfoPanel_Comp["InfoPanel (Painel de Informações)"];
- * //     Sidebar_Comp --> SidebarContentLayout_Comp["SidebarContentLayout (Conteúdo da Sidebar)"];
+ * //     MainSceneArea_Comp --> ThreeScene_Comp["ThreeScene (Comp. Cena 3D)"];
+ * //     MainSceneArea_Comp --> InfoPanel_Comp["InfoPanel (Comp. Painel Info)"];
+ * //     Sidebar_Comp --> SidebarContentLayout_Comp["SidebarContentLayout (Comp. Conteúdo Sidebar)"];
  * //
  * //     subgraph "Hooks de Gerenciamento de Estado da Aplicação"
  * //       H_CmdHistory;
@@ -343,3 +343,5 @@ export default function Terminal3DPage(): JSX.Element {
     </SidebarProvider>
   );
 }
+
+    

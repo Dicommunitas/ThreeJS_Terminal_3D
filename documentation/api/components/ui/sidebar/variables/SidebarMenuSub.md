@@ -8,7 +8,7 @@
 
 > `const` **SidebarMenuSub**: `ForwardRefExoticComponent`\<`Omit`\<`DetailedHTMLProps`\<`HTMLAttributes`\<`HTMLUListElement`\>, `HTMLUListElement`\>, `"ref"`\> & `RefAttributes`\<`HTMLUListElement`\>\>
 
-Defined in: [src/components/ui/sidebar.tsx:876](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/components/ui/sidebar.tsx#L876)
+Defined in: [src/components/ui/sidebar.tsx:876](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99674efc74a324fa412d902012012a3688e22f0e/src/components/ui/sidebar.tsx#L876)
 
 Lista `<ul>` para um submenu dentro de um `SidebarMenuButton` (geralmente usado com dropdowns ou accordions).
 Fica oculto quando a sidebar está em modo "icon".

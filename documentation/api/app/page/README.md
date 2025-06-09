@@ -6,25 +6,6 @@
 
 # app/page
 
-## File Overview
-
-Componente principal da página da aplicação Terminal 3D.
-
-## See
-
- - module:components/main-scene-area~MainSceneArea Para a área principal da cena.
- - module:components/ui/sidebar~Sidebar Para a barra lateral de controles.
- - module:components/annotation-dialog~AnnotationDialog Para o diálogo de anotações.
- - module:hooks/use-command-history~useCommandHistory Para o gerenciamento de histórico de comandos.
- - module:hooks/use-equipment-data-manager~useEquipmentDataManager Para o gerenciamento de dados de equipamentos.
- - module:hooks/use-camera-manager~useCameraManager Para o gerenciamento da câmera.
- - module:hooks/use-filter-manager~useFilterManager Para o gerenciamento de filtros.
- - module:hooks/use-annotation-manager~useAnnotationManager Para o gerenciamento de anotações.
- - module:hooks/use-equipment-selection-manager~useEquipmentSelectionManager Para o gerenciamento de seleção de equipamentos.
- - module:hooks/use-layer-manager~useLayerManager Para o gerenciamento de camadas.
-
-## Description
-
 Componente principal da página da aplicação Terminal 3D.
 
 Responsabilidades:
@@ -45,6 +26,19 @@ Responsabilidades:
     a `Sidebar` (com seus controles) e o `AnnotationDialog`.
 6.  **Passagem de Props e Callbacks:** Conecta os hooks de estado aos componentes da UI,
     fornecendo os dados necessários e as funções de callback para manipulação de eventos.
+
+## See
+
+ - /docs/components/main-scene-area/README.md Para a área principal da cena.
+ - /docs/components/ui/sidebar/README.md Para a barra lateral de controles.
+ - /docs/components/annotation-dialog/README.md Para o diálogo de anotações.
+ - /docs/hooks/use-command-history.md Para o gerenciamento de histórico de comandos.
+ - /docs/hooks/use-equipment-data-manager.md Para o gerenciamento de dados de equipamentos.
+ - /docs/hooks/use-camera-manager.md Para o gerenciamento da câmera.
+ - /docs/hooks/use-filter-manager.md Para o gerenciamento de filtros.
+ - /docs/hooks/use-annotation-manager.md Para o gerenciamento de anotações.
+ - /docs/hooks/use-equipment-selection-manager.md Para o gerenciamento de seleção de equipamentos.
+ - /docs/hooks/use-layer-manager.md Para o gerenciamento de camadas.
 
 ## Example
 

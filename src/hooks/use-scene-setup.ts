@@ -1,5 +1,6 @@
 
 /**
+ * @module hooks/use-scene-setup
  * Hook orquestrador para a configuração completa de uma cena Three.js.
  *
  * Este hook atua como um orquestrador, compondo vários hooks especializados para inicializar
@@ -20,12 +21,11 @@
  *     (e.g., `sceneRef`, `cameraRef`, `rendererRef`) e as flags de estado de prontidão
  *     (`isSceneReady`, `isControlsReady`).
  *
- * @module hooks/use-scene-setup
- * @see {@link /docs/hooks/useThreeCore.md} Para inicialização da cena e câmera.
- * @see {@link /docs/hooks/useThreeRenderers.md} Para configuração dos renderizadores e pós-processamento.
- * @see {@link /docs/hooks/useThreeOrbitControls.md} Para configuração dos controles de órbita.
- * @see {@link /docs/hooks/useThreeSceneElements.md} Para configuração de iluminação e plano de chão.
- * @see {@link /docs/hooks/useThreeResize.md} Para manipulação de redimensionamento.
+ * @see {@link ../../hooks/useThreeCore/README.md} Para inicialização da cena e câmera.
+ * @see {@link ../../hooks/useThreeRenderers/README.md} Para configuração dos renderizadores e pós-processamento.
+ * @see {@link ../../hooks/useThreeOrbitControls/README.md} Para configuração dos controles de órbita.
+ * @see {@link ../../hooks/useThreeSceneElements/README.md} Para configuração de iluminação e plano de chão.
+ * @see {@link ../../hooks/useThreeResize/README.md} Para manipulação de redimensionamento.
  *
  * @example
  * // Diagrama de Composição do useSceneSetup
@@ -177,7 +177,7 @@ export function useSceneSetup(props: UseSceneSetupProps): UseSceneSetupReturn {
   // 3. OrbitControls - Depende dos renderizadores estarem prontos (para rendererRef.current.domElement)
   const { controlsRef, isControlsReady } = useThreeOrbitControls({
     cameraRef,
-    rendererRef,
+    rendererRef, // Passa o rendererRef inteiro
     initialCameraLookAt,
     onCameraChange,
     renderersReady: areRenderersReady, // Passa a flag de prontidão dos renderizadores
@@ -214,3 +214,5 @@ export function useSceneSetup(props: UseSceneSetupProps): UseSceneSetupReturn {
     isControlsReady,                      
   };
 }
+
+    

@@ -1,5 +1,6 @@
 
 /**
+ * @module core/repository/memory-repository
  * Repositório em memória para gerenciar os dados da aplicação Terminal 3D.
  *
  * Este módulo atua como a "fonte da verdade" para os dados de `Equipment` (equipamentos) e `Annotation` (anotações)
@@ -11,10 +12,9 @@
  * Funções de obtenção (get/getAll) retornam cópias dos objetos para promover a imutabilidade
  * e evitar modificações acidentais do estado interno do repositório por referências externas.
  *
- * @module core/repository/memory-repository
- * @see {@link /docs/core/data/initial-data.md} Para os dados iniciais de equipamentos e camadas.
- * @see {@link /docs/lib/types.md#Equipment} Para a interface de Equipamento.
- * @see {@link /docs/lib/types.md#Annotation} Para a interface de Anotação.
+ * @see {@link ../../core/data/initial-data/README.md} Para os dados iniciais de equipamentos e camadas.
+ * @see {@link ../../lib/types/README.md#Equipment} Para a interface de Equipamento.
+ * @see {@link ../../lib/types/README.md#Annotation} Para a interface de Anotação.
  *
  * @example
  * // Diagrama de Estrutura do Repositório em Memória
@@ -214,3 +214,5 @@ export const annotationRepository = {
     annotations.forEach(an => annotationStore.set(an.equipmentTag, { ...an })); 
   }
 };
+
+    

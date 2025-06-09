@@ -1,5 +1,6 @@
 
 /**
+ * @module components/three-scene
  * Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
  * Este componente atua como um orquestrador para a visualização 3D.
  * Ele delega responsabilidades específicas de configuração e gerenciamento da cena
@@ -28,13 +29,12 @@
  * -   **Fornecimento do Ponto de Montagem:** Renderiza o `div` que serve como contêiner para
  *     os renderizadores Three.js.
  *
- * @module components/three-scene
- * @see {@link /docs/hooks/use-scene-setup.md} Para a orquestração da configuração da cena.
- * @see {@link /docs/hooks/use-equipment-renderer.md} Para a renderização de equipamentos.
- * @see {@link /docs/hooks/use-annotation-pin-renderer.md} Para a renderização de pins de anotação.
- * @see {@link /docs/hooks/use-mouse-interaction.md} Para interações do mouse.
- * @see {@link /docs/hooks/use-scene-outline.md} Para o efeito de contorno.
- * @see {@link /docs/hooks/useAnimationLoop.md} Para o loop de animação.
+ * @see {@link ../../hooks/use-scene-setup/README.md} Para a orquestração da configuração da cena.
+ * @see {@link ../../hooks/use-equipment-renderer/README.md} Para a renderização de equipamentos.
+ * @see {@link ../../hooks/use-annotation-pin-renderer/README.md} Para a renderização de pins de anotação.
+ * @see {@link ../../hooks/use-mouse-interaction/README.md} Para interações do mouse.
+ * @see {@link ../../hooks/use-scene-outline/README.md} Para o efeito de contorno.
+ * @see {@link ../../hooks/useAnimationLoop/README.md} Para o loop de animação.
  *
  * @example
  * // Diagrama de Composição do ThreeScene e seus Hooks
@@ -423,3 +423,5 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
 };
 
 export default ThreeScene;
+
+    

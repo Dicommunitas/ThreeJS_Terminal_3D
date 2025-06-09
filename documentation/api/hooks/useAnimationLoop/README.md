@@ -6,11 +6,7 @@
 
 # hooks/useAnimationLoop
 
-## File Overview
-
 Hook customizado para gerenciar o loop de animação de uma cena Three.js.
-
-## Description
 
 Este hook é responsável por encapsular a lógica de `requestAnimationFrame`
 para renderizar continuamente uma cena Three.js. Ele lida com:
@@ -44,7 +40,7 @@ Propriedades para configurar o loop de animação.
 //     ComponentePai ->>+ useAnimationLoop: Chama com refs e isSceneReady=true
 //     useAnimationLoop ->> Navegador: requestAnimationFrame(animate)
 //     Navegador -->> useAnimationLoop: Chama animate()
-//     loop Cada Frame
+//     loop Cada Quadro
 //         useAnimationLoop ->> OrbitControls: controls.update() (se habilitado)
 //         useAnimationLoop ->> ComponentePai: onFrameUpdate() (callback opcional)
 //         useAnimationLoop ->> EffectComposer: composer.render()

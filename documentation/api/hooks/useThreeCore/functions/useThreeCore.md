@@ -8,7 +8,7 @@
 
 > **useThreeCore**(`props`): [`UseThreeCoreReturn`](../interfaces/UseThreeCoreReturn.md)
 
-Defined in: [src/hooks/useThreeCore.ts:77](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/useThreeCore.ts#L77)
+Defined in: [src/hooks/useThreeCore.ts:75](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99674efc74a324fa412d902012012a3688e22f0e/src/hooks/useThreeCore.ts#L75)
 
 Inicializa o núcleo da cena Three.js (cena e câmera perspectiva).
 

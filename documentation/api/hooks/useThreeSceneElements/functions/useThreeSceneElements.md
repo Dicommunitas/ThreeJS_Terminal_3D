@@ -8,7 +8,7 @@
 
 > **useThreeSceneElements**(`props`): [`UseThreeSceneElementsReturn`](../interfaces/UseThreeSceneElementsReturn.md)
 
-Defined in: [src/hooks/useThreeSceneElements.ts:84](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/f5c93cd9cb50877abddbfdd17b8806f71c23b36b/src/hooks/useThreeSceneElements.ts#L84)
+Defined in: [src/hooks/useThreeSceneElements.ts:82](https://github.com/Dicommunitas/ThreeJS_Terminal_3D/blob/99674efc74a324fa412d902012012a3688e22f0e/src/hooks/useThreeSceneElements.ts#L82)
 
 Configura elementos básicos da cena, como iluminação e plano de chão.
 
