@@ -1,7 +1,5 @@
 
-
 /**
- * @module components/three-scene
  * Componente React principal para renderizar e interagir com a cena 3D usando Three.js.
  *
  * Este componente atua como um orquestrador para a visualização 3D.
@@ -31,12 +29,12 @@
  * -   **Fornecimento do Ponto de Montagem:** Renderiza o `div` que serve como contêiner para
  *     os renderizadores Three.js.
  *
- * @see {@link documentation/api/hooks/use-scene-setup/README.md} Para a orquestração da configuração da cena.
- * @see {@link documentation/api/hooks/use-equipment-renderer/README.md} Para a renderização de equipamentos.
- * @see {@link documentation/api/hooks/use-annotation-pin-renderer/README.md} Para a renderização de pins de anotação.
- * @see {@link documentation/api/hooks/use-mouse-interaction/README.md} Para interações do mouse.
- * @see {@link documentation/api/hooks/use-scene-outline/README.md} Para o efeito de contorno.
- * @see {@link documentation/api/hooks/useAnimationLoop/README.md} Para o loop de animação.
+ * @see {@link /documentation/api/hooks/use-scene-setup/README.md} Para a orquestração da configuração da cena.
+ * @see {@link /documentation/api/hooks/use-equipment-renderer/README.md} Para a renderização de equipamentos.
+ * @see {@link /documentation/api/hooks/use-annotation-pin-renderer/README.md} Para a renderização de pins de anotação.
+ * @see {@link /documentation/api/hooks/use-mouse-interaction/README.md} Para interações do mouse.
+ * @see {@link /documentation/api/hooks/use-scene-outline/README.md} Para o efeito de contorno.
+ * @see {@link /documentation/api/hooks/useAnimationLoop/README.md} Para o loop de animação.
  *
  * Diagrama de Composição do ThreeScene e seus Hooks:
  * ```mermaid
@@ -226,15 +224,34 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
     const material = new THREE.MeshStandardMaterial({
       color: finalColor, metalness: 0.3, roughness: 0.6, transparent: false, opacity: 1.0,
     });
-    const geometry = createGeometryForItem(item);
-    const mesh = new THREE.Mesh(geometry, material);
-    mesh.position.set(item.position.x, item.position.y, item.position.z);
-    if (item.rotation) mesh.rotation.set(item.rotation.x, item.rotation.y, item.rotation.z);
-    mesh.userData = { tag: item.tag, type: item.type, sistema: item.sistema };
-    mesh.castShadow = false;
-    mesh.receiveShadow = false;
-    mesh.visible = true;
-    return mesh;
+    
+    const geometryOrGroup = createGeometryForItem(item);
+    let meshOrGroup: THREE.Object3D;
+
+    if (geometryOrGroup instanceof THREE.Group) {
+        meshOrGroup = geometryOrGroup;
+        // Aplica o material a todos os meshes filhos do grupo
+        meshOrGroup.traverse((object) => {
+            if (object instanceof THREE.Mesh) {
+                object.material = material;
+                object.castShadow = false;
+                object.receiveShadow = false;
+            }
+        });
+    } else { // THREE.BufferGeometry
+        meshOrGroup = new THREE.Mesh(geometryOrGroup, material);
+        (meshOrGroup as THREE.Mesh).castShadow = false;
+        (meshOrGroup as THREE.Mesh).receiveShadow = false;
+    }
+    
+    meshOrGroup.position.set(item.position.x, item.position.y, item.position.z);
+    if (item.rotation) {
+      meshOrGroup.rotation.set(item.rotation.x, item.rotation.y, item.rotation.z);
+    }
+    meshOrGroup.userData = { tag: item.tag, type: item.type, sistema: item.sistema };
+    meshOrGroup.visible = true; // Visibilidade inicial controlada aqui, pode ser ajustada por camadas
+    
+    return meshOrGroup;
   }, [colorMode]);
 
   const equipmentMeshesRef = useEquipmentRenderer({
@@ -324,6 +341,8 @@ const ThreeScene: React.FC<ThreeSceneProps> = (props) => {
         return;
       }
     } else {
+      // Caso especial para 'INITIAL_LOAD_NO_SYSTEM', não precisa de meshes para calcular a vista.
+      // A câmera já deve estar na posição inicial desejada pelo useCameraManager/useSceneSetup.
       onSystemFramedRef.current?.();
       return;
     }

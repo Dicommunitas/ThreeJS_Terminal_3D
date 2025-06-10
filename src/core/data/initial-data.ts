@@ -43,7 +43,8 @@ export const initialEquipment: Equipment[] = [
 
   // New Equipment Types
   { tag: 'sphere-01', name: 'LPG Sphere', type: 'Sphere', sistema: 'GA', area: 'Área 70', operationalState: 'operando', product: 'GLP', position: { x: 20, y: 4, z: 5 }, radius: 4, color: '#AED581', details: 'Pressurized sphere for LPG storage.' },
-  { tag: 'vessel-01', name: 'Separation Vessel', type: 'Vessel', sistema: 'MTBE', area: 'Área 32', operationalState: 'operando', product: 'Mistura', position: { x: 3, y: 3, z: -18 }, radius: 1.5, height: 5, color: '#FFD54F', details: 'Vertical separation vessel.', orientation: 'vertical' },
+  { tag: 'vessel-01', name: 'Separation Vessel V', type: 'Vessel', sistema: 'MTBE', area: 'Área 32', operationalState: 'operando', product: 'Mistura', position: { x: 3, y: 3, z: -18 }, radius: 1.5, height: 5, color: '#FFD54F', details: 'Vertical separation vessel.', orientation: 'vertical' },
+  { tag: 'vessel-02', name: 'Horizontal Separator H', type: 'Vessel', sistema: 'GA', area: 'Área 32', operationalState: 'operando', product: 'Gás/Líquido', position: { x: 8, y: 1.5, z: -18 }, radius: 1.2, height: 6, color: '#FFC107', details: 'Horizontal three-phase separator.', orientation: 'horizontal', rotation: { x: 0, y: 0, z: Math.PI / 2 } },
   { tag: 'pump-01', name: 'Transfer Pump P-101A', type: 'Pump', sistema: 'ODB', area: 'Área 33', operationalState: 'operando', product: '70H', position: { x: -6, y: 0.5, z: 15 }, size: {width: 1, height: 1, depth: 1.5}, color: '#F06292', details: 'Main product transfer pump.', pumpType: 'centrifuga', motorDetails: { potenciaCv: 50, tensao: '440V'} },
   { tag: 'ship-01', name: 'Oil Tanker "Norte"', type: 'Ship', sistema: 'QAV', area: 'Cais 01', operationalState: 'operando', product: 'Petróleo Cru', position: { x: -30, y: 1, z: 0 }, size: { width: 10, height: 4, depth: 40 }, color: '#64B5F6', details: 'Oil tanker for crude oil transport.', capacityDwt: 50000 },
   { tag: 'barge-01', name: 'Fuel Barge B-01', type: 'Barge', sistema: 'LASTRO', area: 'Cais 02', operationalState: 'não operando', product: 'Diesel', position: { x: -25, y: 0.5, z: 15 }, size: { width: 6, height: 2, depth: 20 }, color: '#81C784', details: 'Barge for diesel fuel.', capacityDwt: 5000 },
@@ -74,6 +75,3 @@ export const initialLayers: Layer[] = [
  * a menos que queira popular com dados de exemplo.
  */
 export const initialAnnotations: Annotation[] = [];
-    
-
-    

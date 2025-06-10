@@ -9,7 +9,7 @@
  * (WebGL e CSS2D), pipeline de pós-processamento (EffectComposer, OutlinePass), e a
  * sincronização dinâmica dos meshes de equipamentos com os dados da aplicação.
  *
- * @example Diagrama de Estrutura e Interdependências:
+ * Diagrama de Estrutura e Interdependências:
  * ```mermaid
  *   graph TD;
  *     A[setupRenderPipeline] --> B{renderer: WebGLRenderer};
@@ -169,7 +169,7 @@ export function setupRenderPipeline(
  * @property createSingleEquipmentMesh - Função callback para criar um mesh de equipamento individual.
  * @property groundMeshRef - Ref para o mesh do plano de chão, para controle de visibilidade.
  *
- * @example Representação da interface:
+ * Representação da interface:
  * ```mermaid
  * classDiagram
  *     class UpdateEquipmentMeshesParams {
@@ -254,22 +254,25 @@ export function updateEquipmentMeshesInScene({
   const tagsInNewData = new Set(newEquipmentData.map(e => e.tag));
   const newVisibleMeshesList: THREE.Object3D[] = [];
 
-  equipmentMeshesRef.current.forEach(mesh => {
-    const itemTag = mesh.userData.tag;
+  equipmentMeshesRef.current.forEach(existingMesh => {
+    const itemTag = existingMesh.userData.tag;
     const itemInNewData = newEquipmentData.find(e => e.tag === itemTag);
     const layerForItem = itemInNewData ? layers.find(l => l.equipmentType === itemInNewData.type) : undefined;
     const isVisibleByLayer = layerForItem?.isVisible ?? (itemInNewData ? true : false);
 
     if (!tagsInNewData.has(itemTag) || (itemInNewData && !isVisibleByLayer)) {
-      scene.remove(mesh);
-      if (mesh instanceof THREE.Mesh) {
-        mesh.geometry?.dispose();
-        if (Array.isArray(mesh.material)) {
-          (mesh.material as THREE.Material[]).forEach(m => m.dispose());
-        } else if (mesh.material) {
-          (mesh.material as THREE.Material).dispose();
+      scene.remove(existingMesh);
+      // Dispose resources of the mesh and its children if it's a group
+      existingMesh.traverse((object) => {
+        if (object instanceof THREE.Mesh) {
+          object.geometry?.dispose();
+          if (Array.isArray(object.material)) {
+            (object.material as THREE.Material[]).forEach(m => m.dispose());
+          } else if (object.material) {
+            (object.material as THREE.Material).dispose();
+          }
         }
-      }
+      });
       currentMeshesByTag.delete(itemTag);
     }
   });
@@ -286,18 +289,20 @@ export function updateEquipmentMeshesInScene({
 
     if (existingMesh) {
         scene.remove(existingMesh);
-        if (existingMesh instanceof THREE.Mesh) {
-            existingMesh.geometry?.dispose();
-             if (Array.isArray(existingMesh.material)) {
-                (existingMesh.material as THREE.Material[]).forEach(m => m.dispose());
-            } else if (existingMesh.material) {
-                (existingMesh.material as THREE.Material).dispose();
+        existingMesh.traverse((object) => {
+            if (object instanceof THREE.Mesh) {
+                object.geometry?.dispose();
+                if (Array.isArray(object.material)) {
+                    (object.material as THREE.Material[]).forEach(m => m.dispose());
+                } else if (object.material) {
+                    (object.material as THREE.Material).dispose();
+                }
             }
-        }
+        });
     }
 
     const newOrUpdatedMesh = createSingleEquipmentMesh(item);
-    newOrUpdatedMesh.visible = isVisibleByLayer;
+    newOrUpdatedMesh.visible = isVisibleByLayer; // Ensure visibility is set based on layer
     scene.add(newOrUpdatedMesh);
     newVisibleMeshesList.push(newOrUpdatedMesh);
   });
