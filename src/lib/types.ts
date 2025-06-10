@@ -14,7 +14,7 @@
  * @interface Equipment
  * @property {string} tag - Identificador único e imutável do equipamento (e.g., "bldg-01", "tank-alpha"). Usado como chave.
  * @property {string} name - Nome legível do equipamento para exibição na UI (e.g., "Main Office", "Storage Tank Alpha").
- * @property {'Building' | 'Crane' | 'Tank' | 'Terrain' | 'Pipe' | 'Valve'} type - Categoria do equipamento, influencia sua geometria e interações.
+ * @property {'Building' | 'Crane' | 'Tank' | 'Terrain' | 'Pipe' | 'Valve' | 'Sphere' | 'Vessel' | 'Pump' | 'Ship' | 'Barge'} type - Categoria do equipamento, influencia sua geometria e interações.
  *           'Terrain' é um tipo especial para o plano de chão.
  * @property {string} [sistema] - O sistema operacional ou funcional ao qual o equipamento pertence (e.g., "GA", "ODB"). Opcional.
  * @property {string} [area] - A área física ou lógica onde o equipamento está localizado (e.g., "Área 31", "Área de Processo"). Opcional.
@@ -24,27 +24,49 @@
  *                               Usado para colorização e informação. Opcional.
  * @property {{ x: number; y: number; z: number }} position - Coordenadas (x, y, z) do centro geométrico do equipamento no espaço da cena.
  * @property {{ x: number; y: number; z: number }} [rotation] - Rotação do equipamento em radianos nos eixos x, y, z. Opcional.
- * @property {{ width: number; height: number; depth: number }} [size] - Dimensões (largura, altura, profundidade) para equipamentos com geometria de caixa (e.g., 'Building', 'Crane'). Opcional se `radius` e `height` forem usados.
- * @property {number} [radius] - Raio para equipamentos com geometria cilíndrica (e.g., 'Tank', 'Pipe') ou esférica (e.g., 'Valve'). Opcional se `size` for usado.
- * @property {number} [height] - Altura para equipamentos com geometria cilíndrica (e.g., 'Tank', 'Crane'). Para 'Pipe', representa o comprimento. Opcional se `size` for usado.
+ * @property {{ width: number; height: number; depth: number }} [size] - Dimensões (largura, altura, profundidade) para equipamentos com geometria de caixa (e.g., 'Building', 'Crane', 'Ship', 'Barge'). Opcional se `radius` e `height` forem usados para outros tipos.
+ * @property {number} [radius] - Raio para equipamentos com geometria cilíndrica (e.g., 'Tank', 'Pipe', 'Vessel') ou esférica (e.g., 'Valve', 'Sphere'). Opcional se `size` for usado.
+ * @property {number} [height] - Altura para equipamentos com geometria cilíndrica (e.g., 'Tank', 'Crane', 'Pipe', 'Vessel'). Para 'Pipe', representa o comprimento. Opcional se `size` for usado.
  * @property {string} color - Cor base do equipamento em formato hexadecimal (e.g., '#78909C'). Usada no modo de colorização 'Equipamento'.
  * @property {string} [details] - Detalhes textuais adicionais sobre o equipamento. Exibido no `InfoPanel`. Opcional.
+ *
+ * @property {'fixed-roof' | 'floating-roof-external' | 'floating-roof-internal'} [tankType] - (Específico para type: 'Tank') Tipo construtivo do tanque.
+ * @property {'vertical' | 'horizontal'} [orientation] - (Específico para type: 'Vessel') Orientação do vaso.
+ * @property {'centrifugal' | 'positive-displacement'} [pumpType] - (Específico para type: 'Pump') Tipo da bomba.
+ * @property {{ powerHp?: number; voltage?: string; }} [motorDetails] - (Específico para type: 'Pump') Detalhes do motor da bomba.
+ * @property {'gate' | 'ball' | 'control'} [valveMechanism] - (Específico para type: 'Valve') Mecanismo da válvula.
+ * @property {'manual' | 'motorized'} [actuationType] - (Específico para type: 'Valve') Tipo de acionamento da válvula.
+ * @property {string} [material] - (Específico para type: 'Pipe') Material da tubulação.
+ * @property {number} [capacityDwt] - (Específico para type: 'Ship' | 'Barge') Capacidade em Deadweight Tonnage.
  */
 export interface Equipment {
   tag: string;
   name: string;
-  type: 'Building' | 'Crane' | 'Tank' | 'Terrain' | 'Pipe' | 'Valve';
+  type: 'Building' | 'Crane' | 'Tank' | 'Terrain' | 'Pipe' | 'Valve' | 'Sphere' | 'Vessel' | 'Pump' | 'Ship' | 'Barge';
   sistema?: string;
   area?: string;
   operationalState?: string;
   product?: string;
   position: { x: number; y: number; z: number };
   rotation?: { x: number; y: number; z: number };
-  size?: { width: number; height: number; depth: number };
-  radius?: number;
-  height?: number;
+  size?: { width: number; height: number; depth: number }; // Predominante para caixas
+  radius?: number; // Para cilindros e esferas
+  height?: number; // Para cilindros e altura de caixas/outros
   color: string;
   details?: string;
+
+  // Atributos específicos por tipo
+  tankType?: 'teto-fixo' | 'teto-flutuante-externo' | 'teto-flutuante-interno'; // Para 'Tank'
+  orientation?: 'vertical' | 'horizontal'; // Para 'Vessel'
+  pumpType?: 'centrifuga' | 'deslocamento-positivo'; // Para 'Pump'
+  motorDetails?: { // Para 'Pump'
+    potenciaCv?: number;
+    tensao?: string;
+  };
+  valveMechanism?: 'gaveta' | 'esfera' | 'controle'; // Para 'Valve'
+  actuationType?: 'manual' | 'motorizada'; // Para 'Valve'
+  material?: string; // Para 'Pipe'
+  capacityDwt?: number; // Para 'Ship', 'Barge'
 }
 
 /**
@@ -91,13 +113,13 @@ export type SystemView = CameraState;
  * Define as diferentes opções de visualização para um sistema focado.
  * @interface SystemViewOptions
  * @property {SystemView} default - A visão padrão calculada.
- * @property {SystemView} [topDown] - Uma visão de cima para baixo.
- * @property {SystemView} [isometric] - Uma visão isométrica simulada.
+ * @property {SystemView} topDown - Uma visão de cima para baixo.
+ * @property {SystemView} isometric - Uma visão isométrica simulada.
  */
 export interface SystemViewOptions {
   default: SystemView;
-  topDown: SystemView; // Tornando obrigatório para simplificar o ciclo
-  isometric: SystemView; // Tornando obrigatório
+  topDown: SystemView; 
+  isometric: SystemView; 
 }
 
 /**
@@ -127,7 +149,7 @@ export interface TargetSystemInfo {
  */
 export interface Command {
   id: string;
-  type: 'CAMERA_MOVE' | 'LAYER_VISIBILITY' | 'EQUIPMENT_SELECT'; // Adicionar outros tipos conforme necessário
+  type: 'CAMERA_MOVE' | 'LAYER_VISIBILITY' | 'EQUIPMENT_SELECT'; 
   execute: () => void;
   undo: () => void;
   description: string;
@@ -147,7 +169,7 @@ export interface Command {
 export interface Annotation {
   equipmentTag: string;
   text: string;
-  createdAt: string; // ISO 8601 date string
+  createdAt: string; 
 }
 
 /**
@@ -163,3 +185,4 @@ export interface Annotation {
  * @type ColorMode
  */
 export type ColorMode = 'Produto' | 'Estado Operacional' | 'Equipamento';
+

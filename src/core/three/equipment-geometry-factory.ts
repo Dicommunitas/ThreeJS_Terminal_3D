@@ -9,8 +9,6 @@
  * de geometrias do componente `ThreeScene` ou outras partes do sistema.
  * Fornece uma geometria padrão (BoxGeometry) caso um tipo de equipamento desconhecido seja fornecido.
  *
- * Exporta:
- * - `createGeometryForItem`: Função para criar a geometria apropriada para um equipamento.
  */
 import * as THREE from 'three';
 import type { Equipment } from '@/lib/types';
@@ -64,20 +62,50 @@ export function createGeometryForItem(item: Equipment): THREE.BufferGeometry {
         16  // Segmentos de altura
       );
       break;
+    case 'Sphere':
+      geometry = new THREE.SphereGeometry(
+        item.radius || 3,
+        32, // Segmentos de largura
+        32  // Segmentos de altura
+      );
+      break;
+    case 'Vessel': // Vaso
+      geometry = new THREE.CylinderGeometry(
+        item.radius || 1,
+        item.radius || 1,
+        item.height || 3,
+        32
+      );
+      // A orientação (vertical/horizontal) seria aplicada na rotação do Mesh, não na geometria em si.
+      break;
+    case 'Pump': // Bomba
+      geometry = new THREE.BoxGeometry(
+        item.size?.width || 0.8,
+        item.size?.height || 0.8,
+        item.size?.depth || 1.2
+      );
+      break;
+    case 'Ship': // Navio
+    case 'Barge': // Barcaça
+      geometry = new THREE.BoxGeometry(
+        item.size?.width || 8,
+        item.size?.height || 3,
+        item.size?.depth || 20
+      );
+      break;
     default:
       // console.warn(`[GeometryFactory] Tipo de equipamento desconhecido: ${item.type}. Usando cubo padrão.`);
       geometry = new THREE.BoxGeometry(1, 1, 1);
       break;
   }
 
-  // LOG ADICIONADO para verificar a bounding box da geometria criada (antes de ser transformada em mesh)
   geometry.computeBoundingBox();
   if (geometry.boundingBox) {
     const size = new THREE.Vector3();
     geometry.boundingBox.getSize(size);
-    console.log(`[createGeometryForItem] Geometry for ${item.tag} (${item.type}). Original Geo Size: ${size.x.toFixed(2)},${size.y.toFixed(2)},${size.z.toFixed(2)}`);
+    // console.log(`[createGeometryForItem] Geometry for ${item.tag} (${item.type}). Original Geo Size: ${size.x.toFixed(2)},${size.y.toFixed(2)},${size.z.toFixed(2)}`);
   } else {
-    console.log(`[createGeometryForItem] Geometry for ${item.tag} (${item.type}). Could not compute bounding box.`);
+    // console.log(`[createGeometryForItem] Geometry for ${item.tag} (${item.type}). Could not compute bounding box.`);
   }
 
   return geometry;
