@@ -13,6 +13,7 @@ import * as THREE from 'three';
 import type { Equipment } from '@/lib/types';
 
 // Importa as fábricas de geometria específicas
+import { createBuildingGeometry } from './equipment-geometries/building';
 import { createTankGeometry } from './equipment-geometries/tank';
 import { createValveGeometry } from './equipment-geometries/valve';
 import { createPumpGeometry } from './equipment-geometries/pump';
@@ -30,11 +31,7 @@ import { createShipGeometry } from './equipment-geometries/ship';
 export function createGeometryForItem(item: Equipment): THREE.BufferGeometry | THREE.Group {
   switch (item.type) {
     case 'Building':
-      return new THREE.BoxGeometry(
-        item.size?.width || 5,
-        item.size?.height || 5,
-        item.size?.depth || 5
-      );
+      return createBuildingGeometry(item);
     case 'Crane':
       return new THREE.BoxGeometry(
         item.size?.width || 3,
@@ -47,7 +44,7 @@ export function createGeometryForItem(item: Equipment): THREE.BufferGeometry | T
       return new THREE.CylinderGeometry(
         item.radius || 0.2,
         item.radius || 0.2,
-        item.height || 5,
+        item.height || 5, // Para Pipe, height é o comprimento
         16
       );
     case 'Valve':
@@ -56,9 +53,10 @@ export function createGeometryForItem(item: Equipment): THREE.BufferGeometry | T
       return new THREE.SphereGeometry(
         item.radius || 3,
         32,
-        32
+        16 // Reduzido para performance, esferas não precisam de tantos segmentos verticais
       );
     case 'Vessel':
+      // A orientação 'horizontal' deve ser tratada pela rotação do item nos dados iniciais
       return new THREE.CylinderGeometry(
         item.radius || 1,
         item.radius || 1,
@@ -71,8 +69,12 @@ export function createGeometryForItem(item: Equipment): THREE.BufferGeometry | T
       return createBargeGeometry(item);
     case 'Ship':
       return createShipGeometry(item);
+    case 'Terrain': // Terrain não deve gerar geometria aqui, é tratado separadamente
+      console.warn(`Tipo 'Terrain' não deve chamar createGeometryForItem. Será ignorado.`);
+      return new THREE.BoxGeometry(0.001, 0.001, 0.001); // Geometria mínima para evitar erros
     default:
       console.warn(`Geometria desconhecida para o tipo de equipamento: ${item.type}. Usando BoxGeometry padrão.`);
       return new THREE.BoxGeometry(1, 1, 1);
   }
 }
+
